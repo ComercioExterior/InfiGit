@@ -1,0 +1,94 @@
+
+<HTML>
+    
+    <HEAD>
+    <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+            <SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+        
+    
+             <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        
+        <TITLE>Sistema INFI</TITLE>
+		<script type="text/javascript">
+        
+    
+         
+        function procesar(action){
+        var mensaje;
+        
+        if(action=='0'){
+	     mensaje='¿ Esta seguro de querer realizar el proceso de DESACTIVACION de Cierre de Sistema ?'        
+        }else if(action=='1'){
+   	     mensaje='¿ Esta seguro de querer realizar el proceso de ACTIVACION de Cierre de Sistema ?'        
+        }
+        
+        if(confirm(mensaje)) {        
+       		window.location='cierre_sistema_activacion-confirm?accion='+action+'&cierre_activo='+document.getElementById('cierre_activo').value+'&fecha_pre_cierre='+document.getElementById('fecha_pre_cierre').value+'&fecha_sistema='+document.getElementById('fecha_sistema').value;
+        }
+        
+        } 
+        </script>
+        
+         
+    </HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Cierre Sistema / Activaci&oacute;n de Cierre</FONT>
+        </TD>
+        
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+        <td class="headerBox" aling="right"></td>
+</TABLE>
+        
+        <CENTER>
+
+<!--formulario-->
+	<form>		
+	    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="TABLE-LAYOUT: auto; ">
+		    <tr>
+			    <th COLSPAN="5" ALIGN="center" nowrap>
+				    <b> Proceso de activaci&oacute;n de Cierre Sistema </b>
+			    </th>
+		    </tr>	
+
+				<tr>
+					<th nowrap align="center"><b>Fecha Sistema</b></th>
+					<th nowrap align="center"><b>Fecha Pre_Cierre</b></th>
+					<th nowrap align="center"><b>D&iacute;as al Pre-cierre</b></th>
+					<th nowrap align="center"><b>Estatus Cierre</b></th>
+					<th nowrap align="center"><b>Paso en Ejecuci&oacute;n</b></th>
+			  	</tr>
+		
+			<cierre_sistema>        
+			<tr>
+				<td nowrap align="center">@fecha_sistema@ <input type="hidden" value="@fecha_sistema@" id="fecha_sistema"></td>
+				<td nowrap align="center">@fecha_pre_cierre@ <input type="hidden" value="@fecha_pre_cierre@" id="fecha_pre_cierre"></td>
+				<td nowrap align="center">@dias_transcurridos@</td>
+				<td nowrap align="center">@cierre@ <input type="hidden" value="@cierre_activo@" id="cierre_activo"> </td>
+				<td nowrap align="center">@paso_en_ejecucion@</td>
+			</tr>
+			</cierre_sistema>						
+	    </table>               
+	    </br>
+		<button type="button" ONCLICK="javaScript:procesar('1');">&nbsp;Activar&nbsp;</button>	
+	   <SPAN> </SPAN>   
+		<button type="button" ONCLICK="javaScript:procesar('0');">&nbsp;Desactivar&nbsp;</button>	
+	</form>
+   </CENTER>
+    </BODY>
+
+</HTML>
+

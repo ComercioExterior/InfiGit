@@ -1,0 +1,86 @@
+<HTML>
+
+<HEAD>
+<LINK REL="stylesheet" type="text/css"
+	href="../js/calendar/popcalendar.css" />
+<SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+
+
+<script language="javascript" src="../js/default.js"></script>
+<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+
+<script type="text/javascript">
+	function seleccionarSelect() {
+		var parval_valor = document.getElementById("valoranterior");
+		var selectparametro = document.getElementById("parval_valor");
+		for ( var i = 0; i < 2; i++) {
+			if (selectparametro.options[i].value == parval_valor.value) {
+				selectparametro.options[i].selected = true;
+			} //fin if		
+		}//fin for
+	}//fin function
+</script>
+<TITLE>Sistema INFI</TITLE>
+</HEAD>
+
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};seleccionarSelect()">
+
+	<TABLE border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+			<TD class="headerBox"><FONT class="headerText">Configuraci&oacute;n / Grupo Par&aacute;metros</FONT></TD>
+
+			<TD class="headerBox" valign="middle" align="right"><img
+				border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17"
+				onclick="helpOpen(window.document.location.href);"
+				style="cursor: hand" title="Mostrar ayuda en l&iacute;nea">
+			</TD>
+			<td class="headerBox" aling="right"></td>
+	</TABLE>
+
+	<CENTER>
+
+		<form NAME="dataentry" METHOD="POST" ACTION="config_grupo_parametros-confirm_update">
+
+			<table border="0" cellspacing="1" cellpadding="2" width="100%"class="dataform">
+			
+				<tr>
+					<th COLSPAN="4" ALIGN="center">Editar Grupo de
+						Par&aacute;metros</th>
+				</tr>
+				<tr>
+					<td>Nombre del Par&aacute;metro:</td>
+					<td>@partip_nombre_parametro@ <INPUT TYPE="hidden"
+						VALUE="@partip_nombre_parametro@" NAME="partip_nombre_parametro"
+						SIZE="40" MAXLENGTH="10" class="inputControl" /> <INPUT
+						TYPE="hidden" VALUE="@pargrp_id@" NAME="pargrp_id" SIZE="40"
+						MAXLENGTH="10" class="inputControl" />
+					</td>
+				</tr>
+				<tr>
+					<td>Descripci&oacute;n del Par&aacute;metro:</td>
+					<td>@partip_descripcion@</td>
+				</tr>
+				<tr>
+					<td>Valor del Par&aacute;metro:</td>
+					<td><select name="parval_valor" id="parval_valor">
+							<option value="true">Habilitar</option>
+							<option value="false">Deshabilitar</option>
+					</select> <INPUT TYPE="hidden" id="valoranterior" VALUE="@parval_valor@"
+						NAME="valoranterior" SIZE="40" MAXLENGTH="200"
+						class="inputControl" />
+					</td>
+				</tr>
+			</table>
+
+			<br>
+			<button TYPE="submit">Procesar</button>
+			&nbsp;
+			<button type="button" onclick="history.back();">Regresar</button>
+			&nbsp;
+			<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+
+		</form>
+	</CENTER>
+</BODY>
+</HTML>
+

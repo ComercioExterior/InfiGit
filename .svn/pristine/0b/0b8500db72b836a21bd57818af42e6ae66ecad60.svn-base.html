@@ -1,0 +1,101 @@
+<HTML>
+
+<HEAD>
+<LINK REL="stylesheet" type="text/css"
+	href="../js/calendar/popcalendar.css" />
+<SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+<script language="javascript" src="../js/default.js"></script>
+<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+<script type="text/javascript">
+function isNumberKey(evt){
+    var charCode = (evt.which) ? evt.which : evt.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57))
+        return false;
+    return true;
+}
+</script>
+<TITLE>Sistema INFI</TITLE>
+</HEAD>
+
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+	<TABLE border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+			<TD class="headerBox"><FONT class="headerText">Intercambio / Intervencion / Editar </FONT></TD>
+
+			<TD class="headerBox" valign="middle" align="right"><img
+				border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17"
+				onclick="helpOpen(window.document.location.href);"
+				style="cursor: hand" title="Mostrar ayuda en l&iacute;nea">
+			</TD>
+
+			<td class="headerBox" aling="right"></td>
+	</TABLE>
+	<CENTER>
+		<form NAME="dataentry" METHOD="POST" ACTION="intercambio_intervencion_oficina-update">
+			<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+				<tr>
+					<th COLSPAN="4" ALIGN="center">Editar Cliente</th>
+				</tr>
+				<tr>
+					<td>OFICINA:</td>
+					<td><INPUT TYPE="TEXT" VALUE="@oficina_nro@" NAME="nro"
+						SIZE="40" MAXLENGTH="200" class="inputControl" readonly=readonly/>
+					</td>
+				</tr>
+				<tr>
+					<td>INVENTARIO ASIGNADO:</td>
+					<td><INPUT TYPE="TEXT" VALUE="@asignado@" NAME="asignado"
+						SIZE="40" MAXLENGTH="200" class="inputControl" onkeypress="return isNumberKey(event)"/>
+					</td>
+				</tr>
+				<tr>
+					<td>INVENTARIO PORCENTAJE:</td>
+					<td><INPUT TYPE="TEXT" VALUE="@porcentaje@" NAME="porcentaje"
+						SIZE="40" MAXLENGTH="3" class="inputControl" onkeypress="return isNumberKey(event)"/>
+					</td>
+				</tr>
+				<tr>
+					<td>INVENTARIO DISPONIBLE:</td>
+					<td><INPUT TYPE="TEXT" VALUE="@disponible@" NAME="disponible"
+						SIZE="40" MAXLENGTH="200" class="inputControl" readonly=readonly/>
+					</td>
+				</tr>
+				<tr>
+					<td>INVENTARIO CONSUMIBLE:</td>
+					<td><INPUT TYPE="TEXT" VALUE="@consumido@" NAME="consumido"
+						SIZE="40" MAXLENGTH="200" class="inputControl" onkeypress="return isNumberKey(event)"/>
+					</td>
+				</tr>
+				<tr>
+					<td>INVENTARIO DIAS:</td>
+					<td><INPUT TYPE="TEXT" VALUE="@diasentrega@" NAME="diasentrega"
+						SIZE="40" MAXLENGTH="3" class="inputControl" onkeypress="return isNumberKey(event)"/>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>ESTATUS:</td>
+					<td><INPUT TYPE="TEXT" VALUE="@estatus@" NAME="estatus"
+						SIZE="40" class="inputControl"  maxlength="1" onkeypress="return isNumberKey(event)"/>
+					</td>
+				</tr>
+				<INPUT TYPE="hidden" VALUE="@moneda@" NAME="moneda"/>
+				<INPUT TYPE="hidden" VALUE="@fecha@" NAME="fecha"/>
+			
+				
+<!-- 				<INPUT TYPE="TEXT" VALUE="@nro@" NAME="nro1"/> -->
+			</table>
+
+			<br>
+			<button TYPE="submit">Procesar</button>
+			&nbsp;
+			<button type="button" onclick="history.back();">Regresar</button>
+			&nbsp;
+			<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+		</form>
+	</CENTER>
+</BODY>
+
+</HTML>
+

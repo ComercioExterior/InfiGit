@@ -1,0 +1,69 @@
+
+<HTML>  
+    <HEAD>
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        
+        <TITLE>Sistema INFI</TITLE>
+      
+    </HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Generales / Oficinas Comercial</FONT>
+        </TD>
+        
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+        <td class="headerBox" aling="right"></td>
+</TABLE>
+        
+        <CENTER>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="oficina_comercial_update">
+		
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+        <tr>
+            <td ALIGN="center">
+                 <b>Por favor confirme si desea Actualizar a este registro @oficina@ el valor @oficina_anterior@</b>
+                 <input type="hidden" name="oficina" value="@oficina@">
+                 <input type="hidden" name="oficina_anterior" value="@oficina_anterior@">
+                 <input type="hidden" name="descripcion" value="@descripcion@">
+                 <input type="hidden" name="descripcion_anterior" value="@descripcion_anterior@">
+                 <input type="hidden" name="direccion" value="@direccion@">
+                 <input type="hidden" name="direccion_anterior" value="@direccion_anterior@">
+                 <input type="hidden" name="estado" value="@estado@">
+                 <input type="hidden" name="estado_anterior" value="@estado_anterior@">
+                 <input type="hidden" name="municipio" value="@municipio@">
+                 <input type="hidden" name="municipio_anterior" value="@municipio_anterior@">
+                 <input type="hidden" name="estatus" value="@estatus@">
+                 <input type="hidden" name="estatus_anterior" value="@estatus_anterior@">
+            </td>
+        </tr>
+        </table>	
+         <INPUT TYPE="hidden" VALUE="@oficina@" NAME="oficina"/> 
+            <br>
+            <button TYPE="submit">Procesar</button>
+            &nbsp;<button type="button" onclick="javascript:history.back();">Regresar</button>
+            &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+
+    </form>
+        
+        </CENTER>
+        
+    </BODY>
+
+</HTML>

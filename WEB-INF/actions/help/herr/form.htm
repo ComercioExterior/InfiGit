@@ -1,0 +1,17 @@
+<HTML>
+<body>
+<center>
+<img align="top" src="../images/infi_gn_ayuda_back.gif" TARGET="ayuda" onclick="history.back();" style="cursor:hand" title="Ir a la p&aacute;gina Anterior"/>
+<img align="top" src="../images/infi_gn_ayuda_impresora.gif" onclick="imp();" style="cursor:hand" title="Imprimir Ayuda""/>
+<img align="top" src="../images/infi_gn_ayuda_next.gif" TARGET="ayuda" onclick="history.forward();" style="cursor:hand" title="Ir a la p&aacute;gina Siguiente"/>
+</center>
+</body>
+<script language="JavaScript"> 
+function imp() 
+{ 
+	parent.ayuda.focus(); 
+	parent.ayuda.print() 
+} 
+</script> 
+</HTML>
+

@@ -1,0 +1,94 @@
+ <html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Sistema INFI</title>
+  <link rel="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+  <link rel="stylesheet" type="text/css" href="../css/EstiloFichas.css" />
+  <script type="text/javascript">
+        //Funci&oacute;n para abrir un picklist o limpiar el valor anteriormente seleccionado
+		function showPickList(ind ,id, tx, campo)
+		{
+		   var r
+		   if (ind == '1') {  // llamar a picklist		
+		   	  r = window.open(campo +'?name_id=' + id.name +"&name_tx=" + tx.name, 'Picklist','resizable=yes,scrollbars=yes,width=600,height=450,Left=200,top=150,Status=yes,unadorned:true');
+		   }
+		   else{
+			id.value= "";//limpiar id de cliente
+			tx.value= "<Todos>";//limpiar campo de cliente
+			callAjax('tit_cliente', '2');//buscar todos los titulos
+			document.dataentry.moneda_id.disabled = false;//habilitar campo moneda
+		  }
+		}  
+  </script>
+         <script language="javascript" src="../js/default.js"></script>  
+</head>
+<body>
+
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Ordenes / Toma de Orden </FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+  <!--formulario-->
+  
+  <form NAME="dataentry" METHOD="POST" ACTION="toma_de_orden-guardar">
+  
+    <div id="menu">
+<table border="0">
+<tr>
+<td id="navigation"><a style="cursor:hand"><span>Datos</span></a></td>
+<td id="navigation"><a style="cursor:hand"><span>C&aacute;lculos</span></a></td>
+<td id="navigationActivo"><a><span>Documentos</span></a></td>
+</tr>
+</table>
+</div>
+  <center>
+	 <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+			<tr>
+			<th width="10%">Descargar</th>
+			<th width="9%">Orden</th>
+			<th>Nombre del Documento</th>
+			</tr>
+			<documentos>
+			<tr>
+			<td align="center">
+			<a href="documentos_ordenes-descargar?documento_id=@ordene_doc_id@&ordene_id=@ordene_id@&framework.controller.outputstream.open=false"><IMG SRC="../images/infi_gn_edit.gif" WIDTH="17" ALIGN="top" HEIGHT="17" title="Descargar Archivo" BORDER="0" style="cursor:hand"></a>
+			</td>
+			<td>@ordene_id@</td>
+			<td>@nombre@</td>
+			</tr>
+			</documentos>
+	  </table>
+
+	            
+  <br>
+  </center>
+  <center>
+     <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+	  <tr>
+	  <td align="center">
+	  La Toma de Orden ha sido realizada exitosamente bajo el n&uacute;mero @ordene_id@
+	  </td>
+	  </tr>
+	  
+	 </table>
+
+	
+	
+  <br>
+   <button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+  
+</center>
+
+</form>
+</body>
+</html>

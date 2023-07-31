@@ -1,0 +1,105 @@
+package models.bcv.mesa_cambio_oferta;
+
+import megasoft.AbstractModel;
+import megasoft.Logger;
+import megasoft.db;
+import models.msc_utilitys.MSCModelExtend;
+import com.bdv.infi.dao.MesaCambioDAO;
+
+public class Procesar extends MSCModelExtend {
+
+	public void execute() {
+		try {
+			String rif = _record.getValue("rif");
+			String cliente = _record.getValue("cliente");
+			String codDivisa = _record.getValue("codDivisa");
+			String montoDivisa = _record.getValue("montoDivisa");
+			String tasaCambio = _record.getValue("tasaCambio");
+			String banco = _record.getValue("banco");
+			String jornada = _record.getValue("jornada");
+			String cuentame = _record.getValue("cuentame");
+			String cuentamn = _record.getValue("cuentamn");
+			String instrumento = _record.getValue("instrumento");
+			String idUsuario = getUserName();
+			String estatus = "0";
+
+			MesaCambioDAO operaciones = new MesaCambioDAO(_dso);
+			String insert = operaciones.guardarInterbancario("O",rif.substring(0, 1), rif.substring(1), cliente, codDivisa, montoDivisa, tasaCambio, banco, cuentame, cuentamn, instrumento, estatus, jornada);
+			db.exec(_dso, insert.toString());
+
+		} catch (Exception e) {
+			Logger.error(this, e.toString(), e);
+			System.out.println("Procesar : execute() : " + e.toString());
+		}
+	}
+
+	public boolean isValid() {
+		boolean valido = true;
+		try{
+			System.out.println(_record.getValue("rif"));
+			System.out.println(_record.getValue("cliente"));
+			System.out.println(_record.getValue("codDivisa"));
+			System.out.println(_record.getValue("montoDivisa"));
+			System.out.println(_record.getValue("tasaCambio"));
+			System.out.println(_record.getValue("banco"));
+			System.out.println(_record.getValue("jornada"));
+			System.out.println(_record.getValue("cuentame"));
+			System.out.println(_record.getValue("cuentamn"));
+
+			if (_record.getValue("rif").equalsIgnoreCase("") || _record.getValue("rif") == null) {
+				_record.addError("Registro interbancaria mesa", "El campo : rif, esta vacio o nulo. Verifique. ");
+				valido = false;
+			}
+
+			if (_record.getValue("cliente").equalsIgnoreCase("") || _record.getValue("cliente") == null) {
+				_record.addError("Registro interbancaria mesa", "El campo : cliente, esta vacio o nulo. Verifique. ");
+				valido = false;
+			}
+
+			if (_record.getValue("codDivisa").equalsIgnoreCase("") || _record.getValue("codDivisa") == null) {
+				_record.addError("Registro interbancaria", "El campo : codDivisa, esta vacio o nulo. Verifique. ");
+				valido = false;
+			}
+
+			if (_record.getValue("montoDivisa").equalsIgnoreCase("0") || _record.getValue("montoDivisa") == null) {
+				_record.addError("Registro interbancaria", "El campo : montoDivisa, esta vacio o nulo. Verifique. ");
+				valido = false;
+			}
+
+			if (_record.getValue("tasaCambio").equalsIgnoreCase("") || _record.getValue("tasaCambio") == null) {
+				_record.addError("Registro interbancaria", "El campo : tasaCambio, esta vacio o nulo. Verifique. ");
+				valido = false;
+			}
+
+			if (_record.getValue("banco").equalsIgnoreCase("") || _record.getValue("banco") == null) {
+				_record.addError("Registro interbancaria", "El campo : banco, esta vacio o nulo. Verifique. ");
+				valido = false;
+			}
+
+			if (_record.getValue("jornada").equalsIgnoreCase("") || _record.getValue("jornada") == null) {
+				_record.addError("Registro interbancaria", "El campo : jornada, esta vacio o nulo. Verifique. ");
+				valido = false;
+			}
+
+			if (_record.getValue("cuentame").equalsIgnoreCase("") || _record.getValue("cuentame") == null) {
+				_record.addError("Registro interbancaria", "El campo : cuentame, esta vacio o nulo. Verifique. ");
+				valido = false;
+			}
+
+			if (_record.getValue("cuentamn").equalsIgnoreCase("") || _record.getValue("cuentamn") == null) {
+				_record.addError("Registro interbancaria", "El campo : cuentamn, esta vacio o nulo. Verifique. ");
+				valido = false;
+			}
+		}catch (Exception e) {
+			try {
+				_record.addError("Registro interbancaria", "Verifique que no este enviando valores vacios ");
+			} catch (Exception e1) {
+			
+			}
+			valido = false;
+		}
+		
+
+		return valido;
+	}
+}

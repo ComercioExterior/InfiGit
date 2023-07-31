@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+        
+        <field 
+        name="estado" 
+        type="varchar" 
+        description="estado de la oficina"
+        nullable="0"
+        size="200" />
+      
+        <field 
+        name="diasentrega" 
+        type="varchar" 
+        description="dias de entrega"
+        nullable="0"
+        size="200" />
+        
+          <field 
+        name="moneda" 
+        type="varchar" 
+        description="moneda de la oficina"
+        nullable="0"
+        size="200" />
+        
+        <field 
+        name="fecha" 
+        type="varchar" 
+        description="fecha del cambio"
+        nullable="0"
+        size="200" />
+        
+         <field 
+        name="saldo" 
+        type="varchar" 
+        description="validacion de saldo"
+        nullable="0"
+        size="200" />
+        
+        
+<!--         <field  -->
+<!--         name="nro"  -->
+<!--         type="varchar"  -->
+<!--         description="numero de oficina" -->
+<!--         nullable="0" -->
+<!--         size="200" />  -->
+        
+<!--         <field  -->
+<!--         name="moneda"  -->
+<!--         type="varchar"  -->
+<!--         description="moneda del inventario" -->
+<!--         nullable="0" -->
+<!--         size="200" />  -->
+        
+<!--         <field  -->
+<!--         name="fecha"  -->
+<!--         type="varchar"  -->
+<!--         description="fecha del inventario" -->
+<!--         nullable="0" -->
+<!--         size="200" />  -->
+    
+</record>
+

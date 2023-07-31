@@ -1,0 +1,73 @@
+<html>
+	<head>        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+<form method="post" action="liquidacion_blotter_confirm">
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+			<TD class="headerBox">                
+            	<FONT class="headerText">Liquidaci&oacute;n / Proceso de Liquidaci&oacute;n por Blotter </FONT>
+        	</TD>
+        	<!-- help online -->
+   			<TD class="headerBox" valign="middle" align="right">
+   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   			</TD>
+   			<!-- fin help online -->
+		</TR>
+	</TABLE>
+
+   <center>
+	<br>
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable"">
+		<!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Lista de Registros (@t_registros@)
+                </FONT>
+            </th>
+        </tr>
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;>
+		<!--encabezados de columna-->
+		<tr class="tableHeader">
+    		<th width="4%" nowrap>Orden</th>  
+            <th width="10%" nowrap >Cliente</th>
+            <th width="10%" nowrap>Adjudicado</th>                         
+            <th width="10%" nowrap>Cobrado</th>
+            <th width="10%" nowrap>Pendiente</th>
+    	</tr>
+
+		<!--data-->
+	   <ordenes>
+    	<tr class="tableCell">
+		<td align="center">@ordene_id@</td>
+		<td align="left">@client_nombre@</td>
+		<td align="right">@ordene_adj_monto format-mask='#,###,###.##'@ @m_bs_rep@</td>
+		<td align="right">@cobrado format-mask='#,###,###.##'@ @m_bs_rep@</td>
+		<td align="right">@ordene_ped_total_pend format-mask='#,###,###.##'@ @m_bs_rep@</td>
+		</tr>
+	   </ordenes>
+	</table>
+	<BR>
+	<!--  @page_index@-->
+    <BR>
+    <BR>
+		<br>
+		&nbsp;
+    	<button TYPE="button" onclick="window.history.back()">Regresar</button>
+		&nbsp;
+		<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+	</form>
+   </center>
+</body>
+</html>

@@ -1,0 +1,361 @@
+ <div id="datos_@titulo_id@" style="display:none">
+   <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="4" ALIGN="center">
+                <FONT class="formCaptionText">  
+                Datos de la Venta               
+                </FONT>
+            </th>
+        </tr>
+ 
+        
+          <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Cantidad a Vender:
+            </td>
+        
+                        
+            <td>
+            <input type="text" style="text-align:right" value="@cant_disponible@" size="15" name="cantidad_venta_@titulo_id@" onkeypress="solo_numericos();">
+            </td>
+            
+                      <td>
+                 Moneda de Negociaci&oacute;n:
+            </td>
+            <td>
+				<SELECT NAME="moneda_id_@titulo_id@" SIZE="1" onchange="mostrarDatosPago();">				
+				<OPTION VALUE="" SELECTED>Seleccione</OPTION>			
+				<rows_mon>				 
+				 <OPTION VALUE="@moneda_id@">@moneda_descripcion@</OPTION>				 							 
+ 				</rows_mon>
+ 				</SELECT>               
+            </td>
+        	</tr>
+        	<tr CLASS="formElement">
+	            <td CLASS="formLabel">
+	             Forma de Negociación:
+	            </td>
+	            <td>
+	            <select name="forma_negociacion">
+	              <option value="NBDV">Por el Banco de Venezuela</option>
+	              <option value="CARP">Cartera Propia</option>
+	            </select>
+	            </td>
+        	</tr>        	
+          
+        	 <tr style="display:none">
+    		<td><input type="hidden" value="@titulo_id_real@" size="15" name="titulo_id_@titulo_id@"></td>
+    		</tr>
+    		<tr>
+			<td>
+				Sector Productivo:*
+            </td>
+			<td>
+		    <SELECT NAME="sector_productivo" SIZE="1">				
+				<OPTION VALUE="" SELECTED>Seleccione</OPTION>
+				<sp>					
+					<OPTION VALUE="@sector_id@">@descripcion@</OPTION>						
+				</sp>	
+			</SELECT> 	
+			</td>
+			<td>
+				Concepto:*
+            </td>
+			<td>
+		    <SELECT NAME="concepto" SIZE="1">				
+				<OPTION VALUE="" SELECTED>Seleccione</OPTION>
+				<con>					
+					<OPTION VALUE="@codigo_id@">@concepto@</OPTION>						
+				</con>	
+			</SELECT> 	
+			</td>
+			</tr>
+			<tr>
+			<td>
+				Broker:*
+            </td>
+			<td>
+			<INPUT TYPE="text" NAME="broker" value="BCDV" SIZE="4" maxlength="4">				
+			</td>			
+		</tr>
+         
+          </table>
+        	
+       <!--INSTRUCCIONES DE PAGO -->
+	 
+	    <div id="tit_instrucciones_pago" style="display:none">
+	 
+		   <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+		        <tr CLASS="formCaption">
+		            <th COLSPAN="2" ALIGN="center">
+		                 Instrucciones de Pago
+		            </th>
+		        </tr>
+		        
+		   </table>
+		   
+		</div>
+	  
+		   <div id="moneda_internac" style="display:none">
+		  	<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto">
+				
+				<tr CLASS="formCaption">
+		            <th COLSPAN="4" ALIGN="center">
+		                 Moneda Internacional
+		            </th>
+		        </tr>
+					
+				<tr id="botonA" style="display:block">
+	       		 <td>Tipo de Instrucci&oacute;n:</td>
+	       		 <td><input type="radio" name="tipo_inst_int" value="1" onclick="mostrarInstruccionCtaInt('1');datosIntermediario();">Transferencia</td>	
+		 		</tr>
+	 			</table>
+	 			
+	 			<table id="tit_datos_transferencia" style="display:none" border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto">			
+				
+				<tr CLASS="formCaption">
+		            <th COLSPAN="4" ALIGN="center">
+		                 Datos de la Cuenta Internacional
+		            </th>
+		        </tr>
+	 			</table>
+	 			<table id="datos_transferencia" style="display:none" border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform" style="table-layout: auto">			
+			       <!--titulo-->
+			       <tr>
+			        	<td>N&uacute;mero de Cuenta:*</td>
+			        	<td>
+			        		<input type="text" value="@ctecta_numero_ext@" maxlength="29" size="35" class="inputControl" disabled="disabled"/>
+			        		<input type="hidden" value="@ctecta_numero_ext@" name="ctecta_numero_ext"/>
+			        		<INPUT TYPE="CHECKBOX" VALUE="1"  disabled=disabled"/> IBAN
+			        		<INPUT TYPE="hidden" NAME="iban_cta_europea" VALUE="1" checked="@iban_cta_europea@"/> 
+			        	</td>		        
+			      
+			        	<td>Banco:*</td>
+			        	<td>
+			        		<input type="text" value="@ctecta_bcocta_bco@"  maxlength="50" class="inputControl" disabled="disabled"/>
+			        		<input type="hidden" value="@ctecta_bcocta_bco@" name="ctecta_bcocta_bco"/>
+			        	</td>
+			        </tr>
+			       <tr>
+				        <td>Direcci&oacute;n:</td>
+				       	<td>
+				       		<input type="text" value="@ctecta_bcocta_direccion@"  maxlength="50" class="inputControl" disabled="disabled"/>
+				       		<input type="hidden" value="@ctecta_bcocta_direccion@" name="ctecta_bcocta_direccion" />
+				       	</td>
+				  
+			        	<!--td>Swift:*</td>
+			        	<td><input type="text" value="" name="ctecta_bcocta_swift"  maxlength="50" class="inputControl"/></td-->
+			     		
+			     		<td>Tel&eacute;fono:</td>
+			        	<td>
+			        		<input type="text" value="@ctecta_bcocta_telefono@" maxlength="50" class="inputControl" disabled="disabled"/>
+			        		<input type="hidden" value="@ctecta_bcocta_telefono@" name="ctecta_bcocta_telefono" />
+			        	</td>
+			     		
+			       </tr>
+			        <tr id="bic_aba_bco_destino">			       
+			        
+			     		<td>BIC/SWIFT:*</td>
+			        	<td>
+			        		<input type="text" value="@ctecta_bcocta_bic@" maxlength="50" class="inputControl" disabled="disabled"/>
+			        		<input type="hidden" value="@ctecta_bcocta_bic@" name="ctecta_bcocta_bic"/>
+			        	</td>
+
+			        	<td>ABA:*</td>
+				       	<td>
+				       		<input type="text" value="@ctecta_bcocta_aba@"  maxlength="50" class="inputControl" disabled="disabled"/>
+				       		<input type="hidden" value="@ctecta_bcocta_aba@" name="ctecta_bcocta_aba"/>
+				       	</td>
+			        	
+			        </tr>
+				     <tr>				    
+			        	<td>Observaciones:</td>
+			        	<td colspan="3">
+			        		<textarea cols="30" rows ="5" disabled="disabled">@ctecta_observacion@</textarea>
+			        		<input type="hidden" value="@ctecta_observacion@" name="ctecta_observacion"/>
+			        	</td>
+			        </tr>
+			        <tr>
+				     <tr id="botonA" style="display:block">				       	
+				     	<td>
+				       		<input type="checkbox"  checked="@bcoint_checked@" value="1" name="intermediario" onclick="mostrarOcultarIntermediario();">Banco Intermediario	  		
+				       		<input type="hidden"  value="@bcoint_checked@" name="intermediarioHidden">Banco Intermediario	  		
+				       		
+				       	</td>
+				 	</tr>
+				</table>		
+				
+				<table id="tit_banco_intermediario" border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="display:none">
+
+						<tr CLASS="formCaption">
+				            <th COLSPAN="4" ALIGN="center">
+				                Datos del Banco Intermediario
+				            </th>
+				        </tr>
+				        
+				</table>
+
+				<table id="banco_intermediario" border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform" style="display:none">
+
+				 	   <tr>
+				        	<td>Nombre del Banco Intermediario:*</td>
+				        	<td>
+				        		<input type="text" value="@ctecta_bcoint_bco@" maxlength="50" class="inputControl" disabled="disabled"/>
+				        		<input type="hidden" value="@ctecta_bcoint_bco@" name="ctecta_bcoint_bco"/>
+				        	</td>
+				       		
+				       		<td>Direcci&oacute;n Del Banco Intermediario:</td>
+				        	<td>
+				        		<input type="text" value="@ctecta_bcoint_direccion@"  maxlength="50" class="inputControl" disabled="disabled"/>
+				        		<input type="hidden" value="@ctecta_bcoint_direccion@" name="ctecta_bcoint_direccion"/>
+				        	</td>				       
+				       
+				        </tr>
+				        <tr>		
+				        		        				        		        
+				            <td>BIC/SWIFT Del Banco Intermediario:*</td>
+				        	<td>
+				        		<input type="text" value="@ctecta_bcoint_bic@"  maxlength="50" class="inputControl" disabled="disabled"/>
+				        		<input type="hidden" value="@ctecta_bcoint_bic@" name="ctecta_bcoint_bic" />
+				        	</td>
+				        	
+				        	<td>Tel&eacute;fono Del Banco Intermediario:</td>
+				        	<td>
+				        		<input type="text" value="@ctecta_bcoint_telefono@" name="ctecta_bcoint_telefono"  maxlength="50" class="inputControl" disabled="disabled"/>
+				        		<input type="hidden" value="@ctecta_bcoint_telefono@" name="ctecta_bcoint_telefono"/>
+				        	</td>
+				        	
+				        </tr>
+				        
+				         <tr>
+				        	
+				        	 <td>Cuenta en el Banco Intermediario *:</td>
+        					 <td>
+        						<input type="text" value="@ctecta_bcoint_swift@" maxlength="29" size="35" class="inputControl" disabled="disabled"/>
+        						<input type="hidden" value="@ctecta_bcoint_swift@" name="cta_bco_bcoint" />
+        					</td>
+        					<td colspan="2">(N&uacute;mero de cuenta del banco destino en el banco intermediario)</td>
+				        	
+				        </tr>				    
+				        
+				        <tr>
+				      
+					        <td>ABA Del Banco Intermediario:*</td>
+				        	<td>
+				        		<input type="text" value="@ctecta_bcoint_aba@" maxlength="50" class="inputControl" disabled="disabled"/>
+				        		<input type="hidden" value="@ctecta_bcoint_aba@" name="ctecta_bcoint_aba"/>
+				        	</td>
+				        	
+							<td>Observaciones Del Banco Intermediario:</td>
+				        	<td>
+				        		<textarea cols="30" rows ="5"  disabled="disabled">@ctecta_bcoint_observacion@</textarea> 
+				        		<input type="hidden" value="@ctecta_bcoint_observacion@" name="ctecta_bcoint_observacion"/>
+				        	</td>
+	
+				        </tr>
+				       
+				</table>
+		   </div>
+	   
+	      
+		   <div id="moneda_local" style="display:none">
+		  	<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto">
+				
+				<tr CLASS="formCaption">
+		            <th COLSPAN="4" ALIGN="center">
+		                 Moneda Local
+		            </th>
+		        </tr>				
+				
+	 			</table>
+	 			
+			 <table id="datos_cta_local" border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+			     <tr>
+			      <td>N&uacute;mero de cuenta:*</td>
+			      <td>  		      
+					<SELECT NAME="cta_nac_numero" SIZE="1">				
+						<OPTION VALUE="" SELECTED>Seleccione</OPTION>
+						<rows_ctas_nac>
+						<OPTION VALUE="@numero@">Cta @tipo@ @numero@</OPTION>	
+						</rows_ctas_nac>
+		 			</SELECT> 	
+					</td>
+					</tr>
+					
+					<!-- tr>
+			        	<td width="25%">Nombre de Cuenta:</td>
+			        	<td width="75%"><input type="text" value="" name="cta_nac_nombre"  maxlength="50" class="inputControl"/></td>
+			        </tr-->			
+				
+				 <tr><td colspan="2"><FONT COLOR="red"><b>@mensaje_error_user_webs@</b></FONT></td></tr>       
+	        	<tr><td colspan="2"><FONT COLOR="red"><b>@mensaje_error_cuentas_cte@</b></FONT></td></tr>      
+	
+			</table>			
+		   </div>
+		   
+		   <div id="datos_beneficiario" style="display:none" align="center">
+		   	  
+		   	  	<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto">
+				
+				<tr CLASS="formCaption">
+		            <th COLSPAN="4" ALIGN="center">
+		                 Datos del Beneficiario
+		            </th>
+		        </tr>				
+				
+	 			</table>
+	 
+		
+			<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform" style="table-layout: auto">
+			<tr>
+		       <!--titulo-->
+		
+		        <tr>
+		        	<td width="25%">C&eacute;dula Beneficiario:</td>
+		        	<td width="75%"><input type="text" value=""  name="cedula_beneficiario"  maxlength="10" class="inputControl"/></td>
+		        </tr>
+		       <tr>
+		        	<td width="25%">Nombre Beneficiario:</td>
+		        	<td width="75%"><input type="text" value="" name="nombre_beneficiario"  maxlength="50" class="inputControl"/></td>
+		        </tr>		     
+		       </table>
+		</div>
+		
+	  <!--FIN INSTRUCCIONES DE PAGO  -->
+	  
+	  
+	  	  <!-- CAMPOS DINAMICOS -->
+	      <table border="0" style="@display_campos_din@" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+	        
+	        <!--titulo-->
+	        <tr CLASS="formCaption">
+	            <th COLSPAN="4" ALIGN="center">
+	                <FONT class="formCaptionText">  
+	                Campos Adicionales      
+	                </FONT>
+	            </th>
+	        </tr>
+	 
+	        <rows_campos_dinamicos>
+	          <tr CLASS="formElement">
+	            <td CLASS="formLabel">
+	             @campo_nombre@
+	            </td>
+	            
+	            <td CLASS="formLabel">
+	            <input type="hidden" name="campo_id" value="@campo_id@"/>
+	             <input type="hidden" name="nombre_campo_@campo_id@" value="@campo_nombre@"/>
+	            <input type="text" name="valor_campo_@campo_id@" size="20" maxlength="50" value="">
+	            </td>      	           
+	          
+	          </tr>
+	         </rows_campos_dinamicos>	         
+	       </table>	   
+	       
+	  <!-- FIN CAMPOS DINAMICOS -->
+        	
+     </div>  	   
+ 
+  

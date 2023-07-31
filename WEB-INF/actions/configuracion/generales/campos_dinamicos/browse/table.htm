@@ -1,0 +1,112 @@
+<html>
+
+	<head> 
+          
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <script type="text/javascript" src="../js/menu/jquery-1.2.2.pack.js"></script>
+        
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+           
+        <script type="text/javascript">
+        function mostrarConsulta(){
+        	
+        	$(".tipo_campo").each( function(){
+        		
+        		var id_tipo  = $(this).attr("id");
+        		var id_campo = id_tipo.substring(3);//id del campo dinamico
+        		var tipoCampo = $(this)[0].innerHTML;//obtnego el contenido del td
+        		var td_boton = '#td_'+id_campo;
+        		if( tipoCampo == 'Lista Dinamica'){
+        			$(td_boton).css("display", "block");
+        		}
+        	});
+        }
+          
+        </script>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()}; mostrarConsulta();">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Generales / Campos Din&aacute;micos</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Campos Din&aacute;micos ( @t_registros@ )
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="TABLE-LAYOUT: auto; ">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+		<th width="1%" nowrap></th>
+		<th width="1%" nowrap></th>
+		<th width="1%" nowrap></th>
+    	<th nowrap>Nombre</th>
+    	<th nowrap>Descripci&oacute;n</th>
+   		<th nowrap>Tipo</th>
+
+    </tr>
+
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+		<td VALIGN="middle" width="2%">
+			<a href="campos_dinamicos-confirm?campo_id=@campo_id@&campo_nombre=@campo_nombre@&desc_campo_tipo=@desc_campo_tipo@"><IMG SRC="../images/infi_gn_delete.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Eliminar Registro" BORDER="0" style="cursor:hand"></a>			 </td>
+		<td VALIGN="middle" width="2%">
+			<a href="campos_dinamicos-edit?campo_id=@campo_id@"><IMG SRC="../images/infi_gn_edit2.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Editar Registro" BORDER="0" style="cursor:hand"></a>                
+		</td>
+		<td VALIGN="middle" width="2%">
+			<a id="td_@campo_id@" style="display:none;" href="campos_dinamicos-consult_list?campo_id=@campo_id@&campo_nombre=@campo_nombre@"><IMG SRC="../images/infi_gn_document.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Consultar Registro" BORDER="0" style="cursor:hand"></a>                
+		</td>    		
+		<td nowrap>@campo_nombre@</td>                
+		<td VALIGN="middle" align="left">@campo_descripcion@</td>
+		<td align="left" nowrap class="tipo_campo" id="td_@campo_id@">@desc_campo_tipo@</td>
+	</tr>
+     </rows>
+    
+    </table>
+    @page_index@
+    <BR>
+<form>
+
+    <button type="button" ONCLICK="window.location='campos_dinamicos-addnew'">&nbsp;Agregar&nbsp;</button>
+    &nbsp;<button type="button" onclick="javascript:history.back();">Regresar</button>
+    &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+</form>
+
+</center>
+
+</body>
+
+</html>
+

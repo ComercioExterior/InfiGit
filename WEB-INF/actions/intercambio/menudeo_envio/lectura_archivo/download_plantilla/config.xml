@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<config>
+
+	<model-class>models.bcv.menudeo_lectura.DownloadPlantilla</model-class>
+	<view-class></view-class>
+	<template></template>
+	<record-def></record-def>
+	<content-type>text/html</content-type>
+	<expires></expires>
+	<cache>false</cache>
+	<next-action type="redirect"></next-action>
+	<on-empty source="detalle_orden"></on-empty>
+
+</config>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+    <!--
+    
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, decimal, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+    
+    -->
+    
+        <field 
+        name="idUnidadInversion" 
+        type="varchar" 
+        description="Identificador de la Unidad de Inversion"
+        nullable="1"
+        size="10" />    
+    
+        <field 
+        name="idBlotter" 
+        type="varchar" 
+        description="Identificador del Blotter"
+        nullable="0"
+        size="100" />
+    
+        <field 
+        name="horarioDesde" 
+        type="varchar" 
+        description="Horario Desde"
+        nullable="0"
+        size="10" />
+        
+        <field 
+        name="horarioHasta" 
+        type="varchar" 
+        description="Horario Hasta"
+        nullable="0"
+        size="10" /> 
+                    
+        <field 
+        name="horarioDesdeUltDia" 
+        type="varchar" 
+        description="Horario Desde del Ultimo Dia"
+        nullable="1"
+        size="10" />
+        
+        <field 
+        name="horarioHastaUltDia" 
+        type="varchar" 
+        description="Horario Hasta del Ultimo Dia"
+        nullable="1"
+        size="10" /> 
+                
+        <field 
+        name="periodoInicial" 
+        type="varchar" 
+        description="Toma de Ordenes Desde"
+        nullable="0"
+        size="10" /> 
+        
+		<field 
+        name="periodoFinal" 
+        type="varchar" 
+        description="Toma de Ordenes Hasta"
+        nullable="0"
+        size="10" /> 
+        
+        <field 
+        name="gananciaRed" 
+        type="varchar" 
+        description="Porcentaje de Ganancia de la Red"
+        nullable="0"
+        size="6" /> 
+    
+    		<field 
+        name="indicaRecompra" 
+        type="integer" 
+        description="Permite Recompra"
+        nullable="1"
+        size="1" /> 
+    
+</record>

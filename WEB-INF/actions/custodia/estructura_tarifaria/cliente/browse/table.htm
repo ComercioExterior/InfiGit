@@ -1,0 +1,123 @@
+<html>
+
+	<head>
+        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <LINK REL="stylesheet" type="text/css" href="../css/EstiloFichas.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+     
+   <script type="text/javascript">
+	
+	function agregar() {
+		r = window.open('estructura_tarifaria-select_clientes?comision_id=@comision_id@&entry=estructuratarifaria','picklist', 'resizable=yes,scrollbars=yes,width=720,height=650,top=50,left=150');
+	}
+	
+	function eliminar(id,comision,nombre){
+		if (confirm("¿Está seguro que desea eliminar el Cliente: ("+nombre+")?")){
+			document.forms[1].action='estructura_tarifaria-delete_clientes?client_id='+id+'&comision_id='+comision;
+			document.forms[1].submit();
+			return;
+		}else{
+			return;
+		}
+	}
+
+	function pestana(valor){
+		if(valor==1){//Comision General
+			generalA.style.display ="block";
+			generalB.style.display ="block";
+		}
+		if(valor==0){//Comision Especifica
+			especifica.style.display ="block";
+		}
+	}
+	
+	</script>
+     
+    </head>
+
+<body ONLOAD="javascript:pestana(@com_in_general@);{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <td class="headerBox">               
+	            	<font class="headerText">Custodia / Estructura Tarifarias</font>	
+		</td>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<form NAME="dataentry" METHOD="POST" ACTION="estructura_tarifaria-select_clientes">
+
+<div id="menu">
+		<table border="0" cellspacing="1" cellpadding="2">
+			<tr>
+				<td id="navigation" nowrap><a href="estructura_tarifaria-comision_edit?comision_id=@comision_id@"><span>Comisi&oacute;n</span></a></td>
+				<td id="navigation" nowrap><a href="estructura_tarifaria-transacciones?comision_id=@comision_id@"><span>Transacciones</span></a></td>
+				<td id="navigationActivo" nowrap><div id="especifica" name="especifica" style="display:none"><a><span>Clientes</span></a></div></td>
+				<td id="navigation" nowrap><div id="generalA" style="display:none"><a href="estructura_tarifaria-depositarios_centrales?comision_id=@comision_id@"><span>Depositarios Centrales</span></a></div></td>
+				<td id="navigation" nowrap><div id="generalB" style="display:none"><a href="estructura_tarifaria-titulos?comision_id=@comision_id@"><span>T&iacute;tulos</span></a></div></td>
+							
+			</tr>
+		</table>
+	</div>
+
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="TABLE-LAYOUT: auto; ">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="11" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Clientes Registrados ( @t_registros@ )
+                </FONT>
+            </th>
+        </tr>
+
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+		<th width="2%"></th>
+		<th nowrap>Cliente</th>
+		<th nowrap>C&eacute;dula / RIF</th>
+    </tr>
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+		<td align="center">
+            <IMG onclick="eliminar('@client_id@',@comision_id@,'@client_nombre@');" SRC="../images/infi_gn_delete.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Eliminar Registro" BORDER="0" style="cursor:hand">
+        </td>
+		<td align="left" nowrap>@client_nombre@</td>                
+		<td align="left" nowrap>@tipper_id@-@client_cedrif@</td>
+
+     </tr> 
+     </rows>
+    
+    </table>
+    <center>
+	<br><br>
+	
+	<input type="hidden" value="@comision_id@" name="comision_id">
+	<input type="hidden" value="" name="client_nombre">
+	<input type="hidden" value="" name="client_cedrif">
+	
+        	<button type="button" onclick="agregar();">&nbsp;Agregar&nbsp;</button>
+   			&nbsp;<button type="button" onclick="window.location='estructura_tarifaria-browse'">Regresar</button>
+   			&nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+</center>
+</form>
+<form NAME="dataentry1" METHOD="POST" ACTION="">
+<input type="hidden" value="@comision_id@" name="comision_id">
+</form>
+
+
+</body>
+
+</html>

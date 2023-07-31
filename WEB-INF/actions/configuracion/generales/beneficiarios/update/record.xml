@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+    <!--
+    
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, decimal, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+    
+    -->
+           <field 
+        name="beneficiario_id" 
+        type="integer" 
+        description="Id del Beneficiario"
+        nullable="0"
+        size="50" />   
+    
+        <field 
+        name="beneficiario_nombre" 
+        type="varchar" 
+        description="Nombre del Beneficiario"
+        nullable="0"
+        size="50" />   
+        
+        <field 
+        name="beneficiario_desc" 
+        type="varchar" 
+        description="Descripci&oacute;n del Beneficiario"
+        nullable="0"
+        size="200" />   
+        
+    
+</record>
+

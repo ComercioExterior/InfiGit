@@ -1,0 +1,79 @@
+<html>
+	<head>
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+
+    </head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">	
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Consulta operaciones SWIFT / Detalle</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online --> 
+   	</TR>
+</TABLE>
+<center>
+
+<br>
+
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+     <tr CLASS="formCaption">
+            <th COLSPAN="4" ALIGN="center">
+                <FONT class="formCaptionText">
+                  Detalles operaci&oacute;n SWIFT CHEQUE
+                </FONT>
+            </th>
+        </tr>
+    <!--encabezados de columna-->
+    		<tr>
+        	<td nowrap="nowrap" class="negrita">Cliente: </td>
+        	<td nowrap="nowrap">@client_nombre@</td>
+        	<td nowrap="nowrap" class="negrita"></td>
+        	<td nowrap="nowrap" align="right"></td>
+        	</tr>
+    		<tr>
+        	<td nowrap="nowrap">&nbsp;</td>
+        	<td nowrap="nowrap"></td>
+        	<td nowrap="nowrap"></td>
+        	<td nowrap="nowrap"></td>
+        	</tr>    
+        	       
+    		<tr>
+        	<td nowrap="nowrap" class="negrita">Orden: </td>
+        	<td nowrap="nowrap">@ordene_id@</td>
+        	<td nowrap="nowrap" class="negrita">Monto: </td>
+        	<td nowrap="nowrap" align="right">@monto_operacion format-mask='###,###,###.00'@</td>
+        	</tr>
+
+        	<tr>
+        	<td nowrap="nowrap" class="negrita">Moneda: </td>
+        	<td nowrap="nowrap">@moneda_id@</td>
+        	<td nowrap="nowrap" class="negrita">N&uacute;mero de cheque: </td>
+        	<td nowrap="nowrap">@cheque_numero@</td>
+        	</tr>
+
+        	<tr>
+        	<td nowrap="nowrap" class="negrita">Fecha Valor: </td>
+        	<td nowrap="nowrap">@fecha_aplicar@</td>
+        	<td nowrap="nowrap" class="negrita"></td>
+        	<td nowrap="nowrap"></td>
+        	</tr>        	
+
+    <!--data-->
+    </table>
+    <BR>
+<form>
+     &nbsp;<button type="button" onclick="window.history.back()">&nbsp;Regresar&nbsp;</button>
+</form>
+</center>
+</body>
+</html>

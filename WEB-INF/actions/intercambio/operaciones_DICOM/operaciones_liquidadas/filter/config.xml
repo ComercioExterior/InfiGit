@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+	<!--
+		Configuracion de la accion Describe el modelo y la vista a utilizar,
+		asi como informacion sobre data-binding entre la vista y el modelo
+	-->
+<config>	<!--model class-->
+	<model-class>models.intercambio.operaciones_DICOM.operaciones_liquidadas.Filter</model-class>		<!--view class-->
+	
+	<view-class>megasoft.GenericView</view-class>		<!--template-->
+	
+	<template>form.htm</template>	<!--reglas de validacion de la forma-->
+	
+	<record-def></record-def>
+	
+	<content-type>text/html</content-type>		<!--expiracion de la pagina (en segundos - puede estar vacio)-->
+	
+	<expires>20</expires>		<!--control de cache  (true|false)-->
+	
+	<cache>true</cache>
+	<!--
+		URI a redireccionar despues de ejecutar el model -
+		type=redirect|forward
+	-->
+	<next-action type="redirect"></next-action>
+	<!--
+		mostrar este template de WEB-INF/templates si el dataset esta vacio
+	-->
+	<on-empty source="sales"></on-empty>
+	
+	<bind type="replace" source="valorjornada"/>
+	
+	<!-- 	<bind type="repeat" source="unidadesInversion" tag="rows_unidad" /> -->
+
+	<!--bind type="replace" source="record"/-->
+	
+</config>

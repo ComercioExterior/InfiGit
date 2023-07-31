@@ -1,0 +1,197 @@
+package com.bdv.infi.dao;
+
+import java.util.List;
+import javax.sql.DataSource;
+
+import com.bdv.infi.logic.interfaces.ConstantesGenerales;
+
+import megasoft.db;
+
+public class ConciliacionDAO extends com.bdv.infi.dao.GenericoDAO {
+	public String IdOperacion;
+	public String Cedula;
+	public String IdRechazo;
+	public String Fecha;
+	public String Indicador;
+	public double Monto;
+	public int Producto;
+	public int TipoNotificacion;
+	public int Estatus; // 0 pendiente, 1 revisado, 2 procesado
+
+	public ConciliacionDAO(Transaccion transaccion) throws Exception {
+		super(transaccion);
+	}
+
+	public ConciliacionDAO(DataSource ds) {
+		super(ds);
+		listar();
+	}
+
+	public Object moveNext() throws Exception {
+		return null;
+	}
+
+	/**
+	 * Se observa la lista de Ventas y Compras en divisas
+	 * 
+	 * @throws Exception
+	 */
+	public void listar() {
+
+		StringBuffer sb = new StringBuffer();
+		sb.append("SELECT ID_BCV, decode(NACIONALIDAD,'V',LPAD(NRO_CED_RIF,8,'0') ,'E',LPAD(NRO_CED_RIF,8,'0') ,LPAD(NRO_CED_RIF,9,'0')) as NRO_CED_RIF,MTO_DIVISAS,NACIONALIDAD,FECH_OPER as FECHA  FROM INFI_TB_234_VC_DIVISAS WHERE TO_DATE (FECH_OPER, 'DD/MM/YYYY') = TO_DATE(SYSDATE,'DD/MM/YY') AND STATUS_ENVIO ='1'");
+
+		try {
+			dataSet = db.get(dataSource, sb.toString());
+
+		} catch (Exception e) {
+			System.out.println("ConciliacionDAO : listar() " + e);
+
+		}
+	}
+
+	/**
+	 * Agregar en forma manual un anulado
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String agregar() throws Exception {
+		StringBuffer sql = new StringBuffer();
+		sql.append("INSERT INTO INFI_TB_239_VC_ANULADAS (ID_OPERACION, CEDULA_RIF, ID_RECHAZO, MONTO, PRODUCTO, TIPO_NOTIFICACION) VALUES (");
+		sql.append(this.IdOperacion).append(",").append(this.Cedula).append(",'").append(this.IdRechazo).append("',");
+		sql.append(this.Monto).append(",'").append(this.Producto).append("','").append(this.TipoNotificacion).append("')");
+		return sql.toString();
+	}
+
+	/**
+	 * Procesando la lista de los registros conciliados como diferencia
+	 * 
+	 * @param lst
+	 *            List<String>
+	 * @return
+	 */
+	public String insertarLote(List<String> lst) {
+		int i = 0;
+		String strSQL = "INSERT ALL INTO INFI_TB_239_VC_ANULADASN ( ID,ID_OPERACION, CEDULA_RIF, ID_RECHAZO, MONTO, FECHA, PRODUCTO, TIPO_NOTIFICACION, ESTATUS, INDICADOR  ) VALUES ( ";
+		String coma = "";
+		for (String cadena : lst) {
+			String[] xStr = cadena.split(";");
+			this.IdOperacion = xStr[0];
+			if (xStr.length > 3) {
+				this.Cedula = xStr[1];
+				this.IdRechazo = xStr[2];
+				this.Monto = Float.parseFloat(xStr[3]);
+				this.Fecha = xStr[4];
+				this.Indicador = xStr[5];
+			}
+			if (i >= 1) {
+				coma = " INTO INFI_TB_239_VC_ANULADASN ( ID,ID_OPERACION, CEDULA_RIF, ID_RECHAZO, MONTO, FECHA, PRODUCTO, TIPO_NOTIFICACION, ESTATUS, INDICADOR  ) VALUES ( ";
+				strSQL += coma + "INFI_SQ_239.NEXTVAL," + "'" + this.IdOperacion + "','" + this.Cedula + "','" + this.IdRechazo + "'," + this.Monto + ",TO_DATE('" + this.Fecha + "','DD/MM/YYYY'),'CONCILIACION','LOTE', 0,'"+this.Indicador+"')";
+			} else {
+				strSQL += "INFI_SQ_239.NEXTVAL," + "'" + this.IdOperacion + "','" + this.Cedula + "','" + this.IdRechazo + "'," + this.Monto + ",TO_DATE('" + this.Fecha + "','DD/MM/YYYY'),'CONCILIACION','LOTE', 0,'"+this.Indicador+"')";
+			}
+			i++;
+		}
+		strSQL += " SELECT * FROM dual";
+
+		return strSQL;
+	}
+
+	/**
+	 * Listar los procesos anulados para evaluacion de su estatus 0 pendiente, 1 revisado, 2 procesados
+	 * 
+	 * @throws Exception
+	 */
+	public void listarAnuladas(int estatus) throws Exception {
+		StringBuffer sb = new StringBuffer();
+		sb.append("SELECT ID_OPERACION, CEDULA_RIF, ID_RECHAZO, MONTO, FECHA, " + "PRODUCTO, TIPO_NOTIFICACION, ESTATUS " + "FROM INFI_TB_239_VC_ANULADAS WHERE ESTATUS=" + estatus);
+		dataSet = db.get(dataSource, sb.toString());
+	}
+
+	public void listarOrdenesAnuladasMenudeo(String fecha, String estatusEnvie) {
+
+		StringBuilder sql = new StringBuilder();
+
+		sql.append("SELECT ID_OPERACION, ID_RECHAZO, MONTO, PRODUCTO, TIPO_NOTIFICACION, CEDULA_RIF, FECHA, ESTATUS, ID ");
+		sql.append("FROM INFI_TB_239_VC_ANULADASN ");
+		sql.append("WHERE ");
+//		sql.append("FECHA = '").append(fecha).append("' ");
+		sql.append("FECHA = TO_DATE('").append(fecha).append("','DD/MM/YYYY') ");
+		if (estatusEnvie.equals(ConstantesGenerales.ENVIO_MENUDEO) || estatusEnvie.equals(ConstantesGenerales.ENVIO_MENUDEO_FALTANTES) || estatusEnvie.equals(ConstantesGenerales.ENVIO_MENUDEO_MANUAL) || estatusEnvie.equals(ConstantesGenerales.ENVIO_MENUDEO_ANULADA) || estatusEnvie.equals(ConstantesGenerales.ENVIO_MENUDEO_RECHAZADA)) {
+			sql.append("AND ESTATUS = '").append(estatusEnvie).append("' ");
+		}
+
+		sql.append("ORDER BY ID");
+
+		System.out.println("listarOrdenesAnuladasMenudeo : " + sql);
+
+		try {
+			dataSet = db.get(dataSource, sql.toString());
+
+		} catch (Exception e) {
+			System.out.println("ConciliacionDAO : listarOrdenesAnuladasMenudeo() " + e);
+
+		}
+	}
+	public void listarOrdenesAnuladasMenudeoLote(String fecha) {
+
+		StringBuilder sql = new StringBuilder();
+
+		sql.append("SELECT ID_OPERACION, ID_RECHAZO, MONTO, PRODUCTO, TIPO_NOTIFICACION, CEDULA_RIF, FECHA, ESTATUS, ID ");
+		sql.append("FROM INFI_TB_239_VC_ANULADASN ");
+		sql.append("WHERE ");
+		sql.append("FECHA = TO_DATE('").append(fecha).append("','DD/MM/YYYY') ");
+		sql.append("AND ESTATUS = '0' ");
+
+		System.out.println("listarOrdenesAnuladasMenudeoLote : " + sql);
+
+		try {
+			dataSet = db.get(dataSource, sql.toString());
+
+		} catch (Exception e) {
+			System.out.println("ConciliacionDAO : listarOrdenesAnuladasMenudeoLote() " + e);
+
+		}
+	}
+
+	public void listarOrdenesPorEnviarAnuladar(String id) {
+
+		StringBuilder sql = new StringBuilder();
+
+		sql.append("SELECT ID_OPERACION, ID_RECHAZO, MONTO, PRODUCTO, TIPO_NOTIFICACION, CEDULA_RIF, FECHA, ESTATUS, ID ");
+		sql.append("FROM INFI_TB_239_VC_ANULADASN ");
+		sql.append("WHERE ");
+		sql.append("ID in(" + id + ") ");
+
+		System.out.println("listarOrdenesPorEnviarAnuladar : " + sql);
+
+		try {
+			dataSet = db.get(dataSource, sql.toString());
+
+		} catch (Exception e) {
+			System.out.println("ConciliacionDAO : listarOrdenesPorEnviarAnuladar() " + e);
+
+		}
+	}
+
+	public void ModificarOrdenesAnuladasMenudeo(String estatusEnvio, String idAnulacion, String id) {
+
+		StringBuilder sql = new StringBuilder();
+
+		sql.append("UPDATE INFI_TB_239_VC_ANULADASN ");
+		sql.append("SET ID_RECHAZO = '").append(idAnulacion).append("', ESTATUS ='").append(estatusEnvio).append("' ");
+		sql.append("WHERE ID = '").append(id).append("'");
+
+		System.out.println("ModificarOrdenesAnuladasMenudeo : " + sql);
+		try {
+			dataSet = db.get(this.dataSource, sql.toString());
+
+		} catch (Exception e) {
+			System.out.println("ConciliacionDAO : ModificarOrdenesAnuladasMenudeo() " + e);
+
+		}
+
+	}
+
+}

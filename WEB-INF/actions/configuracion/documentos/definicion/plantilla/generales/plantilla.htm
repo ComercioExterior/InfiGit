@@ -1,0 +1,130 @@
+
+<HTML>
+    
+	<head> 
+          
+         
+        <link rel="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <LINK REL="stylesheet" type="text/css" href="../css/EstiloFichas.css" />		
+          <script language="javascript" src="../js/default.js"></script> 
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+           
+        <script type="text/javascript">
+        
+			function mostrarStatus(id){
+				if(id==2){
+					menu.style.display="block";
+				}
+			}
+          
+        </script>
+	
+    </head>
+  
+  <body ONLOAD="javascript:mostrarStatus(@dirigir@);{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+  
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n /Documentos / Definici&oacute;n / Campos Disponibles</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+        
+        
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" TARGET="_blank" ACTION="">
+		@recomendaciones@
+		<br>
+	<div id="menu" style="display:none">
+		<table border="0">
+			<tr>
+				<td id="navigationActivo"><a><span>Generales</span></a></td>
+				<td id="navigation"><a href="unidad_inversion_plantilla?dirigir=@dirigir@&id=@id@&unidad=@unidad@"><span>Unidad Inversi&oacute;n</span></a></td>
+				<td id="navigation"><a href="titulos_plantilla?dirigir=@dirigir@&id=@id@&unidad=@unidad@"><span>T&iacute;tulos</span></a></td>			
+			</tr>
+		</table>
+	</div>
+		<CENTER>
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Campos disponibles para la plantilla (@t_registros@)
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="TABLE-LAYOUT: auto; ">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+
+	<th>Descripci&oacute;n del Campo</th>	
+    <th colspan="1">Nombre del Campo</th>
+    </tr>
+
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+        <td VALIGN="middle">@descripcion_campo@ </td>
+		<td VALIGN="middle">@@nombre_campo@@ </td>
+     </tr>
+     </rows>
+    
+    </table>
+   
+   <table style="@display_campos_din@" border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="4" ALIGN="center">
+                <FONT class="formCaptionText">  
+                Campos Din&aacute;micos            
+                </FONT>
+            </th>
+        </tr>
+           
+        <rows_campos_dinamicos>    
+      	 <tr CLASS="formElement">
+             
+            <td>
+           	   @campo_descripcion@               
+            </td>
+            <td colspan="3">
+			@@nombre_reemplazo@@               
+            </td>
+ 		</tr>
+ 		</rows_campos_dinamicos>    
+ 			
+ 		</table>
+    
+	<br>
+
+  		<button ONCLICK="window.close();">Regresar</button>
+ 		<INPUT TYPE="HIDDEN" VALUE="@valor@" NAME="transaccion"/>
+ 		
+          
+    </form>
+      
+        </CENTER>
+        
+    </BODY>
+
+</HTML>

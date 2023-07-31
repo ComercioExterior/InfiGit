@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+    <!--
+    
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, decimal, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+    
+    -->
+    
+        <field 
+        name="userid" 
+        type="varchar" 
+        description="User ID"
+        nullable="1"
+        size="25" />
+
+        <field 
+        name="password" 
+        type="varchar" 
+        description="Contraseña"
+        nullable="0"
+        size="20" />
+
+        <field 
+        name="confirm" 
+        type="varchar" 
+        description="Repita Contraseña"
+        nullable="0"
+        size="20" />
+                
+        <field 
+        name="password_date" 
+        type="date" 
+        description="password_date"
+        nullable="1"
+        size="10" />
+
+ 		<regexp 
+ 			mask="\w{6,}" 
+ 			field="password" 
+ 			on-error-msg="La contraseña debe tener al menos 6 caracteres (sin espacios, solo letras y/o n&uacute;meros)." />
+
+    
+</record>
+

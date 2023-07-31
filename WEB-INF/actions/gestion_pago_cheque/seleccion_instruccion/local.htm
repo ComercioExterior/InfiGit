@@ -1,0 +1,114 @@
+<html>
+	<head> 
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        <script type="text/javascript">
+         function detalle_proceso(nombreFormulario){
+        window.open('gestion_procesos_browse?proceso='+nombreFormulario);
+        }
+        function deshabilitar_procesar(){
+        var operaciones = document.getElementById('operaciones')
+        if(operaciones.rows.length==1){
+        var button = document.getElementById('procesarButton');
+        button.style.display = 'none';
+        }
+        }
+/**
+* Function que valida que se haya seleccionado una operacion para poder seleccionar un tipo de instruccion de pago
+*/       
+function habilitarSelect(value){
+
+	var cheque         = document.getElementById('numero_cheques');
+	var nacional       = document.getElementById('numero_transferencias_nacionales');
+	var internacional  = document.getElementById('numero_transferencias_internacionales');
+		  
+  		if(value=='cheque'){
+  
+		    cheque.disabled        = false
+		  	cheque.enabled         = true
+		  	nacional.disabled      = true
+		  	internacional.disabled = true
+  	
+  		}else if(value=='nacionales'){
+
+		  	nacional.disabled        = false
+		  	nacional.enabled         = true
+		  	cheque.disabled          = true
+		  	internacional.disabled   = true
+  	
+  		}else if(value=='internacionales'){
+  
+		  	internacional.disabled   = false
+		  	internacional.enabled    = true
+		  	cheque.disabled          = true
+		  	nacional.disabled        = true
+  		}
+	
+}//fin function
+
+        </script>
+    </head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Pagos Pendientes</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+<center>
+
+<br>
+<form name="dataentry" action="gestion_pago_cheque-instruccion_pago" method="post">
+<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                  Instrucciones Financieras &nbsp;&nbsp;Cliente : @nombre@
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+    <table border="2" cellspacing="2" cellpadding="3" width="100%" class="datatable" style="table-layout: auto;">
+     <tr>     <td width="2%"><input type="radio" name="seleccion" value="cheque" disabled="disabled"></td>
+              <td nowrap style="width:10px;">Cheques</td>
+              <td CLASS="formLabel">
+				<SELECT NAME="numero_cheques" CLASS="inputControl" style=""  disabled="disabled" id="numero_cheques"/>
+					<OPTION VALUE="1">1</OPTION>
+				</SELECT>
+			</td> 
+			  <td width="2%"><input type="radio" name="seleccion" value="nacionales" checked="checked"></td>
+              <td nowrap style="width:20px;">Transferencias Nacionales</td> 
+              <td nowrap>
+              <SELECT NAME="numero_transferencias_nacionales" CLASS="inputControl" style="" id="numero_transferencias_nacionales"/>
+					<OPTION VALUE="1">1</OPTION>
+				</SELECT></td> 
+				<td width="2%"><input type="radio" name="seleccion" value="internacionales" disabled="disabled"></td>
+				<td nowrap style="width:20px;">Transferencias Internacionales</td> 
+              <td nowrap>
+              <SELECT NAME="numero_transferencias_internacionales" CLASS="inputControl" style="" disabled="disabled" id="numero_transferencias_internacionales"/>
+					<OPTION VALUE="1">SI</OPTION>
+				</SELECT></td>                                              
+    </tr>
+    </table>
+    <BR>
+	<button type="submit" id="procesarButton">Procesar</button>
+    &nbsp;<button type="button" onclick="window.location='gestion_pago_cheque-browse'">Regresar</button>
+    &nbsp;<button type="button" onclick="javascript:history.back();">&nbsp;Salir&nbsp;</button>
+</form>
+</center>
+</body>
+</html>

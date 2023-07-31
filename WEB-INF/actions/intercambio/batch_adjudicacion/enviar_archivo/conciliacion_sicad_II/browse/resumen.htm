@@ -1,0 +1,68 @@
+<HTML>
+	<HEAD>
+		<TITLE>Sistema INFI</TITLE>
+    	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+<!-- 		<script language="javascript" src="../js/validacionCuentaDolares.js"></script> -->
+		<script type="text/javascript" src="../js/menu/jquery-1.2.2.pack.js"></script>
+				<script language="javascript">
+					function procesar(){
+						var mensaje='Esta seguro de querer ejecutar el proceso de Conciliacion de Operaciones de Bloqueo ? ';						
+						if (confirm(mensaje)){
+					      	window.location='cobro_batch_adj_sicad_2_conciliacion-generar?unidad_inv='+document.getElementById('undinv_id').value ;
+						}
+					}
+				</script>
+	</HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    	<TR>
+        	<TD class="headerBox">                
+            	<FONT class="headerText">Intercambio / Cobro Adjudicación Batch / Conciliacion Operaciones SICAD II </FONT>
+       		</TD>
+        	<!-- help online -->
+   			<TD class="headerBox" valign="middle" align="right">
+   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   			</TD>
+   			<!-- fin help online -->
+        	<td class="headerBox" aling="right"></td>
+        </TR>
+	</TABLE>
+	<CENTER>
+
+	<!--formulario-->
+	<form NAME="dataentry" METHOD="POST" ACTION="cobro_batch_adjudicacion_sitme_detalle">	
+										
+		<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+			 <!--titulo-->
+		  <tr>         
+              <th nowrap>Id Orden</th>
+    		  <th nowrap>Cliente</th>
+              <th nowrap>Monto Operacion</th>
+              <th nowrap>Cuenta </th>
+              <th nowrap>Fecha Orden</th>
+
+	    </tr>
+			<rows_detalle>
+            <tr>
+                <td width="25%">@ordene_id@</td>
+				<td width="5%">@client_nombre@</td>
+				<td width="10%">@MONTO_OPERACION format-mask='###,###,###,###.00'@</td>		
+				<td width="5%">@CTECTA_NUMERO@</td>
+				<td width="5%">@ordene_ped_fe_orden@</td>
+        	</tr>			
+			</rows_detalle>
+
+		</table>
+	    <br>@page_index@<br>
+		<br>
+
+		<button id="btnProcesar" name="btnProcesar" onclick="procesar()">Procesar</button>&nbsp;
+		&nbsp;<button type="button" ONCLICK="javascript:history.back()">&nbsp;Regresar&nbsp;</button>
+		<input id="undinv_id" type="hidden" value="@undinv_id@">
+	</form>
+	</CENTER>
+</BODY>
+</HTML>

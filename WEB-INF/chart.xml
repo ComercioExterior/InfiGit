@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+Definicion de charts para el servlet generico ChartServlet.
+El atributo 'type' solo puede ser: bar, line o pie
+-->
+
+<charts>
+
+<!--chart sencillo-->
+<chart name="chart1" buffer-size="150000" type="bar" title="Ventas por Mes" width="500" height="450" labelx="Mes" labely="Bs.">
+	<datay>total</datay>    
+	<datax>mes</datax>    
+</chart>
+
+<!--
+chart multi-serie con cantidad dinamica de series,
+no tiene indicado el elemento 'datay'
+-->
+<chart name="chart2" buffer-size="32000" type="line" title="Ventas por Mes" width="500" height="450" labelx="Mes" labely="Bs.">
+	<datax>mes</datax>    
+</chart>
+
+<!--
+chart multi-serie con cantidad fija de series,
+-->
+<chart name="chart3" buffer-size="150000" type="line" title="Ventas por Mes" width="500" height="450" labelx="Mes" labely="Bs.">
+	<datay>2000</datay>    
+	<datay>2001</datay>    
+	<datay>2002</datay>    
+	<datax>mes</datax>    
+</chart>
+
+
+<chart name="chart4" buffer-size="150000" type="bar" title="Compras por Proveedor" width="500" height="450" labelx="Proveedor" labely="Monto">
+	<datax>nombre_prov</datax> 
+	<datay>monto</datay>  
+	
+ 
+</chart>
+
+<chart name="chart5" buffer-size="150000" type="bar" title="Ventas por Vendedor" width="800" height="450" labelx="Vendedor" labely="Monto">
+	<datay>total</datay>    
+	<datax>nombre</datax>    
+</chart>
+
+<chart name="chart6" buffer-size="150000" type="bar" title="Pagos Recibidos" width="600" height="450" labelx="Forma de Pago" labely="Monto">
+	<datay>monto</datay>    
+	<datax>tipo_pago</datax>    
+</chart>
+
+<chart name="chart7" buffer-size="150000" type="bar" title="Gastos Facturaci&oacute;n" width="400" height="350" labelx="Tipo de Gasto" labely="Monto">
+	<datay>gasto</datay>    
+	<datax>descripcion</datax>    
+</chart>
+
+</charts>

@@ -1,0 +1,195 @@
+<html>
+<head>
+	<title>Sistema INFI</title>
+	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+	<LINK REL="stylesheet" type="text/css" href="../css/EstiloFichas.css" />
+	<script language="javascript" src="../js/default.js"></script>	
+	
+	<script type="text/javascript">
+        function mostrar(accion){
+			if(accion==1){
+				var elementos = document.getElementsByName('unidad');
+				for (var i = 0; i < elementos.length; i++ ){
+					elementos[i].style.display ="block";
+				}
+				var elementos = document.getElementsByName('unidadm');
+				for (var i = 0; i < elementos.length; i++ ){
+					elementos[i].style.display ="block";
+				}
+				titulou.style.display ="block";
+			}
+			if(accion==2){//Modulo Publicacion
+				var elementos = document.getElementsByName('unidadm');
+				for (var i = 0; i < elementos.length; i++ ){
+					elementos[i].style.display ="block";
+					elementos[i].title="Ver Documentos";
+				}
+				titulop.style.display ="block";
+			}
+			if(accion==3){//Modulo Consulta
+				var elementos = document.getElementsByName('unidadm');
+				for (var i = 0; i < elementos.length; i++ ){
+					elementos[i].style.display ="block";
+					elementos[i].title="Ver Documentos";
+				}
+				tituloc.style.display ="block";
+			}	
+			if(accion==4){//Modulo Modificacion
+				var elementos = document.getElementsByName('unidad');
+				for (var i = 0; i < elementos.length; i++ ){
+					elementos[i].style.display ="block";
+				}
+				var elementos = document.getElementsByName('unidadm');
+				for (var i = 0; i < elementos.length; i++ ){
+					elementos[i].style.display ="block";
+				}
+				titulom.style.display ="block";
+			}
+		}
+	</script>
+	
+</head>
+
+<body
+	ONLOAD="javascript:mostrar(@accion@);{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+	<!--page name bar-->
+	<table  border="0" cellspacing="0" WIDTH="930px">
+	    <tr>
+	        <td class="headerBox">
+	        	<div id="titulou" style="display:none">               
+	            	<font class="headerText">Unidad de Inversi&oacute;n</font>
+	            </div>
+				<div id="titulop" style="display:none">               
+	            	<font class="headerText">Publicaci&oacute;n Unidad de Inversi&oacute;n</font>
+	            </div>
+	            <div id="tituloc" style="display:none">               
+	            	<font class="headerText">Consulta Unidad de Inversi&oacute;n</font>
+	            </div>
+	            <div id="titulom" style="display:none">               
+	            	<font class="headerText">Modificaci&oacute;n Unidad de Inversi&oacute;n</font>
+	            </div>		
+			</td>
+	        <!-- help online -->
+	   		<td class="headerBox" valign="middle" align="right">
+	   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+	   		</td>
+	   		<!-- fin help online -->	        
+	   	</tr>
+	</table> 
+<form name="dataentry">
+	<div id="menu">
+		<table border="0" cellspacing="1" cellpadding="2">
+			<tr>
+				<td id="navigation" nowrap><a href="unidad_inversion-edit"><span>Unidad de Inversi&oacute;n</span></a></td>			
+				<td id="navigation" nowrap><a href="unidad_inversion_titulos-edit"><span>T&iacute;tulos / Subastas</span></a></td>
+				<td id="navigation" nowrap><a href="unidad_inversion_blotter-browse"><span>Blotters</span></a></td>
+				<td id="navigation" nowrap><a href="unidad_inversion_indicadores-edit"><span>Indicadores</span></a></td>
+				<td id="navigation" nowrap><a href="unidad_inversion_empresas-browse"><span>Empresas</span></a></td>
+				<td id="navigation" nowrap><a href="unidad_inversion_campos-edit"><span>Campos Din&aacute;micos</span></a></td> 
+				<td id="navigationActivo" nowrap><a><span>Documentos</span></a></td>
+				<td id="navigation" nowrap><a href="unidad_inversion_comisiones-browse"><span>Comisiones</span></a></td>	
+			</tr>
+		</table>
+	</div>
+
+	<!--tabla de data-->
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="930px">
+	
+		<!--encabezados de columna-->
+		<tr class="tableHeader">
+			<th colspan="4">Unidad de Inversi&oacute;n</th>													
+		</tr>
+		<tr class="tableHeader">
+			<td colspan="4"><b>@unidad@</b></td>													
+		</tr>
+		</table>
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="930px" style="TABLE-LAYOUT: auto; ">	
+		<tr class="tableHeader">
+			
+			<th colspan="4">Asociar Documentos a @t_registros@ Blotters</th>													
+		</tr>
+		<tr class="tableHeader">
+			<th width="5%"></th>			
+			<th>Blotters</th>													
+			<th>Estado</th>
+		</tr>
+	
+		<!--data-->
+		<rowsUID>
+		<tr class="tableCell">
+			<td nowrap align="center">
+				 <table class="dataform" border="0">
+					<tr><td>
+						<span style="cursor:hand; text-decoration:underline; display:none" name="unidad" id="unidad" class="span" title="Agregar Documentos"
+							onclick="javascript:enviarA('addnew','@estado@','@bloter_id@','@bloter_descripcion@','@unidad@');"> 
+							<IMG SRC="../images/infi_gn_edit3.gif"  BORDER="0" ALIGN="top" >
+						</span>
+					</td><td>
+						<span style="cursor:hand; text-decoration:underline; display:none" name="unidadm" id="unidadm" class="span" title="Editar Documentos"
+							onclick="javascript:enviarA('edit','@estado@','@bloter_id@','@bloter_descripcion@','@unidad@');"> 
+							<IMG SRC="../images/infi_gn_edit.gif"  BORDER="0" ALIGN="top" >
+						</span>
+					</td></tr>
+				 </table>
+			</td>		
+			<td align="left">@bloter_descripcion@</td>													
+			<td>@estado@ <INPUT TYPE="hidden" NAME="estado" VALUE="@estado@" /></td>
+			
+		</tr>
+		</rowsUID>	
+	</table>
+<div align="center" style="width:930px;">	
+	@page_index@
+	
+	<INPUT TYPE="hidden" NAME="unidad" VALUE="" />
+	<INPUT TYPE="hidden" NAME="id_blotter" VALUE="" />
+	<INPUT TYPE="hidden" NAME="blotter" VALUE="" />
+</div>
+	</form>
+</body>
+
+<script type="text/javascript">
+<!--
+function enviarA(action,estado,idblotter,descripcion,unidad) {
+	document.dataentry.unidad.value = unidad;
+	document.dataentry.id_blotter.value = idblotter;
+	document.dataentry.blotter.value = descripcion;
+	if (estado.toLowerCase().indexOf("todos") != -1) {
+		if (action == 'addnew') {
+			alert("Los Documentos para el Blotter ("+descripcion+") ya fueron agregados, solo puede editarlos");
+		}
+		if (action == 'edit') {
+			document.dataentry.action="unidad_inversion_documentos-personas_edit";
+			document.dataentry.submit();
+		}
+	}else if (estado.toLowerCase().indexOf("sin") != -1) {
+		if (action == 'edit') {
+			alert("Los Documentos para el Blotter ("+descripcion+") no han sido agregados");
+		}
+		if (action == 'addnew') {
+			document.dataentry.action="unidad_inversion_documentos-personas_addnew"; 
+			document.dataentry.submit();
+		}
+	}else if (estado.toLowerCase().indexOf("falta") != -1) {
+		if (action == 'addnew') {
+			document.dataentry.action="unidad_inversion_documentos-personas_addnew"; 
+		}
+		if (action == 'edit') {
+			document.dataentry.action="unidad_inversion_documentos-personas_edit";
+		}
+		document.dataentry.submit();
+	}
+}
+
+function agregar() {
+	parm = "?entry=unidadinversion&idUnidadInversion=" + document.forms[0].idUnidadInversion.value;
+	document.dataentry.action="unidad_inversion_documentos-addnew"+parm; 
+	document.dataentry.submit();
+}
+function reload(){
+	document.forms[0].submit();
+}
+-->
+</script>
+</html>

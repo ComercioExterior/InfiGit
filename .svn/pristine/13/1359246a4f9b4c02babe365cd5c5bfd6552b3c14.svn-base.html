@@ -1,0 +1,319 @@
+<html>
+	<head>      
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        <script type="text/javascript"> 
+        </script> 
+    </head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Programador de Tareas (SCHEDULER)</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+<center>
+<br>
+<form NAME="dataentry" METHOD="POST" ACTION="programador_tareas-insert">
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Tareas
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform" style="table-layout: auto">
+   		<tr CLASS="formElement">
+            <td  CLASS="formLabel2" WIDTH="35%">
+            	Proceso: *
+            </td>
+            <td  CLASS="formLabel">
+	            <SELECT NAME="proceso" id="proceso" CLASS="inputControl" style="width:360px;">
+					<OPTION VALUE=""></OPTION>
+					<OPTION VALUE="">LIQUIDACION</OPTION>
+					<OPTION VALUE="">OPICS</OPTION>
+					<OPTION VALUE="">SWIFT</OPTION>
+				</SELECT>
+			</td>
+       	</tr>
+       	<!--  segundos (0 - 59) 
+					  minutos (0 - 59) 
+					  horas (0 - 23) 
+				      día del mes (0 - 31) 
+					  mes (1 - 12) 
+					  día de la semana (MON-SUN) -->
+		<tr CLASS="formElement">
+            <td  CLASS="formLabel2" WIDTH="35%">
+            	D&iacute;a: *
+            </td>
+            <td  CLASS="formLabel">
+	            <SELECT NAME="dia" id="dia" CLASS="inputControl" style="width:360px;">
+					<OPTION VALUE=""></OPTION>
+					<OPTION VALUE="">Domingo</OPTION>
+					<OPTION VALUE="">Lunes</OPTION>
+					<OPTION VALUE="">Martes</OPTION>
+					<OPTION VALUE="">Miercoles</OPTION>
+					<OPTION VALUE="">Jueves</OPTION>
+					<OPTION VALUE="">Viernes</OPTION>
+					<OPTION VALUE="">Sabado</OPTION>
+				</SELECT>
+			</td>
+       	</tr>
+       	<tr CLASS="formElement">
+            <td  CLASS="formLabel2" WIDTH="35%">
+            	Mes: *
+            </td>
+            <td  CLASS="formLabel">
+	            <SELECT NAME="mes" id="mes" CLASS="inputControl" style="width:360px;">
+					<OPTION VALUE=""></OPTION>
+					<OPTION VALUE="">Enero</OPTION>
+					<OPTION VALUE="">Febrero</OPTION>
+					<OPTION VALUE="">Marzo</OPTION>
+					<OPTION VALUE="">Abril</OPTION>
+					<OPTION VALUE="">Mayo</OPTION>
+					<OPTION VALUE="">Junio</OPTION>
+					<OPTION VALUE="">Julio</OPTION>
+					<OPTION VALUE="">Agosto</OPTION>
+					<OPTION VALUE="">Septiembre</OPTION>
+					<OPTION VALUE="">octubre</OPTION>
+					<OPTION VALUE="">Noviembre</OPTION>
+					<OPTION VALUE="">Diciembre</OPTION>
+				</SELECT>
+			</td>
+       	</tr>
+       	<tr CLASS="formElement">
+            <td  CLASS="formLabel2" WIDTH="35%">
+            	D&iacute;a del Mes: *
+            </td>
+            <td  CLASS="formLabel">
+	            <SELECT NAME="dia_mes" id="dia_mes" CLASS="inputControl" style="width:360px;">
+					<OPTION VALUE=""></OPTION>
+	            	<OPTION VALUE="">0</OPTION>
+					<OPTION VALUE="">1</OPTION>
+					<OPTION VALUE="">2</OPTION>
+					<OPTION VALUE="">3</OPTION>
+					<OPTION VALUE="">4</OPTION>
+					<OPTION VALUE="">5</OPTION>
+					<OPTION VALUE="">6</OPTION>
+					<OPTION VALUE="">7</OPTION>
+					<OPTION VALUE="">8</OPTION>
+					<OPTION VALUE="">9</OPTION>
+					<OPTION VALUE="">10</OPTION>
+					<OPTION VALUE="">11</OPTION>
+					<OPTION VALUE="">13</OPTION>
+					<OPTION VALUE="">14</OPTION>
+					<OPTION VALUE="">15</OPTION>
+					<OPTION VALUE="">16</OPTION>
+					<OPTION VALUE="">17</OPTION>
+					<OPTION VALUE="">18</OPTION>
+					<OPTION VALUE="">19</OPTION>
+					<OPTION VALUE="">20</OPTION>
+					<OPTION VALUE="">21</OPTION>
+					<OPTION VALUE="">22</OPTION>
+					<OPTION VALUE="">23</OPTION>
+					<OPTION VALUE="">24</OPTION>
+					<OPTION VALUE="">25</OPTION>
+					<OPTION VALUE="">26</OPTION>
+					<OPTION VALUE="">27</OPTION>
+					<OPTION VALUE="">28</OPTION>
+					<OPTION VALUE="">29</OPTION>
+					<OPTION VALUE="">30</OPTION>
+					<OPTION VALUE="">31</OPTION>
+				</SELECT>
+			</td>
+       	</tr>
+       	<tr CLASS="formElement">
+            <td  CLASS="formLabel2" WIDTH="35%">
+            	Hora: *
+            </td>
+            <td  CLASS="formLabel">
+	            <SELECT NAME="hora" id="hora" CLASS="inputControl" style="width:360px;">
+	            	<OPTION VALUE=""></OPTION>
+	            	<OPTION VALUE="">00</OPTION>
+					<OPTION VALUE="">01</OPTION>
+					<OPTION VALUE="">02</OPTION>
+					<OPTION VALUE="">03</OPTION>
+					<OPTION VALUE="">04</OPTION>
+					<OPTION VALUE="">05</OPTION>
+					<OPTION VALUE="">06</OPTION>
+					<OPTION VALUE="">07</OPTION>
+					<OPTION VALUE="">08</OPTION>
+					<OPTION VALUE="">09</OPTION>
+					<OPTION VALUE="">10</OPTION>
+					<OPTION VALUE="">12</OPTION>
+					<OPTION VALUE="">13</OPTION>
+					<OPTION VALUE="">14</OPTION>
+					<OPTION VALUE="">15</OPTION>
+					<OPTION VALUE="">16</OPTION>
+					<OPTION VALUE="">17</OPTION>
+					<OPTION VALUE="">18</OPTION>
+					<OPTION VALUE="">19</OPTION>
+					<OPTION VALUE="">20</OPTION>
+					<OPTION VALUE="">21</OPTION>
+					<OPTION VALUE="">22</OPTION>
+					<OPTION VALUE="">23</OPTION>				
+				</SELECT>
+			</td>
+       	</tr>
+       		<tr CLASS="formElement">
+            <td  CLASS="formLabel2" WIDTH="35%">
+            	Minuto: *
+            </td>
+            <td  CLASS="formLabel">
+	            <SELECT NAME="minuto" id="minuto" CLASS="inputControl" style="width:360px;">
+					<OPTION VALUE=""></OPTION>
+	            	<OPTION VALUE="">0</OPTION>
+					<OPTION VALUE="">1</OPTION>
+					<OPTION VALUE="">2</OPTION>
+					<OPTION VALUE="">3</OPTION>
+					<OPTION VALUE="">4</OPTION>
+					<OPTION VALUE="">5</OPTION>
+					<OPTION VALUE="">6</OPTION>
+					<OPTION VALUE="">7</OPTION>
+					<OPTION VALUE="">8</OPTION>
+					<OPTION VALUE="">9</OPTION>
+					<OPTION VALUE="">10</OPTION>
+					<OPTION VALUE="">11</OPTION>
+					<OPTION VALUE="">13</OPTION>
+					<OPTION VALUE="">14</OPTION>
+					<OPTION VALUE="">15</OPTION>
+					<OPTION VALUE="">16</OPTION>
+					<OPTION VALUE="">17</OPTION>
+					<OPTION VALUE="">18</OPTION>
+					<OPTION VALUE="">19</OPTION>
+					<OPTION VALUE="">20</OPTION>
+					<OPTION VALUE="">21</OPTION>
+					<OPTION VALUE="">22</OPTION>
+					<OPTION VALUE="">23</OPTION>
+					<OPTION VALUE="">24</OPTION>
+					<OPTION VALUE="">25</OPTION>
+					<OPTION VALUE="">26</OPTION>
+					<OPTION VALUE="">27</OPTION>
+					<OPTION VALUE="">28</OPTION>
+					<OPTION VALUE="">29</OPTION>
+					<OPTION VALUE="">30</OPTION>
+					<OPTION VALUE="">31</OPTION>
+					<OPTION VALUE="">32</OPTION>
+					<OPTION VALUE="">33</OPTION>
+					<OPTION VALUE="">34</OPTION>
+					<OPTION VALUE="">35</OPTION>
+					<OPTION VALUE="">36</OPTION>
+					<OPTION VALUE="">37</OPTION>
+					<OPTION VALUE="">38</OPTION>
+					<OPTION VALUE="">39</OPTION>
+					<OPTION VALUE="">40</OPTION>
+					<OPTION VALUE="">41</OPTION>
+					<OPTION VALUE="">42</OPTION>
+					<OPTION VALUE="">43</OPTION>
+					<OPTION VALUE="">44</OPTION>
+					<OPTION VALUE="">45</OPTION>
+					<OPTION VALUE="">46</OPTION>
+					<OPTION VALUE="">47</OPTION>
+					<OPTION VALUE="">48</OPTION>
+					<OPTION VALUE="">49</OPTION>
+					<OPTION VALUE="">50</OPTION>
+					<OPTION VALUE="">51</OPTION>
+					<OPTION VALUE="">52</OPTION>
+					<OPTION VALUE="">53</OPTION>
+					<OPTION VALUE="">54</OPTION>
+					<OPTION VALUE="">55</OPTION>
+					<OPTION VALUE="">56</OPTION>
+					<OPTION VALUE="">57</OPTION>
+					<OPTION VALUE="">58</OPTION>
+					<OPTION VALUE="">59</OPTION>
+				</SELECT>
+			</td>
+       	</tr>
+       		<tr CLASS="formElement">
+            <td  CLASS="formLabel2" WIDTH="35%">
+            	Segundo: *
+            </td>
+            <td  CLASS="formLabel">
+	            <SELECT NAME="segundo" id="segundo" CLASS="inputControl" style="width:360px;">
+	            	<OPTION VALUE=""></OPTION>
+	            	<OPTION VALUE="">0</OPTION>
+					<OPTION VALUE="">1</OPTION>
+					<OPTION VALUE="">2</OPTION>
+					<OPTION VALUE="">3</OPTION>
+					<OPTION VALUE="">4</OPTION>
+					<OPTION VALUE="">5</OPTION>
+					<OPTION VALUE="">6</OPTION>
+					<OPTION VALUE="">7</OPTION>
+					<OPTION VALUE="">8</OPTION>
+					<OPTION VALUE="">9</OPTION>
+					<OPTION VALUE="">10</OPTION>
+					<OPTION VALUE="">11</OPTION>
+					<OPTION VALUE="">13</OPTION>
+					<OPTION VALUE="">14</OPTION>
+					<OPTION VALUE="">15</OPTION>
+					<OPTION VALUE="">16</OPTION>
+					<OPTION VALUE="">17</OPTION>
+					<OPTION VALUE="">18</OPTION>
+					<OPTION VALUE="">19</OPTION>
+					<OPTION VALUE="">20</OPTION>
+					<OPTION VALUE="">21</OPTION>
+					<OPTION VALUE="">22</OPTION>
+					<OPTION VALUE="">23</OPTION>
+					<OPTION VALUE="">24</OPTION>
+					<OPTION VALUE="">25</OPTION>
+					<OPTION VALUE="">26</OPTION>
+					<OPTION VALUE="">27</OPTION>
+					<OPTION VALUE="">28</OPTION>
+					<OPTION VALUE="">29</OPTION>
+					<OPTION VALUE="">30</OPTION>
+					<OPTION VALUE="">31</OPTION>
+					<OPTION VALUE="">32</OPTION>
+					<OPTION VALUE="">33</OPTION>
+					<OPTION VALUE="">34</OPTION>
+					<OPTION VALUE="">35</OPTION>
+					<OPTION VALUE="">36</OPTION>
+					<OPTION VALUE="">37</OPTION>
+					<OPTION VALUE="">38</OPTION>
+					<OPTION VALUE="">39</OPTION>
+					<OPTION VALUE="">40</OPTION>
+					<OPTION VALUE="">41</OPTION>
+					<OPTION VALUE="">42</OPTION>
+					<OPTION VALUE="">43</OPTION>
+					<OPTION VALUE="">44</OPTION>
+					<OPTION VALUE="">45</OPTION>
+					<OPTION VALUE="">46</OPTION>
+					<OPTION VALUE="">47</OPTION>
+					<OPTION VALUE="">48</OPTION>
+					<OPTION VALUE="">49</OPTION>
+					<OPTION VALUE="">50</OPTION>
+					<OPTION VALUE="">51</OPTION>
+					<OPTION VALUE="">52</OPTION>
+					<OPTION VALUE="">53</OPTION>
+					<OPTION VALUE="">54</OPTION>
+					<OPTION VALUE="">55</OPTION>
+					<OPTION VALUE="">56</OPTION>
+					<OPTION VALUE="">57</OPTION>
+					<OPTION VALUE="">58</OPTION>
+					<OPTION VALUE="">59</OPTION>
+				</SELECT>
+			</td>
+       	</tr>
+    </table>
+     &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+</form>
+</center>
+</body>
+</html>

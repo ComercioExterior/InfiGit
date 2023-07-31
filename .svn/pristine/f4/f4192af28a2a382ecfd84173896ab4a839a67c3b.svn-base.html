@@ -1,0 +1,89 @@
+<html>
+
+	<head>      
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>             
+    </head>
+
+<!-- body onload="centrar();"-->
+<body>
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Resumen Unidad de Inversi&oacute;n</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+<center>
+<br>
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" >      
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="11" ALIGN="center">       
+                 Resumen para la Unidad de Inversi&oacute;n : @undinv_nombre@ desde @fecha_desde@ hasta @fecha_hasta@
+            </th>
+        </tr>
+       <tr>     
+       <tr>
+       		<th align="center" nowrap="nowrap">Blotter</th>
+            <th align="center" nowrap="nowrap">Ordenes / %</th>
+            <th align="center" >Monto Solicitado (@moneda_id@)</th>
+            <th align="center" >Monto Solicitado (Moneda Origen)</th>
+            <th align="center" >Monto Adjudicado (@moneda_id@)</th>
+            <th align="center" >Monto Adjudicado (Moneda Origen)</th>
+            <th align="center" >Monto Liquidado (@moneda_id@)</th>
+            <th align="center" >Comisi&oacute;n @m_bs_rep@</th>
+            <th align="center" >Capital </th>
+            <th align="center" >Int. Caidos @m_bs_rep@</th>
+            <th align="center" >Monto Orden @m_bs_rep@</th>
+        </tr>
+        <resumen_unidad> 
+		<tr>
+            <td>@bloter_descripcion@, Tasa de Cambio Promedio: @tasa_de_cambio format-mask='###,###,#00.00'@</td>
+            <td align="center" nowrap="nowrap">@orden_por_bloter@ / (@porcentaje format-mask='###,###,#00.00'@ %)</td>
+            <td align="right" nowrap="nowrap">@monto_solicitado format-mask='###,###,#00.00'@</td>
+            <td align="right" nowrap="nowrap">@monto_solicitado_bs format-mask='###,###,#00.00'@</td>
+            <td align="right" nowrap="nowrap">@monto_adjudicado format-mask='###,###,#00.00'@</td>
+            <td align="right" nowrap="nowrap">@monto_adjudicado_bs format-mask='###,###,#00.00'@</td>
+            <td align="right" nowrap="nowrap">@monto_liquidado format-mask='###,###,#00.00'@</td>
+            <td align="right" nowrap="nowrap">@monto_comision format-mask='###,###,#00.00'@</td>
+            <td align="right" nowrap="nowrap">@monto_capital format-mask='###,###,#00.00'@</td>
+            <td align="right" nowrap="nowrap">@monto_interesescaidos format-mask='###,###,#00.00'@</td>
+            <td align="right" nowrap="nowrap">@monto_ordenes format-mask='###,###,#00.00'@</td>
+        </tr>
+        </resumen_unidad>  
+	
+	     <tr>
+            <th align="center" nowrap="nowrap">Totales</th>
+            <th align="center" nowrap="nowrap">@total_ordenes@ / (100 %)</th>
+            <th align="right" nowrap="nowrap">@total_solicitado@</th>
+            <th align="right" nowrap="nowrap">@total_solicitado_bs@</th>
+            <th align="right" nowrap="nowrap">@total_adjudicado@</th>
+            <th align="right" nowrap="nowrap">@total_adjudicado_bs@</th>
+            <th align="right" nowrap="nowrap">@total_liquidado@</th>
+            <th align="right" nowrap="nowrap">@total_comision@</th>
+            <th align="right" nowrap="nowrap">@total_capital@</th>
+            <th align="right" nowrap="nowrap">@total_interesescaidos@</th>
+            <th align="right" nowrap="nowrap">@total_monto_ordenes@</th>
+        </tr>
+         </table>
+         <br>
+         <br>
+          <recompra>
+          </recompra>
+          
+          <resumen_precio> 
+          </resumen_precio> 
+   <button type="button" onclick="javascript:window.close();">Cerrar</button>
+</center>
+</body>
+</html>

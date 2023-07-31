@@ -1,0 +1,356 @@
+<html>
+	<head>      
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        <script type="text/javascript">
+
+        function deshabilitar_select(idTarea){
+        
+        	var selectDia = document.getElementById("cmb_dia_" + idTarea);
+			var selectHora = document.getElementById("cmb_hora_ " + idTarea);
+			var selectMinuto = document.getElementById("cmb_minuto_" + idTarea);
+			var selectHoraDesde = document.getElementById("cmb_hora_desde_" + idTarea);
+			var selectHoraHasta = document.getElementById("cmb_hora_hasta_" + idTarea);
+			var selectCadaMinuto = document.getElementById("cmb_cada_minuto_" + idTarea);
+
+			if(inputHoraDesde.value!=0 || inputHoraHasta.value!=0 || inputCadaMinuto.value!=0){
+				selectDia.style.display="none";
+				selectHora.style.display="none";
+				selectMinuto.style.display="none";
+    		}else{
+    			selectDia.style.display="block";
+				selectHora.style.display="block";
+				selectMinuto.style.display="block";
+            }	        
+        }   
+
+        function procesar(){        	
+        
+	        if(confirm("¿Está seguro que desea procesar los cambios en las tareas?")){	
+		       document.dataentry.submit();		        	
+	        }
+	       
+        } 
+         
+        </script>
+    </head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};seleccionarSelect();">
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Programador de Tareas (SCHEDULER)</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+<center>
+<br>
+<form NAME="dataentry" METHOD="POST" ACTION="programador_scheduler-update">
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Tareas
+                </FONT>
+            </th>
+        </tr>
+	</table>    
+    
+    <input id="id_tareas" name="id_tareas" type="hidden" value="@identificadores_tareas@">
+    
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto">
+   		<tareas>
+   		<tr CLASS="formElement">
+            <td  CLASS="negrita">
+	           @description@
+	           <input type="hidden" value="@id@" name="proceso">
+			</td>
+            <td  CLASS="formLabel2">
+            	D&iacute;a:
+            </td>
+            <td  CLASS="formLabel">
+	            <SELECT id="cmb_dia_@id@" NAME="cmb_dia_@id@" CLASS="inputControl">
+					<OPTION VALUE="0"></OPTION>
+					<OPTION VALUE="SUN">Domingo</OPTION>
+					<OPTION VALUE="MON">Lunes</OPTION>
+					<OPTION VALUE="TUE">Martes</OPTION>
+					<OPTION VALUE="WED">Miercoles</OPTION>
+					<OPTION VALUE="THU">Jueves</OPTION>
+					<OPTION VALUE="FRI">Viernes</OPTION>
+					<OPTION VALUE="SAT">Sabado</OPTION>					
+				</SELECT>
+			</td>
+            <td  CLASS="formLabel2">
+            	Hora:
+            </td>
+            <td  CLASS="formLabel">
+	            <SELECT id="cmb_hora_@id@" NAME="cmb_hora_@id@" CLASS="inputControl">
+	            	<OPTION VALUE="0"></OPTION>
+					<OPTION VALUE="01">01</OPTION>
+					<OPTION VALUE="02">02</OPTION>
+					<OPTION VALUE="03">03</OPTION>
+					<OPTION VALUE="04">04</OPTION>
+					<OPTION VALUE="05">05</OPTION>
+					<OPTION VALUE="06">06</OPTION>
+					<OPTION VALUE="07">07</OPTION>
+					<OPTION VALUE="08">08</OPTION>
+					<OPTION VALUE="09">09</OPTION>
+					<OPTION VALUE="10">10</OPTION>
+					<OPTION VALUE="11">11</OPTION>
+					<OPTION VALUE="12">12</OPTION>
+					<OPTION VALUE="13">13</OPTION>
+					<OPTION VALUE="14">14</OPTION>
+					<OPTION VALUE="15">15</OPTION>
+					<OPTION VALUE="16">16</OPTION>
+					<OPTION VALUE="17">17</OPTION>
+					<OPTION VALUE="18">18</OPTION>
+					<OPTION VALUE="19">19</OPTION>
+					<OPTION VALUE="20">20</OPTION>
+					<OPTION VALUE="21">21</OPTION>
+					<OPTION VALUE="22">22</OPTION>	
+					<OPTION VALUE="23">23</OPTION>			
+				</SELECT>
+			</td>
+
+            <td  CLASS="formLabel2">
+            	Minuto:
+            </td>
+            <td  CLASS="formLabel">
+	            <SELECT id="cmb_minuto_@id@" NAME="cmb_minuto_@id@" CLASS="inputControl">
+					<OPTION VALUE="0"></OPTION>
+					<OPTION VALUE="1">1</OPTION>
+					<OPTION VALUE="2">2</OPTION>
+					<OPTION VALUE="3">3</OPTION>
+					<OPTION VALUE="4">4</OPTION>
+					<OPTION VALUE="5">5</OPTION>
+					<OPTION VALUE="6">6</OPTION>
+					<OPTION VALUE="7">7</OPTION>
+					<OPTION VALUE="8">8</OPTION>
+					<OPTION VALUE="9">9</OPTION>
+					<OPTION VALUE="10">10</OPTION>
+					<OPTION VALUE="11">11</OPTION>
+					<OPTION VALUE="12">12</OPTION>
+					<OPTION VALUE="13">13</OPTION>
+					<OPTION VALUE="14">14</OPTION>
+					<OPTION VALUE="15">15</OPTION>
+					<OPTION VALUE="16">16</OPTION>
+					<OPTION VALUE="17">17</OPTION>
+					<OPTION VALUE="18">18</OPTION>
+					<OPTION VALUE="19">19</OPTION>
+					<OPTION VALUE="20">20</OPTION>
+					<OPTION VALUE="21">21</OPTION>
+					<OPTION VALUE="22">22</OPTION>
+					<OPTION VALUE="23">23</OPTION>
+					<OPTION VALUE="24">24</OPTION>
+					<OPTION VALUE="25">25</OPTION>
+					<OPTION VALUE="26">26</OPTION>
+					<OPTION VALUE="27">27</OPTION>
+					<OPTION VALUE="28">28</OPTION>
+					<OPTION VALUE="29">29</OPTION>
+					<OPTION VALUE="30">30</OPTION>
+					<OPTION VALUE="31">31</OPTION>
+					<OPTION VALUE="32">32</OPTION>
+					<OPTION VALUE="33">33</OPTION>
+					<OPTION VALUE="34">34</OPTION>
+					<OPTION VALUE="35">35</OPTION>
+					<OPTION VALUE="36">36</OPTION>
+					<OPTION VALUE="37">37</OPTION>
+					<OPTION VALUE="38">38</OPTION>
+					<OPTION VALUE="39">39</OPTION>
+					<OPTION VALUE="40">40</OPTION>
+					<OPTION VALUE="41">41</OPTION>
+					<OPTION VALUE="42">42</OPTION>
+					<OPTION VALUE="43">43</OPTION>
+					<OPTION VALUE="44">44</OPTION>
+					<OPTION VALUE="45">45</OPTION>
+					<OPTION VALUE="46">46</OPTION>
+					<OPTION VALUE="47">47</OPTION>
+					<OPTION VALUE="48">48</OPTION>
+					<OPTION VALUE="49">49</OPTION>
+					<OPTION VALUE="50">50</OPTION>
+					<OPTION VALUE="51">51</OPTION>
+					<OPTION VALUE="52">52</OPTION>
+					<OPTION VALUE="53">53</OPTION>
+					<OPTION VALUE="54">54</OPTION>
+					<OPTION VALUE="55">55</OPTION>
+					<OPTION VALUE="56">56</OPTION>
+					<OPTION VALUE="57">57</OPTION>
+					<OPTION VALUE="58">58</OPTION>
+					<OPTION VALUE="59">59</OPTION>
+				</SELECT>
+			</td>
+						
+			<td  CLASS="formLabel2">
+            	Hora desde:
+            </td>
+            <td  CLASS="formLabel">
+	            <SELECT id="cmb_hora_desde_@id@" NAME="cmb_hora_desde_@id@" CLASS="inputControl" onchange="deshabilitar_select(@id@)">
+	            	<OPTION VALUE="0"></OPTION>
+					<OPTION VALUE="01">01</OPTION>
+					<OPTION VALUE="02">02</OPTION>
+					<OPTION VALUE="03">03</OPTION>
+					<OPTION VALUE="04">04</OPTION>
+					<OPTION VALUE="05">05</OPTION>
+					<OPTION VALUE="06">06</OPTION>
+					<OPTION VALUE="07">07</OPTION>
+					<OPTION VALUE="08">08</OPTION>
+					<OPTION VALUE="09">09</OPTION>
+					<OPTION VALUE="10">10</OPTION>
+					<OPTION VALUE="11">11</OPTION>
+					<OPTION VALUE="12">12</OPTION>
+					<OPTION VALUE="13">13</OPTION>
+					<OPTION VALUE="14">14</OPTION>
+					<OPTION VALUE="15">15</OPTION>
+					<OPTION VALUE="16">16</OPTION>
+					<OPTION VALUE="17">17</OPTION>
+					<OPTION VALUE="18">18</OPTION>
+					<OPTION VALUE="19">19</OPTION>
+					<OPTION VALUE="20">20</OPTION>
+					<OPTION VALUE="21">21</OPTION>
+					<OPTION VALUE="22">22</OPTION>	
+					<OPTION VALUE="23">23</OPTION>			
+				</SELECT>
+			</td>
+			
+			<td  CLASS="formLabel2">
+            	Hora hasta:
+            </td>
+            <td  CLASS="formLabel">
+	            <SELECT id="cmb_hora_hasta_@id@" NAME="cmb_hora_hasta_@id@" CLASS="inputControl" onchange="deshabilitar_select(@id@)">
+	            	<OPTION VALUE="0"></OPTION>
+					<OPTION VALUE="01">01</OPTION>
+					<OPTION VALUE="02">02</OPTION>
+					<OPTION VALUE="03">03</OPTION>
+					<OPTION VALUE="04">04</OPTION>
+					<OPTION VALUE="05">05</OPTION>
+					<OPTION VALUE="06">06</OPTION>
+					<OPTION VALUE="07">07</OPTION>
+					<OPTION VALUE="08">08</OPTION>
+					<OPTION VALUE="09">09</OPTION>
+					<OPTION VALUE="10">10</OPTION>
+					<OPTION VALUE="11">11</OPTION>
+					<OPTION VALUE="12">12</OPTION>
+					<OPTION VALUE="13">13</OPTION>
+					<OPTION VALUE="14">14</OPTION>
+					<OPTION VALUE="15">15</OPTION>
+					<OPTION VALUE="16">16</OPTION>
+					<OPTION VALUE="17">17</OPTION>
+					<OPTION VALUE="18">18</OPTION>
+					<OPTION VALUE="19">19</OPTION>
+					<OPTION VALUE="20">20</OPTION>
+					<OPTION VALUE="21">21</OPTION>
+					<OPTION VALUE="22">22</OPTION>	
+					<OPTION VALUE="23">23</OPTION>			
+				</SELECT>
+			</td>
+            <td  CLASS="formLabel2">
+            	Cada(min):
+            </td>
+            <td  CLASS="formLabel">
+	            <SELECT id="cmb_cada_minuto_@id@" NAME="cmb_cada_minuto_@id@" CLASS="inputControl" onchange="deshabilitar_select(@id@)">
+					<OPTION VALUE="0"></OPTION>
+					<OPTION VALUE="1">1</OPTION>
+					<OPTION VALUE="2">2</OPTION>
+					<OPTION VALUE="3">3</OPTION>
+					<OPTION VALUE="4">4</OPTION>
+					<OPTION VALUE="5">5</OPTION>
+					<OPTION VALUE="6">6</OPTION>
+					<OPTION VALUE="7">7</OPTION>
+					<OPTION VALUE="8">8</OPTION>
+					<OPTION VALUE="9">9</OPTION>
+					<OPTION VALUE="10">10</OPTION>
+					<OPTION VALUE="11">11</OPTION>
+					<OPTION VALUE="12">12</OPTION>
+					<OPTION VALUE="13">13</OPTION>
+					<OPTION VALUE="14">14</OPTION>
+					<OPTION VALUE="15">15</OPTION>
+					<OPTION VALUE="16">16</OPTION>
+					<OPTION VALUE="17">17</OPTION>
+					<OPTION VALUE="18">18</OPTION>
+					<OPTION VALUE="19">19</OPTION>
+					<OPTION VALUE="20">20</OPTION>
+					<OPTION VALUE="21">21</OPTION>
+					<OPTION VALUE="22">22</OPTION>
+					<OPTION VALUE="23">23</OPTION>
+					<OPTION VALUE="24">24</OPTION>
+					<OPTION VALUE="25">25</OPTION>
+					<OPTION VALUE="26">26</OPTION>
+					<OPTION VALUE="27">27</OPTION>
+					<OPTION VALUE="28">28</OPTION>
+					<OPTION VALUE="29">29</OPTION>
+					<OPTION VALUE="30">30</OPTION>
+					<OPTION VALUE="31">31</OPTION>
+					<OPTION VALUE="32">32</OPTION>
+					<OPTION VALUE="33">33</OPTION>
+					<OPTION VALUE="34">34</OPTION>
+					<OPTION VALUE="35">35</OPTION>
+					<OPTION VALUE="36">36</OPTION>
+					<OPTION VALUE="37">37</OPTION>
+					<OPTION VALUE="38">38</OPTION>
+					<OPTION VALUE="39">39</OPTION>
+					<OPTION VALUE="40">40</OPTION>
+					<OPTION VALUE="41">41</OPTION>
+					<OPTION VALUE="42">42</OPTION>
+					<OPTION VALUE="43">43</OPTION>
+					<OPTION VALUE="44">44</OPTION>
+					<OPTION VALUE="45">45</OPTION>
+					<OPTION VALUE="46">46</OPTION>
+					<OPTION VALUE="47">47</OPTION>
+					<OPTION VALUE="48">48</OPTION>
+					<OPTION VALUE="49">49</OPTION>
+					<OPTION VALUE="50">50</OPTION>
+					<OPTION VALUE="51">51</OPTION>
+					<OPTION VALUE="52">52</OPTION>
+					<OPTION VALUE="53">53</OPTION>
+					<OPTION VALUE="54">54</OPTION>
+					<OPTION VALUE="55">55</OPTION>
+					<OPTION VALUE="56">56</OPTION>
+					<OPTION VALUE="57">57</OPTION>
+					<OPTION VALUE="58">58</OPTION>
+					<OPTION VALUE="59">59</OPTION>
+				</SELECT>
+			</td>
+			<td>
+			 ACTIVO
+			</td>
+			<td><input id="estado_@id@"  name="estado_@id@" type="hidden" value="@estado@">
+				<SELECT id="cmb_estado_@id@" NAME="cmb_estado_@id@" CLASS="inputControl" >
+				<estado>
+					<OPTION VALUE="@num@">@valor@</OPTION>
+				</estado>
+				</SELECT>
+			</td>
+       	</tr>
+       	</tareas>
+    </table>
+    
+    <valueScreen>
+    	<input type="hidden" id="dia_@id_tarea@" value="@dia@">
+    	<input type="hidden" id="hora_@id_tarea@" value="@hora@">
+    	<input type="hidden" id="minuto_@id_tarea@" value="@minuto@">
+    	<input type="hidden" id="hora_desde_@id_tarea@" value="@hora_desde@">
+    	<input type="hidden" id="hora_hasta_@id_tarea@" value="@hora_hasta@">
+    	<input type="hidden" id="cada_minuto_@id_tarea@" value="@cada_minuto@">
+    </valueScreen>
+    
+    
+    
+    <table>
+	    <tr><td><button type="button" onclick="javascript:procesar()">Procesar</button></td>&nbsp;&nbsp;
+	    <td><button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button></td></tr>
+    </table>
+</form>
+</center>
+
+</body>
+</html>

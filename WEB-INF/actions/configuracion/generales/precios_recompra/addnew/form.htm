@@ -1,0 +1,94 @@
+<html>
+	<head>   
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title> 
+        <script type="text/javascript">
+	function agregar(){
+		window.open('precios_recompra-addnew?titulo_id=@titulo_id@');
+	}
+	function editar(){
+		document.dataentry.action='precios_recompra-update';
+		document.dataentry.submit();
+	}
+	function reload(){
+		document.dataentry.submit();
+	}
+        </script>
+    </head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Generales / Precios Recompra</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+<center>
+<form name="dataentry" action="precios_recompra-insert">
+<br>
+  	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="TABLE-LAYOUT: auto; ">
+    
+            <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                  Precios de Recompra para: &nbsp;@titulo_id@
+                </FONT>
+            </th>
+        </tr>
+	
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+		<th>Moneda Denominaci&oacute;n</th>
+		<th>Tipo de Producto</th>
+		<th>Rango Desde</th>
+		<th>Rango Hasta</th> 
+		<th>Precio Recompra</th>
+		<th>Tasa Pool</th>
+		
+	</tr>
+
+    <!--data-->
+    <precios_recompra>
+    <input type="hidden" value="@titulos_id_registro@" name="titulos_id_registro"></input>
+    <tr class="tableCell">
+		<td align="center" width="25%">
+			<input type="hidden" name="moneda_id" value="@titulo_moneda_den@">
+			@titulo_moneda_den@
+			<!-- select name="moneda_id">
+				<option value=""></option>
+			<moneda_id>
+				<option  value="@moneda_id@">@moneda_descripcion@</option>
+			</moneda_id>
+			</select-->
+		</td>
+		<td  align="right" width="18%"> 
+     		@combo_tipo_producto@     	
+     	</td>    
+		<td  align="right" width="18%"><input align="right" type="text" name="titulo_rango_invertido_desde"  value="" maxlength="12" onkeypress="solo_numericos()"></td>
+		<td  align="right" width="18%"><input type="text" name="titulo_rango_invertido_hasta"  value="" maxlength="12" onkeypress="solo_numericos()"></td>
+		<td  align="right" width="18%"><input type="text" name="titulos_precio_recompra"  	  value="" maxlength="10" onkeypress="EvaluateText('%f',this)"></td>    
+     	<td  align="right" width="18%"><input type="text" name="tasa_pool"  	  value="" maxlength="10" onkeypress="EvaluateText('%f',this)"></td>
+     </tr>
+     </precios_recompra>
+    
+    </table>
+    <BR>
+    <button type="submit">&nbsp;Grabar&nbsp;</button>
+    &nbsp;<button type="button" onclick="javascript:history.back()">Regresar</button>
+    <input type="hidden" value="@titulo_id@" name="titulo_id">
+</form>
+</center>
+</body>
+</html>

@@ -1,0 +1,5 @@
+<SELECT NAME="ctecta_bcocta_ciudad" SIZE="1" onclick="seleccionarCiudad(this.value, this.options[this.selectedIndex].text);">				
+<rows_ciudad>			
+<OPTION VALUE="@cod_ciudad@">@desc_ciudad@</OPTION>						
+</rows_ciudad>
+</SELECT>	

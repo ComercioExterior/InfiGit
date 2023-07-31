@@ -1,0 +1,91 @@
+<html>
+	<head>  
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        <script type="text/javascript">
+        function excel() {
+           return confirm("El proceso de generación de archivo excel puede tardar varios minutos. ¿Está seguro que desea iniciar el proceso?");
+        }
+        </script>
+    </head>
+
+<body>
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Liquidaci&oacute;n / Consultas / Pago Emisor</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->  
+   	</TR>
+</TABLE>
+<center>
+<br>
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                	Unidad de Inversi&oacute;n: @undinv_nombre@
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+    
+    <!--encabezados de columna-->
+    <tr>	
+    		  <th nowrap>Bloter</th>
+    		  <th nowrap>Adjudicado</th>
+              <th nowrap>Cobrado</th>
+              <th nowrap>Pendiente</th>
+              <th nowrap>Financiado</th>
+              <th nowrap>Comisiones</th>                                                     
+    </tr>
+    <!--data-->
+    <conciliacion>
+    <tr class="tableCell">
+    			<td align="left">@bloter_descripcion@</td>
+                <td align="right">@adjudicado format-mask='##,###,##0.00'@</td>
+                <td align="right">@cobrado format-mask='##,###,##0.00'@</td>
+                <td align="right">@pendiente format-mask='##,###,##0.00'@</td>
+                <td align="right">@financiado format-mask='##,###,##0.00'@</td>
+                <td align="right">@comision format-mask='##,###,##0.00'@</td>                        
+     </tr>
+     </conciliacion>
+     
+     <tr class="tableCell">
+    			<td align="left"><b>TOTALES</b></td>
+                <td align="right">@total_adjudicado null-value='0.00'@</td>
+                <td align="right">@total_cobrado null-value='0.00'@</td>
+                <td align="right">@total_pendiente null-value='0.00'@</td>
+                <td align="right">@total_financiado null-value='0.00'@</td>
+                <td align="right">@total_comision null-value='0.00'@</td>                        
+     </tr>
+    </table>
+		
+    <BR>
+<form action="pago_emisor-exportar" onsubmit="return excel();">
+<input type="hidden" value="@unidad_inversion@" name="unidad_inversion">
+<input type="hidden" value="false" name="framework.controller.outputstream.open">
+    <button type="button" onclick="window.location='pago_emisor-filter'">Regresar</button>
+    &nbsp;
+    <button TYPE="submit">&nbsp;Exportar&nbsp;</button>&nbsp;
+    
+     &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+</form>
+</center>
+</body>
+</html>

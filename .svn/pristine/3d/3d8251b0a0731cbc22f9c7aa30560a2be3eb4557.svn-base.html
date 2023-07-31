@@ -1,0 +1,320 @@
+<html>
+
+	<head>
+         <script language="javascript" src="../js/default.js"></script>
+         <script type="text/javascript" src="../js/menu/jquery-1.2.2.pack.js"></script>           
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+        <script type="text/javascript">
+        
+
+        var now = new Date(); 
+        var idOrdenes = "";
+        
+        function seleccionarTodos(){    
+        	if($("#todos").is(":checked")){
+        		$(":checkbox").attr("checked","true");
+        		$(":checkbox").attr("disabled","disabled");
+        		$("#todos").attr("disabled","");
+        	}else{
+        		$(":checkbox").attr("checked","");
+        		$(":checkbox").attr("disabled","");
+        	}
+        }        
+        
+        function seleccionarTodosPagina(){    
+        	if($("#todosPagina").is(":checked")){
+       			$(":checkbox").attr("checked","true");
+        	}else{
+       			$(":checkbox").attr("checked","");
+        	}
+        	$("#todos").attr("checked","");
+        }
+        		
+        function checksSeleccionados(){
+        	
+        	 idOrdenes = "";
+        	 //contados los checks
+        	 var $b = $('input[type=checkbox]');
+        	 var marcados = $b.filter(':checked').length;
+        	 var sinMarcar = $b.not(':checked').length;
+        	 
+        	 if($("#todos").is(":checked"))
+        		 marcados = marcados - 2;
+        	 else
+        		 sinMarcar = sinMarcar - 2;
+        	 
+        	 //se envia la menor cantidad de identificadores posible
+        	 if( marcados > sinMarcar && sinMarcar >0 ){ 
+        		 //se envian los check sin marcar, por ser menos cantidad
+       	   	    $($b.not(':checked')).each(function() {
+       	   	  		if( $(this).attr("id")!="todos" && $(this).attr("id")!="todosPagina" ){
+      	   	    		idOrdenes+=$(this).attr("id")+",";
+      	   	    	}
+      	   	     });
+       	   		idOrdenes=idOrdenes.substring(0,idOrdenes.length-1);
+      	   		idOrdenes+='&tipoFiltro=EXCLUIR';
+        	 }else{
+        		 //se envian los que si estan seleccionados, por se menos cantidad
+      	   	     $(':checkbox:checked').each(function() {
+      	   	    	if( $(this).attr("id")!="todos" && $(this).attr("id") !="todosPagina" ){
+       	   	    		idOrdenes+=$(this).attr("id")+",";
+       	   	    	}
+       	   	     });
+      	   		idOrdenes=idOrdenes.substring(0,idOrdenes.length-1);
+      	   		idOrdenes+='&tipoFiltro=INCLUIR';
+        	 }
+			if(idOrdenes!="" && idOrdenes!="&tipoFiltro=EXCLUIR" && idOrdenes!="&tipoFiltro=INCLUIR"){				
+				return true;  
+			} else{			
+
+				if(!$("#todos").is(":checked") && sinMarcar>0){
+					alert('Debe seleccionar alguna operación');
+					return false;
+				}
+				return false; 
+			}
+        }   
+        
+        function procesar(seleccion){  
+        	var seleccion = "";
+        	if($("#todos").is(":checked")){
+        		mensaje='¿Está seguro que desea procesar "Todos" los Cruces?'
+        		seleccion='todos'
+        	}else
+        		mensaje='¿Está seguro que desea Rechazar todos los Cruces seleccionados?'
+        				
+        	if(checksSeleccionados()||$("#todos").is(":checked")){
+		        if(confirm(mensaje))
+		        {		
+		        	//$("#btnProcesar").attr("disabled","disabled");
+		            var ruta = 'cruce_sicad2_consulta-rechazar?';
+		        	if(!$("#todos").is(":checked")){
+		        		ruta+='idCruces='+idOrdenes+'&';
+		        	}       	
+		        	ruta+='seleccion='+seleccion;
+		        	//document.getElementById('btnProcesar').disabled='disabled';
+		        	window.location=ruta;
+		        }
+	        }
+        } 
+        
+        function validarSeleccion(check, fecha){
+        	if(document.getElementById('todosPagina').checked && !check.checked){
+        		document.getElementById('todosPagina').checked=false;
+        	}
+        }
+        function desabilitarChecks(){
+			if(document.getElementById('enviado').value!='0')   {      
+				$(":checkbox").attr("disabled","disabled");
+				$("#btnProcesar").attr("disabled","disabled");
+			}
+        }
+        
+        function excel() {
+            if (confirm("Se Generará un archivo excel con todos los cruces consultados. Esto puede tardar varios minutos. ¿Está seguro que desea iniciar el proceso?")){
+            	return true;
+            }else{
+            	return false;
+            }
+        }
+        function exportarCVS() {
+            if (confirm("Se Generará un archivo CSV con todos los cruces consultados. Esto puede tardar varios minutos. ¿Está seguro que desea iniciar el proceso?")){
+            	window.location="cruce_sicad2_consulta-exportarCSV?framework.controller.outputstream.open=false";
+            	return true;
+            }else{
+            	return false;
+            }
+        }
+        function exportarTotales() {
+            if (confirm("Se Generará un archivo CSV con todos los montos totalizados por Orden consultada.Solo se mostraran las ordenes con estatus CRUZADA. Esto puede tardar varios minutos. ¿Está seguro que desea iniciar el proceso?")){
+            	window.location="cruce_sicad2_consulta-exportar-totales?framework.controller.outputstream.open=false";
+            	return true;
+            }else{
+            	return false;
+            }
+        }
+        
+        function validarRechazar(){
+        	if(document.getElementById('statusUI').value != '@undinv_status@'){
+
+        		if(document.getElementById('statusUI').value == 'PUBLICADA'){
+	        		procesar('seleccion');    
+	        	
+        		}else {
+	        		alert('Los Registros asociados a esta unidad de inversión No pueden ser Eliminados. Esta ya se encuentra ' + document.getElementById('statusUI').value);
+	        		return false;
+	        	}
+        	}else{
+        		procesar('seleccion');
+        	}
+        }
+        function regresar(){
+        	if(document.getElementById('tipo_prod').value == 'SICAD2RED'){
+        		window.location="cruce_sicad2_red_c_consulta-filter";
+        	}else{
+        		window.location="cruce_sicad2_clavenet_p_consulta-filter";
+        	}
+        	
+        }
+        </script>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Intercambio / Recepci&oacute;n / Cruce SICAD II /Consulta</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="left" align="left">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+   
+<form name="dataentry" onsubmit="return excel()" action="cruce_sicad2_consulta-exportar?framework.controller.outputstream.open=false" method="post">	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+    
+           <!--titulo-->
+        <tr CLASS="formCaption">
+			<th COLSPAN="2" ALIGN=left>
+			<input type="checkbox" id="todos" name="todos" onclick="seleccionarTodos()" />Procesar todos los registros:
+			</th>   
+            <th COLSPAN="13" ALIGN="Centre">
+                <FONT class="formCaptionText">
+                   Ordenes ( @t_registros@ )
+                </FONT>
+            </th>
+
+        </tr>
+ 
+    <!--encabezados de columna-->
+    <tr>
+        <th width="2%">Seleccione<br/>
+        	<input width="2%" type="checkbox" id="todosPagina" name="todosPagina" onclick="seleccionarTodosPagina()" />
+        </th>  
+    	<th nowrap width="5%">Orden</th> 
+    	<th nowrap width="10%">Cliente</th>        
+        <th nowrap width="5%">C.I./Rif Cliente</th> 
+        <th nowrap width="7%">Monto</th>           
+        <th nowrap width="4%">Tasa</th>
+        <th nowrap width="3%">ValorNominal</th>
+        <th width="5%">Unidad Inversi&oacute;n</th>
+        <th width="5%">ISIN</th>    
+        <th nowrap width="5%">Id Ejecuci&oacute;n</th>
+        <th nowrap width="5%">Estatus</th>
+        <th nowrap width="5%">InteresesCaidos</th>
+        <th nowrap width="5%">ContraValor</th>
+        <th nowrap width="3%">Procesada<br/>   
+        <th width="30%">Observaci&oacute;n <br/> 
+                               
+    </tr>
+    <!--data-->
+     <rows>
+    <tr class="tableCell">
+                   
+<!-- 		<td align="center">
+                <a href="javascript:detalleOrden('19569633@ordene_id@');"><IMG SRC="../images/infi_gn_document.gif" WIDTH="15" ALIGN="top" HEIGHT="13" title="Detalles de la Orden" BORDER="0" style="cursor:hand"></a>
+                </td>
+            <form id="@ordene_id@" name="@ordene_id@" action="detalle_orden-find" method="post" target="_blank"><input type="hidden" value="@ordene_id@" name="ord_id"> </form>
+                td align="center">
+                <a href="javascript:abrirPopupDetalles('detalle_titulo-find?titulo_id=@titulo_id@','200', '320')"><IMG SRC="../images/infi_gn_edit.gif" WIDTH="15" HEIGHT="15" ALIGN="top" title="Detalles del T&iacute;tulo" BORDER="0" style="cursor:hand"></a>
+                </td>-->
+ 				                
+                <td align="center">
+                	<input type="checkbox" name="ordenes" id="@ID_CRUCE@" onclick="validarSeleccion(this, '@fecha_aplicar@')"/>
+                </td>
+ 				<td nowrap align="center">
+                @ordene_id@
+                </td> 
+                
+               	<td nowrap>
+                @Client_Nombre@
+                </td> 
+
+                <td nowrap>
+                @Cliente_Cedrif@
+                </td>    
+
+                <td nowrap>
+                @MONTO_OPERACION@
+                </td>
+                <td nowrap>
+                @TASA@
+                </td>
+                <td nowrap>
+                @VALOR_NOMINAL@
+                </td>                
+                <td nowrap>
+                @Unidnv_Nombre@
+                </td>
+        
+                <td nowrap>
+                @ISIN null-value='N/A'@
+                </td>
+                
+                <td nowrap>
+                @ID_EJECUCION@
+                </td>
+                
+                <td nowrap>
+                @ESTATUS@
+                </td>
+                
+                <td nowrap>
+                @TITULO_MTO_INT_CAIDOS@
+                </td>
+                
+                <td nowrap>
+                @CONTRAVALOR_BOLIVARES_CAPITAL@
+                </td>
+                <td nowrap>
+                @PROC@
+                </td>
+                
+				<td align="left">
+                @OBSERVACION null-value='N/A'@
+                </td>                                  
+     </tr>
+     </rows> 
+    </table>
+    <BR>
+    @page_index@ 
+    <!--<INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart" />
+  <input type="hidden" value="@idUnidadF@" size="15" name="idUnidadF">
+    <input type="hidden" value="@idClienteF@" size="15" name="idClienteF">
+    <input type="hidden" value="@idOrdenF@" size="15" name="idOrdenF">
+    <input type="hidden" value="@idEjecucionF@" size="15" name="idEjecucionF">
+    <input type="hidden" value="@statusF@" size="15" name="statusF"> --> 
+    <input id="statusUI"type="hidden" value="@undinv_status@" name="statusUI">  
+    <input id="enviado" type="hidden" value="@enviado@" name="enviado"/>
+    <input id="tipo_prod" type="hidden" value="@tipo_prod@" name="tipo_prod"/>
+    <button type="submit">Exportar Cruces</button>
+    &nbsp;<button type="button" onclick="exportarCVS();">Exportar Cruces CSV</button>
+    &nbsp;<button type="button" onclick="exportarTotales();">Exportar Totales</button>
+    &nbsp;<button type="button" id="btnProcesar" onclick="validarRechazar()">Rechazar</button>
+    &nbsp;<button type="button" onclick="regresar()">Regresar</button>
+     &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+</form>
+
+</center>
+
+</body>
+
+</html>
+

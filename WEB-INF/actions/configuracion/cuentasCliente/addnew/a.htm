@@ -1,0 +1,220 @@
+<html>
+	<head> 
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        <script type="text/javascript">
+         function  estatus(estado){
+        	if(estado=='ver')
+        	{
+				var elementos = document.getElementsByName('banco')
+				for (var i = 0; i < elementos.length; i++ )
+				{
+					elementos[i].style.display ="block";
+					var indicador = document.getElementById('indicador')
+					indicador.value ='1'
+					
+				}
+				botonO.style.display ="block";
+				botonA.style.display ="none";
+				
+			}/* Fin del if*/
+			if(estado=='ocultar')
+			{
+				var elementos = document.getElementsByName('banco')
+				for (var i = 0; i < elementos.length; i++ )
+				{
+					elementos[i].style.display ="none";
+					var indicador = document.getElementById('indicador')
+					indicador.value ='0'
+				} /*Fin del For*/
+				botonA.style.display ="block";
+				botonO.style.display ="none";
+			} /*Fin del If*/
+			} /*Fin de la Funcion estatus*/
+			/* Creamos la función y tomamos los valores enviados como parámetros  
+  desde los eventos correspondientes */  
+  function caracteresRestantes (campoComentario, campoContador, maxCaracteres) {  
+    
+  /* Si la cantidad de caracteres es mayor al límite que proponemos nosotros,  
+  se ejecuta esta sentencia */  
+      if (campoComentario.value.length > maxCaracteres) {  
+     
+      // Mostramos el texto escrito con el límite máximo de caracteres  
+      campoComentario.value = campoComentario.value.substring(0, maxCaracteres);  
+          }  
+      // Si no se ha llegado al máximo de caracteres permitidos se ejecuta esta sentencia  
+      else   
+          campoContador.value = maxCaracteres - campoComentario.value.length;  
+    
+  }// Fin de la función caracteresRestantes()
+        </script>
+    </head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Gesti&oacute;n de Pago</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+<center>
+
+<br>
+<form name="dataentry" action="gestion_pago_cheque-confirm_transaccion" method="post">
+    
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                  TRANSFERENCIAS INTERNACIONALES
+                </FONT>
+            </th>
+        </tr>
+
+	</table>
+    <!--tabla de data-->
+    <!-- Banco internacional sin intermediario -->
+<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform" style="table-layout: auto">
+<tr>
+	<td width="25%">Nombre del Beneficiario</td>
+	<td width="75%"><input type="text"   value="" name="nombre_internacional"  maxlength="100"/></td>
+</tr>
+<tr>
+	<td width="25%">C&eacute;dula del Beneficiario</td>
+	<td width="75%"><input type="text"   value="" name="cedula_internacional"  maxlength="10" onkeypress="solo_numericos()"/></td>
+</tr>
+<tr>
+	<td width="25%">Banco *:</td>
+	<td width="75%"><input type="text"   value="" name="ctecta_bcocta_bco"  maxlength="50"/></td>
+</tr>
+<tr>
+	<td width="25%">N&uacute;mero de Cuenta *:</td>
+	<td width="75%">
+		<input type="text" value="" name="ctecta_numero" maxlength="34" />
+	</td>
+</tr>
+<tr>
+	<td width="25%">Nombre de la Cuenta *:</td>
+	<td width="75%">
+		<input type="text" value="" name="ctecta_nombre" maxlength="50" />
+	</td>
+</tr>
+<tr>
+	<td>Direcci&oacute;n *:</td>
+	<td>
+		<input type="text" value="" name="ctecta_bcocta_direccion"  maxlength="50" />
+	</td>
+</tr>
+<tr>
+	<td>Swift *:</td>
+	<td>
+		<input type="text" value="" name="ctecta_bcocta_swift"  maxlength="50" />
+	</td>
+</tr>
+<tr>
+	<td>BIC *:</td>
+	<td>
+		<input type="text" value="" name="ctecta_bcocta_bic"   maxlength="50" />
+	</td>
+</tr>
+<tr>
+	<td>Tel&eacute;fono *:</td>
+	<td>
+		<input type="text" value="" name="ctecta_bcocta_telefono"  maxlength="50" />
+	</td>
+</tr>
+<tr>
+	<td>ABA *:</td>
+	<td>
+		<input type="text" value="" name="ctecta_bcocta_aba"  maxlength="50" />
+	</td>
+</tr>
+<tr>
+	<td>Observaci&oacute;n :</td>
+	<td>
+	<textarea id="texto"name="ctecta_observacion" cols="30" rows ="5"  onKeyDown="caracteresRestantes(this.form.ctecta_observacion,25,210);" onKeyUp="caracteresRestantes(this.form.ctecta_observacion,25,210);">&nbsp;</textarea>
+	</td>
+</tr>
+
+<tr id="botonA" style="display:block">
+ <td  width="25%">Banco:</td>
+ <td width="75%"><input type="radio" name= "intermediario" onclick="estatus('ver');">Intermediario</radio></td>	
+</tr>
+</table>
+
+
+<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform" style="table-layout: auto;">
+<tr id="banco" name="banco" style="display:none">
+	<td width="25%">Banco Intermediario*:</td>
+	<td width="75%">
+		<input type="text" id="bancointermediario" value="" name="ctecta_bcoint_bco"  maxlength="50" />
+	</td>
+</tr>
+<tr id="banco" name="banco" style="display:none">
+	<td>Direcci&oacute;n Del Banco Intermediario*:</td>
+	<td>
+		<input type="text" value="" name="ctecta_bcoint_direccion"  maxlength="50" />
+	</td>
+</tr>
+<tr id="banco" name="banco" style="display:none">
+	<td>Swift Del Banco Intermediario*:</td>
+	<td>
+		<input type="text" value="" name="ctecta_bcoint_swift"  maxlength="50" />
+	</td>
+</tr>
+<tr id="banco" name="banco" style="display:none">
+	<td>BIC Del Banco Intermediario*:</td>
+	<td>
+		<input type="text" value="" name="ctecta_bcoint_bic"   maxlength="50" />
+	</td>
+</tr>
+<tr id="banco" name="banco" style="display:none">
+	<td>Tel&eacute;fono Del Banco Intermediario*:</td>
+	<td>
+		<input type="text" value="" name="ctecta_bcoint_telefono"  maxlength="50" />
+	</td>
+</tr>
+<tr id="banco" name="banco" style="display:none">
+	<td>ABA Del Banco Intermediario*:</td>
+	<td>
+		<input type="text" value="" name="ctecta_bcoint_aba"  maxlength="50" />
+	</td>
+</tr>
+	<tr id="banco" name="banco" style="display:none">
+	<td>Observaciones Del Banco Intermediario:</td>
+	<td>
+		<textarea id="texto" name="ctecta_bcoint_observacion" cols="30" rows ="5"  onKeyDown="caracteresRestantes(this.form.ctecta_bcoint_observacion,25,210);" onKeyUp="caracteresRestantes(this.form.ctecta_bcoint_observacion,25,210);"></textarea>
+	</td>  
+ </tr>
+	  
+<tr id="botonO" style="display:none">
+<td>Banco:</td>
+	<td>
+		<input type="radio" name= "intermediario" onclick="estatus('ocultar');"> Sin Intermediario</radio> 
+	</td>
+</tr>
+<input id="indicador" type="hidden" value="0" name="indicador">
+  </table>
+    &nbsp;
+    &nbsp;
+    <BR>
+    
+	<button type="submit">Procesar</button>&nbsp;
+    &nbsp;<button type="button" onclick="window.close();">&nbsp;Salir&nbsp;</button>
+</form>
+</center>
+
+</body>
+</html>

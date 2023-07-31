@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+ <project name="WebServiceANT" basedir="." default="valor">  
+ 	
+ 	<!--
+ 	  Script de ANT que sirve para sustituir las cadenas de dataSource en los xml que contienen esa información
+ 	  por la que indique el usuario. 
+ 	-->
+	<target name="informacion">
+	   <echo message="Para servidor resin los dataSource deben contener el prefijo 'java:comp/env/' "></echo>
+	   <echo message="Para servidor WebSphere no es necesario el prefijo 'java:comp/env/' "></echo>	   
+	</target>
+		
+	<target name="solicitud" depends="informacion">
+	   <input message="Ingrese el servidor donde se efectuará la instalación de INFI"
+		    addproperty="vorigen"
+            defaultvalue="localhost:8080"		    
+		/>
+	   <input
+		    message="Ingrese la cadena de texto por la cuál se desea sustituir la cadena localhost:8080"
+		    addproperty="vdestino"
+            defaultvalue="localhost:8080"		    
+		/>		
+	</target>
+	
+	<target name="valor" depends="solicitud">
+	   <echo message="Sustituyendo la coincidencia ${vorigen} por ${vdestino} en los archivos XML de los servicios web"></echo>
+	   	<replace dir="../services" includes="**/services.xml">
+	   	  <replacefilter 
+	   	    token="${vorigen}" 
+	   	    value="${vdestino}"
+	   	  />
+	   	</replace>		
+	</target>	
+	
+ </project> 

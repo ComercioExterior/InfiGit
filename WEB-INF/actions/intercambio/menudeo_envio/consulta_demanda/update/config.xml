@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<config>
+
+	<model-class>models.bcv.menudeo_envio.Update</model-class>
+	<view-class></view-class>
+	<template></template>
+	<record-def>record.xml</record-def>
+	<content-type>text/html</content-type>
+	<expires></expires>
+	<cache>false</cache>
+	<next-action type="redirect">intercambio_menudeo_demanda-filter</next-action>
+	<on-empty source=""></on-empty>
+	
+</config>

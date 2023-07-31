@@ -1,0 +1,131 @@
+<HTML>
+	<HEAD>
+		<TITLE>Sistema INFI</TITLE>
+    	<LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+    	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		<SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+		<script language="javascript" src="../js/default.js"></script>  
+		<script language="JavaScript" src="../js/decimal.js"></script> 				
+	</HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    	<TR>
+        	<TD class="headerBox">                
+            	<FONT class="headerText">Custodia / Transacciones / Salida Externa</FONT>
+       		</TD>
+        	<!-- help online -->
+   			<TD class="headerBox" valign="middle" align="right">
+   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   			</TD>
+   			<!-- fin help online -->
+        	<td class="headerBox" align="right"></td>
+        </TR>
+	</TABLE>
+	<CENTER>
+
+	<!--formulario-->
+	<form NAME="dataentry" METHOD="POST" ACTION="salida_externa-confirm">
+	<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+		<!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="left">
+                <FONT class="formCaptionText1">
+                Cliente: @cliente_transfiere@
+                </FONT>
+            </th>
+        </tr>
+	</table>
+		
+			 <!--titulo-->
+	<operacion>
+	<table border="1" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+		<tr CLASS="formElement">
+            <th colspan="4" CLASS="formLabel">
+             @titulo_id@
+            </th>
+        </tr>        
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+            Disponible
+            </td>
+            <td>@disponible@</td>
+            <td>Cantidad a transferir</td>
+            <td>@cantidad_transferir@</td>
+        </tr>
+        
+        <tr CLASS="formElement">
+            <td  CLASS="formLabel2" WIDTH="35%">
+           Tipo de Producto
+            </td>
+            <td  CLASS="formLabel">
+            @tipo_producto@
+			</td>
+			 <td  CLASS="formLabel2" WIDTH="35%">
+           Moneda de Denominaci&oacute;n
+            </td>
+            <td  CLASS="formLabel">
+            @moneda_id@
+			</td>
+        </tr>
+       <!--   <tr CLASS="formElement">
+            <td CLASS="formLabel" colspan="2">Total por titulo</td>
+            <td colspan="2"> 
+            @total_final@       	                       
+            </td> 
+        </tr> -->
+        </operacion>
+        <tr CLASS="formLabel">
+            <th COLSPAN="4" ALIGN="center">
+                <FONT class="formCaptionText1">
+                &nbsp;
+                </FONT>
+            </th>
+        </tr>
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">Cuenta en Depositario Central</td>
+            <td>
+                  @cuenta_depositario_central@   	                       
+            </td>
+            <td CLASS="formLabel">Contraparte</td>
+            <td>
+                  @contraparte@   	                       
+            </td>
+            
+        </tr>
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">Contraparte CARMEN</td>
+            <td>
+                  @contraparte_carmen_codigo@   	                       
+            </td>
+            <td CLASS="formLabel"></td>
+            <td></td>
+            
+        </tr>        
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">Fecha Valor</td>
+            <td>
+                  @fecha_valor@   	                       
+            </td>
+            <td CLASS="formLabel">Fecha Liquidaci&oacute;n</td>
+            <td>
+                  @fecha_liquidacion@   	                       
+            </td>
+        </tr>
+		</table>
+		<INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/>
+		<input type="hidden" name="cantidadTransferir" value="@cantidad_transferir@">
+		<input type="hidden" name="valorNominal" value="@valor_nominal@">
+		<input type="hidden" name="depositario_central" value="@cuenta_depositario_central@">
+		<input type="hidden" name="contraparte" value="@contraparte@">
+		<input type="hidden" name="depositario" value="@depositario@">	
+		<br>
+		<button id="aceptar" TYPE="submit" />Aceptar</button>
+		&nbsp;<button type="button" onclick="javascript:history.back();">Regresar</button>&nbsp;&nbsp;
+		<button type="button" ONCLICK="window.location='salida_externa-filter'">&nbsp;Salir&nbsp;</button>
+	</form>
+	</CENTER>
+</BODY>
+</HTML>

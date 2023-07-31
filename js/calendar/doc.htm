@@ -1,0 +1,150 @@
+<html><head><title>JavaScript Tips - Calendar Component III</title>
+
+<meta name="TITLE" content="theOpenSourcery.com">
+<meta name="Description" content="Software development site for design, discussion, links, reviews, tutorials ">
+<meta name="author" content="JBSurveyer">
+<meta name="keywords" content="software, tutorial,JavaScript, dates, date functions, examples">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+ <link rel="stylesheet" type="text/css" href="doc_files/osstyle.css">
+<script type="text/javascript" language="JavaScript" src="doc_files/popcalendar.js"></script></head>
+<body bgcolor="#cccccc" text="#000000"><div onclick="bShow=true" id="calendar" style="z-index: 999; position: absolute; visibility: hidden;"><table width="220" style="border: 1px solid rgb(160, 160, 160); font-family: Arial; font-size: 11px;" bgcolor="#ffffff"><tbody><tr bgcolor="#000066"><td><table width="218"><tbody><tr><td style="padding: 2px; font-family: Arial; font-size: 11px;"><font color="#ffffff"><b><span id="caption"><span id="spanLeft" style="border: 1px solid rgb(51, 102, 255); cursor: pointer;" onmouseover="swapImage('changeLeft','pcalleft2.gif');this.style.borderColor='#8af';window.status='Click to scroll to previous month. Hold mouse button to scroll automatically.'" onclick="decMonth()" onmouseout="clearInterval(intervalID1);swapImage('changeLeft','pcalleft1.gif');this.style.borderColor='#36f';window.status=''" onmousedown="clearTimeout(timeoutID1);timeoutID1=setTimeout('StartDecMonth()',500)" onmouseup="clearTimeout(timeoutID1);clearInterval(intervalID1)"> <img id="changeLeft" src="doc_files/pcalleft1.gif" width="10" height="11" border="0"> </span> <span id="spanRight" style="border: 1px solid rgb(51, 102, 255); cursor: pointer;" onmouseover="swapImage('changeRight','pcalright2.gif');this.style.borderColor='#8af';window.status='Click to scroll to next month. Hold mouse button to scroll automatically.'" onmouseout="clearInterval(intervalID1);swapImage('changeRight','pcalright1.gif');this.style.borderColor='#36f';window.status=''" onclick="incMonth()" onmousedown="clearTimeout(timeoutID1);timeoutID1=setTimeout('StartIncMonth()',500)" onmouseup="clearTimeout(timeoutID1);clearInterval(intervalID1)"> <img id="changeRight" src="doc_files/pcalright1.gif" width="10" height="11" border="0"> </span> <span id="spanMonth" style="border: 1px solid rgb(51, 102, 255); cursor: pointer;" onmouseover="swapImage('changeMonth','pcaldrop2.gif');this.style.borderColor='#8af';window.status='Click to select a month.'" onmouseout="swapImage('changeMonth','pcaldrop1.gif');this.style.borderColor='#36f';window.status=''" onclick="popUpMonth()"></span> <span id="spanYear" style="border: 1px solid rgb(51, 102, 255); cursor: pointer;" onmouseover="swapImage('changeYear','pcaldrop2.gif');this.style.borderColor='#8af';window.status='Click to select a year.'" onmouseout="swapImage('changeYear','pcaldrop1.gif');this.style.borderColor='#36f';window.status=''" onclick="popUpYear()"></span> </span></b></font></td><td align="right"><a href="javascript:hideCalendar()"><img src="doc_files/pcalclose.gif" width="15" height="13" border="0"></a></td></tr></tbody></table></td></tr><tr><td style="padding: 5px;" bgcolor="#ffffff"><span id="content"></span></td></tr><tr bgcolor="#f0f0f0"><td style="padding: 5px;" align="center"><span id="lblToday"><font color="#000066">Today is <a onmousemove="window.status='Go To Current Month'" onmouseout="window.status=''" title="Go To Current Month" style="text-decoration: none; color: black;" href="javascript:monthSelected=monthNow;yearSelected=yearNow;constructCalendar();">Sun, 28 Nov 2004</a></font></span></td></tr></tbody></table></div><div id="selectMonth" style="z-index: 999; position: absolute; visibility: hidden;"></div><div id="selectYear" style="z-index: 999; position: absolute; visibility: hidden;"></div>
+
+
+<table cellpadding="0" cellspacing="0">
+  <tbody><tr> 
+    <td width="55"><img src="doc_files/jslogo.gif" width="55" height="45"></td>
+    <td width="1658"><strong><font size="6" face="Verdana, Arial, Helvetica, sans-serif"> JavaScript 
+      &amp; Calendar Components III</font></strong></td>
+  </tr>
+  <tr> 
+    <td valign="top"><table width="90%" border="0" cellspacing="0" cellpadding="0">
+        <tbody><tr> 
+          <td> </td>
+        </tr>
+        <tr> 
+          <td><div align="center"><a href="http://www.theopensourcery.com/jscalendar2.htm"><img src="doc_files/bprev.gif" width="41" height="41" border="0"></a></div></td>
+        </tr>
+        <tr> 
+          <td><div align="center"><a href="http://www.theopensourcery.com/ostutor.htm#js" target="_top"><font color="#000000" size="2" face="Verdana, Arial, Helvetica, sans-serif"><strong><br>
+              Home<br>
+              </strong></font></a><br>
+            </div></td>
+        </tr>
+        <tr> 
+          <td><div align="center"><a href="http://www.theopensourcery.com/jsdates.htm"><img src="doc_files/bnext.gif" width="41" height="41" border="0"></a></div></td>
+        </tr>
+      </tbody></table></td>
+    <td valign="top"> <p><font face="Arial, Helvetica, sans-serif" size="2"> <font size="3"><b><br>
+        <font size="4"> Displaying Dates: Smart Calendar Component</font></b><font face="Arial, Helvetica, sans-serif" size="4"><b>s<br>
+        Credit: </b></font><b> <a href="http://www.pengz.com/dp-intro.htm" target="_blank">Fuushikaden</a><br>
+        </b></font><br>
+        <b><font size="3">Description</font></b><font size="3"><br>
+        .This
+        is another calendar control we look at particularly for its ease of
+        coding.<br>
+        <br>
+        <b>Key features and JavaScript elements</b><br>
+        Uses CSS and pop-up windows to build up calendar. The calendar  component
+        automatically fills in the associated form fields 
+. Popcalendar is particularly useful because it supplies the field to be filled
+        as a parameter</font></font></p>       
+      <p><strong><font size="3"> Calendar Setup: </font></strong><font size="3">To
+          use the calendar component you will need 2 subdirectories ( image and
+           javascript) on your site where you will put the following files:
+          images gets <em>pcaldrop1, pcaldrop2, pcalleft1, pcalleft2, pcalrigh1,
+          pcalright2 </em>(note we added the prefix pcal to all the gif images
+          supplied in order to insure no collision withthe names of other components'
+          images). The javascript directory gets <em>popcalendar.js</em> <br>
+          <br>
+          Next place the following line in the &lt;head&gt; block
+          of your html file:</font></p>
+<em>  &lt;script language="JavaScript" src="javascript/popcalendar.js" type="text/javascript"&gt;&lt;/script&gt;<br>
+</em><br>
+   
+	
+    <p><strong>Using the Popcalendar Component</strong></p>
+	
+	<form name="mainform" method="post">
+
+			<input type="text" name="datevalue" size="20" maxlength="20" value="****??">
+		<img id="calgif" src="doc_files/popcalendar.gif" onclick='showCalendar(this, document.mainform.datevalue, "mmmm dd, yyyy",null,0,-1,-1)'>
+
+
+			<script language="javascript">
+			<!--
+
+			//	if (!document.layers) {
+
+			//		document.write("<input type=button onclick='showCalendar(this, mainform.datevalue, \"dd/mm/yyyy tt\",null,0,15,150)' value='select' style='font-size:11px'>")
+
+			//	}
+
+			//-->
+			</script>
+
+	  </form>
+    <p>The popcalendar component is fairly easy to use because it supplies
+      the name of the object that it will update. As well users get to supply
+      a formating string that determines the exact format that the date information
+      will be returned in.Here is the the exact calling sequence: 
+    </p><p>  showCalendar(control_called_from, control_displaying_date,
+      format, lang, past, fixedx, fixedy )<br>
+      where<br>
+   control_called_from - usually equals <em>this,</em> the
+name of the control showCalendar() is called from<br>
+   control_displaying_date - usually a form field, but any element
+whose value can be changed<br>
+   format - layout of the date the following values are recognized:<br>
+    a) d-day, no zero-padding; dd - zero-padded day when
+required<br>
+    b) yy - padded two digityear; yyyy - full, four digit
+year<br>
+    c) m - single digit for month; mm - zero-padded month
+when
+required<br>
+    d) mmm - month ompletely spelled out from January to
+December<br>
+    e) mmmm - ALL CAP 3-letter month from JAN to DEC<br>
+    f) tt - time in format hh:mm:ss; for example 11:35:39<br>
+   lang - two letter, lower case code for language to display
+in. This version defaults to en-English,<br>
+     but also supports de-German, and es-Spanish in
+the current version. <br>
+   past - set to zero and values before today's date are cisabled
+from being used; <br>
+   past = 1 means any date can be entered;<br>
+   fixedx = -1 indicates use the ontrol for display's x-coordinate
+for the calendar's positioning<br>
+   fixedx &gt;= 0 is the pop calendars x-coordinate position<br>
+   fixedy = -1 indicates use the ontrol for display's y-coordinate
+for the calendar's positioning<br>
+   fixedy&gt;= 0 is the pop calendars y-coordinate position<br>
+Here is another example of the use of Popcalendar:<br>    
+    <input style="font-size: 11px;" type="button" value="2 December 2001" onclick='popUpCalendar(this, this, "d mmm yyyy")'>
+					<br>
+					Try clicking on it.<br>
+		            <br>
+        One of the advantages of the Popcalendar is its flexible formating.
+		            Users	get	to choose among several different display formats for
+		            day, month and year. But once chosen users have complete
+		            flexibility in choosing the order and separtor used in the
+		            date format string. So "dd/mm/yyy", "yyyy-mm-dd", or "mmmm
+		            dd, yyyy" are just a few of the valid date strings possible.
+		            Another nice touch is that by setting fixed= -1; and fixedy
+		            = -1; popcalendar then knows how to place the pop-up calendar
+		            window right next to the triggering control.<br>
+        <br>
+In sum, Popcalendar has the advantage of a fairly simple setup and straight forward
+calling sequence. However, it lacks some of the sophisticated date eligibility
+criteria that are available 
+with the previous Lea Smart calendar. But Popcalendar has its own virtues including
+easy extensibility.</p></td>
+  </tr>
+  <tr>
+    <td valign="top"> </td>
+    <td valign="top"><hr><a href="#">Top of Page</a>  <a href="http://www.theopensourcery.com/ostutor.htm#js">Tutorials 
+      Home</a>  <a href="http://www.theopensourcery.com/osjsref.htm" target="_top">Javascript References</a>  <a href="http://www.theopensourcery.com/osbkjs.htm" target="_top">JavaScript
+      Books</a></td>
+  </tr>
+</tbody></table>
+</body></html>

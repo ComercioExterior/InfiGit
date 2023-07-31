@@ -1,0 +1,37 @@
+<HTML>
+<HEAD>
+<LINK REL="stylesheet" type="text/css"
+	href="../js/calendar/popcalendar.css" />
+<SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+<script language="javascript" src="../js/default.js"></script>
+<script language="javascript" src="../js/menudeo/conciliacion.js"></script>
+<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+
+<TITLE>Sistema INFI</TITLE>
+</HEAD>
+
+<BODY
+	ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+	<TABLE border="0" cellspacing="0" WIDTH="100%">
+		<TD class="headerBox"><FONT class="headerText">
+				Env&iacute;o BCV / Menudeo Conciliacion </FONT>
+		</TD>
+		<TD class="headerBox" valign="middle" align="right"><img
+			border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17"
+			onclick="helpOpen(window.document.location.href);"
+			style="cursor: hand" title="Mostrar ayuda en l&iacute;nea">
+		</TD>
+
+	</TABLE>
+	<CENTER>
+		<form name="dataentry" action="intercambio_menudeo_conciliacion_pro-browse" method="post" id='buscar'>
+
+			<br>
+			<button TYPE="submit">Procesar</button>
+			<SPAN> </SPAN>
+			<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+		</form>
+	</CENTER>
+</BODY>
+</HTML>

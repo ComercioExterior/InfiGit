@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+    <!--
+    
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, decimal, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+    
+    -->
+    
+    
+    	<field 
+        name="co_cliente" 
+        type="integer" 
+        description="C&oacute;digo del Cliente"
+        nullable="1"
+        size="10" /> 
+        <field 
+        
+        name="nb_nombre_cliente" 
+        type="varchar" 
+        description="Nombre del Cliente"
+        nullable="1"
+        size="80" /> 
+        
+         <field 
+        name="in_nac_ci_rif" 
+        type="varchar" 
+        description="Nacionalidad"
+        nullable="1"
+        size="10" />   
+             
+        <field 
+        name="nu_ced_rif_cliente" 
+        type="integer" 
+        description="C&eacute;dula del cliente"
+        nullable="1"
+        size="1" />  
+        
+          <field 
+        name="fecha_desde" 
+        type="date" 
+        description="Fecha Desde"
+        nullable="1"
+        size="1" />
+        
+          <field 
+        name="fecha_hasta" 
+        type="date" 
+        description="Fecha Hasta"
+        nullable="1"
+        size="1" />
+        
+          <field 
+        name="id_procedencia" 
+        type="integer" 
+        description="Procedencia"
+        nullable="1"
+        size="1" />
+        
+      
+		<regexp mask="^\d{6,}$" field="nu_ced_rif_cliente" on-error-msg="La c&eacute;dula debe tener al menos 6 d&iacute;gitos" />
+               
+ </record>
+

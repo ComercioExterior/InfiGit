@@ -1,0 +1,248 @@
+<html>
+	<head> 
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        <script type="text/javascript">
+         function detalle_proceso(nombreFormulario){
+        	window.open('gestion_procesos_browse?proceso='+nombreFormulario);
+        }
+         function reload_window(){
+	        window.close();
+        }
+        function eliminar_proceso(){
+	        if(confirm('El proceso sera eliminado')){
+	        document.forms.dataentry.action='gestion_pago_cheque-delete';
+	        	document.forms.dataentry.submit();
+	        	for(var i=0;i<1000;i++){
+	        	}
+		        //window.opener.location='gestion_pago_cheque-browse'
+		        //window.close();
+	        }   
+        }
+        function existe(){
+        	var existe= '@existe@';
+        	var cheques 	  = document.getElementById('cheques')
+        	var nacionales    = document.getElementById('nacionales')
+			var internacionales  = document.getElementById('internacionales')
+			var operacion_cambio = document.getElementById('operacion_cambio')
+        
+	        if(cheques.rows.length==1){
+		        cheques.style.display  = 'none';
+	        }
+	        if(nacionales.rows.length==1){
+		        nacionales.style.display  = 'none';
+	        }
+	        if(internacionales.rows.length==1){
+		        internacionales.style.display  = 'none';
+	        }
+	        if(operacion_cambio.rows.length==1){
+	        	operacion_cambio.style.display  = 'none';
+	        }
+        	if(existe=='true')
+        	{
+        		var deshabilitar = document.getElementById('eliminar')
+        		deshabilitar.disabled='true'
+        	}
+        	
+        }
+        </script>
+    </head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};"> 
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Pagos Pendientes</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+<center>
+
+<br>
+<form name="dataentry" action="gestion_procesos_browse?editar=1" method="post">
+<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                  Operaciones Financieras Involucradas
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+    
+    <!--encabezados de columna-->
+    <tr>         
+              <th nowrap>Orden</th>            
+              <th nowrap>Operacion</th>
+              <th nowrap>Status</th>
+              <th nowrap>Descripci&oacute;n</th>
+              <th nowrap>Moneda</th>
+              <th nowrap>Monto</th>                                   
+    </tr>
+    <!--data-->
+    <proceso>
+    <tr class="tableCell">
+          <td nowrap align="center">@ordene_id@</td>
+           <td nowrap align="center">@ordene_operacion_id@</td> 
+           <td nowrap align="center">@status_operacion@</td>
+           <td nowrap align="left">@transa_descripcion@</td>
+           <td nowrap align="center">@moneda_id@</td>
+           <td nowrap align="right">@monto_operacion@</td>               
+    </tr>
+     </proceso>
+    </table>
+
+	&nbsp;
+    &nbsp;
+    &nbsp;
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;" id="cheques">
+    <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                  Cheques Moneda:&nbsp;@moneda_id@
+                </FONT>
+            </th>
+        </tr>
+    <!--encabezados de columna-->
+    <!--data-->
+    <cheque>
+    <tr class="tableCell">         
+           <td class="negrita">Nombre</td><td nowrap align="center">@nombre_beneficiario@</td> 
+           <td class="negrita">C&eacute;dula</td><td nowrap align="center">@cedula_beneficiario@</td>
+           <td class="negrita">Monto</td><td nowrap align="right">@monto_instruccion format-mask='###,###,###,###.00'@</td>              
+    </tr>
+     </cheque>
+    </table>
+ 	&nbsp;
+    &nbsp;
+    &nbsp;
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;" id="nacionales">
+    <tr CLASS="formCaption">
+            <th COLSPAN="10" ALIGN="center">
+                <FONT class="formCaptionText">
+                  Transferencias Nacionales Moneda:&nbsp;@moneda_id@
+                </FONT>
+            </th>
+        </tr>
+    <nacional>
+     <tr>
+    	   <td><b>Nombre</b></td><td nowrap align="center">@nombre_beneficiario@</td> 
+           <td><b>C&eacute;dula</b></td><td nowrap align="center">@cedula_beneficiario@</td>             
+           <td><b>N&uacute;mero Cuenta</b></td><td nowrap align="right">@ctecta_numero@</td>   
+           <td><b>Monto</b></td><td nowrap align="right">@monto_instruccion format-mask='###,###,###,###.####'@</td>                         
+     </tr>
+     </nacional>
+    </table>
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;"id="internacionales">
+    <tr CLASS="formCaption">
+            <th COLSPAN="10" ALIGN="center">
+                <FONT class="formCaptionText">
+                  Transferencias internacionales Moneda:&nbsp;@moneda_id@
+                </FONT>
+            </th>
+        </tr>
+    <internacional>
+     <tr>
+    	  <tr>         
+              <td nowrap="nowrap" class="negrita" colspan="1">Nombre del Beneficiario</td><td colspan="2">@nombre_beneficiario@</td> 
+              <td nowrap="nowrap" class="negrita" colspan="1">C&eacute;dula del Beneficiario</td><td colspan="2">@cedula_beneficiario@</td>
+    </tr>
+    <tr>         
+              <td nowrap="nowrap" class="negrita">Nombre de la Cuenta</td><td>@ctecta_nombre@</td> 
+              <td nowrap="nowrap" class="negrita">N&uacute;mero</td><td>@CTECTA_NUMERO@</td>
+              <td nowrap="nowrap" class="negrita">Nombre del Banco</td><td>@CTECTA_BCOCTA_BCO@</td>                               
+    </tr>
+    <tr>         
+              <td nowrap="nowrap" class="negrita" colspan="1">Direcci&oacute;n</td><td colspan="2">@CTECTA_BCOCTA_DIRECCION@</td> 
+              <td nowrap="nowrap" class="negrita" colspan="1">C&oacute;digo BIC</td><td colspan="2">@CTECTA_BCOCTA_BIC@</td>                               
+    </tr>
+    <tr>         
+              <td nowrap="nowrap" class="negrita" colspan="1">T&eacute;lefono</td><td colspan="2">@CTECTA_BCOCTA_TELEFONO@</td> 
+              <td nowrap="nowrap" class="negrita" colspan="1">C&oacute;digo ABA</td><td colspan="2">@CTECTA_BCOCTA_ABA@</td>
+              
+    </tr>
+    <tr>
+    	<td nowrap="nowrap" class="negrita" colspan="1">Observaciones</td><td colspan="5">@CTECTA_OBSERVACION@</td>   
+    </tr>
+    <tr>    
+    		  <td nowrap="nowrap" class="negrita">Nombre Banco Intermediario</td><td>@CTECTA_BCOINT_BCO@</td>                                    
+              <td nowrap="nowrap" class="negrita">Direcci&oacute;n</td><td>@CTECTA_BCOINT_DIRECCION@</td> 
+              <td nowrap="nowrap" class="negrita">Cuenta en Intermediario</td><td>@CTECTA_BCOINT_SWIFT@</td>
+              
+    </tr>
+    <tr>  
+    		  <td nowrap="nowrap" class="negrita">C&oacute;digo BIC</td><td>@CTECTA_BCOINT_BIC@</td>                                      
+              <td nowrap="nowrap" class="negrita">T&eacute;lefono</td><td>@CTECTA_BCOINT_TELEFONO@</td> 
+              <td nowrap="nowrap" class="negrita">C&oacute;digo ABA</td><td>@CTECTA_BCOINT_ABA@</td>
+              
+    </tr>
+    <tr>  
+    		<td nowrap="nowrap" class="negrita" colspan="1">Observaciones Intermediario</td><td colspan="5">@CTECTA_BCOINT_OBSERVACION@</td>
+    		
+    </tr>
+    <tr>
+    <td nowrap="nowrap" class="negrita" colspan="1">Monto a Transferir</td><td colspan="5">@monto_instruccion format-mask='###,###,###,###.00'@</td>                                                              
+    </tr>
+    <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                  &nbsp;
+                </FONT>
+            </th>
+        </tr>                        
+     </internacional>
+    </table>
+    
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;" id="operacion_cambio">
+    <tr CLASS="formCaption">
+            <th COLSPAN="10" ALIGN="center">
+                <FONT class="formCaptionText">
+                  Operaci&oacute;n Cambio Moneda:&nbsp;@moneda_id@
+                </FONT>
+            </th>
+        </tr>
+    <operacion_cambio>
+     <tr>
+    	   <td class="negrita">Nombre</td><td nowrap align="center">@nombre_beneficiario@</td> 
+           <td class="negrita">C&eacute;dula</td><td nowrap align="center">@cedula_beneficiario@</td>
+           <td class="negrita">Nombre Cuenta</td><td nowrap align="right">@ctecta_nombre@</td>              
+           <td class="negrita">N&uacute;mero Cuenta</td><td nowrap align="right">@ctecta_numero@</td>   
+           <td class="negrita">Monto</td><td nowrap align="right">@monto_instruccion format-mask='###,###,###,###.00'@</td>                         
+     </tr>
+     </operacion_cambio>
+    </table>
+    
+    <BR>
+    <input type="hidden" value="@proceso@" name="proceso">
+    <input type="hidden" value="@moneda_id@" name="moneda_id">
+    <button type="button" onclick="javascript:window.close();">Cerrar</button>
+</form>
+</center>
+<script type="text/javascript">
+window.onload = makeDoubleDelegate(window.onload,existe());
+window.onload = makeDoubleDelegate(window.onload,self.focus());
+</script>
+</body>
+</html>

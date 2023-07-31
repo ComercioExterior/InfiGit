@@ -1,0 +1,91 @@
+<html>
+
+	<head>
+ 	<LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+	<SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+	<script language="javascript" src="../js/default.js"></script>   
+	<TITLE>Sistema INFI</TITLE>
+		<script type="text/javascript">		
+		function postear(archivo){
+			document.forms[0].directorio.value = archivo;
+			document.forms[0].submit();
+		}
+		</script>
+      
+    </head>
+
+<body>
+
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+			<TD class="headerBox">				            
+					<font class="headerText">Archivo de Cierre del Sistema</font>
+			</TD>        
+		
+		</TR>
+	</TABLE>
+	
+	<CENTER>
+
+	<!--formulario-->
+	<FORM NAME="dataentry" METHOD="POST" ACTION="logger_cierre_sistema-find">
+		
+		<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+		<tr>
+			<th ALIGN="center" colspan="2">Seleccione Criterios</th>
+        </tr>		
+	
+        <!--campo-->
+        <tr>
+            <td>
+				Fecha:
+            </td>
+            <td>
+				<INPUT TYPE="TEXT" VALUE="" NAME="fecha_log" SIZE="12" MAXLENGTH="10" class="inputControl" readonly/> 
+				<a onclick="popUpCalendar(this, fecha_log, 'dd-mm-yyyy')">
+				<IMG SRC="../images/infi_gn_calendar.gif" TITLE="Seleccionar Fecha"/> 
+				</a>
+			</td>
+        </tr>
+		
+		</table>
+		
+		<br>
+	
+		<INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/>
+			
+		<INPUT TYPE="HIDDEN" VALUE="1" NAME="filtro"/>
+		
+		<table>
+			<tr>
+				<td>
+					<button TYPE="submit">Procesar</button>
+				</td>				
+				<td>
+					<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+				</td>
+			</tr>
+		</table>
+	
+	</FORM>       
+	
+	</CENTER>
+
+
+
+<script language="javascript">
+//ir a la pagina deseada
+function gotoPage(page_send)
+{
+	window.location="msc_role-find?pagenumber="+page_send;
+}
+</script>
+<input type="hidden" value="" name="log">
+</form>
+</body>
+</html>
+

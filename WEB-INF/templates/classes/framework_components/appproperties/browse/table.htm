@@ -1,0 +1,106 @@
+<html>
+
+	<head>
+        
+        <link rel="stylesheet" type="text/css" href="../megasoft.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Adminstrador de Portales</title>
+
+    </head>
+
+<body>
+
+<!--page name bar-->
+<TABLE WIDTH="889">
+    <TR>
+       
+        <TD class="headerBox" > 
+            <FONT class="headerText">Propiedades de la Aplicaci&oacute;n</FONT>
+        </TD>
+    </TR>
+</TABLE>
+
+
+<center>
+
+<br>
+
+
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="90%">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+    	<th colspan="2" width="20" ></th>
+              
+              <th>Nombre</th>
+              
+              <th>Valor</th>
+              
+				<th>Descripci&oacute;n</th>
+              
+    </tr>
+
+    <!--data-->
+    <dsInfo>
+    <tr class="tableCell">
+        
+                <td align="center">
+                <a href="appproperties-confirm?id=@id@">
+                	<IMG SRC="../images/delete.gif" ALIGN="Center" BORDER="0" title="Haga CLICK aqu&iacute; para Eliminar registro">
+                </a>
+                </td>
+                
+                <td align="center">
+                <a href="appproperties-edit?id=@id@">
+                	<IMG SRC="../images/editar.gif" ALIGN="Center" BORDER="0" title="Haga CLICK aqu&iacute; para Editar">
+                </a>
+                </td>
+
+                        
+        		<td>
+                @nombre@
+                </td>
+                
+                <td>
+                @valor@
+                </td>
+                
+                   
+                <td>
+                @descripcion@
+                </td>
+                
+        
+     </tr>
+     </dsInfo>
+    
+    </table>
+    <BR>
+  
+<form>
+
+	<BR>
+    <button TITLE="Añadir registro" onclick="window.location='appproperties-addnew'" class="boton"/>Agregar</button>
+    
+    <span> </span>
+
+
+</form>
+
+<BR>
+
+
+</center>
+<script language="javascript">
+//ir a la pagina deseada
+function gotoPage(page_send)
+{
+	window.location="msc_role-find?pagenumber="+page_send;
+}
+</script>
+</body>
+
+</html>
+

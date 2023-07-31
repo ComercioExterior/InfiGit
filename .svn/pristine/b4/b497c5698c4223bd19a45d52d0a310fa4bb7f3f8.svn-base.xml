@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+    <!--
+    
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, decimal, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+    
+    -->
+    
+         <field 
+        name="pick_cliente" 
+        type="varchar" 
+        description="Cliente"
+        nullable="1"
+        size="100" />      
+ 
+        <field 
+        name="client_id" 
+        type="integer" 
+        description="Id Cliente"
+        nullable="1"
+        size="100" />      
+        
+        <field 
+        name="cta_cliente" 
+        type="varchar" 
+        description="Cuenta del Cliente"
+        nullable="1"
+        size="100" />      
+         
+
+       <field 
+        name="num_cta_saldo" 
+        type="varchar" 
+        description="Cuenta del Cliente con el saldo disponible"
+        nullable="1"
+        size="30" />      
+ 
+         <field 
+        name="blotter_id" 
+        type="varchar" 
+        description="Blotter"
+        nullable="1"
+        size="30" />      
+  
+        <field 
+        name="undinv_id" 
+        type="integer" 
+        description="Unidad de Inversi&oacute;n"
+        nullable="1"
+        size="100" />      
+ 
+       <field 
+        name="vehicu_rol_id" 
+        type="integer" 
+        description="Veh&iacute;culo"
+        nullable="1"
+        size="100" />      
+ 
+    
+</record>
+

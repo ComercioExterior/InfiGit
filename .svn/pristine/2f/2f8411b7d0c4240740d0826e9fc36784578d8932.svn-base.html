@@ -1,0 +1,73 @@
+<html>
+	<head>        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+		<script type="text/javascript">
+			function validarCancelación(){
+				if('@cancelacion_posible@'=='false'){
+					document.getElementById('mensajeCancelNoValida').style.display='block'	
+					document.getElementById('btnProcesar').style.display='none'	
+					document.getElementById('tablaCancelacion').style.display='none'				
+				}
+			}
+		</script>
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};validarCancelación()">
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+			<TD class="headerBox">                
+            	<FONT class="headerText">Ordenes / Cancelaci&oacute;n de Orden</FONT>
+        	</TD>
+        	<!-- help online -->
+   			<TD class="headerBox" valign="middle" align="right">
+   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   			</TD>
+   			<!-- fin help online -->
+		</TR>
+	</TABLE>
+
+   <center>
+	<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="cancelacion_orden-cancelar">
+		
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform" id="tablaCancelacion">
+        
+        <!--titulo-->
+        <tr>
+            <td ALIGN="center">
+                 <b>Por favor confirme si desea Cancelar la Siguiente Orden</b>
+            </td>
+        </tr>
+        <tr class="tableCell">
+			<td align="center" nowrap>
+			<b>N&uacute;mero Orden:</b> @ordene_id@
+			</td>
+		</tr>
+        </table>
+         <INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/> 	
+         <INPUT TYPE="HIDDEN" NAME="ordene_id" VALUE="@ordene_id@"/>
+         <INPUT TYPE="HIDDEN" NAME="undinv_id" VALUE="@undinv_id@"/>
+         <INPUT TYPE="HIDDEN" NAME="cancelacion_posible" VALUE="@cancelacion_posible@"/>
+         <br>
+         <div style="display:none" id="mensajeCancelNoValida">
+         	<font color="red">
+         	<b>
+         	No es posible realizar la Cancelaci&oacute;n de la Orden @ordene_id@.<br>
+         	Verifique si la cancelación se encuentra fuera del horario configurado, si la orden fue transmitida al BCV o si usted no posee un perfil con suficientes permisos.
+         	</b>
+         	</font>         	
+         </div>   
+         <br>         
+            <button TYPE="submit" id="btnProcesar">Procesar</button>
+            &nbsp;<button type="button" onclick="javascript:history.back();">Regresar</button>
+            &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+
+    </form>
+   </center>
+</body>
+</html>

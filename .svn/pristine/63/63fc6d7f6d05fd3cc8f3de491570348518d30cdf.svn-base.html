@@ -1,0 +1,246 @@
+<html>
+	<head> 
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        <script type="text/javascript">
+         function  estatus(estado){
+        	if(estado=='ver')
+        	{
+				var elementos = document.getElementsByName('banco')
+				for (var i = 0; i < elementos.length; i++ )
+				{
+					elementos[i].style.display ="block";
+					var indicador = document.getElementById('indicador')
+					indicador.value ='1'
+					
+				}
+				botonO.style.display ="block";
+				botonA.style.display ="none";
+				
+			}/* Fin del if*/
+			if(estado=='ocultar')
+			{
+				var elementos = document.getElementsByName('banco')
+				for (var i = 0; i < elementos.length; i++ )
+				{
+					elementos[i].style.display ="none";
+					var indicador = document.getElementById('indicador')
+					indicador.value ='0'
+				} /*Fin del For*/
+				botonA.style.display ="block";
+				botonO.style.display ="none";
+			} /*Fin del If*/
+			} /*Fin de la Funcion estatus*/
+			/* Creamos la función y tomamos los valores enviados como parámetros  
+  desde los eventos correspondientes */  
+  function caracteresRestantes (campoComentario, campoContador, maxCaracteres) {  
+    
+  /* Si la cantidad de caracteres es mayor al límite que proponemos nosotros,  
+  se ejecuta esta sentencia */  
+      if (campoComentario.value.length > maxCaracteres) {  
+     
+      // Mostramos el texto escrito con el límite máximo de caracteres  
+      campoComentario.value = campoComentario.value.substring(0, maxCaracteres);  
+          }  
+      // Si no se ha llegado al máximo de caracteres permitidos se ejecuta esta sentencia  
+      else   
+          campoContador.value = maxCaracteres - campoComentario.value.length;  
+    
+  }// Fin de la función caracteresRestantes()
+  
+  function validariban(){
+  	var element = document.getElementById('iban_cta_europea');
+  	if(element.checked==true){
+  		element.checked=true
+  		element.value='1'
+  	}else{
+  	
+  		element.checked=false
+  		element.value='0'
+  	}
+  }
+        </script>
+    </head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Pagos Pendientes</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+<center>
+
+<br>
+<form name="dataentry" action="gestion_pago_cheque-confirm_transaccion" method="post">
+    
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                  TRANSFERENCIAS INTERNACIONALES
+                </FONT>
+            </th>
+        </tr>
+
+	</table>
+    <!--tabla de data-->
+    <!-- Banco internacional sin intermediario -->
+<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform" style="table-layout: auto">
+       <!--titulo-->
+
+        <tr>
+        	<td width="25%">Cedula Beneficiario *:</td>
+        	<td width="75%"><input type="text" value="" name="cedula_internacional"  maxlength="10" class="inputControl"/></td>
+        </tr>
+       <tr>
+        	<td width="25%">Nombre Beneficiario *:</td>
+        	<td width="75%"><input type="text" value="" name="nombre_internacional" size="60"  maxlength="50" class="inputControl"/></td>
+        </tr>
+       </table>
+ <!-- Banco internacional sin intermediario -->
+<div id="internacional_display" style="display:block" align="center">
+	<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform" style="table-layout: auto">
+	<tr>
+       <!--titulo-->
+       <tr>
+        	<td width="25%">N&uacute;mero de Cuenta *:</td>
+        	<td width="75%">
+        		<input type="text" value="" name="ctecta_numero" maxlength="20" class="inputControl"/>
+        		<INPUT TYPE="CHECKBOX" id="iban_cta_europea" NAME="iban_cta_europea" VALUE="" onclick="validariban();"/> IBAN
+        	</td>
+        
+        <tr>
+        	<td width="25%">Banco *:</td>
+        	<td width="75%"><input type="text" value="" name="ctecta_bcocta_bco"  maxlength="50" class="inputControl"/>
+     		</td>
+ 
+        </tr>
+       <tr>
+	        <td>Direcci&oacute;n *:</td>
+	       	<td><input type="text" value="" name="ctecta_bcocta_direccion"  maxlength="50" class="inputControl"/></td>
+	   </tr>
+         <tr id="bic_banco_dest">
+            <td>BIC/SWIFT *:</td>
+        	<td><input type="text" value="" name="ctecta_bcocta_bic"   maxlength="50" class="inputControl"/></td>
+        </tr>
+        <tr>
+	        <td>Tel&eacute;fono *:</td>
+        	<td><input type="text" value="" name="ctecta_bcocta_telefono"  maxlength="50" class="inputControl"/></td>
+        </tr>
+	     <tr id="aba_banco_dest">
+	        <td>ABA:</td>
+	       	<td><input type="text" value="" name="ctecta_bcocta_aba"  maxlength="50" class="inputControl"/></td>
+	     </tr>
+        <tr>
+        	<td>Observaciones :</td>
+        	<td><textarea name="ctecta_observacion" cols="30" rows ="5"  value=""></textarea></td>
+        </tr>
+        <tr>
+       <tr id="botonA" style="display:block">
+       		 <td>Banco:</td>
+       		 <td><input type="radio" name= "intermediario"  onclick="estatus('ver');">Intermediario</radio>	
+ 		</tr>
+	</table>
+</div>
+
+
+<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform" style="table-layout: auto;">
+
+ 	<tr id="banco" name="banco" style="display:none">
+        	<td width="25%">Banco Intermediario*:</td>
+        	<td width="75%"><input type="text" value="" name="ctecta_bcoint_bco"  maxlength="50" class="inputControl"/></td>
+        </tr>
+        
+         <tr id="banco" name="banco" style="display:none">
+        	<td width="25%">Cuenta en el Banco Intermediario *:</td>
+        	<td width="75%">
+        		<input type="text" value="" name="cta_bco_bcoint" maxlength="20" class="inputControl"/>
+        		(N&uacute;mero de cuenta del banco destino en el banco intermediario)
+        	</td>
+        
+        <tr>
+        
+        <tr id="banco" name="banco" style="display:none">
+	        <td>Direcci&oacute;n Del Banco Intermediario*:</td>
+        	<td>
+        		<input type="text" value="" name="ctecta_bcoint_direccion"  maxlength="50" class="inputControl"/>
+        	</td>
+        </tr>
+         <tr id="banco" name="banco" style="display:none">
+            <td>BIC/SWIFT Del Banco Intermediario*:</td>
+        	<td>
+        		<input type="text" value="" name="ctecta_bcoint_bic"   maxlength="50" class="inputControl"/>
+        	</td>
+        </tr>
+        <tr id="banco" name="banco" style="display:none">
+	        <td>Tel&eacute;fono Del Banco Intermediario*:</td>
+        	<td>
+        		<input type="text" value="" name="ctecta_bcoint_telefono"  maxlength="50" class="inputControl"/>
+        	</td>
+        </tr>
+        <tr id="banco" name="banco" style="display:none">
+	        <td>ABA:</td>
+        	<td>
+        		<input type="text" value="" name="ctecta_bcoint_aba"  maxlength="50" class="inputControl"/>
+        	</td>
+        </tr>
+       
+        <tr id="banco" name="banco" style="display:none">
+        	<td>Observaciones Del Banco Intermediario:</td>
+        	<td>
+        	<textarea name="ctecta_bcoint_observacion" cols="30" rows ="5"  value=""></textarea> 
+        	</td>
+        </tr>
+       <tr id="botonO" style="display:none">
+       		<td>Banco:</td>
+       		<td>
+       			<input type="radio" name= "intermediario" onclick="estatus('ocultar');"> Sin Intermediario</radio> 
+		</td>
+		</tr>
+</table>
+
+ <!-- Operacion de Cambio -->
+ 
+<div id="operacion_display" style="display:none" align="center">
+	<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform" style="table-layout: auto">
+       <!--titulo-->
+        
+        <tr>
+        	<td width="25%">Cedula Beneficiario*:</td>
+        	<td width="75%"><input type="text" value="" name="cedula"  maxlength="10" class="inputControl"/></td>
+        </tr>
+       <tr>
+        	<td width="25%">Nombre Beneficiario*:</td>
+        	<td width="75%"><input type="text" value="" name="nombre" size="60" maxlength="50" class="inputControl"/></td>
+        </tr>
+       </table>
+</div>
+
+         <br>
+            	<P><FONT COLOR="red"><B>Nota:</B></FONT> Los campos con * deben ser llenados para poder procesar el formulario.</P>
+	 
+<input id="indicador" type="hidden" value="0" name="indicador">
+    &nbsp;
+    &nbsp;
+    <BR>
+    
+	<button type="submit">Procesar</button>&nbsp;
+    &nbsp;<button type="button" onclick="window.close();">&nbsp;Salir&nbsp;</button>
+</form>
+</center>
+
+</body>
+</html>

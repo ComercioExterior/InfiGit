@@ -1,0 +1,221 @@
+<HTML>  
+    <HEAD>
+    	<LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+        <script language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+        <script language="javascript" src="../js/default.js"></script>
+        <script type="text/javascript" src="../js/menu/jquery-1.2.2.pack.js"></script>
+		<script type="text/javascript" src="../js/checkbox.js"></script> 
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css"/>
+        <TITLE>Sistema INFI</TITLE>
+        <SCRIPT>
+        
+        function recargarPagina(){
+        	var status = document.dataentry.status_orden.value;
+        	var transa = document.dataentry.transaccion.value;
+        	var dest = document.dataentry.tipo_destinatario.value;
+        	var status_name = document.dataentry.name_status_orden_plant.value;
+        	var transa_name = document.dataentry.name_transac_plant.value;
+        	var dest_name = document.dataentry.name_dest.value;
+        	if(status!='' && transa!='' && dest!=''){
+        		document.getElementById('mensaje_espera').style.display='block';
+        		document.dataentry.action='envio_correos-filter?status='+status+'&transa='+transa+'&dest='+dest+'&status_name='+status_name+'&transa_name='+transa_name+'&dest_name='+dest_name; 
+        		document.dataentry.submit();
+        	}
+        }
+    	
+        
+        function showEnterOrden(ind ,id, tx, campo)
+		{
+		   var r
+		   if (ind == '1') {  // llamar a picklist		
+		   	  r = window.open(campo +'?name_id=' + id.name +"&name_tx=" + tx.name, 'Enterorden','resizable=yes,scrollbars=yes,width=600,height=450,Left=200,top=150,Status=yes,unadorned:true');
+		   	  
+		   }
+		   else{
+			id.value= "";//limpiar id de ui
+			tx.value= "";//limpiar campo de texto de ui
+			recargarPagina();
+		  }
+		}
+        
+        
+        function seleccionar_checkbox(activar){
+	       	for (i=0; i<document.dataentry.elements.length; i++){
+	       		//if(document.dataentry.elements[i].type == "checkbox")
+	       		if(document.dataentry.elements[i].name == "correo_id"){
+	       			document.dataentry.elements[i].checked = activar;
+	       		}
+	       	}
+       	} 
+        
+        
+        function validar_todos(todos){
+        	if(todos.checked==true){
+        		todos.value = '1';
+        		seleccionar_checkbox(1);
+        	}else{
+            	todos.value = '0';
+            	seleccionar_checkbox(0);
+        	}
+        	document.dataentry.todos_val.value = todos.value;
+        	//alert('valor todos val: '+document.dataentry.todos_val.value);
+        }
+        
+        
+        function actualizar_todos(check){
+        	//alert('valor todos: '+document.dataentry.todos.value);
+        	if(document.dataentry.todos.checked==true){
+        		if(check.checked==0){
+        			document.dataentry.todos.checked = 0;
+        			document.dataentry.todos.value = '0';
+        			document.dataentry.todos_val.value = document.dataentry.todos.value;
+        		}
+        	}
+        	//alert('valor todos: '+document.dataentry.todos.value);
+        	//alert('valor todos val: '+document.dataentry.todos_val.value);
+        }
+        
+        
+        function verif_no_todos(){
+        	//alert('valor todos: '+document.dataentry.todos.value);
+        	if(document.dataentry.todos.checked==0){
+        		var existNoChecked = false;
+        		for (i=0; i<document.dataentry.elements.length; i++){
+    	       		if(document.dataentry.elements[i].name=="correo_id" && document.dataentry.elements[i].checked==0){
+    	       			existNoChecked = true;
+    	       			break;
+    	       		}
+    	       	}
+        		if(!existNoChecked){
+        			//alert('Entra a condicion TODOS CHECKED');
+        			document.dataentry.todos.checked = 1;
+        			document.dataentry.todos.value = '1';
+        			document.dataentry.todos_val.value = document.dataentry.todos.value;
+        		}
+        	}
+        	//alert('valor todos: '+document.dataentry.todos.value);
+        	//alert('valor todos val: '+document.dataentry.todos_val.value);
+        }
+        
+        
+        function setStatus(statusOrden) {
+  			document.dataentry.name_status_orden_plant.value = statusOrden.options[statusOrden.options.selectedIndex].text;
+  		}
+  		
+  		function setNameTransaccion(transac) {
+  		   document.dataentry.name_transac_plant.value = transac.options[transac.options.selectedIndex].text;
+  		}
+  		
+  		function setNameDest(dest) {
+   		   document.dataentry.name_dest.value = dest.options[dest.options.selectedIndex].text;
+   		}
+        
+	</SCRIPT>
+        
+    </HEAD>
+    
+   <!--poner el focus en el 1er control de la forma-->
+<BODY>
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Env&iacute;o de Correos</FONT>
+        </TD>
+        
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+        <td class="headerBox" aling="right"></td>
+     </TR>
+</TABLE>
+
+<br/>
+
+<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+    <!--titulo-->
+	<tr>
+	    <th COLSPAN="3" ALIGN="center">Plantilla: @plant_mail_name@ </th>
+	</tr>
+	<tr class="tableCell">
+		<td>Estatus de Orden: @name_status_orden_plant@</td>
+		<td>Transacci&oacute;n: @name_transac_plant@</td>
+		<td>Tipo de Destinatario: @name_dest@</td>
+	</tr>
+</TABLE>
+
+	 
+
+                
+        <CENTER>
+
+<div style="font-weight:bold; margin:1% 0% 1% 0%;">@mens_error@</div>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="envio_correos-confirm">
+		
+<!-- <br/> -->
+
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="TABLE-LAYOUT: auto; ">
+    
+    <tr class="tableHeader">
+    	<th COLSPAN="@colspan@" ALIGN="center">
+            <FONT class="formCaptionText">
+              Correos Filtrados ( @t_registros@ )
+            </FONT>
+		</th>
+    </tr>
+    
+    <INPUT TYPE="hidden" NAME="t_registros" VALUE="@t_registros@"/>
+    <INPUT TYPE="hidden" NAME="plantilla_id" VALUE="@plantilla_id@"/>
+    <INPUT TYPE="hidden" NAME="tipo_destinatario" VALUE="@tipo_destinatario@"/>
+     
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+<!--     	<input type="checkbox" id="todosPagina" name="todosPagina" onclick="seleccionarTodosPagina()" /> -->
+		<th width="2%" nowrap><input type="checkbox" name="todos" class="inputControl" value="0" onclick="validar_todos(this);"/></th>
+		@columnas@
+	</tr>
+	
+	<INPUT TYPE="hidden" NAME="todos_val" VALUE="0"/>
+
+    <!--data-->
+	<rows_correos>
+	    <tr class="tableCell">
+				<td VALIGN="middle"><input type="checkbox" name="correo_id" class="inputControl" value="@correo_id@" onclick="actualizar_todos(this);"/></td>
+				<td style="display:@cliente_display@" VALIGN="middle">@ci_rif@</td>
+				<td style="display:@cliente_display@" VALIGN="middle">@nombre@</td>
+				<td style="display:@cliente_display@" VALIGN="middle">@correo@</td>
+				<td style="display:@cliente_display@" VALIGN="middle">@orden_id@</td>
+				<td style="display:@cliente_display@" VALIGN="middle">@ui_name@</td>
+				<td style="display:@funcional_display@" VALIGN="middle">@area_name@</td>
+				<td style="display:@funcional_display@" VALIGN="middle">@destinatario@</td>
+	     </tr>
+     </rows_correos>
+    
+    </table>
+    
+<!-- @page_index@ -->
+
+
+<INPUT TYPE="hidden" NAME="ciclo" VALUE="@ciclo_id@"/>
+
+         
+            <br/>
+            
+            <button TYPE="submit" style="display:@enviar_display@" onclick="verif_no_todos();">Enviar Correos</button>
+<!--             <SPAN> </SPAN> -->
+            &nbsp;<button type="button" onclick="window.location='envio_correos-filter'">Regresar</button>
+            &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+            <INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/>
+    </form>
+        </CENTER>      
+</BODY>
+</HTML>

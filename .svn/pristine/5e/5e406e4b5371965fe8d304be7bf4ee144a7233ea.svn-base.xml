@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+    <!--
+    
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, decimal, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+    
+    -->
+    <field 
+        name="operacion" 
+        type="varchar" 
+        description="codigo operacion1"
+        nullable="0"
+        size="200" /> 
+    
+    
+    <field 
+        name="estatus" 
+        type="varchar" 
+        description="status de la operacion"
+        nullable="0"
+        size="200" />
+            
+   <field 
+        name="operacioncv" 
+        type="varchar" 
+        description="operacion compra o venta"
+        nullable="0"
+        size="200" /> 
+        
+         <field 
+        name="nacionalidad" 
+        type="varchar" 
+        description="nacionalidad"
+        nullable="0"
+        size="200" />
+        
+         <field 
+        name="rif" 
+        type="varchar" 
+        description="rif o cedula del cliente"
+        nullable="0"
+        size="200" />
+        
+         <field 
+        name="nombre" 
+        type="varchar" 
+        description="nombre del cliente"
+        nullable="0"
+        size="200" />
+        
+        <field 
+        name="fecha" 
+        type="varchar" 
+        description="fecha de la operacion"
+        nullable="0"
+        size="200" />
+        
+        <field 
+        name="montobs" 
+        type="varchar" 
+        description="monto en bs"
+        nullable="0"
+        size="200" />
+        
+        <field 
+        name="monto" 
+        type="varchar" 
+        description="monto en divisas"
+        nullable="0"
+        size="200" />
+        
+        <field 
+        name="tasacambio" 
+        type="varchar" 
+        description="tasa de cambio"
+        nullable="0"
+        size="200" />
+        
+        <field 
+        name="cuenta" 
+        type="varchar" 
+        description="cuenta del cliente"
+        nullable="0"
+        size="200" />
+        
+         <field 
+        name="conceptoestadistico" 
+        type="varchar" 
+        description="concepto que se usa para saber si es compra de combustible"
+        nullable="0"
+        size="200" />
+     
+      <field 
+        name="moneda" 
+        type="varchar" 
+        description="codigo divisas EUR o USD"
+        nullable="0"
+        size="200" />
+     
+     
+      <field 
+        name="email" 
+        type="varchar" 
+        description="correo del cliente"
+        nullable="0"
+        size="200" />
+     
+     
+      <field 
+        name="telefono" 
+        type="varchar" 
+        description="telefono del cliente"
+        nullable="0"
+        size="200" />
+        
+        <field 
+        name="contravalor" 
+        type="varchar" 
+        description="Contra valor en USD"
+        nullable="0"
+        size="200" />
+    
+</record>
+

@@ -1,0 +1,98 @@
+<HTML>
+	<HEAD>
+		<TITLE>Sistema INFI</TITLE>
+    	<LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+    	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		<SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+		<script language="javascript" src="../js/default.js"></script>   
+		<script type="text/javascript">
+        
+        
+        //Funci&oacute;n para abrir un picklist o limpiar el valor anteriormente seleccionado
+			function procesar(accion) {								
+				
+				if(accion=='buscar'){
+				window.location='configuracion_tasa-browse?tipo_producto_id='+document.getElementById('tipo_producto_id').value+'&transa_id='+document.getElementById('transa_id').value+'&fecha_tasa='+document.getElementById('fecha_tasa').value;
+				}else if(accion=='agregar'){
+					window.location='configuracion_tasa-addnew?tipo_producto_id='+document.getElementById('tipo_producto_id').value+'&transa_id='+document.getElementById('transa_id').value+'&fecha_tasa='+document.getElementById('fecha_tasa').value;
+				}
+			}		
+		
+		</script>
+	</HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY>
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    	<TR>
+        	<TD class="headerBox">                
+            	<FONT class="headerText">Configuraci&oacute;n / Generales / Configuraci&oacute;n Tasas </FONT>
+       		 </TD>
+        	<!-- help online -->
+   			<TD class="headerBox" valign="middle" align="right">
+   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   			</TD>
+   			<!-- fin help online -->
+        	<td class="headerBox" aling="right"></td>
+        </TR>
+	</TABLE>
+	<CENTER>
+
+	<!--formulario-->
+	<form NAME="dataentry" METHOD="POST">
+		<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+			 <!--titulo-->
+			<tr>
+				<th COLSPAN="4" ALIGN="center">Seleccione Criterios</th>
+			</tr>
+			<!--campo-->
+        	<tr>
+            <td>
+				Fecha:*
+            </td>
+            <td>
+            	<fecha>
+					<INPUT TYPE="TEXT" VALUE="@fecha_sistema@" id="fecha_tasa"  NAME="fecha_tasa" SIZE="12" MAXLENGTH="10" class="inputControl" readonly/> 
+					<a onclick="popUpCalendar(this, fecha_tasa, 'dd-mm-yyyy')">
+					<IMG SRC="../images/infi_gn_calendar.gif" TITLE="Seleccionar Fecha"/> 
+					</a>
+            	</fecha>
+			</td>
+        </tr>
+        	
+        	<tr>
+				<td>Transacci&oacute;n:*</td>
+				<td width="75%">
+					<SELECT id="transa_id" NAME="transa_id" SIZE="1">
+							<!-- OPTION VALUE="">----Seleccione----</OPTION-->
+						<transacciones>
+							<OPTION VALUE="@transaid@">@transaid@</OPTION>
+						</transacciones>				
+					</SELECT>
+				</td>
+			</tr>
+			
+		
+        	<tr>
+				<td>Tipo Producto:*</td>
+				<td width="75%">
+					<SELECT  id="tipo_producto_id" NAME="tipo_producto_id" SIZE="1">
+							<!--  OPTION VALUE="">----Seleccione----</OPTION-->
+						<productos>
+							<OPTION VALUE="@TIPO_PRODUCTO_ID@">@TIPO_PRODUCTO_ID@</OPTION>
+						</productos>				
+					</SELECT>
+				</td>
+			</tr>
+        	
+		</table>
+		<INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/> 	
+		<br>
+		<button type="button" ONCLICK="JavaScript:procesar('buscar');" />Procesar</button>
+		&nbsp;<button type="button" ONCLICK="JavaScript:procesar('agregar');">&nbsp;Agregar&nbsp;</button>
+		&nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+	</form>
+	</CENTER>
+</BODY>
+</HTML>

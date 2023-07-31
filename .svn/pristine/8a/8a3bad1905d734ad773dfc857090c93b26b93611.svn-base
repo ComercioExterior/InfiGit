@@ -1,0 +1,48 @@
+package com.bdv.infi.model.mesaCambio;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ConsultaOperaciones extends MesaStub {
+	String contenido = "";
+	String operaciones = "";
+	String comentario = "";
+	
+	private List<OperacionesBCV> lstTransacciones = new ArrayList<OperacionesBCV>();
+
+	public ConsultaOperaciones(String jornada) throws Exception{
+		super();
+		String WS = Stub.GETPACTOXML(jornada);		
+		Cargar(WS,"PACTOS");
+	}
+	
+	public void lecturaBcvOperaciones() {
+
+		OperacionesBCV operacion = new OperacionesBCV();
+		org.w3c.dom.Node element = nodo;
+
+		operacion.setCodigo(((org.w3c.dom.Element) element).getAttribute("CODIGO"));
+		operacion.setOferta(((org.w3c.dom.Element) element).getElementsByTagName("OFERTA").item(0).getTextContent());
+		operacion.setDemanda(((org.w3c.dom.Element) element).getElementsByTagName("DEMANDA").item(0).getTextContent());
+		operacion.setTasa(((org.w3c.dom.Element) element).getElementsByTagName("TASA").item(0).getTextContent());
+		operacion.setEstado(((org.w3c.dom.Element) element).getElementsByTagName("ESTADO").item(0).getTextContent());
+		operacion.setJornada(((org.w3c.dom.Element) element).getElementsByTagName("JORNADA").item(0).getTextContent());
+		operacion.setMonedaPacto(((org.w3c.dom.Element) element).getElementsByTagName("MONEDAPACTO").item(0).getTextContent());
+		operacion.setPactoMonto(((org.w3c.dom.Element) element).getElementsByTagName("PACTOMONTO").item(0).getTextContent());
+		operacion.setMonedaBase(((org.w3c.dom.Element) element).getElementsByTagName("MONEDABASE").item(0).getTextContent());
+		operacion.setMontoPactoBase(((org.w3c.dom.Element) element).getElementsByTagName("MONTOPACTOBASE").item(0).getTextContent());
+		operacion.setTasaPactoBase(((org.w3c.dom.Element) element).getElementsByTagName("TCPACTOBASE").item(0).getTextContent());
+		operacion.setOfertante(((org.w3c.dom.Element) element).getElementsByTagName("OFERTANTE").item(0).getTextContent());
+		operacion.setDemandante(((org.w3c.dom.Element) element).getElementsByTagName("DEMANDANTE").item(0).getTextContent());
+		operacion.setTipoPacto(((org.w3c.dom.Element) element).getElementsByTagName("TIPOPACTO").item(0).getTextContent());
+		
+		lstTransacciones.add(operacion);
+		
+
+	}
+	
+	public List<OperacionesBCV> ListarOperaciones(){
+		return lstTransacciones;
+	}
+
+}

@@ -1,0 +1,103 @@
+<html>
+
+	<head> 
+          
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+           
+        <script type="text/javascript">
+         function posterProcesar(formulario){
+        	var formulario = document.getElementById(formulario);
+        	//alert(formulario.action)
+        	formulario.submit();
+        	
+        	//alert('SUBMIT')
+        }
+          
+        </script>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Generales / Beneficiarios</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                Beneficiarios ( @t_registros@ )
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="TABLE-LAYOUT: auto; ">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+		<th width="2%" nowrap></th>
+		<th width="2%" nowrap></th>
+		<th nowrap>Nombre</th>
+   		<th width="30%" nowrap>Descripci&oacute;n</th>
+    	
+
+    </tr>
+
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+		<td VALIGN="middle">
+		<form action="beneficiarios-confirm" method="post" name="@_row@">
+			<input type="hidden" name="beneficiario_id" value="@beneficiario_id@">
+			<input type="hidden" name="beneficiario_nombre" value="@beneficiario_nombre@">
+			</form>
+			<a style="display:@display@" ONCLICK="posterProcesar(@_row@);"><IMG SRC="../images/infi_gn_delete.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Eliminar Registro" BORDER="0" style="cursor:hand"></a></td>
+		<td VALIGN="middle">
+			<a href="beneficiarios-edit?beneficiario_id=@beneficiario_id@"><IMG SRC="../images/infi_gn_edit2.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Editar Registro" BORDER="0" style="cursor:hand"></a>                
+		</td>               
+		<td VALIGN="middle" align="left">@beneficiario_nombre@</td>
+		<td nowrap>@beneficiario_desc@</td>
+	</tr>
+     </rows>
+    
+    </table>
+    @page_index@
+    <BR>
+<form>
+
+    <button type="button" ONCLICK="window.location='beneficiarios-addnew'">&nbsp;Agregar&nbsp;</button>
+    &nbsp;<button type="button" onclick="history.back();">Regresar</button>
+    &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+</form>
+
+</center>
+
+</body>
+
+</html>
+

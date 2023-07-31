@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+       
+         <field 
+        name="fecha" 
+        type="varchar" 
+        description="Fecha en la que se va a realizar la consulta"
+        nullable="1"
+        size="50" />
+        
+  
+</record>
+
+
+

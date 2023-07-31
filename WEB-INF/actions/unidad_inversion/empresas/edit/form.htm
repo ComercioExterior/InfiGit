@@ -1,0 +1,149 @@
+<HTML>
+<head>
+	<title>Sistema INFI</title>
+	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+	<LINK REL="stylesheet" type="text/css" href="../css/EstiloFichas.css.css" />	
+	<script language="javascript" src="../js/default.js"></script>	
+	<script language="JavaScript" src="../js/popcalendar.js"></script>
+</head>
+
+<!--poner el focus en el 1er control de la forma-->
+<BODY
+	onload="javascript:mostrar(@accion@);{document.forms[0].elements[6].focus();if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+
+
+	<!--page name bar-->
+	<table  border="0" cellspacing="0" WIDTH="100%">
+	    <tr>
+	        <td class="headerBox">
+	        	<div id="titulou" style="display:none">               
+	            	<font class="headerText">Unidad de Inversi&oacute;n / Empresas</font>
+	            </div>
+				<div id="titulop" style="display:none">               
+	            	<font class="headerText">Publicaci&oacute;n Unidad de Inversi&oacute;n / Empresas</font>
+	            </div>
+	            <div id="tituloc" style="display:none">               
+	            	<font class="headerText">Consulta Unidad de Inversi&oacute;n / Empresas</font>
+	            </div>			
+	            <div id="titulom" style="display:none">               
+	            	<font class="headerText">Modificaci&oacute;n Unidad de Inversi&oacute;n / Empresas</font>
+	            </div>
+			</td>
+	        <!-- help online -->
+	   		<td class="headerBox" valign="middle" align="right">
+	   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+	   		</td>
+	   		<!-- fin help online -->	        
+	   	</tr>
+	</table>
+	
+	<br>
+	
+	<center>
+	
+	<!--formulario-->
+	<form name="dataentry" method="POST" action="unidad_inversion_empresas-update">
+		<input type="hidden" name="idUnidadInversion" value="@undinv_id@" />
+		
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="100%">
+		<tr class="formCaption">
+			<th align="center">
+				<font class="formCaptionText">Empresa Relacionada  </font>
+			</th>
+		</tr>
+	</table>
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="100%" style="TABLE-LAYOUT: auto; ">
+
+		<tr class="formElement">
+			<td width="20%" nowrap><b>Unidad de Inversion:</b></td>
+			<td>@undinv_nombre@
+				<input type="hidden" name="nombreUnidadInversion" size="50" maxlength="50" value="@undinv_nombre@" readonly/>
+				<input type="hidden" name="idBlotter" value="@bloter_id@" />
+			</td>
+		</tr>
+		<tr class="formElement">
+			<td width="20%" nowrap><b>R.I.F:</b></td>
+			<td>@empres_rif@
+				<input type="hidden" name="rifEmpresa" size="50" maxlength="50" value="@empres_rif@" readonly/>
+				<input type="hidden" name="idEmpresa" value="@empres_id@" />
+			</td>
+		</tr>
+		<tr class="formElement">
+			<td width="20%" nowrap><b>Nombre:</b></td>
+			<td>@empres_nombre@
+				<input type="hidden" name="nombreEmpresa" size="50" maxlength="50" value="@empres_nombre@" readonly/>
+			</td>
+		</tr>
+	</table>
+	<table class="dataform" border="0" cellspacing="1" cellpadding="2" width="100%" style="TABLE-LAYOUT: auto; ">
+		<tr class="formElement">
+			<th colspan="2" align="center">
+				<font class="formCaptionText">Roles</font>
+			</th>
+		</tr>							
+		<tr class="formElement">
+			<td class="formLabel">Roles:*</td>
+			<td>
+				<SELECT NAME="idRoles" style="width:272px">
+					<option value=""></option>
+				<rowsRoles>
+					<OPTION value="@roles_id@">@roles_descripcion@</option>
+				</rowsRoles>
+				</SELECT>
+			</td>
+		</tr>
+		<tr class="formElement">
+			<td class="formLabel">Persona Contacto</td>
+			<td></td>
+		</tr>			
+		<tr class="formElement">
+			<td class="formLabel" style="padding-left: 20px;">Nombre</td>
+			<td>
+				<input type="text" name="nombreContacto" size="50" maxlength="50" value="@uiempr_contacto_nom@" />
+			</td>
+		</tr>					
+		<tr class="formElement">
+			<td class="formLabel" style="padding-left: 20px;">Telefono</td>
+			<td>
+				<input type="text" name="telefonoContacto" size="25" maxlength="25" value="@uiempr_contacto_tlf@" />
+			</td>
+		</tr>		
+	</table>
+	
+	<br>
+	<button type="button" onclick="submitir('grabar');">Grabar</button>
+	<span> </span>
+	<button type="button" onclick="submitir('regresar');">Regresar</button>
+
+	</form>
+
+	</center>
+
+</BODY>
+<script language="javascript">
+<!--
+function submitir(action) {
+	if (action == 'regresar') {
+		document.forms[0].action="unidad_inversion_empresas-browse";
+	} 
+   	document.forms[0].submit();
+}
+function mostrar(accion){
+	if(accion==1){
+		titulou.style.display ="block";
+	}
+	if(accion==2){//Modulo Publicacion
+		titulop.style.display ="block";
+	}
+	if(accion==3){//Modulo Consulta
+		tituloc.style.display ="block";
+	}	
+	if(accion==4){//Modulo Modificacion
+		titulom.style.display ="block";
+	}
+}
+-->
+</script>
+</HTML>
+

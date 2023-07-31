@@ -1,0 +1,56 @@
+package models.bcv.mesas_operaciones;
+
+import java.lang.reflect.Method;
+import java.util.List;
+import megasoft.Logger;
+import models.exportable.ExportableOutputStream;
+import com.bdv.infi.model.mesaCambio.ConsultaOperaciones;
+import com.bdv.infi.model.mesaCambio.OperacionesBCV;
+
+public class ExportarCVS extends ExportableOutputStream {
+	List<OperacionesBCV> listaOperaciones;
+
+	public void execute() throws Exception {
+
+		ConsultaOperaciones consulta = new ConsultaOperaciones(_req.getParameter("jornada"));
+		Method Fn = ConsultaOperaciones.class.getMethod("lecturaBcvOperaciones");
+		consulta.procesar(consulta, Fn);
+		this.listaOperaciones = consulta.ListarOperaciones();
+
+		try {
+
+			registrarInicio("jornada.csv");
+
+			crearCabecera("codigo; oferta; demanda; tasa; estado; jornada; monedaPacto; montoPactoBase; tcPactoBase; ofertante, demandante; tipoPacto");
+
+			escribir("\r\n");
+			for (OperacionesBCV lst : listaOperaciones) {
+				escribir(lst.getCodigo() == null ? " ;" : lst.getCodigo() + ";");
+				escribir(lst.getOferta() == null ? " ;" : lst.getOferta() + ";");
+				escribir(lst.getDemanda() == null ? " ;" : lst.getDemanda() + ";");
+				escribir(lst.getTasa() == null ? " ;" : lst.getTasa() + ";");
+				escribir(lst.getEstado() == null ? " ;" : lst.getEstado() + ";");
+				escribir(lst.getJornada() == null ? " ;" : lst.getJornada() + ";");
+				escribir(lst.getMonedaPacto() == null ? " ;" : lst.getMonedaPacto() + ";");
+				escribir(lst.getMontoPactoBase() == null ? " ;" : lst.getMontoPactoBase() + ";");
+				escribir(lst.getTasaPactoBase() == null ? " ;" : lst.getTasaPactoBase() + ";");
+				escribir(lst.getOfertante() == null ? " ;" : lst.getOfertante() + ";");
+				escribir(lst.getDemandante() == null ? " ;" : lst.getDemandante() + ";");
+				escribir(lst.getTipoPacto() == null ? " ;" : lst.getTipoPacto() + ";");
+
+				escribir("\r\n");
+			}
+			registrarFin();
+			obtenerSalida();
+		} catch (Exception e) {
+			_record.addError("Nombre", "Error en la exportación del Excel" + "Error:" + e.getMessage());
+			Logger.error(this, "Error en la exportación del Excel", e);
+		}
+
+	}
+
+	protected void crearCabecera(String cabecera) throws Exception {
+		escribir(cabecera.toUpperCase());
+
+	}
+}

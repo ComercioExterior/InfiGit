@@ -1,0 +1,96 @@
+
+<HTML>
+    
+    <HEAD>
+    <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+            <SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+        
+    
+             <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        
+        <TITLE>Sistema INFI</TITLE>
+                
+        
+         
+    </HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Custodia / Transacciones / Entrada de T&iacute;tulos</FONT>
+        </TD>
+        
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+        <td class="headerBox" aling="right"></td>
+</TABLE>
+        
+        <CENTER>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="entrada_titulos-entrada">
+		
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform" style="TABLE-LAYOUT: auto; ">
+        
+        <!--titulo-->
+        <tr>
+            <td COLSPAN="3" ALIGN="center" nowrap>
+                 <b>Por favor confirme si desea agregar este registro</b>
+            </td>
+        </tr>
+        <tr class="tableCell">
+			<td align="left" nowrap>
+			<b>Cliente:</b> @client_nombre@
+			</td>
+			<td align="left" nowrap>
+			<b>Titulo:</b> @titulo_id@
+			</td>
+		</tr>        
+        <tr class="tableCell">
+			<td align="left" nowrap>
+			<b>Depositario:</b> @empres_nombre@
+			</td>
+			<td align="left" nowrap>
+			<b>Cantidad:</b> @cantidad@
+			</td>
+		</tr>		
+		<tr class="tableCell">
+		    <td align="left" nowrap>
+			<b>Contraparte:</b> @contraparte@
+			</td>
+			<td align="left" nowrap>
+			<b>Tipo de Producto:</b> @tipo_producto_id@
+			</td>
+		</tr>				
+        </table>
+         <INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/> 	
+         <INPUT TYPE="HIDDEN" VALUE="@empres_id@" NAME="empres_id"/>
+         <INPUT TYPE="HIDDEN" VALUE="@contraparte@" NAME="contraparte"/>
+         <INPUT TYPE="HIDDEN" VALUE="@cantidad@" NAME="cantidad"/>
+         <INPUT TYPE="HIDDEN" VALUE="@titulo_id@" NAME="titulo_id"/>
+         <INPUT TYPE="HIDDEN" VALUE="@client_id@" NAME="client_id"/>
+         <INPUT TYPE="HIDDEN" VALUE="@tipo_producto_id@" NAME="tipo_producto_id"/>
+
+            <br>
+            <button TYPE="submit">Procesar</button>
+            &nbsp;<button type="button" onclick="javascript:history.back();">Regresar</button>
+            &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+
+    </form>
+        
+        </CENTER>
+        
+    </BODY>
+
+</HTML>
+

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+    <!--
+    
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, decimal, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+    
+    -->    
+    
+             
+        <field 
+        name="fecha_inicio" 
+        type="varchar" 
+        description="Fecha de inicio del proceso"
+        nullable="1"
+        size="50" />
+        
+        
+        <field 
+        name="fecha_fin" 
+        type="varchar" 
+        description="Fecha de finalizaci&oacute;n del proceso"
+        nullable="1"
+        size="50" />
+        
+        <field 
+        name="tiempo_duracion" 
+        type="varchar" 
+        description="Duraci&oacute;n del proceso"
+        nullable="1"
+        size="50" />
+ 
+        
+        <field 
+        name="num_clientes" 
+        type="integer" 
+        description="N&uacute;mero de clientes guardados"
+        nullable="1"
+        size="80" />
+   
+           <field 
+        name="num_titulos_cust" 
+        type="integer" 
+        description="N&uacute;mero de t&iacute;tulos en custodia"
+        nullable="1"
+        size="80" />
+        
+                  <field 
+        name="num_titulos_bloq" 
+        type="integer" 
+        description="N&uacute;mero de t&iacute;tulos bloqueados"
+        nullable="1"
+        size="80" />
+ 
+
+           <field 
+        name="num_titulos_cust_update" 
+        type="integer" 
+        description="N&uacute;mero de t&iacute;tulos en custodia actualizados"
+        nullable="1"
+        size="80" />
+        
+                  <field 
+        name="num_titulos_bloq_update" 
+        type="integer" 
+        description="N&uacute;mero de t&iacute;tulos bloqueados actualizados"
+        nullable="1"
+        size="80" />
+        
+        
+        <field 
+        name="titulo_id" 
+        type="varchar" 
+        description="T&iacute;tulo"
+        nullable="0"
+        size="100" />
+        
+    
+</record>
+

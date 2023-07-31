@@ -1,0 +1,257 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<properties>
+  <!--
+    El presente archivo contiene las definiciones de las propiedades del Contexto de WebServices MSC Axis2.
+    -->
+  <!-- SEGURIDAD-->
+  <property>
+    <name>security-credentials-jndi</name>
+    <value>jdbc/seguridad</value>
+    <description>JNDI Perteneciente de Acceso a Credenciales del Cliente WebService</description>
+  </property>
+  <property>
+    <name>security-access-jndi</name>
+    <value>jdbc/seguridad</value>
+    <description>JNDI Perteneciente de Acceso a Credenciales del Cliente WebService</description>
+  </property>
+  <!-- TRAZABILIDAD SOAP PERFORMANCE-->
+  <property>
+    <name>log-perform-enabled</name>
+    <value>false</value>
+    <description>Activa o Desactiva el registro de Log de performance en WebServices</description>
+  </property>
+  <property>
+    <name>log-perform-jndi</name>
+    <value>jdbc/seguridad</value>
+    <description>JNDI Perteneciente al Log de Soap Fault</description>
+  </property>
+  <!-- TRAZABILIDAD SOAP FAULT-->
+  <property>
+    <name>log-error-enabled</name>
+    <value>false</value>
+    <description>Activa o Desactiva el registro de Soap Fault en WebServices</description>
+  </property>
+  <property>
+    <name>log-error-jndi</name>
+    <value>jdbc/seguridad</value>
+    <description>JNDI Perteneciente al Log de Soap Fault</description>
+  </property>
+  <!-- TRAZABILIDAD SOAP TRANSACTION-->
+  <property>
+    <name>log-trx-enabled</name>
+    <value>false</value>
+    <description>Activa o Desactiva el registro de Transacciones en WebServices</description>
+  </property>
+  <property>
+    <name>log-trx-jndi</name>
+    <value>jdbc/seguridad</value>
+    <description>JNDI Perteneciente al Log de Transacciones</description>
+  </property>
+  
+  <property>
+    <name>datasource-infi</name>
+    <value>jdbc/infi</value>
+    <description>This is a Sample Property Value</description>
+  </property>  
+  <!-- RECURSOS DE CORE MSC (Seguridad/Autenticaci�n) -->
+  <property>
+    <name>soa-ws-msc-authentication</name>
+    <value><![CDATA[
+			select * from BVW_T_CANAL where BVW_T_CANAL.CANAL_NM_NOMBRE = ?
+			]]></value>
+    <description>Query para Validaci�n de Autenticaci�n</description>
+  </property>
+  <property>
+    <name>soa-ws-msc-access</name>
+    <value><![CDATA[
+	        SELECT 
+			BVW_T_SERVICIO.SERVI_NM_NOMBRESERVICIO SERVICIO, 
+			BVW_T_OPERACION.OPERA_NM_NOMBRE OPERACION,
+			BVW_T_CANAL.CANAL_NM_NOMBRE CANAL,
+			BVW_T_IP.IP_DE_IP IP
+			
+			FROM 
+			BVW_T_AUTENTICACION,
+			BVW_T_CANAL,
+			BVW_T_OPERACION,
+			BVW_T_SERVICIO,
+			BVW_T_IP 
+		 	
+			WHERE 
+			BVW_T_CANAL.CANAL_NM_NOMBRE=?
+			AND BVW_T_SERVICIO.SERVI_NM_NOMBRESERVICIO=?
+			AND BVW_T_OPERACION.OPERA_NM_NOMBRE=?
+			AND BVW_T_IP.IP_DE_IP=?
+			
+			AND BVW_T_CANAL.CANAL_CO_CANALID=BVW_T_AUTENTICACION.CANAL_CO_CANALID 
+			AND BVW_T_OPERACION.OPERA_CO_IDOPERACION=BVW_T_AUTENTICACION.OPERA_CO_IDOPERACION 
+			AND BVW_T_SERVICIO.SERVI_NM_NOMBRESERVICIO=BVW_T_AUTENTICACION.SERVI_NM_NOMBRESERVICIO 
+			AND BVW_T_IP.CANAL_CO_CANALID=BVW_T_CANAL.CANAL_CO_CANALID 
+			AND BVW_T_CANAL.CANAL_DE_HABILITADO=1 
+			AND BVW_T_OPERACION.OPERA_DE_HABILITADO=1
+			AND BVW_T_SERVICIO.SERVI_DE_HABILITADO=1
+			]]></value>
+    <description>Query para Validaci�n de acceso del Cliente por Canal, IP, Servicio y Operaci�n</description>
+  </property>
+  <!-- RECURSOS DE CORE MSC (Logger Log4j) -->
+  <property>
+    <name>log4j.rootLogger</name>
+    <value>DEBUG, output</value>
+    <description/>
+  </property>
+  <property>
+    <name>log4j.appender.output</name>
+    <value>org.apache.log4j.DailyRollingFileAppender</value>
+    <description/>
+  </property>
+  <property>
+    <name>log4j.appender.output.Threshold</name>
+    <value>DEBUG</value>
+    <description/>
+  </property>
+  <property>
+    <name>log4j.appender.output.ImmediateFlush</name>
+    <value>true</value>
+    <description/>
+  </property>
+  <property>
+    <name>log4j.appender.output.layout</name>
+    <value>org.apache.log4j.PatternLayout</value>
+    <description/>
+  </property>
+  <property>
+    <name>log4j.appender.output.layout.ConversionPattern</name>
+    <value>%5p %5d %c - %m%n</value>
+    <description/>
+  </property>
+  <property>
+    <name>log4j.appender.output.File</name>
+    <value>./ws_logger.log</value>
+    <description/>
+  </property>
+  <property>
+    <name>log4j.appender.output.DatePattern</name>
+    <value>&apos;.&apos;yyyy-MM-dd</value>
+    <description/>
+  </property>
+  <property>
+    <name>log4j.appender.CONSOLE</name>
+    <value>org.apache.log4j.ConsoleAppender</value>
+    <description/>
+  </property>
+  <property>
+    <name>log4j.appender.CONSOLE.layout</name>
+    <value>org.apache.log4j.PatternLayout</value>
+    <description/>
+  </property>
+  <property>
+    <name>log4j.appender.CONSOLE.layout.ConversionPattern</name>
+    <value>[%p]  %l %m%n </value>
+    <description/>
+  </property>
+  <property>
+    <name>aea_shellscript</name>
+    <value>/aplicacion4/wsrvice/mscaea/aea_ads_t_ss</value>
+    <description>Protocolo </description>
+  </property>
+  <property>
+    <name>aea_protocolo</name>
+    <value>PS7</value>
+    <description>Protocolo </description>
+  </property>
+  <property>
+    <name>aea_version</name>
+    <value>00</value>
+    <description>Protocolo </description>
+  </property>
+  <property>
+    <name>aea_entidad</name>
+    <value>****</value>
+    <description>Protocolo </description>
+  </property>
+  <property>
+    <name>aea_servicio</name>
+    <value>****</value>
+    <description>Protocolo </description>
+  </property>
+  <property>
+    <name>aea_aplicacion</name>
+    <value>AS</value>
+    <description>Protocolo </description>
+  </property>
+  <property>
+    <name>aea_proceso</name>
+    <value>ADSB402S</value>
+    <description>Protocolo </description>
+  </property>
+    <property>
+    <name>log-error-insert</name>
+    <value>INSERT INTO BVW_T_LOGERRORES 
+    (LOGER_CO_LOGID, 
+    LOGER_DE_DESCRIPCION, 
+    LOGER_DE_STACKTRACE, 
+    CANAL_NM_NOMBRE, 
+    SERVI_NM_NOMBRESERVICIO, 
+    OPERA_NM_NOMBRE, 
+    LOGER_FE_FECHA)
+    VALUES
+    (?, 
+    ?, 
+    ?, 
+    ?, 
+    ?, 
+    ?, 
+    ?)</value>
+    <description>Insertar en el Log de error desde el Servlet</description>
+  </property>
+  <property>
+    <name>log-transaccion-insert</name>
+    <value>INSERT INTO BVW_T_LOGTRANSACCION 
+	(
+	LOGTR_DE_ESTATUSTRANSACCION, 
+	LOGTR_CO_IDLOG, 
+	CANAL_NM_NOMBRE, 
+	SERVI_NM_NOMBRESERVICIO, 
+	OPERA_NM_NOMBRE,
+	LOGTR_DE_ENVELOPE,
+	LOGTR_DE_IP,
+	LOGTR_DE_USER,
+	LOGTR_FE_FECHA
+	)
+	VALUES
+	(?, 
+	?,
+	?, 
+	?, 
+	?, 
+	?, 
+	?,
+	?,
+	?)
+	</value>
+    <description>Insert Log de Transaccion</description>
+  </property>
+  <property>
+    <name>message-transformer-pluging</name>
+    <value>com.bdv.infi_services.utilities.MarshallUnMarshallJIBXS</value>
+    <description>Pluging para realizar la transformacion de Mensajes</description>
+  </property>
+  <property>
+    <name>log-performance-insert</name>
+    <value>INSERT into BVW_T_LOGPERFORMANCE 
+		  (LOGPE_CO_IDLOG,
+		  LOGPE_FE_INGRESOAPLICACION, 
+		  LOGPE_FE_RESPUESTAWEBSERVICE )
+		  values
+		  (
+		  ?,
+		  ?,
+		  ?)
+		</value>
+  </property>
+    <property>
+    <name>TokenCredentialRecovery_clave_canales</name>
+    <value>clavesecreta</value>
+    <description>clave secreta para decifrar las claves secretas de los canales</description>
+  </property>
+</properties>

@@ -1,0 +1,175 @@
+<html>
+<head>
+	<title>Sistema INFI</title>
+	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+	<LINK REL="stylesheet" type="text/css" href="../css/EstiloFichas.css" />
+	<script language="javascript" src="../js/default.js"></script>	
+	
+	<script type="text/javascript">
+        function mostrar(accion){
+			if(accion==1){
+				var elementos = document.getElementsByName('unidad');
+				for (var i = 0; i < elementos.length; i++ ){
+					elementos[i].style.display ="block";
+				}
+				titulou.style.display ="block";
+			}
+			if(accion==2){//Modulo Publicacion
+				titulop.style.display ="block";
+			}
+			if(accion==3){//Modulo Consulta
+				tituloc.style.display ="block";
+			}	
+			if(accion==4){//Modulo Modificacion
+				var elementos = document.getElementsByName('unidad');
+				for (var i = 0; i < elementos.length; i++ ){
+					elementos[i].style.display ="block";
+				}
+				titulom.style.display ="block";
+			}
+		}
+          
+	</script>
+	
+</head>
+
+<body
+	ONLOAD="javascript:mostrar(@accion@);{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+	<!--page name bar-->
+	<table  border="0" cellspacing="0" WIDTH="930px">
+	    <tr>
+	        <td class="headerBox">
+	        	<div id="titulou" style="display:none">               
+	            	<font class="headerText">Unidad de Inversi&oacute;n</font>
+	            </div>
+				<div id="titulop" style="display:none">               
+	            	<font class="headerText">Publicaci&oacute;n Unidad de Inversi&oacute;n</font>
+	            </div>
+	            <div id="tituloc" style="display:none">               
+	            	<font class="headerText">Consulta Unidad de Inversi&oacute;n</font>
+	            </div>			
+	            <div id="titulom" style="display:none">               
+	            	<font class="headerText">Modificaci&oacute;n Unidad de Inversi&oacute;n</font>
+	            </div>
+			</td>
+	        <!-- help online -->
+	   		<td class="headerBox" valign="middle" align="right">
+	   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+	   		</td>
+	   		<!-- fin help online -->	        
+	   	</tr>
+	</table>
+	
+	<form>
+	<div id="menu">
+		<table border="0" cellspacing="1" cellpadding="2">
+			<tr>
+				<td id="navigation" nowrap><a href="unidad_inversion-edit"><span>Unidad de Inversi&oacute;n</span></a></td>			
+				<td id="navigation" nowrap><a href="unidad_inversion_titulos-edit"><span>T&iacute;tulos / Subastas</span></a></td>
+				<td id="navigationActivo" nowrap><a><span>Blotters</span></a></td>
+				<td id="navigation" nowrap><a href="unidad_inversion_indicadores-edit"><span>Indicadores</span></a></td>
+				<td id="navigation" nowrap><a href="unidad_inversion_empresas-browse"><span>Empresas</span></a></td>
+				<td id="navigation" nowrap><a href="unidad_inversion_campos-edit"><span>Campos Din&aacute;micos</span></a></td> 
+				<td id="navigation" nowrap><a href="unidad_inversion_documentos-browse"><span>Documentos</span></a></td>
+				<td id="navigation" nowrap><a href="unidad_inversion_comisiones-browse"><span>Comisiones</span></a></td>	
+			</tr>
+		</table>
+	</div>
+	
+	<!--titulo-->
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="930px">
+		<tr class="formCaption">
+			<th align="center">
+				<font class="formCaptionText">
+				Blotters Asociados @total_records@
+			</th>
+		</tr>
+	</table>
+		
+	<!--tabla de data-->
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="930px">
+	
+		<!--encabezados de columna-->
+		<tr class="tableHeader">
+			<th width="5%" colspan="2"></th>			
+			<th width="25%">Descripci&oacute;n</th>
+			<th width="10%">Horario</th>
+			<th width="10%">Horario Ultimo D&iacute;a</th>			
+			<th width="13%">Toma de Ordenes</th>
+			<th width="8%">Par&aacute;metros por Tipo Persona</th>												
+		</tr>
+	
+		<!--data-->
+		<rowsUIB>
+		<tr class="tableCell">	
+			<td align="center">
+			<div name="unidad" id="unidad" style="display:none">
+				<span style="cursor:hand; text-decoration:underline" title="Eliminar Asociaci&oacute;n Unidad de Inversi&oacute;n - Blotter"
+					onclick="enviarA('del','@bloter_id@')">
+					<IMG SRC="../images/infi_gn_delete.gif" align="top" border="0">								 
+				</span>	
+			</div>	
+			</td>
+			<td align="center">
+				<span style="cursor:hand; text-decoration:underline" title="Editar Asociaci&oacute;n Unidad de Inversi&oacute;n - Blotter"
+					onclick="enviarA('edit','@bloter_id@')">
+					<IMG SRC="../images/infi_gn_edit.gif" align="top" border="0">			 
+				</span>
+			</td>	
+			<td>@bloter_descripcion@</td>
+			<td align="center">
+				@hora_horario_desde@ &nbsp; - &nbsp; @hora_horario_hasta@
+			</td>
+			<td align="center">
+				@hora_horario_desde_ult_dia@ &nbsp; - &nbsp; @hora_horario_hasta_ult_dia@
+			</td>															
+			<td align="center">
+				@pedido_ini@ &nbsp; - &nbsp; @pedido_fin@
+			</td>
+			<td align="center">@indicador_parametros@</td>
+		</tr>
+		</rowsUIB>	
+	</table>
+	
+<div align="center" style="width:930px;">
+	
+	@page_index@
+	
+	<div id="unidad" style="display:none">				
+	<button type="button" onclick="agregar();">Agregar Blotter</button>
+	</div>
+</div>
+</form>	
+	<form name="dataentry" method="post" action="unidad_inversion_blotter-browse">
+		<input TYPE="hidden" name="idUnidadInversion" value="@undinv_id@" />
+		<input TYPE="hidden" name="idBlotter" value="" />		
+	</form>
+
+</body>
+
+<script type="text/javascript">
+<!--
+function enviarA(action, id) {
+	document.forms[1].idBlotter.value = id;
+	if (action == 'edit') {
+		document.forms[1].action="unidad_inversion_blotter-edit";
+	} else 	if (action == 'del') {
+		if (! confirm('Desea eliminar la Asociación con el Blotter seleccionada?')) {
+			return;
+		}
+		document.forms[1].action="unidad_inversion_blotter-delete";
+	}
+	document.forms[1].submit();
+}
+
+function agregar() {
+	parm = "?entry=unidadinversion&idUnidadInversion=" + document.forms[1].idUnidadInversion.value;
+	r = window.open('unidad_inversion_blotter-select' + parm,'picklist', 'resizable=yes,scrollbars=yes,width=900,height=650,top=50,left=190');
+}
+function reload(){
+	document.forms[1].submit();
+}
+-->
+</script>
+</html>

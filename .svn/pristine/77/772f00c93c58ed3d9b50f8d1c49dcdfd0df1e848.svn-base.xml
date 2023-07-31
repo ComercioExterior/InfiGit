@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+    <!--
+    
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, decimal, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+    
+    -->
+    
+        <field 
+        name="usuario_id" 
+        type="integer" 
+        description="Titulos "
+        nullable="1"
+        size="7" />
+  
+        <field 
+        name="client_id" 
+        type="integer" 
+        description="Cliente"
+        nullable="1"
+        size="8" />
+        
+        <field 
+        name="calculo_mes_id" 
+        type="integer" 
+        description="Mes "
+        nullable="1"
+        size="7" />
+        
+       
+           
+</record>
+

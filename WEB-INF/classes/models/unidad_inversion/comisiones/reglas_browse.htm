@@ -1,0 +1,50 @@
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="893px"> 
+		<tr class="formCaption">
+			<th align="center">
+				<font class="formCaptionText">
+				<b>REGLAS (@total_reglas@)</b>
+			</th>
+		</tr>
+	</table>	
+	
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="893px" style="TABLE-LAYOUT: auto; ">
+	
+		<!--encabezados de columna-->
+		<tr class="tableHeader">				
+			<th width="25%">Blotter</th>
+			<th nowrap>Tipo de Persona</th>
+			<th nowrap>Monto Fijo</th>		
+			<th nowrap>Porcentaje</th>		
+			<th nowrap>Rango Min.</th>		
+			<th nowrap>Rango Max.</th>														
+		</tr>
+	
+	<rows_reg>
+		<tr class="tableHeader">	
+			<td nowrap><b>@bloter_descripcion@</b></td>
+			
+			<td align="center" nowrap>
+				@tipper_nombre@ 
+			</td>
+			
+			<td align="right" nowrap>
+				@regla_monto_fijo@
+			</td>		
+																
+			<td align="right" nowrap>
+				@regla_pct format-mask='#,###,##0.0000'@
+			</td>
+			
+			<td  align="right" nowrap>
+				@rango_min@
+			</td>
+			
+			<td align="right" nowrap>
+				@rango_max@
+			</td>			
+						
+		</tr>
+	
+	</rows_reg>
+	
+	</table>

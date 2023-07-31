@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<config>
+
+	<model-class>models.bcv.intervencion.Cerrar_Lote</model-class>
+	<view-class></view-class>
+	<template></template>
+	<record-def>record.xml</record-def>
+	<content-type>text/html</content-type>
+	<expires></expires>
+	<cache>false</cache>
+	<next-action type="redirect">intercambio_intervencion_bancaria-filter</next-action>
+<!--     <on-empty source="rows">no-data.htm</on-empty> -->
+	<on-empty source=""></on-empty>
+</config>

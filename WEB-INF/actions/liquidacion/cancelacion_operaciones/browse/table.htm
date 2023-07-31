@@ -1,0 +1,95 @@
+<html>
+	<head>        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+	
+    </head>
+    
+<script type="text/javascript">
+
+	function procesar(id_orden){
+
+     	if (confirm("¿Está seguro que desea cancelar las operaciones pendientes de la orden "+id_orden+ "?")){         		
+
+     		window.location='cancelacion_operacion-proceso?ordene_id='+id_orden;
+     
+     	}
+
+	}
+
+</script>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+			<TD class="headerBox">                
+            	<FONT class="headerText">Ordenes / Cancelaci&oacute;n de Operaciones</FONT>
+        	</TD>
+        	<!-- help online -->
+   			<TD class="headerBox" valign="middle" align="right">
+   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   			</TD>
+   			<!-- fin help online -->
+		</TR>
+	</TABLE>
+
+   <center>
+	<br>
+	<form NAME="dataentry" METHOD="POST" ACTION="">	
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                  Ordenes Liquidadas ( @t_registros@ )
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="TABLE-LAYOUT: auto; ">
+    
+    <!--encabezados de columna-->
+    <tr>
+    
+    		<th width="2%"></th> 
+    		<th width="2%"></th>
+    		<th nowrap>Orden</th>        
+              <th nowrap>Fecha</th>            
+               <th nowrap>Cliente</th>
+                <th>Unidad Inversi&oacute;n</th>    
+                <th nowrap>Monto Solicitado</th>                                  
+    </tr>
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+                <td align="center" width="2%">
+					<a href="javascript:procesar(@ordene_id@)"><IMG SRC="../images/infi_gn_delete.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Cancelar Operaciones Pendientes de la Orden" BORDER="0" style="cursor:hand"></a>
+				</td>
+				<td align="center" width="2%">
+					<a href="javascript:abrirPopupDetalles('detalle_orden-find?ord_id=@ordene_id@','100', '380')"><IMG SRC="../images/infi_gn_document.gif" WIDTH="15" ALIGN="top" HEIGHT="13" title="Detalles de la Orden" BORDER="0" style="cursor:hand"></a>
+				</td>
+ 				<td nowrap align="center">@ordene_id@</td> 
+                <td nowrap align="center">@ordene_ped_fe_orden@</td>
+               	<td nowrap align="left">@client_nombre@</td> 
+                <td nowrap align="left">@undinv_nombre@ - @undinv_serie@</td>
+                <td nowrap align="right">@ordene_ped_monto@</td>
+     </tr>
+     </rows>
+    </table>
+	@page_index@
+    <BR>
+		<button type="button" onclick="javascript:history.back();">Regresar</button>
+		&nbsp;
+		<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+	</form>
+   </center>
+</body>
+</html>

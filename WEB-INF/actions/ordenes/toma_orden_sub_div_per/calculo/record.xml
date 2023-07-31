@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+    <!--
+    
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, decimal, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+    
+    -->
+    
+        <field 
+        name="undinv_id" 
+        type="integer" 
+        description="Unidad de Inversi&oacute;n"
+        nullable="0"
+        size="100" />                
+        
+        <field 
+        name="client_id" 
+        type="integer" 
+        description="Cliente"
+        nullable="0"
+        size="100" />      
+        
+        <field 
+        name="estado_casado" 
+        type="varchar" 
+        description="Indicador de estado civil casado del cliente"
+        nullable="1"
+        size="5" />      
+       
+       
+        <field 
+        name="tipo_persona_conyuge" 
+        type="varchar" 
+        description="Tipo de Persona del Conyuge"
+        nullable="1"
+        size="2" />      
+        
+
+       <field 
+        name="cedula_conyuge" 
+        type="integer" 
+        description="C&eacute;dula del conyuge"
+        nullable="1"
+        size="100" />      
+        
+        <field 
+        name="cta_cliente" 
+        type="varchar" 
+        description="Cuenta del Cliente"
+        nullable="0"
+        size="100" />      
+
+        <field 
+        name="monto_comprar" 
+        type="varchar" 
+        description="Monto a comprar"
+        nullable="1"
+        size="100" />
+        
+        <field 
+        name="tasa_propuesta" 
+        type="varchar" 
+        description="Tasa propuesta"
+        nullable="1"
+        size="100" />
+        
+        <field 
+        name="tasa_referencial" 
+        type="varchar" 
+        description="Tasa de cambio referencial"
+        nullable="1"
+        size="100" />
+        
+        <!-- field 
+        name="monto_max_sol" 
+        type="varchar" 
+        description="Monto máximo a comprar"
+        nullable="1"
+        size="100" /-->
+        
+        <field 
+        name="undinv_precio_minimo" 
+        type="varchar" 
+        description="Precio de Compra"
+        nullable="0"
+        size="100" />     
+        
+        <field 
+        name="blotter_id" 
+        type="varchar" 
+        description="Blotter"
+        nullable="0"
+        size="30" />      
+        
+                <field 
+        name="cantidad_pedida" 
+        type="integer" 
+        description="Cantidad a Comprar"
+        nullable="1"
+        size="30" />      
+        
+        <field 
+        name="vehicu_rol_id" 
+        type="varchar" 
+        description="Veh&iacute;culo"
+        nullable="0"
+        size="200" />   
+        
+          
+        <field 
+        name="porc_financiar" 
+        type="varchar" 
+        description="Porcentaje a Financiar"
+        nullable="1"
+        size="200" />   
+        
+               <field 
+        name="in_recompra" 
+        type="integer" 
+        description="Recompra Permitida"
+        nullable="1"
+        size="200" />   
+  
+        <field 
+        name="cantidad_calculo" 
+        type="varchar" 
+        description="Cantidad de veces que se ha hecho el calculo"
+        nullable="1"
+        size="15" />   
+        
+        
+        <field 
+        name="usuario_especial" 
+        type="integer" 
+        description="Indicador de usuario especial"
+        nullable="1"
+        size="15" />   
+  
+        
+        <!-- CAMPOS PARA INSTRUCCIONES DE PAGO -->
+       	<field 
+        name="tipo_inst_int" 
+        type="integer" 
+        description="Tipo de instrucci&oacute;n de pago para moneda internacional"
+        nullable="1"
+        size="200" />   
+        
+        <field 
+        name="intermediario" 
+        type="integer" 
+        description="Banco Intermediario para instrucci&oacute;n de pago en moneda internacional"
+        nullable="1"
+        size="200" />   
+        
+        
+        <field 
+        name="ctecta_numero_ext" 
+        type="varchar" 
+        description="N&uacute;mero de cuenta en el banco internacional"
+        nullable="1"
+        size="34" />   
+        
+        <field
+        name="iban_cta_europea" 
+        type="integer" 
+        description="Indicador de cuenta europea (IBAN)"
+        nullable="1"
+        size="50"/>   
+        
+ 
+        <field 
+        name="ctecta_bcocta_bco" 
+        type="varchar" 
+        description="Banco internacional"
+        nullable="1"
+        size="50" />   
+        
+         <field 
+        name="ctecta_bcocta_direccion" 
+        type="varchar" 
+        description="Direcci&oacute;n Banco internacional"
+        nullable="1"
+        size="50" />   
+ 
+ 
+        <!-- field 
+        name="ctecta_bcocta_swift" 
+        type="varchar" 
+        description="Codigo swift del banco internacional"
+        nullable="1"
+        size="50" /-->   
+        
+        <field 
+        name="ctecta_bcocta_bic" 
+        type="varchar" 
+        description="Codigo BIC del banco internacional"
+        nullable="1"
+        size="50" />   
+        
+        
+        <field 
+        name="ctecta_bcocta_telefono" 
+        type="varchar" 
+        description="Tel&eacute;fono del banco internacional"
+        nullable="1"
+        size="50" />   
+ 
+        <field 
+        name="ctecta_bcocta_aba" 
+        type="varchar" 
+        description="Codigo ABA del banco internacional"
+        nullable="1"
+        size="50" />   
+
+ 
+         <field 
+        name="ctecta_observacion" 
+        type="varchar" 
+        description="Observaci&oacute;n del banco internacional"
+        nullable="1"
+        size="50" />   
+       
+ 
+ 		<!-- Banco intermediario -->
+        <field 
+        name="ctecta_bcoint_bco" 
+        type="varchar" 
+        description="Banco intermediario"
+        nullable="1"
+        size="50" />   
+        
+         <field 
+        name="ctecta_bcoint_direccion" 
+        type="varchar" 
+        description="Direcci&oacute;n Banco intermediario"
+        nullable="1"
+        size="50" />   
+ 
+ 
+        <!-- field 
+        name="ctecta_bcoint_swift" 
+        type="varchar" 
+        description="Codigo swift del banco intermediario"
+        nullable="1"
+        size="50" /-->   
+        
+        <field 
+        name="ctecta_bcoint_bic" 
+        type="varchar" 
+        description="Codigo BIC del banco intermediario"
+        nullable="1"
+        size="50" />   
+        
+        
+        <field 
+        name="ctecta_bcoint_telefono" 
+        type="varchar" 
+        description="Tel&eacute;fono del banco intermediario"
+        nullable="1"
+        size="50" />   
+ 
+        <field 
+        name="ctecta_bcoint_aba" 
+        type="varchar" 
+        description="Codigo ABA del banco intermediario"
+        nullable="1"
+        size="50" />   
+
+ 
+         <field 
+        name="ctecta_bcoint_observacion" 
+        type="varchar" 
+        description="Observaci&oacute;n del banco intermediario"
+        nullable="1"
+        size="100" />   
+     
+        <!-- Cuenta Nacional -->
+        <field 
+        name="cta_nac_recompra" 
+        type="varchar" 
+        description="Cuenta nacional para pago por recompra de titulos en modeda local"
+        nullable="1"
+        size="50" />   
+
+ 
+         <field 
+        name="cta_nac_nombre_recompra" 
+        type="varchar" 
+        description="Nombre de Cuenta Nacional para pago por recompra de titulos en modeda local"
+        nullable="1"
+        size="50" />  
+ 
+        <field 
+        name="actividad_economica" 
+        type="integer" 
+        description="Actividad Económica"
+        nullable="1"
+        size="3" />    
+        
+        <field 
+        name="sector_productivo" 
+        type="integer" 
+        description="Sector Productivo"
+        nullable="1"
+        size="3" />     
+        
+        <field 
+        name="concepto" 
+        type="integer" 
+        description="Concepto"
+        nullable="1"
+        size="3" />      
+         
+        <field 
+        name="fe_pacto" 
+        type="varchar" 
+        description="Fecha de Pacto"
+        nullable="1"
+        size="20" />      
+
+        <field 
+        name="fe_valor" 
+        type="varchar" 
+        description="Fecha Valor Orden"
+        nullable="1"
+        size="20" />      
+
+
+        
+        <!-- FIN DATOS INSTRUCCIONES DE PAGO -->
+         
+    
+</record>
+

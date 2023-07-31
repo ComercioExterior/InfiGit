@@ -1,0 +1,66 @@
+<HTML>
+<HEAD>
+<LINK REL="stylesheet" type="text/css"
+	href="../js/calendar/popcalendar.css" />
+<SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+<script type="text/javascript" src="../js/menu/jquery-1.2.2.pack.js"></script>
+<script language="javascript" src="../js/default.js"></script>
+<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+
+<TITLE>Sistema INFI</TITLE>
+
+<script type="text/javascript">
+	
+	
+	function dataGrid() {
+		var fecha = $('#fechaa').val();
+		var statusEnvio = $('#statuse').val();
+
+		window.location = "intercambio_intervencion_bancaria_operacion-search?fecha="
+				+ fecha + "&statusE=" + statusEnvio;
+
+	}
+
+	function registrar() {
+		var fecha = $('#fechaa').val();
+
+		window.location = "intercambio_mesas_cambios_oferta-browse?fecha="
+				+ fecha;
+	}
+</script>
+</HEAD>
+
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+	<TABLE border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+			<TD class="headerBox"><FONT class="headerText"> Env&iacute;o BCV / Mesa Cambio / Oferta </FONT></TD>
+
+			<TD class="headerBox" valign="middle" align="right"><img
+				border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17"
+				onclick="helpOpen(window.document.location.href);"
+				style="cursor: hand" title="Mostrar ayuda en l&iacute;nea"></TD>
+
+			<td class="headerBox" aling="right"></td>
+			
+	</TABLE>
+	<CENTER>
+		<form NAME="dataentry" METHOD="POST" ACTION="intercambio_intervencion_bancaria_operacion-search" enctype="multipart/form-data">
+
+			<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+
+				<tr>
+					<th COLSPAN="4" ALIGN="center">Creacion de operacion de oferta</th>
+				</tr>
+				
+			</table>
+			<SPAN> </SPAN>
+			<INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart" /> <br>
+			<button type="button" onclick="registrar()">Crear</button>
+			<SPAN> </SPAN>
+			<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+		</form>
+	</CENTER>
+</BODY>
+</HTML>
+

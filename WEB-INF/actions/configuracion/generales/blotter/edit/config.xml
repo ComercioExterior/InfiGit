@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+
+	Configuracion de la accion
+
+	Describe el modelo y la vista a utilizar, asi
+	como informacion sobre data-binding entre la vista y el modelo
+
+-->
+
+<config>
+
+	<!--model class-->
+	<model-class>models.configuracion.generales.blotter.Edit</model-class>
+	
+	<!--view class-->
+	<view-class>megasoft.GenericView</view-class>
+	
+	<!--template-->
+	<template>form.htm</template>
+
+	<!--reglas de validacion de la forma-->
+	<record-def></record-def>
+	
+	<!--response content-type-->
+	<content-type>text/html</content-type>
+	
+	<!--expiracion de la pagina (en segundos - puede estar vacio)-->
+	<expires>10</expires>
+	
+	<!--control de cache  (true|false)-->
+	<no-cache>false</no-cache>
+	
+	<!--URI a redireccionar despues de ejecutar el model - type=redirect|forward-->
+	<next-action type="redirect"></next-action>
+	
+	<!--mostrar este template de WEB-INF/templates si el dataset esta vacio-->
+	<on-empty source="table">no-data.htm</on-empty>
+
+	<!-- 
+		Data Binding
+		
+		Se ejecuta en el orden en que aparecen los elementos,
+		el orden es importante
+	
+		type=replace|repeat|select|select-multiple|select-checkbox|select-radio
+
+	Ejemplos para cada tipo de binding:
+
+	<bind type="replace" source="filter"/>
+	<bind type="repeat" source="tipo_reclamo" tag="rows"/>
+	<bind type="select" source="tipo_reclamo" control-name="combo1" field-name="id"/>
+	<bind type="select-multiple" source="tipo_reclamo" control-name="combo1" field-name="id"/>
+	<bind type="select-checkbox" source="tipo_reclamo" control-name="check1" field-name="id"/>
+	<bind type="select-radio" source="tipo_reclamo" control-name="option1" field-name="id"/>
+	-->
+		<bind type="repeat" source="dsHora" tag="rowsHoraD" />
+	<bind type="repeat" source="dsHora" tag="rowsHoraH" />
+	<bind type="repeat" source="dsMin" tag="rowsMinD" />
+	<bind type="repeat" source="dsMin" tag="rowsMinH" />
+	<bind type="repeat" source="tipoPerVal" tag="rows_tp"/>
+	<bind type="repeat" source="canales" tag="rows_canales"/>
+
+	<bind type="repeat" source="agrupacion" tag="rows_agrupa"/>
+	<bind type="select" source="table" control-name="id_agrupacion" field-name="id_agrupacion"/>
+	
+	<bind type="replace" source="table" tag="" control-name="" field-name=""/>		
+		
+	<bind type="select" source="table" control-name="tppeva_id" field-name="tppeva_id"/>	
+	<bind type="select" source="table" control-name="cteseg_id" field-name="cteseg_id"/>	
+	<bind type="select" source="table" control-name="cteseg_id" field-name="cteseg_id"/>
+	<bind type="select" source="table" control-name="canal_id" field-name="canal_id"/>
+	
+	<bind type="select" source="table" control-name="bloter_in_restringido" field-name="bloter_in_restringido"/>
+	<bind type="select" source="table" control-name="bloter_in_cartera_propia" field-name="bloter_in_cartera_propia"/>
+	<bind type="select" source="table" control-name="bloter_status" field-name="bloter_status"/>	
+	<bind type="select" source="table" control-name="bloter_in_red" field-name="bloter_in_red"/>
+	
+		
+	<bind type="select" source="dsHorario" tag="" control-name="hh_desde" field-name="hh_desde"/>
+	<bind type="select" source="dsHorario" tag="" control-name="mm_desde" field-name="mm_desde"/>		
+	<bind type="select" source="dsHorario" tag="" control-name="ap_desde" field-name="ap_desde"/>
+	<bind type="select" source="dsHorario" tag="" control-name="hh_hasta" field-name="hh_hasta"/>
+	<bind type="select" source="dsHorario" tag="" control-name="mm_hasta" field-name="mm_hasta"/>		
+	<bind type="select" source="dsHorario" tag="" control-name="ap_hasta" field-name="ap_hasta"/>
+	
+</config>

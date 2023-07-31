@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+    <!--
+    
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, decimal, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+    
+    -->
+    <field 
+        name="id_blotter" 
+        type="varchar" 
+        description="Identificador del Blotter"
+        nullable="1"
+        size="25" />
+    <field 
+        name="id_persona" 
+        type="varchar" 
+        description="Identificador del tipo Persona"
+        nullable="1"
+        size="1" />   
+	<field 
+        name="archivo1.filename" 
+        type="varchar" 
+        description="Nombre Carta Mandato"
+        nullable="1"
+        size="500" />
+	<field 
+        name="archivo1.tempfile" 
+        type="varchar" 
+        description="Archivo Carta Mandato"
+        nullable="1"
+        size="500" />
+	<field 
+        name="archivo2.filename" 
+        type="varchar" 
+        description="Nombre Carta Mandanto con Recompra"
+        nullable="1"
+        size="500" />
+	<field 
+        name="archivo2.tempfile" 
+        type="varchar" 
+        description="Archivo Carta Mandanto con Recompra"
+        nullable="1"
+        size="500" />
+	<field 
+        name="archivo3.filename" 
+        type="varchar" 
+        description="Nombre Carta Adjudicacion con Recompra"
+        nullable="1"
+        size="500" />
+	<field 
+        name="archivo3.tempfile" 
+        type="varchar" 
+        description="Archivo Carta Adjudicacion con Recompra"
+        nullable="1"
+        size="500" />
+	<field 
+        name="archivo4.filename" 
+        type="varchar" 
+        description="Nombre Carta Adjudicacion"
+        nullable="1"
+        size="500" />
+	<field 
+        name="archivo4.tempfile" 
+        type="varchar" 
+        description="Archivo Carta Adjudicacion"
+        nullable="1"
+        size="500" />
+	<field 
+        name="archivo5.filename" 
+        type="varchar" 
+        description="Nombre Carta Adjudicacion con Reintegro"
+        nullable="1"
+        size="500" />
+	<field 
+        name="archivo5.tempfile" 
+        type="varchar" 
+        description="Archivo Carta Adjudicacion con Reintegro"
+        nullable="1"
+        size="500" />
+	<field 
+        name="archivo6.filename" 
+        type="varchar" 
+        description="Nombre Carta Adjudicacion con Reintegro y Recompra"
+        nullable="1"
+        size="500" />		
+	<field 
+        name="archivo6.tempfile" 
+        type="varchar" 
+        description="Archivo Carta Adjudicacion con Reintegro y Recompra"
+        nullable="1"
+        size="500" />
+     <field 
+        name="archivo7.filename" 
+        type="varchar" 
+        description="Nombre Carta Adjudicacion con Débito en este proceso"
+        nullable="1"
+        size="500" />		
+	<field 
+        name="archivo7.tempfile" 
+        type="varchar" 
+        description="Archivo Carta Adjudicacion con Débito en este proceso"
+        nullable="1"
+        size="500" />
+     <field 
+        name="archivo8.filename" 
+        type="varchar" 
+        description="Nombre Carta a mostrar antes de tomar la orden"
+        nullable="1"
+        size="500" />		
+	<field 
+        name="archivo8.tempfile" 
+        type="varchar" 
+        description="Archivo Carta a mostrar antes de tomar la orden"
+        nullable="1"
+        size="500" />
+
+                
+</record>
+

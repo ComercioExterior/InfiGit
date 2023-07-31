@@ -1,0 +1,142 @@
+<html>
+
+	<head>
+        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+        <script type="text/javascript">
+        function detalleOrden(nombreFormulario){
+        var longitud = nombreFormulario.length;
+        var str=nombreFormulario.substr(8,longitud);
+		document.getElementById(str).submit();
+        }
+        
+        function excel() {
+            if (confirm("El proceso de generación de archivo excel puede tardar varios minutos. ¿Está seguro que desea iniciar el proceso?")){
+            	return true;
+            }else{
+            	return false;
+            }
+        }
+          
+        </script>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Ordenes / Consultas / Ordenes por Cliente</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                  Cédula: @tipper_id@-@client_cedrif@
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                                    
+                  Cliente: @client_nombre@ 
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  Ordenes ( @t_registros@ )
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+    
+    <!--encabezados de columna-->
+    <tr>
+    
+    		<th nowrap colspan="1" width="4%"></th> 
+    		<th nowrap width="6%">Orden</th>        
+              <th nowrap width="12%">Fecha</th>   
+               <th nowrap>Transacci&oacute;n Negocio</th>         
+                <th nowrap="nowrap">Unidad Inversi&oacute;n</th>
+                <th nowrap width="15%">Status</th>     
+                <th nowrap width="15%">Solicitado</th>
+                <th nowrap width="15%">Adjudicado</th>                                  
+    </tr>
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+                   
+                <td nowrap align="center">
+                <a href="javascript:detalleOrden('19569633@ordene_id@');"><IMG SRC="../images/infi_gn_document.gif" WIDTH="15" ALIGN="top" HEIGHT="13" title="Detalles de la Orden" BORDER="0" style="cursor:hand"></a>
+                </td>
+            <form id="@ordene_id@" name="@ordene_id@" action="detalle_orden-find" method="post" target="_blank"><input type="hidden" value="@ordene_id@" name="ord_id"> </form>
+                <!-- td align="center">
+                <a href="javascript:abrirPopupDetalles('detalle_titulo-find?titulo_id=@titulo_id@','200', '320')"><IMG SRC="../images/infi_gn_edit.gif" WIDTH="15" HEIGHT="15" ALIGN="top" title="Detalles del T&iacute;tulo" BORDER="0" style="cursor:hand"></a>
+                </td-->
+ 				
+ 				<td nowrap align="center">
+                @ordene_id@
+                </td> 
+                
+                <td nowrap align="center">                
+                @ordene_ped_fe_orden@
+                </td>
+                
+ 				<td nowrap>
+                @transa_descripcion@
+                </td>                    
+
+                <td nowrap="nowrap">
+                @undinv_nombre@
+                </td>
+        
+                <td nowrap>
+                @ordsta_nombre@
+                </td>
+                
+                <td nowrap align="right">
+                @ordene_ped_monto@
+                </td>
+        
+                <td nowrap align="right">
+                @ordene_adj_monto@
+                </td>
+     </tr>
+     </rows>
+    </table>
+		@page_index@
+    <BR>    
+<form onsubmit="return excel()" action="datos_ordenes_exportar-exportar-clientes?framework.controller.outputstream.open=false" method="post">
+    <button type="submit" onclick="window.location='orders_clte-filter'">&nbsp;Exportar</button>
+    &nbsp;<button type="button" onclick="window.history.back()">&nbsp;Regresar</button>
+    &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+</form>
+
+</center>
+
+</body>
+
+</html>
+

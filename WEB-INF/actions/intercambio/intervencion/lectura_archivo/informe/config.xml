@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<config>
+
+	<model-class>models.intercambio.recepcion.lectura_archivo_subasta_divisas.InformeExcel</model-class>
+	<view-class></view-class>
+	<template></template>
+	<record-def></record-def>
+	<content-type>text/html</content-type>
+	<expires></expires>
+	<no-cache>false</no-cache>
+	<next-action type="redirect"></next-action>
+	<on-empty source="sales"></on-empty>
+
+</config>

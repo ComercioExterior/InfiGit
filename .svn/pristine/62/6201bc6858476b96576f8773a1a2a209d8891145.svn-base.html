@@ -1,0 +1,151 @@
+<html>
+
+	<head>
+        
+        <!--link rel="stylesheet" type="text/css" href="../megasoft.css"/-->
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css"/>
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI - Seguridad</title>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Seguridad / Opciones del Men&uacute;</FONT>
+        </TD>
+   <!-- help online <TD class="headerBox" valign="middle" align="right"><img border="0" src="@url_images@ayuda.gif" width="17" height="17"  onclick="helpOpen();" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" ></TD> fin help online --></TR>
+</TABLE>
+
+<center>
+
+<br>
+
+<form NAME="dataentry" METHOD="POST">
+
+	<table border="0" cellspacing="1" cellpadding="2" width="50%" class="dataform">
+        <tr><th colspan="2">
+        Filtro
+        </th></tr>
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+                    Aplicaci&oacute;n:
+            </td>
+            <td>
+				<SELECT NAME="id_application" SIZE=1 ONCHANGE="javascript:document.dataentry.action='menu_items-find?band=1'; document.dataentry.submit();"/>
+				<OPTION VALUE="" SELECTED/></OPTION>
+				<rows_app>				 
+				 <OPTION VALUE="@id_application@"/>@description@ - @siglas_applic@</OPTION>
+ 				</rows_app>
+ 				</SELECT>
+               
+            </td>
+        </tr>
+        
+        </table>
+       
+       <INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/> 
+ </form>
+        
+     
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+    	<th colspan="4" width="8%"></th>
+    
+              
+              <th>MENU</th>
+              
+              <th>URL</th>
+              
+             
+              <th width="10%">Padre</th>       
+              
+          
+              
+              <th width="4%">Nivel</th>
+              
+              <th width="4%">Orden</th>
+              
+              
+              @cab_applic@
+
+            
+              
+    </tr>
+
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+        
+                <td align="center">
+                <a href="menu_items-confirm?id=@id@&nombre_en_bd=@nombre_en_bd@&applic=@applic@"><IMG SRC="../images/infi_gn_delete.gif" WIDTH="15" HEIGHT="15" ALIGN="BOTTOM" title="Eliminar opci&oacute;n del men&uacute;." BORDER="0" style="cursor:hand"/></a>
+                </td>
+                
+		 		<td align="center">
+                <a href="menu_items-edit?id=@id@"><IMG SRC="../images/infi_gn_edit.gif" WIDTH="15" HEIGHT="15" ALIGN="BOTTOM" title="Editar datos del usuario." BORDER="0" style="cursor:hand"/></a>
+                </td>
+             
+         		<td align="center">
+                <a href="menu_items-addnew?id=@id@"><IMG SRC="../images/infi_gn_submenu.gif" WIDTH="14" HEIGHT="14" ALIGN="BOTTOM" title="Agregar submen&uacute;." BORDER="0" style="cursor:hand"/></a>
+                </td>
+            
+                 <td align="center">
+                <a href="menu_items-consulta_roles?id=@id@"><IMG SRC="../images/infi_gn_roles_seguridad.gif" WIDTH="16" HEIGHT="16" ALIGN="BOTTOM" title="Roles con acceso a esta opci&oacute;n." BORDER="0" style="cursor:hand"/></a>
+                </td>
+              
+                
+                
+                <td>
+                @tab@@st_nombre@
+                </td>
+                
+                <td>
+                @st_url@
+                </td>
+                
+               
+                 <td>
+                <B>@no_parent@</B>
+                </td>
+              
+         
+                <td aling="center">
+                @nu_level@
+                </td>
+                
+                <td aling="center">
+                @nu_orden@
+                </td>
+                
+  
+                @columna_applic@
+                 
+                
+        
+     </tr>
+     </rows>
+    
+    </table>
+
+ @page_index@
+ 
+    <BR>
+<form>
+    <!--input type="button" value="Añadir Registro" onclick="window.location='menu_items-addnew'"/-->
+    <button onclick="window.location='menu_items-addnew'">Añadir Registro</button>&nbsp;
+    &nbsp;<button onclick="history.back();">Cancelar</button>
+</form>
+
+</center>
+
+</body>
+
+</html>
+

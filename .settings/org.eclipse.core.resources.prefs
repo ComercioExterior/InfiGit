@@ -1,0 +1,19 @@
+#Sun Sep 05 21:10:36 BOT 2021
+eclipse.preferences.version=1
+encoding//WEB-INF/source/org/bcv/service/AutorizacionPortBindingStub.java=UTF-8
+encoding//WEB-INF/source/org/bcv/service/Autorizacion_PortType.java=UTF-8
+encoding//WEB-INF/source/org/bcv/service/Autorizacion_Service.java=UTF-8
+encoding//WEB-INF/source/org/bcv/service/Autorizacion_ServiceLocator.java=UTF-8
+encoding//WEB-INF/source/org/bcv/service/Exception.java=UTF-8
+encoding//WEB-INF/source/org/bcv/serviceDICOMInterbancario/Exception.java=UTF-8
+encoding//WEB-INF/source/org/bcv/serviceDICOMInterbancario/OperCamFileTransferPortBindingStub.java=UTF-8
+encoding//WEB-INF/source/org/bcv/serviceDICOMInterbancario/OperCamFileTransfer_PortType.java=UTF-8
+encoding//WEB-INF/source/org/bcv/serviceDICOMInterbancario/OperCamFileTransfer_Service.java=UTF-8
+encoding//WEB-INF/source/org/bcv/serviceDICOMInterbancario/OperCamFileTransfer_ServiceLocator.java=UTF-8
+encoding//WEB-INF/source/ve/org/bcv/service/Autorizacion.java=UTF-8
+encoding//WEB-INF/source/ve/org/bcv/service/AutorizacionLocator.java=UTF-8
+encoding//WEB-INF/source/ve/org/bcv/service/AutorizacionPortBindingStub.java=UTF-8
+encoding//WEB-INF/source/ve/org/bcv/serviceInterface/AutorizacionInterface.java=UTF-8
+encoding//WEB-INF/source/ve/org/bcv/serviceInterface/Exception.java=UTF-8
+encoding//WEB-INF/templates/informes/custodia/bloqueoGarantias.jrxml=UTF-8
+encoding//WEB-INF/templates/informes/custodia/valoresGarantia.jrxml=UTF-8

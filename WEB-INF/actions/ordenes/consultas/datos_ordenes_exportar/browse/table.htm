@@ -1,0 +1,131 @@
+<html>
+
+	<head>
+        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+        <script type="text/javascript">
+        function excel() {
+            if (confirm("El proceso de generación de archivo excel puede tardar varios minutos. ¿Está seguro que desea iniciar el proceso?")){
+            	return true;
+            }else{
+            	return false;
+            }
+        }
+        </script>
+	
+    </head>
+
+<body>
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Ordenes / Exportar Excel / Datos Ordenes</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+<center>
+
+<br>
+<form name="dataentry" onsubmit="return excel()" action="datos_ordenes_exportar-exportar?framework.controller.outputstream.open=false" method="post">
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                  Registros ( @t_registros@ )
+                </FONT>
+            </th>
+            <th WIDTH="5%" VALIGN="right" style="display: block">
+                <a href="javascript:abrirPopupDetalles('resumen_blotter-find?unidad_inversion=@unidad_inversion@&fecha_desde=@fe_ord_desde@&fecha_hasta=@fe_ord_hasta@&tipo_producto_id=@tipo_producto_id@','100', '550')" style="visibility:@display_detalle_blot@"><IMG SRC="../images/infi_gn_document.gif" WIDTH="15" ALIGN="top" HEIGHT="13" BORDER="0" title="Resumen Unidad de Inversi&oacute;n" alt="Resumen Unidad de Inversi&oacute;n" style="cursor:hand"></a>                
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+    
+    <!--encabezados de columna-->
+    <tr>
+    		<!--  <th colspan="1" width="3%"></th>-->
+    		<th nowrap align="center">Orden</th>          
+              <th nowrap>Bloter</th>            
+              <th nowrap >Cliente</th>
+              <th nowrap align="center">Fecha Orden</th>   
+              <th nowrap >Status</th>
+              <th nowrap >Solicitado</th>
+              <th nowrap >Adjudicado</th>                                    
+              <th nowrap >Tipo Producto</th> 
+    </tr>
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+                
+                <!--  <td align="center">
+                <a href="javascript:abrirPopupDetalles('detalle_orden-find?ord_id=@ordene_id@','100', '550')"><IMG SRC="../images/infi_gn_document.gif" WIDTH="15" ALIGN="top" HEIGHT="13" title="Detalles de la Orden" BORDER="0" style="cursor:hand"></a>
+                </td>-->
+            	<td nowrap align="center">
+                @ordene_id@
+                </td>
+                
+                <td VALIGN="middle" >                
+                @bloter_descripcion@
+                </td>              
+                
+                <td nowrap>
+                @client_nombre@
+                </td>                
+
+                <td align="center" nowrap >
+                @ordene_ped_fe_orden@
+                </td>
+                
+                 <td align="left" nowrap>
+                @ordsta_nombre@
+                </td>
+                 <td align="right" nowrap>
+                @ordene_ped_monto@
+                </td>
+                 <td align="right" nowrap>
+                @ordene_adj_monto@
+                </td>
+                
+                <td align="left" nowrap>
+                @tipo_producto_id@
+                </td>
+                
+     </tr>
+     </rows>
+    </table>    
+		@page_index@
+    <BR>
+    <input type="hidden" name="tipo_producto_id" value="@tipo_producto_id@" />
+    
+    <button type="button" onclick="window.location='datos_ordenes_exportar-filter'">Regresar</button>
+    &nbsp;&nbsp;<button type="submit">Exportar</button>
+    &nbsp;&nbsp;<button type="button" onclick="window.location='lectura_archivo-informe?framework.controller.outputstream.open=false&unidad_inversion=@unidad_inversion@&fe_ord_desde=@fe_ord_desde@&fe_ord_hasta=@fe_ord_hasta@&tipo_producto_id=@tipo_producto_id@'">Informe Adjudicación</button>
+     &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+     <input type="hidden" value="false" name="framework.controller.outputstream.open">
+
+</form>
+
+</center>
+
+</body>
+
+</html>
+

@@ -1,0 +1,754 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Toma de orden</title>
+  <link rel="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+   <link rel="stylesheet" type="text/css" href="../css/EstiloFichas.css" />
+    <script language="javascript" src="../js/default.js"></script>  
+    <script language="javascript">
+      function comprarTitulos(){
+         //Verificamos si algunos de los indicadores de cotejo no está seleccionado         
+         var total = 0;
+         var chequeados = true;
+         var mensaje = "Debe tener todos los indicadores chequeados para continuar con el proceso";
+         
+         if (document.forms[0].indicadores != undefined){
+             total = document.forms[0].indicadores.length;
+	         //Se verifica si es undefinido porque de ser asi solo hay un campo de indicadores
+	         if (total > 0){
+		         for ( var i=0; i<total; i++ ){ 
+		            if (!document.forms[0].indicadores[i].checked){
+		               alert(mensaje);
+		               chequeados = false;
+		               break;
+		            }
+		         }           
+	         }else{
+	            if (!document.forms[0].indicadores.checked){
+	               alert(mensaje);
+	               chequeados = false;
+	            }
+	         }             
+         }
+         
+         if (chequeados){
+         	if (confirm("¿Está seguro que desea procesar la compra de los títulos?")){         		
+				mostrarMsgEspera();
+         		document.dataentry.action='toma_de_orden_divisas-guardar';
+				document.forms[0].submit();				
+	    		//se deshabilitan los botones y/u objetos luego de hacer submit para 
+	    		//que el formulario sea enviado correctamente  					
+				deshabilitarBotones();
+         	}
+	     }
+      }
+      
+      function mostrarMsgEspera(){
+      	 document.getElementById('creando').style.display='block';
+      }
+      
+      function enviarRecalcular(){  
+ 			document.dataentry.action='toma_de_orden_divisas-calculo?recalculo=1';
+    		document.dataentry.submit();
+    		mostrarMensajeEnEspera();//mostrar mensaje de espera mientras se recalcula
+    		//se deshabilitan los botones y/u objetos luego de hacer submit para 
+    		//que el formulario sea enviado correctamente  
+    		deshabilitarBotones();          		  			      
+      }
+      
+      //Oculta o muestra los datos para la instruccion de pago por recompra cuando es en moneda internacional
+      function mostrarInstruccionCtaInt(){
+
+  		//si ES USUARIO ESPECIAL con permiso de ingresar las instrucciones de pago
+    	if(document.dataentry.usuario_especial.value=='1'){
+	      	if(document.dataentry.tipo_inst_int[0].checked==true){//transferencia
+	      		document.getElementById('tit_datos_transferencia').style.display='block';
+	      		document.getElementById('datos_transferencia').style.display='block';   
+	      		mostrarOcultarIntermediario();
+	      		 		      		
+	      	}else{
+	      		document.getElementById('tit_datos_transferencia').style.display='none';      		
+	      		document.getElementById('datos_transferencia').style.display='none';
+	      		document.getElementById('tit_banco_intermediario').style.display='none'; 
+				document.getElementById('banco_intermediario').style.display='none';
+				limpiarCamposTrasnferencia();	   
+	      		
+	      	}
+    	}
+      	
+      }
+        
+    
+      function mostrarDatosPago(){
+		//si ES USUARIO ESPECIAL con permiso de ingresar las instrucciones de pago
+  		if(document.dataentry.usuario_especial.value=='1'){
+  	  			
+	      	var recompraConMonedaExt = false;
+	      	var recompraConMonedaLocal = false;	      	
+	      	
+	      	if(document.forms[0].tit_recompra!=undefined){
+	      	
+	      		if(document.forms[0].tit_recompra.length!=undefined){
+	      			
+	      			for (i=0; i < document.forms[0].tit_recompra.length; i++)
+					{			
+						var aux = "document.forms[0].indicador_moneda_local_"+(i+1);			
+						
+						var indic_moneda_local = eval(aux); 
+						if(document.forms[0].tit_recompra[i].checked){
+							
+							if(indic_moneda_local.value==1){	
+								//si NO se existe recompra con neteo para la unidad de inversión se muestran los datos para las instrucciones de pago. No hay instrucciones de pago para recompra con Neteo					
+								if(document.forms[0].undinv_in_recompra_neteo.value!='1')
+									recompraConMonedaLocal = true;
+							}else{
+								recompraConMonedaExt = true;
+							}
+						}
+					}				
+	      			
+	      		}else{//un solo elemento chequeado
+	      			
+	      				var aux = "document.forms[0].indicador_moneda_local_1";
+						var indic_moneda_local = eval(aux); 
+						if (document.forms[0].tit_recompra.checked){
+							
+							if(indic_moneda_local.value==1){	
+								//si NO se existe recompra con neteo para la unidad de inversión se muestran los datos para las instrucciones de pago. No hay instrucciones de pago para recompra con Neteo					
+								if(document.forms[0].undinv_in_recompra_neteo.value!='1')												
+									recompraConMonedaLocal = true;
+							}else{
+								recompraConMonedaExt = true;
+							}
+						}
+	      			
+	      		}
+	      	
+	      	}
+	      	
+	      	//Mostrar ocultar titulo de instrucciones de pago
+	  		if(recompraConMonedaExt==false && recompraConMonedaLocal==false){	  		
+	  			document.getElementById('tit_instrucciones_pago').style.display='none'; 
+	  		}else{
+	  			document.getElementById('tit_instrucciones_pago').style.display='block'; 
+	  		}
+	      	
+	      	//instruccion para pago en moneda local
+	      	if(recompraConMonedaLocal){	      		
+	      		document.getElementById('moneda_local').style.display='block'; 
+	      	}else{	      		
+	      		document.getElementById('moneda_local').style.display='none'; 
+	      	}      	
+	      	//instruccion para pago en moneda internacional
+	      	if(recompraConMonedaExt){	      	
+	      		
+	      		if(document.dataentry.tipo_inst_int[0].checked==true){//transferencia
+	      			document.dataentry.tipo_inst_int[0].checked=true;
+	      		}else{//chequear opcion por defecto para cheque   
+	      			document.dataentry.tipo_inst_int[0].checked=true;	
+	      			limpiarCamposTrasnferencia();	        			
+	      		}	      	
+		      	
+		      	document.getElementById('moneda_internac').style.display='block';    		
+	      			
+	  		}else{	  		
+	  			document.dataentry.tipo_inst_int[0].checked=false;//limpiar radio de tipo de instruccion (transf o cheque)
+	  			document.dataentry.tipo_inst_int[1].checked=false;	
+	  			limpiarCamposTrasnferencia();	  			
+	  			document.getElementById('moneda_internac').style.display='none';   		
+	  		}
+
+  		}
+	  		
+	  	
+      }
+      
+      function mostrarOcultarIntermediario(){
+		
+		if(document.dataentry.intermediario.checked){
+		
+			document.getElementById('tit_banco_intermediario').style.display='block'; 
+			document.getElementById('banco_intermediario').style.display='block'; 
+			
+		}else{
+		
+			document.getElementById('tit_banco_intermediario').style.display='none'; 
+			document.getElementById('banco_intermediario').style.display='none'; 
+			limpiarCamposBancoIntermediario();
+		}
+      }
+      
+      //Limpia los campos de Datos para Transferencia a cuenta internacional
+      function limpiarCamposTrasnferencia(){
+      
+   		document.dataentry.intermediario.checked=false;
+   		//document.dataentry.ctecta_numero_ext.value="";
+   		//document.dataentry.ctecta_bcocta_bco.value="";
+   		//document.dataentry.ctecta_bcocta_direccion.value="";
+   		//document.dataentry.ctecta_bcocta_swift.value="";
+   		//document.dataentry.ctecta_bcocta_bic.value="";
+   		//document.dataentry.ctecta_bcocta_telefono.value="";
+   		//document.dataentry.ctecta_bcocta_aba.value="";      		
+   		//document.dataentry.ctecta_observacion.value="";
+   		//limpiarCamposBancoIntermediario();
+      }
+      
+      function limpiarCamposBancoIntermediario(){      
+        //Banco intermediario
+  		//document.dataentry.ctecta_bcoint_bco.value="";
+  		//document.dataentry.ctecta_bcoint_direccion.value="";
+  		//document.dataentry.cta_bco_bcoint.value="";
+  		//document.dataentry.ctecta_bcoint_bic.value="";
+  		//document.dataentry.ctecta_bcoint_telefono.value="";
+  		//document.dataentry.ctecta_bcoint_aba.value="";
+  		//document.dataentry.ctecta_bcoint_observacion.value=""; 
+      }
+      
+      function deshabilitarBotones(){
+
+    	  if(document.dataentry.tit_recompra!=undefined){
+    	    document.dataentry.tit_recompra.disabled= true;
+    	  }
+ 			document.dataentry.boton_comprar.disabled = true;
+ 			document.dataentry.boton_recalcular.disabled = true;
+ 			document.dataentry.boton_regresar.disabled = true;
+        	document.dataentry.boton_salir.disabled = true; 
+
+        	//se deshabilitan los checkbox de recompra en caso de no ser nulos
+        	deshabilitarCheckRecompra();			
+ 	  }
+      
+      function deshabilitarCheckRecompra(){
+          
+          if(document.dataentry.tit_recompra!=undefined){
+              if(document.dataentry.tit_recompra.length!=undefined){//mas de 1 boton
+              	for (i=0; i < document.dataentry.tit_recompra.length; i++){			
+      				document.dataentry.tit_recompra[i].disabled = true;      				
+              	}			
+      					
+              }else{// si solo existe 1 boton checkbox
+            	  document.dataentry.tit_recompra.disabled = true;  
+              }
+          }
+
+      }
+
+      function mostrarMensajeEnEspera(){
+          //LLamar funcion del default.js
+    	  mostrarMensajeEspera(document.getElementById('mensaje_espera'));
+      }
+    		
+    </script>           
+</head>
+<body ONLOAD="javascript: mostrarDatosPago(); mostrarInstruccionCtaInt();">
+
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Ordenes / @menu_migaja@</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+  <!--formulario-->
+
+  <form NAME="dataentry" METHOD="POST" ACTION="toma_de_orden_divisas-guardar">
+  
+  
+  <div id="menu">
+<table border="0">
+<tr>
+<td id="navigation"><a style="cursor:hand" onclick="javascript:history.go(- document.dataentry.cantidad_calculo.value);"><span>Datos</span></a></td>
+<td id="navigationActivo"><a><span>C&aacute;lculos</span></a></td>
+<td id="navigation"><a style="cursor:hand" ><span>Documentos</span></a></td>
+</tr>
+</table>
+</div>
+  <center>
+  
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+	        <!--titulo-->
+	        <tr>
+	            <th COLSPAN="2" ALIGN="center">
+	                 Unidad de Inversi&oacute;n seleccionada
+	            </th>
+	        </tr>
+	        
+	        <!--campo-->
+	       <tr>
+	            <td>Cliente</td>
+				<td>@cliente@</td>
+	        </tr>
+	        
+	        <tr>
+	            <td>Unidad de inversi&oacute;n:</td>
+				<td>@undinv_nombre@</td>
+	        </tr>
+	        <tr>
+	            <td>Fecha de emisi&oacute;n:</td>
+				<td>@undinv_fe_emision@</td>
+	        </tr>
+	        <tr>
+	            <td>Instrumento financiero:</td>
+				<td>@insfin_descripcion@</td>
+	        </tr>    
+	        
+	        <tr>
+	            <td>Moneda de Inversi&oacute;n</td>
+				<td>@moneda_id@</td>
+	        </tr>          
+	              
+	        
+	        <tr>
+				<td>Inventario disponible:</td>
+				<td>@undinv_umi_inv_disponible@</td>
+			</tr>
+	
+    </table>
+   
+<!--Montos a pagar -->
+   <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        <tr>
+            <th COLSPAN="4" ALIGN="center">
+                 Resumen de Montos
+            </th>
+        </tr>
+        <tr>
+			<td>Monto invertido:</td>
+			<td>@monto_inversion@ @id_moneda_local@</td>
+			<td>Precio de Compra:</td>
+			<td>@precio_compra@ %</td>
+			
+		</tr>
+        <tr>
+			<td>Monto total de comisi&oacute;n:</td>
+			<td>@monto_comisiones@ @id_moneda_local@</td>
+			<td>Tipo de cambio:</td>
+			<td>@tasa_cambio@ @id_moneda_local@</td>
+		</tr>
+        <tr>
+			<td>Monto total a pagar:</td>
+			<td>@monto_total@ @id_moneda_local@</td>
+			<td>Monto total de intereses caidos:</td>
+			<td>@monto_interes_caidos@ @id_moneda_local@</td>
+		</tr>
+		
+		 <tr>
+			<td>Monto Financiado:</td>
+			<td>@monto_financiado@ @id_moneda_local@</td>			
+		
+			<td>Monto o Cantidad Pedida:</td>
+			<td>@monto_pedido@</td>			
+		</tr>		
+		
+				
+		
+	</table> 
+
+<!--Datos de los t&iacute;tulos -->
+   <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        <tr>
+            <th COLSPAN="@colspan_titulos@" ALIGN="center">
+                 Datos de los T&iacute;tulos
+            </th>
+        </tr>
+       </table>
+     <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        <tr>
+        	@encab_in_recompra@
+			<th>T&iacute;tulo</th>
+			<th>Valor Equivalente</th>
+			<th>Porcentaje</th>
+			<th width="8%">Moneda Den.</th>
+			<th width="8%">Moneda Neg.</th>
+			<th>Porc. Recompra</th>
+			@encab_tasa_pool@
+		</tr>
+		<rowsTitulos>
+        <tr>
+        	@check_in_recompra@
+			<td>@descripcion_titulo@ 
+			 <INPUT TYPE="hidden" VALUE="@indicador_moneda_local@" NAME="indicador_moneda_local_@num_titulo@"/>
+			 <INPUT TYPE="hidden" VALUE="@indicador_moneda_local@" NAME="indicador_moneda_local_@titulo_id@"/>			 
+			</td>
+			<td align="right" style="padding-right=10px;">@valor_invertido@</td>
+			<td align="right" style="padding-right=10px;">@porcentaje@ %</td>
+			<td align="right" style="padding-right=10px;">@titulo_moneda_siglas@</td>
+			<td align="right" style="padding-right=10px;">@moneda_negociacion@</td>
+			<td align="right" style="padding-right=10px;">@titulos_precio_recompra@%</td>
+			@tasa_pool@
+		</tr>
+		</rowsTitulos>
+	</table>
+	<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        <tr>
+            <th COLSPAN="@colspan_titulos@" ALIGN="center">
+                 Datos de la Recompra
+            </th>
+        </tr>
+       </table>
+	 <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+		<tr>
+			<th COLSPAN=2>Fecha Valor Recompra</th>
+			<th COLSPAN=2>Monto Inst. Caídos (USD)</th>
+			<th>Cupón %</th>
+			<th>Días Transcurridos</th>
+			<th COLSPAN=2>Valor Efectivo (USD)</th>
+		</tr>
+		<rowsTitulosRecompra>
+		<tr>
+			<td COLSPAN=2 align="center" style="padding-right=10px;">@fecha_valor_recompra@</td>
+			<td COLSPAN=2 align="center" style="padding-right=10px;">@int_caidos_recompra@</td>
+			<td align="center" style="padding-right=10px;">@cupon@</td>
+			<td align="center" style="padding-right=10px;">@diferencia_dias@</td>
+			<td COLSPAN=2 align="center" style="padding-right=10px;">@valor_efectivo@</td>
+		</tr>
+		</rowsTitulosRecompra>
+	</table>
+	
+	
+     <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+       		<tr><td><FONT COLOR="red"><b>@mensaje_error_precio_recompra@</b></FONT></td></tr>
+       		<tr><td><FONT COLOR="red"><b>@mensaje_error_fecha_valor@</b></FONT></td></tr>       
+      </table>
+
+<!--Datos de las comisiones -->
+   <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        <tr>
+            <th COLSPAN="3" ALIGN="center">
+                 Datos de las Comisiones
+            </th>
+        </tr>
+        <tr>
+        	<th style="display:none"></th>
+			<th>Referencia</th>
+			<th>Porcentaje</th>
+			<th>Monto</th>
+		</tr>
+		<rowsComision>
+        <tr>
+        	<td style="display:none"><input type="checkbox" checked name="comisiones" value="@id_transaccion@">
+        	@id_comision@
+        	</td>
+			<td>@descripcion_transaccion@</td>
+			<td align="right" style="padding-right=10px;">@tasa@ %</td>
+			<td align="right" style="padding-right=10px;">@monto_operacion@ &nbsp; @operacion_moneda_siglas@</td>
+		</tr>
+		</rowsComision>
+	</table> 
+	
+<!--Datos de las operaciones financieras -->
+   <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        <tr CLASS="formCaption">
+            <th COLSPAN="3" ALIGN="center">
+                 Operaciones Financieras
+            </th>
+        </tr>
+        <tr>
+			<th>Transacci&oacute;n</th>
+			<th>Referencia</th>
+			<th>Monto</th>
+		</tr>
+		<rowsOperacion>
+        <tr>
+			<td>@descripcion_transaccion@</td>
+			<td>@descripcion_transaccion@</td>
+			<td align="right" style="padding-right=10px;">@monto_operacion@   @operacion_moneda_siglas@</td>
+		</tr>
+		</rowsOperacion>
+		
+		@monto_total_neteo@
+		
+        <tr>
+			<td>&nbsp;</td>
+			<td><b>Total a Pagar:<b/></td>
+			<td align="right" style="padding-right=10px;"><b>@monto_total@ @id_moneda_local@</b></td>
+		</tr>
+   </table> 
+
+	<!--Indicadores de cotejo -->
+	   <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+	        <tr CLASS="formCaption">
+	            <th COLSPAN="2" ALIGN="center">
+	                 Indicadores de Cotejo
+	            </th>
+	        </tr>
+	        
+	   </table>
+	  
+	   <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+	        <tr>
+				<th width="8%">Indicador</th>
+				<th>Referencia</th>
+			</tr>
+			<rows_indicadores_ui>
+	        <tr>
+				<td CLASS="rtablecell_blanco" align="center"><input type="checkbox" name="indicadores" value="@indica_id@"></td>
+				<td style="display:none"><input type="hidden" name="in_requerido_@indica_id@" value="@uiindi_id_requerido@"></td>
+				<td>@indica_descripcion@</td>
+			</tr>
+			</rows_indicadores_ui>			
+	   </table>
+	   
+	   <!--Cartas -->
+	   <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+	        <tr CLASS="formCaption">
+	            <th COLSPAN="2" ALIGN="center">
+	                 Cartas
+	            </th>
+	        </tr>
+	        <rows_documentos_ui>
+	        <tr>	            
+				<td align="center" colspan="2"><IMG SRC="../images/infi_gn_documento.gif" onclick="document.dataentry.action='documentos_definicion-descargar_doc_preorden?documento_id=@documento_id@&nombre_doc=@nombre_doc@&framework.controller.outputstream.open=false&monto_total=@monto_total@&id_moneda_local=@id_moneda_local@&estado_casado=@estado_casado@&concepto=@concepto@'; document.forms.dataentry.submit();" WIDTH="15" ALIGN="top" HEIGHT="15" title="Descargar Archivo" BORDER="0" style="cursor:hand">&nbsp;@nombre_doc@</td>
+			</tr>
+			</rows_documentos_ui>
+	        
+	   </table>
+	   
+      <!--Requisitos -->
+	   <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+	        <tr CLASS="formCaption">
+	            <th COLSPAN="2" ALIGN="center">
+	                 Requisitos para la Toma de Orden
+	            </th>
+	        </tr>
+	        
+	   </table>
+	  
+	   <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+	        <tr>
+				<th width="8%">Requisito</th>
+				<th>Referencia</th>
+			</tr>
+	        <tr>
+				<td colspan="2">* Marque sólo los requisitos llevados por el cliente. Posterior a la generación de la orden podrá adicionar los que queden pendientes</td>
+			</tr>			
+			<rows_requisitos_ui>
+	        <tr>
+				<td CLASS="rtablecell_blanco" align="center"><input type="checkbox" name="requisitos" value="@indica_id@"></td>
+				<td>@indica_descripcion@</td>
+			</tr>
+			</rows_requisitos_ui>
+			<tr>
+				<td colspan="2">Observaciones:<textarea name="observaciones" cols="50" rows="3"></textarea></td>
+			</tr>
+	   </table>	   
+	   
+	 
+	 <!--INSTRUCCIONES DE PAGO -->
+	 
+	 <div id="tit_instrucciones_pago" style="display:none">
+	 
+		   <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+		        <tr CLASS="formCaption">
+		            <th COLSPAN="2" ALIGN="center">
+		                 Instrucciones de Pago
+		            </th>
+		        </tr>
+		        
+		   </table>
+		   
+		</div>
+	  
+		   <div id="moneda_internac" style="display:none">
+		  	<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto">
+				
+				<tr CLASS="formCaption">
+		            <th COLSPAN="4" ALIGN="center">
+		                 Moneda Internacional
+		            </th>
+		        </tr>
+					
+				<tr id="botonA" style="display:block">
+	       		 <td>Tipo de Instruci&oacute;n:</td>
+	       		 <td><INPUT TYPE="radio" NAME="tipo_inst_int" VALUE="1" ONCLICK="mostrarInstruccionCtaInt();">Transferencia</RADIO></td>	
+	      		 <td style="display:none"><INPUT TYPE="radio" NAME="tipo_inst_int" VALUE="2" ONCLICK="mostrarInstruccionCtaInt();">Cheque</RADIO></td>	
+	 			</tr>
+	 			</table>
+	 			
+	 			<table id="tit_datos_transferencia" style="display:none" border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto">			
+				
+				<tr CLASS="formCaption">
+		            <th COLSPAN="4" ALIGN="center">
+		                 Datos de la Cuenta Internacional
+		            </th>
+		        </tr>
+	 			</table>
+	 			<table id="datos_transferencia" style="display:none" border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform" style="table-layout: auto">			
+   		           <tr>  
+			        	<td>N&uacute;mero de Cuenta:*</td>
+			        		<td><input type="text" value="@ctecta_numero@"  name="ctecta_numero_ext" size="40" maxlength="40" class="inputControl" readonly/></td>		        
+			        	<td>Banco:*</td>
+				        	<td><input type="text" value="@ctecta_bcocta_bco@" name="ctecta_bcocta_bco" size="40" maxlength="40" class="inputControl" readonly/></td>
+			        </tr>
+			        <tr>
+				        <td>Direcci&oacute;n:</td>
+				       		<td><input type="text" value="@ctecta_bcocta_direccion@" name="ctecta_bcocta_direccion" size="40" maxlength="40" class="inputControl" readonly/></td>
+				        <td>Tel&eacute;fono:</td>
+			       		 	<td><input type="text" value="@ctecta_bcocta_telefono@" name="ctecta_bcocta_telefono" size="40" maxlength="40" class="inputControl" readonly/></td>
+			       </tr>
+     		       <tr>
+			         <td>BIC/SWIFT *:</td>
+        			 	<td><input type="text" value="@ctecta_bcocta_bic null-value=''@" name="ctecta_bcocta_bic" size="40" maxlength="40" class="inputControl" readonly/></td>
+			       	 <td>ABA:*</td>
+					   	<td><input type="text" value="@ctecta_bcocta_aba@" name="ctecta_bcocta_aba" size="40" maxlength="40" class="inputControl" readonly/></td>
+			        </tr>
+			        <tr>
+        				<td>Nombre Beneficiario cheque*:</td>
+        				<td><input type="text" value="@nombre_beneficiario null-value='N/A'@" name="nombre_beneficiario" size="40" maxlength="40" class="inputControl" readonly/></td>
+        				<td>Cedula Beneficiario cheque*:</td>
+        				<td><input type="text" id="cheque" value="@cedula_beneficiario null-value='N/A'@"  name="cedula_beneficiario" size="40" maxlength="40" class="inputControl" readonly/></td>
+			        </tr>
+				    <tr>
+			        	<td>Observaciones:</td>
+				        	<td colspan="3"><textarea name="ctecta_observacion" cols="75" rows ="5" readonly>@ctecta_observacion@</textarea></td>
+			        </tr>
+			        <tr>
+				     <tr id="botonA" style="display:block">				       	
+				       		 <td><INPUT TYPE="checkbox" NAME="intermediario" VALUE="1" ONCLICK="mostrarOcultarIntermediario();">Banco Intermediario	
+				 	</tr>
+				</table>		
+				
+				<table id="tit_banco_intermediario" style="display:none" border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform" style="table-layout: auto">
+						<tr CLASS="formCaption">
+				            <th COLSPAN="4" ALIGN="center">
+				                Datos del Banco Intermediario
+				            </th>
+				        </tr>
+				</table>
+				<table id="banco_intermediario" border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform" style="display:none">
+				 	   <tr>
+				        	<td>Nombre del Banco Intermediario:*</td>
+					        	<td><input type="text" value="@ctecta_bcoint_bco@" name="ctecta_bcoint_bco"  size="40" maxlength="40" class="inputControl" readonly/></td>
+					        <td>Direcci&oacute;n Del Banco Intermediario:</td>
+				        		<td><input type="text" value="@ctecta_bcoint_direccion@" name="ctecta_bcoint_direccion" size="40" maxlength="40" class="inputControl" readonly/></td>
+				        </tr>
+				        <tr>
+				        	<td>BIC/SWIFT Del Banco Intermediario*:</td>
+        						<td><input type="text" value="@ctecta_bcoint_bic null-value=''@" name="ctecta_bcoint_bic" size="40" maxlength="40" class="inputControl" readonly/></td>
+				        	<td>ABA Del Banco Intermediario:*</td>
+					        	<td><input type="text" value="@ctecta_bcoint_aba@" name="ctecta_bcoint_aba" size="40" maxlength="40" class="inputControl" readonly/></td>
+				        </tr>
+   			            <tr>				        	
+				        	 <td>Cuenta en el Banco Intermediario *:</td>
+        					 	<td><input type="text" value="@ctecta_bcoint_aba@" name="CTECTA_BCOINT_ABA" size="40" maxlength="40" class="inputControl" readonly/></td>
+        					 <td></td>	
+        					 <td></td>
+				        </tr>
+				        <tr>
+			        	<td>Observaciones Del Banco Intermediario:</td>
+				        	<td COLSPAN="3" ><textarea name="ctecta_bcoint_observacion" cols="75" rows ="5" readonly>@ctecta_bcoint_observacion@</textarea></td>
+			        </tr>			
+				</table>
+		   </div>
+	   
+	      
+		   <div id="moneda_local" style="display:none">
+		  	<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto">
+				
+				<tr CLASS="formCaption">
+		            <th COLSPAN="4" ALIGN="center">
+		                 Moneda Local
+		            </th>
+		        </tr>				
+				
+	 			</table>
+	 			
+			 <table id="datos_cta_local" border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+			     <tr>
+			      <td>N&uacute;mero de cuenta:*</td>
+			      <td>  		      
+					<SELECT NAME="cta_nac_recompra" SIZE="1">				
+						<OPTION VALUE="" SELECTED>Seleccione</OPTION>
+						<rows_ctacte>
+						<OPTION VALUE="@numero@">Cta @tipo@ @numero@</OPTION>	
+						</rows_ctacte>
+		 			</SELECT> 	
+					</td>
+					</tr>
+					
+					<!-- tr>
+			        	<td width="25%">Nombre de Cuenta:</td>
+			        	<td width="75%"><input type="text" value="@cta_nac_nombre_recompra@" name="cta_nac_nombre_recompra"  maxlength="50" class="inputControl"/></td>
+			        </tr-->			
+				
+				 <tr><td colspan="2"><FONT COLOR="red"><b>@mensaje_error_user_webs@</b></FONT></td></tr>       
+	        	<tr><td colspan="2"><FONT COLOR="red"><b>@mensaje_error_cuentas_cte@</b></FONT></td></tr>      
+	
+			</table>			
+		   </div>
+	   
+	   </div>
+	  
+	  <!--FIN INSTRUCCIONES DE PAGO  -->
+	
+	<table id="mensaje_espera" border="0" style="display:none" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+		<tr><td><b>Recalculando...</b></td></tr>
+	</table>   
+	
+	         
+   <INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/>
+   
+   <!-- parametros del request para el recalculo en la orden -->
+   
+    <INPUT TYPE="HIDDEN" VALUE="@undinv_id@" NAME="undinv_id"/>
+    <INPUT TYPE="HIDDEN" VALUE="@client_id@" NAME="client_id"/>
+    <INPUT TYPE="HIDDEN" VALUE="@cta_cliente@" NAME="cta_cliente"/>
+    <INPUT TYPE="HIDDEN" VALUE="@undinv_precio_minimo@" NAME="undinv_precio_minimo"/>
+    <INPUT TYPE="hidden" VALUE="@monto_comprar@" NAME="monto_comprar"/>
+
+    <INPUT TYPE="HIDDEN" VALUE="@blotter_id@" NAME="blotter_id"/>
+    <INPUT TYPE="hidden" VALUE="@cantidad_pedida@" NAME="cantidad_pedida"/>
+    <INPUT TYPE="HIDDEN" VALUE="@vehicu_rol_id@" NAME="vehicu_rol_id"/>
+    <INPUT TYPE="hidden" VALUE="@porc_financiar@" NAME="porc_financiar"/>
+    <INPUT TYPE="hidden" VALUE="@in_recompra@" NAME="in_recompra"/>
+    
+    <INPUT TYPE="hidden" VALUE="@cantidad_calculo@" NAME="cantidad_calculo"/>
+    
+    <INPUT TYPE="hidden" VALUE="@tipo_persona_conyuge@" NAME="tipo_persona_conyuge"/>
+    <INPUT TYPE="hidden" VALUE="@cedula_conyuge@" NAME="cedula_conyuge"/>
+    <INPUT TYPE="hidden" VALUE="@estado_casado@" NAME="estado_casado"/>
+    <INPUT TYPE="hidden" VALUE="@concepto@" NAME="concepto"/>
+    <INPUT TYPE="hidden" VALUE="@actividad_economica@" NAME="actividad_economica"/>
+    <INPUT TYPE="hidden" VALUE="@sector_productivo@" NAME="sector_productivo"/>
+    <INPUT TYPE="hidden" VALUE="@fe_pacto@" NAME="fe_pacto"/>
+    <INPUT TYPE="hidden" VALUE="@fe_valor@" NAME="fe_valor"/>
+    
+    <rows_campos_din>
+    <INPUT TYPE="HIDDEN" NAME="@nombre_campo@" VALUE="@valor@"/>
+    </rows_campos_din>
+    
+    <INPUT TYPE="hidden" VALUE="@undinv_in_recompra_neteo@" NAME="undinv_in_recompra_neteo"/>
+    
+    <INPUT TYPE="hidden" VALUE="@usuario_especial@" NAME="usuario_especial"/>
+    
+    <INPUT TYPE='hidden' VALUE='@tasa_propuesta@' style='text-align:right' NAME='tasa_propuesta' SIZE='12' MAXLENGTH='10' >
+    
+    <INPUT TYPE="hidden" VALUE="@sicad2@" NAME="sicad2"/>
+    
+   <br>
+   <button TYPE="button" name="boton_comprar" onclick="comprarTitulos();">Comprar t&iacute;tulos</button>
+   <SPAN></SPAN>
+   
+   @botom_recalcular@
+   <!--  <button TYPE="button" name="boton_recalcular" onclick="enviarRecalcular();">Recalcular</button>  -->
+   
+   <SPAN> </SPAN>
+   <button TYPE="button" name="boton_regresar" onclick="javascript:history.go(- document.dataentry.cantidad_calculo.value);">Regresar</button>
+    <SPAN> </SPAN>
+   <button TYPE="button" name="boton_salir" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>    
+   
+   <div id="creando" style="display:none; font-weight:bold; margin-top:10px;">Creando la Orden...</div>
+
+  </form>
+   
+</center>
+</body>
+</html>

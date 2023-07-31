@@ -1,0 +1,137 @@
+<html>
+<head>
+	<title>Sistema INFI</title>
+	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+	<script language="javascript" src="../js/default.js"></script>	
+</head>
+
+<body ONLOAD="javascript:mostrar(@accion@);{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+	<!--page name bar-->
+	
+	<table border="0" cellspacing="0" WIDTH="103%">
+		<tr>
+			<td class="headerBox">
+	        	<div id="titulou" style="display:none">               
+	            	<font class="headerText">Unidad de Inversi&oacute;n</font>
+	            </div>
+				<div id="titulop" style="display:none">               
+	            	<font class="headerText">Publicaci&oacute;n Unidad de Inversi&oacute;n</font>
+	            </div>
+	            <div id="tituloc" style="display:none">               
+	            	<font class="headerText">Consulta Unidad de Inversi&oacute;n</font>
+	            </div>			
+			</td>
+			<!-- help online -->
+			<td class="headerBox" valign="middle" align="right" colspan="2">
+				<img src="../images/infi_gn_ayuda.gif"	border="0"  width="17" height="17"
+					style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"
+					onclick="helpOpen(window.document.location.href);">
+			</td>
+			<!-- fin help online -->	
+		</tr>
+	</table>
+
+	<br>
+
+	<center>
+
+	<!--formulario-->
+	<form name="dataentry" method="POST" enctype="multipart/form-data">
+		<input type="hidden" name="idUnidadInversion" value="@idunidadinversion@" />
+	<table border="0" cellspacing="1" cellpadding="2" width="103%" class="dataform">
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="4" ALIGN="center"> 
+                 Editar Documentos - Blotter: @bloter_descripcion@
+            </th>
+        </tr>
+		<tr>
+			<td></td>
+			<rowsPer>
+			<td align="center" nowrap>@tipper_nombre@</td>
+			</rowsPer>
+		</tr>
+		
+		
+		@body@<rows1>
+		</rows1>
+	</table>
+	<input type="hidden" name="bloter_id" value="@bloter_id@">
+	<br>
+	<button type="button" onclick="submitir();">Grabar</button>
+	&nbsp;
+	<button type="button" onclick="window.location='unidad_inversion_documentos-browse'">Regresar</button>
+	
+	</form>
+
+	</center>
+
+</body>
+<script type="text/javascript">
+
+function mostrar(accion){
+			if(accion==1){
+				var elementos = document.getElementsByName('unidad');
+				for (var i = 0; i < elementos.length; i++ ){
+					elementos[i].style.display ="block";
+				}
+				titulou.style.display ="block";
+			}
+			if(accion==2){//Modulo Publicacion
+				titulop.style.display ="block";
+			}
+			if(accion==3){//Modulo Consulta
+				tituloc.style.display ="block";
+			}	
+			
+		}
+
+function submitirBuscar() {	
+	document.forms[0].submit();
+}
+function submitir() {
+	// Itera todos los objetos del formulario
+	var bol = false;
+	var objCount =document.dataentry.elements.length;
+	for (var i=0 ; i<objCount; i++){
+		// Determina el Tipo de objeto
+	    var objControl = document.dataentry.elements[i];
+		//Si el objeto es de tipo 'file' y con algun archivo seleccionado y sin nobre fijo (fixedName='true'), se le cambia el nombre agregándole un consecutivo.
+		// Esto permite enviar al servidor nombres distintos y no y arreglo de control File.
+		if (objControl.type=="radio" && objControl.value=="1"){
+			if((objControl.type=="file") && ((objControl.value=="")||(objControl[i].value==" "))){
+				bol = true;
+			}
+			verificar(bol);
+		}
+	}
+}
+
+function verificar(bol){
+	if(bol){
+			alert("Si selecciono (Si) debe especificar la ruta del Archivo a cargar ");
+	}else{
+		document.dataentry.action="unidad_inversion_documentos-update"; 
+		document.dataentry.submit();
+	}
+}
+
+function examinar(obj,cont){
+	if(obj.value==1){
+		document.getElementById(obj.name+cont).style.display='block';
+	}
+	if(obj.value==0){
+		document.getElementById(obj.name+cont).style.display='none';
+	}
+}
+
+function regresar() {
+	window.opener.reload();
+   	window.close();
+}
+function reloadOpener() {
+	window.opener.reload();
+} 
+-->
+</script>
+</html>

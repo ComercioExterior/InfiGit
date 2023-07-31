@@ -1,0 +1,430 @@
+<HTML> 
+    <HEAD>
+    <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+            <SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+             <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <TITLE>Sistema INFI</TITLE>
+        <script type="text/javascript">
+	/* Funcion para mostrar el banco internacional*/	
+     function mostrarbanco(){
+			var di = document.getElementById('bancointernacional')
+			valores=di.value;					
+			if(valores!=null && !valores=="")			
+			{
+				document.getElementById('internacional_display').style.display='block'	
+			}	
+			else 
+			{
+				document.getElementById('internacional_display').style.display='none'	
+			}
+	} 
+				
+/* funcion para mostrar el banco nacional*/
+	function mostrarnacional(){			
+		var t_cuenta=document.dataentry.tipo_cuentas.value;		
+		//Tipos de Cuenta->1:Cuenta Swift,2:Cuenta Nacional,3:Operación de Cambio,4:Cheque,5:Cuenta Nacional USD	
+		if(t_cuenta!=null && (t_cuenta=="2" || t_cuenta=="3"|| t_cuenta=="5"))
+		{
+			document.getElementById("nacional_display").style.display='block'
+		}
+		else 
+		{	
+			document.getElementById("nacional_display").style.display='none'
+		}
+	} 
+  
+	function mostrarOcultarMensajeCobroComision(){
+		if(document.dataentry.ctecta_uso.value=='COBRC'){
+			document.getElementById('mje_cobro_comision').style.display = "block";
+		}else{
+			document.getElementById('mje_cobro_comision').style.display = "none";
+		}
+	}
+	function mostrarBancoIntermediario(){	
+		
+		if(document.dataentry.intermediario[0].checked)
+		{	//Mostrar campos de banco intermediario
+			document.getElementById('bancoIntermediario').style.display='block';
+			document.getElementById('checkIntermediario').style.display='none';
+			document.dataentry.indicador.value= '1';
+			
+		}else {//Ocultar campos de banco intermediario y limpiar los campos
+			limpiarCamposIntermediario()
+			document.getElementById('bancoIntermediario').style.display='none';
+			document.getElementById('checkIntermediario').style.display='block';
+			document.dataentry.indicador.value= '0';
+		}
+	}	
+	function limpiarCamposIntermediario(){
+		document.dataentry.ctecta_bcoint_aba.value="";
+		document.dataentry.ctecta_bcoint_bic.value="";
+		document.dataentry.ctecta_bcoint_swift.value="";
+		document.dataentry.ctecta_bcoint_bco.value="";		
+		document.dataentry.ctecta_bcoint_observacion.value="";		
+		document.dataentry.ctecta_bcoint_telefono.value="";		
+		document.dataentry.ctecta_bcoint_direccion.value="";
+	}	
+	function cargarPagina(){
+	 if(document.dataentry.ctecta_bcoint_bco.value!=null&&document.dataentry.ctecta_bcoint_bco.value.length>1){
+	 	document.dataentry.intermediario[0].checked=true;
+	 }
+		mostrarBancoIntermediario();
+		mostrarbanco();
+		mostrarnacional();
+		mostrarOcultarMensajeCobroComision();	
+		preseleccionarOptionsSelect(document.dataentry.ctecta_bcocta_estado,document.dataentry.cod_estado_origen.value);
+		if(document.dataentry.cod_estado_origen.value){
+			document.getElementById('ciudad_seleccionada').style.display='block'
+			preseleccionarOptionsSelect(document.dataentry.ctecta_bcocta_ciudad,document.dataentry.cod_ciudad_origen.value);
+		}		
+	}	
+	function recargarCiudades(){			
+		document.getElementById('ctecta_bcocta_ciudad').style.display='none';		
+        llamadaAjax('ciudades',"cuentas_cliente-ajax_ciudad?id_estado="+document.dataentry.ctecta_bcocta_estado.value);	
+    }     
+   function seleccionarCiudad(id_ciudad,desc_ciudad){
+   		document.dataentry.cod_ciudad_origen.value=id_ciudad;   
+   		document.dataentry.desc_ciudad_origen.value=desc_ciudad;  		
+   }
+   function seleccionarEstado(id_estado,desc_estado){
+		document.dataentry.cod_estado_origen.value=id_estado;   
+		document.dataentry.desc_estado_origen.value=desc_estado;  		
+   }
+   
+  	//Funci&oacute;n para abrir un picklist o limpiar el valor anteriormente seleccionado (PICKLIST BIC/SWIFT)
+	function showPickList2(ind ,id, tx, dir, campo)
+	{	
+	
+	   var r
+	   if (ind == '1') {  // llamar a picklist		
+	   	  r = window.open(campo +'?name_id=' + id.id +"&name_tx=" + tx.id + "&name_dir=" + dir.id , 'Picklist','resizable=yes,scrollbars=yes,width=600,height=450,Left=200,top=150,Status=yes,unadorned:true');
+	   }
+	   else{
+		id.value= "";
+		tx.value= "";
+		dir.value= "";
+	  }
+	}
+   
+  </script>      
+
+    </HEAD>
+    <!--poner el focus en el 1er control de la forma -->
+<BODY ONLOAD="cargarPagina()">        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        
+		 <td class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Cuentas Cliente / Editar</FONT>
+        </td>		
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+        <td class="headerBox" aling="right"></td>
+</TABLE>
+        
+        <CENTER>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="cuentas_cliente-confirm-update" target="_blank">
+		
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+         <rows>
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="4" ALIGN="center">       
+                 Ingresar 
+            </th>
+        </tr>
+        
+        <!--campo-->
+        <tr>
+            <td width="25%">Cliente*:</td>
+            <td width="75%">
+          
+            <input type="text" value="@client_nombre@" SIZE="60" MAXLENGTH="50" class="inputControl" readonly/>
+            	<input type="hidden" value="@client_id@" name="client_id"/>
+            	<input type="hidden" value="@client_nombre@" name="ctecta_nombre"/>
+				<!--IMAGENES/BOTONES PARA EL PICKLIST-->
+				         
+            </td>
+        </tr>
+        </table>
+        
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+            <tr>
+            <td width="25%">Uso de Cuenta *:</td>
+            <td width="75%">
+        		<SELECT name="ctecta_uso">
+					<rows_cuenta>
+	       			<OPTION value="@ctecta_uso@">@ctecta_uso_descripcion@</OPTION>	
+	       			</rows_cuenta>
+        		</SELECT>        		
+           </td>
+       </tr>       
+       </table>	
+       <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+            <tr>
+            <td width="25%">Tipo de cuenta*:</td>
+            <td width="75%">
+        		<SELECT name="tipo_cuentas">
+					<rows_cuenta_tipo>
+	       			<OPTION value="@tipo_instruccion_id@">@instruccion_nombre@</OPTION>	
+	       			</rows_cuenta_tipo>
+        		</SELECT>        		
+           </td>
+       </tr>
+       
+       </table>	
+       
+      
+         <div id="nacional_display" style="display:none">
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+           <tr>
+            <td width="25%" CLASS="formLabel">N&uacute;mero de cuenta:</td>
+            <td width="75%">
+	              	<SELECT id="banconacional" NAME="tit_cliente"/>		
+	              	<OPTION VALUE="" SELECTED/></OPTION>			
+						<rows_num>				 
+		 				<OPTION VALUE="@numero null-value=''@"/>@tipo@ @numero@</OPTION>		 		 		 
+						</rows_num>
+					</SELECT>
+			</td>
+			</tr>
+  		</table>
+		</div>
+
+	     <!-- MENSAJES DE ERROR CONSULTANDO CUENTAS DEL CLIENTE EN ARQUITECTURA EXTENDIDA -->
+	      <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+	       		<tr><td><FONT COLOR="red"><b>@mensaje_error@</b></FONT></td></tr>       
+	      </table>
+	      
+	      
+	 	<table id="mje_cobro_comision" style="display: none" border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+		<tr>
+		<tr><td><b>El n&uacute;mero de cuenta seleccionado para el cobro de comisiones, será asignado a las operaciones  de comisi&oacute;n pendientes por cobrar al cliente</td></tr>
+		</table>
+
+        
+ <!-- Cheque -->
+ 
+<div id="beneficiario_display" style="display:none" align="center">
+	<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform" style="table-layout: auto">
+	<tr>
+       <!--titulo-->
+
+        <tr>
+        	<td width="25%">Cedula Beneficiario cheque*:</td>
+        	<td width="75%"><input type="text" id="cheque" value="@cedula_beneficiario null-value=''@"  name="cedula_beneficiario"  maxlength="10" class="inputControl"/></td>
+        </tr>
+       <tr>
+        	<td width="25%">Nombre Beneficiario cheque*:</td>
+        	<td width="75%"><input type="text" value="@nombre_beneficiario@" name="nombre_beneficiario" size="60"  maxlength="50" class="inputControl"/></td>
+        </tr>
+       </table>
+</div>
+
+ 
+    <!-- Banco internacional sin intermediario -->
+	<div id="internacional_display" style="display:none" align="center">
+	<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform" style="table-layout: auto">	
+     		  
+       <tr>
+        	<td width="25%">Nombre del beneficiario *:</td>
+        	<td width="75%">
+        		<input type="text" value="@nombre_beneficiario@" name="nombre_beneficiario_swift" maxlength="33" size="35" class="inputControl"/>
+        	</td>
+        </tr> 
+        <tr>
+        	<td width="25%">N&uacute;mero de Cuenta *:</td>
+        	<td width="75%">
+        		<input type="text" value="@ctecta_numero@" name="ctecta_numero" maxlength="29" size="35" class="inputControl"/>        		
+        	</td>
+        </tr> 
+        
+        <!-- Picklist BIC/SWIFT -->
+        <tr id="bic_banco_dest">
+            <td>
+             BIC/SWIFT *:
+            </td>
+            <td>
+             <input type="text" value="@ctecta_bcocta_bic null-value=''@" name="ctecta_bcocta_bic" id ="bic" readonly/>	           	 
+           	 <IMG src="../images/infi_gn_picklist.gif" title="Haga CLICK para ver la lista de opciones." onclick="showPickList2(1,document.dataentry.bic,document.dataentry.bancointernacional, document.dataentry.bco_dir, 'pick_bic_swift-find')" style="cursor:hand"/>
+			 <IMG src="../images/infi_gn_picklist-clear.gif" title="Haga CLICK para borrar la opción seleccionada." onclick="showPickList2(0,document.dataentry.bic,document.dataentry.bancointernacional, document.dataentry.bco_dir, 'pick_bic_swift-find')" style="cursor:hand"/>
+           </td>
+        </tr>    
+        
+        <tr>
+        	<td width="25%">Banco *:</td>
+        	<td width="75%"><input type="text" id="bancointernacional" value="@ctecta_bcocta_bco null-value=''@" name="ctecta_bcocta_bco"  maxlength="50" class="inputControl" size="50" readonly/></td>
+        </tr>
+       <tr>
+	        <td>Direcci&oacute;n *:</td>
+        	<td>
+        		<input type="text" value="@ctecta_bcocta_direccion null-value=''@" name="ctecta_bcocta_direccion" id="bco_dir" maxlength="33" size="50" class="inputControl"/>
+        	</td>
+        </tr>      
+        
+        <!-- 
+        <tr id="bic_banco_dest">
+            <td>BIC/SWIFT *:</td>
+        	<td>
+        		<input type="text" value="@ctecta_bcocta_bic null-value=''@" name="ctecta_bcocta_bic"   maxlength="50" class="inputControl"/>
+        	</td>
+        </tr>-->
+        
+        <tr>
+	        <td>Tel&eacute;fono *:</td>
+        	<td>
+        		<input type="text" value="@ctecta_bcocta_telefono null-value=''@" name="ctecta_bcocta_telefono"  maxlength="50" class="inputControl"/>
+        	</td>
+        </tr>
+        <tr id="aba_banco_dest" style="display: none">
+	        <td>ABA*:</td>
+        	<td>
+        		<input type="text" value="@ctecta_bcocta_aba null-value=''@" name="ctecta_bcocta_aba"  maxlength="50" class="inputControl"/>
+        	</td>
+        </tr>
+        <tr id="estado">
+	        <td>Estado*:</td>        	
+        	<td>
+        	<SELECT NAME="ctecta_bcocta_estado" SIZE="1" onclick="seleccionarEstado(this.value, this.options[this.selectedIndex].text);javascript:recargarCiudades();">				
+					<!--OPTION VALUE="23" SELECTED></OPTION-->
+					<rows_estados>					
+					<OPTION VALUE="@cod_estado@">@desc_estado@</OPTION>						
+					</rows_estados>
+	 			</SELECT> 
+	 		</td>	
+        </tr> 
+        <tr id="ciudad_seleccionada">
+			<td>Ciudad*:</td>        	
+			<td>
+				<div id="ciudades"/>
+				<SELECT NAME="ctecta_bcocta_ciudad" SIZE="1" onclick="seleccionarCiudad(this.value, this.options[this.selectedIndex].text);">				
+					<rows_ciudad>					
+						<OPTION VALUE="@cod_ciudad@">@desc_ciudad@</OPTION>						
+					</rows_ciudad>
+				</SELECT>	
+				
+			</td>	
+		</tr>  			
+        <tr>
+        	<td>Observaci&oacute;n :</td>
+        	<td>
+        	<textarea id="texto" name="ctecta_observacion" cols="30" rows ="5"  onKeyDown="caracteresRestantes(this.form.ctecta_observacion,25,210);" onKeyUp="caracteresRestantes(this.form.ctecta_observacion,25,210);">@ctecta_observacion@</textarea>
+  			</td>
+        </tr>        
+        <tr id="checkIntermediario" style="display:none;">
+       		 <td width="25%">Banco:</td>
+      		 <td width="75%"><INPUT TYPE="RADIO" NAME="intermediario" ONCLICK="mostrarBancoIntermediario();"/>Intermediario	
+ 		</tr>        
+    </table>
+	</div>
+	
+	<table id="bancoIntermediario" border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform" style="table-layout:auto; display:none;">
+ 
+         <tr>
+        	<td width="25%">Cuenta en el Banco Intermediario*:</td>
+        	<td width="75%">
+        		<input type="text" value="@ctecta_bcoint_swift@" name="ctecta_bcoint_swift" maxlength="29" size="35" class="inputControl"/>
+        		(N&uacute;mero de cuenta del banco destino en el banco intermediario)
+        	</td>
+        
+        <tr>            
+        
+        <!-- Picklist BIC/SWIFT -->
+        <tr>
+            <td>
+             BIC/SWIFT Del Banco Intermediario*:
+            </td>
+            <td>
+             <input type="text" value="@ctecta_bcoint_bic null-value=''@" name="ctecta_bcoint_bic" id="bic_int"  maxlength="50" class="inputControl" readonly/>
+           	 <IMG src="../images/infi_gn_picklist.gif" title="Haga CLICK para ver la lista de opciones." onclick="showPickList2(1,document.dataentry.bic_int,document.dataentry.bco_int, document.dataentry.bco_dir_int, 'pick_bic_swift-find')" style="cursor:hand"/>
+			 <IMG src="../images/infi_gn_picklist-clear.gif" title="Haga CLICK para borrar la opción seleccionada." onclick="showPickList2(0,document.dataentry.bic_int,document.dataentry.bco_int, document.dataentry.bco_dir_int, 'pick_bic_swift-find')" style="cursor:hand"/>
+           </td>
+        </tr>    
+        
+         <tr>
+        	<td width="25%">Banco Intermediario*:</td>
+        	<td width="75%">
+        		<input type="text" value="@ctecta_bcoint_bco@" name="ctecta_bcoint_bco" id="bco_int" maxlength="50" size="50" class="inputControl" readonly/>
+        	</td>
+        </tr>        
+ 
+      
+        <tr>
+	        <td>Direcci&oacute;n Del Banco Intermediario*:</td>
+        	<td>
+        		<input type="text" value="@ctecta_bcoint_direccion@" name="ctecta_bcoint_direccion" id="bco_dir_int" size="50"  maxlength="33" class="inputControl"/>
+        	</td>
+        </tr>
+    
+    	<!-- 
+        <tr>
+            <td>BIC/SWIFT Del Banco Intermediario*:</td>
+        	<td>
+        		<input type="text" value="@ctecta_bcoint_bic null-value=''@" name="ctecta_bcoint_bic"   maxlength="50" class="inputControl"/>
+        	</td>
+        </tr>-->
+        
+        <tr>
+	        <td>Tel&eacute;fono Del Banco Intermediario*:</td>
+        	<td>
+        		<input type="text" value="@ctecta_bcoint_telefono null-value=''@" name="ctecta_bcoint_telefono"  maxlength="50" class="inputControl"/>
+        	</td>
+        </tr>
+        
+        <tr style="display: none">
+	        <td>ABA Del Banco Intermediario*:</td>
+        	<td>
+        		<input type="text" value="@ctecta_bcoint_aba null-value=''@" name="ctecta_bcoint_aba"  maxlength="50" class="inputControl"/>
+        	</td>
+        </tr>       
+        <tr>
+        	<td>Observaciones Del Banco Intermediario:</td>
+        	<td>
+        		<textarea id="texto" name="ctecta_bcoint_observacion" cols="30" rows ="5" class="inputControl" onKeyDown="caracteresRestantes(this.form.ctecta_bcoint_observacion,25,210);" onKeyUp="caracteresRestantes(this.form.ctecta_bcoint_observacion,25,210);">@ctecta_bcoint_observacion null-value=''@</textarea>
+        	</td>  
+        </tr>
+ 		<tr>
+       		<td>Banco:</td>
+       		<td>
+       			<INPUT TYPE="RADIO" VALUE="0" NAME="intermediario" ONCLICK="mostrarBancoIntermediario();"/> Sin Intermediario
+		</td>
+		</tr>
+    </table>
+    </rows>    
+       
+    <br>
+	<INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/> 	
+	<P><FONT COLOR="red"><B>Nota:</B></FONT> Los campos con * deben ser llenados para poder procesar el formulario.</P>
+	<input type="hidden" name="clientid_viejo" value="@client_id@">
+	<input type="hidden" name="ctectanumero_viejo" value="@ctecta_numero@">
+	<input id="tipoCuenta" type="hidden" name="tipoCuenta" value="@tipo_instruccion_id@">
+	<input id="CuentaId" type="hidden" name="CuentaId" value="@ctes_cuentas_id@">
+	<input id="tipo_cuenta_anterior" type="hidden" name="tipo_cuenta_anterior" value="@ctecta_uso@">
+	<input id="control_cambio" type="hidden" value="@control_cambio@" name="control_cambio">
+	<input id="check_intermediario" type="hidden" value="@intermediario@" name="check_intermediario">
+	<input id="cod_estado_origen" type="hidden" value="@cod_estado_origen@" name="cod_estado_origen">
+	<input id="cod_ciudad_origen" type="hidden" value="@cod_ciudad_origen@" name="cod_ciudad_origen">
+	<input id="desc_estado_origen" type="hidden" value="@desc_estado_origen@" name="desc_estado_origen">
+	<input id="desc_ciudad_origen" type="hidden" value="@desc_ciudad_origen@" name="desc_ciudad_origen">
+	<input id="ctes_cuentas_id" type="hidden" name="ctes_cuentas_id" value="@ctes_cuentas_id@">
+	<input type="hidden" value="0" name="indicador"> 
+ 	<table>  
+		<tr>
+       		<td><button TYPE="submit">Procesar</button></td>
+       		<td><button type="button" onclick="javascript:history.back();">Regresar</button></td>
+      		<td><button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button></td>
+      	</tr>
+  	</table>   
+    </form> 
+	</CENTER>        
+</BODY>
+</HTML>

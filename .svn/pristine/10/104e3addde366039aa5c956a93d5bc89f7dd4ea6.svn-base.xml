@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+    <!--
+    
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, decimal, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+    
+    -->
+    
+        <field 
+        name="client_id" 
+        type="integer" 
+        description="Cliente"
+        nullable="0"
+        size="100" />
+        
+        <field 
+        name="titulo_id" 
+        type="varchar" 
+        description="Titulo"
+        nullable="0"
+        size="100" /> 
+        
+        <field 
+        name="tipo_producto" 
+        type="varchar" 
+        description="Tipo de producto"
+        nullable="0"
+        size="100" />                 
+    
+        <field 
+        name="fe_bloqueo" 
+        type="varchar" 
+        description="Fecha de Bloqueo"
+        nullable="1"
+        size="10" />
+ 
+        <field 
+        name="tipblo_id" 
+        type="varchar" 
+        description="C&oacute;digo de Bloqueo"
+        nullable="0"
+        size="100" />
+    
+
+        <field 
+        name="tipgar_id" 
+        type="varchar" 
+        description="Tipo de Garant&iacute;a"
+        nullable="1"
+        size="100" />
+        
+        <field 
+        name="beneficiario_id" 
+        type="integer" 
+        description="Beneficiario"
+        nullable="0"
+        size="100" />
+ 
+        <field 
+        name="cant_disp_bloquear" 
+        type="integer" 
+        description="Cantidad Total"
+        nullable="0"
+        size="100" />
+        
+        <field 
+        name="cant_bloquear" 
+        type="integer" 
+        description="Cantidad a Bloquear"
+        nullable="0"
+        size="100" />
+        
+        
+        <field 
+        name="numero_garantia" 
+        type="varchar" 
+        description="N&uacute;mero de Garant&iacute;a"
+        nullable="1"
+        size="20" />
+           
+    
+</record>
+

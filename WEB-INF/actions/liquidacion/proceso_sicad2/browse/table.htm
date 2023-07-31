@@ -1,0 +1,132 @@
+<html>
+	<head>        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+        <script type="text/javascript">
+        function detalleOrden(unidadId,blotter,status){
+			document.forms.formulario.unidad.value =unidadId;
+			document.forms.formulario.status.value =status;
+        }
+        
+        function procesar(){        	
+            if (document.formulario.radio.disabled==false&&document.forms.formulario.unidades!=undefined){
+		        if(confirm("¿Está seguro que desea empezar el proceso de Liquidación?")){
+					var botones = document.getElementById('botones');
+					botones.style.display='none';
+					document.forms.formulario.action = 'proceso_liquidacion_sicad2-procesar'; 
+					document.forms.formulario.submit();
+		        }//fin if
+            }else{
+                alert("No hay unidades de inversión para su liquidación");
+            }
+        }//fin procesar
+        
+        function validarProcesar(){
+        	if (document.formulario.cantidad.value=='0'){
+        		document.formulario.radio.disabled = true
+        	}
+        }
+        </script>
+	
+    </head>
+
+<body onload="validarProcesar()">
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+			<TD class="headerBox">                
+            	<FONT class="headerText">Liquidaci&oacute;n / @titulo_pantalla@</FONT>
+        	</TD>
+        	<!-- help online -->
+   			<TD class="headerBox" valign="middle" align="right">
+   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   			</TD>
+   			<!-- fin help online -->
+		</TR>
+	</TABLE>
+
+   <center>
+	<br>
+	<form id="formulario" name="formulario" action="liquidacion_blotter_ordenes" method="post" target="_self">
+    <input type="HIDDEN" name="tipo_producto" value="@tipo_producto@">
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="90%" class="datatable" style="table-layout: auto;>
+		<tr class="tableHeader">
+			<th></th>
+    		<th width="" nowrap>Status</th>  
+    		<th width="" nowrap>Unidad de Inversión</th>
+            <th width="" nowrap >Cantidad</th>
+            <th width="" nowrap>Total</th>                         
+    	</tr>
+
+		<!--data-->
+	   <ordenes>
+    	<tr class="tableCell">
+    	<td align="center">
+    	  <input type="hidden" value="@ui_id@" name="unidades">    	
+          <input type="radio" value="@ui_id@" name="radio" onclick="javascript:detalleOrden('@ui_id@','@blotter@','@estatus_orden@');">
+    	</td>
+		<td nowrap="nowrap">@estatus_orden@</td>
+		<td nowrap="nowrap">@ui_txt@</td>
+		<td align="center" nowrap="nowrap">@cantidad@ 
+			<input type="hidden" name="cantidad" value="@cantidad@"'/>
+			<input type="hidden" id="unidad" name="unidad" value="@ui_id@">
+			<input type="hidden" id="blotter" name="blotter" value="">
+			<input type="hidden" id="status" name="status" value="@estatus_orden@">
+		</td>
+		<td align="right" nowrap="nowrap">@ordene_adj_monto format-mask='#,###,##0.00'@ </td>
+		</tr>
+	   </ordenes>	  
+	</table>
+	<br>
+	<table border="0" cellspacing="1" cellpadding="2" width="50%" class="datatable" style="table-layout: auto;>
+		<tr class="tableHeader">
+    		<th width="" nowrap>Tipo de Cruce</th>  
+    		<th width="" nowrap>Monto Total de Cruces</th>
+            <th width="" nowrap >Valor Nominal Total</th>                     
+    	</tr>
+
+		<!--data-->
+	   <ordenesTitulos>
+    	<tr class="tableCell">
+    	<td nowrap="nowrap">TITULOS</td>
+		<td nowrap="nowrap">@monto format-mask='#,###,##0.00' null-value='0'@</td>
+		<td nowrap="nowrap">@valor_nominal format-mask='#,###,##0.00' null-value='0'@</td>
+		</tr>
+	   </ordenesTitulos>	 
+	   <ordenesEfectivo>
+    	<tr class="tableCell">
+    	<td nowrap="nowrap">EFECTIVO</td>
+		<td nowrap="nowrap">@monto format-mask='#,###,##0.00' null-value='0'@</td>
+		<td nowrap="nowrap">@valor_nominal format-mask='#,###,##0.00' null-value='0'@</td>
+		</tr>
+	   </ordenesEfectivo>	 
+	</table>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	
+    <BR>
+	
+
+	
+	
+   <br>
+   <br>
+
+    	<div id="botones">
+		&nbsp;
+		<button TYPE="button" onclick="javascript:procesar();">Procesar</button>
+		&nbsp;
+		<button TYPE="submit">Detalle</button>
+		&nbsp;
+		<button TYPE="button" onclick="javascript:history.back();">Regresar</button>
+		&nbsp;
+		<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+		</div>
+	</form>
+   </center>
+</body>
+</html>

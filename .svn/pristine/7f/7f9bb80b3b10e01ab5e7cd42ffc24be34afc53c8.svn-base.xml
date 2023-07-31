@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+
+    <field 
+        name="asignado" 
+        type="varchar" 
+        description="monto"
+        nullable="0"
+        size="200" />        
+   <field 
+        name="porcentaje" 
+        type="varchar" 
+        description="porcentaje del monto"
+        nullable="0"
+        size="200" /> 
+        
+<!--          <field  -->
+<!--         name="fecha"  -->
+<!--         type="varchar"  -->
+<!--         description="fecha de la operacion" -->
+<!--         nullable="0" -->
+<!--         size="200" /> -->
+        
+<!--          <field  -->
+<!--         name="monto"  -->
+<!--         type="varchar"  -->
+<!--         description="monto de operacion" -->
+<!--         nullable="0" -->
+<!--         size="200" /> -->
+        
+         <field 
+        name="disponible" 
+        type="varchar" 
+        description="monto"
+        nullable="0"
+        size="200" />
+        
+        <field 
+        name="consumido" 
+        type="varchar" 
+        description="monto"
+        nullable="0"
+        size="200" />
+        
+<!--         <field  -->
+<!--         name="moneda"  -->
+<!--         type="varchar"  -->
+<!--         description="moneda de la operacion" -->
+<!--         nullable="0" -->
+<!--         size="200" /> -->
+     
+        
+        <field 
+        name="nro" 
+        type="varchar" 
+        description="numero de oficina"
+        nullable="0"
+        size="200" /> 
+        
+        <field 
+        name="moneda" 
+        type="varchar" 
+        description="moneda del inventario"
+        nullable="0"
+        size="200" /> 
+        
+        <field 
+        name="fecha" 
+        type="varchar" 
+        description="fecha del inventario"
+        nullable="0"
+        size="200" /> 
+        <field 
+        name="diasentrega" 
+        type="varchar" 
+        description="dias de entrega"
+        nullable="0"
+        size="200" /> 
+        
+        <field 
+        name="estatus" 
+        type="varchar" 
+        description="estatus del inventario"
+        nullable="0"
+        size="200" /> 
+    
+</record>
+

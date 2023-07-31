@@ -1,0 +1,49 @@
+<html>
+	<head>
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		<script type="text/javascript">		
+		function postear(archivo){
+			document.forms[0].directorio.value = archivo;
+			document.forms[0].target='_blank';
+			document.forms[0].submit();
+		}
+		</script>
+        <title>INFI</title>
+    </head>
+<body>
+
+<form action="" name="visor_archivos" method="post">
+<input type="hidden" name="directorio" value="@filename@" size="100" readonly="readonly">
+<center>
+<br>
+    <!--tabla de data-->
+    <table border="3" cellspacing="3" cellpadding="2" width="70%" class="dataform">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+    	<th colspan="2">Contenido del Directorio</th>
+    </tr>
+	<ficheros>
+    <tr>
+		<td onclick="postear('@filename@@nombre@')" width="60%">
+			@_row@- <u>@nombre@</u>
+		</td>
+		<td width="40%" align="center">@fecha@</td>
+     </tr>
+     </ficheros>
+
+    </table>  
+    <table border="0" cellspacing="1" cellpadding="2" width="100%">
+	    <tr colspan=3  class="tableCell">        
+		    <td colspan="2">
+		    @archivo@
+		    </td>
+	    </tr>    
+    </table>
+    <BR>
+	<BR>
+</center>
+<input type="hidden" value="" name="log">
+</form>
+</body>
+</html>

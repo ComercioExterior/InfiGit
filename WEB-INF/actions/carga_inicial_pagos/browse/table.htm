@@ -1,0 +1,308 @@
+<html>
+
+	<head> 
+          
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+          <link rel="stylesheet" type="text/css" href="../css/EstiloFichas.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>     
+        
+<script type="text/javascript">
+
+     function procesar_archivos(){
+    	 if (confirm("¿Está seguro que desea procesar los registros de pago de cupones?")){
+	      	document.dataentry.boton_regresar.disabled = true;
+	     	document.dataentry.boton_procesar.disabled = true;
+	     	document.getElementById('tb2').style.display='block';
+	         
+	     	document.dataentry.action='carga_inicial_pagos-procesar_ordenes_registros';
+	     	document.dataentry.submit();
+    	 }
+     }
+
+    function mostrarInvalidos(){        
+    	     document.getElementById('reg_invalidos').style.display='block';
+    	     document.getElementById('reg_validos').style.display='none';
+    	     
+  	      	 document.getElementById('menu1').style.display='block';
+  	      	 document.getElementById('menu2').style.display='none';
+    	
+    }
+    
+    function mostrarInvalidos(){        
+    	     document.getElementById('reg_invalidos').style.display='block';
+    	     document.getElementById('reg_validos').style.display='none';
+    	     document.getElementById('reg_validos_no_regs').style.display='none';
+    	     
+  	      	 document.getElementById('menu1').style.display='block';
+  	      	 document.getElementById('menu2').style.display='none';
+  	      	 document.getElementById('menu3').style.display='none';
+    	
+    }
+    
+
+    function mostrarValidos(){
+    	     document.getElementById('reg_invalidos').style.display='none';
+    	     document.getElementById('reg_validos').style.display='block';
+    	     document.getElementById('reg_validos_no_regs').style.display='none';
+    	     
+    	     document.getElementById('menu1').style.display='none';
+  	      	 document.getElementById('menu2').style.display='block'; 
+  	      	 document.getElementById('menu3').style.display='none'; 
+    }
+    
+    function mostrarValidosNoRegistrados(){
+    	     document.getElementById('reg_invalidos').style.display='none';
+    	     document.getElementById('reg_validos').style.display='none';
+    	     document.getElementById('reg_validos_no_regs').style.display='block';
+    	     
+    	     document.getElementById('menu1').style.display='none';
+  	      	 document.getElementById('menu2').style.display='none'; 
+  	      	 document.getElementById('menu3').style.display='block'; 
+    }
+   
+        
+</script>     
+  
+	
+    </head>
+
+<body>
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Carga Inicial de Cupones</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<br>
+
+<form name="dataentry" method="post" action="carga_inicial_pagos-procesar_ordenes_registros">
+
+<div id="menu1">
+<table border="0">
+<tr>
+<td id="navigationActivo"><a style="cursor:hand" onclick="javascript:mostrarValidosNoRegistrados();"><span>Registros Buenos (No Registrados)(@t_registros_buenos_no_regs@)</span></a></td>
+<td id="navigation"><a style="cursor:hand" onclick="javascript:mostrarValidos();" ><span>Registros Buenos (Registrados) (@t_registros_buenos@)</span></a></td>
+<td id="navigation"><a style="cursor:hand" onclick="javascript:mostrarInvalidos();"><span>Registros Malos (@t_registros_malos@)</span></a></td>
+
+
+
+</tr>
+</table>
+</div> 
+
+<div id="menu2" style="display:none">
+<table border="0">
+<tr>
+<td id="navigation"><a style="cursor:hand" onclick="javascript:mostrarValidosNoRegistrados();"><span>Registros Buenos (No Registrados)(@t_registros_buenos_no_regs@)</span></a></td>
+<td id="navigationActivo"><a style="cursor:hand" onclick="javascript:mostrarValidos();" ><span>Registros Buenos (Registrados) (@t_registros_buenos@)</span></a></td>
+<td id="navigation"><a style="cursor:hand" onclick="javascript:mostrarInvalidos();"><span>Registros Malos (@t_registros_malos@)</span></a></td>
+
+</tr>
+</table>
+</div>
+
+<div id="menu3" style="display:none">
+<table border="0">
+<tr>
+<td id="navigation"><a style="cursor:hand" onclick="javascript:mostrarValidosNoRegistrados();"><span>Registros Buenos (No Registrados)(@t_registros_buenos_no_regs@)</span></a></td>
+<td id="navigation"><a style="cursor:hand" onclick="javascript:mostrarValidos();" ><span>Registros Buenos (Registrados)(@t_registros_buenos@)</span></a></td>
+<td id="navigationActivo"><a style="cursor:hand" onclick="javascript:mostrarInvalidos();"><span>Registros Malos (@t_registros_malos@)</span></a></td>
+
+</tr>
+</table>
+</div>
+
+<center>
+    <!-- table border="0" cellspacing="1" cellpadding="2" width="150%" class="datatable">
+        
+       
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                Registros de Pagos Cargados ( @t_registros@ )
+                </FONT>
+            </th>
+        </tr>
+  
+	</table-->
+	
+   
+<div id="reg_invalidos" style="display:none">
+
+    <table border="0" cellspacing="1" cellpadding="2" width="170%" class="datatable" style="TABLE-LAYOUT: auto; ">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">	
+    	<th>Grabado</th>
+		<th>Nombre</th>
+   		<th>C&eacute;dula/Rif</th>
+   		<th>Valor Nominal</th>
+   		<th>Intereses Por Pagar</th>
+   		<th>Intereses Pagados</th>
+   		<th>Fecha Pago</th>
+   		<th>Tipo Pago</th>
+   		<th>Titulo</th>
+   		<th>Fecha Inicio Pago</th>
+   		<th>Fecha Final Pago</th>
+   		<th>Nro. Orden</th>
+   		<th>Error</th>   
+   		<th>Archivo</th>   	
+
+    </tr>
+
+    <!--data-->
+    <rows_malos>
+    <tr class="tableCell">
+	
+		<td align="center">@grabado@</td>		
+		<td align="left">@nombre@</td>		
+		<td align="left">@cedula@</td>	
+		<td align="left">@nominal@</td>	
+		<td align="left">@int_porpagar@</td>
+		<td align="left">@int_pagados@</td>		
+		<td align="left">@fe_pago@</td>		
+		<td align="left">@tipo_pago@</td>	
+		<td align="left">@titulo@</td>		
+		<td align="left">@fe_inicio_pago@</td>	
+		<td align="left">@fe_fin_pago@</td>		
+		<td align="left">@id_orden@</td>	
+		<td align="left">@error@</td>	
+		<td align="left">@archivo@</td>							
+	</tr>
+     </rows_malos>
+     
+     </table>
+     &nbsp;<button name="boton_regresar" onclick="javascript: history.back();">Regresar</button>
+</div>     
+
+<div id="reg_validos" style="display:none">
+
+    <table border="0" cellspacing="1" cellpadding="2" width="170%" class="datatable" style="TABLE-LAYOUT: auto; ">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">	
+    	<th nowrap>Grabado</th>
+		<th nowrap>Nombre</th>
+   		<th nowrap>C&eacute;dula/Rif</th>
+   		<th nowrap>Valor Nominal</th>
+   		<th nowrap>Intereses Por Pagar</th>
+   		<th nowrap>Intereses Pagados</th>
+   		<th nowrap>Fecha Pago</th>
+   		<th nowrap>Tipo Pago</th>
+   		<th nowrap>Titulo</th>
+   		<th nowrap>Fecha Inicio Pago</th>
+   		<th nowrap>Fecha Final Pago</th>
+   		<th nowrap>Nro. Orden</th>
+   		<th nowrap>Error</th>   
+   		<th nowrap>Archivo</th>   	
+
+    </tr>
+
+    <rows_buenos>
+    <tr class="tableCell">
+	
+		<td align="center">@grabado@</td>		
+		<td align="left">@nombre@</td>		
+		<td align="left">@cedula@</td>	
+		<td align="left">@nominal@</td>	
+		<td align="left">@int_porpagar@</td>
+		<td align="left">@int_pagados@</td>		
+		<td align="left">@fe_pago@</td>		
+		<td align="left">@tipo_pago@</td>	
+		<td align="left">@titulo@</td>		
+		<td align="left">@fe_inicio_pago@</td>	
+		<td align="left">@fe_fin_pago@</td>		
+		<td align="left">@id_orden@</td>	
+		<td align="left">@error@</td>	
+		<td align="left">@archivo@</td>							
+	</tr>
+     </rows_buenos>
+    </table>
+    &nbsp;<button name="boton_regresar" onclick="javascript: history.back();">Regresar</button>
+    </div>  
+    
+    <div id="reg_validos_no_regs">
+
+    <table border="0" cellspacing="1" cellpadding="2" width="170%" class="datatable" style="TABLE-LAYOUT: auto; ">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">	
+    	<th nowrap>Grabado</th>
+		<th nowrap>Nombre</th>
+   		<th nowrap>C&eacute;dula/Rif</th>
+   		<th nowrap>Valor Nominal</th>
+   		<th nowrap>Intereses Por Pagar</th>
+   		<th nowrap>Intereses Pagados</th>
+   		<th nowrap>Fecha Pago</th>
+   		<th nowrap>Tipo Pago</th>
+   		<th nowrap>Titulo</th>
+   		<th nowrap>Fecha Inicio Pago</th>
+   		<th nowrap>Fecha Final Pago</th>
+   		<th nowrap>Nro. Orden</th>
+   		<th nowrap>Error</th>   
+   		<th nowrap>Archivo</th>   	
+
+    </tr>
+
+    <rows_buenos_no_regs>
+    <tr class="tableCell">
+	
+		<td align="center">@grabado@</td>		
+		<td align="left">@nombre@</td>		
+		<td align="left">@cedula@</td>	
+		<td align="left">@nominal@</td>	
+		<td align="left">@int_porpagar@</td>
+		<td align="left">@int_pagados@</td>		
+		<td align="left">@fe_pago@</td>		
+		<td align="left">@tipo_pago@</td>	
+		<td align="left">@titulo@</td>		
+		<td align="left">@fe_inicio_pago@</td>	
+		<td align="left">@fe_fin_pago@</td>		
+		<td align="left">@id_orden@</td>	
+		<td align="left">@error@</td>	
+		<td align="left">@archivo@</td>							
+	</tr>
+     </rows_buenos_no_regs>
+    </table>
+   
+    <button name="boton_procesar" onclick="procesar_archivos();">Procesar</button>
+    &nbsp;<button name="boton_regresar" onclick="javascript: history.back();">Regresar</button>
+    </div> 
+    
+    <table style="display:none" id="tb2" border="0" cellspacing="1" cellpadding="2" width="170%" class="dataform">
+   
+        <tr>
+           <td width="50%">
+            <b>Procesando datos... Se generar&aacute;n ordenes de pago de cupones para los registros buenos...<b>
+           </td>
+         
+       </tr>
+       
+   	</table> 
+
+<br>
+
+       
+  <INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/>  
+    <input type="hidden" name="titulo_id" value="@titulo_id@">
+</form>
+
+</center>
+
+</body>
+
+</html>
+

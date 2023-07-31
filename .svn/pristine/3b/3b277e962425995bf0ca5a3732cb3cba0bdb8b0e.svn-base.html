@@ -1,0 +1,102 @@
+<html>
+
+	<head>
+        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+        <script type="text/javascript">
+        
+          
+        </script>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Ordenes / Consultas / Ordenes Diferencia</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+<center>
+
+<br>
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                  Registros ( @t_registros@ ) 
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+    
+    <!--encabezados de columna-->
+    <tr>
+    
+    		<th colspan="1" width="4%"></th> 
+    		<th nowrap align="center" width="6%">Orden</th>
+    		<th nowrap>Cliente</th>         
+            <th nowrap>Bloter</th>            
+            <th nowrap align="center" width="13%">Solicitado</th>   
+            <th nowrap width="13%">Adjudicado</th>                                    
+    </tr>
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+                
+                <td align="center">
+                <a href="javascript:abrirPopupDetalles('detalle_orden-find?ord_id=@ordene_id@','100', '580')"><IMG SRC="../images/infi_gn_document.gif" WIDTH="15" ALIGN="top" HEIGHT="13" title="Detalles de la Orden" BORDER="0" style="cursor:hand"></a>
+                </td>
+            	
+            	<td nowrap align="center">
+                @ordene_id@
+                </td>
+                <td nowrap>
+                @client_nombre@
+                </td>
+                <td VALIGN="middle" >                
+                @bloter_descripcion@
+                </td>
+                <td align="center" nowrap>
+                @ordene_ped_monto@
+                </td>
+                
+                 <td align="center" nowrap>
+                @ordene_adj_monto@
+                </td>
+     </tr>
+     </rows>
+    </table>
+		@page_index@
+    <BR>
+<form>
+    <button type="button" onclick="window.location='liquidacion_consulta-filter'">Regresar</button>
+     &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+</form>
+
+</center>
+
+</body>
+
+</html>
+

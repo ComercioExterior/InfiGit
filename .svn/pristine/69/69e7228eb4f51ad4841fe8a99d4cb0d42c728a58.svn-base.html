@@ -1,0 +1,202 @@
+<HTML>
+    
+    <HEAD>
+    <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+            <SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+        
+    
+             <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        
+        <TITLE>Sistema INFI</TITLE>
+        
+  <script type="text/javascript">
+  		
+  		function showPlantilla(x)// la x nos indicara si la plantilla mostrara los campos dinamicos, solo aplica en casos de Toma de Orden
+		{		  	   
+		   var indice = document.dataentry.transa_id.selectedIndex;
+		   var valor = document.dataentry.transa_id.options[indice].value;
+		   var indix = document.dataentry.undinv_id.selectedIndex;
+		   var unidad = document.dataentry.undinv_id.options[indix].value;
+		   //alert(unidad);
+		   // llamar a la plantilla	
+    	   var ventana;				   
+		   ventana = window.open('documentos_definicion-plantilla'+'?dirigir='+x+'&id=' + valor +'&unidad=' + unidad+"&name=" + 'plantilla.htm', 'Plantilla','resizable=yes,scrollbars=yes,width=600,height=450,Left=200,top=150,Status=yes,unadorned:true');		   	   		   
+		}
+  
+  		function mostrarArchivo(){
+	
+		if(document.dataentry.archivo[0].checked){
+			archivo.style.display ="block";
+		 }else
+		 	{
+		 	archivo.style.display ="none";
+		 	}	
+	}
+	
+	function mostrarUnidad(){
+		if(document.dataentry.transa_id.value=="TOMA_ORDEN" || document.dataentry.transa_id.value=="ADJUDICACION" || document.dataentry.transa_id.value=="CANCELACION_ORDEN"){
+			document.getElementById("unidad").style.display ="block";
+			plantilla.style.display="none"; //Ocultamos el link que cargo
+			plantillaU.style.display="block";//Mostramos el link relacionado con la transacion elegida
+		 }else
+		 	{
+		 	document.getElementById("unidad").style.display ="none";
+		 	document.dataentry.undinv_id.value=0;
+		 	plantillaU.style.display="none";//Ocultamos el link que cargo
+		 	plantilla.style.display="block";//Mostramos el link relacionado con la transacion elegida
+		 	}	
+	}
+	
+	function mostrarStatus(id){
+		if(id==1){
+			definicion.style.display="block";
+			titulod.style.display ="block";
+		}
+		if(id==2){
+			aprobacion.style.display="block";
+			tituloa.style.display ="block";
+		}	
+	}
+        </script>
+        
+         
+    </HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript:mostrarUnidad();mostrarStatus(@accion@);{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <td class="headerBox">
+				<div id="titulod" style="display:none">               
+	            	<font class="headerText">Configuraci&oacute;n / Documentos / Definici&oacute;n</font>
+	            </div>
+	            <div id="tituloa" style="display:none">               
+	            	<font class="headerText">Configuraci&oacute;n / Documentos / Aprobaci&oacute;n</font>
+	            </div>			
+		</td>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+        <td class="headerBox" aling="right"></td>
+</TABLE>
+        
+        <CENTER>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="documentos_definicion-confirm_update" enctype="multipart/form-data">
+		
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="3" ALIGN="center"> 
+                 Editar
+            </th>
+        </tr>
+        
+        <!--campo-->
+        <tr>
+            <td width="30%">
+             Transacci&oacute;n: *
+            </td>
+            <td>
+            	<SELECT NAME="transa_id" CLASS="inputControl" onchange="mostrarUnidad();">
+					<rows1>
+					<OPTION VALUE="@transa_id@">@transa_descripcion@</OPTION>
+					</rows1>
+				</SELECT>
+				<td width="40%" align="left">
+				<!--IMAGEN BOTON PARA VISUALIZAR LA PLANTILLA-->
+				<div id="plantilla" style="display:none">
+				&nbsp;&nbsp;&nbsp;&nbsp;<IMG src="../images/infi_gn_document.gif" title="Campos disponibles para la plantilla." onclick="showPlantilla(1);" style="cursor:hand"/>
+				</div>
+				<div id="plantillaU" style="display:none">
+				&nbsp;&nbsp;&nbsp;&nbsp;<IMG src="../images/infi_gn_document.gif" title="Campos disponibles para la plantilla." onclick="showPlantilla(2);" style="cursor:hand"/>
+				</div>
+				</td>
+            </td>
+        </tr>
+        </rows>
+         </table>
+	<table class="dataform" border="0" id="definicion" style="display:none" cellspacing="1" cellpadding="2" width="100%">
+		<tr>
+            <td width="30%">
+             Tipo de Persona: *
+            </td>
+            <td>
+            	<SELECT NAME="tipper_id" CLASS="inputControl" >
+					<rows2>
+					<OPTION VALUE="@tipper_id@"/>@tipper_nombre@</OPTION>					 							 
+					</rows2>
+				</SELECT>
+            </td>
+        </tr>		
+		<tr class="tableCell">
+			<td width="30%">
+                &iquest;Cambiar Archivo? *
+            </td>
+             <td  CLASS="formLabel">
+                <INPUT type="radio" name="archivo" value="1" class="inputControl" onClick="mostrarArchivo();" />Si
+				<INPUT type="radio" name="archivo" value="0" class="inputControl" onClick="mostrarArchivo();" checked/>No
+            </td>        
+		</tr>	
+	</table>
+	<table class="dataform" border="0" id="archivo" style="display:none" cellspacing="1" cellpadding="2" width="100%">
+			
+		
+		<tr class="tableCell">
+        	<td width="30%" CLASS="formLabel">
+           	Archivo: *
+         	</td>
+			<td aling="center"> 
+  				<input type="file" name="nombre_doc" value="@nombre_doc@" size="50">  	
+        	</td>        
+     	</tr>
+	</table>
+	<table class="dataform" border="0" id="aprobacion" style="display:none" cellspacing="1" cellpadding="2" width="100%">
+		<tr class="tableCell">
+			<td width="30%">Estatus:*</td>
+			<td>
+				<SELECT NAME="status_documento" SIZE="1">				
+					<rows_status>					
+						<OPTION VALUE="@status_documento@">@descripcion_status@</OPTION>						
+					</rows_status>
+				</SELECT>       
+			</td>        
+		</tr>		
+	</table>
+    <table class="dataform" border="0" id="unidad" style="display:none" cellspacing="1" cellpadding="2" width="100%">
+		<tr class="tableCell">
+			<td width="30%">Unidad de Inversi&oacute;n:*</td>
+			<td>
+				<SELECT NAME="undinv_id" SIZE="1">
+					<OPTION VALUE="0"></OPTION>			
+					<rows_undinv>					
+						<OPTION VALUE="@undinv_id@">@undinv_nombre@</OPTION>						
+					</rows_undinv>
+				</SELECT>       
+			</td>        
+		</tr>		
+	</table>
+        
+     <P><FONT COLOR="red"><B>Nota:</B></FONT> Los campos con * deben ser llenados para poder procesar el formulario.</P>
+         
+         <INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/> 	
+		<INPUT TYPE="HIDDEN" VALUE="@documento_id@" NAME="documento_id"/>
+            
+            <button TYPE="submit">Procesar</button>
+            &nbsp;<button type="button" onclick="javascript:history.back();">Regresar</button>
+            &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+		
+    </form>        
+        </CENTER>
+        
+    </BODY>
+
+</HTML>

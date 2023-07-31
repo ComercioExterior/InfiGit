@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+    <!--
+    
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, decimal, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+    
+    -->
+    
+	        <field 
+        name="transac" 
+        type="varchar" 
+        description="Tipo transaccion de orden"
+        nullable="1"
+        size="50" />    
+
+	     <field 
+        name="undinv_id" 
+        type="integer" 
+        description="Unidad Inversion"
+        nullable="1"
+        size="7" />    
+        
+          <field 
+        name="filtroFechaValorDesde" 
+        type="varchar" 
+        description="filtro Fecha Emision Desde"
+        nullable="1"
+        size="7" />
+   
+        <field 
+        name="filtroFechaValorHasta" 
+        type="varchar" 
+        description="filtro Fecha Emision Hasta"
+        nullable="1"
+        size="7" />
+              
+	        <field 
+        name="client_id" 
+        type="integer" 
+        description="ID del cliente"
+        nullable="1"
+        size="7" />
+        
+        <field 
+        name="ID_ORDEN" 
+        type="integer" 
+        description="Id de orden"
+        nullable="1"
+        size="50" />                
+              
+</record>
+

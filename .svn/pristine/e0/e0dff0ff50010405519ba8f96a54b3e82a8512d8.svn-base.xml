@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<!--
+
+Este archivo es an&aacute;logo a action-map.xml, pero
+en vez de Actions se especifican Parts, fragmentos
+de contenido que sr&aacute;n incorporados din&aacute;micamente
+dentro del template. Los templates pueden tener PlaceHolders
+o campos especiales @part:PartID@ que indicar que en ese lugar
+del template se debe incorporar el output producido por el
+componente PartID indicado. Estos componentes son id&eacute;nticos
+a un Action, pero el Controller no es un Servlet sino una clase
+PartsEngine que se encarga de activar al Model y al View y obtener
+el output resultante; la clase megasoft.Page se encarga de invocar
+a la clase megasoft.PartsEngine de ser necesario.
+
+Un Part es similar a un Action, est&aacute; compuesto por un Model (opcional)
+y un View (mandatorio),  su funci&oacute;n es producir un output de contenido (html, xml, etc)
+que ser&aacute; incorporado din&aacute;micamente dentro del template.
+
+-->
+
+<parts>
+
+	<part
+		id="/header"
+		config-dir="/WEB-INF/parts/test/"
+		description="Part de Demostraci&oacute;n" />
+
+	<part
+		id="/footer"
+		config-dir="/WEB-INF/parts/footer/"
+		description="Part de Demostraci&oacute;n" />
+
+</parts>
+

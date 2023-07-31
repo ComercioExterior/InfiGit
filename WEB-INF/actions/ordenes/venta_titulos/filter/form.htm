@@ -1,0 +1,236 @@
+
+<HTML>
+    
+    <HEAD>
+    <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+            <SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+        
+    
+             <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        
+        <TITLE>Sistema INFI</TITLE>
+        
+        <script type="text/javascript">
+        /** muestra el campo para los datos del conyuge en caso de que el cliente sea casado*/
+ 		function mostrarDatosCasado(){
+ 		
+ 			if(document.dataentry.estado_casado!=undefined){
+	 			if(document.dataentry.estado_casado.value == "SI"){	 				
+	 				document.getElementById('campo_ced_conyuge').style.display='block';
+	 			}else{	 				
+	 				document.getElementById('campo_ced_conyuge').style.display='none';
+	 			}
+	 		}
+ 		}
+ 		
+		//Funci&oacute;n Ajax
+		function callAjax(id_contenedor, cod_ajax){	
+			
+			var pagResponse = false;
+			var url = "venta_titulos-ajax_filter?id_cliente="+document.dataentry.client_id.value+"&cod_ajax="+cod_ajax;
+		
+			if (window.XMLHttpRequest) {// Si es Mozilla, Safari etc
+				pagResponse = new XMLHttpRequest()
+			} else if (window.ActiveXObject){ // pero si es IE
+				try {
+					pagResponse = new ActiveXObject("Msxml2.XMLHTTP")
+				} 
+				catch (e){ // en caso que sea una versi&oacute;n antigua
+					try{
+						pagResponse = new ActiveXObject("Microsoft.XMLHTTP")
+					}
+					catch (e){}
+				}
+			}
+			else
+				return false
+		
+			pagResponse.onreadystatechange=function(){ // funci&oacute;n de respuesta
+				cargarpagina(pagResponse, id_contenedor)
+			}
+			
+			pagResponse.open('GET', url, true) // asignamos los m&eacute;todos open y send
+			pagResponse.send(null)
+
+			
+		
+		}
+		//funci&oacute;n ajax para cargar los datos en la pagina actual
+		function cargarpagina(pagResponse, id_contenedor){
+			if (pagResponse.readyState == 4 && (pagResponse.status==200 || window.location.href.indexOf("http")==-1))
+				document.getElementById(id_contenedor).innerHTML=pagResponse.responseText
+
+				mostrarCampoEstadoCivil();
+				
+		}
+        
+        
+        //Funci&oacute;n para abrir un picklist o limpiar el valor anteriormente seleccionado
+		function showPickList(ind ,id, tx, campo)
+		{
+		   var r
+		   if (ind == '1') {  // llamar a picklist		
+		   	  r = window.open(campo +'?name_id=' + id.name +"&name_tx=" + tx.name, 'Picklist','resizable=yes,scrollbars=yes,width=600,height=450,Left=200,top=150,Status=yes,unadorned:true');
+		   	  //document.dataentry.action='venta_titulos-filter?band=1'; 
+		   	  //document.dataentry.submit();
+		   	  //callAjax('tit_cliente', '1');
+	   		  //document.forms[0].moneda_id.disabled = false;//habilitar campo moneda
+		   	  
+		   }
+		   else{
+			id.value= "";//limpiar id de cliente
+			tx.value= "";//limpiar campo de cliente
+			callAjax('tit_cliente', '1');//buscar todos los titulos
+			
+		  }
+		 
+		}
+
+		function mostrarCampoEstadoCivil(){
+			//alert(document.dataentry.tipper_id_cliente.value);
+			if(document.dataentry.tipper_id_cliente.value!=""){
+				//si no es juridico mostrar campo estado civil				
+				if(document.dataentry.tipper_id_cliente.value!="J" && document.dataentry.tipper_id_cliente.value!="G" && document.dataentry.tipper_id_cliente.value!="j" && document.dataentry.tipper_id_cliente.value!="g"){
+					mostrarOcultarcamposEstadoCivil(true);
+				}else{
+					mostrarOcultarcamposEstadoCivil(false);
+				}
+			}else{
+				mostrarOcultarcamposEstadoCivil(false);
+			}
+		}
+		
+		function mostrarOcultarcamposEstadoCivil(mostrar){
+
+			if(mostrar){
+				document.getElementById('campo_estado_civil').style.display = "block";
+				document.dataentry.estado_casado.value = "";
+				mostrarDatosCasado();
+			
+			}else{
+				document.getElementById('campo_estado_civil').style.display = "none";
+				document.dataentry.estado_casado.value = "";
+				mostrarDatosCasado();
+				
+			}
+		}
+	        
+        </script>
+        
+         
+    </HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript:callAjax('tit_cliente', '1');">
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Ordenes / Venta de T&iacute;tulos</FONT>
+        </TD>
+        
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" />
+   		</TD>
+   		<!-- fin help online -->
+        
+        <td class="headerBox" aling="right"></td>
+</TABLE>
+        
+        <CENTER>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="venta_titulos-find">
+		
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="4" ALIGN="center">                
+                 Seleccione Criterios               
+            </th>
+        </tr>
+        
+        <!--campo-->
+        <tr>
+            <td>
+             Cliente:
+            </td>
+            <td>
+            <INPUT TYPE="TEXT" VALUE="" NAME="pick_cliente" SIZE="50" MAXLENGTH="50" class="inputControl" readonly/>
+            	<input type="HIDDEN" value="" name="client_id"/>
+				<!--IMAGENES/BOTONES PARA EL PICKLIST-->
+				<IMG src="../images/infi_gn_picklist.gif" title="Haga CLICK para ver la lista de opciones." onclick="showPickList(1,document.dataentry.client_id,document.dataentry.pick_cliente,'pick_clientes-find')" style="cursor:hand"/>
+				<IMG src="../images/infi_gn_picklist-clear.gif" title="Haga CLICK para borrar la opci&oacute;n seleccionada." onclick="showPickList(0,document.dataentry.client_id,document.dataentry.pick_cliente,'pick_clientes-find')" style="cursor:hand"/>
+                        
+            </td>
+        </tr>
+          
+        <!--campo-->      
+        
+        <tr>
+            <td>
+             T&iacute;tulo:
+            </td>
+            <td>
+             <div id="tit_cliente"> <!-- AQUI FUNCI&Oacute;N AJAX C&oacute;digo 1 -->
+              	<SELECT NAME="titulo_id" SIZE="1">				
+					<OPTION VALUE="" SELECTED>Seleccione</OPTION>
+					<rows_tit>		
+					<OPTION VALUE="@titulo_id@&&@tipo_producto_id@">@titulo_id@-@tipo_producto_id@</OPTION>	
+					</rows_tit>		
+					
+	 			</SELECT> 				
+             			
+             	<INPUT TYPE="hidden" VALUE="" NAME="tipper_id_cliente"/> 	
+ 			</div>
+           </td>
+        </tr>                    	 
+   	   	   
+    	 <tr id="campo_estado_civil" style="display:block">
+            <td>Estado Civil Casado:</td>
+			<td>			
+			    <SELECT NAME="estado_casado" SIZE="1" ONCHANGE="mostrarDatosCasado();">				
+			    	<OPTION VALUE="" SELECTED></OPTION>
+					<OPTION VALUE="NO">NO</OPTION>
+					<OPTION VALUE="SI">SI</OPTION>				
+	 			</SELECT> 							
+			</td>            
+        </tr>
+                
+        <tr id="campo_ced_conyuge" style="display:none">
+            <td>C&eacute;dula C&oacute;nyuge:</td>
+			<td>			
+			    <SELECT NAME="tipo_persona_conyuge" SIZE="1" ONCHANGE="javascript:mostrarDatosCasado();">				
+					<OPTION VALUE="V" SELECTED>V</OPTION>
+					<OPTION VALUE="E">E</OPTION>				
+	 			</SELECT> 		
+	 			<input type="text" value="" name="cedula_conyuge" MAXLENGTH="10" onkeypress="solo_numericos();"/>					
+			</td>            
+        </tr>
+    
+          
+         </table>
+         
+         
+         <INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/> 	
+
+            <br>
+            <button TYPE="submit">Procesar</button>
+         
+                        <SPAN> </SPAN>
+            <button ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+
+    </form>
+
+        
+        </CENTER>
+        
+    </BODY>
+
+</HTML>
+

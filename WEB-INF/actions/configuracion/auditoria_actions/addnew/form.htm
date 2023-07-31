@@ -1,0 +1,96 @@
+<HTML>
+    <HEAD>
+        <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+            <SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+            <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        
+        <TITLE>Sistema INFI</TITLE>
+		
+		<script language="JavaScript">
+			function agregar(){
+				if (confirm("¿Está seguro que desea agregar el URL?"))
+					document.dataentry.action='url_log_config-insert';
+					document.dataentry.submit();
+			}
+		</script>
+	</HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+   <BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+             
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Generales / Auditor&iacute;a de Actions</FONT>
+        </TD>
+        
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+        <td class="headerBox" aling="right"></td>
+</TABLE>
+        
+        <CENTER>
+<br>
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST">
+		
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="2" ALIGN="center" width="50%">
+                <FONT class="formCaptionText">
+                 Nuevo Action a Auditar
+                </FONT>
+            </th>
+        </tr>
+        
+        <!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel2">
+             Url *
+            </td>
+            <td CLASS="formLabel">
+            <INPUT TYPE="TEXT" VALUE="" NAME="url" SIZE="90" MAXLENGTH="200" class="inputControl" />
+            </td>
+        </tr>
+                
+        		
+		<!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel2" valign="top">
+                  Auditable *       </td>
+            <td CLASS="formLabel">
+				<SELECT NAME="enable" CLASS="inputControl">
+            		<rows_status>
+					<OPTION VALUE="@num@">@valor@</OPTION>
+					</rows_status>
+				</SELECT>
+			</td>
+        </tr>
+        </table>
+
+            <!--nota sobre los campos obligatorios-->
+           <!--nota sobre los campos obligatorios-->
+            <P><FONT COLOR="red"><B>Nota:</B></FONT> Los campos con * deben ser llenados para poder procesar el formulario.</P>
+
+            <button TYPE="button" onclick="agregar();">Procesar</button>
+            &nbsp;<button type="button" onclick="javascript:history.back();">Regresar</button>
+            &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+            
+
+    </form>
+
+        
+        </CENTER>
+        
+    </BODY>
+
+</HTML>
+

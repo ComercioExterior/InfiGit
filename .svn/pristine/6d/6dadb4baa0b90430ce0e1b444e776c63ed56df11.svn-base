@@ -1,0 +1,45 @@
+
+<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform" style="table-layout: auto;">
+
+     <tr>
+      <td width="25% CLASS="formLabel>Numero de cuenta:</td>
+      <td width="75%">  
+		<SELECT NAME="cuenta_numero_nacional"/>				
+			<rows_num>				 
+			 	<OPTION VALUE="@numero@"/>@tipo@ @numero@</OPTION>		 		 		 
+			</rows_num>
+		</SELECT>
+		</td>
+		</tr>
+		
+		
+		<tr><td>Tipo de Persona</td>
+		<td><input type="text" name="" value="@tipo_persona@" readonly="readonly"></td>
+		
+		</tr>
+		<tr>
+		<td>Cedula</td>
+		<td><input type="text" name="cedula_transferir_nacional" value="@cedula@" readonly="readonly"></td>
+		</tr>
+
+		<tr><td>Monto de la Operaci&oacute;n</td>
+		<td><input type="text" name="monto_transferir_nacional" value="@monto_operaciones@" onkeypress="EvaluateText('%f',this)" maxlength='18' readonly></td>
+		
+		</tr>
+
+	 </table>	
+	 
+	<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+	<tr>
+	<tr><td><FONT COLOR="red"><b>@mensaje_error@</b></FONT></td></tr>
+
+	 </table>
+
+    &nbsp;
+    &nbsp;
+    <BR>
+    <input type="hidden" value="@seleccion@" id="seleccion">
+	<button type="button" onclick="javascript:procesar();">Procesar</button>&nbsp;&nbsp;
+    &nbsp;<button type="button" onclick="window.history.back()">Regresar</button>
+    &nbsp;<button type="button" onclick="window.location='gestion_pago_cheque-filter'">&nbsp;Salir&nbsp;</button>
+</form>

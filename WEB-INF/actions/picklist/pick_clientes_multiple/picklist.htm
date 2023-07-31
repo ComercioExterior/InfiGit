@@ -1,0 +1,242 @@
+<html>
+
+<head>
+    <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+    <title>Productos</title>
+    <script language="javascript" src="../js/default.js"></script>
+	
+	<script type="text/javascript">
+	
+	var cs = "";
+	var clientes_seleccionados; 
+	
+	function Verificar()
+	{
+		
+		if((document.forms[0].client_nombre.value.replace(/ /g, '') == '') && (document.forms[0].client_cedrif.value.replace(/ /g, '') == '') && (document.forms[0].tipper_id.value.replace(/ /g, '') == '') ){
+			alert("Debe introducir alg&uacute;n criterio de b&uacute;squeda");
+		}else{
+			//document.forms[0].action='pick_clientes-find?buscar=1';
+			//document.getElementById('tb').style.display='block'; 
+			document.forms[0].submit();	
+			
+		}
+	}
+	
+function closeWindow()
+{
+	var check=false;
+	var codigos ="";
+		
+	cs = document.forms[0].value_id.value;	//lista de clientes seleccionados previamente (parametro)
+	clientes_seleccionados = cs.split(";"); //arreglo de clientes seleccionados previamente (parametro)
+	
+	var numero_clientes_check = clientes_seleccionados.length - 1;
+	
+	if (document.forms[0].arrCodigo!=undefined)
+	{				
+		if(document.forms[0].arrCodigo.length!=undefined){ //si la lista tiene m&aacute;s de un cliente
+			for (i=0; i < document.forms[0].arrCodigo.length; i++)
+			{			
+				if (document.forms[0].arrCodigo[i].checked){				
+					check=true; //indica que hay clientes chequeados
+					//agregar cliente a la lista si no est&aacute;
+					if(!clienteAgregado(document.forms[0].arrCodigo[i].value)){
+						codigos+= document.forms[0].arrCodigo[i].value + ";";						
+						numero_clientes_check++; //sumar cliente chequeado	
+					}		
+				}
+			}
+			
+		}else{ //si la lista solo tiene un cliente
+						
+			if (document.forms[0].arrCodigo.checked){
+				check=true; //indica que hay productos chequeados
+				//agregar cliente a la lista si no est&aacute;
+				if(!clienteAgregado(document.forms[0].arrCodigo.value)){
+					codigos+= document.forms[0].arrCodigo.value + ";";
+					numero_clientes_check = numero_clientes_check + 1;
+				}
+			}
+			
+		}
+				
+	}	
+	
+		
+	if (check) //si existe al menos un cliente chequeado cerrar ventana y enviar par&aacute;metros//
+	{		
+		window.opener.document.forms[0].@name_id@.value= cs + codigos;//campo para ids de clientes (se concatena con la lista seleccionada previamente)
+   		window.opener.document.forms[0].@name_tx@.value=numero_clientes_check;
+   		window.close();
+	}
+}
+
+//Verifica si el cliente ya ha sido agregado en la lista
+	function clienteAgregado(id_cliente){
+		var agregado = false;
+		
+		if(clientes_seleccionados.length!=1){
+			var i;		
+			for (i=0; i < clientes_seleccionados.length -1; i++){
+				if(id_cliente == clientes_seleccionados[i]){
+					agregado = true;
+					break;					
+				}					
+			}				
+						
+				
+		}
+		
+		return agregado;
+	}
+
+	
+	</script>
+    
+
+</head>
+
+<body>
+
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Clientes </FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<CENTER>
+    <BR/>
+    <!--formulario-->
+
+    <!--formulario-->
+    <form method="POST" action="pick_clientes_multiple-find">
+
+        <table border="0" cellspacing="1" cellpadding="2" width="70%"  class="dataform">
+        
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="2" ALIGN="center">              
+                   Filtro              
+            </th>
+        </tr>
+        
+        <!-- Status -->
+        
+        <tr CLASS="formElement">
+				<td CLASS="formLabel">
+					C&eacute;dula o Rif :
+				</td>
+				<td>
+					<INPUT TYPE="text" VALUE="" NAME="client_cedrif" size="30" MAXLENGTH="10" onkeypress="solo_numericos();" />
+				</td>
+			</tr>
+        
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+                Nombre (contiene):
+            </td>
+            <td>
+                <INPUT TYPE="input" VALUE="" NAME="client_nombre" size="30" MAXLENGTH="50" class="inputControl" />
+            </td>
+			</tr>
+
+	        <tr CLASS="formElement">
+	            <td CLASS="formLabel">
+	                 Tipo:
+	            </td>
+	            <td>
+					<SELECT NAME="tipper_id" SIZE=1/>				
+					<OPTION VALUE="" SELECTED/></OPTION>
+					<rows_tp>				 
+					 <OPTION VALUE="@tipper_id@"/>@tipper_nombre@</OPTION>					 							 
+	 				</rows_tp>
+	 				</SELECT>
+	  			</td>
+	  		</tr>
+	
+	        </table>
+
+        <BR>
+       
+       <input type="hidden" name="buscar" value="1" >
+       <input type="hidden" name="value_id" value="@value_id@" >
+       
+		<button name="boton_buscar"  onclick="Verificar();"/>Buscar</button> 
+		
+        &nbsp;
+		<button ONCLICK="window.close();">Regresar</button>
+   
+    
+
+	<div id="tb">
+    <BR>
+    <b>Seleccione un Cliente</b>
+    <BR>
+    <BR>     
+
+
+
+    <TABLE width="80%" class="datatable">
+    
+        
+    	<TR class="tableCell">
+            <TH WIDTH="10%">
+            </TH>
+            
+            <TH WIDTH="50%">
+            <b>Nombre de Cliente</b>
+            </TH>
+            <TH>
+            	<b>C&eacute;dula o Rif</b>
+            </TH>
+
+
+		</TR>
+	
+		<rows>
+	        <TR>
+	            <TD WIDTH="10%">
+		    	<INPUT TYPE="checkbox" value="@client_id@" name="arrCodigo"/>
+	            </TD>
+				<TD>
+			    	@client_nombre@
+	            </TD>
+
+	            <TD WIDTH="50%">
+		    	@client_cedrif@
+	            </TD> 
+				
+
+			</TR>
+	    </rows>
+		
+	    
+    
+    </TABLE>
+ 
+    
+    
+    <br>
+	<!--button @atributo@ onclick="javascript:closeWindow();">Aceptar</button-->
+	<button style="cursor:hand" onclick="javascript:closeWindow();">Aceptar</button>
+	
+	</form>   
+</CENTER>
+
+</body>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+
+
+</SCRIPT>
+</html>

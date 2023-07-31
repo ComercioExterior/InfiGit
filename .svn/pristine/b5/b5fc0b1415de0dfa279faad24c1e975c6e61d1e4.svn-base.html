@@ -1,0 +1,86 @@
+<html>
+
+	<head>
+        
+        <!--link rel="stylesheet" type="text/css" href="../megasoft.css"/-->
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css"/>
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI - Seguridad</title>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Seguridad / Opciones del Men&uacute;</FONT>
+        </TD>
+   <!-- help online <TD class="headerBox" valign="middle" align="right"><img border="0" src="@url_images@ayuda.gif" width="17" height="17"  onclick="helpOpen();" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" ></TD> fin help online --></TR>
+</TABLE>
+
+<center>
+
+<br>
+
+
+
+	<table border="0" cellspacing="1" cellpadding="2" width="60%" class="datatable">
+        <tr><th colspan="2">
+        Roles con acceso a la opci&oacute;n @st_nombre@
+        </th></tr>      
+        
+    </table>    
+     
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="60%" class="datatable">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">  
+    	<th colspan="1" width="6%"></th>  	
+              
+              <th>Rol (alias corto)</th>
+              
+              <th>Descripci&oacute;n</th>
+              
+    </tr>
+
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+    
+                <td align="center">
+                <a href="msc_role-consulta_usuarios?msc_role_id=@msc_role_id@"><IMG SRC="../images/infi_gn_user.png" WIDTH="20" HEIGHT="20" ALIGN="BOTTOM" title="Usuarios" BORDER="0" style="cursor:hand"/></a>
+                </td>
+         
+                              
+                <td>
+                @rolename@
+                </td>
+                
+                <td>
+                @description@
+                </td>
+                
+        
+     </tr>
+     </rows>
+    
+    </table>
+
+ @page_index@
+ 
+    <BR>
+<form>
+    <!--input type="button" value="Añadir Registro" onclick="window.location='menu_items-addnew'"/-->
+    <button onclick="history.back();">Cancelar</button>
+</form>
+
+</center>
+
+</body>
+
+</html>
+

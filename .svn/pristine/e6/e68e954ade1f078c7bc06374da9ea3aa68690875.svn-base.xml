@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+    <!--
+    
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, decimal, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+    
+    -->
+        <field 
+        name="vehicu_nombre" 
+        type="varchar" 
+        description="Nombre"
+        nullable="0"
+        size="50" />
+        
+        <field 
+        name="vehicu_rif" 
+        type="varchar" 
+        description="RIF"
+        nullable="0"
+        size="11" />
+        
+        <field 
+        name="vehicu_id" 
+        type="varchar" 
+        description="ID"
+        nullable="1"
+        size="25" />
+        
+        <field 
+        name="vehicu_siglas" 
+        type="varchar" 
+        description="Siglas Veh&iacute;culo"
+        nullable="0"
+        size="4" />  
+        
+        <field 
+        name="tipper_id" 
+        type="varchar" 
+        description=""
+        nullable="1"
+        size="50" />    
+        
+        
+       <field 
+        name="vehicu_branch" 
+        type="varchar" 
+        description="Branch"
+        nullable="0"
+        size="2" />
+        
+      	<field 
+        name="vehicu_numero_cuenta" 
+        type="varchar" 
+        description="Nro. de Cuenta Veh&iacute;culo"
+        nullable="1"
+        size="20" />
+        
+      	<field 
+        name="vehicu_numero_cuenta_bcv" 
+        type="varchar" 
+        description="Nro. de Cuenta BCV"
+        nullable="0"
+        size="20" />
+        
+        
+</record>
+

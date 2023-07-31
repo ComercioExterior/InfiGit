@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+    <!--
+    
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, decimal, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+    
+    -->
+    	<field 
+        name="comision_id" 
+        type="varchar" 
+        description="Comisi&oacute;n"
+        nullable="1"
+        size="8" />
+        
+        <field 
+        name="pct_trans_interna" 
+        type="varchar" 
+        description="Porcentaje Salida Interna"
+        nullable="1"
+        size="6" />
+        
+        <field 
+        name="pct_trans_externa" 
+        type="varchar" 
+        description="Porcentaje Salida Externa"
+        nullable="1"
+        size="6" />
+        
+        <field 
+        name="mto_trans_interna" 
+        type="varchar" 
+        description="Monto Salida Interna"
+        nullable="1"
+        size="50" />
+        
+        <field 
+        name="moneda_trans_interna" 
+        type="varchar" 
+        description="Moneda Salida Interna"
+        nullable="1"
+        size="50" />
+        
+        <field 
+        name="mto_trans_externa" 
+        type="varchar" 
+        description="Monto Salida Externa"
+        nullable="1"
+        size="50" />
+        
+        <field 
+        name="moneda_trans_externa" 
+        type="varchar" 
+        description="Moneda Salida Exnterna"
+        nullable="1"
+        size="50" />
+        
+        <field 
+        name="pct_anual_nacional" 
+        type="varchar" 
+        description="Porcentaje Anual Nacional"
+        nullable="1"
+        size="6" />
+        
+        <field 
+        name="pct_anual_extranjera" 
+        type="varchar" 
+        description="Porcentaje Anual Extranjera"
+        nullable="1"
+        size="6" />
+        
+        <field 
+        name="mto_anual_nacional" 
+        type="varchar" 
+        description="Monto Anual Nacional"
+        nullable="1"
+        size="50" />
+        
+        <field 
+        name="moneda_anual_nacional" 
+        type="varchar" 
+        description="Moneda Anual Nacional"
+        nullable="1"
+        size="50" />
+        
+        <field 
+        name="mto_anual_extranjera" 
+        type="varchar" 
+        description="Monto Anual Extranjera"
+        nullable="1"
+        size="50" />
+        
+        <field 
+        name="moneda_anual_extranjera" 
+        type="varchar" 
+        description="Moneda Anual Extranjera"
+        nullable="1"
+        size="50" />
+        
+        <field 
+        name="ind_salida_interna" 
+        type="integer" 
+        description="Salida Interna"
+        nullable="0"
+        size="50" />
+        
+        <field 
+        name="ind_salida_externa" 
+        type="integer" 
+        description="Salida Externa"
+        nullable="0"
+        size="50" />
+        
+        <field 
+        name="ind_anual_nac" 
+        type="integer" 
+        description="Anual Nacional"
+        nullable="0"
+        size="50" />
+        
+        <field 
+        name="ind_anual_ext" 
+        type="integer" 
+        description="Anual Extranjera"
+        nullable="0"
+        size="50" />
+               
+           
+</record>
+

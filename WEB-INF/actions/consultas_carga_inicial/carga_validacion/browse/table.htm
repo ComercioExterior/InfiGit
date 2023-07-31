@@ -1,0 +1,203 @@
+<html>
+
+	<head>
+        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+           <link rel="stylesheet" type="text/css" href="../css/EstiloFichas.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+        <script type="text/javascript">
+        
+         function mostrarCamposReg(num_registro){
+         	if(document.getElementById('registro_'+num_registro).style.display=='block'){
+         		document.getElementById('registro_'+num_registro).style.display='none'
+         	}else{
+         		document.getElementById('registro_'+num_registro).style.display='block'
+         	}
+         }
+         
+         function mostrarInvalidos(){
+         	     document.getElementById('reg_invalidos').style.display='block';
+         	     document.getElementById('reg_validos').style.display='none';
+         	     
+       	      	 document.getElementById('menu1').style.display='block';
+       	      	 document.getElementById('menu2').style.display='none';
+         	
+         }
+ 
+         function mostrarValidos(){
+         	     document.getElementById('reg_invalidos').style.display='none';
+         	     document.getElementById('reg_validos').style.display='block';
+         	     
+         	     document.getElementById('menu1').style.display='none';
+       	      	 document.getElementById('menu2').style.display='block';        	     
+         
+         }
+         
+        </script>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Carga Inicial / Consultas / Carga y Validaci&oacute;n</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<br>
+<center>
+
+   <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="4" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Datos del Proceso
+                </FONT>
+            </th>
+        </tr>
+        
+        <tr>
+        
+        <td>
+        <b>Nro Proceso</b>        
+        </td>
+        
+        <td>@z11_nu_numero_proceso@</td>
+             
+        <td>
+        <b>Archivo</b>        
+        </td>
+        
+        <td>@archivo@</td>
+        
+        </tr>
+               
+        <tr>
+       
+        <td>
+        <b>Fecha de Inicio</b>        
+        </td>
+        
+        <td>@fe_inicio@</td>
+        
+        <td>
+        <b>Fecha de Fin</b>        
+        </td>
+        
+        <td>@fe_final@</td>
+
+        </tr>
+        
+         <tr>
+       
+        <td>
+        <b>Registros Leidos</b>        
+        </td>
+        
+        <td>@z11_nu_num_reg_leidos@</td>
+        
+        <td>
+        <b>Usuario</b>        
+        </td>
+        
+        <td>@z11_no_nombre_usuario@</td>
+
+        </tr>
+        
+         <tr>
+       
+        <td>
+        <b>Registros Buenos</b>        
+        </td>
+        
+        <td>@z11_nu_num_reg_buenos@</td>
+        
+        <td>
+        <b>Registros Malos</b>        
+        </td>
+        
+        <td>@z11_nu_num_reg_malos@</td>
+
+        </tr>
+ 
+ 
+  
+	</table>
+
+</center>
+
+
+<br>
+
+<div id="menu1">
+<table border="0">
+<tr>
+<td id="navigationActivo"><a style="cursor:hand" onclick="javascript:mostrarInvalidos();"><span>Registros Inv&aacute;lidos (@total_registros_inval@)</span></a></td>
+
+<td id="navigation"><a style="cursor:hand" onclick="javascript:mostrarValidos();" ><span>Registros V&aacute;lidos (@total_registros_val@)</span></a></td>
+</tr>
+</table>
+</div>
+
+<div id="menu2" style="display:none">
+<table border="0">
+<tr>
+<td id="navigation"><a style="cursor:hand" onclick="javascript:mostrarInvalidos();"><span>Registros Invalidos (@total_registros_inval@)</span></a></td>
+
+<td id="navigationActivo"><a style="cursor:hand" onclick="javascript:mostrarValidos();" ><span>Registros V&aacute;lidos (@total_registros_val@)</span></a></td>
+</tr>
+</table>
+</div>
+
+
+<center>
+
+
+
+<div id="reg_invalidos">
+  
+    <!--data-->
+    <rows_reg_invalidos>
+ 	@registro@
+    </rows_reg_invalidos>
+    
+ </div>
+ 
+ <div id="reg_validos" style="display:none">
+   
+    <!--data-->
+    <rows_reg_validos>
+ 	@registro@
+    </rows_reg_validos>
+ 
+ </div>
+
+
+    <BR>
+<form>
+    <button onclick="javascript:history.back();">Regresar</button>
+     &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+</form>
+
+</center>
+
+</body>
+
+</html>
+

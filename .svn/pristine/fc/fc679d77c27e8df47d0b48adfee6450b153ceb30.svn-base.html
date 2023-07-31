@@ -1,0 +1,261 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Toma de orden</title>
+  <link rel="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+   <link rel="stylesheet" type="text/css" href="../css/EstiloFichas.css" />
+    <script language="javascript" src="../js/default.js"></script>  
+    <script language="javascript">
+      
+      function comprarTitulos(){
+         //Verificamos si algunos de los indicadores de cotejo no está seleccionado         
+         var total = 0;
+         var chequeados = true;
+         var mensaje = "Debe tener todos los indicadores chequeados para continuar con el proceso";
+         
+         if (document.forms[0].indicadores != undefined){
+             total = document.forms[0].indicadores.length;
+	         //Se verifica si es undefinido porque de ser asi solo hay un campo de indicadores
+	         if (total > 0){
+		         for ( var i=0; i<total; i++ ){ 
+		            if (!document.forms[0].indicadores[i].checked){
+		               alert(mensaje);
+		               chequeados = false;
+		               break;
+		            }
+		         }           
+	         }else{
+	            if (!document.forms[0].indicadores.checked){
+	               alert(mensaje);
+	               chequeados = false;
+	            }
+	         }             
+         }
+         
+         if (chequeados){
+         	if (confirm("¿Está seguro que desea procesar la compra de los títulos?"))
+				document.forms[0].submit();
+	     }
+      }
+      
+      function enviarRecalcular(){
+      
+ 			document.dataentry.action='cartera-calculo?recalculo=1';
+    		document.dataentry.submit();    			      
+      }
+      
+ 
+    		
+    </script>           
+</head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Ordenes / Toma de Orden Cartera Propia </FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+  <!--formulario-->
+
+  <form NAME="dataentry" METHOD="POST" ACTION="cartera-guardar">
+  
+  
+  <div id="menu">
+<table border="0">
+<tr>
+<td id="navigation"><a style="cursor:hand" onclick="javascript:history.go(- document.dataentry.cantidad_calculo.value);"><span>Datos</span></a></td>
+<td id="navigationActivo"><a><span>C&aacute;lculos</span></a></td>
+<td id="navigation"><a style="cursor:hand" ><span>Documentos</span></a></td>
+</tr>
+</table>
+</div>
+  <center>
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+	        <!--titulo-->
+	        <tr>
+	            <th COLSPAN="2" ALIGN="center">
+	                 Unidad de Inversi&oacute;n seleccionada
+	            </th>
+	        </tr>
+	        
+	        <!--campo-->
+	       <tr>
+	            <td>Cliente</td>
+				<td>@cliente@</td>
+	        </tr>
+	        
+	        <tr>
+	            <td>Unidad de inversi&oacute;n:</td>
+				<td>@undinv_nombre@</td>
+	        </tr>
+	        <tr>
+	            <td>Fecha de emisi&oacute;n:</td>
+				<td>@undinv_fe_emision@</td>
+	        </tr>
+	        <tr>
+	            <td>Instrumento financiero:</td>
+				<td>@insfin_descripcion@</td>
+	        </tr>          
+	        
+	         <tr>
+	            <td>Moneda de Inversi&oacute;n</td>
+				<td>@moneda_id@</td>
+	        </tr>          
+	        
+	        
+	        <tr>
+				<td>Inventario disponible:</td>
+				<td>@undinv_umi_inv_disponible@</td>
+			</tr>
+	
+    </table>
+
+<!--Montos a pagar -->
+   <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        <tr>
+            <th COLSPAN="4" ALIGN="center">
+                 Resumen de Montos
+            </th>
+        </tr>
+        <tr>
+			<td>Monto invertido:</td>
+			<td>@monto_inversion@ @id_moneda_local@</td>
+			<td>Precio de Compra:</td>
+			<td>@precio_compra@ %</td>
+			
+		</tr>
+        <tr>
+			<td>Tipo de cambio:</td>
+			<td>@tasa_cambio@ @id_moneda_local@</td>
+			<td>Monto total de intereses caidos:</td>
+			<td>@monto_interes_caidos@ @id_moneda_local@</td>
+	
+		</tr>
+        <tr>
+			<td>Monto total a pagar:</td>
+			<td>@monto_total@ @id_moneda_local@</td>
+				
+			<td>Monto o Cantidad Pedida:</td>
+			<td>@monto_pedido@</td>		
+			
+		</tr>
+						
+		
+	</table> 
+
+<!--Datos de los t&iacute;tulos -->
+   <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        <tr>
+            <th COLSPAN="@colspan_titulos@" ALIGN="center">
+                 Datos de los T&iacute;tulos
+            </th>
+        </tr>
+       </table>
+     <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        <tr>
+        	<!-- @encab_in_recompra@-->
+			<th>T&iacute;tulo</th>
+			<th>Valor Equivalente</th>
+			<th>Porcentaje</th>
+			<th width="8%">Moneda Den.</th>
+			<th width="8%">Moneda Neg.</th>
+			<!-- th>Porc. Recompra</th-->
+			<!--@encab_tasa_pool@-->
+		</tr>
+		<rowsTitulos>
+        <tr>
+        	<!-- @check_in_recompra@-->
+			<td>@descripcion_titulo@ 
+			 <INPUT TYPE="hidden" VALUE="@indicador_moneda_local@" NAME="indicador_moneda_local_@num_titulo@"/>
+			</td>
+			<td align="right" style="padding-right=10px;">@valor_invertido@</td>
+			<td align="right" style="padding-right=10px;">@porcentaje@ %</td>
+			<td align="right" style="padding-right=10px;">@titulo_moneda_siglas@</td>
+			<td align="right" style="padding-right=10px;">@moneda_negociacion@</td>
+			<!-- td align="right" style="padding-right=10px;">@titulos_precio_recompra@%</td>
+			@tasa_pool@-->
+		</tr>
+        </rowsTitulos>
+	</table> 
+
+
+	<!--Indicadores de cotejo -->
+	   <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+	        <tr CLASS="formCaption">
+	            <th COLSPAN="2" ALIGN="center">
+	                 Indicadores de Cotejo
+	            </th>
+	        </tr>
+	        
+	   </table>
+	  
+	   <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+	        <tr>
+				<th width="8%">Indicador</th>
+				<th>Referencia</th>
+			</tr>
+			<rows_indicadores_ui>
+	        <tr>
+				<td CLASS="rtablecell_blanco" align="center"><input type="checkbox" name="indicadores" value="@indica_id@"></td>
+				<td style="display:none"><input type="hidden" name="in_requerido_@indica_id@" value="@uiindi_id_requerido@"></td>
+				<td>@indica_descripcion@</td>
+			</tr>
+			</rows_indicadores_ui>			
+	   </table>
+	   
+	     
+   <INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/>
+   
+   <!-- parametros del request para el recalculo en la orden -->
+   
+    <INPUT TYPE="HIDDEN" VALUE="@undinv_id@" NAME="undinv_id"/>
+    <INPUT TYPE="HIDDEN" VALUE="@client_id@" NAME="client_id"/>
+    <!-- INPUT TYPE="HIDDEN" VALUE="@cta_cliente@" NAME="cta_cliente"/-->
+    <INPUT TYPE="HIDDEN" VALUE="@undinv_precio_minimo@" NAME="undinv_precio_minimo"/>
+    <INPUT TYPE="HIDDEN" VALUE="@monto_comprar@" NAME="monto_comprar"/>
+
+    <INPUT TYPE="HIDDEN" VALUE="@blotter_id@" NAME="blotter_id"/>
+    <INPUT TYPE="HIDDEN" VALUE="@cantidad_pedida@" NAME="cantidad_pedida"/>
+    <INPUT TYPE="HIDDEN" VALUE="@vehicu_rol_id@" NAME="vehicu_rol_id"/>
+    <!-- INPUT TYPE="hidden" VALUE="@porc_financiar@" NAME="porc_financiar"/-->
+    <INPUT TYPE="HIDDEN" VALUE="@in_recompra@" NAME="in_recompra"/>
+    
+    <INPUT TYPE="HIDDEN" VALUE="@cantidad_calculo@" NAME="cantidad_calculo"/>
+    
+      <INPUT TYPE="HIDDEN" VALUE="@in_cartera_propia@" NAME="in_cartera_propia"/>
+    
+    <!-- INPUT TYPE="hidden" VALUE="@tipo_persona_conyuge@" NAME="tipo_persona_conyuge"/>
+    <INPUT TYPE="hidden" VALUE="@cedula_conyuge@" NAME="cedula_conyuge"/>
+    <INPUT TYPE="hidden" VALUE="@estado_casado@" NAME="estado_casado"/-->
+    
+    <rows_campos_din>
+    <INPUT TYPE="HIDDEN" NAME="@nombre_campo@" VALUE="@valor@"/>
+    </rows_campos_din>
+    <!--  -->
+    
+   <br>
+   <button TYPE="button" onclick="comprarTitulos();">Comprar t&iacute;tulos</button>
+   <SPAN></SPAN>
+   <button TYPE="button" onclick="enviarRecalcular();">Recalcular</button>
+   <SPAN> </SPAN>
+   <button TYPE="button" onclick="javascript:history.go(- document.dataentry.cantidad_calculo.value);">Regresar</button>
+    <SPAN> </SPAN>
+ <button ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>    
+   
+  </form>
+  
+  
+   
+</center>
+</body>
+</html>

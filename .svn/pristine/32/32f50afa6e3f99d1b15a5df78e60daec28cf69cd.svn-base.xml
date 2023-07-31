@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+    <!--
+    
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, decimal, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+    
+-->
+    
+        <field 
+        name="fecha" 
+        type="varchar" 
+        description="Fecha en la que se va a realizar la consulta"
+        nullable="1"
+        size="50" />
+        
+        <field 
+        name="origen" 
+        type="varchar" 
+        description="Origen de la oferta a cargar"
+        nullable="1"
+        size="10" />
+        
+        <field 
+        name="fechaHoy" 
+        type="varchar" 
+        description="Fecha para carga de pactos diaria"
+        nullable="0"
+        size="50" />
+        
+        <field 
+        name="undinv_id" 
+        type="integer"  
+        description="Unidad de Inversión"
+        nullable="0"
+        size="50" />
+        
+        <field 
+        name="nro_jornada" 
+        type="varchar" 
+        description="Unidad de Inversión"
+        nullable="1"
+        size="50" />
+    
+</record>
+

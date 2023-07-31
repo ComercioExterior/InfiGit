@@ -1,0 +1,74 @@
+<html>
+	<head>        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Usuarios / Sesiones </FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+<form>
+<br>
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+    
+    <!--encabezados de columna-->
+    <tr>
+    		<th></th> 
+    		<th>Sesi&oacute;n</th>        
+            <th>Usuario</th>            
+            <th>Fecha</th>
+            <th>Hora Inicio</th>
+    </tr>
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+                   
+                <td align="center">
+					<a href="usuario_sesiones-confirm_delete?userid=@userid@"><IMG SRC="../images/infi_gn_delete.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Eliminar Registro" BORDER="0" style="cursor:hand"></a>
+				</td> 
+ 				<td align="center">
+                @sessionid@
+                </td> 
+                
+                <td align="center">                
+                @userid@
+                </td>
+               	
+               	<td align="center">
+                @start_date@
+                </td> 
+
+                <td align="center">
+                @start_time@
+                </td>    
+           
+     </tr>
+     </rows>
+    </table>
+		@page_index@
+    <BR>
+
+    <button type="button" onclick="window.location='usuario_sesiones-filtro'">Regresar</button>
+     &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+</form>
+</center>
+</body>
+</html>

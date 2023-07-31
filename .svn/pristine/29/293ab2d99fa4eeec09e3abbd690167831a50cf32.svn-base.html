@@ -1,0 +1,161 @@
+<html>
+
+	<head>
+        
+         <script language="javascript" src="../js/default.js"></script>   
+        <!--  <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" /> -->
+
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>        
+      
+    </head>
+
+<!-- body onload="centrar();"-->
+<body>
+<!--page name bar-->
+
+<center><h4><p><FONT class="headerText">FICHA VENTA CLAVENET-SITME (Personas Naturales)</FONT></h4></center>
+<br>
+<br>
+<p align="right">Caracas, @fecha_dia@ de @fecha_mes@ de @fecha_anio@
+<BR>
+<BR>
+<ord>
+<B>NRO DE ORDEN: @ordene_id@</B>
+</ord>
+</p>
+
+
+
+
+</p>
+<br>
+
+<p align=justify>
+Yo, @nombre@, de Nacionalidad @nacionalidad@, titular de la C&eacute;dula de identidad No @cedula@ por medio
+de la presenta confirmo y certifico la venta de forma irrevocable e inmediata que realice a &eacute;sta Instituci&oacute;n Financiera
+(el Banco) en la fecha @fecha_valor@, los siguientes T&iacute;tulos Valores los cuales me fueron adjudicados en virtud del mandato de compra
+otorgado al Banco de Venezuela:
+</p>
+
+        <!-- help online -->
+<br>
+   		<!-- fin help online -->
+
+
+<center>
+
+ 			
+        <table border="4" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <tr>
+        	<th align="center" nowrap>
+        	T&iacute;tulo
+        	</th>
+        	
+        	<th align="center" nowrap>
+        	Moneda
+        	<br> 
+        	Denominaci&oacute;n
+        	</th>
+        	
+        	<th align="center" nowrap>
+        	 Monto
+        	 <br>
+        	 Valor 
+	         <br>
+        	 Nominal
+        	</th>
+        	
+        	<th align="center" nowrap>
+	        Precio
+        	</th>
+        	
+			<th align="center" nowrap>
+			Moneda de 
+            <br>
+			Pago
+        	</th>
+        	
+        	<th align="center" nowrap>
+			Monto 
+			<br>
+			efectivo de 
+			<br>
+			pago
+        	</th>
+        </tr>
+        
+    <rows>
+        <tr>  
+              
+        <td align="center" nowrap>
+        @titulo@
+        </td>
+        
+         <td align="center" nowrap>
+        @moneda_denominacion@
+        </td>
+        
+        <td align="center" nowrap>
+        @valor_nominal@
+        </td>
+        
+         <td align="center" nowrap>
+        @precio_venta@
+        </td>
+        
+        <td align="center" nowrap>
+        @moneda_denominacion@
+        </td>
+        
+         <td align="center" nowrap>
+        @monto_efectivo@
+        </td>
+        
+        </tr>
+    </rows>
+</table>    
+
+<br>
+<p align=justify> La cantidad resultante del precio de venta en U$$, que incluye amortizaci&oacute;n de capital e intereses, del monto adjudicado de tales T&iacute;tulos, deber&aacute; ser cancelada por esa Instituci&oacute;n, de acuerdo a las siguientes instrucciones:</p>
+
+<p align=justify><b> Instrucciones de pago del precio de los Bonos de D&oacute;lares de los estados Unidos de Am&eacute;rica:
+<br>
+<input type="checkbox" name=mybox value="1"></input> Transferencia en U$$ en la cuenta que se indica a continuacion:
+</b></p>
+
+<BR>
+<BR>
+
+	<P align=LEFT><b><u>Datos Banco Beneficiario</u></b>
+		<BR>
+		<BR>
+		<BR>
+			Banco: @banco@
+		<BR>
+		<BR>
+			Direcci&oacute;n del Banco: @direccion_banco@
+		<BR>
+		<BR>
+			ABA/SWIFT: @swift@
+		<BR>
+		<BR>
+			Nombre del Beneficiario: @nombre_beneficiario@
+		<BR>
+		<BR>
+			# Cuentas Beneficiario: @cuenta_beneficiario@
+		<BR>
+		<BR>
+			Referencia: @ordene_id@
+		<BR>
+		
+	    <!--button onclick="javascript:window.close();">Regresar</button-->
+	</p>
+</center>
+<br>
+<br>
+<br>
+
+</body>
+</html>

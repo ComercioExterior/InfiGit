@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+    <!--
+    
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, decimal, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+    
+    -->
+    
+      <field 
+        name="bloter_descripcion" 
+        type="varchar" 
+        description="Descripci&oacute;n"
+        nullable="1"
+        size="200" />
+        
+      <field 
+        name="bloter_in_restringido" 
+        type="integer" 
+        description="Restringido"
+        nullable="1"
+        size="1" />
+        
+      <field 
+        name="bloter_in_cartera_propia" 
+        type="integer" 
+        description="Cartera Propia"
+        nullable="1"
+        size="1" />
+        
+        
+ 
+    
+           
+    
+</record>
+

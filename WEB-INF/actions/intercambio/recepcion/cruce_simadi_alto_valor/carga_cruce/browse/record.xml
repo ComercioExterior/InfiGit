@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+    <!--
+    
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, decimal, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+    
+    -->    
+ 
+        <field 
+        name="tipo_operacion" 
+        type="varchar" 
+        description="Tipo Operacion"
+        nullable="0"
+         size="20" />
+         
+        <field 
+        name="undinv_id" 
+        type="varchar" 
+        description="Id de Unidad de Inversion"
+        nullable="0"
+        size="100" />
+        
+        <field 
+        name="undinv_nombre" 
+        type="varchar" 
+        description="Nombre de Unidad de Inversion"
+        nullable="0"
+        size="100" />
+        
+         <field 
+        name="archivo.tempfile" 
+        type="varchar" 
+        description="Archivo"
+        nullable="0"
+        size="1000" />
+        
+        <field 
+        name="archivo.filename" 
+        type="varchar" 
+        description="Nombre original del archivo"
+        nullable="1"
+        size="100" />
+        
+        <field 
+        name="archivo.content-type" 
+        type="varchar" 
+        description="Content type del archivo descargado"
+        nullable="1"
+        size="100" />
+        
+        <field 
+        name="tipo_prod" 
+        type="varchar" 
+        description="Tipo de Producto"
+        nullable="0"
+        size="20" />
+         
+    
+</record>
+

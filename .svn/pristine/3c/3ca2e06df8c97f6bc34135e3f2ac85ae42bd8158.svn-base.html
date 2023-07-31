@@ -1,0 +1,91 @@
+<html>
+
+	<head> 
+          
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Equivalencia Portafolio</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                Equivalencia Portafolio ( @t_registros@ )
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="TABLE-LAYOUT: auto; ">
+    
+   <!--encabezados de columna-->
+    <tr class="tableHeader">
+	<th width="3%" nowrap></th>
+	<th width="3%" nowrap></th>
+    <th colspan="1">Codigo Segmento</th>
+    <th>Segmento Descripci&oacute;n</th>
+    <th>Portafolio</th>
+
+
+    </tr>
+
+    <!--data-->
+    <rows>
+    
+    <tr class="tableCell">
+		<td VALIGN="middle">
+			<a href="config_porta_equivalencia-confirm?segmento_id=@segmento_id@&segmento_descripcion=@segmento_descripcion@"><IMG SRC="../images/infi_gn_delete.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Eliminar Registro" BORDER="0" style="cursor:hand"></a>			 </td>
+		<td VALIGN="middle">
+			<a href="config_porta_equivalencia-edit?segmento_id=@segmento_id@"><IMG SRC="../images/infi_gn_edit2.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Editar Registro" BORDER="0" style="cursor:hand"></a>                
+		</td>               
+		<td VALIGN="middle" align="left">@segmento_id@</td>
+		<td nowrap>@segmento_descripcion@</td>
+		<td nowrap>@portafolio@</td>
+	</tr>
+     </rows>
+    
+    </table>
+    @page_index@
+    <BR>
+<form>
+
+    <button type="button" ONCLICK="window.location='config_porta_equivalencia-addnew'">&nbsp;Agregar&nbsp;</button>
+    &nbsp;<button type="button" onclick="history.back();">Regresar</button>
+    &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+</form>
+
+</center>
+
+</body>
+
+</html>
+

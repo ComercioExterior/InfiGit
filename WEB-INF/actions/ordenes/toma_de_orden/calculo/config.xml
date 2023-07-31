@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+
+	Configuracion de la accion
+
+	Describe el modelo y la vista a utilizar, asi
+	como informacion sobre data-binding entre la vista y el modelo
+
+-->
+
+<config>
+
+	<!--model class-->
+	<model-class>models.ordenes.toma_de_orden.CalculadorDeTomaDeOrdenes</model-class>
+	
+	<!--view class-->
+	<view-class>megasoft.GenericView</view-class>
+	
+	<!--template-->
+	<template>toma_orden_calculo.html</template>
+
+	<!--reglas de validacion de la forma-->
+	<record-def>record.xml</record-def>
+	
+	<!--response content-type-->
+	<content-type>text/html</content-type>
+	
+	<!--expiracion de la pagina (en segundos - puede estar vacio)-->
+	<expires>20</expires>
+	
+	<!--control de cache  (true|false)-->
+	<cache>true</cache>
+	
+	<!--URI a redireccionar despues de ejecutar el model - type=redirect|forward-->
+	<next-action type="redirect"></next-action>
+	
+	<!--mostrar este template de WEB-INF/templates si el dataset esta vacio-->
+	<on-empty source="sales"></on-empty>
+
+	<bind type="replace" source="mensajes"/> 
+	<bind type="replace" source="cuentaswift"/>	
+	<bind type="replace" source="param"/>
+	
+	<bind type="replace" source="datos"/>
+	<bind type="repeat" source="indicadores_ui" tag="rows_indicadores_ui"/>
+	<bind type="repeat" source="requisitos_ui" tag="rows_requisitos_ui"/>
+	<bind type="repeat" source="documentos_ui" tag="rows_documentos_ui"/>
+	
+	<bind type="repeat" source="cuentas_cliente" tag="rows_ctacte"/>
+	
+	<bind type="repeat" source="dsOrdenTitulo" tag="rowsTitulos" />
+	<bind type="repeat" source="dsOrdenTitulo" tag="rowsTitulosRecompra" />
+	<bind type="repeat" source="dsOrdenOperacionComision" tag="rowsComision" />
+	<bind type="repeat" source="dsOrdenOperacionOtras" tag="rowsOperacion" />
+	<bind type="replace" source="dsTomaOrden"/>
+	<bind type="replace" source="datos_unidad_inv"/>
+	
+	<bind type="repeat" source="campos_din" tag="rows_campos_din"/>	
+	
+	<bind type="select-radio" source="param" tag="" control-name="tipo_inst_int" field-name="tipo_inst_int"/>
+	<bind type="select-checkbox" source="param" tag="" control-name="intermediario" field-name="intermediario"/>
+	<bind type="select" source="param" tag="" control-name="cta_nac_recompra" field-name="cta_nac_recompra"/>
+	
+	<bind type="select-checkbox" source="param" control-name="iban_cta_europea" field-name="iban_cta_europea"/>
+</config>

@@ -1,0 +1,84 @@
+<HTML>
+	<HEAD>
+		<TITLE>Sistema INFI</TITLE>
+    	<LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+    	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		<SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+		<script language="javascript" src="../js/default.js"></script>   
+		<script type="text/javascript">
+        
+        
+        //Funci&oacute;n para abrir un picklist o limpiar el valor anteriormente seleccionado
+			function procesar() {												
+					window.location='configuracion_tasa-confirm_modificacion?id_tasa='+document.getElementById('id_tasa').value+'&tasa='+document.getElementById('tasa').value;
+			}		
+		
+		</script>
+	</HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY>
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    	<TR>
+        	<TD class="headerBox">                
+            	<FONT class="headerText">Configuraci&oacute;n / Generales / Modificaci&oacute;n de Tasa </FONT>
+       		 </TD>
+        	<!-- help online -->
+   			<TD class="headerBox" valign="middle" align="right">
+   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   			</TD>
+   			<!-- fin help online -->
+        	<td class="headerBox" aling="right"></td>
+        </TR>
+	</TABLE>
+	<CENTER>
+
+	<!--formulario-->
+	<form NAME="dataentry" METHOD="POST">
+		<table border="0" cellspacing="1" cellpadding="2" width="30%" class="dataform">
+			 <!--titulo-->
+			<tr>
+				<th COLSPAN="4" ALIGN="center">Seleccione Criterios</th>
+			</tr>
+			<!--campo-->
+			<tr>
+            <td align="rigth">
+				Tasa:* <input type="hidden" id="id_tasa" value="@config_tasa_id@">
+            </td>
+	            <td  align="left">
+					<INPUT TYPE="TEXT" VALUE="" id="tasa"  NAME="tasa" SIZE="12" MAXLENGTH="10" class="inputControl"/> 
+				</td>
+	        </tr>
+        	<tr>
+            <td align="rigth">
+				Fecha Tasa:*
+            </td>
+            <td  align="left">
+				<INPUT TYPE="TEXT" VALUE="@fecha_tasa@" SIZE="12" MAXLENGTH="10" class="inputControl" readonly/> 
+			</td>
+        </tr>
+        	<tr>
+				<td align="rigth">Tipo Producto:*</td>
+				<td  align="left">
+					<INPUT TYPE="TEXT" VALUE="@tipo_producto_id@"  SIZE="20" class="inputControl" readonly/> 
+				</td>
+			</tr>
+			
+			<tr>
+				<td align="rigth">Transacci&oacute;n:*</td>
+				<td  align="left"">
+					<INPUT TYPE="TEXT" VALUE="@transa_id@"  SIZE="30"  class="inputControl" readonly/> 
+				</td>
+			</tr>
+        	
+		</table>
+	
+		<br>
+		<button type="button" ONCLICK="JavaScript:procesar();" />Procesar</button>
+		&nbsp;<button type="button" ONCLICK="javascript:history.back();">&nbsp;Regresar&nbsp;</button>
+		&nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+	</form>
+	</CENTER>
+</BODY>
+</HTML>

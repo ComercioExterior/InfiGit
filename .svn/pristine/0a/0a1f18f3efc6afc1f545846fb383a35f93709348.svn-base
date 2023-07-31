@@ -1,0 +1,234 @@
+
+<HTML>
+    
+	<head> 
+  			<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+  	    <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+	<LINK REL="stylesheet" type="text/css" href="../css/EstiloFichas.css.css" />	
+	<script language="javascript" src="../js/default.js"></script>	
+	<script language="JavaScript" src="../js/calendar/popcalendar.js"></script>
+       <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+           
+    </head>
+  
+  <body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+  
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Generales / Blotter</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+        
+        <CENTER>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="bloter-confirm_update">
+		
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="2" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Editar Registro
+                </FONT>
+            </th>
+        </tr>
+        
+        <!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Descripci&oacute;n:*
+            </td>
+            <td>
+            <INPUT TYPE="TEXT" VALUE="@bloter_descripcion@" NAME="bloter_descripcion" SIZE="50" MAXLENGTH="200" class="inputControl" onkeypress="return sin_caracteres_especiales(event)" onkeyup="dataentry.bloter_descripcion.value=dataentry.bloter_descripcion.value.toUpperCase();"/>
+            </td>
+        </tr>
+
+       <!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Restringido:*
+            </td>
+            <td>
+            <SELECT size="1" name="bloter_in_restringido">
+              <OPTION value="1">Si</OPTION>
+              <OPTION value="0">No</OPTION>
+            </SELECT>
+            </td>
+        </tr>
+        
+      <!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Cartera Propia:*
+            </td>
+            <td>
+            <SELECT size="1" name="bloter_in_cartera_propia">
+              <OPTION value="1">Si</OPTION>
+              <OPTION value="0">No</OPTION>
+            </SELECT>
+            </td>
+        </tr>        
+
+     <!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Tipo Persona:*
+            </td>
+            <td>
+            <SELECT NAME="tppeva_id" SIZE=1/>				
+					
+					<rows_tp>				 
+					 <OPTION VALUE="@tppeva_id@"/>@tppeva_descripcion@</OPTION>					 							 
+	 				</rows_tp>
+	 		</SELECT>
+            </td>
+        </tr>        
+
+     <!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Status:*
+            </td>
+            <td>
+            <SELECT size="1" name="bloter_status">
+              <OPTION value="1">Activo</OPTION>
+              <OPTION value="0">Inactivo</OPTION>
+            </SELECT>
+            </td>
+        </tr>      
+        
+    <!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Red:
+            </td>
+            <td>
+            <SELECT size="1" name="bloter_in_red">
+              <OPTION value="1">Si</OPTION>
+              <OPTION value="0">No</OPTION>
+            </SELECT>
+            </td>
+        </tr>              
+
+        <!--campo-->
+        <tr style="display:none" CLASS="formElement">
+            <td CLASS="formLabel">
+			Agrupaci&oacute;n para OPICS:
+            </td>
+            <td>
+            <SELECT NAME="id_agrupacion" SIZE="1">						
+					<rows_agrupa>				 
+					 <OPTION VALUE="@id_agrupacion@"/>@nom_agrupacion@</OPTION>					 							 
+	 				</rows_agrupa>
+	 		</SELECT>
+            </td>
+        </tr>
+		<tr class="formElement">
+			<td class="formLabel" width="15%">Hora Desde:*</td>
+			<td width="25%">
+				<SELECT NAME="hh_desde">
+					<OPTION value=""></OPTION>
+				<rowsHoraD>
+					<OPTION value="@hora@">@hora@</OPTION>
+				</rowsHoraD>
+				</SELECT>
+				:
+				<SELECT NAME="mm_desde">
+					<OPTION value=""></OPTION>
+				<rowsMinD>
+					<OPTION value="@min@">@min@</OPTION>
+				</rowsMinD>
+				</SELECT>	
+				<SELECT NAME="ap_desde">
+					<OPTION value=""></OPTION>
+					<OPTION value="AM">AM</OPTION>
+					<OPTION value="PM">PM</OPTION>
+				</SELECT>
+				<font size="1px" style><i>Formato 12 horas</i></font>				
+			</td>
+			</tr>
+			<tr>
+			<td class="formLabel" width="5%">Hora Hasta:*</td>
+			<td width="40%" align="left">
+				<SELECT NAME="hh_hasta">
+					<OPTION value=""></OPTION>
+				<rowsHoraH>
+					<OPTION value="@hora@">@hora@</OPTION>
+				</rowsHoraH>
+				</SELECT>
+				:
+				<SELECT NAME="mm_hasta">
+					<OPTION value=""></OPTION>
+				<rowsMinH>
+					<OPTION value="@min@">@min@</OPTION>
+				</rowsMinH>
+				</SELECT>	
+				<SELECT NAME="ap_hasta">
+					<OPTION value=""></OPTION>
+					<OPTION value="AM">AM</OPTION>
+					<OPTION value="PM">PM</OPTION>
+				</SELECT>
+				<font size="1px" style><i>Formato 12 horas</i></font>
+			</td>
+		</tr>				
+		<tr style="display:none" class="formElement">
+			<td class="formLabel">Fecha Desde:*</td>
+			<td align="left">
+				<input type="text" name="bloter_horario_desde" size="10" maxlength="10" value="@bloter_horario_desde null-value=''@" readonly /> 
+				<a onclick="popUpCalendar(this,bloter_horario_desde,'dd-mm-yyyy');">
+				<IMG SRC="../images/infi_gn_calendar.gif" class="boton" TITLE="Seleccionar Fecha"/>
+				</a></td>
+		</tr>	
+		<tr style="display:none">
+		<td class="formLabel">Fecha Hasta:*</td>
+			<td align="left">
+				<input type="text" name="bloter_horario_hasta"   size="10" maxlength="10" value="@bloter_horario_hasta null-value=''@" readonly /> 
+			<a onclick="popUpCalendar(this,bloter_horario_hasta,'dd-mm-yyyy');">
+				<IMG SRC="../images/infi_gn_calendar.gif" class="boton" TITLE="Seleccionar Fecha"/>
+				</a></td>
+		</tr>
+		<tr>
+		<td class="formLabel">Canal:*</td>
+			<td align="left">
+				<SELECT NAME="canal_id"/>
+					<rows_canales>				 
+					 <OPTION VALUE="@canal_id@"/>@nombre_canal@</OPTION>					 							 
+	 				</rows_canales>
+	 			</SELECT>
+				</a></td>
+		</tr>				
+        </table>
+		
+            <!--nota sobre los campos obligatorios-->
+            <P><FONT COLOR="red"><B>Nota:</B></FONT> Los campos con * deben ser llenados para poder procesar el formulario. El Horario debe estar comprendido entre las 12:00 AM y las 11:59 PM</P>
+            
+            <button TYPE="submit">Grabar</button>
+            &nbsp;<button type="button" onclick="javascript:history.back();">Regresar</button>
+            &nbsp;<button ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+
+            <!--campo escondido para almacenar el key del record-->
+            <INPUT TYPE="HIDDEN" VALUE="@bloter_id@" NAME="bloter_id" />
+            <INPUT TYPE="HIDDEN" VALUE="@canal_id_registrado@" NAME="canal_id_registrado" />
+
+    </form>
+
+        
+        </CENTER>
+    </BODY>
+
+</HTML>
+

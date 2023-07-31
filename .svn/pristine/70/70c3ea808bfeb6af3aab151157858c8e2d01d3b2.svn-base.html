@@ -1,0 +1,113 @@
+<html>
+
+	<head>
+        
+        <!--link rel="stylesheet" type="text/css" href="../megasoft.css"/-->
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css"/>
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI - Seguridad</title>
+	
+	<script language="javascript">
+		function imprimir()
+		{         
+			window.open("consulta_opciones_roles-imprimir?msc_role_id=@msc_role_id@",null,'height=800,width=800, scrollbars');
+			//var ventana = window.showModalDialog("factura-filter", "", "");
+		}
+			
+	</SCRIPT>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Seguridad / Consultas / Opciones de Men&uacute; por Rol</FONT>
+        </TD>
+   <!-- help online <TD class="headerBox" valign="middle" align="right"><img border="0" src="@url_images@ayuda.gif" width="17" height="17"  onclick="helpOpen();" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" ></TD> fin help online --></TR>
+</TABLE>
+
+<center>
+
+<br>
+
+<form NAME="dataentry" METHOD="POST">
+
+	<table border="0" cellspacing="1" cellpadding="2" width="30%" class="dataform">
+        <tr><th colspan="2">
+        Filtro
+        </th></tr>
+        <tr>
+            <td >
+                    Rol:
+            </td>
+            <td>
+				<SELECT NAME="msc_role_id" SIZE=1 ONCHANGE="javascript:document.dataentry.action='consulta_opciones_roles-find?band=1'; document.dataentry.submit();"/>
+				<OPTION VALUE="" SELECTED/></OPTION>
+				<rows_roles>				 
+				 <OPTION VALUE="@msc_role_id@"/>@role_name@</OPTION>
+ 				</rows_roles>
+ 				</SELECT>
+               
+            </td>
+        </tr>
+        
+        </table>
+       
+       <INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/> 
+ </form>
+        
+     
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="70%" class="datatable">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+    		      
+              <th>Opciones de Men&uacute;</th>
+              
+              <th width="20%">Aplicaci&oacute;n</th>    
+              
+               @cab_role@             
+              
+    </tr>
+
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+                                
+                <td>
+                @tab@@st_nombre@
+                </td>
+                
+                <td>
+                @applic@
+                </td>      
+                
+                 @colum_role@   
+        
+     </tr>
+     </rows>
+    
+    </table>
+
+ @page_index@
+ 
+    <BR><br>
+<form>
+    <!--input type="button" value="Añadir Registro" onclick="window.location='menu_items-addnew'"/-->
+    <button onclick="imprimir();">Imprimir</button>&nbsp;
+    <button onclick="javascript:history.back();">Cancelar</button>
+</form>
+
+</center>
+
+</body>
+
+
+
+</html>
+

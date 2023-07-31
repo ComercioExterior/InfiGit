@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+
+	<field name="rif" type="varchar" description="Rif del cliente"
+		nullable="1" size="50" />
+
+	<field name="cliente" type="varchar" description="Nombre del cliente"
+		nullable="1" size="50" />
+
+	<field name="codDivisa" type="varchar" description="codDivisa"
+		nullable="1" size="50" />
+
+
+	<field name="montoDivisa" type="varchar" description="montoDivisa"
+		nullable="0" size="50" />
+
+
+	<field name="tasaCambio" type="varchar" description="tasacambio"
+		nullable="1" size="50" />
+
+
+	<field name="banco" type="varchar" description="banco" nullable="1"
+		size="50" />
+
+	<field name="jornada" type="varchar" description="identificador de jornada"
+		nullable="1" size="50" />
+
+
+	<field name="cuentame" type="varchar" description="cuenta moneda extranjera"
+		nullable="1" size="50" />
+
+
+	<field name="cuentamn" type="varchar" description="cuenta moneda nacional"
+		nullable="1" size="50" />
+
+
+	<field name="fecha" type="varchar" description="fecha" nullable="1"
+		size="50" />
+
+	<!-- <field name="operacion" type="varchar" description="Tipo_de_operaciones" -->
+	<!-- nullable="1" size="50" /> -->
+
+	<!-- <field name="coVentaBCV" type="varchar" description="coVentaBCV" -->
+	<!-- nullable="1" size="50" /> -->
+
+</record>
+

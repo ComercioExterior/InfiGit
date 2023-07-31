@@ -1,0 +1,104 @@
+<html>
+<head>
+	<title>Sistema INFI</title>
+	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+	<script language="javascript" src="../js/default.js"></script>	
+</head>
+
+<body ONLOAD="javascript:mostrar(@accion@);{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+	<!--page name bar-->
+	
+	<table border="0" cellspacing="0" WIDTH="103%">
+		<tr>
+			<td class="headerBox">
+	        	<div id="titulou" style="display:none">               
+	            	<font class="headerText">Unidad de Inversi&oacute;n / Documentos</font>
+	            </div>
+				<div id="titulop" style="display:none">               
+	            	<font class="headerText">Publicaci&oacute;n Unidad de Inversi&oacute;n / Documentos</font>
+	            </div>
+	            <div id="tituloc" style="display:none">               
+	            	<font class="headerText">Consulta Unidad de Inversi&oacute;n / Documentos</font>
+	            </div>
+	            <div id="titulom" style="display:none">               
+	            	<font class="headerText">Modificaci&oacute;n Unidad de Inversi&oacute;n / Documentos</font>
+	            </div>
+			</td>
+			<!-- help online -->
+			<td class="headerBox" valign="middle" align="right" colspan="2">
+				<img src="../images/infi_gn_ayuda.gif"	border="0"  width="17" height="17"
+					style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"
+					onclick="helpOpen(window.document.location.href);">
+			</td>
+			<!-- fin help online -->	
+		</tr>
+	</table>
+
+	<br>
+
+	<center>
+
+	<!--formulario-->
+	<form name="dataentry" method="post" action="" enctype="">
+		<input type="hidden" name="idUnidadInversion" value="@idunidadinversion@" />
+		<input type="hidden" name="id_blotter" value="@id_blotter@" />
+		<input type="hidden" name="blotter" value="@blotter@" />
+		<input type="hidden" name="persona" value="@persona@" />
+		<input type="hidden" name="unidad" value="@unidad@" />
+		
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="100%" style="TABLE-LAYOUT: auto; ">
+		<tr class="tableHeader">
+			<th colspan="2">Documentos</th>													
+		</tr>
+		<tr class="tableHeader">
+			<td nowrap><b>Unidad de Inversi&oacute;n </b></td>													
+			<td nowrap>@unidad@</td>
+		</tr>
+		<tr class="formElement">
+			<td nowrap><b>Blotter: </b></td>													
+			<td nowrap>@blotter@</td>				
+		</tr>
+		<tr class="formElement">
+			<td nowrap><b>Tipo Persona: </b></td>													
+			<td nowrap>@persona@</td>				
+		</tr>
+	</table>
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="100%" style="TABLE-LAYOUT: auto; ">	
+		<!--encabezados de columna-->
+		<tr class="tableHeader">
+			<th>Asociar Documentos</th>													
+		</tr>
+		<tr class="tableHeader">
+			<th>No existe Documentos asociados para ser editados, primero deben ser creados</th>
+			<rowsCar></rowsCar>
+		</tr>
+	</table>
+	<br>
+	<button type="button" onclick="window.location='unidad_inversion_documentos-personas_edit?id_blotter=@id_blotter@&unidad=@unidad@&blotter=@blotter@'">Regresar</button>
+	<input type="hidden" name="idUnidadInversion" value="@idunidadinversion@" />
+	<input type="hidden" name="id_blotter" value="@id_blotter@" />
+	<input type="hidden" name="id_persona" value="@idpersona@" />
+	</form>
+
+	</center>
+
+</body>
+<script type="text/javascript">
+
+	function mostrar(accion){
+		if(accion==1){
+			var elementos = document.getElementsByName('unidad');
+			for (var i = 0; i < elementos.length; i++ ){
+				elementos[i].style.display ="block";
+			}
+			titulou.style.display ="block";
+		}
+		if(accion==2){//Modulo Publicacion
+			titulop.style.display ="block";
+		}
+		if(accion==3){//Modulo Consulta
+			tituloc.style.display ="block";
+		}	
+	}
+</script>
+</html>

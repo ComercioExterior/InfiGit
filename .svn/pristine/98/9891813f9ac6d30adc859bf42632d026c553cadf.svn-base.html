@@ -1,0 +1,139 @@
+<HTML>
+<HEAD>
+<LINK REL="stylesheet" type="text/css"
+	href="../js/calendar/popcalendar.css" />
+<SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+
+
+<script language="javascript" src="../js/default.js"></script>
+<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+
+<TITLE>Sistema INFI</TITLE>
+
+<script type="text/javascript">
+	//Funcion de ajax para llamar al action (carga_inicial-ajax_browse) que trae ciertos datos incluida la hora del servidor
+	//y montar estos datos en la p&aacute;gina actual
+	function callAjax(id_contenedor, cod_ajax) {
+
+		var pagResponse = false;
+		var url = "titulos_cliente-ajax_filter?id_cliente="
+				+ document.dataentry.client_id.value + "&cod_ajax=" + cod_ajax;
+
+		if (window.XMLHttpRequest) {// Si es Mozilla, Safari etc
+			pagResponse = new XMLHttpRequest()
+		} else if (window.ActiveXObject) { // pero si es IE
+			try {
+				pagResponse = new ActiveXObject("Msxml2.XMLHTTP")
+			} catch (e) { // en caso que sea una versi&oacute;n antigua
+				try {
+					pagResponse = new ActiveXObject("Microsoft.XMLHTTP")
+				} catch (e) {
+				}
+			}
+		} else
+			return false
+
+		pagResponse.onreadystatechange = function() { // funci&oacute;n de respuesta
+			cargarpagina(pagResponse, id_contenedor)
+		}
+
+		pagResponse.open('GET', url, true) // asignamos los m&eacute;todos open y send
+		pagResponse.send(null)
+
+	}
+	//funci&oacute;n ajax para cargar los datos en la pagina actual
+	function cargarpagina(pagResponse, id_contenedor) {
+		if (pagResponse.readyState == 4
+				&& (pagResponse.status == 200 || window.location.href
+						.indexOf("http") == -1))
+			document.getElementById(id_contenedor).innerHTML = pagResponse.responseText
+	}
+
+	function exportarCVS() {
+		if (confirm("Se Generará un archivo CSV con todas las operaciones consultadas. Esto puede tardar varios minutos. ¿Está seguro que desea iniciar el proceso?")) {
+			window.location = "intercambio_intervencion_bancaria-export?framework.controller.outputstream.open=false&statusp=@statusp@&fecha=@fechahoy@&statusE=1&Tipo=@tipo@";
+			return true;
+		} else {
+			return false;
+
+		}
+	}
+</script>
+
+
+</HEAD>
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+	<TABLE border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+			<TD class="headerBox"><FONT class="headerText"> Env&iacute;o BCV / Intervencion / Cambiaria </FONT></TD>
+
+			<TD class="headerBox" valign="middle" align="right"><img
+				border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17"
+				onclick="helpOpen(window.document.location.href);"
+				style="cursor: hand" title="Mostrar ayuda en l&iacute;nea"></TD>
+				
+			<td class="headerBox" aling="right"></td>
+	</TABLE>
+
+	<CENTER>
+
+		<form NAME="dataentry" METHOD="POST" ACTION="intercambio_intervencion_bancaria-browse" enctype="multipart/form-data">
+
+			<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+
+				<tr>
+					<th COLSPAN="4" ALIGN="center">Seleccione Criterios de B&uacute;squeda</th>
+				</tr>
+				
+				<tr CLASS="formElement">
+	           	 	<td  CLASS="formLabel2" WIDTH="35%">
+	            		Cedula o Rif:
+	            	</td>
+	            	<td><SELECT NAME="nacionalidad" CLASS="inputControl" style="width:50px;">
+							<OPTION VALUE="">Seleccion</OPTION>
+							<OPTION VALUE="V">V</OPTION>
+							<OPTION VALUE="E">E</OPTION>
+							<OPTION VALUE="P">P</OPTION>
+							<OPTION VALUE="J">J</OPTION>
+						</SELECT><INPUT TYPE="TEXT" VALUE="" NAME="rif" style="width:100px;"
+					class="inputControl" />
+				</td>
+	        	</tr>
+				
+				<tr CLASS="formElement">
+	           	 	<td  CLASS="formLabel2" WIDTH="35%">
+	            		ENVIO BCV:
+	            	</td>
+	            	<td  CLASS="formLabel">
+		            	<SELECT NAME="statusE" CLASS="inputControl" style="width:126px;">
+							<OPTION VALUE="TODAS">TODAS</OPTION>
+							<OPTION VALUE="1">LOTE CERRADO</OPTION>
+							<OPTION VALUE="2">ANULADAS</OPTION>
+							<OPTION VALUE="0">NO ENVIADAS</OPTION>
+						</SELECT>
+					</td>
+	        	</tr>
+
+				<tr class="formElement">
+					<td class="formLabel" width="25%">Fecha:</td>
+					<td width="75%"><input type="text" name="fecha"
+						value="@fechahoy@" size="10" maxlength="10" readonly /> <a
+						onclick="popUpCalendar(this, document.forms[0].fecha, 'dd-mm-yyyy')">
+							<IMG SRC="../images/infi_gn_calendar.gif" class="boton"
+							TITLE="Seleccionar Fecha" /> </a></td>
+				</tr>
+
+			</table>
+			<SPAN> </SPAN>
+			<INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart" /> 
+			<br>
+			<button TYPE="submit">Procesar</button>
+			<SPAN> </SPAN>
+<!-- 			<button type="button" onclick="exportarCVS()">Exportar Ordenes CSV</button> -->
+			<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+		</form>
+	</CENTER>
+</BODY>
+</HTML>
+

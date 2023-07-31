@@ -1,0 +1,86 @@
+<html>
+
+	<head>
+        
+        <link rel="stylesheet" type="text/css" href="../megasoft.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Logger Viewer</title>
+
+    </head>
+
+<body>
+
+<!--page name bar-->
+<TABLE WIDTH="889">
+    <TR>
+       
+        <TD class="headerBox" > 
+            <FONT class="headerText">Logger Viewer</FONT>
+        </TD>
+    </TR>
+</TABLE>
+
+
+<center>
+
+<br>
+
+
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="90%">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+              
+              <th>Contenido del Log (&Uacute;ltimos 25 Kb)</th>
+              <td width="1%"  BGCOLOR="#EFEFEF"" nowrap >
+				<a href="logger-find?pagenumber=@prev null-value='2'@">Previa</a> &nbsp;&nbsp <a href="logger-find?pagenumber=@next null-value='1'@">Pr&oacute;xima</a>
+			  </td>
+             
+    </tr>
+
+    <!--data-->
+    <tr>
+        
+                <td BGCOLOR="#0080C0">
+                <FONT COLOR="WHITE"><B>@filename@</B></FONT>
+                </td>
+                <td width="1%"  BGCOLOR="#EFEFEF"" nowrap align='center'>
+				<a href="logger-find?delete=true">Vaciar Logger</a>
+				</td>
+     </tr>
+
+     <tr colspan=3  class="tableCell">
+        
+                <td colspan="2">
+                @logger@
+                </td>
+     </tr>
+
+    
+    </table>
+    <BR>
+  
+<form>
+
+    <span> </span>
+
+
+</form>
+
+<BR>
+
+
+</center>
+<script language="javascript">
+//ir a la pagina deseada
+function gotoPage(page_send)
+{
+	window.location="msc_role-find?pagenumber="+page_send;
+}
+</script>
+</body>
+
+</html>
+

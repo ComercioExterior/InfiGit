@@ -1,0 +1,133 @@
+<html>
+
+<head>
+<script language="javascript" src="../js/default.js"></script>
+<script type="text/javascript" src="../js/menu/jquery-1.2.2.pack.js"></script>
+<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+
+<title>Sistema INFI</title>
+
+<script type="text/javascript">
+	var now = new Date();
+	var idOrdenes = "";
+
+	function regresar() {
+		window.location = "intercambio_intervencion_bancaria_operacion-filter";
+	}
+</script>
+
+</head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+	<TABLE border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+		
+			<TD class="headerBox"><FONT class="headerText">Env&iacute;o BCV / Intervencion / Interbancaria</FONT></TD>
+			<TD class="headerBox" valign="left" align="left"><img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" 
+			onclick="helpOpen(window.document.location.href);" style="cursor: hand" title="Mostrar ayuda en l&iacute;nea" /></TD>
+
+		</TR>
+	</TABLE>
+	<center>
+		<br>
+		<form NAME="dataentry" METHOD="POST" ACTION="intercambio_intervencion_bancaria_operacion-detalle" enctype="multipart/form-data">
+
+			<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform" style="table-layout: auto;">
+				<tr>
+					<th COLSPAN="9" ALIGN="center">Seleccione criterios</th>
+				</tr>
+				<tr>
+					<td>Saldo Disponible:</td>
+					<td><INPUT TYPE="TEXT" VALUE="@saldodisponible@" NAME="saldo"
+						class="inputControl" readonly="readonly" />
+					</td>
+				</tr>
+				<tr>
+					<td>Intervencion:</td>
+					<td><INPUT TYPE="TEXT" VALUE="@codbcv@" NAME="coVentaBCV"
+						class="inputControl" readonly="readonly" />
+					</td>
+				</tr>
+				<tr>
+					<td>Codigo de banco:</td>
+					<td CLASS="formLabel">
+					<SELECT NAME="banco"
+						CLASS="inputControl" style="width: 250px;">
+							<option value="0104">Venezolano de Crédito</option>
+							<option value="0105">Banco Mercantil</option>
+							<option value="0108">Banco Provincial</option>
+							<option value="0114">Bancaribe C.A. Banco Universal</option>
+							<option value="0115">Banco Exterior C.A. Banco Universal</option>
+							<option value="0128">Banco Caroní</option>
+							<option value="0134">Banesco</option>
+							<option value="0163">Banco del Tesoro</option>
+							<option value="0138">Banco Plaza</option>
+							<option value="0151">BFC Banco Fondo Común</option>
+							<option value="0156">100% Banco</option>
+							<option value="0168">Bancrecer</option>
+							<option value="0171">Banco Activo</option>
+							<option value="0172">Bancamiga Banco</option>
+							<option value="0174">Banplus Banco</option>
+							<option value="0175">Banco Bicentenario</option>
+							<option value="0191">Banco Nacional de Crédito</option>
+							<option value="0175">Banco Bicentenario</option>
+							<option value="0116">Banco BOD</option>
+							<option value="0157">DELSUR BANCO UNIVERSAL</option>
+					</SELECT>
+					</td>
+				</tr>
+				<tr CLASS="formElement">
+					<td>Moneda:</td>
+					<td><SELECT NAME="codDivisa" style="width: 150px;">
+				
+							<moneda>
+								<OPTION VALUE="@MONEDA_ID@">@MONEDA_ID@</OPTION>
+							</moneda>
+						</SELECT>
+					</td>
+				</tr>
+<!-- 				<tr> -->
+<!-- 					<td>Moneda:</td> -->
+<!-- 					<td CLASS="formLabel"><SELECT NAME="codDivisa" -->
+<!-- 						CLASS="inputControl" style="width: 250px;"> -->
+<!-- 							<option value="978">Euro</option> -->
+<!-- 							<option value="840">Dolar</option> -->
+
+<!-- 					</SELECT></td> -->
+<!-- 				</tr> -->
+				<tr>
+					<td>Operacion:</td>
+					<td><INPUT TYPE="TEXT" VALUE="TIB" NAME="operacion"
+						class="inputControl" readonly="readonly" />
+					</td>
+				</tr>
+				<tr>
+					<td>Monto:</td>
+					<td><INPUT TYPE="TEXT" VALUE="0" NAME="montoDivisa"
+						class="inputControl" />
+					</td>
+				</tr>
+				<tr>
+					<td>Fecha:</td>
+					<td><INPUT TYPE="TEXT" VALUE="@fecha@" NAME="fecha"
+						class="inputControl" readonly="readonly" />
+					</td>
+				</tr>
+				<tr>
+					<td>tasa:</td>
+					<td><INPUT TYPE="TEXT" VALUE="@tasacambio@" NAME="tasaCambio"
+						class="inputControl" readonly="readonly" />
+					</td>
+				</tr>
+			</table>
+			<BR>
+			<button TYPE="submit">Procesar</button>
+			&nbsp;
+			<button type="button" onclick="regresar()">Regresar</button>
+
+		</form>
+	</center>
+</body>
+</html>
+

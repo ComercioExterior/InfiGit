@@ -1,0 +1,122 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Toma de Orden</title>
+  <link rel="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+  <link rel="stylesheet" type="text/css" href="../css/EstiloFichas.css" />
+  <script type="text/javascript">
+          //Funci&oacute;n para abrir un picklist o limpiar el valor anteriormente seleccionado
+		function showPickList(ind ,id, tx, campo)
+		{
+		   var r
+		   if (ind == '1') {  // llamar a picklist		
+		   	  r = window.open(campo +'?name_id=' + id.name +"&name_tx=" + tx.name, 'Picklist','resizable=yes,scrollbars=yes,width=600,height=450,Left=200,top=150,Status=yes,unadorned:true');
+		   	  
+		   }
+		   else{
+			id.value= "";//limpiar id de cliente
+			tx.value= "";//limpiar campo de cliente
+			recargarPagina2();
+		  }
+		} 
+		
+
+  </script>
+         <script language="javascript" src="../js/default.js"></script>  
+</head>
+<body>
+
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Eventos / Generaci&oacute;n de Pago de Cupones </FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+  <!--formulario-->
+  <form>
+<div id="menu">
+<table border="0">
+<tr>
+<td id="navigation"><a href="pago_cupones-filtro"><span>Consulta</span></a></td>
+<td id="navigationActivo" nowrap><a href="pago_cupones-consultas"><span>T&iacute;tulos por Vencerse</span></a></td>
+
+</tr>
+</table>
+</div>
+      <center>
+      
+      <!-- ZONA DE DATOS -->
+      <div id="datos_orden">
+
+	<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Lista T&iacute;tulos por Vencerse
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+         <!--encabezados de columna-->
+    <tr class="tableHeader">
+	<th>T&iacute;tulos</th>
+	<th colspan="1">Fecha Inicio Pago de Cupones</th>
+    <th colspan="1">Fecha Fin Pago de Cupones</th>
+ 	<th colspan="1">Cantidad de Clientes</th>                       
+    </tr>
+  
+	
+	
+	<!--data-->
+    <rows>
+    <tr class="tableCell">
+
+ 				<td>
+                @titulo_id@
+                </td>
+                 <td>
+                 @fecha_inicio_pago_cupones@              
+                <td>
+               @fecha_fin_pago_cupones@
+                </td>
+                <td>
+               @cantidad_clientes@
+                </td>
+ 
+     </tr>
+     </rows>
+    
+    </table>
+
+  
+    @page_index@  
+        </div>
+   
+        
+        
+
+<INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/> 
+	
+            <br>
+                 
+                <SPAN> </SPAN>
+            <button type="button" onclick="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+ 
+  </form>
+  	</center>
+</body>
+</html>

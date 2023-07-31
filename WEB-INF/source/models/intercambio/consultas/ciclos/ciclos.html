@@ -1,0 +1,71 @@
+<HTML>
+	<HEAD>
+		<TITLE>Sistema INFI</TITLE>
+    	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		<script language="javascript" src="../js/default.js"></script>
+		<script language="javascript">
+		function verificar(){
+		  return confirm("Esta acción puede provocar comportamientos no esperados en el sistema \n¿Está seguro de ejecutar esta acción?");
+		}
+		</script>
+		<style type="text/css">
+          .dataTable{
+            table-layout: auto !important; 
+          }
+        </style>
+	</HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    	<TR>
+        	<TD class="headerBox">                
+            	<FONT class="headerText">@titulo@</FONT>
+       		</TD>
+        	<!-- help online -->
+   			<TD class="headerBox" valign="middle" align="right">
+   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   			</TD>
+   			<!-- fin help online -->
+        	<td class="headerBox" aling="right"></td>
+        </TR>
+	</TABLE>
+	<CENTER>
+
+	<!--formulario-->
+	<form NAME="dataentry" METHOD="POST" ACTION="">
+		<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+			 <!--titulo-->
+			<tr>
+				<th COLSPAN="7" ALIGN="center">Unidad de Inversión: @undinv_nombre@</th>
+			</tr>			 
+			<tr>
+				<th COLSPAN="7" ALIGN="center">Ciclos</th>
+			</tr>
+			<tr>
+			   <th>Ejecucion id</th>
+			   <th>Fecha Inicio</th>
+			   <th>Fecha Cierre</th>
+			   <th>Archivo</th>
+			   <th>Usuario</th>
+			   <th>Detalle</th>
+			</tr>
+			<ciclos>
+            <tr>
+				<td>@ejecucion_id@</td>
+				<td>@fecha format-mask='dd-MM-yyyy hh:mm:ss a'@</td>
+				<td>@fecha_cierre format-mask='dd-MM-yyyy hh:mm:ss a'@</td>
+				<td>@nombre@</td>
+				<td>@usr_nombre@</td>
+				<td><a href="consulta_ciclo_detalle?idEjecucion=@ejecucion_id@&framework.controller.outputstream.open=false">Detalle</a></td>
+        	</tr>			
+			</ciclos>
+		</table>
+		<br>
+		@page_index@
+		&nbsp;<button type="button" ONCLICK="javascript:history.back()">&nbsp;Regresar&nbsp;</button>
+	</form>
+	</CENTER>
+</BODY>
+</HTML>

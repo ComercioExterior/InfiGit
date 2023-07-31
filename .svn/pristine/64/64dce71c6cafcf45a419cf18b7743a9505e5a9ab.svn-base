@@ -1,0 +1,2 @@
+INSERT INTO INFI_TB_Z14_ENTIDAD_REG_ERR(Z01_CO_CODIGO_ENTIDAD, Z14_CO_PROCESO,Z14_NU_REGISTRO,Z14_MENSAJE)
+VALUES ('@cod_entidad@',@cod_proceso@,@registros_error@,'@mensaje@')

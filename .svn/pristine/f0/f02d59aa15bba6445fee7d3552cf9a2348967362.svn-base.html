@@ -1,0 +1,60 @@
+<html>
+
+<HEAD>
+    <TITLE>Error en la Aplicaci&oacute;n</TITLE>
+     <LINK REL="stylesheet" type="text/css" href="../megasoft.css" />
+     <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+
+</HEAD>
+
+<script type="text/javascript">
+
+function regresar(){
+	
+	//si la ventana fue abierta como un popup: cerrar
+	if(window.opener!=null){
+		window.close();
+	}else{//sino regresar al formulario anterior
+		history.back();
+	}
+}
+</script>
+
+
+<body ONLOAD="document.forms[0].elements[0].focus();">
+
+<center>
+
+<h5 style="color:red">
+Violaci&oacute;n de Restricci&oacute;n en Base de Datos
+</h5>
+
+
+<table border="0" width="70%">
+<TR><TD BGCOLOR="gray">
+    <table border="0" width="100%" CELLSPACING="1">
+    	
+        <tr>
+    		<td width="50%" BGCOLOR="#D6D6D6" >
+               <font color="#535353"> <b>Error de Integridad Referencial</b></font>
+            </td>
+    		<td width="50%" BGCOLOR="white">
+              No se puede eliminar el Registro. Esta siendo utilizado como referencia en otras tablas de base de datos.
+               
+            </td>
+    	</tr>
+        
+    </table>
+</TD></TR> 
+</table>
+
+    
+    <FORM>
+    <button type="button" onclick="javascript:regresar();">Regresar</button>
+    </FORM>
+
+
+</center>
+</body>
+</html>
+

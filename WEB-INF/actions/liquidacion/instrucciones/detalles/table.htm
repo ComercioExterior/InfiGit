@@ -1,0 +1,347 @@
+<html>
+	<head>        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+        <script type="text/javascript">
+		 //Oculta o muestra los datos para la instruccion de pago por recompra cuando es en moneda internacional
+		function mostrarInstruccionCtaInt(valor){
+			if(valor=='1'){
+				document.getElementById('tit_datos_transferencia').style.display='block';
+				document.getElementById('datos_transferencia').style.display='block';
+				document.getElementById('botonA').style.display='block';
+				
+			}else if(valor=='2'){
+				document.getElementById('tit_datos_transferencia').style.display='none';
+				document.getElementById('datos_transferencia').style.display='none';
+				document.getElementById('tit_banco_intermediario').style.display='none';
+				document.getElementById('banco_intermediario').style.display='none';
+			}
+		}
+		
+		
+		function mostrarOcultarIntermediario(value){
+			if(value=='1')
+			{
+				document.getElementById('tit_banco_intermediario').style.display='block';
+				document.getElementById('banco_intermediario').style.display='block';
+			}else if(value=='0')
+			{
+				document.getElementById('tit_banco_intermediario').style.display='none';
+				document.getElementById('banco_intermediario').style.display='none';
+			}	
+      	}//fin
+      	
+      	function activardiv(){
+      			//window.opener=null;//Para no cerrar aunque sea un  pop up
+      			callAjax('tit_cliente', '1');
+      			formulario = 'dataentry';
+      			nombre = 'tipo_inst_int';
+      			obtenerRadioSeleccionado(formulario,nombre);
+
+      	}//fin function
+      	
+      	
+      	/**
+      	*Verifica el radio button que esta seleccionado
+      	*/
+      	function obtenerRadioSeleccionado(formulario,nombre){
+				    elementos = document.getElementById(formulario).elements;
+				    longitud = document.getElementById(formulario).length;
+				    for (var i = 0; i < longitud; i++){
+
+						if(elementos[i].name=='tipo_inst_int')
+						{
+							if(elementos[i].checked==true){
+								if(elementos[i].value=='1'){
+									mostrarInstruccionCtaInt(1);
+									mostrarIntermediario(formulario,'intermediario');	
+								}else{
+									mostrarInstruccionCtaInt(2);
+								}//fin else						
+							}//fin if
+						}//fin if
+						
+    			}//fin for
+    			return false;
+			}//fin function
+			
+			
+			function mostrarIntermediario(formulario,nombre){
+				elementos = document.getElementById(formulario).elements;
+				    longitud = document.getElementById(formulario).length;
+				    for (var i = 0; i < longitud; i++){
+
+						if(elementos[i].name=='intermediario')
+						{
+							if(elementos[i].checked==true){
+								if(elementos[i].value=='1'){
+									mostrarOcultarIntermediario(1);
+								}else if(elementos[i].value=='0'){
+									mostrarOcultarIntermediario(0);
+								}//fin else						
+							}//fin if
+						}//fin if
+						
+    			}//fin for
+    			return false;
+			}
+      	
+      	function callAjax(id_contenedor, cod_ajax){	
+			//alert("ajax")
+			var pagResponse = false;
+			var url = "cuentas_cliente-ajax?id_cliente=@client_id@&cod_ajax="+cod_ajax;
+		
+			if (window.XMLHttpRequest) {// Si es Mozilla, Safari etc
+				pagResponse = new XMLHttpRequest()
+			} else if (window.ActiveXObject){ // pero si es IE
+				try {
+					pagResponse = new ActiveXObject("Msxml2.XMLHTTP")
+				} 
+				catch (e){ // en caso que sea una versi&oacute;n antigua
+					try{
+						pagResponse = new ActiveXObject("Microsoft.XMLHTTP")
+					}
+					catch (e){}
+				}
+			}
+			else
+				return false
+		
+			pagResponse.onreadystatechange=function(){ // funci&oacute;n de respuesta
+				cargarpagina(pagResponse, id_contenedor)
+			}
+			
+			pagResponse.open('GET', url, true) // asignamos los m&eacute;todos open y send
+			pagResponse.send(null)
+			 
+		}
+		
+		function cargarpagina(pagResponse, id_contenedor){
+			if (pagResponse.readyState == 4 && (pagResponse.status==200 || window.location.href.indexOf("http")==-1))
+				document.getElementById(id_contenedor).innerHTML=pagResponse.responseText
+		}
+        </script>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};activardiv()">
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+			<TD class="headerBox">                
+            	<FONT class="headerText">Liquidaci&oacute;n / Instrucciones de pago </FONT>
+        	</TD>
+        	<!-- help online -->
+   			<TD class="headerBox" valign="middle" align="right">
+   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   			</TD>
+   			<!-- fin help online -->
+		</TR>
+	</TABLE>
+
+   <center>
+	<br>
+	<form action="asociar_instrucciones_confirm" name="dataentry">
+    <div id="tit_instrucciones_pago" style="display:block">
+	 
+		   <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+		        <tr CLASS="formCaption">
+		            <th COLSPAN="2" ALIGN="center">
+		                 Instrucciones de Pago para la orden @ordene_id@
+		            </th>
+		        </tr>
+		        </table>
+		</div>
+	  
+		   <div id="moneda_internac" style="display:@moneda_extranjera@">
+		  	<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto">
+				
+				<tr CLASS="formCaption">
+		            <th COLSPAN="4" ALIGN="center">
+		                 Moneda Internacional
+		            </th>
+		        </tr>
+					
+				<tr id="botonA" style="display:block">
+	       		 <td>Tipo de Instruci&oacute;n:</td>
+	       		 <td><INPUT TYPE="radio" NAME="tipo_inst_int" VALUE="1" ONCLICK="mostrarInstruccionCtaInt(this.value);">Transferencia</RADIO></td>	
+	      		 <td><INPUT TYPE="radio" NAME="tipo_inst_int" VALUE="2" ONCLICK="mostrarInstruccionCtaInt(this.value);">Cheque</RADIO></td>	
+
+	 			</tr>
+	 			</table>
+	 			
+	 			<table id="tit_datos_transferencia" style="display:none" border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto">			
+				
+				<tr CLASS="formCaption">
+		            <th COLSPAN="4" ALIGN="center">
+		                 Datos de la Cuenta Internacional
+		            </th>
+		        </tr>
+	 			</table>
+	 			<table id="datos_transferencia" style="display:none" border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform" style="table-layout: auto">			
+			       <!--titulo-->
+			       <tr>
+			        	<td>N&uacute;mero de Cuenta:*</td>
+			        	<td>
+			        		<input type="text" value="" name="ctecta_numero_ext" maxlength="34" class="inputControl"/>
+			        		<INPUT TYPE="CHECKBOX" NAME="iban_cta_europea"/> IBAN
+			        	
+			        	</td>		        
+			      
+			        	<td>Banco:*</td>
+			        	<td><input type="text" value="" name="ctecta_bcocta_bco"  maxlength="50" class="inputControl"/></td>
+			        </tr>
+			       <tr>
+				        <td>Direcci&oacute;n:*</td>
+				       	<td><input type="text" value="" name="ctecta_bcocta_direccion" maxlength="50" class="inputControl"/></td>
+				  
+				        <td>Tel&eacute;fono:*</td>
+			        	<td><input type="text" value="" name="ctecta_bcocta_telefono"  maxlength="50" class="inputControl"/></td>
+	
+			       </tr>
+			        <tr id="bic_aba_bco_destino">
+			        
+			            <td>BIC/SWIFT:*</td>
+			        	<td><input type="text" value="" name="ctecta_bcocta_bic"   maxlength="50" class="inputControl"/></td>
+			       
+			       		<td>ABA:*</td>
+				       	<td><input type="text" value="" name="ctecta_bcocta_aba"  maxlength="50" class="inputControl"/></td>
+	
+			        </tr>
+				     <tr>
+				    
+			        	<td>Observaciones:</td>
+			        	<td colspan="3"><textarea name="ctecta_observacion" cols="30" rows ="5"  value=""></textarea></td>
+			        </tr>
+			        <tr>
+				     <tr id="botonA" style="display:block">	
+				     <td>Banco Intermediario</td>			       	
+				       		 <td><INPUT TYPE="radio" NAME="intermediario" value="1" ONCLICK="mostrarOcultarIntermediario(this.value);">Si
+				       		 <INPUT TYPE="radio" NAME="intermediario"  value="0" checked="checked" ONCLICK="mostrarOcultarIntermediario(this.value);">No</td>
+				</table>		
+				
+				<table id="tit_banco_intermediario" border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="display:none">
+
+						<tr CLASS="formCaption">
+				            <th COLSPAN="4" ALIGN="center">
+				                Datos del Banco Intermediario
+				            </th>
+				        </tr>
+				        
+				</table>
+
+				<table id="banco_intermediario" border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform" style="display:none">
+
+				 	   <tr>
+				        	<td>Nombre del Banco Intermediario:*</td>
+				        	<td><input type="text" value="" name="ctecta_bcoint_bco"  maxlength="50" class="inputControl"/></td>
+				       
+					        <td>Direcci&oacute;n Del Banco Intermediario:*</td>
+				        	<td>
+				        		<input type="text" value="" name="ctecta_bcoint_direccion"  maxlength="50" class="inputControl"/>
+				        	</td>
+				        </tr>
+				        
+				        <tr>
+				        
+				        	<td>BIC/SWIFT Del Banco Intermediario:*</td>
+				        	<td>
+				        		<input type="text" value="" name="ctecta_bcoint_bic"   maxlength="50" class="inputControl"/>
+				        	</td>
+				        
+				        	 <td>Tel&eacute;fono Del Banco Intermediario:*</td>
+				        	<td>
+				        		<input type="text" value="" name="ctecta_bcoint_telefono"  maxlength="50" class="inputControl"/>
+				        	</td>
+				       
+				        </tr>
+				        
+				         <tr>				        	
+				        	 <td>Cuenta en el Banco Intermediario *:</td>
+        					 <td>
+        						<input type="text" value="" name="cta_bco_bcoint" maxlength="20" class="inputControl"/>
+        						
+        					</td>
+        					<td colspan="2">(N&uacute;mero de cuenta del banco destino en el banco intermediario)</td>
+				        	
+				        </tr>				    
+				        
+				        <tr>
+						     <td>ABA Del Banco Intermediario:*</td>
+				        	<td>
+				        		<input type="text" value="" name="ctecta_bcoint_aba"  maxlength="50" class="inputControl"/>
+				        	</td>
+				        	
+				        	<td>Observaciones Del Banco Intermediario:</td>
+				        	<td>
+				        	<textarea name="ctecta_bcoint_observacion" cols="30" rows ="5"  value=""></textarea> 
+				        	</td>
+				        	
+				        </tr>			    
+				</table>
+		   </div>
+	   
+	      
+		   <div id="moneda_local" style="display:@moneda_local@">
+		  	<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto">
+				
+				<tr CLASS="formCaption">
+		            <th COLSPAN="4" ALIGN="center">
+		                 Moneda Local
+		            </th>
+		        </tr>				
+				
+	 			</table>
+	 			
+			 <div id="tit_cliente" style="display:@moneda_local@">
+        		<!-- AJAX para campos de la cuenta del cliente -->
+      		</div>			
+		   </div>
+
+	  <!--FIN INSTRUCCIONES DE PAGO  -->
+	
+	 <div id="datos_beneficiario" style="display:@control_cambio@" align="center">
+		   	  
+		   	  	<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto">
+				
+				<tr CLASS="formCaption">
+		            <th COLSPAN="4" ALIGN="center">
+		                 Datos del Beneficiario
+		            </th>
+		        </tr>				
+				
+	 			</table>
+	 
+		
+			<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform" style="table-layout: auto">
+			<tr>
+		       <!--titulo-->
+		
+		        <tr>
+		        	<td width="25%">C&eacute;dula Beneficiario:</td>
+		        	<td width="75%"><input type="text" value=""  name="cedula_beneficiario"  maxlength="10" class="inputControl"/></td>
+		        </tr>
+		       <tr>
+		        	<td width="25%">Nombre Beneficiario:</td>
+		        	<td width="75%"><input type="text" value="" name="nombre_beneficiario"  maxlength="50" class="inputControl"/></td>
+		        </tr>
+		       </table>
+		</div>
+	<BR>
+	<input type="hidden" name="ordene_id" value="@ordene_id@">
+	<input type="hidden" name="client_id" value="@client_id@">
+	<input type="hidden" name="moneda_n" value="@moneda_n@">
+	<input type="hidden" name="moneda_e" value="@moneda_e@">
+	&nbsp;
+		<button TYPE="submit">Procesar</button>
+		&nbsp;
+    	<button TYPE="button" onclick="window.close()">Salir</button>
+		
+	</form>
+   </center>
+</body>
+</html>

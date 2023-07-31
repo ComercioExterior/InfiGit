@@ -1,0 +1,236 @@
+
+<HTML>
+    
+    <HEAD>
+    <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+            <SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+        
+    
+             <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css"/>
+        
+        <TITLE>Sistema INFI</TITLE>
+        
+        <script type="text/javascript">
+        
+	    //Funcion de ajax para llamar al action (carga_inicial-ajax_browse) que trae ciertos datos incluida la hora del servidor
+		//y montar estos datos en la p&aacute;gina actual
+		function callAjax(id_contenedor, cod_ajax){	
+			
+			var pagResponse = false;
+			var url = "titulos_cliente-ajax_filter?id_cliente="+document.dataentry.client_id.value+"&cod_ajax="+cod_ajax;
+		
+			if (window.XMLHttpRequest) {// Si es Mozilla, Safari etc
+				pagResponse = new XMLHttpRequest()
+			} else if (window.ActiveXObject){ // pero si es IE
+				try {
+					pagResponse = new ActiveXObject("Msxml2.XMLHTTP")
+				} 
+				catch (e){ // en caso que sea una versi&oacute;n antigua
+					try{
+						pagResponse = new ActiveXObject("Microsoft.XMLHTTP")
+					}
+					catch (e){}
+				}
+			}
+			else
+				return false
+		
+			pagResponse.onreadystatechange=function(){ // funci&oacute;n de respuesta
+				cargarpagina(pagResponse, id_contenedor)
+			}
+			
+			pagResponse.open('GET', url, true) // asignamos los m&eacute;todos open y send
+			pagResponse.send(null)
+			 
+		}
+		//funci&oacute;n ajax para cargar los datos en la pagina actual
+		function cargarpagina(pagResponse, id_contenedor){
+			if (pagResponse.readyState == 4 && (pagResponse.status==200 || window.location.href.indexOf("http")==-1))
+				document.getElementById(id_contenedor).innerHTML=pagResponse.responseText
+		}
+        
+        
+        //Funci&oacute;n para abrir un picklist o limpiar el valor anteriormente seleccionado
+		function showPickList(ind ,id, tx, campo)
+		{
+		   var r
+		   if (ind == '1') {  // llamar a picklist		
+		   	  r = window.open(campo +'?name_id=' + id.name +"&name_tx=" + tx.name, 'Picklist','resizable=yes,scrollbars=yes,width=600,height=450,Left=200,top=150,Status=yes,unadorned:true');
+		   }
+		   else{
+			id.value= "";//limpiar id de cliente
+			tx.value= "<Todos>";//limpiar campo de cliente
+			callAjax('tit_cliente', '2');//buscar todos los titulos
+			document.dataentry.moneda_id.disabled = false;//habilitar campo moneda
+		  }
+		}
+		
+		//Funci&oacute;n que bloquea el campo Moneda si se selecciona alg&uacute;n titulo espec&iacute;fico
+		function bloquearMoneda(){
+		
+			if(document.dataentry.titulo_id.value!='')
+				document.dataentry.moneda_id.disabled = true;
+		}
+        
+        
+        </script>
+        
+        <script type="text/javascript">
+				function dinamiCombo(unInvId){
+					if(unInvId==""){
+					return false;
+					}else{
+							document.dataentry.action="datos_ordenes_exportar-filter?unInv="+unInvId;  
+							document.dataentry.submit();
+						}
+				}
+				function loadSelectUnInvId(){
+				if(document.getElementById("unidad_seleccionada").value!="");
+					document.getElementById("unidad_inversion").options.value=document.getElementById("unidad_seleccionada").value;
+				}
+		</script>
+         
+    </HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};loadSelectUnInvId()">
+       
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Ordenes / Exportar Excel / Datos Ordenes</FONT>
+        </TD>
+        
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+        <td class="headerBox" aling="right"></td>
+</TABLE>
+        
+        <CENTER>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="datos_ordenes_exportar-browse">
+		
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="4" ALIGN="center">                
+                  Seleccione Criterios               
+            </th>
+        </tr>
+        
+
+        <!--campo-->
+     <tr CLASS="formElement">
+            <td  CLASS="formLabel2" WIDTH="35%">
+            Unidad de Inversi&oacute;n:*
+            </td>
+            <td  CLASS="formLabel">
+            <SELECT NAME="unidad_inversion" id="unidad_inversion" CLASS="inputControl" style="width:360px;" onchange="dinamiCombo(this.value)">
+			<OPTION VALUE=""></OPTION>
+			<unidad_inversion>
+			<OPTION VALUE="@undinv_id@">@undinv_nombre@-@undinv_serie@</OPTION>
+			</unidad_inversion>
+			</SELECT>
+			</td>
+        </tr>
+        
+        <tr CLASS="formElement">
+            <td  CLASS="formLabel2" WIDTH="35%">
+            Blotter:
+            </td>
+            <td  CLASS="formLabel">
+            <SELECT NAME="blotter" CLASS="inputControl">
+			<OPTION VALUE=""></OPTION>
+			<blotter>
+			<OPTION VALUE="@bloter_id@">@bloter_id@-@bloter_descripcion@</OPTION>
+			</blotter>
+			</SELECT>
+			</td>
+        </tr>
+        <tr>
+            <td class="formLabel2">
+				Fecha Orden Desde:*
+            </td>
+            <td class="formLabel2">
+				<INPUT TYPE="TEXT" VALUE="@fecha_less60@" NAME="fe_ord_desde" SIZE="12" MAXLENGTH="10" class="inputControl" readonly /> 
+				<a onclick="popUpCalendar(this, document.forms[0].fe_ord_desde, 'dd-mm-yyyy')">
+				<IMG SRC="../images/infi_gn_calendar.gif" class="boton" TITLE="Seleccionar Fecha"/>
+				</a>
+			</td>
+        </tr>
+        <!--campo-->
+        <tr>
+            <td class="formLabel2">
+				Fecha Orden Hasta:*
+            </td>
+            <td>
+				<INPUT TYPE="TEXT" VALUE="@fecha_actual@" NAME="fe_ord_hasta" SIZE="12" MAXLENGTH="10" class="inputControl" readonly/> 
+				<a onclick="popUpCalendar(this, document.forms[0].fe_ord_hasta, 'dd-mm-yyyy')">
+				<IMG SRC="../images/infi_gn_calendar.gif" TITLE="Seleccionar Fecha"/> 
+				</a>
+			</td>
+        </tr>
+        
+        
+           <tr CLASS="formElement">
+            <td  CLASS="formLabel2" WIDTH="35%">
+            Status:
+            </td>
+            <td  CLASS="formLabel">
+            <SELECT NAME="status" CLASS="inputControl" style="width:250px;">
+			<OPTION VALUE="">Todos</OPTION>
+			<OPTION VALUE="infadj">Informe Adjudicación</OPTION>
+			<status>
+			<OPTION VALUE="@ordsta_id@">@ordsta_nombre@</OPTION>
+			</status>
+			</SELECT>
+			</td>
+        </tr>     
+        
+         <tr CLASS="formElement">
+            <td  CLASS="formLabel2" WIDTH="35%">
+            Tipo Producto:*
+            </td>
+            <td  CLASS="formLabel">
+            <SELECT NAME="tipo_producto_id" CLASS="inputControl" style="width:250px;">		
+            <OPTION VALUE="">Seleccione</OPTION>
+			<productos>
+			<OPTION VALUE="@tipo_producto_id@">@nombre@</OPTION>
+			</productos>
+			</SELECT>
+			</td>
+        </tr>          
+      
+         </table>
+         <input type="hidden" id="unidad_seleccionada" value="@unidad_seleccionada@" name="unidad_seleccionada">
+         <!--nota sobre los campos obligatorios-->
+            <P><FONT COLOR="red"><B>Nota:</B></FONT> Los campos con * deben ser llenados para poder procesar el formulario.</P>
+              			             
+            
+            <SPAN> </SPAN>
+         
+         <INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/> 	
+
+            <br>
+            <button TYPE="submit">Procesar</button>
+         
+                        <SPAN> </SPAN>
+            <button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+
+    </form>
+
+        
+        </CENTER>
+        
+    </BODY>
+</HTML>
+

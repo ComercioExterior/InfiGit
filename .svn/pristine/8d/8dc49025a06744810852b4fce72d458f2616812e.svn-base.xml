@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+
+	Configuracion de la accion
+
+	Describe el modelo y la vista a utilizar, asi
+	como informacion sobre data-binding entre la vista y el modelo
+
+-->
+
+<config>
+
+	<!--model class-->
+	<model-class>models.unidad_inversion.unidad_inversion.UnidadInversionEdit</model-class>
+	
+	<!--view class-->
+	<view-class>megasoft.GenericView</view-class>
+	
+	<!--template-->
+	<template>form.htm</template>
+
+	<!--reglas de validacion de la forma-->
+	<record-def></record-def>
+	
+	<!--response content-type-->
+	<content-type>text/html</content-type>
+	
+	<!--expiracion de la pagina (en segundos - puede estar vacio)-->
+	<expires></expires>
+	
+	<!--control de cache  (true|false)-->
+	<cache>true</cache>
+	
+	<!--URI a redireccionar despues de ejecutar el model - type=redirect|forward-->
+	<next-action type="redirect"></next-action>
+	
+	<!--mostrar este template de WEB-INF/templates si el dataset esta vacio-->
+	<on-empty source=""></on-empty>
+
+	<!-- 
+		Data Binding
+		
+		Se ejecuta en el orden en que aparecen los elementos,
+		el orden es importante
+	
+		type=replace|repeat|select|select-multiple|select-checkbox|select-radio
+
+	Ejemplos para cada tipo de binding:
+
+	<bind type="replace" source="filter" tag="" control-name="" field-name=""/>
+	<bind type="repeat" source="tipo_reclamo" tag="rows" control-name="" field-name=""/>
+	<bind type="select" source="tipo_reclamo" tag="" control-name="combo1" field-name="id"/>
+	<bind type="select-multiple" source="tipo_reclamo" tag="" control-name="combo1" field-name="id"/>
+	<bind type="select-checkbox" source="tipo_reclamo" tag="" control-name="check1" field-name="id"/>
+	<bind type="select-radio" source="tipo_reclamo" tag="" control-name="option1" field-name="id"/>
+	-->
+	
+	<bind type="repeat" source="dsInstrumentoFinanciero" tag="rowsIF" />	
+	<bind type="repeat" source="dsInstrumentoFinanciero" tag="rowsIF2" />	
+	<bind type="repeat" source="dsMoneda" tag="rowsMoneda" />
+	<bind type="repeat" source="dsEmpresa" tag="rowsEmisor" />	
+	<bind type="repeat" source="meridiano" tag="rows_meridiano1" />
+	<bind type="repeat" source="meridiano" tag="rows_meridiano2" />
+	<bind type="repeat" source="dsHora" tag="rowsHora1" />
+	<bind type="repeat" source="dsMin" tag="rowsMin1" />
+	<bind type="repeat" source="dsHora" tag="rowsHora2" />
+	<bind type="repeat" source="dsMin" tag="rowsMin2" />
+	<bind type="replace" source="dsTipoMercado" />	
+	<bind type="select" source="dsUnidadInversion" tag="" control-name="monedaNegocio" field-name="moneda_id"/>		
+	<bind type="select" source="dsUnidadInversion" tag="" control-name="idEmpresaEmisor" field-name="empres_id"/>	
+	<bind type="select" source="dsUnidadInversion" tag="" control-name="istrumentoFinanciero" field-name="instrumentofinanciero"/>
+	<bind type="select" source="dsUnidadInversion" tag="" control-name="meridiano1_liquidacion" field-name="meridiano1_liquidacion"/>
+	<bind type="select" source="dsUnidadInversion" tag="" control-name="meridiano2_liquidacion" field-name="meridiano2_liquidacion"/>
+	<bind type="select" source="dsUnidadInversion" tag="" control-name="PrimeraHoraLiquida" field-name="hora1_liquidacion"/>
+	<bind type="select" source="dsUnidadInversion" tag="" control-name="PrimeraMinLiquida" field-name="min1_liquidacion"/>
+	<bind type="select" source="dsUnidadInversion" tag="" control-name="SegundaHoraLiquida" field-name="hora2_liquidacion"/>
+	<bind type="select" source="dsUnidadInversion" tag="" control-name="SegundaMinLiquida" field-name="min2_liquidacion"/>
+	<bind type="select-radio" source="dsUnidadInversion" tag="" control-name="tipoMercado" field-name="undinv_mercado"/>		
+	<bind type="select-radio" source="dsUnidadInversion" tag="" control-name="indicaPedidoMonto" field-name="undinv_in_pedido_monto"/>	
+	<bind type="select-radio" source="dsUnidadInversion" tag="" control-name="indicadorPrecioSucio" field-name="undinv_in_precio_sucio"/>		
+	<bind type="select-checkbox" source="dsUnidadInversion" tag="" control-name="indicaVtaEmpleados" field-name="undinv_in_vta_empleados"/>
+	<bind type="select-checkbox" source="dsUnidadInversion" tag="" control-name="indicaRecompraNeteo" field-name="undinv_in_recompra_neteo"/>	
+	<bind type="replace" source="dsUnidadInversion" />
+	<bind type="repeat" source="dsAsociaciones" tag="rowsAsoc" />
+	<bind type="replace" source="dsApoyo" />	
+	<bind type="replace" source="accion" />
+	<bind type="replace" source="dsChecked" />
+	
+	
+</config>

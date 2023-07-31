@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<config>
+
+	<model-class>models.bcv.menudeo_envio.Anular</model-class>
+	<view-class>megasoft.GenericView</view-class>
+	<template>table.htm</template>
+	<record-def>record.xml</record-def>
+	<content-type>text/html</content-type>
+	<expires></expires>
+	<no-cache>true</no-cache>
+	<next-action type="redirect"></next-action>
+	<on-empty source="rows">no-data.htm</on-empty>
+
+  	<bind type="repeat"  source="rows" tag="rows"/>
+    <bind type="replace" source="datos" tag="rows"/>
+ 	<bind type="replace" source="paginacion"/> 
+ 	<bind type="replace" source="datosFilter"/>
+</config>

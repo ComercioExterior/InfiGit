@@ -1,0 +1,396 @@
+<HTML>  
+    <HEAD>
+    	<LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+         <SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css"/>
+        <TITLE>Sistema INFI</TITLE>
+        <SCRIPT>
+        
+        function showEnterOrden(ind ,id, tx, campo){
+		   var r
+		   if (ind == '1') {  // llamar a picklist		
+		   	  r = window.open(campo +'?name_id=' + id.name +"&name_tx=" + tx.name, 'Enterorden','resizable=yes,scrollbars=yes,width=600,height=450,Left=200,top=150,Status=yes,unadorned:true');
+		   	  
+		   }
+		   else{
+			id.value= "";//limpiar id de ui
+			tx.value= "";//limpiar campo de texto de ui
+			recargarPagina();
+		  }
+		}
+        
+        function recargarPagina(){
+        	if(document.dataentry.evento!=undefined){
+        		var evento = document.dataentry.evento.value;
+        		var evento_name = document.dataentry.evento_name.value;
+        		var producto = document.dataentry.producto.value;
+            	if(evento!=''){
+            		document.getElementById('mensaje_espera').style.display='block';
+            		document.dataentry.action='envio_correos-filter?evento='+evento+'&producto='+producto+'&evento_name='+evento_name; 
+            		document.dataentry.submit();
+            	}
+        	}
+        }
+        
+        function setIdOrdenes(textArea){
+        	document.dataentry.id_ordenes.value = document.dataentry.cod_ordenes.value;
+        }
+    	
+        function verifDest(dest){
+        	var destCod = dest.value;
+        	if(destCod=='C'){
+        		document.getElementById('area_tr').style.display='none';
+        		//document.getElementById('area').value='';
+        	}else{
+        		if(destCod=='F'){
+        			document.getElementById('ui_tr').style.display='none';
+        			//document.getElementById('ui_id').value='';
+        			document.getElementById('orden_tr').style.display='none';
+        			//document.getElementById('id_ordenes').value='';
+            	}
+        	}
+        }
+        
+        function setNames() {
+// 			document.dataentry.name_status_orden_plant.value = document.dataentry.status_orden.options[document.dataentry.status_orden.options.selectedIndex].text;
+			//alert('name_status_orden_plant: '+document.dataentry.name_status_orden_plant.value);
+// 			document.dataentry.name_transac_plant.value = document.dataentry.transaccion.options[document.dataentry.transaccion.options.selectedIndex].text;
+			//alert('name_transac_plant: '+document.dataentry.name_transac_plant.value);
+// 			document.dataentry.name_dest.value = document.dataentry.tipo_destinatario.options[document.dataentry.tipo_destinatario.options.selectedIndex].text;
+			//alert('name_dest: '+document.dataentry.name_dest.value);
+   		}
+        
+        function showMsgIniciando(){
+        	document.getElementById('msgIniciando').style.display='block';
+        	//document.getElementById('iniciar_button').disabled = true;
+        }
+        
+        function iniciarCiclo(){
+        	document.dataentry.action='envio_correos-browse'; 
+    		document.dataentry.submit();
+    		document.getElementById('iniciar_button').disabled = true;
+        }
+        
+        /*
+        function setStatus(statusOrden) {
+  			document.dataentry.name_status_orden_plant.value = statusOrden.options[statusOrden.options.selectedIndex].text;
+  			document.dataentry.name_transac_plant.value = document.dataentry.transaccion.options[document.dataentry.transaccion.options.selectedIndex].text;
+  		}
+  		
+  		function setNameTransaccion(transac) {
+			document.dataentry.name_transac_plant.value = transac.options[transac.options.selectedIndex].text;
+  		}
+  		
+  		function setNameDest(dest) {
+			document.dataentry.name_dest.value = dest.options[dest.options.selectedIndex].text;
+   		}
+  		*/
+  		
+  		//NM29643 infi_TTS_466
+  		//Funcion Ajax que lista los eventos dado un id de producto
+  		function callAjax(id_contenedor, url){
+  			
+  			var name;
+  			if(id_contenedor==='eventos_listados'){
+  				name='evento';
+  			}else{
+  				if(id_contenedor==='areas_listadas'){
+  					name='area';
+  				}
+  			}
+  			
+  			//Siempre se intenta primero eliminar select si se encuentra generado
+  			removeSelect("tabla_eventos", name);
+  			
+  			if( (url.indexOf("ajax_eventos")!=-1 && document.dataentry.producto.value!='' && document.dataentry.producto.value.length>0)
+  				|| (url.indexOf("ajax_areas")!=-1 && document.dataentry.tipo_destinatario.value==='F')
+  			){
+  			
+  			var pagResponse = false;
+//  	 		var url = "plantillas_correo-filter_ajax_eventos?prod="+document.dataentry.producto.value;
+//  	 		alert('url: '+url)
+  			
+  			if (window.XMLHttpRequest) {// Si es Mozilla, Safari etc
+  				pagResponse = new XMLHttpRequest()
+  			} else if (window.ActiveXObject){ // pero si es IE
+  				try {
+  					pagResponse = new ActiveXObject("Msxml2.XMLHTTP")
+  				} 
+  				catch (e){ // en caso que sea una versi&oacute;n antigua
+  					try{
+  						pagResponse = new ActiveXObject("Microsoft.XMLHTTP")
+  					}
+  					catch (e){}
+  				}
+  			}
+  			else
+  				return false
+  		
+  			pagResponse.onreadystatechange = function(){ // funci&oacute;n de respuesta
+  				cargarpagina3(pagResponse, id_contenedor)
+  			}
+  			
+  			pagResponse.open('GET', url, true) // asignamos los m&eacute;todos open y send
+  			pagResponse.send(null)
+  			
+  			}
+  		}
+  		
+  		//NM29643 infi_TTS_466
+  		//Funcion que elimina el select llenado con la llamada a la funcion ajax
+  		function removeSelect(id_contenedor, name){
+//  	 		var select = document.getElementById(id_contenedor).cells[1].childNodes[0]; //select
+  			var select = document.getElementById(id_contenedor);
+  			if(select===undefined  || select===null){
+  			}else{ //Esta definido el select (se habia llamado a la funcion ajax antes)
+  				select.parentNode.removeChild(select);
+  			}
+  		}
+
+  		//NM29643 infi_TTS_466
+  		//Funcion ajax para cargar los datos en la pagina actual
+  		function cargarpagina2(pagResponse, id_contenedor, name) {
+  			if (pagResponse.readyState == 4
+  					&& (pagResponse.status == 200 || window.location.href
+  							.indexOf("http") == -1)) {
+  				//Se llena el select con la respuesta de la llamada a la funcion ajax
+  				var html = pagResponse.responseText.substr(0,
+  						pagResponse.responseText.indexOf("<iframe"))
+  				// 	 			alert('html: '+html);
+  				document.getElementById(id_contenedor).cells[1].innerHTML = document
+  						.getElementById(id_contenedor).cells[1].innerHTML
+  						+ html
+  				// 	 			document.getElementById(id_contenedor).innerHTML = document.getElementById(id_contenedor).innerHTML + pagResponse.responseText
+  			}
+  		}
+  		
+  		//NM29643 infi_TTS_466
+		//Funcion ajax para cargar los datos en la pagina actual
+		function cargarpagina3(pagResponse, id_contenedor) {
+			if (pagResponse.readyState == 4 && (pagResponse.status == 200 || window.location.href.indexOf("http") == -1)) {
+				//Se llena el select con la respuesta de la llamada a la funcion ajax
+				document.getElementById(id_contenedor).innerHTML = pagResponse.responseText;
+			}
+		}
+  		
+		function verifEvento(x){
+			var e = document.dataentry.evento;
+			var ev_name = e.options[e.selectedIndex].text;
+			document.dataentry.evento_name.value = ev_name;
+// 			alert('evento name: '+ev_name);
+		}
+		
+		//NM29643 infi_TTS_466
+  		//Funcion Ajax que lista los eventos dado un id de producto
+  		function callAjaxFilter(id_contenedor, url){
+  			
+  			//Siempre se intenta primero eliminar select si se encuentra generado
+  			removeDataEvento(id_contenedor);
+  			
+  			if( (url.indexOf("ajax_eventos")!=-1 && document.dataentry.producto.value!='' && document.dataentry.producto.value.length>0)
+  				|| (url.indexOf("ajax_areas")!=-1 && document.dataentry.tipo_destinatario.value==='F')
+  			){
+  			
+  			var pagResponse = false;
+//  	 		var url = "plantillas_correo-filter_ajax_eventos?prod="+document.dataentry.producto.value;
+//  	 		alert('url: '+url)
+  			
+  			if (window.XMLHttpRequest) {// Si es Mozilla, Safari etc
+  				pagResponse = new XMLHttpRequest()
+  			} else if (window.ActiveXObject){ // pero si es IE
+  				try {
+  					pagResponse = new ActiveXObject("Msxml2.XMLHTTP")
+  				} 
+  				catch (e){ // en caso que sea una versi&oacute;n antigua
+  					try{
+  						pagResponse = new ActiveXObject("Microsoft.XMLHTTP")
+  					}
+  					catch (e){}
+  				}
+  			}
+  			else
+  				return false
+  		
+  			pagResponse.onreadystatechange = function(){ // funci&oacute;n de respuesta
+  				cargarpagina3(pagResponse, id_contenedor)
+  			}
+  			
+  			pagResponse.open('GET', url, true) // asignamos los m&eacute;todos open y send
+  			pagResponse.send(null)
+  			
+  			}
+  		}
+		
+  		//NM29643 infi_TTS_466
+  		//Funcion que elimina el select llenado con la llamada a la funcion ajax
+  		function removeDataEvento(id_contenedor){
+  			var div = document.getElementById(id_contenedor);
+  			if(div===undefined  || div===null){
+  			}else{ //Esta definido el select (se habia llamado a la funcion ajax antes)
+  				div.parentNode.removeChild(div);
+  			}
+  		}
+  		
+        
+	</SCRIPT>
+        
+    </HEAD>
+    
+   <!--poner el focus en el 1er control de la forma-->
+<BODY>
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Env&iacute;o de Correos / Env&iacute;o</FONT>
+        </TD>
+        
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+        <td class="headerBox" aling="right"></td>
+     </TR>
+</TABLE>
+                
+        <CENTER>
+
+<div id="mensaje_espera" style="display:none; font-weight:bold; margin:1% 0% 1% 0%;">Buscando plantilla...</div>
+
+<div style="font-weight:bold; margin:1% 0% 1% 0%;">@mens_error@</div>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="envio_correos-browse">
+		
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="3" ALIGN="center">                
+                  Datos de Env&iacute;o               
+            </th>
+        </tr>
+        
+<!--         <tr> -->
+<!-- 			<td width="30%">Tipo de Destinatario:*</td> -->
+<!-- 			<td> -->
+<!-- 				<SELECT NAME="tipo_destinatario" onchange="verifDest(this); setNames(); recargarPagina();"> -->
+<!-- 					<rows_dest> -->
+<!-- 						<OPTION VALUE="@tipo_destinatario@">@nombre_tipo_destinatario@</OPTION> -->
+<!-- 					</rows_dest> -->
+<!-- 				</SELECT> -->
+<!-- 			</td> -->
+<!-- 		</tr> -->
+		
+<!-- 		<INPUT TYPE="hidden" VALUE="" NAME="name_dest"/> -->
+		
+        
+        <!--campo-->
+		<tr class="tableCell" style="display:@producto_display@">
+			<td>Producto con eventos a notificar:</td>
+			<td>
+				<SELECT NAME="producto" SIZE="1" onchange="callAjax('eventos_listados', 'plantillas_correo-filter_ajax_eventos?prod='+this.value);">
+					<OPTION VALUE="">Todos</OPTION>
+					<rows_productos>					
+						<OPTION VALUE="@tipo_producto_id@">@nombre@</OPTION>						
+					</rows_productos>
+				</SELECT>       
+			</td>        
+		</tr>
+		
+		</table>
+		
+		<div id="eventos_listados">
+		</div>
+
+	
+	<div id="data_evento" style="display:@evento_display@">
+	
+	<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+	
+	<!--campo-->
+	<tr  id="evento_filtrado" CLASS="formElement">
+		<td CLASS="formLabel">Evento:</td>
+		<td>
+			@evento_name@
+		</td>
+		<INPUT TYPE="hidden" NAME="evento_id" VALUE="@evento@"/>
+		<INPUT TYPE="hidden" NAME="evento_name" VALUE="@evento_name@"/>
+	</tr>
+	
+	<!--campo-->
+	<tr  id="planilla_filtrada" CLASS="formElement">
+		<td CLASS="formLabel">Plantilla:</td>
+		<td>
+			@plantilla_name@
+		</td>
+		
+		<INPUT TYPE="hidden" NAME="plant_mail_name" value="@plantilla_name@"/>
+		<INPUT TYPE="hidden" NAME="plantilla_id" VALUE="@plantilla_id@"/>
+		
+	</tr>
+    
+<!--     campo -->
+<!-- 	<tr id="area_tr" class="tableCell" style="display:@areas_display@"> -->
+<!-- 		<td>Area(s):</td> -->
+<!-- 		<td> -->
+<!-- 			<rows_areas> -->
+<!-- 				<input type="checkbox" name="area" class="inputControl" value="@PLANT_MAIL_AREA_ID@">@PLANT_MAIL_AREA_NAME@<br> -->
+<!-- 			</rows_areas>      -->
+<!-- 		</td>         -->
+<!-- 	</tr> -->
+    
+    
+	<!--campo-->
+	<tr id="ui_tr" class="tableCell" style="display:@campos_cliente_display@">
+           <td>Unidad de Inversi&oacute;n:</td>
+		<td>
+           	<INPUT TYPE="TEXT" VALUE="@uni_id@" NAME="ui_txt" SIZE="50" MAXLENGTH="50" class="inputControl" readonly/>
+           	<input type="hidden" value="@uni_id@" name="ui_id"/>
+			<!--IMAGENES/BOTONES PARA EL PICKLIST-->
+			<IMG src="../images/infi_gn_picklist.gif" title="Haga CLICK para ver la lista de opciones." onclick="showEnterOrden(1,document.dataentry.ui_id,document.dataentry.ui_txt,'enter_ui-find')" style="cursor:hand"/>
+			<IMG src="../images/infi_gn_picklist-clear.gif" title="Haga CLICK para borrar la opci&oacute;n seleccionada." onclick="showEnterOrden(0,document.dataentry.ui_id,document.dataentry.ui_txt,'enter_ui-find')" style="cursor:hand"/>
+		</td>
+       </tr>
+       
+	<!--campo-->
+	<tr id="orden_tr" class="tableCell" style="display:@campos_cliente_display@">
+		<td>ID de Orden(es):</td>
+		<td>
+       		<textarea id="cod_ordenes" maxlength="2805" rows="4" cols="50" onchange="setIdOrdenes(this);"></textarea>
+       	</td>
+       	<td>Si va a indicar m&aacute;s de un ID de Orden sep&aacute;relos por coma (,)</td>
+	</tr>
+       
+     <INPUT TYPE="hidden" NAME="id_ordenes" VALUE=""/>
+    
+	</table>
+		
+	</div>
+	
+         
+         <!--nota sobre los campos obligatorios-->
+            <P><FONT COLOR="red"><B>Nota:</B></FONT> Los campos con * deben ser llenados para poder procesar el formulario.</P>
+            <SPAN> </SPAN>
+            <br>
+            <td>					
+				<button type="button" ONCLICK="window.location='envio_correos-filter'">&nbsp;Reiniciar&nbsp;</button>
+			 </td>
+            <button id="iniciar_button" TYPE="button" onclick="showMsgIniciando(); iniciarCiclo();">Iniciar Ciclo de Env&iacute;o</button>
+<!--             <button id="iniciar_button" TYPE="submit" onclick="showMsgIniciando(); setNames(); iniciarCiclo();">Iniciar Ciclo de Env&iacute;o</button> -->
+         
+            <SPAN> </SPAN>
+            <button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+            <INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/>
+            
+            <div id="msgIniciando" style="display:none; margin-top:2%; font-weight:bold;">Iniciando Ciclo de Env&iacute;o...</div>
+    </form>
+        </CENTER>      
+</BODY>
+</HTML>

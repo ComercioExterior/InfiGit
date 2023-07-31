@@ -1,0 +1,57 @@
+<HTML>
+    <HEAD>
+        <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css"/>
+        <TITLE>Sistema INFI</TITLE>
+    </HEAD>
+<!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">    
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Liquidaci&oacute;n / Consulta / Status de Cobranza </FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        <td class="headerBox" aling="right"></td>
+</TABLE>   
+        <CENTER>
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="status_cobranza-browse">
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform" style="table-layout: auto;">
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="4" ALIGN="center">                
+                 Seleccione Criterios               
+            </th>
+        </tr>
+        <!--campo-->
+     <tr CLASS="formElement">
+            <td  CLASS="formLabel2" >
+                    Unidad de Inversi&oacute;n:*
+            </td>
+            <td  CLASS="formLabel">
+            <INPUT TYPE="Hidden" NAME="undinv_id" style="width:250px;" MAXLENGTH="30" CLASS="inputControl">
+			<INPUT TYPE="TEXT" NAME="undinv_nombre" style="width:350px;" MAXLENGTH="80" CLASS="inputControl">
+			 <!--IMAGENES/BOTONES PARA EL PICKLIST-R6 -->
+			<IMG onclick="pickListOpen2 ('dataentry', 'undinv_nombre','pick_unidad_inversion', 'param1=A&param2=B')" style="cursor:hand"          src="../images/infi_gn_picklist.gif" title="Haga CLICK para ver la lista de opciones." />
+			<IMG onclick="pickListReset('dataentry', 'undinv_id,undinv_nombre' )" style="cursor:hand"        src="../images/infi_gn_picklist-clear.gif" title="Haga CLICK para borrar la opción seleccionada."/>
+			</td>
+		</tr>
+         </table>
+         <!--nota sobre los campos obligatorios-->
+            <P><FONT COLOR="red"><B>Nota:</B></FONT> Los campos con * deben ser llenados para poder procesar el formulario.</P>
+            <SPAN> </SPAN>
+         <INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/> 	
+            <br>
+            <button TYPE="submit">Aceptar</button>
+                        <SPAN> </SPAN>
+            <button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+    </form>
+        </CENTER>
+    </BODY>
+</HTML>

@@ -1,0 +1,39 @@
+<html>
+
+	<head>
+        <!--LINK REL="stylesheet" type="text/css" href="../megasoft.css"/-->
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css"/>
+		<title>Sistema INFI - Seguridad</title>
+	</head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Seguridad / Opciones del Men&uacute;</FONT>
+        </TD>
+   <!-- help online --><TD class="headerBox" valign="middle" align="right"><img border="0" src="@url_images@ayuda.gif" width="17" height="17"  onclick="helpOpen();" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" ></TD><!-- fin help online --></TR>
+</TABLE>    
+    <center>
+    
+    <h3 STYLE="color:red">
+    Eliminar Registro
+    </h3>
+    
+    <h4>¿Esta seguro que desea eliminar la opci&oacute;n <i>@nombre_en_bd@</i> de la aplicaci&oacute;n @applic@?</h4>
+
+<form>
+   
+    <button style="cursor:hand" onclick="window.location='menu_items-delete?id=@id@'">SI - Eliminar</button>
+    &nbsp;
+    <button style="cursor:hand" onclick="history.back();">NO - Cancelar</button>
+</form>    
+    
+    </center>
+
+</body>
+
+</html>

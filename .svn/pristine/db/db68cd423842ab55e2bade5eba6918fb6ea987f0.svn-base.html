@@ -1,0 +1,222 @@
+<html>
+<head>
+	<title>Sistema INFI</title>
+	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+	<script language="javascript" src="../js/default.js"></script>	
+    <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 	
+	<SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+</head>
+
+<body
+	ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};
+			reloadOpener();">
+
+	<br><br>
+	<!--page name bar-->
+	<table border="0" cellspacing="0" WIDTH="100%">
+		<tr>
+			<td class="headerBox">
+				<font class="headerText">T&iacute;tulos</font>
+			</td>
+			<!-- help online -->
+			<td class="headerBox" valign="middle" align="right">
+				<img src="../images/infi_gn_ayuda.gif"	border="0"  width="17" height="17"
+					style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"
+					onclick="helpOpen(window.document.location.href);">
+			</td>
+			<!-- fin help online -->	
+		</tr>
+	</table>
+
+	<br>
+
+	<!--formulario-->
+	<form name="fitroentry" method="POST" action="unidad_inversion_titulos-select">
+		<input type="hidden" name="idUnidadInversion" value="@undinv_id@" />
+		<input type="hidden" name="entry" value="seleccion" />
+
+		<table border="0" cellspacing="0" cellpadding="0" width="55%">	
+			<!--titulo-->
+			<tr style="font-size:8pt;">
+			    <td width="20%">Id T&iacute;tulo</td>
+			    <td width="80%">
+					<input type="text" style="font-size:8pt;" size="25" maxlength="50" name="idTitulo" value="" />
+					&nbsp; &nbsp;
+				</td>
+			</tr>
+			<tr style="font-size:8pt;">	
+				<td width="20%">Descripci&oacute;n</td>
+				<td width="80%">
+					<input type="text" style="font-size:8pt;" size="25" maxlength="50" name="descripcionTitulo" value="" />
+					&nbsp; &nbsp;
+					
+				</td>
+			</tr>
+			<tr style="font-size:8pt;">				
+				<td>Emitido entre</td>
+				<td>
+					<input type="text"  style="font-size:8pt;" name="filtroFechaEmisionDesde" value="" size="10" maxlength="10" readonly /> 
+						<a onclick="popUpCalendar(this, document.forms[0].filtroFechaEmisionDesde, 'dd-mm-yyyy')">
+						<IMG SRC="../images/infi_gn_calendar.gif" class="boton" TITLE="Seleccionar Fecha"/>
+						</a>
+						<IMG SRC="../images/infi_gn_delete.gif"  BORDER="0" ALIGN="top"
+							onclick='document.forms[0].filtroFechaEmisionDesde.value=""'>
+					&nbsp; y &nbsp; 			
+					<input type="text"  style="font-size:8pt;" name="filtroFechaEmisionHasta" value="" size="10" maxlength="10"  readonly /> 
+						<a onclick="popUpCalendar(this, document.forms[0].filtroFechaEmisionHasta, 'dd-mm-yyyy')">
+						<IMG SRC="../images/infi_gn_calendar.gif" class="boton" TITLE="Seleccionar Fecha"/>
+						</a>
+						<IMG SRC="../images/infi_gn_delete.gif"  BORDER="0" ALIGN="top"
+							onclick='document.forms[0].filtroFechaEmisionHasta.value=""'>
+					
+				</td>
+				<td><button type="button" onclick="submitirFiltro();">Buscar</button></td>
+			</tr>
+			<tr></tr>
+		</table>						
+	</form>			
+			
+	<center>
+
+	<!--formulario-->
+	<form name="dataentry" method="POST" action="unidad_inversion_titulos-insert">
+		<input type="hidden" name="idUnidadInversion" value="@undinv_id@" />		
+		<input type="hidden" name="entry" value="insert" />	
+	
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="100%">	
+		<!--titulo-->
+		<tr class="formCaption">
+			<th colspan="7" ALIGN="center">
+				<font class="formCaptionText">
+					T&iacute;tulos Disponibles
+					@boton_grabar_ini@(@page_total_records@)	@boton_grabar_fin@		
+				</font>
+			</th>
+		</tr>	
+	</table>
+	
+	<!--tabla de data-->
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="100%" style="TABLE-LAYOUT: auto; ">
+	
+		<!--encabezados de columna-->
+		<tr class="tableHeader">
+			<th width="4%"></th>
+			<th width="30%">Descripci&oacute;n</th>
+			<th width="15%">Id T&iacute;tulo</th>
+			<th width="8%">Valor Nominal</th>
+			<th width="10%">Moneda de <br> Denominaci&oacute;n</th>
+			<th width="9%">Fecha de Emisi&oacute;n</th>
+			<th width="11%">Fecha de Vencimiento</th>
+		    <th width="12%">Porcentaje</th>		
+		</tr>
+
+		<!--data-->
+		<rowsTiT>
+		<tr class="tableCell">
+			<td align="center">
+				<INPUT TYPE="CHECKBOX" NAME="selecc" VALUE="@titulo_id@"  
+				 onclick="abrirPorcentaje(this.parentNode.parentNode.sectionRowIndex);"/>
+ 				<input type="hidden" name="idTitulo" value="@titulo_id@" />
+				<input type="hidden" name="valorNominal" value="@titulo_valor_nominal@" /> 
+				<input type="hidden" name="idMoneda" value="@moneda_id@" />			
+			</td>
+			<td>@titulo_descripcion@</td>
+			<td align="center">@titulo_id@</td>
+			<td align="right" style="padding-right=10px;">@titulo_valor_nominal@</td>
+			<td align="center">@titulo_moneda_den@</td>
+			<td align="center">@titulo_fe_emision@</td>
+			<td align="center">@titulo_fe_vencimiento@</td>
+			<td align="center">				
+				<input type="text" name="porcUITitulo" size="10" maxlength="10" value=""  
+					onkeypress="EvaluateText('%f',this);" @readonly@/>
+			</td>				
+		</tr>
+		</rowsTiT>
+		<tr class="tableCell">
+			<td align="right"  colspan="5">
+				@mensaje_ini@<font class="alerta">@texto_mensaje@</font>@mensaje_fin@
+			</td>
+			<td align="right" style="padding-right=10px;" colspan="2"><b>Total</b></td>		
+			<td align="right" style="padding-right=10px;">@totalporcentaje@</td>										
+		</tr>			
+	</table>
+	
+	@page_index@
+	
+ 	<input type="hidden" name="totalPorcentaje" value="@totalporcentaje@" />
+ 	<input type="hidden" name="idTitulo" value="" />
+	<input type="hidden" name="valorNominal" value="" /> 	
+	<input type="hidden" name="porcUITitulo" value="0"   /> 
+	<input type="hidden" name="idMoneda" value=""   /> 		
+	<input type="hidden" name="selecc" value="0"   /> 			
+
+	<br>
+		
+	@boton_grabar_ini@		
+	&nbsp;
+	<button type="button" onclick="submitir();">Grabar</button>
+	&nbsp;
+	@boton_grabar_fin@	
+	<button type="button" onclick="javascript:regresar();">Regresar</button>
+	
+	</form>
+
+	</center>
+
+</body>
+<script type="text/javascript">
+<!--
+function abrirPorcentaje(nroOcurrs) {
+	if (!document.forms[1].selecc[nroOcurrs-1].checked) {
+		document.forms[1].porcUITitulo[nroOcurrs-1].value = '';
+		document.forms[1].porcUITitulo[nroOcurrs-1].readOnly = true;
+		return;
+	}
+	document.forms[1].porcUITitulo[nroOcurrs-1].readOnly = false;
+	document.forms[1].porcUITitulo[nroOcurrs-1].focus();
+}
+function submitir() {
+	j=0;
+	for (i=0; i<document.forms[1].selecc.length-1; i++) {
+		if (document.forms[1].selecc[i].checked) {
+			++j;
+		}
+	}
+	if (j == 0) {
+		alert("No selecciono Titulos para asociarlos a la Unidad de Inversion");
+		return;
+	}
+	for (i=0; i<document.forms[1].idTitulo.length-1; i++) {
+		if (!document.forms[1].selecc[i].checked) {
+			document.forms[1].idTitulo[i].value = '-1';
+		}
+	}
+	
+	document.forms[1].submit();
+}
+function regresar() {
+	window.opener.reload();
+   	window.close();
+}
+
+function reloadOpener() {
+	window.opener.reload();
+}
+function submitirFiltro() {
+	if (document.forms[0].descripcionTitulo.value == "" && document.forms[0].filtroFechaEmisionDesde.value == "" && document.forms[0].filtroFechaEmisionHasta.value == ""  && document.forms[0].idTitulo.value == "") {
+	 	alert("Debe colocar al menos un filtro");
+	 	return;
+	}
+	if ((document.forms[0].filtroFechaEmisionDesde.value != '' && document.forms[0].filtroFechaEmisionHasta.value == '') ||
+			(document.forms[0].filtroFechaEmisionDesde.value == '' && document.forms[0].filtroFechaEmisionHasta.value != '')) {
+		alert("Si utiliza el filtro de Fechas, debe colocar ambas");
+		return;
+	}
+	document.forms[0].submit();
+}
+-->
+</script>
+
+
+</html>
+

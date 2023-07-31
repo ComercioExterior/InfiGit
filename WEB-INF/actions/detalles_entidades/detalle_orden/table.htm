@@ -1,0 +1,377 @@
+<html>
+
+	<head>
+         <script language="javascript" src="../js/default.js"></script>
+         <script language="javascript" src="../js/consultaOrden.js"></script>   
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>   
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <link rel="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+  <link rel="stylesheet" type="text/css" href="../css/EstiloFichas.css" /> 
+</head>
+<body>
+
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Ordenes / Consultas / Detalles </FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+
+
+  <!--formulario-->
+<form>
+<div id="menu">
+<table border="0">
+<tr>
+<td id="navigationActivo"><a><span>Datos</span></a></td>
+<td id="navigation"><a href="javascript:transacciones();"><span>Transacciones</span></a></td>
+<td id="navigation"><a href="javascript:titulos();"><span>T&iacute;tulos</span></a></td>
+<td id="navigation"><a href="javascript:documentos();"><span>Documentos</span></a></td>
+<td id="navigation"><a href="javascript:campos();"><span>Campos Dinamicos</span></a></td>
+<td id="navigation"><a href="javascript:data();"><span>Data Extendida</span></a></td>
+<td id="navigation"><a href="javascript:requisitos();"><span>Requisitos</span></a></td>
+</tr>
+</table>
+</div>
+<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="overflow: visible;">  
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="4" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Datos
+                </FONT>
+            </th>
+        </tr>
+        
+  <rows>
+  		<tr COLSPAN="4" CLASS="formElement">
+            <td COLSPAN="2" CLASS="negrita">
+            Cédula:
+            </td>
+            <td COLSPAN="2">
+            @tipper_id@-@client_cedrif@         	                       
+            </td>
+        </tr>    
+        <tr COLSPAN="4" CLASS="formElement">
+            <td COLSPAN="2" CLASS="negrita">
+             Unidad de Inversi&oacute;n:
+            </td>
+            <td COLSPAN="2">
+            @undinv_nombre@         	                       
+            </td>
+        </tr>
+        
+        <tr COLSPAN="4" CLASS="formElement">
+            <td COLSPAN="2" CLASS="negrita">
+             Instrumento Financiero:
+            </td>
+            <td COLSPAN="2">
+            @insfin_descripcion@         	                       
+            </td>           
+        </tr>
+        
+        <tr COLSPAN="4" CLASS="formElement">
+            <td COLSPAN="2" CLASS="negrita">
+             Id de Orden:
+            </td>
+            <td COLSPAN="2">
+            @ordene_id@         	                       
+            </td>
+        </tr>        
+        <tr CLASS="formCaption">
+            <th COLSPAN="4" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Informaci&oacute;n del usuario que tom&oacute; la orden
+                </FONT>
+            </th>
+        </tr>
+        
+        <tr CLASS="formElement">
+            <td CLASS="negrita">
+             Usuario:
+            </td>
+            <td>
+            @ordene_usr_nombre@        	                       
+            </td>
+            <td CLASS="negrita">
+             Centro Contable:
+            </td>
+            <td> 
+            @ordene_usr_cen_contable@       	                       
+            </td>
+        </tr>
+        <tr CLASS="formElement">
+            <td CLASS="negrita">
+             Sucursal:
+            </td>
+            <td> 
+            @ordene_usr_sucursal@      	                       
+            </td>
+            <td CLASS="negrita">
+             Terminal:
+            </td>
+            <td>  
+            @ordene_usr_terminal@    	                       
+            </td>
+        </tr>
+        <tr CLASS="formCaption">
+            <th COLSPAN="4" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Informaci&oacute;n del cliente: &nbsp;@client_nombre@
+                </FONT>
+            </th>
+        </tr>
+ 		<tr CLASS="formElement">
+            <!--CT19940 <td CLASS="negrita">  TIPO DE CUENTA SIN USO
+             Tipo de Cuenta:
+            </td>
+            <td>  
+            @ordene_ped_cta_bstip@    PARAMETRO SIEMPRE NULL       
+            </td>-->
+            <td CLASS="negrita">
+             N&uacute;mero Cuenta:
+            </td>
+            <td>   
+            @ctecta_numero@        	                       
+            </td>
+            <td CLASS="negrita">
+             N&uacute;mero Cuenta en Divisas BDV:
+            </td>
+            <td>   
+            @cuenta_divisa null-value='N/A'@        	                       
+            </td>
+        </tr>
+        <tr CLASS="formCaption">
+            <th COLSPAN="4" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Informaci&oacute;n de la orden
+                </FONT>
+            </th>
+        </tr>
+       <tr CLASS="formElement">
+            <td CLASS="negrita">
+             Status:
+            </td>
+            <td>
+             @ordsta_nombre@        	                       
+            </td>
+            <td CLASS="negrita">
+             Sistema:
+            </td>
+            <td>
+             @sistema_nombre@          	                       
+            </td>
+        </tr>
+           
+      
+         <tr CLASS="formElement">
+            <td CLASS="negrita">
+             Depositario:
+            </td>
+            <td>
+            @empres_nombre@         	                       
+            </td>
+            <td CLASS="negrita">
+             Contraparte:
+            </td>
+            <td>
+             @contraparte@            	                       
+            </td>
+        </tr>
+        
+        <tr CLASS="formElement">
+            <td CLASS="negrita">
+             Transacci&oacute;n:
+            </td>
+            <td>
+             @transa_descripcion@           	                       
+            </td>
+            <td CLASS="negrita">
+             Enviado a BCV:
+            </td>
+            <td>
+             @enviado@           	                       
+            </td>
+        </tr>
+        <tr CLASS="formElement">
+            <td CLASS="negrita">
+             Fecha Valor:
+            </td>
+            <td>
+            @ordene_ped_fe_valor@           	                       
+            </td>
+            <td CLASS="negrita">
+             Fecha Orden:
+            </td>
+            <td>
+           @ordene_ped_fe_orden@            	                       
+            </td>
+        </tr>
+          <tr CLASS="formElement">
+            <td CLASS="negrita">
+             Ultima Actualizaci&oacute;n:
+            </td>
+            <td>
+            @ordene_fe_ult_act@          	                       
+            </td>
+            <td CLASS="negrita">
+             Monto Total Orden:
+            </td>
+            <td>
+            @ordene_ped_total@            	                       
+            </td>
+        </tr>
+        <tr CLASS="formElement">
+            <td CLASS="negrita">
+             Porcentaje Comisi&oacute;n Emisor:
+            </td>
+            <td>
+            @ordene_comision_emisor@           	                       
+            </td>
+            <td CLASS="negrita">
+             Monto Financiado:
+            </td>
+            <td>
+            @ordene_ped_total_pend@           	                       
+            </td>            
+		</tr>        		             
+        <tr CLASS="formElement">
+            <td CLASS="negrita">
+             Monto Comisi&oacute;n Emisor:
+            </td>
+            <td>
+            @ordene_comision_operacion@           	                       
+            </td>
+            <td CLASS="negrita">
+             Tasa Pool:
+            </td>
+            <td>  
+            @ordene_tasa_pool@         	                       
+            </td>
+        </tr>
+        <tr CLASS="formElement">
+            <td CLASS="negrita">
+            </td>
+            <td></td>
+             <td CLASS="negrita">
+            Tasa de Cambio:
+            </td>
+            <td>  
+            @ordene_tasa_cambio@       	                       
+            </td>
+        </tr>
+            
+        <tr CLASS="formElement">
+            <td CLASS="negrita">
+             Porcentaje Ganancia Red:
+            </td>
+            <td>  
+            @ordene_ganancia_red@        	                       
+            </td>
+            <td CLASS="negrita">
+            Comisi&oacute;n Oficina:
+            </td>
+            <td>  
+            @ordene_comision_oficina@        	                       
+            </td>
+        </tr>
+        
+        <tr CLASS="formElement">
+            <td CLASS="negrita">
+             Monto Total Comisiones:
+            </td>
+            <td>
+            @ordene_ped_comisiones@           	                       
+            </td>
+            <td CLASS="negrita">
+             Precio de Recompra:
+            </td>
+            <td>  
+            @ordene_ped_rcp_precio@           	                       
+            </td>
+        </tr>
+        <tr CLASS="formElement">
+            <td CLASS="negrita">
+             Rendimiento:
+            </td>
+            <td>
+            @ordene_ped_rendimiento@            	                       
+            </td>
+            <td CLASS="negrita">
+             Intereses Ca&iacute;dos:
+            </td>
+            <td>
+            @ordene_ped_int_caidos@            	                       
+            </td>
+        </tr>
+       <tr CLASS="formElement">
+            <td CLASS="negrita">
+             Blotter:
+            </td>
+            <td>
+            @bloter_descripcion@           	                       
+            </td>
+            <td CLASS="negrita">
+             Veh&iacute;culo Tomador:
+            </td>
+            <td>
+            @vehicu_nombre@           	                       
+            </td>
+        </tr>
+        <tr CLASS="formElement">
+            <td CLASS="negrita">
+             Veh&iacute;culo Colocador:
+            </td>
+            <td>
+            @colocador@           	                       
+            </td>
+            <td CLASS="negrita">
+             Veh&iacute;culo Recompra:
+            </td>
+            <td>
+            @recompra@           	                       
+            </td>
+        </tr>
+        
+</rows>
+
+		<detallesOrdenToma>
+		@detallesOrdenToma@
+		</detallesOrdenToma>
+		
+         </table>
+         </form>
+         <br>
+    <button type="button" onclick="javascript:window.close();">Cerrar</button>
+<form name="datos" action="detalle_orden-find" method="post">
+<input type="hidden" name="ord_id" value="@ordene_id@">
+</form>
+<form name="transacciones" action="details_trans" method="post">
+<input type="hidden" name="ord_id" value="@ordene_id@">
+</form>
+<form name="titulos" action="details_titulos" method="post">
+<input type="hidden" name="ord_id" value="@ordene_id@">
+</form>
+<form name="documentos" action="details_documentos" method="post">
+<input type="hidden" name="ord_id" value="@ordene_id@">
+</form>
+<form name="campos" action="details_campos_dinamicos" method="post">
+<input type="hidden" name="ord_id" value="@ordene_id@">
+</form>
+<form name="data" action="details_data_extendida" method="post">
+<input type="hidden" name="ord_id" value="@ordene_id@">
+</form>
+<form name="requisitos" action="details_requisitos" method="post">
+<input type="hidden" name="ord_id" value="@ordene_id@">
+</form>    
+</body>
+</html>

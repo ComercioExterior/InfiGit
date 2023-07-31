@@ -1,0 +1,319 @@
+package models.bcv.intervencion;
+
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import javax.sql.DataSource;
+import megasoft.AbstractModel;
+import megasoft.DataSet;
+import megasoft.Logger;
+import megasoft.db;
+import org.bcv.serviceINTERVENCION.cliente1;
+import org.bcv.serviceINTERVENCION.codigoIsoDivisa;
+import org.bcv.serviceINTERVENCION.codigoVentaBCV;
+import org.bcv.serviceINTERVENCION.operaciones;
+import com.bdv.infi.dao.IntervencionDAO;
+import com.bdv.infi.dao.OrdenDAO;
+import com.bdv.infi.dao.OrdenesCrucesDAO;
+import com.bdv.infi.dao.ParametrosDAO;
+import com.bdv.infi.dao.ProcesosDAO;
+import com.bdv.infi.data.Proceso;
+import com.bdv.infi.logic.interfaces.ConstantesGenerales;
+import com.bdv.infi.logic.interfaces.ParametrosSistema;
+import com.bdv.infi.logic.interfaces.TransaccionNegocio;
+import com.bdv.infi.model.intervencion.ReportarOperaciones;
+import com.bdv.infi.model.intervencion.Sesion;
+
+public class EnvioBCVWSIntervencion extends AbstractModel implements Runnable {
+
+	protected HashMap<String, String> parametrosIntervencionBCV;
+
+	boolean todos;
+
+	int numeroDePagina;
+	int pageSize;
+	String idOrdenes;
+	DataSource _dso;
+	int idUsuario;
+	String fecha;
+	String token = "";
+	cliente1 arreglo = new cliente1();
+	String fechaValorWs = null;
+	double tasaCambio1 = 0;
+	int codBcv = 0;
+	String TipoEnvio;
+	String ordeneID = "";
+	String CodigoBCVCliente = "";
+	String statusP = "";
+	String estatusEnvio = "";
+	String Tipo = "";
+
+	private ProcesosDAO procesosDAO;
+	private Proceso proceso;
+	IntervencionDAO IntervencionDao = null;
+	OrdenesCrucesDAO ordenesCrucesDAO = new OrdenesCrucesDAO(_dso);
+	List<operaciones> listOperaciones = new ArrayList<operaciones>();
+	List<String> ordenes = new ArrayList<String>();
+	List<String> individual = new ArrayList<String>();
+	DataSet _ordenes = new DataSet();
+	Sesion login = null;
+	ReportarOperaciones orden;
+
+	public EnvioBCVWSIntervencion(int numeroDePagina, int pageSize, boolean todos, String idOrdenes, String urlInvocacion, DataSource _dso, int idUsuario, String fecha, String statusE) {
+		this.numeroDePagina = numeroDePagina;
+		this.pageSize = pageSize;
+		this.idOrdenes = idOrdenes;
+		this._dso = _dso;
+		this.idUsuario = idUsuario;
+		this.fecha = fecha;
+	}
+
+	public EnvioBCVWSIntervencion(String idOrdenes, boolean todos, DataSource _dso, int idUsuario, String fecha, String statusE) {
+		this.idOrdenes = idOrdenes;
+		this.estatusEnvio = statusE;
+		this.todos = todos;
+		this._dso = _dso;
+		this.idUsuario = idUsuario;
+		this.fecha = fecha;
+	}
+
+	public EnvioBCVWSIntervencion(boolean todos, String idOrdenes, String urlInvocacion, DataSource _dso, int idUsuario, String fecha, String statusE) {
+		this.idOrdenes = idOrdenes;
+		this._dso = _dso;
+		this.idUsuario = idUsuario;
+		this.fecha = fecha;
+	}
+
+	public void run() {
+
+		iniciarTranssacion();
+		obtenerParametros();
+		TipoEnvio = parametrosIntervencionBCV.get(ParametrosSistema.TIPO_ENVIO);
+		login = new Sesion();
+		token = login.ObtenerToken(ConstantesGenerales.INICIO_SESSION);
+		llenarDataSetOperaciones();
+
+		while (_ordenes.next()) {
+			cliente1 arreglo_individual = new cliente1();
+			llenarObjeto(_ordenes);
+
+			if (TipoEnvio.equals(ConstantesGenerales.CODIGO_TIPO_ENVIO)) {
+				System.out.println("1");
+				arreglo_individual.setOperaciones(listOperaciones);
+				procesoNotificacion(arreglo_individual);
+				arreglo_individual.getOperaciones().remove(0);
+				guardarOperaciones();
+
+			} else {
+				System.out.println("2");
+				System.out.println("listOperaciones : " + listOperaciones.size());
+				arreglo.setOperaciones(listOperaciones);
+				ordenes.add(ordeneID);
+				AgregarIdOperacion();
+			}
+		}
+		enviarOperacionesBCV();
+
+	}
+
+	private void enviarOperacionesBCV() {
+
+		try {
+
+			if (TipoEnvio.equals(ConstantesGenerales.CODIGO_TIPO_ENVIO_LOTE)) {
+				orden = new ReportarOperaciones();
+				System.out.println("arreglo *******1******: " + arreglo);
+				for (operaciones hola : arreglo.getOperaciones()) {
+					System.out.println("lista : " + hola);
+				}
+				orden.Archivo(arreglo);
+				CodigoBCVCliente = orden.PostMultiPart(this.token);
+				if (CodigoBCVCliente.length() == 20) {
+					IntervencionDao.modificarOrdenLote(individual, ConstantesGenerales.ENVIO_INTERVENCION, CodigoBCVCliente);
+					proceso.agregarDescripcionErrorTrunc("Lote Enviado con exito :" + CodigoBCVCliente, true);
+					Logger.info("Notificacion", "Lote Enviado con exito :" + CodigoBCVCliente);
+
+				} else {
+					proceso.agregarDescripcionErrorTrunc("Error al notificar : " + CodigoBCVCliente.substring(46), true);
+
+				}
+			}
+		} catch (Exception e) {
+			Logger.error(true, "EnvioBCVWSIntervencion : enviarOperacionesBCV() " + e);
+			System.out.println("EnvioBCVWSIntervencion : enviarOperacionesBCV() " + e);
+
+		} finally {
+			finalizarTranssacion();
+			Logger.info(this, "FINALIZA EL HILO PARA ENVIO DE OPERACIONES AL BCV");
+
+		}
+	}
+
+	protected void iniciarTranssacion() {
+
+		try {
+			Logger.info(this, "INICIO DE PROCESO INTERVENCION");
+			procesosDAO = new ProcesosDAO(_dso);
+			proceso = new Proceso();
+			int secuenciaProcesos = Integer.parseInt(OrdenDAO.dbGetSequence(_dso, com.bdv.infi.logic.interfaces.ConstantesGenerales.SECUENCIA_PROCESOS));
+			proceso.setEjecucionId(secuenciaProcesos);
+			proceso.setFechaInicio(new Date());
+			proceso.setFechaValor(new Date());
+			proceso.setTransaId(TransaccionNegocio.WS_BCV_INTERVENCION_CLIENTE);
+			proceso.setUsuarioId(this.idUsuario);
+			String queryProceso = procesosDAO.insertar(proceso);
+			db.exec(_dso, queryProceso);
+
+		} catch (Exception e) {
+			Logger.error(true, "EnvioBCVWSIntervencion : iniciarProceso() " + e);
+			System.out.println("EnvioBCVWSIntervencion : iniciarProceso() " + e);
+
+		}
+	}
+
+	private void finalizarTranssacion() {
+
+		try {
+			String queryProcesoCerrar = procesosDAO.modificar(proceso);
+			db.exec(_dso, queryProcesoCerrar);
+			Logger.info(this, "FIN DE PROCESO: " + new Date());
+
+		} catch (Exception e) {
+			Logger.error(true, "EnvioBCVWSIntervencion : finalizarProceso() " + e);
+			System.out.println("EnvioBCVWSIntervencion : finalizarProceso() " + e);
+
+		}
+	}
+
+	public void llenarObjeto(DataSet cliente) {
+
+		operaciones reportar = new operaciones();
+
+		try {
+//			DateFormat outputFormat = new SimpleDateFormat("DD/MM/YYYY");
+//			DateFormat inputFormat = new SimpleDateFormat("YY-MM-DD");
+//			String fecha = cliente.getValue("FECH_OPER");
+			// String inputText = "2012-11-17T00:00:00.000-05:00";
+//			Date date = inputFormat.parse(fecha);
+//			String fechaoriginal = outputFormat.format(date);
+//			System.out.println("fechaoriginal : " + fechaoriginal);
+//			DateFormat inputFormat1 = new SimpleDateFormat("DD/MM/YYYY");
+//			Date date1 = inputFormat1.parse(cliente.getValue("FECH_OPER").toString());
+//			System.out.println("date : " + date1);
+//			SimpleDateFormat formatter = new SimpleDateFormat("DD/MM/YYYY");
+//			String fecha2 = cliente.getValue("FECH_OPER").toString();
+//			String fecha1 = formatter.format(fecha2);
+
+//			System.out.println("fecha : " + fecha1);
+			reportar.setCodigoCliente(cliente.getValue("NACIONALIDAD") + cliente.getValue("NRO_CED_RIF"));
+
+			reportar.setNombreCliente(cliente.getValue("NOM_CLIEN"));
+
+			reportar.setFechaValor(cliente.getValue("FECH_OPER"));
+
+			reportar.setCodigoTipoOperacion(cliente.getValue("OPERACION"));
+
+			reportar.setMontoDivisa(new Double(cliente.getValue("MTO_DIVISAS")));
+
+			reportar.setTipoCambio(new Double(cliente.getValue("TASA_CAMBIO")));
+
+			reportar.setCodigoCuentaDivisa(cliente.getValue("CTA_CLIEN_DIVISAS"));
+
+			reportar.setCodigoCuentaBs(cliente.getValue("CTA_CLIEN"));
+
+			reportar.setCodigoIsoDivisa(new codigoIsoDivisa("DIVISA"));
+
+			reportar.setCodigoVentaBCV(new codigoVentaBCV(1000));
+
+			reportar.getCodigoVentaBCV().setCoVentaBCV(Integer.valueOf(cliente.getValue("ID_JORNADA")));
+
+			listOperaciones.add(reportar);
+		} catch (Exception e) {
+			Logger.error(true, "EnvioBCVWSIntervencion : llenarObjeto() " + e);
+			System.out.println("EnvioBCVWSIntervencion : llenarObjeto() " + e);
+
+		}
+	}
+
+	protected void obtenerParametros() {
+
+		try {
+			ParametrosDAO parametrosDAO = new ParametrosDAO(_dso);
+			parametrosIntervencionBCV = parametrosDAO.buscarParametros(ParametrosSistema.INTERFACE_INTERVENCION_BANCARIA);
+
+		} catch (Exception e) {
+			Logger.error(true, "EnvioBCVWSIntervencion : obtenerParametros() " + e);
+			System.out.println("EnvioBCVWSIntervencion : obtenerParametros() " + e);
+
+		}
+	}
+
+	public void llenarDataSetOperaciones() {
+
+		try {
+			IntervencionDao = new IntervencionDAO(_dso);
+			IntervencionDao.listarOrdenesIntervencion(fecha, estatusEnvio, todos, idOrdenes);
+			_ordenes = IntervencionDao.getDataSet();
+
+		} catch (Exception e) {
+			Logger.error(true, "EnvioBCVWSIntervencion : llenarDataSetOperaciones() " + e);
+			System.out.println("EnvioBCVWSIntervencion : llenarDataSetOperaciones() " + e);
+
+		}
+	}
+
+	public void procesoNotificacion(cliente1 arreglo) {
+
+		try {
+			orden = new ReportarOperaciones();
+			orden.Archivo(arreglo);
+			CodigoBCVCliente = orden.PostMultiPart(this.token);
+		} catch (Exception e) {
+			Logger.error(true, "EnvioBCVWSIntervencion : procesoNotificacion() " + e);
+			System.out.println("EnvioBCVWSIntervencion : procesoNotificacion() " + e);
+
+		}
+	}
+
+	public void AgregarIdOperacion() {
+
+		try {
+			individual.add(_ordenes.getValue("ID_OPER"));
+
+		} catch (Exception e) {
+			Logger.error(true, "EnvioBCVWSIntervencion : AgregarIdOperacion() " + e);
+			System.out.println("EnvioBCVWSIntervencion : AgregarIdOperacion() " + e);
+
+		}
+	}
+
+	public void guardarOperaciones() {
+
+		try {
+
+			if (CodigoBCVCliente.length() == 20) {
+				IntervencionDao.modificarIntervencionOrden(idOrdenes, fecha, ConstantesGenerales.ENVIO_INTERVENCION, CodigoBCVCliente);
+				proceso.agregarDescripcionErrorTrunc("Operacion Individual Enviada : " + CodigoBCVCliente, true);
+				Logger.info("Notificacion", "Operacion Individual Enviada : " + CodigoBCVCliente);
+
+			} else {
+				proceso.agregarDescripcionErrorTrunc("Error al enviar : " + CodigoBCVCliente.substring(46), true);
+
+			}
+
+		} catch (Exception e) {
+			Logger.error(true, "EnvioBCVWSIntervencion : guardarOperaciones() " + e);
+			System.out.println("EnvioBCVWSIntervencion : guardarOperaciones() " + e);
+
+		}
+	}
+
+	@Override
+	public void execute() throws Exception {
+
+	}
+}

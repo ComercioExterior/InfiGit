@@ -1,0 +1,121 @@
+
+<HTML>  
+    <HEAD>
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        
+        <TITLE>Sistema INFI</TITLE>
+      <script type="text/javascript">
+      function procesar(){ 	
+		mensaje='¿Está seguro que desea eliminar la oficina con su historico de inventario?';		
+    				if(confirm(mensaje)) {		
+    					var ruta = 'oficina_comercial_delete?oficina=@oficina@';
+    					window.location=ruta;	        		       
+    				}
+    					      	        	          
+    	}
+      </script>
+    </HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Generales / Oficinas Comercial</FONT>
+        </TD>
+        
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+        <td class="headerBox" aling="right"></td>
+</TABLE>
+        
+        <CENTER>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="oficina_comercial_delete">
+		
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+        <tr>
+            <td ALIGN="center">
+                 <b>Por favor confirme si desea Eliminar este registro @oficina@</b><br><br>
+                 <FONT COLOR="red"> <b>Nota: Recuerde que si elimina la oficina estara borrando el historico de inventario asociado a esa oficina</b></FONT>
+            </td>
+        </tr>
+        </table>
+        
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="4" ALIGN="center"> 
+                 Detalle de la oficina
+            </th>
+        </tr>
+        
+        <!--campo-->
+        <tr>
+            <td>
+             N&uacute;mero de Oficina:*
+            </td>
+            <td>
+            	<INPUT type="text" value="@oficina@" name="oficina"  maxlength="5" readonly=readonly/>
+            	<input type="hidden" name="oficina_anterior" value="@oficina@">
+            </td>
+        </tr>
+        <tr>
+            <td>
+             Descripcion Oficina:*
+            </td>
+            <td>
+            	<INPUT type="text" value="@descripcion@" name="descripcion"  maxlength="50" readonly=readonly/>
+            	<input type="hidden" name="descripcion_anterior" value="@descripcion@">
+            </td>
+        </tr>
+
+        			<tr>
+					<td>Direccion:*</td>
+					<td><TEXTAREA name="direccion" rows="5" cols="20" readonly=readonly>@direccion@</TEXTAREA>
+					<input type="hidden" name="direccion_anterior" value="@direccion@">
+					</td>
+					
+				</tr>
+
+        <tr>
+        <td>Estado:*</td>
+        <td>
+        <INPUT type="text" value="@estado@" name="estado"  maxlength="20" readonly=readonly/>
+</td>
+
+				</tr>
+        <tr>
+            <td>
+            Municipio de Oficina:*
+            </td>
+            <td>
+            	<INPUT type="text" value="@municipio@" name="municipio"  maxlength="50" readonly=readonly/>
+            	<input type="hidden" name="municipio_anterior" value="@municipio@">
+            </td>
+        </tr>
+         </table>	
+         <INPUT TYPE="hidden" VALUE="@oficina@" NAME="oficina"/> 
+            <br>
+            <button TYPE="button" onclick='procesar()'>Procesar</button>
+            &nbsp;<button type="button" onclick="javascript:history.back();">Regresar</button>
+            &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+
+    </form>
+        
+        </CENTER>
+        
+    </BODY>
+
+</HTML>

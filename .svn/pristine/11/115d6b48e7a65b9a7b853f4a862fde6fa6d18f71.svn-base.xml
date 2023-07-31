@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+    <!--
+    
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, decimal, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+    
+    -->
+    	<field 
+        name="undinv_id" 
+        type="integer" 
+        description="Unidad de Inversi&oacute;n "
+        nullable="1"
+        size="1" />
+    
+    	<field 
+        name="nombre_doc.tempfile" 
+        type="varchar" 
+        description="Archivo "
+        nullable="1"
+        size="100" />
+        
+        <field 
+        name="nombre_doc.filename" 
+        type="varchar" 
+        description="Nombre original del archivo"
+        nullable="1"
+        size="100" />
+        
+        <field 
+        name="nombre_doc.content-type" 
+        type="varchar" 
+        description="Content type del archivo descargado"
+        nullable="1"
+        size="100" />
+        
+        <field 
+        name="transa_id" 
+        type="varchar" 
+        description="Transacci&oacute;n "
+        nullable="0"
+        size="25" />
+        
+        <field 
+        name="documento_id" 
+        type="varchar" 
+        description="Id el documento"
+        nullable="1"
+        size="4" />
+        
+        <field 
+        name="archivo"
+        type="integer"
+        description="¿Cambiar Archivo?"
+        nullable="0"
+        size="1" />
+        
+        <field 
+        name="status_documento" 
+        type="varchar" 
+        description="Estatus "
+        nullable="1"
+        size="25" />
+        
+        <field 
+        name="tipper_id" 
+        type="varchar" 
+        description="Tipo Persona "
+        nullable="0"
+        size="1" />
+        
+</record>
+

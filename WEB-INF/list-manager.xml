@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+Definicion de DataSets globales para ser instanciados dado un alias
+sin necesidad de conocer el SQL, usando el metodo getList() 
+de la clase AbstractModel.
+
+Nota: el sql puede contener un parametro @filter@ si asi lo desea.
+
+Ejemplos:
+
+	<list 
+		name="catreclamo" 
+		sql="select * from catreclamo order by descripcion" 
+		description="Lista de categorias de reclamos" />
+
+	<list 
+		name="projects" 
+		sql="select id, description from projects where manager_id = '@filter@' " 
+		description="Lista de proyectos dado un gerente" />
+
+-->
+
+<list-manager>
+
+	<!--aqui van los elementos "list"-->
+
+</list-manager>

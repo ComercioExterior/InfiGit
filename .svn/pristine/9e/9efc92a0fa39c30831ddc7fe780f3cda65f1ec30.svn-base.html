@@ -1,0 +1,123 @@
+<html>
+
+	<head> 
+          
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+           
+        <script type="text/javascript">
+        
+          
+        </script>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Generales / Segmentaci&oacute;n</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Segmentaci&oacute;n (@page_total_records@)
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+	<th width="4%" nowrap></th>
+	<th width="4%" nowrap></th>
+	<th>ID</th>
+    <th colspan="1">Descripci&oacute;n</th>
+    <th>Altair Banco</th>
+    <th>Altair Segmento</th>
+    <th>Altair Subsegmento</th>
+
+    </tr>
+
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+                   
+                <td WIDTH="10%" VALIGN="middle">
+                <a href="segmentacion-confirm?cteseg_id=@cteseg_id@"><IMG SRC="../images/infi_gn_delete.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Eliminar Registro" BORDER="0" style="cursor:hand"></a>			
+                
+                </td>  
+                
+                <td WIDTH="10%" VALIGN="middle">
+                <a href="segmentacion-edit?cteseg_id=@cteseg_id@"><IMG SRC="../images/infi_gn_edit2.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Editar Registro" BORDER="0" style="cursor:hand"></a>                
+                
+                </td>             
+               
+               <td WIDTH="10%" VALIGN="middle">
+ 
+                @cteseg_id@
+                </td>
+                               
+                <td VALIGN="middle">
+                @cteseg_descripcion@
+                </td>
+
+                <td>
+               @cteseg_altair_banco@
+                </td>                
+ 
+                <td>
+               @cteseg_altair_segmento@
+                </td>
+        
+                <td align="center">
+                @cteseg_altair_subsegmento@
+                </td>
+                
+                  
+ 
+     </tr>
+     </rows>
+    
+    </table>
+
+
+    <BR>
+<form>
+
+    <button type="button" ONCLICK="window.location='segmentacion-addnew'">&nbsp;Agregar&nbsp;</button>
+    &nbsp;<button type="button" onclick="javascript:history.back();">Regresar</button>
+    &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>     
+</form>
+
+</center>
+
+</body>
+
+</html>
+

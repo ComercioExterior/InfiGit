@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+    <!--
+    
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, varchar, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+    
+    -->
+    
+        <field 
+        name="idUnidadInversion" 
+        type="integer" 
+        description="Identificador de la Unidad de Inversion"
+        nullable="1"
+        size="10" />    
+    
+        <field 
+        name="nombreUnidadInversion" 
+        type="varchar" 
+        description="Nombre de la Unidad de Inversion"
+        nullable="0"
+        size="100" />
+    
+        <field 
+        name="emisionUnidadInversion" 
+        type="varchar" 
+        description="Emision"
+        nullable="1"
+        size="50" />
+        
+        <field 
+        name="serieUnidadInversion" 
+        type="varchar" 
+        description="Serie"
+        nullable="1"
+        size="50" /> 
+                
+        <field 
+        name="descrUnidadInversion" 
+        type="varchar" 
+        description="Descripcion"
+        nullable="1"
+        size="200" /> 
+        
+		<field 
+        name="idInstrumentoFinanciero" 
+        type="varchar" 
+        description="Tipo de Instrumento"
+        nullable="0"
+        size="50" /> 
+        
+		<field 
+        name="tipoInstrumentoFinanciero" 
+        type="varchar" 
+        description="Tipo de Instrumento"
+        nullable="0"
+        size="50" /> 
+        
+        <field 
+        name="idTipoProductoNuevo" 
+        type="varchar" 
+        description="Tipo de Instrumento"
+        nullable="1"
+        size="50" />  
+             
+        <field      
+        name="idEmpresaEmisor" 
+        type="varchar" 
+        description="Emisor"
+        nullable="0"
+        size="25" />     
+        
+        <field 
+        name="idMoneda" 
+        type="varchar" 
+        description="Moneda de Negociacion"
+        nullable="0"
+        size="3" />                      
+
+		<field 
+        name="tasaCambio" 
+        type="varchar" 
+        description="Tasa de Cambio a Aplicar"
+        nullable="0"
+        size="20" />
+        
+        <field 
+        name="tasaCambioOferta" 
+        type="varchar" 
+        description="Tasa de Cambio de Oferta a Aplicar"
+        nullable="0"
+        size="20" /> 
+               
+        <field 
+        name="fechaEmisionUI" 
+        type="varchar" 
+        description="Fecha de Emision"
+        nullable="0"
+        size="10" /> 
+        
+        <field 
+        name="fechaCierreUI" 
+        type="varchar" 
+        description="Fecha de Cierre"
+        nullable="0"
+        size="10" />         
+                 
+		<field 
+        name="fechaLiquidaUI" 
+        type="varchar" 
+        description="Fecha de Liquidacion"
+        nullable="1"
+        size="10" /> 
+        
+        <field 
+        name="PrimeraHoraLiquida" 
+        type="varchar" 
+        description="Primera Hora de Liquidacion (hora)"
+        nullable="1"
+        size="10" />
+        
+        <field 
+        name="PrimeraMinLiquida" 
+        type="varchar" 
+        description="Primera Hora de Liquidacion (minutos)"
+        nullable="1"
+        size="10" />
+        
+        <field 
+        name="meridiano1_liquidacion" 
+        type="varchar" 
+        description="AM PM Primera Hora de Liquidacion"
+        nullable="1"
+        size="10" />
+        
+        <field 
+        name="SegundaHoraLiquida" 
+        type="varchar" 
+        description="Segunda Hora de Liquidacion (hora)"
+        nullable="1"
+        size="10" />
+        
+        <field 
+        name="SegundaMinLiquida" 
+        type="varchar" 
+        description="Segunda Hora de Liquidacion (minutos)"
+        nullable="1"
+        size="10" />
+        
+        <field 
+        name="meridiano2_liquidacion" 
+        type="varchar" 
+        description="AM PM Segunda Hora de Liquidacion"
+        nullable="1"
+        size="10" />
+        
+		<field 		
+        name="batchAdj" 
+        type="varchar" 
+        description="Batch para cobro de adjudicación"
+        nullable="0"
+        size="1" />
+        
+		<field 
+        name="batchLiq" 
+        type="varchar" 
+        description="Batch para cobro de liquidación"
+        nullable="0"
+        size="1" />            
+        
+        
+		<field 
+        name="fechaAdjudicacionUI" 
+        type="varchar" 
+        description="Fecha de Adjudicacion"
+        nullable="1"
+        size="10" />                
+        
+       <field 
+        name="tipoMercado" 
+        type="varchar" 
+        description="Tipo de Mercado"
+        nullable="0"
+        size="20" />         
+                   
+       <field 
+        name="indicaPedidoMonto" 
+        type="integer" 
+        description="La Orden debe ser tomada en Monto o Cantidad"
+        nullable="0"
+        size="1" /> 
+                
+       <field 
+        name="montoMultiplos" 
+        type="varchar" 
+        description="Multiplos a invertir"
+        nullable="0"
+        size="12" /> 
+               
+        <field 
+        name="indicadorPrecioSucio" 
+        type="integer" 
+        description="Indica Precio Sucio"
+        nullable="1"
+        size="1" />        
+        
+        <field 
+        name="permiteCancRadio" 
+        type="integer" 
+        description="Permite Cancelacion"
+        nullable="1"
+        size="1" />              
+
+		<field 
+        name="indicaVtaEmpleados" 
+        type="integer" 
+        description="Permite Venta a Empleados"
+        nullable="1"
+        size="1" /> 
+                
+                
+        <field 
+        name="indicaRecompraNeteo" 
+        type="integer" 
+        description="Permitida recompra con neteo"
+        nullable="1"
+        size="1" />               
+
+        <field 
+        name="comentarios" 
+        type="varchar" 
+        description="Comentarios"
+        nullable="1"
+        size="400" /> 
+                
+        <field 
+        name="totalInversion" 
+        type="varchar" 
+        description="Total Autorizado (solo Inventario)"
+        nullable="1"
+        size="15" />  
+
+        <field 
+        name="inventarioDisponible" 
+        type="varchar" 
+        description="Inventario Disponible"
+        nullable="1"
+        size="15" />
+        
+        <field 
+        name="tasaPool" 
+        type="varchar" 
+        description="Tasa Pool (solo Inventario)"
+        nullable="1"
+        size="6" /> 
+        
+       <field 
+        name="pctRendimiento" 
+        type="varchar" 
+        description="Porcentaje de Rendimiento (solo Inventario)"
+        nullable="1"
+        size="6" />                                      
+        
+        <field 
+        name="montoMinimoSubastaInversion" 
+        type="varchar" 
+        description="Monto m&iacute;nimo a invertir (solo Subasta)"
+        nullable="1"
+        size="12" />  
+
+        <field 
+        name="dias_apertura_cuenta" 
+        type="integer" 
+        description="Dias de apertura de la cuenta del cliente"
+        nullable="0"
+        size="3" />  
+        
+		<field 
+        name="ui_activa" 
+        type="integer" 
+        description="Indicados Unidad Inversion Activa"
+        nullable="1"
+        size="1" />
+        
+        <field 
+        name="permiteAltoValorRadio" 
+        type="integer" 
+        description="Permite Alto Valor"
+        nullable="1"
+        size="1" /> 
+        
+        <field 
+        name="periodicidadVenta" 
+        type="integer" 
+        description="Periodicidad de Venta expresado en días"
+        nullable="0"
+        size="3" />  
+        
+		<field 
+        name="montoMaximoSubastaInversion" 
+        type="varchar" 
+        description="Monto m&aacute;ximo a invertir (solo Efectivo)"
+        nullable="1"
+        size="1" />
+        
+        <field 
+        name="montoMultiplosEfectivo" 
+        type="varchar" 
+        description="Multiplos a invertir en efectivo"
+        nullable="1"
+        size="1" /> 
+        
+                <field 
+        name="comisionIGTF" 
+        type="varchar" 
+        description="Comision de IGTF a Bloquear"
+        nullable="0"
+        size="20" /> 
+      
+</record>

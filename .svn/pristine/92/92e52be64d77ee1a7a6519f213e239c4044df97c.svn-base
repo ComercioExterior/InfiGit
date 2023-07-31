@@ -1,0 +1,198 @@
+
+<HTML>
+    
+	<head> 
+          
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        <script type="text/javascript">
+        
+        
+        //Funci&oacute;n para abrir un picklist o limpiar el valor anteriormente seleccionado
+		function showPickList(ind ,id, tx, campo)
+		{
+		   var r
+		   if (ind == '1') {  // llamar a picklist		
+		   	  r = window.open(campo +'?in_precio=0&name_id=' + id.name +"&name_tx=" + tx.name, 'Picklist','resizable=yes,scrollbars=yes,width=600,height=450,Left=200,top=150,Status=yes,unadorned:true');
+		   }
+		   else{
+			id.value= "";//limpiar id de cliente
+			tx.value= "";//limpiar campo de cliente			
+		  }
+		}	
+        
+        function mostrarAreas(){
+        	
+        	if(document.dataentry.tipo_destinatario.value=='F'){
+        		document.getElementById('areas').style.display='block';
+        	}else{
+        		document.getElementById('areas').style.display='none';
+        	}
+        }
+		
+		</script>
+	
+    </head>
+  
+ <body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()}; mostrarAreas();">
+  
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Plantillas de Correos</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+        
+        <CENTER>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="plantillas_correo-confirm_update">
+		
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="2" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Detalle de Plantilla de Correo
+                </FONT>
+            </th>
+        </tr>
+		
+		<!--campo-->
+		<tr class="tableCell">
+			<td>Nombre:</td>
+			<td>				
+				@plantilla_mail_name@ 
+			</td>        
+		</tr>
+		
+		<!--campo-->
+		<tr class="tableCell">
+			<td>Producto con eventos a notificar asociados:</td>
+			<td>
+				@prod_name@      
+			</td>        
+		</tr>
+		
+		<!--campo-->
+		<tr id="eventos_listados" class="tableCell">
+			<td>Evento a notificar del producto seleccionado:</td>
+			<td>
+	 			@evento_name@
+			</td>
+		</tr>
+		
+			<tr>
+			<td width="30%">Tipo de Destinatario:</td>
+			<td>
+				@tipo_destinatario_desc@
+			</td>
+		</tr>		
+				
+		<!--campo-->
+		<tr CLASS="formElement">
+			<td CLASS="formLabel">Remitente:</td>
+			<td>
+			 @remitente@
+			</td>
+		</tr>
+	
+		
+		<!--campo-->
+		<tr CLASS="formElement">
+			<td CLASS="formLabel">Asunto:</td>
+			<td>
+				@asunto@
+			</td>
+		</tr>
+		
+				<tr>
+		<td width="30%">Activación:</td>
+			<td>
+			    @activacion_desc@
+			</td>
+		</tr>	
+		
+				
+		<tr>
+		    <td colspan="2">Cuerpo:</td>			
+		</tr>		 
+				
+		<tr>		   
+			<td colspan="2"><textarea name="cuerpo" readonly="readonly" cols="80" rows="15">@cuerpo@</textarea></td>
+		</tr>
+		
+		<tr style="display:@display@">
+		    <td colspan="2">Bloque por Cruce:</td>			
+		</tr>		 
+				
+		<tr style="display:@display@">		   
+			<td colspan="2"><textarea name="bloque" readonly="readonly" cols="80" rows="15">@bloque_iterado@</textarea></td>
+		</tr>
+		
+		</table>
+		
+		<br>
+		
+	<div id="areas" style="display: none">
+	<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="TABLE-LAYOUT: auto; ">
+    
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="3" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Areas de Plantilla de Correo
+                </FONT>
+            </th>
+        </tr>
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+		<th>Nombre de Area</th>
+		<th>Destinatario</th>
+		<th>Activación</th>		
+		
+	</tr>
+
+    <!--data-->
+    <rows_areas>
+    <tr class="tableCell">		
+		<td VALIGN="middle" align="left" nowrap>@plant_mail_area_name@</td>
+		<td VALIGN="middle" align="left">@destinatario@</td>		
+		<td VALIGN="middle" align="left">@activacion_desc@</td>		
+     </tr>
+     </rows_areas>
+    
+    </table>
+    
+    <br>
+		
+</div>		
+		<INPUT TYPE="hidden" VALUE="@plantilla_mail_id@" NAME="plantilla_mail_id"/>
+		<INPUT TYPE="hidden" VALUE="@tipo_destinatario@" NAME="tipo_destinatario"/>
+	
+	        <button type="button" onclick="javascript:history.back();">Regresar</button>
+            &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+
+    </form>
+        
+        </CENTER>
+        
+    </BODY>
+
+</HTML>
+

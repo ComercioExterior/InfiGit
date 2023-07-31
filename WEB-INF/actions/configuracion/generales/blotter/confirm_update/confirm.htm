@@ -1,0 +1,84 @@
+
+<HTML>
+    
+    <HEAD>
+    <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+            <SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+        
+        <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+             <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        
+        <TITLE>Sistema INFI</TITLE>
+                
+        
+         
+    </HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Generales / Blotter</FONT>
+        </TD>
+        
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+        <td class="headerBox" aling="right"></td>
+</TABLE>
+        
+        <CENTER>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="bloter-update">
+		
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform" style="TABLE-LAYOUT: auto; ">
+        
+        <!--titulo-->
+        <tr>
+            <td COLSPAN="2" ALIGN="center" nowrap>
+                 <b>Por favor confirme si desea actualizar este registro</b>
+            </td>
+        </tr>
+        <tr class="tableCell">
+			<td align="center" nowrap>
+			<b>Blotter:</b> @bloter_descripcion@
+			</td>
+		</tr>
+        </table>
+         <INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/>
+         <INPUT TYPE="HIDDEN" VALUE="@bloter_id@" NAME="bloter_id"/>
+         <INPUT TYPE="HIDDEN" VALUE="@bloter_descripcion@" NAME="bloter_descripcion"/>
+         <INPUT TYPE="HIDDEN" VALUE="@bloter_horario_desde@" NAME="bloter_horario_desde"/>
+         <INPUT TYPE="HIDDEN" VALUE="@bloter_horario_hasta@" NAME="bloter_horario_hasta"/>
+         <INPUT TYPE="HIDDEN" VALUE="@bloter_in_restringido@" NAME="bloter_in_restringido"/>
+         <INPUT TYPE="HIDDEN" VALUE="@bloter_in_cartera_propia@" NAME="bloter_in_cartera_propia"/>
+        
+         <INPUT TYPE="HIDDEN" VALUE="@bloter_status@" NAME="bloter_status"/>
+         <INPUT TYPE="HIDDEN" VALUE="@bloter_in_red@" NAME="bloter_in_red"/>
+         <INPUT TYPE="HIDDEN" VALUE="@id_agrupacion@" NAME="id_agrupacion"/>
+         <INPUT TYPE="HIDDEN" VALUE="@tppeva_id@" NAME="tppeva_id"/>
+         <INPUT TYPE="HIDDEN" VALUE="@canal_id@" NAME="canal_id"/>
+        
+
+            <br>
+            <button TYPE="submit">Procesar</button>
+            &nbsp;<button type="button" onclick="javascript:history.back();">Regresar</button>
+            &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+
+    </form>
+        
+        </CENTER>
+        
+    </BODY>
+
+</HTML>
+

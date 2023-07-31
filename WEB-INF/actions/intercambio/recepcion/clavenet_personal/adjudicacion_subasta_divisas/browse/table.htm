@@ -1,0 +1,131 @@
+	<html>
+	<head>        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+        <script type="text/javascript">
+        function submitir(){
+
+	    	var mensaje="Esta seguro de querar enviar las ordenes ingresadas al proceso de Adjudicacion?";
+	        
+	        if(confirm(mensaje)){
+	            if(confirm("El proceso de adjudicación puede tardar varios minutos. ¿Está seguro que desea iniciar el proceso de adjudicación?")){
+	            	document.dataentry.boton_adjudicar.disabled = true;
+	            	document.dataentry.boton_back.disabled = true;
+	            	document.dataentry.action='adjudicacion_subasta_divisas-procesar';
+	            	document.dataentry.submit();
+	                setInterval("callAjax('resumen')",10000);
+	            }        
+	        }        
+      	}
+
+      	//Funci&oacute;n Ajax
+		function callAjax(id_contenedor){
+			var pagResponse = false;
+			var url = "resumen_adj";
+		
+			if (window.XMLHttpRequest) {// Si es Mozilla, Safari etc
+				pagResponse = new XMLHttpRequest()
+			} else if (window.ActiveXObject){ // pero si es IE
+				try {
+					pagResponse = new ActiveXObject("Msxml2.XMLHTTP")
+				} 
+				catch (e){ // en caso que sea una versi&oacute;n antigua
+					try{
+						pagResponse = new ActiveXObject("Microsoft.XMLHTTP")
+					}
+					catch (e){}
+				}
+			}
+			else
+				return false
+
+			pagResponse.onreadystatechange=function(){ // funci&oacute;n de respuesta
+				if (pagResponse.readyState == 4 && (pagResponse.status==200 || window.location.href.indexOf("http")==-1))
+					document.getElementById(id_contenedor).innerHTML=pagResponse.responseText
+			}			
+			pagResponse.open('GET', url, true) // asignamos los m&eacute;todos open y send
+			pagResponse.send(null)
+		}        
+        </script>
+	
+    </head>
+
+<body>
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+			<TD class="headerBox">                
+            	<FONT class="headerText">Intercambio / Transferencia / Recepci&oacute;n / Adjudicacion Subasta Divisas </FONT>
+        	</TD>
+        	<!-- help online -->
+   			<TD class="headerBox" valign="middle" align="right">
+   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   			</TD>
+   			<!-- fin help online -->
+		</TR>
+	</TABLE>
+
+   <center>
+	<br>
+	<form NAME="dataentry" METHOD="POST" ACTION="">
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+		<!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="6" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Lista de Registros ( @t_registros@ )
+                </FONT>
+            <datos_entrada>                
+			<input type="hidden" id="tipo_operacion" name="tipo_operacion" value="@tipo_operacion@"><br>
+			<input type="hidden" name="unidad_inversion" value="@unidad_inversion@"><br>           
+            </datos_entrada>                
+            </th>
+        </tr>
+        
+	</table>
+	
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="100%">
+	
+		<!--encabezados de columna-->
+		<tr class="tableHeader">
+			<th>Unidad de Inversi&oacute;n</th>													
+		</tr>
+		<ui>
+		<tr class="tableHeader">
+			<td><b>@INSFIN_DESCRIPCION@</b></td>													
+		</tr>
+		</ui>
+	</table>	
+    <!--tabla de data-->
+    <table @visible@>
+		<tr>
+
+            <th nowrap >Veh&iacute;culo</th>
+            <th nowrap>Ordenes Enviadas</th>
+            <th nowrap>Ordenes por Adjudicar</th>
+            <th nowrap>Ordenes Adjudicadas</th>
+    	</tr>
+	   <rows>
+    	<tr>
+
+			<td align="right" nowrap>@vehicu_nombre@</td>
+			<td align="right" nowrap>@enviadas@</td>
+			<td align="right" nowrap>@por_adjudicar@</td>
+			<td align="right" nowrap>@adjudicadas@</td>
+		</tr>
+	   </rows>
+	</table>
+	<br>
+	<!-- @page_index@-->
+		<button TYPE="button" NAME="boton_adjudicar" ONCLICK="javascript:submitir();">Procesar</button>	
+		&nbsp;
+		<button TYPE="button" NAME="boton_back" ONCLICK="window.location='adjudicacion_subasta_divisas-filter'">Regresar</button>
+		</form>
+		<br>
+		<div id="resumen"></div>
+</body>
+</html>

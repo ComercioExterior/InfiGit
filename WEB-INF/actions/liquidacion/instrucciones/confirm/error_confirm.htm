@@ -1,0 +1,66 @@
+<html>
+
+<HEAD>
+    <LINK REL="stylesheet" type="text/css" href="../megasoft.css" />
+     <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+     
+<script type="text/javascript">
+
+function regresar(){
+	
+	//si la ventana fue abierta como un popup: Regresar
+	if(window.opener!=null){
+		@errNextUrl@
+	}else{//sino regresar al formulario anterior
+		window.close();
+	}
+}
+</script>
+
+</HEAD>
+
+<body ONLOAD="document.forms[0].elements[0].focus();">
+<center>
+
+<!--
+<IMG src="../images/warning.gif">
+-->
+
+<h5 style="color:red">
+El formulario no puede ser procesado debido a <BR>
+los siguientes errores de transcripci&oacute;n.
+</h5>
+
+<table border="0" width="70%">
+<TR><TD BGCOLOR="gray">
+    <table border="0" width="100%" CELLSPACING="1">
+    	<rows>
+        <tr>
+    		<td width="50%" BGCOLOR="#D6D6D6" >
+               <font color="#535353"> <b>Liquidaci&oacute;n / Instrucciones de Pago</b></font>
+            </td>
+    		<td width="50%" BGCOLOR="white">
+                @error@
+            </td>
+    	</tr>
+        </rows>
+    </table>
+</TD></TR> 
+</table>
+
+<br>
+
+<h5 style="color:red">
+Por favor, verifique la informaci&oacute;n ingresada e intente nuevamente.<BR>
+</h5>
+
+
+<FORM>
+<!-- button type="button" onclick="@errNextUrl@">Regresar</button-->
+<button type="button" onclick="window.history.back()">Regresar</button>
+</FORM>
+
+</center>
+</body>
+</html>
+

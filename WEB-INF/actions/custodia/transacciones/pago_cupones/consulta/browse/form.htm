@@ -1,0 +1,71 @@
+<HTML>
+	<HEAD>
+		<TITLE>Sistema INFI</TITLE>
+    	<LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+    	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		<SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+		<script language="javascript" src="../js/default.js"></script>		
+	</HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    	<TR>
+        	<TD class="headerBox">                
+            	<FONT class="headerText">Eventos / Consultas</FONT>
+       		 </TD>
+        	<!-- help online -->
+   			<TD class="headerBox" valign="middle" align="right">
+   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   			</TD>
+   			<!-- fin help online -->
+        	<td class="headerBox" aling="right"></td>
+        </TR>
+	</TABLE>
+	<CENTER>
+
+	<!--formulario-->
+	<form NAME="dataentry" METHOD="POST" ACTION="consulta_cupones-calculo">
+		<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto">
+			<!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="8" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Eventos ( @t_registros@ )
+                </FONT>
+            </th>
+        </tr>
+			 <tr>
+			 <th></th>
+			 <th  nowrap="nowrap">Id</th>
+			 <th>Usuario</th>
+			 <th>Transacci&oacute;n</th>
+			 <th>Inicio</th>
+			 <th>Fin</th>
+			 <th>Status Proceso</th>
+			 <th>Error</th>			 
+			 </tr>
+			 <procesos>
+			 <tr style="color:@color@">
+			 <td><input type="radio" name="ejecucion_id" value="@ejecucion_id format-mask='##########'@-@transa_id@"></td>
+			 <td nowrap="nowrap" align="center">@ejecucion_id format-mask='#########'@</td>
+			 <td>@userid@</td>
+			 <td>@transa_id@</td>
+			 <td align="center" nowrap="nowrap">@fecha_inicio format-mask='dd/MM/yyyy hh:mm:ss'@</td>
+			 <td align="center" nowrap="nowrap">@fecha_fin format-mask='dd/MM/yyyy hh:mm:ss'@</td>
+			 <td align="left" nowrap="nowrap">@estatus_proceso@</td>
+			 <td align="left" nowrap="nowrap">@desc_error@</td>
+			 </tr>
+			 </procesos>
+		</table>
+		<INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/> 	
+
+	<br>
+		<button type="submit">Procesar</button>
+		&nbsp;<button type="button" onclick="javascript:history.back();">Regresar</button>
+		&nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+	</form>
+	</CENTER>
+</BODY>
+</HTML>

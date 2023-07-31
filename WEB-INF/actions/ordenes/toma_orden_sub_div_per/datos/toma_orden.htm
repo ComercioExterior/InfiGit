@@ -1,0 +1,932 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Toma de Orden</title>
+  <link rel="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+  <link rel="stylesheet" type="text/css" href="../css/EstiloFichas.css" />
+  <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/>
+  <SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+  <script language="javascript" src="../js/default.js"></script>   
+  
+  <link href="../css/jquery_smoothness/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
+  <script src="../js/jquery_datepicker/jquery-1.9.1.js"></script>
+  <script src="../js/jquery_datepicker/jquery-ui-1.10.3.custom.js"></script>
+<!--   <link href="../js/jquery_datepicker/jquery-ui-1.9.1/themes/base/jquery-ui.css" rel="stylesheet"> -->
+<!--   <script src="../js/jquery_datepicker/jquery-ui-1.9.1/jquery-1.8.2.js"></script> -->
+<!--   <script src="../js/jquery_datepicker/jquery-ui-1.9.1/ui/jquery-ui.js"></script> -->
+       
+  <script type="text/javascript">
+  
+  		@funciones_datepicker@
+  		
+          //Funci&oacute;n para abrir un picklist o limpiar el valor anteriormente seleccionado
+		function showPickList(ind ,id, tx, campo)
+		{
+		   var r
+		   if (ind == '1') {  // llamar a picklist		
+		   	  r = window.open(campo +'?name_id=' + id.name +"&name_tx=" + tx.name, 'Picklist','resizable=yes,scrollbars=yes,width=600,height=450,Left=200,top=150,Status=yes,unadorned:true');
+		   	  
+		   }
+		   else{
+		   alert('entra a 0');
+			id.value= "";//limpiar id de cliente
+			tx.value= "";//limpiar campo de cliente
+			recargarPagina2();
+		  }
+		}
+		
+		function showEnterOrden(ind ,id, tx, campo)
+		{
+		   var r
+		   if (ind == '1') {  // llamar a picklist		
+		   	  r = window.open(campo +'?name_id=' + id.name +"&name_tx=" + tx.name, 'Enterorden','resizable=yes,scrollbars=yes,width=600,height=450,Left=200,top=150,Status=yes,unadorned:true');
+		   	  
+		   }
+		   else{
+			id.value= "";//limpiar id de cliente
+			tx.value= "";//limpiar campo de cliente
+			recargarPagina2();
+		  }
+		} 
+		
+		var bandera_comprobacion = 0;
+		
+		function mostrarOcultarDatosUnidadInv(){
+       
+        	/*if(document.dataentry.undinv_id.value!='0'){//Unidad de Inversi&oacute;n
+        		
+        		mostrarCalculos();        		
+        		document.getElementById('datos_unidad_inv').style.display='none'; */       		
+        	//}else{
+        		//if(document.dataentry.undinv_id.value!='0' && document.dataentry.vehicu_rol_id!=undefined){
+				//alert('Valor consultado en mostrarOcultarDatosUnidadInv: '+document.dataentry.consultado.value);
+        		if(document.dataentry.consultado.value!='0' && document.dataentry.vehicu_rol_id!=undefined){
+        			mostrarDatos();
+        			//ocultarBtnsConsultar();
+        			//document.getElementById('datos_unidad_inv').style.display ='block';
+        		}else{
+        			//document.dataentry.undinv_id.value='0';
+        			document.getElementById('datos_unidad_inv').style.display='none';
+        			document.getElementById('datos_unidad_inv2').style.display='none';
+        		}       		
+        	//}       
+        }
+        
+        //verifica si mostrar o no la comprobaci&oacute;n final
+		/*function mostrarOcultarComprobacion(){
+			//if(document.dataentry.undinv_id.value!='0' && document.dataentry.calculos.value == '1' && bandera_comprobacion==1){//Unidad de Inversi&oacute;n
+			if(document.dataentry.undinv_id.value!='0' && document.dataentry.calculos.value == '1'){//Unidad de Inversi&oacute;n
+        		
+        		llamarComprobacion();       		
+        	}
+			
+		}*/
+        
+         //Muestra los c&aacute;lculos sobre la inversi&oacute;n
+        function mostrarCalculos(){        	
+        	
+       	 	document.getElementById('calculos_orden').style.display='block';
+       	 	document.getElementById('datos_orden').style.display='none';
+       	 	document.getElementById('comprobacion_orden').style.display='none';
+       	
+        }
+        
+        
+        function llamadaConsultar(){
+			//alert('Entra a llamadaConsulta: ');
+			var consultar=new Boolean(true);
+			if(document.dataentry.client_id.value==''){
+       			alert("Debe ingresar un Cliente");
+	        	consultar=false;
+	        }else{
+	        	if(document.dataentry.orden_id.value==''){
+	       			alert("Debe ingresar un Nro. de Orden");
+		        	consultar=false;
+	        	}
+	        }
+	        if(consultar==true){
+				//alert('Va a consultar: '+consultar);
+				document.dataentry.consultado.value="1";
+				recargarPagina();
+    			//deshabilitarBotones();
+				//document.dataentry.action='toma_de_orden_div_per-datos?calculos=1';
+    			/*document.dataentry.action='toma_de_orden_div_per-datos';
+    			document.dataentry.submit();*/
+    		}
+        }
+        
+        
+      	//llama a refrescar la pagina para realizar los calculos y validaciones correspondientes
+      	//llamada a hacer calculos
+        function llamadaCalculos(){
+			//alert('Entra a calcular: ');
+        	var myBoolean=new Boolean(evitarValoresNulos());
+        	//alert('MyBoolean: '+myBoolean);
+        	var calcular=new Boolean(true);
+        	if(document.forms[0].sitme.value!=""){
+        		myBoolean=true;
+            }
+        	/*if(document.dataentry.undinv_id.value=='0'){
+	        	 alert("Debe ingresar los datos de la Unidad de Inversión");
+	        	 calcular=false;
+    		}else{
+    			if(myBoolean==false){
+            		alert("Debe Ingresar Actividad Económica, Sector Productivo, y Concepto.")
+            		calcular=false;
+       			}else{*/
+       		if(document.dataentry.client_id.value=='' && document.dataentry.orden_id.value==''){
+       			alert("Debe ingresar un Cliente o un Nro de Orden");
+	        	calcular=false;
+	        }else{
+	        	/*if(document.dataentry.orden_id.value==''){
+	       			alert("Debe ingresar un Nro. de Orden");
+		        	calcular=false;
+	        	}else{*/
+       				//if( !(/^[\d]+[.][\d]+$/.test(document.dataentry.monto_comprar.value)) ){
+       				if( !(/^[\d]+([.][\d]+)?$/.test(document.dataentry.monto_comprar.value)) ){
+       	        		//alert("El monto a comprar debe ser un número decimal positivo. Solo la parte decimal debe ser indicada con punto.")
+       	        		alert("El monto solicitado no debe ser vacío y éste debe ser un número (parte decimal indicada con punto).");
+       	        		calcular=false;
+       	        	}else{
+       	        		/*if(redondear2decimales(document.dataentry.monto_comprar.value) > document.dataentry.monto_max_sol.value){
+       	        			//alert("Monto a comprar: '"+redondear2decimales(document.dataentry.monto_comprar.value)+"'");
+       	        			alert("El monto a comprar no puede ser mayor al monto máximo a comprar permitido.")
+       	            		calcular=false;
+       	        		}else{*/
+       		        		if(document.dataentry.monto_comprar.value <= 0){
+       		        			alert("El monto solicitado debe ser mayor que cero.");
+       		            		calcular=false;
+       		        		}else{
+       			       			//if(!(/^[\d]+[.][\d]+$/.test(document.dataentry.tasa_propuesta.value))){
+       			       			if(!(/^[\d]+([.][\d]+)?$/.test(document.dataentry.tasa_propuesta.value))){
+       			            		//alert("La tasa propuesta no puede ser vacía y debe ser un número. Solo la parte decimal debe ser indicada con punto.")
+       			            		alert("La tasa propuesta debe ser un número (parte decimal indicada con punto.");
+       			            		calcular=false;
+       			            	}else{
+       			            		if(document.dataentry.tasa_propuesta.value <= 0){
+       				        			alert("La tasa propuesta debe ser mayor que cero.");
+       				            		calcular=false;
+       				        		}else{
+       				            		//alert("Propuesta: '"+redondear2decimales(document.dataentry.tasa_propuesta.value)+"'");
+       				            		//alert("Referencial: '"+document.dataentry.tasa_referencial.value+"'");
+       				        			if(redondear2decimales(document.dataentry.tasa_propuesta.value) < document.dataentry.tasa_referencial.value){
+       				            			//if(!confirm("La tasa propuesta es menor que la tasa de cambio referencial. ¿Desea continuar?")){
+												alert("La tasa propuesta indicada en la solicitud no puede ser menor a la tasa de cambio referencial");
+       				            				calcular=false;
+       				            			//}
+       				            		}
+       			            		}
+       			            	}
+       		        		}
+       	        		//}
+       	        	}
+       			//}
+    		}
+			//alert('Valor de calcular: '+calcular);
+        	if(calcular==true){
+        		mostrarMsgEspera();
+	        	//alert('Va a calcular: '+calcular);
+    			deshabilitarBotones();
+				//document.dataentry.action='toma_de_orden_div_per-datos?calculos=1';
+    			document.dataentry.action='toma_de_orden_div_per-calculo?nro_solicitud=@orden_id@';
+    			//document.dataentry.action='toma_de_orden_div_per-calculo';
+    			document.dataentry.submit();
+    		}
+        }
+        
+        function mostrarMsgEspera(){
+        	 document.getElementById('verificando').style.display='block';
+        }
+        
+        //Muestra los datos de la Inversi&oacute;n
+        function mostrarDatos(){        	
+        	 document.getElementById('datos_orden').style.display='block';
+        	 document.getElementById('datos_unidad_inv').style.display ='block';
+        	 document.getElementById('datos_unidad_inv2').style.display ='block';
+        	 document.getElementById('datos_solicitud').style.display ='block';
+        	 document.dataentry.boton_calcular.style.display = 'inline';
+			//alert('Finaliza en mostrarDatos');
+        	// document.getElementById('calculos_orden').style.display='none';
+        	// document.getElementById('comprobacion_orden').style.display='none';
+        
+        }
+        
+        function ocultarBtnsConsultar(){
+        	/*document.getElementById('datos_orden').style.display='block';
+        	document.dataentry.boton_calcular.disabled = true;
+        	document.dataentry.boton_salir.disabled = true;
+        	document.dataentry.boton_consultar.disabled = true;*/
+        }
+        
+        //LLamada a comprobaci&oacute;n Final para la toma de orden
+        function llamarComprobacion(){
+           	 document.getElementById('datos_orden').style.display='none';  
+        	 document.getElementById('datos_unidad_inv').style.display ='none';    
+        	 document.getElementById('calculos_orden').style.display='none';      	 
+        	 document.getElementById('comprobacion_orden').style.display='block';
+        	 desplegarCartaMandato();
+        	 bandera_comprobacion = 1;
+      	}
+        
+        
+        function mostrarBotones(){
+			if (document.getElementById("condiciones").checked){
+		      document.getElementById("guardar").style.visibility="visible";
+			  return;
+			}
+            document.getElementById("guardar").style.visibility="hidden";
+		}
+
+		function desplegarCartaMandato(){
+			abrirPopupDetalles('toma_de_orden-cartaMandato', '600', '600') ;
+			//window.open('toma_de_orden-cartaMandato');
+		}
+		
+		function abrirDetallesVehiculos(){
+			
+			var vehiculo_rol_id = document.dataentry.vehicu_rol_id.value;				
+			
+			var aurl = "detalles_vehiculo_rol-find?vehiculo_rol_id=@vehiculo_rol_id@";
+			var url = aurl.replace("@vehiculo_rol_id@", vehiculo_rol_id);
+			abrirPopupDetalles(url ,'200', '300');
+
+        }    
+        
+        function recargarPagina(){
+        	if(document.dataentry.client_id.value!='' && document.dataentry.orden_id.value!=''){
+        		deshabilitarBotones();
+        		mostrarMensajeEspera(document.getElementById('mensaje_espera'));
+        		document.dataentry.action='toma_de_orden_div_per-datos?band=1&calculos=0'; 
+        		document.dataentry.submit();
+        	}else{
+        		//document.dataentry.undinv_id.value = '0';
+        		document.getElementById('datos_unidad_inv').style.display='none';
+        		document.getElementById('datos_unidad_inv2').style.display='none';
+
+        		if(document.dataentry.client_id.value=='')
+        			alert("Debe seleccionar el cliente");
+        		
+        		if(document.dataentry.orden_id.value=='')
+        			alert("Debe seleccionar la orden");
+        	}
+        }   
+        
+        
+        function recargarPagina2(){
+            if(document.dataentry.client_id.value!='' || document.dataentry.orden_id.value!=''){
+				//alert('Entra en recargarPAg2 a cliente u orden distintos a vacio');
+            	//document.dataentry.consultado.value = "1";
+            	deshabilitarBotones();
+            	mostrarMensajeEspera(document.getElementById('mensaje_espera'));
+        		document.dataentry.action='toma_de_orden_div_per-datos?band=1&calculos=0'; 
+        		document.dataentry.submit();
+        	}else{
+        		/*document.dataentry.undinv_id.value = '0';
+        		document.getElementById('datos_unidad_inv').style.display='none';
+        		document.getElementById('datos_unidad_inv2').style.display='none';
+        		
+        		alert("Debe seleccionar el cliente");  */      		
+        	}
+ 		}
+ 		
+ 		
+ 		/** muestra el campo para los datos del conyuge en caso de que el cliente sea casado*/
+ 		function mostrarDatosCasado(){
+ 		
+ 			if(document.dataentry.estado_casado!=undefined && document.getElementById('campo_ced_conyuge')!=undefined){
+	 			if(document.dataentry.estado_casado.value == "SI"){
+	 				//alert("SI Casadiiisimo")
+	 				document.getElementById('campo_ced_conyuge').style.display='block';
+	 			}else{
+	 				//alert("NO Libre y feliz");
+	 				document.getElementById('campo_ced_conyuge').style.display='none';
+	 			}
+	 		}
+ 		}
+ 		
+ 		function deshabilitarBotones(){
+ 			document.dataentry.boton_calcular.disabled = true;
+        	document.dataentry.boton_salir.disabled = true;
+        	//document.dataentry.boton_consultar.disabled = true; 			
+ 		}
+
+ 		function evitarValoresNulos() {
+ 			var actividadeconomica=document.forms[0].actividad_economica.value;
+ 			var sectorproductivo=document.forms[0].sector_productivo.value;
+ 			var concepto=document.forms[0].concepto.value;
+ 			if (actividadeconomica!="" && sectorproductivo!="" && concepto!=""){
+ 				return true; 	
+ 			}
+ 			else{
+ 				return false;
+ 			}   
+ 		}
+ 		
+ 		function redondear2decimales(numero) {
+	 		var original = parseFloat(numero);
+	 		var result = Math.round(original*100)/100 ;
+	 		return result;
+ 		}
+ 		
+ 		function recargarVehiculo() {
+ 			recargarPagina();
+ 		}
+
+		function mostrarMensajeEspera(campo) {
+			campo.style.display = "inline";
+		}
+ 
+  </script>
+         <script language="javascript" src="../js/default.js"></script>  
+</head>
+<body ONLOAD="javascript: mostrarOcultarDatosUnidadInv(); mostrarDatosCasado();">
+
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Ordenes / Toma de Orden Subasta Divisas Personas</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+  <!--formulario-->
+  	
+  <form NAME="dataentry" METHOD="POST" ACTION="toma_de_orden-guardar">
+
+<div id="menu">
+<table border="0">
+<tr>
+<td id="navigationActivo"><a><span>Datos</span></a></td>
+<td id="navigation"><a style="cursor:hand"><span>Verificaci&oacute;n</span></a></td>
+<td id="navigation"><a style="cursor:hand"><span>Documentos</span></a></td>
+</tr>
+</table>
+</div>
+      <center>
+      
+      <!-- ZONA DE DATOS -->
+      <div id="datos_orden">
+      
+        
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="4" ALIGN="center">
+                 Datos Principales
+            </th>
+        </tr>
+        
+        <!--campo-->
+        <tr>
+            <td>
+             Cliente:
+            </td>
+            <td>
+            <INPUT TYPE="TEXT" VALUE="@pick_cliente@" NAME="pick_cliente" SIZE="50" MAXLENGTH="50" class="inputControl" readonly/>
+            	<input type="hidden" value="@client_id@" name="client_id"/>
+				<!--IMAGENES/BOTONES PARA EL PICKLIST-->
+				<IMG src="../images/infi_gn_picklist.gif" title="Haga CLICK para ver la lista de opciones." onclick="showPickList(1,document.dataentry.client_id,document.dataentry.pick_cliente,'pick_clientes-find')" style="cursor:hand"/>
+				<IMG src="../images/infi_gn_picklist-clear.gif" title="Haga CLICK para borrar la opci&oacute;n seleccionada." onclick="showPickList(0,document.dataentry.client_id,document.dataentry.pick_cliente,'pick_clientes-find')" style="cursor:hand"/>                        
+            </td>
+            
+         </tr>
+         
+         
+		<!--campo-->
+		<tr>
+            <td>Nro. Solicitud:</td>
+			<td>
+				<!-- INPUT TYPE="TEXT" VALUE="" NAME="nro_solic" SIZE="50" MAXLENGTH="50" class="inputControl" /-->
+				<INPUT TYPE="TEXT" VALUE="@orden_id@" NAME="enter_orden" SIZE="50" MAXLENGTH="50" class="inputControl" readonly/>
+            	<input type="hidden" value="@orden_id@" name="orden_id"/>
+				<!--IMAGENES/BOTONES PARA EL PICKLIST-->
+				<IMG src="../images/infi_gn_picklist.gif" title="Haga CLICK para ver la lista de opciones." onclick="showEnterOrden(1,document.dataentry.orden_id,document.dataentry.enter_orden,'enter_orden-find')" style="cursor:hand"/>
+				<IMG src="../images/infi_gn_picklist-clear.gif" title="Haga CLICK para borrar la opci&oacute;n seleccionada." onclick="showEnterOrden(0,document.dataentry.orden_id,document.dataentry.enter_orden,'enter_orden-find')" style="cursor:hand"/>
+			</td>
+        </tr>
+                  
+		<!--  datos_conyuge -->
+		
+		<input type="hidden" NAME="estado_casado" VALUE="NO"/>
+		
+		
+		<input NAME="undinv_id" type="hidden" value="@undinv_id@" />
+		
+		
+		<!-- tr >
+            <td>
+             Unidad de Inversi&oacute;n:
+            </td>
+            
+            <button TYPE="button" name="boton_consultar" onclick="llamadaConsulta();">Consultar</button>
+            
+            <td>
+				<SELECT NAME="undinv_id" SIZE="1" ONCHANGE="javascript:recargarPagina();" >
+					<OPTION VALUE="0" SELECTED>No Encontrada</OPTION>
+					<rows_undinv>					
+					<OPTION VALUE="@undinv_id@">@undinv_nombre@</OPTION>						
+					</rows_undinv>
+	 			</SELECT> 			
+                        
+            </td>
+            
+        </tr -->
+
+        <!-- tr>
+            <td>Cuenta del Cliente:</td>
+			<td>
+			
+			    <SELECT NAME="cta_cliente" SIZE="1">				
+					<OPTION VALUE="" SELECTED>Seleccione</OPTION>
+					<rows_ctacte>
+					<OPTION VALUE="@numero@">Cta @tipo@ @numero@</OPTION>	
+					</rows_ctacte>
+	 			</SELECT> 	
+						
+			</td>
+            
+        </tr -->
+          
+        
+        </table>  
+        
+        
+        <!-- div id="botones_consular" style="">
+            <br/>
+            <button TYPE="button" name="boton_consultar" onclick="llamadaConsultar();">Consultar</button>
+                <SPAN> </SPAN>
+            <button type="button" name="boton_salir" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+            <br/><br/>
+		</div  -->
+		
+		<INPUT TYPE="HIDDEN" VALUE="" NAME="consultado"/>
+		
+       
+       <!-- MENSAJES DE ERROR CONSULTANDO CUENTAS DEL CLIENTE EN ARQUITECTURA EXTENDIDA -->
+      <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+       		<tr><td><FONT COLOR="red"><b>@mensaje_error_user_webs@</b></FONT></td></tr>       
+        	<tr><td><FONT COLOR="red"><b>@mensaje_error_cuentas_cte@</b></FONT></td></tr>
+        	<tr><td><FONT COLOR="red"><b>@mensaje_error_cuenta_custodia@</b></FONT></td></tr>
+        	<tr><td><FONT COLOR="red"><b>@mensaje_error_cuenta_swift@</b></FONT></td></tr>
+        	<tr><td><FONT COLOR="red"><b>@mensaje_solicitudes_multiples@</b></FONT></td></tr>      
+      </table>
+		
+		
+		<table border="0" id="datos_solicitud" style="display:none" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <input NAME="cta_cliente" type="hidden" value="@cuenta_bsf_o@" />
+        
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="4" ALIGN="center">
+                 Solicitante
+            </th>
+        </tr>
+        
+        <tr>
+        	<br/>
+        </tr>
+        
+        <!-- tr>
+			<td colspan="4" style="font-weight:bold; text-align:center; background:#AAA">Datos del Solicitante</td>
+		</tr -->
+		
+        <!--campo-->
+        <tr>
+			<td>Nombre Cliente:</td>
+			<td>@nombre_cliente@</td>
+			
+			<td>CI/RIF Cliente:</td>
+			<td>@cedrif_tip_cli@-@cedrif_nro_cli@</td>
+		</tr>
+		
+		<!--campo-->
+        <tr>
+			<td>Nro. Rusitme:</td>
+			<td>@num_rusitme@</td>
+			
+			<td>Fecha Vencimiento RIF:</td>
+			<td>@fecha_venc_rif@</td>
+		</tr>
+		
+		<!--campo-->
+        <tr>
+			<td>Email:</td>
+			<td>@email_cliente@</td>
+			
+			<td>CI/RIF Contraparte:</td>
+			<td>@ced_rif_contraparte@</td>
+		</tr>
+		
+		<th COLSPAN="4" ALIGN="center">
+			Solicitud
+        </th>
+		
+		<!--campo-->
+        <tr>
+	        <td>Estatus:</td>
+			<td>@estatus@</td>
+			
+			<td>Fecha Registro:</td>
+			<td>@fecha_registro@ @hora_registro@</td>
+			
+		</tr>
+			<td>Fecha T&aacute;mite:</td>
+			<td>@fecha_tramite@</td>
+		<tr>
+		
+		</tr>
+		
+		
+		<!-- hr/ -->
+		<th COLSPAN="4" ALIGN="center">
+			Cliente Banco de Venezuela
+        </th>
+        <tr>
+			<td>Nro. Cta.:</td>
+			<td>@cuenta_bsf_o@</td>
+		</tr>
+		
+		
+		
+		@inst_pago@
+        	
+		<tr>
+			<td>Nro. Cta.:</td>
+			<td>@cta_numero@</td>
+			
+			<td>Direcci&oacute;n Banco:</td>
+			<td>@cta_direccion@</td>
+		</tr>
+		
+		<tr>
+			<td>T&eacute;lefono:</td>
+			<td>@cta_telefono@</td>
+			
+			<td>T&eacute;lefono 2:</td>
+			<td>@cta_telefono_2@</td>
+		</tr>
+		
+		<tr>
+			<td>T&eacute;lefono 3:</td>
+			<td>@cta_telefono_3@</td>
+			
+			<td>Direcci&oacute;n Cliente:</td>
+			<td>@cta_direccion_c@</td>
+		</tr>
+		
+		<tr>
+			<td>C&oacute;digo BIC SWIFT:</td>
+			<td>@cta_bic_swift@</td>
+			
+			<td>C&oacute;digo IBAN:</td>
+			<td>@cta_iban@</td>
+		</tr>
+		
+		<tr>
+			<td>C&oacute;digo ABA:</td>
+			<td>@cta_aba@</td>
+		</tr>
+		
+		@cta_intermediaria@
+		
+		
+		
+		<th COLSPAN="4" ALIGN="center">
+			Viaje
+        </th>
+		
+		<tr>
+			<td>Fecha Salida:</td>
+			<td>@fecha_salida_viaje@</td>
+			
+			<td>Fecha Retornno:</td>
+			<td>@fecha_retorno_viaje@</td>
+		</tr>
+		
+		<tr>
+			<td>Cod. Pais Origen:</td>
+			<td>@cod_pais_origen@</td>
+			
+			<td>Pais Origen:</td>
+			<td>@desc_pais_origen@</td>
+		</tr>
+		
+		<tr>
+			<td>Cod. Edo. Origen:</td>
+			<td>@cod_estado_origen@</td>
+			
+			<td>Edo. Origen:</td>
+			<td>@desc_estado_origen@</td>
+		</tr>
+		
+		<tr>
+			<td>Cod. Ciudad Origen:</td>
+			<td>@cod_ciudad_origen@</td>
+			
+			<td>Ciudad Origen:</td>
+			<td>@desc_ciudad_origen@</td>
+		</tr>
+		
+		<tr>
+			<td>Cod. Pais Destino:</td>
+			<td>@cod_pais_destino@</td>
+			
+			<td>Pais Destino:</td>
+			<td>@desc_pais_destino@</td>
+		</tr>
+		
+		<tr>
+			<td>Nro. Pasaporte:</td>
+			<td>@num_pasaporte@</td>
+			
+			<td>Nro. Boleto Vuelta:</td>
+			<td>@num_boleto_vuelta@</td>
+		</tr>
+		
+		
+        </table>
+        
+        
+		
+        <table border="0" id="datos_unidad_inv" style="display:none" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="4" ALIGN="center">
+                 Unidad de Inversi&oacute;n
+            </th>
+        </tr>
+        
+        <tr>
+			<td>Emisor:</td>
+			<td>@empres_nombre@</td>
+			
+			<td>Financiamiento disponible:</td>
+			<td>@undinv_pct_max_finan format-mask='#,###,##0.00'@ %</td>
+			
+		</tr>
+		
+		<tr>
+			<td>Instrumento Financiero:</td>
+			<td>@insfin_descripcion@</td>
+			
+			<td>Tipo Instrumento</td>
+			<td>@insfin_tipo@</td>
+			
+		</tr>
+		
+		@montos_blotter@	
+			
+		@disponible_inventario@
+		
+		@cantidades_blotter@
+				
+		@rangos_precio_subasta@
+		
+		<tr>
+		<td>
+		Multiplo Inversi&oacute;n
+		</td>
+		<td>
+		@undinv_multiplos@
+		</td>
+		
+		@valor_por_unidad@
+		
+		</tr>
+		
+		</table>
+		
+<!-- 		<table border="0" id="datos_unidad_inv2" style="display:none" cellspacing="1" cellpadding="2" width="100%" class="dataform"> -->
+        <table border="0" id="datos_unidad_inv2" style="display:none; position:fixed;" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+                
+        <tr>
+            <th COLSPAN="4" ALIGN="center">
+                 Inversi&oacute;n
+            </th>
+        </tr>
+		
+		<!--campo-->
+        <tr>
+			<td>Monto Solicitado:</td>
+			<td>@monto_solicitado@</td>
+			<input type="hidden" name="monto_comprar" value="@monto_solicitado@">
+			
+			<td>Tasa Cambio Propuesta:</td>
+			<td>@tasa_cambio@</td>
+			<input type="hidden" name="tasa_propuesta" value="@tasa_cambio@">
+		</tr>
+		
+		<!-- tr>
+			<td>Monto Adjudicado:</td>
+			<td>@monto_adjudicado@</td>
+			<td>Precio Adjudicaci&oacute;n:</td>
+			<td>@precio_adjudicacion@</td>
+		</tr -->
+		
+		<!--campo-->
+        <!-- tr>
+        	<td>T&iacute;tulo Adjudicado:</td>
+			<td>@titulo_adjudicado@</td>
+        	
+			<td>Fecha Adjudicaci&oacute;n:</td>
+			<td>@fecha_adjudicacion@</td>
+		</tr -->
+		
+		<!--campo-->
+        <tr>
+			<td>Monto Comisi&oacute;n:</td>
+			<td>@monto_comision@</td>
+			
+			<td>Porcentaje Comisi&oacute;n:</td>
+			<td>@porc_comision@</td>
+		</tr>
+		
+		<tr>
+			<td>Valor Efectivo USD:</td>
+			<td>@valor_efectivo_usd@</td>
+			
+			<td>Valor Nominal USD:</td>
+			<td>@valor_nominal_usd@</td>
+		</tr>
+		
+		<tr>
+			<td>Valor Efectivo:</td>
+			<td>@valor_efectivo@</td>
+			
+			<td>Valor Nominal:</td>
+			<td>@valor_nominal@</td>
+		</tr>
+		
+		<!--campo-->
+        <!-- tr>
+			<td>Fecha Cobro:</td>
+			<td>@fecha_cobro@</td>
+		</tr -->
+		
+		
+		
+		
+		
+		
+		
+		
+		<!-- ORIGINALLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL -->
+		<tr>
+			<td>Recompra permitida:</td>
+			<td>@in_recompra@</td>
+			
+			<td>Veh&iacute;culo:</td>
+			<td>
+			
+			@vehicu_nombre@
+			@vehicu_rol_id@				
+			@combo_vehiculos@
+						<IMG SRC="../images/infi_gn_doc.gif" ONCLICK="javascript:abrirDetallesVehiculos();" WIDTH="15" HEIGHT="16" ALIGN="top" title="Detalles" BORDER="0" style="cursor:hand"/>
+			
+							
+			</td>
+						
+		</tr>
+	
+		<tr>
+			<td>Precio Compra:</td>
+			<td>@precio_compra@ %</td> 
+			
+			<td>Blotter:</td>
+			<td>		
+			@blotter_descripcion@
+			@blotter_id@				
+			@combo_blotters_ui@
+			</td>
+	
+		</tr>	
+	
+		<tr>
+			<td>Porcentaje a Financiar:</td>
+			<td>
+			  @campo_financiamiento@ %
+			</td>
+			<!-- @monto_cant_comprar@ -->
+		</tr>
+		
+		<tr>
+            <!-- @tasa_propuesta@ -->
+		</tr>
+		
+		<tr @fv_activa@>
+            <td>
+				Fecha Pacto:*
+            </td>
+            <td>
+            	<INPUT TYPE='TEXT' VALUE="@fecha_pacto@" NAME='fe_pacto' SIZE='12' MAXLENGTH='10' class='inputControl' readonly /> 
+			</td>
+			<td>
+				Fecha Valor:*
+            </td>
+            <td>
+				<INPUT TYPE='TEXT' VALUE="@fechavalor@" NAME='fe_valor' SIZE='12' MAXLENGTH='10' class='inputControl' readonly /> 
+				</a>
+			</td>
+		</tr>	
+		<tr @fv_activa@>
+			<td>
+				Actividad Económica:*
+            </td>
+			<td>
+		    <SELECT NAME="actividad_economica" SIZE="1">				
+				<OPTION VALUE="" SELECTED>Seleccione</OPTION>
+				<ae>					
+					<OPTION VALUE="@codigo_id@">@sector@</OPTION>						
+				</ae>	
+			</SELECT> 	
+			</td>
+			<td>
+				Sector Productivo:*
+            </td>
+			<td>
+		    <SELECT NAME="sector_productivo" SIZE="1">				
+				<OPTION VALUE="" SELECTED>Seleccione</OPTION>
+				<sp>					
+					<OPTION VALUE="@sector_id@">@descripcion@</OPTION>						
+				</sp>	
+			</SELECT> 	
+			</td>
+			</tr>
+		<tr @fv_activa@>
+			<td>
+				Concepto:*
+            </td>
+			<td>
+		    <SELECT NAME="concepto" SIZE="1">				
+				<OPTION VALUE="" SELECTED>Seleccione</OPTION>
+				<con>					
+					<OPTION VALUE="@codigo_id@">@concepto@</OPTION>						
+				</con>	
+			</SELECT> 	
+			</td>
+			<INPUT TYPE="hidden" VALUE="@fv_activa@" NAME="sitme"/>			
+		</tr>
+
+		<tr><td colspan="4">
+			@encab_campos_dinamicos@  
+	  		
+	        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+	        
+	        <rows_campos_din>
+			@trtd@
+			</rows_campos_din>	        
+	        
+	        </table>
+			
+		</td></tr>
+		
+		 
+    </table>
+    
+    
+    <table id="mensaje_espera" border="0" style="display:none" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+		<tr><td><b>Buscando datos...</b></td></tr>
+	</table>   
+    
+        
+         
+         <INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/> 	
+         <INPUT TYPE="HIDDEN" VALUE="1" NAME="form_toma_orden"/>
+         
+         <!-- div id="botones_calcular" --> 
+            <br>
+            <button style="display:none" TYPE="button" name="boton_calcular" onclick="llamadaCalculos();">Verificar</button>
+                <SPAN> </SPAN>
+            <button type="button" name="boton_salir" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+		<!--/div-->
+		
+		<div id="verificando" style="display:none; font-weight:bold; margin-top:10px;">Verificando...</div>
+		
+	</div>
+	
+	 <INPUT TYPE="hidden" VALUE="@calculos@" NAME="calculos"/>
+	 
+	<!-- ZONA DE CALCULOS -->
+	<div id="calculos_orden" style="display:none">
+			
+	</div>
+	
+	<!-- ZONA DE COMPROBACI&Oacute;N -->
+	<div id="comprobacion_orden" style="display:none">
+		
+	</div>
+	
+ 	
+ 
+  </form>
+  	</center>
+</body>
+</html>

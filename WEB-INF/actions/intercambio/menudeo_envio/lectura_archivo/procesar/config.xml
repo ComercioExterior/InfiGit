@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<config>
+
+	<model-class>models.bcv.menudeo_lectura.LeerarchivoMenudeo</model-class>
+	<view-class>megasoft.GenericView</view-class>
+	<template>form_observaciones.htm</template>
+	<record-def>record.xml</record-def>
+	<content-type>text/html</content-type>
+	<expires>20</expires>
+	<cache>true</cache>
+	<next-action type="redirect">lectura_archivo-informe?framework.controller.outputstream.open=false</next-action>
+	<on-empty source="sales"></on-empty>
+
+	<err-next-url>intercambio_menudeo_demanda_lectura_archivo-filter</err-next-url>
+	
+	<bind type="replace" source="datos" />
+
+</config>

@@ -1,0 +1,116 @@
+
+<HTML>
+    
+	<head> 
+          
+         <script language="javascript" src="../js/default.js"></script>   
+        <link rel="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />		
+        
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+           
+        <script type="text/javascript">
+        
+          
+        </script>
+	
+    </head>
+  
+  <body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+  
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Generales / Precios T&iacute;tulos</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+        
+        <CENTER>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="pretit-confirm_update">
+		
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="2" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Editar Registro
+                </FONT>
+            </th>
+        </tr>
+        <tr>
+				<td nowrap>T&iacute;tulo:</td>
+            	<td nowrap>@titulo_id@</td>
+        	</tr>
+      
+        <tr>
+		
+		<td nowrap>Tipo de Producto:</td>
+          	<td nowrap>@nombre_tipo_producto@</td>
+      	</tr>
+        
+        <!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+              Precio Nominal:*
+            </td>
+            <td>
+            <INPUT TYPE="TEXT" VALUE="@titulos_precio_nominal@" NAME="titulos_precio_nominal" SIZE="15" MAXLENGTH="12" class="inputControl" onkeypress="EvaluateText('%f',this);"/>
+            </td>
+        </tr>
+                
+        <!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+            Precio de Mercado:*
+            </td>
+            <td>
+            <INPUT TYPE="TEXT" VALUE="@titulos_precio_mercado@" NAME="titulos_precio_mercado" SIZE="15" MAXLENGTH="12" class="inputControl" onkeypress="EvaluateText('%f',this);" />
+            </td>
+        </tr>
+
+        <!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Precio de recompra:*
+            </td>
+            <td>
+            <INPUT TYPE="TEXT" VALUE="@titulos_precio_recompra@" NAME="titulos_precio_recompra" SIZE="15" MAXLENGTH="12" class="inputControl" onkeypress="EvaluateText('%f',this);"/>
+            </td>
+        </tr>
+        
+        </table>
+
+            <!--nota sobre los campos obligatorios-->
+            <P><FONT COLOR="red"><B>Nota:</B></FONT> Los campos con * deben ser llenados para poder procesar el formulario.</P>
+            
+             <button TYPE="submit">Grabar</button>
+            &nbsp;<button type="button" onclick="javascript:history.back();">Regresar</button>
+            &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+
+            <!--campo escondido para almacenar el key del record-->
+            <INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/>
+            <INPUT TYPE="HIDDEN" VALUE="@titulo_id@" NAME="titulo_id" />
+             <INPUT TYPE="HIDDEN" VALUE="@tipo_producto_id@" NAME="tipo_producto_id" />
+
+    </form>
+
+        
+        </CENTER>
+        
+    </BODY>
+
+</HTML>
+

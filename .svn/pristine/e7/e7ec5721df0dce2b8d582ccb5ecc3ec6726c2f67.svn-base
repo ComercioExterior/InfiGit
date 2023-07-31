@@ -1,0 +1,40 @@
+package com.bdv.infi.model.intervencion;
+
+import java.net.URL;
+import java.net.HttpURLConnection;
+
+
+import megasoft.Logger;
+
+public class Sesion extends Configuracion {
+
+	public Sesion() {
+		super();
+	}
+
+	public String ObtenerToken(String pathWS) {
+		String respuesta = "";
+		HttpURLConnection conn = null;
+		try {
+			URL url = new URL("https://intervencionbancaria.extra.bcv.org.ve/intervencion/api/auntenticacion/iniciarSesion");
+			conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestProperty("username", userName);
+			conn.setRequestProperty("password", clave);
+			System.out.println("Clave : " + clave);
+			conn.setRequestMethod("GET");
+
+			if (conn.getResponseCode() != 200) {
+				Logger.error(this, "Failed : HTTP error code : " + conn.getResponseCode());
+
+			}
+			respuesta = conn.getHeaderField("Authorization");
+			
+		} catch (Exception e) {
+			System.out.println("Configuracion : ObtenerToken() " + e);
+			Logger.error(this, "Configuracion : ObtenerToken() " + e);
+		} finally {
+			conn.disconnect();
+		}
+		return respuesta;
+	}
+}

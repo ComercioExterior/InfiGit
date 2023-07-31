@@ -1,0 +1,122 @@
+<html>
+<head>
+<script language="javascript" src="../js/default.js"></script>
+<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+<!--cambiar: nombre de la aplicacion-->
+<title>Sistema INFI</title>
+<script type="text/javascript">
+        	@municipio@;
+        	
+        	function CargarMunicipios(){
+                var estado = document.dataentry.estado.value;
+                var cadena =  "<option value='Seleccion'>Seleccion</option>";
+                var max = municipio.length;
+            		for (var i = 0; i < max; i++){
+                  var lst = municipio[i][0];
+                  if(lst[0] == estado){
+                    cadena += "<option value='" + lst[1] + "'>" + lst[1] + "</option>";
+                  }
+            		}
+            		//document.getElementById("municipio").innerHTML = cadena;
+            		document.dataentry.municipio.innerHTML = cadena;
+        	}
+        	
+        	function isNumberKey(evt){
+        	    var charCode = (evt.which) ? evt.which : evt.keyCode
+        	    if (charCode > 31 && (charCode < 48 || charCode > 57))
+        	        return false;
+        	    return true;
+        	}
+        
+        </script>
+
+</head>
+<body
+	ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};document.forms[0].elements[0].focus();">
+
+	<!--page name bar-->
+	<TABLE border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+			<TD class="headerBox"><FONT class="headerText">Configuraci&oacute;n
+					/ Generales / Oficinas Comercial</FONT>
+			</TD>
+
+			<!-- help online -->
+			<TD class="headerBox" valign="middle" align="right"><img
+				border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17"
+				onclick="helpOpen(window.document.location.href);"
+				style="cursor: hand" title="Mostrar ayuda en l&iacute;nea">
+			</TD>
+			<!-- fin help online -->
+
+			<td class="headerBox" aling="right"></td>
+	</TABLE>
+
+	<CENTER>
+
+		<!--formulario-->
+		<form NAME="dataentry" METHOD="POST"
+			ACTION="oficina_comercial_confirm_insert">
+
+			<table border="0" cellspacing="1" cellpadding="2" width="100%"
+				class="dataform">
+				<!--titulo-->
+				<tr>
+					<th COLSPAN="4" ALIGN="center">Agregar</th>
+				</tr>
+
+				<!--campo-->
+				<tr>
+					<td>N&uacute;mero de Oficina:*</td>
+					<td><INPUT type="number" value="" name="oficina" maxlength="5" onkeypress="return isNumberKey(event)"/>
+					</td>
+				</tr>
+
+				<tr>
+					<td>Direccion:*</td>
+					<td><TEXTAREA name="direccion" rows="5" cols="20"></TEXTAREA>
+					</td>
+				</tr>
+				<td>Estado:*</td>
+				<td><SELECT NAME="estado" onChange="CargarMunicipios()">
+						<OPTION VALUE="" SELECTED>Seleccione</OPTION>
+						<estados>
+						<OPTION VALUE="@ESTADO@">@ESTADO@</OPTION>
+						</estados>
+				</SELECT>
+				</td>
+
+				</tr>
+				<td>Municipio:*</td>
+				<td><SELECT name="municipio" id="municipio">
+						<OPTION VALUE="" SELECTED>Seleccione</OPTION>
+				</SELECT></td>
+				</tr>
+
+				<tr>
+					<td>Descripcion:*</td>
+					
+					<td><INPUT type="text" value="" name="descripcion"
+						maxlength="40" />
+					</td>
+				</tr>
+
+			</table>
+
+
+
+			<!--nota sobre los campos obligatorios-->
+			<P>
+				<FONT COLOR="red"><B>Nota:</B> </FONT> Los campos con * deben ser
+				llenados para poder procesar el formulario.
+			</P>
+			<SPAN> </SPAN>
+			<center>
+
+				<br>
+				<button type="submit">Procesar</button>
+				&nbsp;&nbsp;
+				<button type="button" onclick="window.history.back()">Regresar</button>
+		</form>
+	</center>
+</html>

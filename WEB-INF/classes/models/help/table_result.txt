@@ -1,0 +1,34 @@
+	<TABLE width="100%"  border="0">
+		<TR HEIGHT="15">
+			<TD width="25" align="center">
+				<img src="../images/infi_gn_libro_ayuda.gif" border="0" onClick="OcultarMostrarObjeto('table_@id_msc_ayuda_online_tema@');" style="cursor:hand"/>
+			</TD>
+			<TD>
+				<font size="2" style="cursor:hand" onClick="OcultarMostrarObjeto('table_@id_msc_ayuda_online_tema@');" >@nombre_tema@</font>
+			</TD>
+		</TR>
+		<TR>
+			<TD colspan="1"></TD> 
+			
+			<TD align="center" >
+					
+				<!--  Contenidos del tema   -->
+				<TABLE width="100%"  border="0" id="table_@id_msc_ayuda_online_tema@" style="display:none">
+				<rows>
+					<TR HEIGHT="10">
+						<TD width="25" align="center">
+							<a TARGET="ayuda" href="help-view?cod_help=@cod_help@&texto_buscar=@texto_buscar@" title="Mostrar Ayuda" style="cursor:hand">
+							<img src="../images/infi_gn_edit_ayuda.gif" border="0" />
+							</a>
+						</TD>
+						<TD>
+							<a TARGET="ayuda" href="help-view?cod_help=@cod_help@&texto_buscar=@texto_buscar@"> <font size="2" title="Mostrar Ayuda" style="cursor:hand">@nombre_help@ </font> </a>
+						</TD>
+					</TR>
+				</rows>
+					
+				</TABLE>
+			<TD>
+		</TR>
+	</TABLE>
+

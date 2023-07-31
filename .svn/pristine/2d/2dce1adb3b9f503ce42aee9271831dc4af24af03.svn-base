@@ -1,0 +1,215 @@
+BODY
+{
+    BACKGROUND-ATTACHMENT: fixed;
+    Background-Position : Left Center;
+    Background-Repeat : No-Repeat;
+    BACKGROUND-COLOR: #FD1F12;
+   /* BACKGROUND-IMAGE: url(../images/infi_gn_logo_bdv.jpg);*/
+    FONT-FAMILY: Verdana;
+    FONT-SIZE: 9pt;
+    COLOR: #535353
+}
+
+TABLE.datatable
+{
+    BORDER-BOTTOM: gray;
+    BORDER-COLLAPSE: collapse;
+    BORDER-LEFT: gray;
+    BORDER-RIGHT: gray;
+    BORDER-TOP: gray;
+    FONT-FAMILY: "Arial";
+    FONT-SIZE: 8pt;
+    TABLE-LAYOUT: fixed
+}
+TABLE.datatable TH
+{
+    BACKGROUND-COLOR: #FF0000;
+    BORDER-BOTTOM: 1px solid;
+    BORDER-LEFT: 1px solid;
+    BORDER-RIGHT: 1px solid;
+    BORDER-TOP: 1px solid;
+    COLOR: white
+}
+TABLE.datatable TD
+{
+	BACKGROUND-COLOR: #EEEEEE;
+    BORDER-BOTTOM: 1px solid;
+    BORDER-LEFT: 1px solid;
+    BORDER-RIGHT: 1px solid;
+    BORDER-TOP: 1px solid
+}
+.tablecell_t1
+{
+    BACKGROUND-COLOR: RED;
+}
+.rtablecell_gris
+{
+    BACKGROUND-COLOR: #808A87;
+    FONT-SIZE: 12pt;
+}
+.rtablecell_rojo
+{
+    BACKGROUND-COLOR: RED;
+    FONT-SIZE: 12pt;
+}
+.rtablecell_blanco
+{
+    BACKGROUND-COLOR: WHITE;
+    FONT-SIZE: 12pt;
+}
+
+TD.headerBox
+{
+    BACKGROUND-IMAGE: url(../images/infi_gn_barra_cabecera.gif);
+    BORDER-BOTTOM-WIDTH: 0px;
+    BORDER-LEFT-WIDTH: 0px;
+    BORDER-RIGHT-WIDTH: 0px;
+    BORDER-TOP-WIDTH: 0px;    
+    FONT-SIZE: 13pt;
+    FONT-WEIGHT: bold;
+    COLOR: #FFFFFF
+
+}
+
+TABLE.dataform
+{
+	BACKGROUND-COLOR: #EEEEEE;
+    BORDER-BOTTOM-WIDTH: 0px;
+    BORDER-LEFT-WIDTH: 0px;
+    BORDER-RIGHT-WIDTH: 0px;
+    BORDER-TOP-WIDTH: 0px;
+    FONT-SIZE: 8pt
+}
+TABLE.dataform TH
+{
+    BACKGROUND-COLOR: #FF0000;
+    BORDER-BOTTOM-WIDTH: 0px;
+    BORDER-LEFT-WIDTH: 0px;
+    BORDER-RIGHT-WIDTH: 0px;
+    BORDER-TOP-WIDTH: 0px;
+    COLOR: white;
+    PADDING-BOTTOM: 0px;
+    PADDING-LEFT: 0px;
+    PADDING-RIGHT: 0px;
+    PADDING-TOP: 0px;
+    FONT-SIZE: 9pt;
+    FONT-WEIGHT: bold;
+}
+TABLE.dataform TD
+{
+    /* BACKGROUND-IMAGE: url(fondo.jpg);*/
+    BORDER-BOTTOM-WIDTH: 0px;
+    BORDER-LEFT-WIDTH: 0px;
+    BORDER-RIGHT-WIDTH: 0px;
+    BORDER-TOP-WIDTH: 0px
+}
+
+TABLE.dataform2
+{
+    BORDER-BOTTOM-WIDTH: 0px;
+    BORDER-LEFT-WIDTH: 0px;
+    BORDER-RIGHT-WIDTH: 0px;
+    BORDER-TOP-WIDTH: 0px;
+    FONT-SIZE: 9pt
+}
+
+TD.datatitulo
+{
+    BACKGROUND-COLOR: darkblue;
+    BACKGROUND-IMAGE: url();
+    BORDER-BOTTOM-WIDTH: 0px;
+    BORDER-LEFT-WIDTH: 0px;
+    BORDER-RIGHT-WIDTH: 0px;
+    BORDER-TOP-WIDTH: 0px;
+    COLOR: white;
+    PADDING-BOTTOM: 0px;
+    PADDING-LEFT: 0px;
+    PADDING-RIGHT: 0px;
+    PADDING-TOP: 0px
+}
+
+A:link { color: #000000}       /* vínculos no visitados */
+A:visited { color: #000000}   /* vínculos visitados */
+A:active { color: #000000}    /* vínculos activos */
+a:hover { color: #FF0000} 
+
+TABLE.dataform2 TH
+{
+    /* BACKGROUND-IMAGE: url(fondo.jpg);*/
+    BORDER-BOTTOM-WIDTH: 0px;
+    BORDER-LEFT-WIDTH: 0px;
+    BORDER-RIGHT-WIDTH: 0px;
+    BORDER-TOP-WIDTH: 0px
+}
+TABLE.dataform2 TD
+{
+    BORDER-BOTTOM: 1px solid;
+    BORDER-LEFT: 1px solid;
+    BORDER-RIGHT: 1px solid;
+    BORDER-TOP: 1px solid
+}
+
+
+BUTTON
+{
+/*BACKGROUND-COLOR: white; 
+COLOR: #000000; 
+FONT-FAMILY: Arial; 
+FONT-SIZE: 12px; 
+FONT-VARIANT: small-caps; 
+FONT-WEIGHT: bold;*/	
+	
+	font-size: 11px;
+	font-family: Arial;
+	FONT-WEIGHT: bold;
+	COLOR: #535353
+
+}
+
+TABLE.datatable2
+{
+    BORDER-BOTTOM: gray thin solid;
+    BORDER-LEFT: gray thin solid;
+    BORDER-RIGHT: gray thin solid;
+    BORDER-TOP: gray thin solid;
+    FONT-FAMILY: "Arial";
+    FONT-SIZE: 9pt;
+    
+}
+    
+
+    
+TABLE.datatable2 TH
+{
+    BACKGROUND-COLOR: darkblue;
+    BORDER-BOTTOM: 1px solid;
+    BORDER-LEFT: 1px solid;
+    BORDER-RIGHT: 1px solid;
+    BORDER-TOP: 1px solid;
+    COLOR: white
+}
+TABLE.datatable2 TD
+{
+    BORDER-BOTTOM: 1px solid;
+    BORDER-LEFT: 1px solid;
+    BORDER-RIGHT: 1px solid;
+    BORDER-TOP: 1px solid
+}
+
+TR.datatable3 TH
+{
+    /*BACKGROUND-IMAGE: url(fondo.jpg);*/
+    COLOR: darkblue;
+    BORDER-BOTTOM-WIDTH: 0px;
+    BORDER-LEFT-WIDTH: 0px;
+    BORDER-RIGHT-WIDTH: 0px;
+    BORDER-TOP-WIDTH: 0px
+}
+
+TR.datatable3 TD
+{
+    BORDER-BOTTOM: 1px solid;
+    BORDER-LEFT: 1px solid;
+    BORDER-RIGHT: 1px solid;
+    BORDER-TOP: 1px solid
+}

@@ -1,0 +1,111 @@
+<html>
+	<head>
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+
+    </head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">	
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Consulta operaciones SWIFT / Detalle</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online --> 
+   	</TR>
+</TABLE>
+<center>
+
+<br>
+
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+     <tr CLASS="formCaption">
+            <th COLSPAN="4" ALIGN="center">
+                <FONT class="formCaptionText">
+                  Detalles operaci&oacute;n SWIFT
+                </FONT>
+            </th>
+        </tr>
+    <!--encabezados de columna-->
+       
+    		<tr>
+        	<td nowrap="nowrap" class="negrita" width="25%">Tipo de operación: </td>
+        	<td nowrap="nowrap" colspan="3">@transa_id@</td>
+        	</tr>
+    		<tr>
+        	<td nowrap="nowrap" class="negrita">Cliente: </td>
+        	<td nowrap="nowrap" colspan="3">@client_nombre@</td>
+        	</tr>
+    		<tr>
+        	<td nowrap="nowrap" class="negrita">Id Orden: </td>
+        	<td nowrap="nowrap" colspan="3">@ordene_id@</td>    	
+        	</tr>
+        	<tr>
+        	<td nowrap="nowrap" class="negrita">Fecha Valor: </td>
+        	<td nowrap="nowrap" colspan="3">@fecha_aplicar@</td>
+        	</tr>
+        	<tr>
+        	<td nowrap="nowrap" class="negrita">Monto: </td>
+        	<td nowrap="nowrap" align="right" width="25%">@monto_operacion format-mask='###,###,###.00'@</td>        	
+        	<td nowrap="nowrap" class="negrita" width="25%">Moneda: </td>
+        	<td nowrap="nowrap">@moneda_id@</td>
+        	</tr>
+           	<tr>
+        	<td nowrap="nowrap" class="negrita" colspan="4">Instrucci&oacute;n de Pago: </td>
+        	</tr>
+        	<tr>
+        	<td nowrap="nowrap" class="negrita">N&uacute;mero de cuenta: </td>
+        	<td nowrap="nowrap">@ctecta_numero@</td>
+        	<td nowrap="nowrap" class="negrita">Nombre del Banco: </td>
+        	<td nowrap="nowrap">@ctecta_bcocta_bco@</td>
+        	</tr>
+
+        	<tr>
+        	<td nowrap="nowrap" class="negrita">C&oacute;digo ABA: </td>
+        	<td nowrap="nowrap">@ctecta_bcocta_aba@</td>        	
+        	<td nowrap="nowrap" class="negrita">C&oacute;digo BIC: </td>
+        	<td nowrap="nowrap">@ctecta_bcocta_bic@</td>
+        	</tr>        	
+
+        	<tr>
+        	<td nowrap="nowrap" class="negrita">Direcci&oacute;n: </td>
+        	<td nowrap="nowrap">@ctecta_bcocta_direccion@</td>        	
+        	<td nowrap="nowrap" class="negrita">Nombre del Banco Int: </td>
+        	<td nowrap="nowrap">@ctecta_bcoint_bco@</td>
+        	</tr>
+
+        	<tr>
+        	<td nowrap="nowrap" class="negrita">C&oacute;digo ABA Int: </td>
+        	<td nowrap="nowrap">@ctecta_bcoint_aba@</td>        	
+        	<td nowrap="nowrap" class="negrita">C&oacute;digo BIC Int: </td>
+        	<td nowrap="nowrap">@ctecta_bcoint_bic@</td>
+        	</tr>
+
+
+        	<tr>
+        	<td nowrap="nowrap" class="negrita">Direcci&oacute;n Banco Int: </td>
+        	<td nowrap="nowrap" colspan="3">@ctecta_bcoint_direccion@</td>     
+        	</tr>
+        	
+        	<!--tr>
+        	<td nowrap="nowrap" class="negrita"></td>
+        	<td nowrap="nowrap"></td>
+        	</tr-->         	
+        	
+
+    <!--data-->
+    </table>
+    <BR>
+<form>
+     &nbsp;<button type="button" onclick="window.history.back()">&nbsp;Regresar&nbsp;</button>
+</form>
+</center>
+</body>
+</html>

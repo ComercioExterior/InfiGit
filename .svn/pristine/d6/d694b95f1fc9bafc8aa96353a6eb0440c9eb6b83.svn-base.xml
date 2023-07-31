@@ -1,0 +1,295 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/j2ee/dtds/webapp_2_3.dtd">
+
+<web-app>
+ 
+  <display-name>infi</display-name>
+  <description>Venta Masiva de instrumentos financieros</description>
+
+  <!--parametros globales de la aplicacion-->
+
+  <!--
+  	Nota: para WebLogic 6.1 sp1, Orion 1.6 (Oracle) y WebSphere v4 (?)
+  	se debe quitar el prefijo java:comp/env/ del nombre del DataSource
+  -->
+
+  
+  <!-- Descomentar en el caso de que la Aplicacion utilice DataSource -->
+    
+
+  <!-- Context Param Sample
+  <context-param>
+    <param-name>datasource</param-name>
+    <param-value>java:comp/env/jdbc/security</param-value>
+    <description>DataSource principal de la aplicacion</description>
+  </context-param>
+  -->
+  
+  <context-param>
+    <param-name>datasource</param-name>
+    <param-value>java:comp/env/jdbc/infi</param-value>
+    <description>DataSource principal de la aplicacion</description>
+  </context-param>
+
+  <context-param>
+    <param-name>datasource-perflog</param-name>
+    <param-value>java:comp/env/jdbc/infi</param-value>
+    <description>DataSource para performance-log</description>
+  </context-param>
+ 
+
+  
+  <context-param>
+    <param-name>datasource-security</param-name>
+    <param-value>java:comp/env/jdbc/security</param-value>
+    <description>DataSource para seguridad - registro de logins</description>
+  </context-param>
+
+  <context-param>
+    <param-name>template-dir</param-name>
+    <param-value>/WEB-INF/templates/</param-value>
+    <description>Directorio de plantillas de la aplicacion - debe estar dentro del contexto</description>
+  </context-param>
+
+  <context-param>
+    <param-name>enable-perflog</param-name>
+    <param-value>false</param-value>
+    <description>Activar/Desactivar performance log de servlets - true|false</description>
+  </context-param>
+
+  <context-param>
+    <param-name>enable-login-trace</param-name>
+    <param-value>false</param-value>
+    <description>Activar/Desactivar traza de logins y sesiones en BD - true|false</description>
+  </context-param>
+
+  <context-param>
+    <param-name>print-out-enabled</param-name>
+    <param-value>true</param-value>
+    <description>Activar/Desactivar la impresi&oacute;n del m&eacute;todo _printOut() en los modelos</description>
+  </context-param>
+
+  <context-param>
+    <param-name>print-err-enabled</param-name>
+    <param-value>true</param-value>
+    <description>Activar/Desactivar la impresi&oacute;n del m&eacute;todo _printErr() en los modelos</description>
+  </context-param>
+	<context-param>
+    <param-name>menu-dir</param-name>
+    <param-value>/resin/webapps/bdv_infiv1/js/menu/</param-value>
+    <description>Directorio de archivos java script</description>
+  </context-param>
+  
+	<filter>
+    	<filter-name>MSCUrlLogFilter</filter-name>
+    	<filter-class>com.bdv.trace.MSCFilterUrlAudit</filter-class>
+	</filter>
+
+	<filter-mapping>
+    	<filter-name>MSCUrlLogFilter</filter-name>
+    	<url-pattern>/action/*</url-pattern>
+	</filter-mapping>
+
+  <display-name>QuartzExample</display-name>
+    <listener>
+        <listener-class>org.quartz.ee.servlet.QuartzInitializerListener</listener-class>
+    </listener>
+
+	<listener>
+        <listener-class>megasoft.SessionListener</listener-class>
+  </listener>
+  <!--servlets utilitarios del framework-->
+
+  <servlet>
+    <servlet-name>DebugServlet</servlet-name>
+    <description>Debug Servlet Output</description>
+    <servlet-class>megasoft.DebugServlet</servlet-class>
+  </servlet>
+
+  <servlet id="DefaultController">
+    <servlet-name>ActionServlet</servlet-name>
+    <description>Default controller of the MVC mechanism</description>
+    <servlet-class>megasoft.ActionServlet</servlet-class>
+    <init-param>
+      <param-name>enable-log</param-name>
+      <param-value>false</param-value>
+      <description>Indica si se activa la traza detallada del mecanismo MVC (true|false)</description>
+    </init-param>
+    <init-param>
+      <param-name>input-decimal-separator</param-name>
+      <param-value>,</param-value>
+    </init-param> 
+
+    <load-on-startup>-1</load-on-startup>
+  </servlet>
+
+  <servlet id="ChartServlet">
+    <servlet-name>ChartServlet</servlet-name>
+    <description>Graficador Gen&eacute;rico</description>
+    <servlet-class>megasoft.ChartServlet</servlet-class>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+  
+   <servlet id="ProgramadorSchedulerServlet">
+    <servlet-name>ProgramadorSchedulerServlet</servlet-name>
+    <description>Servlet de inicio del Scheduler</description>
+    <servlet-class>models.programador_scheduler.ProgramadorSchedulerServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  	<servlet id="CacheServlet">
+    	<servlet-name>ServletStartCache</servlet-name>
+    	<description>manejador de cache</description>
+    	<servlet-class>ServletStartCache</servlet-class>
+    	<load-on-startup>2</load-on-startup>
+	</servlet>
+	
+  <servlet id="FileServer"> 
+    <servlet-name>fileserver</servlet-name>
+    <description>Servir archivos especificados a trav&eacute;s de atributos del request</description>
+    <servlet-class>megasoft.FileServer</servlet-class>
+  </servlet>
+    
+  <servlet id="ErrorServlet">
+    <servlet-name>ErrorServlet</servlet-name>
+    <description>Error Handler Centralizado para manejo de las excepciones generadas por los Servlets</description>
+    <servlet-class>megasoft.ErrorServlet</servlet-class>
+    
+    <init-param>
+      <param-name>debug-mode</param-name>
+      <param-value>yes</param-value>
+    </init-param>
+    <init-param>
+      <param-name>error-template</param-name>
+      <param-value>error.htm</param-value>
+    </init-param>
+    <init-param>
+      <param-name>error-template-debug</param-name>
+      <param-value>error-debug.htm</param-value>
+    </init-param>
+    <init-param>
+      <param-name>email-enabled</param-name>
+      <param-value>no</param-value>
+    </init-param>
+    <init-param>
+      <param-name>email-server</param-name>
+      <param-value>www.megaserv.com</param-value>
+    </init-param>
+    <init-param>
+      <param-name>email-address</param-name>
+      <param-value>admin@megaserv.com.ve</param-value>
+    </init-param>
+    <init-param>
+      <param-name>email-subject</param-name>
+      <param-value>Reporte de Error en aplicacion Web</param-value>
+    </init-param>
+    <load-on-startup>3</load-on-startup>
+  </servlet>
+
+  <!--mappings-->
+
+  <!--controller del framework-->
+  <servlet-mapping>
+    <servlet-name>ActionServlet</servlet-name>
+    <url-pattern>/action/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ActionServlet</servlet-name>
+    <url-pattern>/j_login</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ActionServlet</servlet-name>
+    <url-pattern>/j_logout</url-pattern>
+  </servlet-mapping>
+
+  <!--graficador generico-->
+  <servlet-mapping>
+    <servlet-name>ChartServlet</servlet-name>
+    <url-pattern>/getchart</url-pattern>
+  </servlet-mapping>
+
+  <!--error handler-->
+  <servlet-mapping>
+    <servlet-name>ErrorServlet</servlet-name>
+    <url-pattern>/errorhandler</url-pattern>
+  </servlet-mapping>
+
+  <!--Debug handler-->
+  <servlet-mapping>
+    <servlet-name>DebugServlet</servlet-name>
+    <url-pattern>/foundation_debug</url-pattern>
+  </servlet-mapping>
+
+  <!--File Server-->
+  <servlet-mapping>
+    <servlet-name>fileserver</servlet-name>
+    <url-pattern>/fileserver</url-pattern>
+  </servlet-mapping>
+
+  <!--configuraci&oacute;n de la sesion-->
+  <session-config>
+    <session-timeout>90</session-timeout>
+  </session-config>
+
+	<mime-mapping>
+        <extension>inc</extension>
+        <mime-type>text/plain</mime-type>
+    </mime-mapping>
+    
+  <!--pagina de arranque-->
+  <welcome-file-list>
+    <welcome-file>index.htm</welcome-file>
+  </welcome-file-list>
+
+  <!--manejadores centralizados de errorres-->
+  <error-page>
+    <error-code>401</error-code>
+    <location>/error_401.htm</location>
+  </error-page>
+
+  <error-page>
+    <error-code>403</error-code>
+    <location>/error_403.htm</location>
+  </error-page>
+
+  <error-page>
+    <error-code>404</error-code>
+    <location>/error_404.htm</location>
+  </error-page>
+
+  <error-page>
+    <error-code>500</error-code>
+    <location>/errorhandler</location>
+  </error-page>
+  
+  <error-page>
+    <error-code>FWRK-SEC-0001</error-code>
+    <location>/fwrk_sec_0001.htm</location>
+  </error-page>
+
+
+<resource-ref>
+  <res-ref-name>jdbc/infi</res-ref-name>
+  <res-type>javax.sql.DataSource</res-type>
+  <init-param driver-name="oracle.jdbc.driver.OracleDriver"/>
+  <init-param url="jdbc:oracle:thin:@bdvdesa2:1510:infid"/> 
+  <init-param user="USU_INFI"/>
+  <init-param password="USU_INFI"/>
+  <init-param max-connections="20"/>
+  <init-param max-idle-time="300"/>
+  <init-param enable-transaction="false"/> 
+</resource-ref>
+
+<resource-ref>
+  <res-ref-name>jdbc/security</res-ref-name>
+  <res-type>javax.sql.DataSource</res-type>
+  <init-param driver-name="oracle.jdbc.driver.OracleDriver"/>
+  <init-param url="jdbc:oracle:thin:@bdvdesa2:1510:WSRVICED"/> 
+  <init-param user="SEPA"/>
+  <init-param password="SEPA"/>
+  <init-param max-connections="20"/>
+  <init-param max-idle-time="300"/>
+  <init-param enable-transaction="false"/> 
+</resource-ref>
+
+</web-app>

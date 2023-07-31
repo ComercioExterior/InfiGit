@@ -1,0 +1,91 @@
+<html>
+	<head> 
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+    </head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};document.forms[0].elements[0].focus();"> 
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Generales / Servicios WS BCV</FONT>
+        </TD>
+        
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+        <td class="headerBox" aling="right"></td>
+</TABLE>
+        
+        <CENTER>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="web_services_bcv_configuracion-update">
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="4" ALIGN="center"> 
+                 Agregar
+            </th>
+        </tr>
+        
+        <!--campo-->
+        <tr>
+            <td>
+               Sistema
+            </td>
+            <td>
+            	<INPUT type="text" value="@sistema@" name="sistema" readonly  maxlength="20"/>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+               Usuario
+            </td>
+            <td>
+            	<INPUT type="text" value="@usuario@" name="usuario"  maxlength="20" />
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+               Clave
+            </td>
+            <td>
+            	<INPUT type="password" value="@clave@" name="clave"  maxlength="20" />
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+               Repita su Clave
+            </td>
+            <td>
+            	<INPUT type="password" value="@clave@" name="clave2"  maxlength="20" />
+            </td>
+        </tr>
+        
+       
+        </table>
+         
+         <!--nota sobre los campos obligatorios-->
+            <P><FONT COLOR="red"><B>Nota:</B></FONT> Los campos con * deben ser llenados para poder procesar el formulario.</P>             			                      
+            <SPAN> </SPAN>
+<center>
+
+	<br>
+	<button type="submit">Procesar</button>
+	&nbsp;&nbsp;
+	<button type="button" onclick="window.history.back()">Regresar</button>
+
+</form>
+</center>
+</html>

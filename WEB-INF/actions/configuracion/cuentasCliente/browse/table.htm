@@ -1,0 +1,109 @@
+<html>
+
+	<head>
+        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+     
+   <script type="text/javascript">
+
+	function mostrar(id){
+		if(id==1){
+			var elementos = document.getElementsByName('definicion')
+			for (var i = 0; i < elementos.length; i++ ){
+				elementos[i].style.display ="block";
+			}
+			agregar.style.display ="block";//muestra el boton de agregar que esta escondido
+			titulod.style.display ="block";
+		}
+		if(id==2){
+			tituloa.style.display ="block";
+		}	
+	}
+	
+	</script>
+     
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <td class="headerBox">           
+	            	<font class="headerText">Configuraci&oacute;n / Cuentas Cliente</font>
+		</td>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="TABLE-LAYOUT: auto; ">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="11" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Cuentas Registradas ( @cantidad@ )
+                </FONT>
+            </th>
+        </tr>
+
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+		<th nowrap></th>
+		<th nowrap></th>
+		<th nowrap>Cliente</th>
+		<th nowrap>Uso Cuenta</th>	
+		<th nowrap>Instrucci&oacute;n</th>	
+    </tr>
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+		<td align="center" width="5%" name="definicion" id="definicion">
+			<a href="cuentas_cliente-confirm?clientId=@client_id@&instruccion=@tipo_instruccion_id@&cuentaId=@ctes_cuentas_id@"><IMG SRC="../images/infi_gn_delete.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Eliminar Registro" BORDER="0" style="cursor:hand"></a>
+		</td>
+		<td width="5%" align="center">
+			<a href="cuentas_cliente-edit?clientId=@client_id@&instruccion=@tipo_instruccion_id@&cuentaId=@ctes_cuentas_id@"><IMG SRC="../images/infi_gn_edit2.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Editar Registro" BORDER="0" style="cursor:hand"></a>
+		</td>
+		<td align="left" nowrap>@client_nombre@</td>
+		<td align="left" nowrap>@ctecta_uso_descripcion@</td>
+		<td align="left" nowrap>@instruccion_nombre@</td>
+     </tr> 
+     </rows>
+    
+    </table>
+	@page_index@
+	<br>
+<form>
+	<table>
+	<tr>
+	     <td>
+        	<button type="button" ONCLICK="window.location='cuentas_cliente-addnew'">&nbsp;Agregar&nbsp;</button>
+       </td>
+	     <td>
+	   			<button type="button" onclick="window.location='cuentas_cliente-filter'">Regresar</button>
+	     </td>
+	     <td>
+	   			<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+	     </td>
+   </tr>
+   </table>
+</form>
+
+</center>
+
+</body>
+
+</html>

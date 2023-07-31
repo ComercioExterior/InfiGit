@@ -1,0 +1,106 @@
+<HTML>
+    <HEAD>
+    	<TITLE>Sistema INFI</TITLE>
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />  
+        <script language="javascript" src="../js/default.js"></script>
+    </HEAD>
+    
+    <script type="text/javascript">
+      function caracteresRestantes (campoComentario, campoContador, maxCaracteres) {  
+    
+  /* Si la cantidad de caracteres es mayor al límite que proponemos nosotros,  
+  se ejecuta esta sentencia */  
+      if (campoComentario.value.length > maxCaracteres) {  
+     
+      // Mostramos el texto escrito con el límite máximo de caracteres  
+      campoComentario.value = campoComentario.value.substring(0, maxCaracteres);  
+          }  
+      // Si no se ha llegado al máximo de caracteres permitidos se ejecuta esta sentencia  
+      else   
+          campoContador.value = maxCaracteres - campoComentario.value.length;  
+    
+  }// Fin de la función caracteresRestantes()
+    </script>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Cuentas Banco de Venezuela (SWIFT)</FONT>
+        </TD>
+        
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+        <td class="headerBox" aling="right"></td>
+</TABLE>
+        
+        <CENTER>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="cuentas_bdv_confirm_update">
+		
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        <rows>
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="4" ALIGN="center"> 
+                 Agregar
+            </th>
+        </tr>
+        
+        <!--campo-->
+        <tr>
+            <td>
+             C&oacute;digo BIC:*
+            </td>
+            <td>
+            	<INPUT type="text" value="@cod_bic_banco@" name="codigo_bic" maxlength="20"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+             Cuenta:*
+            </td>
+            <td>
+            	<INPUT type="text" value="@nu_cuenta@" name="cuenta" maxlength="30" size="35"/>
+            </td>
+        </tr> 
+        <tr>
+            <td>
+             Nombre del Banco:
+            </td>
+            <td>
+            	<textarea rows="4"  name="descripcion" cols="" onKeyDown="caracteresRestantes(this.form.descripcion,0,50);" onKeyUp="caracteresRestantes(this.form.descripcion,0,50);">@ds_banco@</textarea>
+            </td>
+        </tr> 
+        </rows>
+         </table>
+
+         <!--nota sobre los campos obligatorios-->
+            <P><FONT COLOR="red"><B>Nota:</B></FONT> Los campos con * deben ser llenados para poder procesar el formulario.</P>
+  
+            <SPAN> </SPAN>
+         
+         <INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/> 	
+         <INPUT TYPE="HIDDEN" VALUE="@id_cuenta@" NAME="id_cuenta"/>
+
+           
+           
+            <button TYPE="submit">Grabar</button>
+            &nbsp;<button type="button" onclick="javascript:history.back();">Regresar</button>
+            &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+
+    </form>        
+        </CENTER>
+        
+    </BODY>
+
+</HTML>

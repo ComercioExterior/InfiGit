@@ -1,0 +1,95 @@
+
+<HTML>
+    
+    <HEAD>
+    <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+            <SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+        
+    
+             <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        
+        <TITLE>Sistema INFI</TITLE>
+       <script>
+       
+       function showPickList(ind ,id, tx, campo)
+		{
+		   var r
+		   if (ind == '1') {  // llamar a picklist		
+		   	  r = window.open(campo +'?name_id=' + id.name +"&name_tx=" + tx.name, 'Picklist','resizable=yes,scrollbars=yes,width=600,height=450,Left=200,top=150,Status=yes,unadorned:true');
+		   	  
+		   }
+		   else{
+			id.value= "";//limpiar id de cliente
+			tx.value= "";//limpiar campo de cliente
+		  }
+		} 
+		
+		
+       </script>
+    </HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <td class="headerBox">             
+	           <font class="headerText">Custodia / Estructura Tarifaria</font>
+		</td>
+        
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+        <td class="headerBox" aling="right"></td>
+</TABLE>
+        
+        <CENTER>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="estructura_tarifaria-comision_insert">
+		
+     <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="4" ALIGN="center">       
+                 Seleccione Criterios 
+            </th>
+        </tr>
+        
+        <!--campo-->
+        <tr class="tableCell">
+			<td>Comisi&oacute;n</td>
+			<td>
+				<INPUT type="text" value="@comision_nombre@" name="comision_nombre" style="width:300px;" MAXLENGTH="50" class="inputControl" onkeypress="sin_caracteres_especiales(event);"/>
+				<INPUT type="HIDDEN" value="@comision_id@" name="comision_id"/>
+			</td>        
+		</tr>
+		<tr>
+			<td>Indicador</td>
+			<td>
+				<SELECT NAME="comision_in_general" CLASS="inputControl" style="width:100px;">
+					<OPTION VALUE="1">General</OPTION>
+					<OPTION VALUE="0">Espec&iacute;fica</OPTION>
+				</SELECT>
+			</td>
+		</tr>
+      </table>
+         <br>
+
+         	<button type="submit">&nbsp;Grabar&nbsp;</button>
+			&nbsp;<button type="button" onclick="window.location='estructura_tarifaria-browse'">Regresar</button>
+   			 &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+       
+    </form>       
+        </CENTER>
+        
+    </BODY>
+
+</HTML>

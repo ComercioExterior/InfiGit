@@ -1,0 +1,1 @@
+delete from MSC_USER where msc_user_id = @id@

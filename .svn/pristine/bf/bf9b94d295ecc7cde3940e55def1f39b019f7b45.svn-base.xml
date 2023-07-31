@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+Definicion de DataSets globales para ser instanciados dado un alias
+sin necesidad de conocer el SQL, esto ha sido especialmente
+diseñado para aprovechar la clase megasoft.GenericModel.
+
+El SQL puede estar parametrizado para sus valores sean sustituidos
+usando el metodo db.sql(...), el cual utiliza un DataSet (_record) dentro
+del GenericModel que debe contener los parametros del request
+ya previamente validados. Si _record=null entonces se asume que el SQL
+no contiene par&aacute;metros.
+
+Ejemplos:
+
+	<dataset 
+		name="catreclamo" 
+		sql="select * from catreclamo order by descripcion" 
+		description="Lista de categorias de reclamos" />
+
+	<dataset 
+		name="projects" 
+		sql="select id, description from projects where manager_id = @filter@" 
+		description="Lista de proyectos dado un gerente" />
+
+-->
+
+<datasets>
+
+	<!--aqui van los elementos "datasets"-->
+
+	<dataset 
+		name="active-sessions" 
+		sql="select * from active_sessions order by start_time" 
+		description="Lista de sesiones de seguridad activas" />	
+
+</datasets>

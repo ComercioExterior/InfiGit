@@ -1,0 +1,153 @@
+<html>
+
+	<head>
+        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+     
+   <script type="text/javascript">
+
+	function mostrar(id){
+		if(id==1){
+			var elementos = document.getElementsByName('definicion')
+			for (var i = 0; i < elementos.length; i++ ){
+				elementos[i].style.display ="block";
+			}
+			titulod.style.display ="block";
+		}
+		if(id==2){
+			var elementos = document.getElementsByName('aprobacion')
+			for (var i = 0; i < elementos.length; i++ ){
+				elementos[i].style.display ="block";
+			}
+			tituloa.style.display ="block";
+		}	
+	}
+
+	function validar(documento,transaccion,unidad) {
+		r = window.open('validacion_documentos?idDocumento='+documento+'&transa_id='+transaccion+'&unidadInversion='+unidad,'Validacion', 'resizable=yes,scrollbars=yes,width=700,height=600,top=50,left=150');
+	}
+	
+	</script>
+     
+    </head>
+
+<body ONLOAD="javascript:mostrar(@accion@);{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <td class="headerBox">
+				<div id="titulod" style="display:none">               
+	            	<font class="headerText">Configuraci&oacute;n / Documentos / Definici&oacute;n</font>
+	            </div>
+	            <div id="tituloa" style="display:none">               
+	            	<font class="headerText">Configuraci&oacute;n / Documentos / Aprobaci&oacute;n</font>
+	            </div>			
+		</td>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="TABLE-LAYOUT: auto; ">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="13" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Documentos Registrados ( @t_registros@ )
+                </FONT>
+            </th>
+        </tr>
+
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+		<th width="2%" style="display:none" name="definicion" id="definicion"></th>
+		<th width="2%"></th>
+		<th width="2%"></th>
+		<th width="2%"></th>
+		<th nowrap>Archivo</th>
+		<th nowrap>Transacci&oacute;n</th>
+		<th nowrap>Tipo Persona</th>
+		<th nowrap>Unidad Inversi&oacute;n</th>
+		<th nowrap>Estatus</th>
+		<th nowrap>Creado</th>
+		<th nowrap>Creaci&oacute;n</th>
+		<th nowrap>Aprobado</th>
+		<th nowrap>Aprobaci&oacute;n</th>
+    </tr>
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+		<td align="center" style="display:none" name="definicion" id="definicion">
+			<a href="documentos_definicion-confirm?documento_id=@documento_id@&nombre_doc=@nombre_doc@"><IMG SRC="../images/infi_gn_delete.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Eliminar Registro" BORDER="0" style="cursor:hand"></a>
+		</td>
+		<td align="center" style="display:none" name="definicion" id="definicion">
+			<a href="documentos_definicion-edit?documento_id=@documento_id@&nombre_doc=@nombre_doc@"><IMG SRC="../images/infi_gn_edit2.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Editar Registro" BORDER="0" style="cursor:hand"></a>
+		</td>
+		<td align="center" style="display:none" name="aprobacion" id="aprobacion">
+			<a href="documentos_definicion-edit?documento_id=@documento_id@&nombre_doc=@nombre_doc@"><IMG SRC="../images/infi_gn_aprobado.gif" ALIGN="top" title="Aprobar Documento" BORDER="0" style="cursor:hand"></a>
+		</td>
+		<td align="center">
+			<a href="documentos_definicion-descargar?documento_id=@documento_id@&nombre_doc=@nombre_doc@&framework.controller.outputstream.open=false"><IMG SRC="../images/infi_gn_documento.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Descargar Archivo" BORDER="0" style="cursor:hand"></a>
+		</td>
+		<td align="center">
+			<IMG src="../images/infi_gn_find.gif" title="Validar Archivo" ONCLICK="validar('@documento_id@','@transa_id@', '@undinv_id@');" style="cursor:hand"/>
+		</td>
+		<td align="left" nowrap>@nombre_doc@</td>                
+		<td align="left" nowrap>@transa_descripcion@</td>
+		<td align="left" nowrap>@tipper_nombre@</td>
+		<td align="left" nowrap>@undinv_nombre@</td>
+		<td align="center" nowrap>@status_documento@</td>
+		<td align="left" nowrap>@cre_usuario_userid@</td>                
+		<td align="center" nowrap>@cre_fecha@</td>
+		<td align="left" nowrap>@apro_usuario_userid null-value='Sin aprobar'@</td>                
+		<td align="center" nowrap>@apro_fecha null-value='-'@</td>
+     </tr> 
+     </rows>
+
+    </table>
+	@page_index@
+	<br>
+<form>
+	<table>
+	<tr>
+        <td>
+          <div id="definicion" name="agregar" style="display:none">
+        	<button type="button" ONCLICK="window.location='documentos_definicion-addnew'">&nbsp;Agregar&nbsp;</button>
+          </div>
+       </td>
+       <td>
+       <div id="definicion" name="definicion" style="display:none">
+   			&nbsp;<button type="button" onclick="window.location='documentos_definicion-filter'">Regresar</button>
+   		</div>
+      </td>
+      <td>
+      <div id="aprobacion" name="aprobacion" style="display:none">
+   			&nbsp;<button type="button" onclick="window.location='documentos_aprobacion-filter'">Regresar</button>
+   		</div>
+      </td>
+      <td>
+   			 &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+      </td>
+      </tr>
+      </table>
+</form>
+
+</center>
+
+</body>
+
+</html>

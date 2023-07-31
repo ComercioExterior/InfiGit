@@ -1,0 +1,161 @@
+<html>
+	<head>
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <title>Sistema INFI</title>
+	     <script language="javascript" src="../js/menu/jquery-1.2.2.pack.js"></script>
+        <script type="text/javascript"> 
+        var idMensajes = "";
+
+        //Verificar si todos los checks estan deshabilitados para deshabilitar tambien el check de "Todos"
+        function verificarCheckTodos(){
+            var todosDeshabilitados= true;
+        	for (i=0;ele=document.forms[0].elements[i];i++){
+  			  if (ele.type=='checkbox' && !ele.disabled && ele.id!='todos'){
+  				todosDeshabilitados = false;
+  				break;
+  			  }
+  			}
+  			if(todosDeshabilitados){
+  				document.getElementById('todos').disabled =true;
+  			}else{
+  				document.getElementById('todos').disabled =false;
+  			}
+        }
+        
+        function seleccionarTodos(){        
+        	for (i=0;ele=document.forms[0].elements[i];i++){
+			  if (ele.type=='checkbox' && !ele.disabled){
+			    ele.checked=document.forms[0].todos.checked;
+			  }
+			}  	
+        }
+        function checksSeleccionados(){
+	        for (i=0;ele=document.forms[0].elements[i];i++){
+			  if (ele.type=='checkbox' && !ele.disabled){
+			    if (ele.checked){
+			    	idMensajes+=ele.id+",";			    	
+			    }
+			  }
+			} 
+			if(idMensajes!=""){				
+				return true;  
+			} else{			
+				alert('Debe seleccionar al menos un mensaje');
+				return false; 
+			}
+        }       
+        function procesar(seleccion,element){        	
+        var boton=element;
+        	if(document.getElementById('todos').checked){
+        		mensaje='¿Está seguro que desea procesar el envío de "Todos" los mensajes?'
+        		seleccion='todos'
+        	}else{
+        		mensaje='¿Está seguro que desea procesar el envío de los mensajes seleccionados?'
+        	}
+    	
+            if(checksSeleccionados()||document.getElementById('todos').checked){
+		        if(confirm(mensaje))
+		        {	
+
+				element.disabled=true;
+		        document.dataentry.submit();
+			      //  $("button[type=button]").attr("disabled", "disabled");	        	
+		        	//window.location='mensajes_interfaces-procesar?idOrdenes='+idOrdenes+'&seleccion='+seleccion+'&fechaDesde='+document.forms[0].fecha_desde.value+'&fechaHasta='+document.forms[0].fecha_hasta.value;
+
+		        }
+	        }
+        } 
+        function validarSeleccion(check){
+        	if(document.getElementById('todos').checked && !check.checked){
+        		document.getElementById('todos').checked=false;
+        	}
+        }
+        </script>
+    </head>
+<body ONLOAD="javascript:verificarCheckTodos();">	
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Mensajes Interfaces</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online --> 
+   	</TR>
+</TABLE>
+<center>
+
+<br>
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                  Mensajes ( @t_registros@ )
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+
+<form NAME="dataentry" METHOD="POST" ACTION="mensajes_interfaces-procesar">
+
+<INPUT TYPE="hidden" VALUE="@fecha_desde@" NAME="fecha_desde"/> 
+<INPUT TYPE="hidden" VALUE="@fecha_hasta@" NAME="fecha_hasta"/> 
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+    
+    <!--encabezados de columna-->
+    <tr>         
+    		  <th></th>
+    		  <th>Id</th>
+    		  <th nowrap>Error</th>
+    		  <th nowrap>Orden</th>
+    		  <th>Cliente</th>              
+              <th>Fecha Creado</th>            
+              <th>Fecha Envio</th>
+              <th>Fecha Valor</th>
+              <th nowrap>Usuario</th>
+              <th>Nro. Proceso</th>
+              <th nowrap>Transacci&oacute;n</th> 
+              <th nowrap>Tipo Mensaje</th> 
+              @colum_check_todos@
+                                   
+    </tr>
+    <!--data-->
+    <registros>
+    <tr class="tableCell"> 
+        <td align="center">
+			<a href="mensajes_interfaces-detalle?mensaje_id=@mensaje_id@&tipo_mensaje=@tipo_mensaje@&status_mensaje=@status_mensaje@&ordene_id=@ordene_id@&fecha_creado=@fecha_creado@&fecha_envio=@fecha_envio@"><IMG SRC="../images/infi_gn_document.gif" WIDTH="15" ALIGN="top" HEIGHT="13" title="Detalles Mensaje" BORDER="0" style="cursor:hand"></a>
+		</td> 
+			<td nowrap align="center">@mensaje_id@</td>
+			<td nowrap align="center">@error@</td>
+		    <td nowrap align="center">@ordene_id@</td>
+		   <td align="left">@client_nombre@</td>          
+           <td nowrap align="center">@fecha_creado@</td>
+           <td nowrap align="center">@fecha_envio@</td> 
+           <td nowrap align="center">@fecha_valor@</td>
+           <td nowrap align="center">@usuario_nm@</td>
+           <td nowrap align="center">@ejecucion_id@</td>
+           <td nowrap align="center">@transa_id@</td>
+           <td nowrap align="left">@tipo_mensaje@</td>    
+			@colum_check_individual@               
+    </tr>
+     </registros>
+    </table>
+	@page_index@
+    <BR>
+
+	@boton_envio@
+    &nbsp;<button id="botonRegresar" type="button" onclick="window.history.back()">Regresar</button>
+    &nbsp;<button id="botonSalir" type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>    
+    <input type="hidden" name="tipo_mensaje" value="@tipo_mensaje@"/>
+</form>
+</center>
+</body>
+</html>

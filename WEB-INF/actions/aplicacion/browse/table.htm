@@ -1,0 +1,91 @@
+<html>
+
+	<head>
+        
+        <!--LINK REL="stylesheet" type="text/css" href="../megasoft.css" /-->
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema SEPA - Seguridad</title>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Seguridad / Aplicaciones</FONT>
+        </TD>
+   		<!-- help online -->
+   		<!--TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="@url_images@ayuda.gif" width="17" height="17"  onclick="helpOpen();" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD-->
+   		<!-- fin help online -->
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="80%" class="datatable">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+    	<th colspan="2" width="8%"></th>
+              
+              <th>Nombre de Aplicaci&oacute;n</th>
+              
+               <th width="18%">Siglas</th>
+               
+                <th>Comentarios</th>
+                            
+    </tr>
+
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+        
+                <td align="center">
+                <a href="aplicacion-confirm?id=@id_application@&siglas_applic=@siglas_applic@"><IMG SRC="../images/infi_gn_delete.gif" WIDTH="15" HEIGHT="15" ALIGN="BOTTOM" title="Eliminar aplicaci&oacute;n" BORDER="0" style="cursor:hand"/></a>
+                </td>
+            
+                <td align="center">
+                <a href="aplicacion-edit?id=@id_application@"><IMG SRC="../images/infi_gn_edit.gif" WIDTH="15" HEIGHT="15" ALIGN="BOTTOM" title="Editar datos de la aplicaci&oacute;n" BORDER="0" style="cursor:hand"/></a>
+                </td>
+          
+                <td>
+                @description@
+                </td>
+                
+                <td>
+                @siglas_applic@
+                </td>                
+ 
+                <td>
+                @comentarios@
+                </td>
+        
+                
+        
+     </tr>
+     </rows>
+    
+    </table>
+
+    <BR>
+<form>
+    <button onclick="window.location='aplicacion-addnew'" />Añadir Registro</button>
+    &nbsp;<button onclick="javascript:history.back();">Cancelar</button>
+</form>
+
+</center>
+
+</body>
+
+</html>
+

@@ -1,0 +1,105 @@
+<html>
+
+	<head>
+        
+        <!--LINK REL="stylesheet" type="text/css" href="../megasoft.css" /-->
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Carga Inicial / Carga Final de Clientes y T&iacute;tulos</FONT>
+        </TD>
+   	
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+
+
+   <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+    
+     <tr class="tableCell">
+     	<th colspan="2" align="center">Resultado del Proceso de Carga Final</th>
+     </tr>
+    
+        <tr class="tableCell"> 
+        <td aling="center"><b>Fecha de Inicio:</b>
+  		
+        </td><td> @fecha_inicio@</td>
+        
+     </tr>  
+    
+     
+    <tr class="tableCell"> 
+        <td aling="center"><b>Fecha Fin:</b>
+  		
+        </td><td> @fecha_fin@</td>
+        
+     </tr>  
+     
+     <tr class="tableCell"> 
+        <td aling="center"><b>Duraci&oacute;n:</b>
+  		
+        </td><td>@tiempo_duracion@</td>
+        
+     </tr>  
+     
+     
+     <tr class="tableCell">           
+        <td aling="center"><b>Clientes Grabados:</b>
+  		
+        </td><td>@num_clientes@</td>
+      </tr>
+       
+        
+     <tr class="tableCell">           
+        <td aling="center"><b>Registros Nuevos de T&iacute;tulos en Custodia:</b>
+  		
+        </td><td>@num_titulos_cust@</td>
+      </tr>
+ 
+
+    <tr class="tableCell">           
+        <td aling="center"><b>Registros Nuevos de T&iacute;tulos Bloqueados:</b>
+  		
+        </td><td>@num_titulos_bloq@</td>
+      </tr>
+
+    <tr class="tableCell">           
+        <td aling="center"><b>Registros Actualizados de T&iacute;tulos en Custodia:</b>
+  		
+        </td><td>@num_titulos_cust_update@</td>
+      </tr>
+ 
+
+    <tr class="tableCell">           
+        <td aling="center"><b>Registros Actualizados de T&iacute;tulos Bloqueados:</b>
+  		
+        </td><td>@num_titulos_bloq_update@</td>
+      </tr>
+
+    </table>
+
+    <BR>
+    
+    <button onclick="window.location='carga_final_clientes_titulos-carga_final'">Aceptar</button>
+
+
+</center>
+
+</body>
+
+</html>
+

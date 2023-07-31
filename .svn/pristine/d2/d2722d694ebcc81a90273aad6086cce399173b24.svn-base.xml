@@ -1,0 +1,202 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+ Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.2.6hudson-86  svn-revision#12773. 
+-->
+<xsd:schema xmlns:ns0="http://service.bcv.org/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://service.bcv.org/">
+<xsd:complexType name="OFERTASXMLResponse">
+<xsd:sequence>
+<xsd:element name="return" type="xsd:string" minOccurs="0"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="INSTRUMENTOSXMLResponse">
+<xsd:sequence>
+<xsd:element name="return" type="xsd:string" minOccurs="0"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="Exception">
+<xsd:sequence>
+<xsd:element name="message" type="xsd:string" minOccurs="0"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ANULAOFERTAResponse">
+<xsd:sequence>
+<xsd:element name="return" type="xsd:string" minOccurs="0"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="DEMANDASXMLResponse">
+<xsd:sequence>
+<xsd:element name="return" type="xsd:string" minOccurs="0"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ofertaResponse">
+<xsd:sequence>
+<xsd:element name="return" type="xsd:string" minOccurs="0"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="cambiarClave">
+<xsd:sequence>
+<xsd:element name="CLAVENUEVA" type="xsd:string" minOccurs="0"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="OFERTASXML">
+<xsd:sequence>
+<xsd:element name="COJORNADA" type="xsd:string" minOccurs="0"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="demandaResponse">
+<xsd:sequence>
+<xsd:element name="return" type="xsd:string" minOccurs="0"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="jornadaActivaResponse">
+<xsd:sequence>
+<xsd:element name="return" type="xsd:string" minOccurs="0"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="GETPACTOXML">
+<xsd:sequence>
+<xsd:element name="COJORNADA" type="xsd:string" minOccurs="0"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="OFERTASXBCV">
+<xsd:sequence>
+<xsd:element name="COJORNADA" type="xsd:string" minOccurs="0"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="cambiarClaveResponse">
+<xsd:sequence>
+<xsd:element name="return" type="xsd:string" minOccurs="0"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="oferta">
+<xsd:sequence>
+<xsd:element name="NURIFCLIENTE" type="xsd:string" minOccurs="0"/>
+<xsd:element name="NBCLIENTE" type="xsd:string" minOccurs="0"/>
+<xsd:element name="COMONEDAOFE" type="xsd:string" minOccurs="0"/>
+<xsd:element name="MOOFERTA" type="xsd:decimal" minOccurs="0"/>
+<xsd:element name="TSOFERTA" type="xsd:decimal" minOccurs="0"/>
+<xsd:element name="COREFINSTITUCION" type="xsd:string" minOccurs="0"/>
+<xsd:element name="COJORNADA" type="xsd:string" minOccurs="0"/>
+<xsd:element name="COCTACONVENIO" type="xsd:string" minOccurs="0"/>
+<xsd:element name="COCTACLIENTE" type="xsd:string" minOccurs="0"/>
+<xsd:element name="COTIPOINSTRUM" type="xsd:string" minOccurs="0"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="INSTRUMENTOSXML"/>
+<xsd:complexType name="TIPOPACTOSXML"/>
+<xsd:complexType name="GETPACTOXMLResponse">
+<xsd:sequence>
+<xsd:element name="return" type="xsd:string" minOccurs="0"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="pacto">
+<xsd:sequence>
+<xsd:element name="COJORNADA" type="xsd:string" minOccurs="0"/>
+<xsd:element name="COOFERTA" type="xsd:string" minOccurs="0"/>
+<xsd:element name="CODEMANDA" type="xsd:string" minOccurs="0"/>
+<xsd:element name="MOPACTO" type="xsd:decimal" minOccurs="0"/>
+<xsd:element name="MOPACTOBASE" type="xsd:decimal" minOccurs="0"/>
+<xsd:element name="MOCONTRAVALORBASE" type="xsd:decimal" minOccurs="0"/>
+<xsd:element name="TCPACTOBASE" type="xsd:decimal" minOccurs="0"/>
+<xsd:element name="TIPACTO" type="xsd:string" minOccurs="0"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ANULAOFERTA">
+<xsd:sequence>
+<xsd:element name="COJORNADA" type="xsd:string" minOccurs="0"/>
+<xsd:element name="COOFERTA" type="xsd:string" minOccurs="0"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="OFERTASXBCVResponse">
+<xsd:sequence>
+<xsd:element name="return" type="xsd:string" minOccurs="0"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="jornadaActiva"/>
+<xsd:complexType name="statusjornadaResponse">
+<xsd:sequence>
+<xsd:element name="return" type="xsd:string" minOccurs="0"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="errores"/>
+<xsd:complexType name="ANULADEMANDA">
+<xsd:sequence>
+<xsd:element name="COJORNADA" type="xsd:string" minOccurs="0"/>
+<xsd:element name="CODEMANDA" type="xsd:string" minOccurs="0"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="DEMANDASXML">
+<xsd:sequence>
+<xsd:element name="COJORNADA" type="xsd:string" minOccurs="0"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="demanda">
+<xsd:sequence>
+<xsd:element name="NURIFCLIENTE" type="xsd:string" minOccurs="0"/>
+<xsd:element name="NBCLIENTE" type="xsd:string" minOccurs="0"/>
+<xsd:element name="COMONEDADEM" type="xsd:string" minOccurs="0"/>
+<xsd:element name="MODEMANDA" type="xsd:decimal" minOccurs="0"/>
+<xsd:element name="TSDEMANDA" type="xsd:decimal" minOccurs="0"/>
+<xsd:element name="COREFINSTITUCION" type="xsd:string" minOccurs="0"/>
+<xsd:element name="COJORNADA" type="xsd:string" minOccurs="0"/>
+<xsd:element name="COCTACONVENIO" type="xsd:string" minOccurs="0"/>
+<xsd:element name="COCTACLIENTE" type="xsd:string" minOccurs="0"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="erroresResponse">
+<xsd:sequence>
+<xsd:element name="return" type="xsd:string" minOccurs="0"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="TIPOPACTOSXMLResponse">
+<xsd:sequence>
+<xsd:element name="return" type="xsd:string" minOccurs="0"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="pactoResponse">
+<xsd:sequence>
+<xsd:element name="return" type="xsd:string" minOccurs="0"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="ANULADEMANDAResponse">
+<xsd:sequence>
+<xsd:element name="return" type="xsd:string" minOccurs="0"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="statusjornada">
+<xsd:sequence>
+<xsd:element name="COJORNADA" type="xsd:string" minOccurs="0"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="OFERTASXMLResponse" type="ns0:OFERTASXMLResponse"/>
+<xsd:element name="INSTRUMENTOSXMLResponse" type="ns0:INSTRUMENTOSXMLResponse"/>
+<xsd:element name="Exception" type="ns0:Exception"/>
+<xsd:element name="ANULAOFERTAResponse" type="ns0:ANULAOFERTAResponse"/>
+<xsd:element name="DEMANDASXMLResponse" type="ns0:DEMANDASXMLResponse"/>
+<xsd:element name="ofertaResponse" type="ns0:ofertaResponse"/>
+<xsd:element name="cambiarClave" type="ns0:cambiarClave"/>
+<xsd:element name="OFERTASXML" type="ns0:OFERTASXML"/>
+<xsd:element name="demandaResponse" type="ns0:demandaResponse"/>
+<xsd:element name="jornadaActivaResponse" type="ns0:jornadaActivaResponse"/>
+<xsd:element name="GETPACTOXML" type="ns0:GETPACTOXML"/>
+<xsd:element name="OFERTASXBCV" type="ns0:OFERTASXBCV"/>
+<xsd:element name="cambiarClaveResponse" type="ns0:cambiarClaveResponse"/>
+<xsd:element name="oferta" type="ns0:oferta"/>
+<xsd:element name="INSTRUMENTOSXML" type="ns0:INSTRUMENTOSXML"/>
+<xsd:element name="TIPOPACTOSXML" type="ns0:TIPOPACTOSXML"/>
+<xsd:element name="GETPACTOXMLResponse" type="ns0:GETPACTOXMLResponse"/>
+<xsd:element name="pacto" type="ns0:pacto"/>
+<xsd:element name="ANULAOFERTA" type="ns0:ANULAOFERTA"/>
+<xsd:element name="OFERTASXBCVResponse" type="ns0:OFERTASXBCVResponse"/>
+<xsd:element name="jornadaActiva" type="ns0:jornadaActiva"/>
+<xsd:element name="statusjornadaResponse" type="ns0:statusjornadaResponse"/>
+<xsd:element name="errores" type="ns0:errores"/>
+<xsd:element name="ANULADEMANDA" type="ns0:ANULADEMANDA"/>
+<xsd:element name="DEMANDASXML" type="ns0:DEMANDASXML"/>
+<xsd:element name="demanda" type="ns0:demanda"/>
+<xsd:element name="erroresResponse" type="ns0:erroresResponse"/>
+<xsd:element name="TIPOPACTOSXMLResponse" type="ns0:TIPOPACTOSXMLResponse"/>
+<xsd:element name="pactoResponse" type="ns0:pactoResponse"/>
+<xsd:element name="ANULADEMANDAResponse" type="ns0:ANULADEMANDAResponse"/>
+<xsd:element name="statusjornada" type="ns0:statusjornada"/>
+</xsd:schema>

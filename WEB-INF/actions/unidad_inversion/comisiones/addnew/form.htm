@@ -1,0 +1,242 @@
+<html>
+<head>
+
+<title>Sistema INFI</title>
+
+
+  <link rel="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+  
+  <script type="text/javascript">
+  
+  		//Funci&oacute;n Ajax
+		function callAjax(id_contenedor, cod_ajax, idBlotter){	
+			
+			var pagResponse = false;
+			var url = "unidad_inversion_comisiones-ajax_addnew?cod_ajax="+cod_ajax+"&blotter_id="+idBlotter;
+			
+			if (window.XMLHttpRequest) {// Si es Mozilla, Safari etc
+				pagResponse = new XMLHttpRequest()
+			} else if (window.ActiveXObject){ // pero si es IE
+				try {
+					pagResponse = new ActiveXObject("Msxml2.XMLHTTP")
+				} 
+				catch (e){ // en caso que sea una versi&oacute;n antigua
+					try{
+						pagResponse = new ActiveXObject("Microsoft.XMLHTTP")
+					}
+					catch (e){}
+				}
+			}
+			else
+				return false
+		
+			pagResponse.onreadystatechange = function(){ // funci&oacute;n de respuesta
+				cargarpagina(pagResponse, id_contenedor)
+			}
+			
+			pagResponse.open('GET', url, true) // asignamos los m&eacute;todos open y send
+			pagResponse.send(null)
+			 
+		}
+		//funci&oacute;n ajax para cargar los datos en la pagina actual
+		function cargarpagina(pagResponse, id_contenedor){
+			if (pagResponse.readyState == 4 && (pagResponse.status==200 || window.location.href.indexOf("http")==-1))
+				document.getElementById(id_contenedor).innerHTML= document.getElementById(id_contenedor).innerHTML + pagResponse.responseText
+								
+		}
+  				
+			
+		
+		//Habilita o deshabilita el campo unidad de inversi&oacute;n dependiendo de la
+		//transacci&oacute;n de negocio seleccionada
+		function habilitarUnidadInv(num_regla){
+			var obj_transac = eval("document.dataentry.transa_id_"+num_regla);
+			var obj_unidad_inv = eval("document.dataentry.undinv_id_"+num_regla);
+			
+			if(obj_transac.value=='TOMA_ORDEN' || obj_transac.value=='TOMA_ORDEN_CARTERA_PROPIA'){				
+				//habilitar unidad de inversi&oacute;n
+				obj_unidad_inv.disabled = false;
+			}else{//deshabilitar unidad de inversi&oacute;n
+				obj_unidad_inv.disabled = true;
+				obj_unidad_inv.value = '0';
+			}
+		}
+		
+		function mostrarOcultarCampo(){
+			if(document.dataentry.trnfin_aplicacion.value=="M"){
+				document.getElementById('monto_fijo').style.display='block';
+				document.getElementById('pct').style.display='none';
+				document.dataentry.comision_pct.value='';
+			}else{
+				if(document.dataentry.trnfin_aplicacion.value=="P"){
+					document.getElementById('monto_fijo').style.display='none';
+					document.getElementById('pct').style.display='block';
+					document.dataentry.comision_monto_fijo.value='';	
+				}else{
+					document.getElementById('monto_fijo').style.display='none';
+					document.getElementById('pct').style.display='none';
+					document.dataentry.comision_monto_fijo.value='';
+					document.dataentry.comision_pct.value='';					
+				}
+			}
+		}
+		
+		
+		function verificarCerrar(){
+			if(document.dataentry.indic_cerrar.value=="1"){
+				window.opener.location='unidad_inversion_comisiones-browse';		
+				window.close();				
+			}
+		
+		}
+		
+		function limpiar(objeto){
+			objeto.value = '';
+		}
+		
+  
+  </script>
+  
+  <script language="javascript" src="../js/default.js"></script>  
+  
+  
+</head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()}; mostrarOcultarCampo(); verificarCerrar();">
+
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Unidad de Inversi&oacute;n / Comisiones</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+
+
+  <!--formulario-->
+  	
+<form NAME="dataentry" METHOD="POST" TARGET="_blank" ACTION="unidad_inversion_comisiones-insert">
+
+</tr>
+</table>
+</div>
+      <center>
+      
+      <div id="datos_transac">
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="4" ALIGN="center">
+                 Nueva Comisi&oacute;n
+            </th>
+        </tr>
+        
+        <tr>
+            <td>
+             Nombre:
+            </td>
+            <td>
+            <INPUT TYPE="TEXT" VALUE="" NAME="comision_nombre" SIZE="40" MAXLENGTH="50" class="inputControl"/>
+            	
+            </td>
+            
+            
+            <td>
+             C&oacute;digo de Operaci&oacute;n:
+            </td>
+            <td>
+            <INPUT TYPE="TEXT" VALUE="" NAME="codigo_operacion" SIZE="30" MAXLENGTH="10" class="inputControl"/>
+            	
+            </td>
+ 
+    
+        </tr>
+        <tr class="formElement">			
+			<td>Tipo de Operaci&oacute;n</td>
+			<td nowrap>
+				<SELECT NAME="trnfin_id_op">
+				<rowsTipoOp>
+					<OPTION value="@uiblot_tipo@">@trnfin_op_desc@</OPTION>
+				</rowsTipoOp>
+				</SELECT>
+			</td>
+		</tr>		      
+       <tr>        
+          <td>
+                 Aplicaci&oacute;n:
+            </td>
+            <td>
+				<SELECT NAME="trnfin_aplicacion" SIZE="1" onchange="javascript:mostrarOcultarCampo();">				
+				<OPTION VALUE="" SELECTED>Seleccione</OPTION>			
+				
+				 <OPTION VALUE="M">Monto Fijo</OPTION>
+				 <OPTION VALUE="P">Porcentaje</OPTION>				 							 
+ 				
+ 				</SELECT>
+               
+            </td>
+ 		</tr>
+ 		
+        <!--campo-->
+        <tr id="monto_fijo" style="display:none">             
+        	<td>
+             Monto Fijo:
+            </td>
+            <td>
+            <INPUT TYPE="TEXT" VALUE="" NAME="comision_monto_fijo" SIZE="15" STYLE="text-align:right" MAXLENGTH="10" class="inputControl"  onkeypress="EvaluateText('%f', this);"/>
+            	
+            </td> 
+        </tr>
+        
+              
+        <tr id="pct" style="display:none">
+            <td>
+             Porcentaje:
+            </td>
+            <td>
+            <INPUT TYPE="TEXT" VALUE="" NAME="comision_pct" SIZE="15" STYLE="text-align:right" MAXLENGTH="8" class="inputControl"  onkeypress="return NumCheck(event, this)"/>
+            	
+            </td>        
+ 
+ 		</tr>  
+ 		
+ 	        
+       </table>   
+       
+       </div>  
+       
+       <br>
+       
+       <!-- AQUI ZONA DE REGLAS DE COMISI&Oacute;N -->
+              
+       <div id="reglas_transac">
+   		
+ 		 
+       </div>     
+       
+       <div id="boton_agregar_regla">
+       	<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform2"> 
+		<tr><td>
+		<button ONCLICK="callAjax('reglas_transac', '3', '-1');" >Agregar Regla</button>&nbsp;		
+		</td></tr>
+		</table>
+ 
+       </div>
+       
+        <INPUT TYPE="hidden" VALUE="@indic_cerrar@" NAME="indic_cerrar" SIZE="10"/>
+   
+            <br>
+            <button TYPE="button" onclick="confirmarOperacion('¿Est&aacute; seguro que desea grabar la Comisi&oacute;n?');">Grabar</button>         
+            &nbsp;
+            <button type="button" ONCLICK="javascript:window.close();">Regresar</button>
+  </form>
+  	</center>
+</body>
+</html>

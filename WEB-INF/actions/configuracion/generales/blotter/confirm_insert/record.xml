@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+    <!--
+    
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, decimal, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+    
+    -->
+    
+       
+  
+        <field 
+        name="bloter_descripcion" 
+        type="varchar" 
+        description="Descripci&oacute;n"
+        nullable="0"
+        size="200" />
+        
+        <field 
+        name="bloter_horario_desde" 
+        type="varchar" 
+        description="Fecha Desde"
+        nullable="0"
+        size="25" />
+        
+        <field 
+        name="bloter_horario_hasta" 
+        type="varchar" 
+        description="Fecha Hasta"
+        nullable="0"
+        size="25" />
+        
+        
+        <field 
+        name="hh_desde" 
+        type="varchar" 
+        description="Hora Desde"
+        nullable="0"
+        size="25" />
+        
+                
+        <field 
+        name="mm_desde" 
+        type="varchar" 
+        description="Minutos Desde"
+        nullable="0"
+        size="25" />
+        
+         <field 
+        name="ap_desde" 
+        type="varchar" 
+        description="Horario Desde"
+        nullable="0"
+        size="25" />        
+        
+        <field 
+        name="hh_hasta" 
+        type="varchar" 
+        description="Hora Hasta"
+        nullable="0"
+        size="25" />
+        
+                
+        <field 
+        name="mm_hasta" 
+        type="varchar" 
+        description="Minutos Hasta"
+        nullable="0"
+        size="25" />
+        
+        
+        <field 
+        name="ap_hasta" 
+        type="varchar" 
+        description="Horario Hasta"
+        nullable="0"
+        size="25" />
+        
+        
+        <field 
+        name="bloter_in_restringido" 
+        type="integer" 
+        description="Restringido"
+        nullable="0"
+        size="1" />        
+    
+        <field 
+        name="bloter_in_cartera_propia" 
+        type="integer" 
+        description="Cartera Propia"
+        nullable="0"
+        size="1" />       
+        
+        <field 
+        name="tppeva_id" 
+        type="varchar" 
+        description="Tipo Persona"
+        nullable="0"
+        size="25" />      
+   
+         
+        <field 
+        name="bloter_status" 
+        type="integer" 
+        description="Estatus"
+        nullable="0"
+        size="1" /> 
+               
+      	<field 
+        name="canal_id" 
+        type="varchar" 
+        description="Canal de recepción de solicitudes"
+        nullable="0"
+        size="10" />    
+        
+</record>
+

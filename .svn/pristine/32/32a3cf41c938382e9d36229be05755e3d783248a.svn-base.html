@@ -1,0 +1,130 @@
+<html>
+
+	<head> 
+          
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+           
+        <script type="text/javascript">
+        
+          
+        </script>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Generales / Blotter</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Blotter ( @t_registros@ )
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="TABLE-LAYOUT: auto; ">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+	<th width="5%" colspan="2"></th>
+    <th >Descripci&oacute;n</th>
+    <th>Restringido</th>
+    <th>Cartera Propia</th>
+    <th>Red</th>
+    <th>Hora Desde</th>
+    <th>Hora Hasta</th>
+    <th>Canal</th>
+                       
+    </tr>
+
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+                   
+
+                <td VALIGN="middle" align="center">
+                <a href="bloter-confirm?bloter_id=@bloter_id@&bloter_descripcion=@bloter_descripcion@"><IMG SRC="../images/infi_gn_delete.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Eliminar Registro" BORDER="0" style="cursor:hand"></a>			
+                
+                </td>     
+                
+                <td VALIGN="middle" align="center">
+                <a href="bloter-edit?bloter_id=@bloter_id@"><IMG SRC="../images/infi_gn_edit2.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Editar Registro" BORDER="0" style="cursor:hand"></a>                
+                
+                </td>          
+                                              
+                <td VALIGN="middle" nowrap>
+                @bloter_descripcion@
+                </td>
+        
+                <td align="center">
+                @bloter_in_restringido@
+                </td>
+                
+                <td align="center">
+                @bloter_in_cartera_propia@
+                </td> 
+                
+                <td align="center">
+                @bloter_red@
+                </td>
+                
+                <td align="center">
+                @hora_desde@
+                </td>
+               
+        		<td align="center">
+                @hora_hasta@
+                </td> 
+                
+                <td align="center">
+                @nombre_canal@
+                </td>                
+ 
+     </tr>
+     </rows>
+    
+    </table>
+
+@page_index@
+    <BR>
+<form>
+     
+    <button type="button" ONCLICK="window.location='bloter-addnew'">&nbsp;Agregar&nbsp;</button>
+    &nbsp;<button type="button" onclick="window.location='bloter-filter'">Regresar</button>
+    &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>     
+</form>
+
+</center>
+
+</body>
+
+</html>
+

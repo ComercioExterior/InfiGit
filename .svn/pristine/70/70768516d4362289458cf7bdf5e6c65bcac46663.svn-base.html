@@ -1,0 +1,101 @@
+<html>
+	<head>
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+        <script type="text/javascript">
+        function detalleOrden(nombreFormulario){
+        var longitud = nombreFormulario.length;
+        var str=nombreFormulario.substr(8,longitud);
+		document.getElementById(str).submit();
+        }
+         
+        function procesar(){
+        if(confirm('¿Esta seguro que desea generar los deal?'))
+        {
+        	window.location='generar_opics-procesar?fecha_desde='+document.getElementById('fecha_desde').value+'&fecha_hasta='+document.getElementById('fecha_hasta').value+'&tipo_mensaje='+document.getElementById('tipo_mensaje').value;
+        }
+        
+        } 
+        </script>
+    </head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">	
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Generar Datos OPICS</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online --> 
+   	</TR>
+</TABLE>
+<center>
+
+<br>
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                  Procesos Registrados ( @t_registros@ )
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+    
+    <!--encabezados de columna-->
+    <tr>         
+    		  <th nowrap width="4%"></th>
+    		  <th nowrap width="4%"></th>
+              <th nowrap>Id Opics</th>
+              <th nowrap>Id Orden</th>            
+              <th nowrap>Enviado</th>
+              <th nowrap>Creado</th>
+              <th nowrap>Enviado el</th>
+              <th nowrap>Usuario</th>
+              <th nowrap>Fecha Valor</th> 
+    </tr>
+    <!--data-->
+    <registros>
+    <tr class="tableCell"> 
+    	<td align="center">
+                <a href="javascript:detalleOrden('19569633@ordene_id@');"><IMG SRC="../images/infi_gn_document.gif" WIDTH="15" ALIGN="top" HEIGHT="13" title="Detalles de la Orden" BORDER="0" style="cursor:hand"></a>
+                </td>
+            <form id="@ordene_id@" name="@ordene_id@" action="detalle_orden-find" method="post" target="_blank"><input type="hidden" value="@ordene_id@" name="ord_id"></form>   
+            <td align="center">
+			<a href="detalle_deal?opics_id=@opics_id@"><IMG SRC="../images/infi_gn_edit2.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Detalles del Deal Ticket" BORDER="0" style="cursor:hand"></a>
+		</td>    
+           <td nowrap align="center">@opics_id@</td>
+           <td nowrap align="center">@ordene_id@</td>
+           <td nowrap align="center">@in_enviado@</td> 
+           <td nowrap align="center">@fecha_creado@</td>
+           <td nowrap align="center">@fecha_envio@</td>
+           <td nowrap align="center">@usuario_id@</td>
+           <td nowrap align="center">@fecha_valor@</td>                
+    </tr>
+     </registros>
+    </table>
+		@page_index@
+    <BR>
+<form>
+	<button type="button" onclick="procesar();">Procesar</button>
+    &nbsp;<button type="button" onclick="window.location='generar_opics-filter'">Regresar</button>
+     &nbsp;<button type="button" onclick="window.location='generar_opics-filter'">&nbsp;Salir&nbsp;</button>
+     <input id="tipo_mensaje" name="tipo_mensaje" type="HIDDEN" value="@tipo_mensaje@">
+     <input id="fecha_desde" name="fecha_desde" type="HIDDEN" value="@fecha_desde@">
+     <input id="fecha_hasta" name="fecha_hasta" type="HIDDEN" value="@fecha_hasta@">
+</form>
+</center>
+</body>
+</html>

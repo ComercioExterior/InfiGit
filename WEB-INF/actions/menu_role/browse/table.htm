@@ -1,0 +1,79 @@
+<html>
+
+	<head>
+        
+        <!--link rel="stylesheet" type="text/css" href="../megasoft.css"/-->
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css"/>
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI - Seguridad</title>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Seguridad / Roles-Men&uacute;</FONT>
+        </TD>
+   		<!-- help online -->
+   		<!--TD class="headerBox" valign="middle" align="right"><img border="0" src="@url_images@ayuda.gif" width="17" height="17"  onclick="helpOpen();" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" ></TD-->
+   		<!-- fin help online -->
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="60%" class="datatable">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+    	<th width="8%"></th>
+              
+              <th>Rol (alias corto)</th>
+              
+              <th>Descripci&oacute;n</th>
+              
+    </tr>
+
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+        
+               
+            
+                <td align="center">
+                <a href="menu_role-edit?msc_role_id=@msc_role_id@" title="Asociar Men&uacute;"><IMG SRC="../images/infi_gn_documento.gif" WIDTH="15" HEIGHT="16" ALIGN="center" title="Asociar Men&uacute;" BORDER="0" style="cursor:hand"/></a>
+                </td>        
+                
+                <td>
+                @rolename@
+                </td>
+                
+                <td>
+                @description@
+                </td>
+                
+        
+     </tr>
+     </rows>
+    
+    </table>
+    
+    <br>
+
+   <button onclick="window.location='menu_role-addnew'">Añadir Registro</button>
+   &nbsp;<button ONCLICK="history.back();"/>Cancelar</button>
+
+</center>
+
+</body>
+
+</html>
+

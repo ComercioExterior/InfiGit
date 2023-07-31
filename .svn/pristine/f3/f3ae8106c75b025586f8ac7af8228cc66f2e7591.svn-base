@@ -1,0 +1,100 @@
+
+<HTML>
+    
+    <HEAD>
+    	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <LINK REL="stylesheet" type="text/css" href="../css/EstiloFichas.css" />
+        <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/>
+        <SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+        <script language="javascript" src="../js/default.js"></script>   
+         
+        
+        <TITLE>Sistema INFI</TITLE>
+       <script>
+       
+       function showPickList(ind ,id, tx, campo)
+		{
+		   var r
+		   if (ind == '1') {  // llamar a picklist		
+		   	  r = window.open(campo +'?name_id=' + id.name +"&name_tx=" + tx.name, 'Picklist','resizable=yes,scrollbars=yes,width=600,height=450,Left=200,top=150,Status=yes,unadorned:true');
+		   	  
+		   }
+		   else{
+			id.value= "";//limpiar id de cliente
+			tx.value= "";//limpiar campo de cliente
+		  }
+		} 
+		
+		
+       </script>
+    </HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <td class="headerBox">             
+	           <font class="headerText">Custodia / Estructura Tarifaria</font>
+		</td>
+        
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+        <td class="headerBox" aling="right"></td>
+</TABLE>
+        
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="estructura_tarifaria-update_depositarios">
+	
+	<center>		
+		
+     <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr>
+            <th ALIGN="center">       
+                 Editar 
+            </th>
+        </tr>
+        <tr class="formElement">
+			<td><b>Comision:</b> &nbsp;&nbsp;&nbsp; @comision_nombre@</th> 
+		</tr>
+		</table>
+		<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        <!--campo-->
+        <tr class="formElement">
+			<td width="15%">Monto Comisi&oacute;n</th>
+			<td>
+				<INPUT type="text" value="@mto_comision@" name="mto_comision" style="width:70px;" MAXLENGTH="11" class="inputControl" onkeypress="EvaluateText('%f', this);"/>
+				<SELECT NAME="moneda_comision" CLASS="inputControl">
+					<rows_moneda>
+						<OPTION VALUE="@moneda_id@">@moneda_siglas@ - @moneda_descripcion@</OPTION>
+					</rows_moneda>
+				</SELECT>
+				<br>
+				<font size="1px" style><i>Formato: 1234567.123</i></font>
+			</td>
+		</tr>
+      </table>
+         <br>
+
+			<INPUT type="hidden" value="@comision_id@" name="comision_id"/>
+			<INPUT type="hidden" value="@empres_id@" name="empres_id"/>
+				
+
+         	<button type="submit">&nbsp;Grabar&nbsp;</button>
+			&nbsp;<button type="button" onclick="window.location='estructura_tarifaria-depositarios_centrales?comision_id=@comision_id@'">Regresar</button>
+   			 &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+       </CENTER>
+    </form>       
+        
+        
+    </BODY>
+
+</HTML>

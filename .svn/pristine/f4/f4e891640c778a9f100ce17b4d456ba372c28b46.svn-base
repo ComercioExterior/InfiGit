@@ -1,0 +1,8 @@
+<Cotizacion>
+<Propia>@ordene_ped_in_bdv@</Propia>
+<Vehiculo>@vehicu_nombre@</Vehiculo>
+<Nombre>@client_nombre@</Nombre>
+<RIFCedula>@client_cedrif@</RIFCedula>
+<Monto>@ordene_ped_monto@</Monto>
+<Precio>@ordene_ped_precio@</Precio>
+</Cotizacion>

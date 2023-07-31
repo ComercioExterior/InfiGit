@@ -1,0 +1,105 @@
+<html>
+
+	<head>
+        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>        
+      
+    </head>
+
+<!-- body onload="centrar();"-->
+<body>
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Cliente</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+ 	
+		
+        <table border="0" cellspacing="1" cellpadding="2" width="60%" class="dataform">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="4" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Datos
+                </FONT>
+            </th>
+        </tr>
+        
+      
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Nombre:
+            </td>
+            <td>
+            @client_nombre@            	                       
+            </td>
+        </tr>
+        
+       <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             C&eacute;dula o Rif:
+            </td>
+            <td>
+            @client_cedrif@            	                       
+            </td>
+        </tr>
+ 
+         <tr CLASS="formElement">
+            <td CLASS="formLabel">
+            Tipo:
+            </td>
+            <td>
+            @tipper_nombre@            	                       
+            </td>
+        </tr>
+ 
+          
+       <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             N&uacute;mero de Cuenta Custodia:
+            </td>
+            <td>
+            @client_cta_custod_id@            	                       
+            </td>
+        </tr>
+          
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Fecha de Cuenta Custodia:
+            </td>
+            <td>
+            @client_cta_custod_fecha@            	                       
+            </td>
+        </tr>
+        
+         </table>
+         <br>
+
+
+    <button onclick="javascript:window.close();">Regresar</button>
+
+</center>
+
+</body>
+
+</html>
+

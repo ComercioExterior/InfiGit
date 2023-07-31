@@ -1,0 +1,424 @@
+<HTML>
+<head>
+	<title>Sistema INFI</title>
+	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+	<script language="javascript" src="../js/default.js"></script>	
+    <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 	
+	<SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+	<script language="JavaScript" src="../js/unidad_inversion.js"></script>	
+	<script type="text/javascript">
+		 
+        function guardarTipoProducto(tipoProductoId,selectInicial){        
+       	 	tipoProductoId.value=document.dataentry.istrumentoFinanciero2.options[selectInicial.selectedIndex].value
+        }  
+	</script>
+</head>
+
+<!--poner el focus en el 1er control de la forma-->
+<BODY
+	onload="javascript:mostrar(@accion@);{document.forms[0].elements[0].focus();if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};
+		abrirInventario('o','');verificarBolivares('o','');">
+
+
+	<center>
+	
+	<!--formulario-->
+	<form name="dataentry" method="POST" TARGET="_blank" action="unidad_inversion-insert">
+	
+	<table border="0" cellspacing="0" WIDTH="100%">
+		<tr>
+			<td class="headerBox">
+	        	<div id="titulou" style="display:none">               
+	            	<font class="headerText">Unidad de Inversi&oacute;n</font>
+	            </div>
+				<div id="titulop" style="display:none">               
+	            	<font class="headerText">Publicaci&oacute;n Unidad de Inversi&oacute;n</font>
+	            </div>
+	            <div id="tituloc" style="display:none">               
+	            	<font class="headerText">Consulta Unidad de Inversi&oacute;n</font>
+	            </div>			
+	            <div id="titulom" style="display:none">               
+	            	<font class="headerText">Modificaci&oacute;n Unidad de Inversi&oacute;n</font>
+	            </div>
+			</td>
+			<!-- help online -->
+			<td class="headerBox" valign="middle" align="right">
+				<img src="../images/infi_gn_ayuda.gif"	border="0"  width="17" height="17"
+					style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"
+					onclick="helpOpen(window.document.location.href);">
+			</td>
+			<!-- fin help online -->	
+		</tr>
+	</table>
+	
+	<br>
+	
+	<table class="dataform" border="0" cellspacing="1" cellpadding="2" width="100%">
+		<!--titulo-->
+        <tr>
+            <th COLSPAN="4" ALIGN="center">Datos Generales </th>
+        </tr>	
+		<tr class="formElement">        	
+			<td class="formLabel">Nombre:*</td>
+			<td colspan="3">
+				<input type="text" name="nombreUnidadInversion" size="50" maxlength="50" value=""/>
+			</td>
+		</tr>
+		<tr class="formElement">
+			<td class="formLabel">Emisi&oacute;n:</td>
+			<td>
+				<input type="text" name="emisionUnidadInversion"  size="50" maxlength="50" value=""/>
+			</td>
+			<td class="formLabel" style="padding-left: 20px;">Serie:</td>
+			<td>
+				<input type="text" name="serieUnidadInversion" size="50" maxlength="50" value=""/>
+			</td>
+		</tr>
+		<tr class="formElement">
+			<td class="formLabel">Descripci&oacute;n:</td>
+			<td colspan="3">
+				<textarea name="descrUnidadInversion" cols="50" rows="4"></textarea>
+			</td>
+		</tr>
+		<tr class="formElement">
+			<td class="formLabel">Tipo de Instrumento:*</td>
+			<td>
+				<SELECT NAME="istrumentoFinanciero" style="width:272px"
+					onchange="guardarTipoProducto(document.dataentry.idTipoProductoNuevo,document.dataentry.istrumentoFinanciero);abrirInventario('c', this);">
+					<option value=""></option>
+				<rowsIF>
+					<OPTION value="@insfin_id@;@insfin_forma_orden@">@insfin_descripcion@</option>
+				</rowsIF>
+				</SELECT>
+				<SELECT NAME="istrumentoFinanciero2" style="display:none">
+					<option value=""></option>
+				<rowsIF2>
+					<OPTION value="@tipo_producto_id@">@insfin_descripcion@</option>					
+				</rowsIF2>
+				</SELECT>
+			</td>
+			<td class="formLabel"  style="padding-left: 20px;">Emisor:*</td>
+			<td>
+				<SELECT name="idEmpresaEmisor" style="width:272px">
+					<OPTION value=""></option>
+				<rowsEmisor>
+					<OPTION value="@empres_id@">@empres_rif@ - @empres_nombre@</option>
+				</rowsEmisor>
+				</SELECT>
+			</td>
+		</tr>
+		<tr class="formElement">
+			<td class="formLabel">Moneda de Negociacion:*</td>
+			<td>
+				<SELECT name="monedaNegocio" style="width:272px"
+					onchange="verificarBolivares('c', this);">
+					<OPTION value=""></option>
+				<rowsMoneda>
+					<OPTION value="@moneda_id@;@moneda_descripcion@">@moneda_descripcion@</option>
+				</rowsMoneda>
+				</SELECT>
+			</td>
+			<td class="formLabel" style="padding-left: 20px;">Tasa de Cambio a Aplicar:*</td>
+			<td>
+				<input type="text" name="tasaCambioNuevo" size="11" maxlength="11" value=""  
+					onkeypress="EvaluateText('%f',this);" />
+			</td>
+			
+		</tr>	
+		<tr class="formElement">
+			<td class="formLabel">Tasa de Cambio a Aplicar Oferta:*</td>
+			<td colspan="4">
+				<input type="text" name="tasaCambioOferta" size="11" maxlength="11" value=""  
+					onkeypress="EvaluateText('%f',this);" />
+			</td>
+		</tr>
+		<tr class="formElement">
+			<td class="formLabel">Porcentaje Comision IGTF:*</td>
+			<td colspan="4">
+				<input type="text" name="comisionIGTF" size="11" maxlength="11" value=""  
+					onkeypress="EvaluateText('%f',this);" />
+			</td>
+		</tr>		
+		<tr class="formCaption">
+			<th colspan="4" align="center">
+				<font class="formCaptiontext">Fechas</font>
+			</th>
+		</tr>
+		<tr class="formElement">
+			<td class="formLabel">Fecha de Emision:*</td>
+			<td>
+				<input type="text" name="fechaEmisionUI" size="10" maxlength="10" value="@fechaemisionui@" readonly /> 
+					<a onclick="popUpCalendar(this, document.forms[0].fechaEmisionUI, 'dd-mm-yyyy')">
+					<IMG SRC="../images/infi_gn_calendar.gif" class="boton" TITLE="Seleccionar Fecha"/>
+					</a>
+			</td>
+			<td class="formLabel" style="padding-left: 20px;">Fecha de Cierre:*</td>
+			<td>
+				<input type="text" name="fechaCierreUI" size="10" maxlength="10" value="@fechacierreui@" readonly /> 
+					<a onclick="popUpCalendar(this, document.forms[0].fechaCierreUI, 'dd-mm-yyyy')">
+					<IMG SRC="../images/infi_gn_calendar.gif" class="boton" TITLE="Seleccionar Fecha"/>
+					</a>
+			</td>			
+		</tr>
+		<tr class="formElement" id="unidad_subasta_fecha" style="display:none" >
+			<td class="formLabel">Fecha de Adjudicacion:*</td>
+			<td>
+				<input type="text" name="fechaAdjudicacionUI"  size="10" maxlength="10" value="" readonly /> 
+					<a onclick="popUpCalendar(this, document.forms[0].fechaAdjudicacionUI, 'dd-mm-yyyy')">
+					<IMG SRC="../images/infi_gn_calendar.gif" class="boton" TITLE="Seleccionar Fecha"/>
+					</a>
+			</td>
+			<td class="formLabel" style="padding-left: 20px;">Fecha de Liquidacion:*</td>
+			<td>
+				<input type="text" name="fechaLiquidaUI" size="10" maxlength="10" value=""  readonly /> 
+					<a onclick="popUpCalendar(this, document.forms[0].fechaLiquidaUI, 'dd-mm-yyyy')">
+					<IMG SRC="../images/infi_gn_calendar.gif" class="boton" TITLE="Seleccionar Fecha"/>
+					</a>
+			</td>
+		</tr>
+		<tr class="formElement" id="unidad_subasta_hora_liquidacion" style="display:none">
+			<td class="formLabel">Hora del Primer Intento Liquidaci&oacute;n:*</td>
+			<td>
+				<SELECT NAME="PrimeraHoraLiquida">
+					<rowsHora1>
+					<OPTION value="@hora@">@hora@</OPTION>
+					</rowsHora1>
+				</SELECT>
+				&nbsp;:&nbsp;
+				<SELECT NAME="PrimeraMinLiquida">
+					<rowsMin1>
+					<OPTION value="@min@">@min@</OPTION>
+					</rowsMin1>
+				</SELECT>
+				&nbsp;:&nbsp;
+				<SELECT NAME="meridiano1_liquidacion">
+					<rows_meridiano1>
+						<OPTION value="@num@">@valor@</OPTION>
+					</rows_meridiano1>
+				</SELECT>	
+				<font size="1px" style><i>Formato 12 horas</i></font>
+			</td>
+			<td class="formLabel" style="padding-left: 20px;">Hora del Segundo Intento Liquidaci&oacute;n:*</td>
+			<td>
+				<SELECT NAME="SegundaHoraLiquida">
+					<rowsHora2>
+					<OPTION value="@hora@">@hora@</OPTION>
+					</rowsHora2>
+				</SELECT>
+				&nbsp;:&nbsp;
+				<SELECT NAME="SegundaMinLiquida">
+					<rowsMin2>
+					<OPTION value="@min@">@min@</OPTION>
+					</rowsMin2>
+				</SELECT>
+				&nbsp;:&nbsp;
+				<SELECT NAME="meridiano2_liquidacion">
+					<rows_meridiano2>
+					<OPTION value="@num@">@valor@</OPTION>
+					</rows_meridiano2>
+				</SELECT>	
+				
+				<font size="1px" style><i>Formato 12 horas</i></font>
+			</td>
+		</tr>					
+		<tr class="formCaption">
+			<th colspan="4" align="center">
+				<font class="formCaptiontext">&nbsp;</font>
+			</th>
+		</tr>
+		<tr class="formElement">
+			<td class="formLabel">Días de apertura de cuenta cliente:*</td>
+			<td colspan="2">
+				<input type="text" name="dias_apertura_cuenta" value="@dias_apertura_cuenta@" size="3" maxlength="3"/> 
+			</td>
+		</tr>
+		<tr class="formElement">
+			<td class="formLabel">Cobros en batch hacia pasivos:*</td>
+			<td colspan="2">
+				<input type="checkbox" name="batchAdjchk" value="1" checked disabled="disabled" /> Cobro batch en adjudicación&nbsp; &nbsp; 
+				<input type="checkbox" name="batchLiqchk" value="1" checked disabled="disabled" /> Cobro batch en liquidación			
+				<input type="hidden" name="batchAdj" value="1"/> 
+				<input type="hidden" name="batchLiq" value="1"/>				
+			</td>
+		</tr>
+		<tr class="formElement">
+		    <td colspan="4"><p class="nota">(campo chequeado indica proceso de cobro en bacth, campo no chequeado indica proceso de cobro en línea)</p></td>
+		</tr>	
+		<tr class="formElement">
+			<td class="formLabel">Tipo de Mercado:*</td>
+			<td colspan="2">
+				<input type="radio" name="tipoMercado" value="@primario@" checked /> Primario &nbsp; &nbsp; 
+				<input type="radio" name="tipoMercado" value="@secundario@" /> Secundario
+			</td>
+		</tr>	
+		<tr class="formElement">
+			<td class="formLabel">La Orden debe ser tomada en:*</td>
+			<td id="unidad_inventario_indicaPedido" style="display:none" colspan="2">Monto</td>
+			<td id="unidad_subasta_indicaPedido" style="display:none" colspan="2">
+				<INPUT TYPE="RADIO" NAME="indicaPedidoMonto" VALUE="1" checked /> Monto &nbsp; &nbsp; &nbsp; &nbsp;
+				<INPUT TYPE="RADIO" NAME="indicaPedidoMonto" VALUE="0" /> Cantidad
+			</td>			
+		</tr>	
+		<tr class="formElement" name="montoMultiplos" >		
+			<td class="formLabel">Multiplos de Inversi&oacute;n:*</td>
+			<td>
+				<input type="text" name="montoMultiplos" size="11" maxlength="11"	
+				onkeypress="EvaluateText('%f',this);">
+			</td>	
+		</tr>
+		<tr class="formElement" name="tr_multiplo_efectivo" >		
+			<td class="formLabel">Multiplos de Efectivo:* &nbsp;(SIMADI Taquilla)</td>
+			<td>
+				<input type="text" name="montoMultiplosEfectivo" size="11" maxlength="11"	
+				onkeypress="EvaluateText('%f',this);">
+			</td>	
+		</tr>	
+		<tr class="formElement" id="unidad_inventario_indicadorPrecioSucio">
+			<td class="formLabel">Unidad de Inversi&oacute;n de Precio Sucio:*</td>
+			<td>			
+				<INPUT TYPE="RADIO" NAME="indicadorPrecioSucio" VALUE="1" checked /> Si &nbsp; &nbsp; &nbsp; &nbsp;
+				<INPUT TYPE="RADIO" NAME="indicadorPrecioSucio" VALUE="0" /> No
+			</td>			
+		</tr>	
+		<tr class="formElement" id="unidad_inventario_indicadorCancelacion">
+			<td class="formLabel">Unidad Inversión permite Cancelación:*</td>
+			<td>
+				<INPUT TYPE="RADIO" NAME="permiteCancRadio" id="permiteCancRadioSi" VALUE="1" checked/> Si &nbsp; &nbsp; &nbsp; &nbsp;
+				<INPUT TYPE="RADIO" NAME="permiteCancRadio" id="permiteCancRadioNo" VALUE="0" /> No
+
+			</td>			
+		</tr>	
+		<tr class="formElement" id="unidad_indicadorManejoAltoValor">
+			<td class="formLabel">Tipo negocio Unidad Inversión (Manejo Alto / Bajo Valor):*</td>
+			<td>
+				<INPUT TYPE="RADIO" NAME="permiteAltoValorRadio" id="permiteAltoValorRadioNoAplica" VALUE="0" checked/> No Aplica	
+				<INPUT TYPE="RADIO" NAME="permiteAltoValorRadio" id="permiteAltoValorRadioSi" VALUE="1" /> Alto Valor 
+				<INPUT TYPE="RADIO" NAME="permiteAltoValorRadio" id="permiteAltoValorRadioNo" VALUE="2" /> Bajo Valor 
+				<INPUT TYPE="RADIO" NAME="permiteAltoValorRadio" id="permiteAltoValorRadioNo" VALUE="3" /> Taquilla &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			</td>			
+		</tr>												
+		<tr class="formElement">
+			<td class="formLabel"></td>
+			<td colspan="2">
+				<input type="checkbox" name="indicaVtaEmpleados" value="1" /> Permite Venta a Empleados
+			</td>
+		</tr>
+		<tr class="formElement">
+			<td class="formLabel"></td>
+			<td colspan="2">
+				<input type="checkbox" name="indicaRecompraNeteo" value="1" /> Recompra con Neteo
+			</td>
+		</tr>
+		
+		<tr class="formElement" name="tr_periodicidad_venta" >		
+			<td class="formLabel">Periodicidad de Venta:*&nbsp;(SIMADI Taquilla)</td>
+			<td>
+				<input type="text" name="periodicidadVenta" size="11" maxlength="11"	
+				onkeypress="EvaluateText('%f',this);">
+			</td>	
+		</tr>			
+		<tr class="formElement">
+			<td class="formLabel">Comentarios:</td>
+			<td colspan="3">
+				<textarea name="comentarios" cols="50" rows="8"></textarea>
+			</td>
+		</tr>
+		
+		</table>
+		
+		<!-- DATOS PARA INVENTARIO -->
+		<table id="unidad_inventario" style="display:none" class="dataform" border="0" cellspacing="1" cellpadding="2" width="100%">			
+		<tr class="formCaption">
+			<th colspan="5" align="center">
+				<font class="formCaptiontext">Unidad Minima para Inventario</font>
+			</th>
+		</tr>
+		<tr class="formElement">
+			<td class="formLabel" width="18%">Total Autorizado:*</td>
+			<td  width="82%" colspan="4" align="left">
+				<input type="text" name="totalInversion" value="" size="15" maxlength="15" 			
+				onkeypress="EvaluateText('%f',this);">
+			</td>		
+		</tr>
+		<tr class="formElement">
+			<td class="formLabel">Tasa Pool:*</td>
+			<td width="31%" align="left">
+				<input type="text" name="tasaPool" value="" size="6" maxlength="6" 			
+				onkeypress="EvaluateText('%f',this);">
+			</td>		
+			<td class="formLabel" style="padding-left: 20px;">Porcentaje Rendimiento:*</td>
+			<td width="30%" align="left">
+				<input type="text" name="pctRendimiento" value="" size="6" maxlength="6" 			
+				onkeypress="EvaluateText('%f',this);">
+			</td>	
+			<td width="1%"></td>				
+		</tr>		
+		</table>
+	
+	
+		<!-- DATOS PARA SUBASTA -->
+	   <table id="unidad_subasta" style="display:none" class="dataform" border="0" cellspacing="1" cellpadding="2" width="100%">
+		
+		<tr class="formCaption">
+			<th colspan="2" align="center">
+				<font class="formCaptiontext">Par&aacute;metros</font>
+			</th>
+		</tr>			
+		<tr class="formElement">
+			<td class="formLabel" width="18%">Monto m&iacute;nimo de negociaci&oacute;n:*</td>
+			<td  width="82%" align="left">
+				<input type="text" name="montoMinimoSubastaInversion"  size="15" maxlength="12"	value=""		
+				onkeypress="EvaluateText('%f',this);">
+			</td>		
+		</tr>	
+		<tr class="formElement">		
+			<td class="formLabel">Monto m&aacute;ximo de negociaci&oacute;n:* &nbsp;(SIMADI Taquilla)</td>
+			<td>
+				<input type="text" name="montoMaximoSubastaInversion" size="11" maxlength="11"	
+				onkeypress="EvaluateText('%f',this);">
+			</td>	
+		</tr>	
+		</table>
+				
+	
+	
+	<!--nota sobre los campos obligatorios-->
+    <P><FONT COLOR="red"><B>Nota:</B></FONT> Los campos con * deben ser llenados para poder procesar el formulario.</P>
+	
+	
+	<br>
+	<button type="button" onclick="guardarTipoProducto(document.dataentry.idTipoProductoNuevo,document.dataentry.istrumentoFinanciero);submitir();">Grabar</button>
+	<span> </span>
+	<button type="button" onclick="window.location='unidad_inversion-browse';">Regresar</button>
+	
+	<!--campo escondido para almacenar el key del record--> 
+		<input type="hidden"  name="idUnidadInversion" value="0"/> 
+		<input type="hidden" name="idInstrumentoFinanciero" value="" /> 
+		<input type="hidden" name="tipoInstrumentoFinanciero" value="" /> 	
+		<input type="hidden" name="inventarioDisponible"  value="0" /> 		
+		<input type="hidden" name="idMoneda" value="" /> 	
+		<input type="hidden" name="tasaCambio" value="1" />
+		<input type="hidden" name="idTipoProductoNuevo"  value=""/>	
+							
+	</form>
+
+	</center>
+
+</BODY>
+<script language="javascript">
+	function mostrar(accion){
+		if(accion==1){
+			titulou.style.display ="block";
+		}
+		if(accion==2){//Modulo Publicacion
+			titulop.style.display ="block";
+		}
+		if(accion==3){//Modulo Consulta
+			tituloc.style.display ="block";
+		}	
+		if(accion==4){//Modulo Modificacion
+			titulom.style.display ="block";
+		}
+	}
+</script>
+</HTML>

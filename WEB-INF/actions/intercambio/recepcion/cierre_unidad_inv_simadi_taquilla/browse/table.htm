@@ -1,0 +1,72 @@
+	<html>
+	<head>        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>    		
+    </head>
+
+<body>
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+			<TD class="headerBox">                
+            	<FONT class="headerText">Intercambio / Recepci&oacute;n / Cierre Unidad Inversi&oacute;n SIMADI Taquilla Aereopuerto </FONT>
+        	</TD>
+        	<!-- help online -->
+   			<TD class="headerBox" valign="middle" align="right">
+   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   			</TD>
+   			<!-- fin help online -->
+		</TR>
+	</TABLE>
+
+   <center>
+	<br>
+	<!-- cruce_sicad2_clavenet_p_cierre-procesar -->
+	<form NAME="dataentry" METHOD="POST" ACTION="cierre_unidad_inv_taquilla-confirm">
+	
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="80%">
+		<tr>
+			<th nowrap colspan="4">Unidad Inversion</th>
+		</tr>
+		<tr align="center">
+	   		<td align="center" nowrap colspan="4">@undinv_nombre@</td>	
+		</tr>
+		<tr>                       
+            <th nowrap>Electronico Notificado</th>
+            <th nowrap>Efectivo Notificado</th>
+			<th nowrap>Electronico Sin Notificar</th>
+            <th nowrap>Efectivo Sin Notificar</th>
+    	</tr>
+	   <resumen>
+	    <tr>		
+
+	    </tr>
+    	<tr>					
+			<td align="right" nowrap>@electronico_notificado@</td>
+			<td align="right" nowrap>@efectivo_notificado@</td>
+			<td align="right" nowrap>@electronico_sin_notificar@</td>
+			<td align="right" nowrap>@efectivo_sin_notificar@</td>
+						
+		</tr>
+	   </resumen>
+	</table>
+	<br>
+			<input type="hidden" name="undinv_id" value="@undinv_id@">
+			<input type="hidden" name="undinv_nombre" value="@undinv_nombre@">
+	<!-- @page_index@-->		
+		<button  TYPE="submit">Procesar</button>	
+		&nbsp;
+		<button type="button" onclick="javascript:history.back();">Regresar</button>
+		<!-- INPUT TYPE="hidden" VALUE="@marcador_idb@" NAME="marcador_idb"/>
+		<INPUT TYPE="hidden" VALUE="@vehiculos@" NAME="vehiculos"/>
+		<INPUT TYPE="hidden" VALUE="@inst_financiero@" NAME="inst_financiero"/>
+		<INPUT TYPE="hidden" VALUE="@tipo_prod@" NAME="tipo_producto"/>
+		<INPUT TYPE="hidden" VALUE="@tipo_transaccion@" NAME="tipo_transaccion"/>
+		<INPUT TYPE="hidden" VALUE="@menu_migaja@" NAME="mensaje_menu"/>
+		<INPUT TYPE="hidden" VALUE="@tipo_negocio@" NAME="tipo_negocio"/-->
+		</form>
+</body>
+</html>

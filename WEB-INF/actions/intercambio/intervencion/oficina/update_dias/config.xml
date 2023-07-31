@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<config>
+
+	<model-class>models.bcv.intervencion_oficina.UpdateDias</model-class>
+	<view-class></view-class>
+	<template></template>
+	<record-def>record.xml</record-def>
+	<content-type>text/html</content-type>
+	<expires></expires>
+	<cache>false</cache>
+	<next-action type="redirect">intercambio_intervencion_oficina-filter</next-action>
+	<on-empty source=""></on-empty>
+	
+</config>

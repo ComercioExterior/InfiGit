@@ -1,0 +1,126 @@
+<html>
+
+	<head>
+         <script language="javascript" src="../js/default.js"></script>
+        <script language="javascript" src="../js/menudeo/browse.js"></script>
+         <script type="text/javascript" src="../js/menu/jquery-1.2.2.pack.js"></script>           
+         <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+    </head>
+
+    <body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">		
+    <!--page name bar-->
+    <TABLE  border="0" cellspacing="0" WIDTH="100%">
+        <TR>
+            <TD class="headerBox">                
+                <FONT class="headerText">Env&iacute;o BCV / Menudeo Demanda</FONT>
+            </TD>
+            <!-- help online -->
+   		   <TD class="headerBox" valign="left" align="left">
+   			  <img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		   </TD>
+   	    </TR>
+    </TABLE>
+
+    <center>
+    <br>
+    
+    <form name="dataentry" onsubmit="" action="" method="post" id='buscar'>	
+        <!--tabla de data-->
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;" id="Table">
+           <!--titulo-->
+            <tr CLASS="formCaption">
+			 <th COLSPAN="12" ALIGN=left>
+			 <input type="checkbox" id="todos" name="todos" onclick="seleccionarTodos()" />Procesar todos los registros:
+			 </th>   
+            </tr>
+ 
+            <!--encabezados de columna-->
+            <tr>
+                <th width="2%">Seleccione<br/>
+        	       <input width="2%" type="checkbox" id="todosPagina" name="todosPagina" onclick="seleccionarTodosPagina()" />
+                </th>
+            <th nowrap width="7%">ID Operacion</th>
+    	    <th nowrap width="7%">Operacion</th>  
+    	    <th nowrap width="10%">Cliente</th>        
+            <th nowrap width="5%">C.I./Rif Cliente</th>
+            <th nowrap width="7%">Divisas</th>           
+            <th nowrap width="4%">Tasa</th>
+            <th nowrap width="7%">Divisas</th> 
+            <th nowrap width="7%">Concepto</th>
+            <th nowrap width="7%">ID Bcv</th>
+            <th nowrap width="10%">Estatus</th>
+            <th nowrap width="7%"></th>
+            </tr>
+        <!--data-->
+        <tbody>
+        <rows>
+        <tr class="tableCell">               
+    		<td align="center">
+                <input type="checkbox" name="ordenes" id="@ID_OPER@" onclick="validarSeleccion(this, '@fecha_aplicar@') "/>
+            </td>    
+                
+            <td nowrap>
+                @ID_OC@
+            </td> 
+            <td nowrap>
+                @movimiento@
+            </td>  
+           	<td nowrap>
+                @NOM_CLIEN@
+            </td> 
+            <td nowrap>
+                @NACIONALIDAD@@CED_RIF@
+            </td>
+            <td nowrap>
+                @MTO_DIVISAS@
+            </td>           
+            <td nowrap>
+                @TASA_CAMBIO format-mask='##,###,###,##0.0000'@ 
+            </td>        
+            <td nowrap>
+                @COD_DIVISAS@
+            </td> 
+            <td nowrap>
+                @estadistica@
+            </td> 
+            <td nowrap>
+                @ID_BCV@
+            </td> 
+            <td nowrap>
+                @Estatus@
+            </td>
+          	<td align="center">
+                <a href="intercambio_menudeo_demanda-edit?idOrdenes=@ID_OPER@"><IMG SRC="../images/infi_gn_edit.gif" WIDTH="15" HEIGHT="15" ALIGN="top" title="Editar Grupo de Parametros" BORDER="0" style="cursor:hand"/></a>
+            </td>
+                                 
+        </tr>
+        </rows> 
+        </tbody>
+        </table>
+        @page_index@
+        <BR>
+    	
+
+    
+        <input type="hidden" id="statusBusqueda" value="@statusp@">
+        <input type="hidden" id="statusEnvio" value="@statuse@">
+        <input type="hidden" id="fecha" value="@fecha@">
+        <input type="hidden" id="tipoOperacion" value="@tipo@">
+        <input type="hidden" id="combustible" value="@combustible@">
+        @boton_procesar@
+        &nbsp;<button type="button" onclick="exportarCVS()">Exportar Ordenes CSV</button>
+        &nbsp;<button type="button" onclick="manual()">Enviar manual</button>
+        &nbsp;<button type="button" onclick="anular()">Anular Enviadas</button>
+    	&nbsp;<button type="button" onclick="detalles()">Detalles</button>
+        &nbsp;<button type="button" onclick="observacion()">Obervacion</button>
+        &nbsp;<button type="button" onclick="regresar()">Regresar</button>
+
+    </form>
+    
+    </center>
+    </body>
+</html>
+

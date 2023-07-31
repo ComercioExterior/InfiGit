@@ -1,0 +1,102 @@
+<html>
+
+	<head>
+        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+        <script type="text/javascript">
+        
+          
+        </script>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Fecha Valor</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Fecha Valor ( @t_registros@ )
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+    
+    		<th colspan="1" width="3%"></th>
+
+                <th width="15%">Valor Nombre</th>
+                <th width="15%">Fecha Valor</th>                  
+    </tr>
+
+    <!--data-->
+    <rows>
+    <tr class="tableCell"> 
+    
+               <td align="center">
+                <a href="config_fecha_valor-edit?fecha_valor_id=@fecha_valor_id@"><IMG SRC="../images/infi_gn_edit.gif" WIDTH="15" HEIGHT="15" ALIGN="top" title="Editar Fcha Valor" BORDER="0" style="cursor:hand"/></a>
+                </td>
+                   
+		 		<!-- td align="center">
+					<a href="javascript:abrirPopupDetalles('detalle_transac_financ-find?trnfin_id=@trnfin_id@','200', '600')"><IMG SRC="../images/infi_gn_doc.gif" WIDTH="15" HEIGHT="16" ALIGN="top" title="Detalles de la Transacci&oacute;n Financiera" BORDER="0" style="cursor:hand"/></a>
+				</td-->
+
+				<td >
+                @fecha_valor_nombre@
+                </td>
+
+                <td>                
+                @fecha_valor@
+                </td>
+     </tr>
+     </rows>
+    
+    </table>
+
+@page_index@
+    <BR>
+<form>
+
+	
+    &nbsp;<button onclick="javascript:history.back();">Regresar</button>
+     &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+</form>
+
+</center>
+
+</body>
+
+</html>
+

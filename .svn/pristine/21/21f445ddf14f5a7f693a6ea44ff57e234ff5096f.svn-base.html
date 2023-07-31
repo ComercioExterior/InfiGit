@@ -1,0 +1,98 @@
+<html>
+
+	<head> 
+          
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+           
+        <script type="text/javascript">
+        
+          
+        </script>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Generales / Pa&iacute;ses</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Pa&iacute;ses ( @t_registros@ )
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader"> 
+    <th width="15%"> C&oacute;digo del Pais</th> 
+    <th width="15%">Descripci&oacute;n del Pais</th>
+                
+    </tr>
+
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+       
+       		 <td VALIGN="middle">
+               @TAB_CAMPO_CLAVE@
+                </td>
+               
+                <td VALIGN="middle">
+               @TAB_DESCRIPCION@
+                </td>
+
+           
+          
+ 
+     </tr>
+     </rows>
+    
+    </table>
+
+
+    <BR>
+    @page_index@
+    <br>
+<form>
+
+    
+    &nbsp;<button type="button" onclick="window.location='paises-filter'">Regresar</button>
+    &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>     
+</form>
+
+</center>
+
+</body>
+
+</html>
+

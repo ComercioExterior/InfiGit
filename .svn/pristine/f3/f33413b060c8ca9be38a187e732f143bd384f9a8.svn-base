@@ -1,0 +1,159 @@
+package com.bdv.infi.model.mesaCambio;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.net.MalformedURLException;
+import java.util.List;
+import javax.sql.DataSource;
+import org.apache.axis.AxisFault;
+import megasoft.Logger;
+import com.bdv.infi.dao.MesaCambioDAO;
+import com.bdv.infi.data.ClientesMesa;
+import com.bdv.infi.logic.interfaces.ConstantesGenerales;
+
+public class Comprar extends MesaStub implements Notificar {
+
+	public Comprar() throws Exception {
+		super();
+	}
+
+	String ordenBCV;
+	public ConstantesGenerales cG = new ConstantesGenerales();
+	public BigDecimal TasaDolares = new BigDecimal(0.00);
+	public BigDecimal TasaEuros = new BigDecimal(0.00);
+	public String ContenidoCorreo = "";
+
+	/**
+	 * @throws Exception
+	 * 
+	 */
+	public Boolean Reportar(List<ClientesMesa> lst, DataSource ds) throws Exception {
+		MesaCambioDAO dao = new MesaCambioDAO(ds);
+		long InicioFnx = System.nanoTime();
+		double[] OperarFn = new double[lst.size()];
+		double[] FallasFn = new double[lst.size()];
+		int i = 0;
+		Boolean validar = true;
+		for (ClientesMesa clt : lst) {
+			long IFnx = System.nanoTime();
+			try {
+				System.out.println(" Operaciones Enviada : "+ clt.CedulaRifOferta+" - "+ clt.NombreOferta+" - "+ clt.MonedaBase+" - "+ clt.MontoBaseDivisas+" - "+ clt.TasaCambio+" -  cl"+ clt.CuentaOfertaMe +" - "+ clt.CuentaOfertaMn+" - "+ "Instrumento - " + clt.CedulaRifDemanda+" - "+ clt.NombreDemanda+" - "+ clt.CuentaDemandaMe+" - "+ clt.CuentaDemandaMn+" - "+ clt.MontoBaseDivisas+" - "+ clt.MontoBaseBolivares+" - "+ clt.TasaCambio +" - "+ clt.TipoPacto);
+				Logger.info(this," Operaciones EnviadaXXX : "+ clt.NacionalidadOferta+clt.CedulaRifOferta+ clt.NombreOferta+ clt.MonedaBase+ clt.MontoBaseDivisas+ clt.TasaCambio+ "102"+ clt.CuentaOfertaMe+ clt.CuentaOfertaMn+ clt.Instrumento+ clt.NacionalidadDemanda+clt.CedulaRifDemanda+ clt.NombreDemanda+ clt.CuentaDemandaMe+ clt.CuentaDemandaMn+ clt.MontoBaseDivisas+ clt.MontoBaseBolivares+ clt.TasaCambio+clt.TipoPacto);
+				ordenBCV = Stub.pactodirecto(clt.NacionalidadOferta+clt.CedulaRifOferta, clt.NombreOferta, clt.MonedaBase, clt.MontoBaseDivisas, clt.TasaCambio, clt.codigoInstitucion, clt.CuentaOfertaMe, clt.CuentaOfertaMn, clt.Instrumento, clt.NacionalidadDemanda+clt.CedulaRifDemanda, clt.NombreDemanda, clt.CuentaDemandaMe, clt.CuentaDemandaMn, clt.MontoBaseDivisas, clt.MontoBaseBolivares, clt.TasaCambio, clt.TipoPacto);
+				dao.modificar(clt.IdOrdenes, ordenBCV, "Envio a BCV ejecutado con exito","1");
+				long FFnx = System.nanoTime();
+				OperarFn[i] = (IFnx - FFnx) / 1e6;
+				System.out.println("ordenBCV : " + ordenBCV);
+			} catch (Exception e) {
+				validar = false;
+				dao.modificar(clt.IdOrdenes, ordenBCV, e.toString(),"4");
+				Logger.error(this, "Ha ocurrido un error al momento de enviar la orden al BCV ORDENE_ID: " + clt.IdOrdenes + " - " + e.toString());
+				System.out.println("Ha ocurrido un error al momento de enviar la orden al BCV ORDENE_ID: " + clt.IdOrdenes + " - " + e.toString());
+				long FFnx = System.nanoTime();
+				FallasFn[i] = (IFnx - FFnx) / 1e6;
+			}
+		}
+
+		this.ResumenOperaciones(InicioFnx, OperarFn, FallasFn, "");
+		return validar;
+
+	}
+
+	public void ResumenOperaciones(double InicioFnx, double[] OperarFn, double[] FallasFn, String msj) {
+
+		long FinFnx = System.nanoTime(); // Fin de la funcion 1e6
+		double TotalFnx = (InicioFnx - FinFnx) / 1e6;
+		System.out.println("TIEMPO TOTAL DE EJECUCION Comprar:Reportar() " + TotalFnx + " ms.");
+		this.ContenidoCorreo = "TIEMPO TOTAL DE EJECUCION Comprar:Reportar() " + TotalFnx + " ms. \n";
+
+		this.ContenidoCorreo += "\n\n";
+		this.ContenidoCorreo += "PORCENTAJES DE CONCILIACION EXITOSO \n";
+		System.out.println("PORCENTAJES DE CONCILIACION EXITOSO \n");
+		this.ContenidoCorreo += this.promedioFnx(OperarFn);
+
+		this.ContenidoCorreo += "PORCENTAJES DE CONCILIACION FALLIDO \n";
+		System.out.println("PORCENTAJES DE CONCILIACION FALLIDO \n");
+
+		this.ContenidoCorreo += this.promedioFnx(FallasFn);
+		this.ContenidoCorreo += "\n\n";
+		this.ContenidoCorreo += "--------------------------------------- \n";
+		this.ContenidoCorreo += "BANCO DE VENEZUELA \n";
+		this.ContenidoCorreo += "--------------------------------------- \n";
+
+		// Correo correo = new Correo("RESUMEN DE OPERACIONES", "infi.bdv.soporte@bdv.enlinea.com", "infi.bdv.soporte@bdv.enlinea.com", _dso);
+		// correo.Enviar(contenido);
+	}
+
+	/**
+	 * Evaluacion de AVERAGE En funcion
+	 * 
+	 * @param Fnx
+	 */
+	public String promedioFnx(double[] Fnx) {
+		String contenido = "";
+
+		int cant = Fnx.length;
+		int max = 0;
+		int min = 0;
+		for (int i = 0; i < cant; i++) {
+			if ((Fnx[i] / 1000) > cG.MAXIMO_TIEMPO_ITERACION) {
+				max++;
+			} else {
+				min++;
+			}
+		}
+		double maximo = (max * 100) / cant; // APLICAR PORCENTAJE
+		double minimo = (min * 100) / cant;
+		System.out.println("RESUMEN DE TRANSACCIONES \n");
+		System.out.println("CANTIDAD MAXIMA DE OPERACIONES ENVIADAS " + max + "\n");
+		System.out.println("CANTIDAD MINIMA DE OPERACIONES ENVIADAS " + min + "\n");
+		System.out.println("PORCENTAJE: ~MAXIMO (+) " + cG.MAXIMO_TIEMPO_ITERACION + " seg. " + maximo + "% \n");
+		System.out.println("PORCENTAJE: ~MINIMO (-)  " + cG.MINIMO_TIEMPO_ITERACION + " seg. " + minimo + " % \n");
+		contenido = "RESUMEN DE TRANSACCIONES \n";
+		contenido += "CANTIDAD MAXIMA DE OPERACIONES ENVIADAS " + max + "\n";
+		contenido += "CANTIDAD MINIMA DE OPERACIONES ENVIADAS " + min + "\n";
+		contenido += "PORCENTAJE: ~MAXIMO (+) " + cG.MAXIMO_TIEMPO_ITERACION + " seg. " + maximo + "% \n";
+		contenido += "PORCENTAJE: ~MINIMO (-)  " + cG.MINIMO_TIEMPO_ITERACION + " seg. " + minimo + " % \n";
+
+		return contenido;
+	}
+
+	/**
+	 * Metodo para llamar los servicios de menudeo de banco central.
+	 * 
+	 * @param enpPoint
+	 * @throws AxisFault
+	 * @throws MalformedURLException
+	 */
+	// public void serviciosMenudeoBancoCentral(String enpPoint) throws AxisFault, MalformedURLException {
+	//
+	// this.stub = new AutorizacionPortBindingStub(new URL(propiedades.getProperty(enpPoint)), null);
+	// }
+
+	public void Rechazados() {
+		// TODO Auto-generated method stub
+
+	}
+
+	public boolean Enviadas() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	public void FallaConexion(String err) {
+		// TODO Auto-generated method stub
+		Logger.error(this, err);
+
+	}
+
+	public BigDecimal Conversion(String tipoMoneda, BigDecimal valor) {
+
+		if (tipoMoneda == "EUR") {
+			BigDecimal montoDivision = this.TasaEuros.divide(this.TasaDolares, 8, RoundingMode.DOWN).multiply(valor);
+			return montoDivision.setScale(4, RoundingMode.DOWN);
+		}
+		return valor;
+	}
+
+
+}

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+    <!--
+    
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, decimal, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+    
+    -->    
+ 
+        <field 
+        name="fichero.tempfile" 
+        type="varchar" 
+        description="Archivo"
+        nullable="0"
+        size="1000" />
+        
+        <field 
+        name="fichero.filename" 
+        type="varchar" 
+        description="Nombre original del archivo"
+        nullable="1"
+        size="500" />
+        
+        <field 
+        name="fichero.content-type" 
+        type="varchar" 
+        description="Content type del archivo descargado"
+        nullable="1"
+        size="500" />
+           
+        
+        <field 
+        name="fecha_inicio" 
+        type="varchar" 
+        description="Fecha de inicio del proceso"
+        nullable="1"
+        size="50" />
+        
+        
+        <field 
+        name="fecha_fin" 
+        type="varchar" 
+        description="Fecha de finalizaci&oacute;n del proceso"
+        nullable="1"
+        size="50" />
+        
+        <field 
+        name="tiempo_duracion" 
+        type="varchar" 
+        description="Duraci&oacute;n del proceso"
+        nullable="1"
+        size="50" />
+ 
+        
+           <field 
+        name="reg_leidos" 
+        type="integer" 
+        description="N&uacute;mero de registros leidos"
+        nullable="1"
+        size="80" />
+   
+           <field 
+        name="reg_buenos" 
+        type="integer" 
+        description="N&uacute;mero de correctos"
+        nullable="1"
+        size="80" />
+        
+                  <field 
+        name="reg_malos" 
+        type="integer" 
+        description="N&uacute;mero de registros incorrectos"
+        nullable="1"
+        size="80" />
+ 
+          <field 
+        name="porc_buenos" 
+        type="decimal" 
+        description="Porcentaje de correctos"
+        nullable="1"
+        size="80" />
+        
+                  <field 
+        name="porc_malos" 
+        type="decimal" 
+        description="Porcentaje de registros incorrectos"
+        nullable="1"
+        size="80" />
+        
+        <field 
+        name="titulo_id" 
+        type="varchar" 
+        description="T&iacute;tulo"
+        nullable="0"
+        size="100" />
+  
+ 
+ 
+    
+</record>
+

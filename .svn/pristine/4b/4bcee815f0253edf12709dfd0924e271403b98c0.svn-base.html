@@ -1,0 +1,164 @@
+<HTML>
+	<HEAD>
+		<TITLE>Sistema INFI</TITLE>
+    	<LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+    	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		<SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+		<script language="javascript" src="../js/default.js"></script>   
+		<!--<script language="javascript">
+
+			extarray = new array(".xls", ".doc");
+			function limitattach(form, file) {
+			allowsubmit = false;
+			if (!file) return;
+				while (file.indexof("\\") != -1)
+					file = file.slice(file.indexof("\\") + 1);
+					ext	= file.slice(file.indexof(".")).tolowercase();
+					for (var i = 0; i < extarray.length; i++) {
+						if (extarray[i] == ext) { 
+							allowsubmit = true; break; 
+						}
+					}
+					if (allowsubmit) form.submit();
+					else
+						alert("se permiten &uacute;nicamente archivos con la extenci&oacute;n: " 
+						+ (extarray.join(" ")) + "\npor favor, seleccione otro archivo "
+						+ "e intente de nuevo.");
+					}
+-->
+<script>
+		
+		function exportar() {
+		    if (confirm("Se Generará un archivo Excel con todos los cruces Cargados. Esto puede tardar varios minutos. ¿Está seguro que desea iniciar el proceso?")){
+		    	window.location="cruce_sicad2_consulta-exportar?framework.controller.outputstream.open=false";
+		    	return true;
+		    }else{
+		    	return false;
+		    }
+		}
+
+
+        function exportarCSV() {
+            if (confirm("Se Generará un archivo CSV con todos los cruces Cargados. Esto puede tardar varios minutos. ¿Está seguro que desea iniciar el proceso?")){
+            	window.location="cruce_sicad2_consulta-exportarCSV?framework.controller.outputstream.open=false";
+            	return true;
+            }else{
+            	return false;
+            }
+        }
+        
+        function showObservacion(observ) {
+            
+        }
+        
+//         window.onload=function(){
+//         	if((!document.getElementById('msgError').value) || !document.getElementById('msgError').value == ""){
+        		
+//         	document.getElementById('btnExportar').disabled='true';
+//         	document.getElementById('btnExportarCSV').disabled='true';
+//         	}
+//         	};
+        
+</script>
+	</HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    	<TR>
+        	<TD class="headerBox">                
+            	<FONT class="headerText">Intercambio / Recepci&oacute;n / Cruce SICAD II @menu_migaja@ / Carga</FONT>
+       		</TD>
+        	<!-- help online -->
+   			<TD class="headerBox" valign="middle" align="right">
+   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   			</TD>
+   			<!-- fin help online -->
+        	<td class="headerBox" aling="right"></td>
+        </TR>
+	</TABLE>
+	<CENTER>
+	
+	<br/>
+	
+	<div style="font-weight:bold;">@mensaje_error@</div>
+	
+	<br/>
+	<div style="font-weight:bold; text-align:left;"><span style="color:red;">Nro. Ejecucion:</span> @idejec@</div>
+	<br/>
+	
+	<form NAME="dataentry" METHOD="POST" ACTION="">
+    
+	<table style="display:@tabla_visibility@" border="0" cellspacing="1" cellpadding="2" class="datatable" style="table-layout:auto;">
+			 <!--titulo-->
+			<tr>
+				<th COLSPAN="17" ALIGN="center">Resultado Carga de Cruces de &Oacute;rdenes</th> 
+			</tr>
+		  <tr>         
+				<th nowrap width="4%">Id Orden</th>
+				<th nowrap width="4%">Rif/C&eacute;dula</th>
+				<th nowrap width="4%">Cliente</th>
+				<th nowrap width="4%">Id Orden BCV</th>
+				<!--  th nowrap width="4%">Nro Operaci&oacute;n</th-->
+				<th nowrap width="7%">Unidad de Inversi&oacute;n</th>
+				<th nowrap width="4%">Contraparte</th>
+				<th nowrap width="4%">Monto Cruce $</th>
+				<th nowrap width="3%">Tasa Cambio</th>
+				<th nowrap width="4%">Fecha Valor</th>
+				<th nowrap width="7%">T&iacute;tulo</th>
+				<th nowrap width="4%">Precio T&iacute;tulo</th>
+				<th nowrap width="4%">Valor Nominal</th>
+				<th nowrap width="4%">Intereses Ca&iacute;dos</th>
+				<th nowrap width="3%">ContravalorBs</th>
+				<th nowrap width="4%">Estatus</th>
+				<th nowrap width="3%">Observacion</th>
+	    </tr>
+			<rows_cruces>
+            <tr>
+	            <td nowrap>@ORDENE_ID@</td>
+	            <td nowrap>@CI_RIF@</td>
+	            <td nowrap>@CLIENT_NOMBRE@</td>
+	            <td nowrap>@ORDENE_ID_BCV@</td>
+	            <!-- td nowrap>@NRO_OPERACION@</td-->
+                <td nowrap>@UNDINV_NOMBRE@</td>
+                <td nowrap>@CONTRAPARTE@</td>
+				<td nowrap>@MONTO_OPERACION format-mask='###,###,###,###.00'@</td>
+				<td nowrap>@TASA@</td>
+				<td nowrap>@FECHA_VALOR@</td>
+				<td nowrap>@TITULO_ID@</td>
+				<td nowrap>@PRECIO_TITULO format-mask='###,###,###,###.00'@</td>
+				<td nowrap>@VALOR_NOMINAL format-mask='###,###,###,###.00'@</td>
+				<td nowrap>@TITULO_MTO_INT_CAIDOS format-mask='###,###,###,###.00'@</td>
+				<td nowrap>@CONTRAVALOR_BOLIVARES_CAPITAL@</td>
+				<td nowrap>@ESTATUS@</td>
+				<td nowrap><center><a href="javascript:alert('@OBSERV@')">Ver</a></center></td>
+<!-- 				<td nowrap><center>@OBSERV@</a></center></td> -->
+        	</tr>			
+			</rows_cruces>
+
+		</table>
+		
+	    <br/>
+	    
+		@page_index@	    
+	    
+	    <input type="hidden" name="id_ejecucion" value="@idejec@"/>
+	    <input type="hidden" name="id_unidad" value="@id_ui_selected@"/>
+	    <input type="hidden" id="msgError" name="msgError" value="@mensaje_error@"/>
+	    
+	    
+		
+		<br/>
+		
+		</div>
+			&nbsp;<button type="button" id="btnExportar" onclick="exportar();">&nbsp;Informe Excel</button>
+			&nbsp;<button type="button" id="btnExportarCSV" onclick="exportarCSV();">&nbsp;InformeCSV</button>
+			&nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp; Salir &nbsp;</button>
+			
+	</form>
+	
+	</CENTER>
+	
+</BODY>
+</HTML>

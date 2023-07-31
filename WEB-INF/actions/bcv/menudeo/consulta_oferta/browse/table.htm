@@ -1,0 +1,297 @@
+<html>
+
+	<head>
+         <script language="javascript" src="../js/default.js"></script>
+         <script type="text/javascript" src="../js/menu/jquery-1.2.2.pack.js"></script>           
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+        <script type="text/javascript">
+        
+
+        var now = new Date(); 
+        var idOrdenes = "";
+        
+        function procesados(){    
+        	alert("Estas operaciones ya fueron enviadas al BCV");
+        } 
+        
+        function procesadosManual(){    
+        	alert("Estas operaciones fueron procesadas manualmente");
+        }  
+        
+        function seleccionarTodos(){    
+        	if($("#todos").is(":checked")){
+        		$(":checkbox").attr("checked","true");
+        		$(":checkbox").attr("disabled","disabled");
+        		$("#todos").attr("disabled","");
+        	}else{
+        		$(":checkbox").attr("checked","");
+        		$(":checkbox").attr("disabled","");
+        	}
+        }        
+        
+        function seleccionarTodosPagina(){    
+        	if($("#todosPagina").is(":checked")){
+       			$(":checkbox").attr("checked","true");
+        	}else{
+       			$(":checkbox").attr("checked","");
+        	}
+        	$("#todos").attr("checked","");
+        }
+        		
+        function checksSeleccionados(){
+        	 idOrdenes = "";
+        	 //contados los checks
+        	 var $b = $('input[type=checkbox]');
+        	 var marcados = $b.filter(':checked').length;
+        	 var sinMarcar = $b.not(':checked').length;
+        	 
+        	 if($("#todos").is(":checked"))
+        		 marcados = marcados - 2;
+        	 else
+        		 sinMarcar = sinMarcar - 2;
+        	 
+        	 //se envia la menor cantidad de identificadores posible
+        	 if( marcados > sinMarcar && sinMarcar >0 ){ 
+        		 //se envian los check sin marcar, por ser menos cantidad
+       	   	    $($b.not(':checked')).each(function() {
+       	   	  		if( $(this).attr("id")!="todos" && $(this).attr("id")!="todosPagina" ){
+      	   	    		idOrdenes+=$(this).attr("id")+",";
+      	   	    	}
+      	   	     });
+       	   		idOrdenes=idOrdenes.substring(0,idOrdenes.length-1);
+      	   		idOrdenes+='&tipoFiltro=EXCLUIR';
+        	 }else{
+        		 //se envian los que si estan seleccionados, por se menos cantidad
+      	   	     $(':checkbox:checked').each(function() {
+      	   	    	if( $(this).attr("id")!="todos" && $(this).attr("id") !="todosPagina" ){
+       	   	    		idOrdenes+=$(this).attr("id")+",";
+       	   	    	}
+       	   	     });
+      	   		idOrdenes=idOrdenes.substring(0,idOrdenes.length-1);
+      	   		idOrdenes+='&tipoFiltro=INCLUIR';
+        	 }
+			if(idOrdenes!="" && idOrdenes!="&tipoFiltro=EXCLUIR" && idOrdenes!="&tipoFiltro=INCLUIR"){				
+				return true;  
+			} else{			
+
+				if(!$("#todos").is(":checked") && sinMarcar>0){
+					alert('Debe seleccionar alguna operación');
+					return false;
+				}
+				return false; 
+			}
+        }   
+        
+        function procesar(){ 
+			var seleccion = ""; 
+			if($("#todos").is(":checked")){
+				mensaje='¿Está seguro que desea procesar "Todas" las operaciones ?';
+			   	seleccion='todos';
+			} else         	 	
+				mensaje='¿Está seguro que desea procesar las operaciones seleccionadas?';	
+			  
+			if(checksSeleccionados()||$("#todos").is(":checked")){
+				if(confirm(mensaje)) {		
+					var ruta = 'web_services_menudeo_ofer_consulta-procesar?';
+					if(!$("#todos").is(":checked")){
+						ruta+='idOrdenes='+idOrdenes+'&';
+					}
+					ruta+='seleccion='+seleccion+"&statusp=@statusp@&fecha=@fecha@&ui_id=@ui_id@&tasa_minima=@tasa_minima@&tasa_maxima=@tasa_maxima@&monto_minimo=@monto_minimo@&monto_maximo=@monto_maximo@&cliente_id=@cliente_id@&incluir_cliente=@incluir_cliente@";
+			    	//document.getElementById('btnProcesar').disabled='disabled';					    				      
+			    	window.location=ruta;	        		       
+			     }
+		      }		      	        	          
+	   }	
+        
+        function validarSeleccion(check, fecha){
+        	if(document.getElementById('todosPagina').checked && !check.checked){
+        		document.getElementById('todosPagina').checked=false;
+        	}
+        }
+        function desabilitarChecks(){
+			if(document.getElementById('enviado').value!='0')   {      
+				$(":checkbox").attr("disabled","disabled");
+				$("#btnProcesar").attr("disabled","disabled");
+			}
+        }
+        
+        function excel() {
+            if (confirm("Se Generará un archivo excel con todos los cruces consultados. Esto puede tardar varios minutos. ¿Está seguro que desea iniciar el proceso?")){
+            	return true;
+            }else{
+            	return false;
+            }
+        }
+        function exportarCVS() {
+            if (confirm("Se Generará un archivo CSV con todas las operaciones consultadas. Esto puede tardar varios minutos. ¿Está seguro que desea iniciar el proceso?")){
+            	window.location="web_services_menudeo_ofer_exportar-CSV?framework.controller.outputstream.open=false&statusp=@statusp@&fecha=@fecha@&ui_id=@ui_id@&tasa_minima=@tasa_minima@&tasa_maxima=@tasa_maxima@&monto_minimo=@monto_minimo@&monto_maximo=@monto_maximo@&cliente_id=@cliente_id@&incluir_cliente=@incluir_cliente@";
+            	return true;
+            }else{
+            	return false;
+            }
+        }
+        function exportarTotales() {
+            if (confirm("Se Generará un archivo CSV con todos los montos totalizados por Orden consultada.Solo se mostraran las ordenes con estatus CRUZADA. Esto puede tardar varios minutos. ¿Está seguro que desea iniciar el proceso?")){
+            	window.location="cruce_sicad2_consulta-exportar-totales?framework.controller.outputstream.open=false";
+            	return true;
+            }else{
+            	return false;
+            }
+        }
+        
+        function validarRechazar(){
+        	if(document.getElementById('statusUI').value != '@undinv_status@'){
+
+        		if(document.getElementById('statusUI').value == 'PUBLICADA'){
+	        		procesar('seleccion');    
+	        	
+        		}else {
+	        		alert('Los Registros asociados a esta unidad de inversión No pueden ser Eliminados. Esta ya se encuentra ' + document.getElementById('statusUI').value);
+	        		return false;
+	        	}
+        	}else{
+        		procesar('seleccion');
+        	}
+        }
+        function regresar(){
+        	window.location="web_services_menudeo_ofer_consulta-filter";
+        }
+        </script>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Env&iacute;o BCV / Menudeo Oferta</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="left" align="left">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+   
+<form name="dataentry" onsubmit="return excel()" action="" method="post">
+	<table border="0" cellspacing="1" cellpadding="2" width="75%" class="datatable">
+		<tr>
+			<th COLSPAN="2" ALIGN="center">Resumen de Operaciones</th>
+		</tr>
+		<tr>
+	            <th nowrap>Monto Total</th>
+	            <th nowrap>Cantidad Operaciones</th>
+	          </tr>
+		<totales>
+		<tr>
+			<td>
+				@monto_operacion@
+			</td>
+			<td>
+				@cantidad_operaciones@
+			</td>
+		</tr>			
+		</totales>
+	</table>
+			
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+    
+           <!--titulo-->
+        <tr CLASS="formCaption">
+			<th COLSPAN="9" ALIGN=left>
+			<input type="checkbox" id="todos" name="todos" onclick="seleccionarTodos()" />Procesar todos los registros:
+			</th>   
+        </tr>
+ 
+    <!--encabezados de columna-->
+    <tr>
+        <th width="2%">Seleccione<br/>
+        	<input width="2%" type="checkbox" id="todosPagina" name="todosPagina" onclick="seleccionarTodosPagina()" />
+        </th>  
+    	<th nowrap width="5%">Orden</th> 
+    	<th nowrap width="10%">Cliente</th>        
+        <th nowrap width="5%">C.I./Rif Cliente</th> 
+        <th nowrap width="7%">Monto en Divisas</th>           
+        <th nowrap width="4%">Tasa</th>
+        <th width="5%">Unidad Inversi&oacute;n</th>
+        <th width="5%">Observaci&oacute;n</th>
+        <th width="5%">N&uacute;mero de orden BCV</th>                                    
+    </tr>
+    <!--data-->
+     <rows>
+    <tr class="tableCell">               
+			<!--<td align="center">
+                <a href="javascript:detalleOrden('19569633@ordene_id@');"><IMG SRC="../images/infi_gn_document.gif" WIDTH="15" ALIGN="top" HEIGHT="13" title="Detalles de la Orden" BORDER="0" style="cursor:hand"></a>
+                </td>
+            <form id="@ordene_id@" name="@ordene_id@" action="detalle_orden-find" method="post" target="_blank"><input type="hidden" value="@ordene_id@" name="ord_id"> </form>
+                td align="center">
+                <a href="javascript:abrirPopupDetalles('detalle_titulo-find?titulo_id=@titulo_id@','200', '320')"><IMG SRC="../images/infi_gn_edit.gif" WIDTH="15" HEIGHT="15" ALIGN="top" title="Detalles del T&iacute;tulo" BORDER="0" style="cursor:hand"></a>
+                </td>-->
+ 				                
+                <td align="center">
+                	<input type="checkbox" name="ordenes" id="@id_orden@" onclick="validarSeleccion(this, '@fecha_aplicar@')"/>
+                </td>
+ 				<td nowrap align="center">
+                @id_orden@
+                </td> 
+                
+               	<td nowrap>
+                @nombre_cliente@
+                </td> 
+
+                <td nowrap>
+                @ced_rif_cliente@
+                </td>    
+
+                <td nowrap>
+                @monto_solicitado@
+                </td>    
+                
+                <td nowrap>
+                @tasa_cambio format-mask='#,###,##0.0000'@
+                </td>
+                           
+                <td nowrap>
+                @undinv_nombre@
+                </td>  
+                
+                <td nowrap>
+                @observacion@
+                </td> 
+                
+                <td nowrap>
+                @id_bcv@
+                </td>                    
+     </tr>
+     </rows> 
+    </table>
+    <BR>
+    @page_index@ 
+
+    
+    @boton_procesar@
+    &nbsp;<button type="button" onclick="exportarCVS();">Exportar Ordenes CSV</button>
+    &nbsp;<button type="button" onclick="regresar()">Regresar</button>
+
+</form>
+
+</center>
+
+</body>
+
+</html>
+

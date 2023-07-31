@@ -1,0 +1,353 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Toma de Orden</title>
+  <link rel="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+  <link rel="stylesheet" type="text/css" href="../css/EstiloFichas.css" />
+  <script type="text/javascript">
+          //Funci&oacute;n para abrir un picklist o limpiar el valor anteriormente seleccionado
+		function showPickList(ind ,id, tx, campo)
+		{
+		   var r
+		   if (ind == '1') {  // llamar a picklist		
+		   	  r = window.open(campo +'?name_id=' + id.name +"&name_tx=" + tx.name, 'Picklist','resizable=yes,scrollbars=yes,width=600,height=450,Left=200,top=150,Status=yes,unadorned:true');
+		   	  
+		   }
+		   else{
+			id.value= "";//limpiar id de cliente
+			tx.value= "";//limpiar campo de cliente
+			recargarPagina2();
+		  }
+		} 
+		
+		var bandera_comprobacion = 0;
+		
+		function mostrarOcultarDatosUnidadInv(){
+       
+        	/*if(document.dataentry.undinv_id.value!='0'){//Unidad de Inversi&oacute;n
+        		
+        		mostrarCalculos();        		
+        		document.getElementById('datos_unidad_inv').style.display='none'; */       		
+        	//}else{
+        		if(document.dataentry.undinv_id.value!='0' && document.dataentry.vehicu_rol_id!=undefined && document.dataentry.vehicu_rol_id!=''){
+        			mostrarDatos();
+        			//document.getElementById('datos_unidad_inv').style.display ='block';
+        		}else{
+        			document.dataentry.undinv_id.value='0';
+        			document.getElementById('datos_unidad_inv').style.display='none';
+        			document.getElementById('datos_unidad_inv2').style.display='none';
+        		}       		
+        	//}       
+        }
+               
+        
+         //Muestra los c&aacute;lculos sobre la inversi&oacute;n
+        function mostrarCalculos(){        	
+        	
+       	 	document.getElementById('calculos_orden').style.display='block';
+       	 	document.getElementById('datos_orden').style.display='none';
+       	 	document.getElementById('comprobacion_orden').style.display='none';
+       	
+        }
+        
+      	//llama a refrescar la pagina para realizar los calculos y validaciones correspondientes
+      	//llamada a hacer calculos
+        function llamadaCalculos(){
+	        
+	        if(document.dataentry.undinv_id.value=='0'){
+	        	 alert("Debe ingresar los datos de la Unidad de Inversión");
+    		}else{				
+    			document.dataentry.action='cartera-calculo';
+    			document.dataentry.submit();    			
+    		}
+	        
+        }
+        
+        //Muestra los datos de la Inversi&oacute;n
+        function mostrarDatos(){        	
+        	 document.getElementById('datos_orden').style.display='block';  
+        	 document.getElementById('datos_unidad_inv').style.display ='block'; 
+        	 document.getElementById('datos_unidad_inv2').style.display ='block';          	 
+        	        
+        }
+        
+             
+        
+        function mostrarBotones(){
+			if (document.getElementById("condiciones").checked){
+		      document.getElementById("guardar").style.visibility="visible";
+			  return;
+			}
+            document.getElementById("guardar").style.visibility="hidden";
+		}
+
+		
+		function abrirDetallesVehiculos(){
+			
+			var vehiculo_rol_id = document.dataentry.vehicu_rol_id.value;				
+			
+			var aurl = "detalles_vehiculo_rol-find?vehiculo_rol_id=@vehiculo_rol_id@";
+			var url = aurl.replace("@vehiculo_rol_id@", vehiculo_rol_id);
+			abrirPopupDetalles(url ,'200', '300');
+
+        }    
+        
+        function recargarPagina(){
+        	if(document.dataentry.undinv_id.value != '0' && document.dataentry.vehicu_rol_id.value!=''){
+        		document.dataentry.action='cartera-datos?band=1&calculos=0'; 
+        		document.dataentry.submit();
+        	}else{
+        		document.dataentry.undinv_id.value = '0';
+        		document.getElementById('datos_unidad_inv').style.display='none';
+        		document.getElementById('datos_unidad_inv2').style.display='none';
+
+        		if(document.dataentry.vehicu_rol_id.value=='')
+        			alert("Debe seleccionar el Vehículo");        		
+        	}
+        }   
+
+        function recargarVehiculo(){
+        	if(document.dataentry.undinv_id.value != '0' && document.dataentry.vehicu_rol_id.value!=''){
+        		document.dataentry.action='cartera-datos?band=1&calculos=0'; 
+        		document.dataentry.submit();
+        	}else{
+        		document.dataentry.undinv_id.value = '0';
+        		document.getElementById('datos_unidad_inv').style.display='none';
+        		document.getElementById('datos_unidad_inv2').style.display='none';        		       		
+        	}
+        }   
+        
+        
+  
+ 	
+  </script>
+         <script language="javascript" src="../js/default.js"></script>  
+</head>
+<body ONLOAD="javascript: mostrarOcultarDatosUnidadInv();">
+
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Ordenes / Toma de Orden Cartera Propia</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+  <!--formulario-->
+  	
+  <form NAME="dataentry" METHOD="POST" ACTION="toma_de_orden-guardar">
+
+<div id="menu">
+<table border="0">
+<tr>
+<td id="navigationActivo"><a><span>Datos</span></a></td>
+<td id="navigation"><a style="cursor:hand"><span>C&aacute;lculos</span></a></td>
+<td id="navigation"><a style="cursor:hand"><span>Documentos</span></a></td>
+</tr>
+</table>
+</div>
+      <center>
+      
+      <!-- ZONA DE DATOS -->
+      <div id="datos_orden">
+      
+        
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="4" ALIGN="center">
+                 Datos Principales
+            </th>
+        </tr>
+        
+         <td>Veh&iacute;culo:</td>
+			<td>
+			
+			@vehicu_nombre@
+			@vehicu_rol_id@				
+			@combo_vehiculos@
+			<IMG SRC="../images/infi_gn_doc.gif" ONCLICK="javascript:abrirDetallesVehiculos();" WIDTH="15" HEIGHT="16" ALIGN="top" title="Detalles" BORDER="0" style="cursor:hand"/>
+										
+		</td>
+          
+         <!--campo-->
+        <tr >
+            <td>
+             Unidad de Inversi&oacute;n:
+            </td>
+            <td>
+				<SELECT NAME="undinv_id" SIZE="1" ONCHANGE="javascript:recargarPagina();">				
+					<OPTION VALUE="0" SELECTED>Seleccione</OPTION>
+					<rows_undinv>					
+					<OPTION VALUE="@undinv_id@">@undinv_nombre@</OPTION>						
+					</rows_undinv>
+	 			</SELECT> 			
+                        
+            </td>
+            
+        </tr>
+        
+        
+      	<!-- tr>
+            <td>Cuenta Veh&iacute;culo:</td>
+			<td>
+			
+			    <SELECT NAME="cta_cliente" SIZE="1">				
+					<OPTION VALUE="" SELECTED>Seleccione</OPTION>
+					<rows_ctacte>
+					<OPTION VALUE="@numero@">Cta @tipo@ @numero@</OPTION>	
+					</rows_ctacte>
+	 			</SELECT> 	
+						
+			</td>
+            
+        </tr-->
+ 
+        
+        
+        </table>  
+        
+      <!-- MENSAJES DE ERROR CONSULTANDO CUENTAS DEL CLIENTE EN ARQUITECTURA EXTENDIDA -->
+      <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+       		<tr><td><FONT COLOR="red"><b>@mensaje_error_user_webs@</b></FONT></td></tr>       
+        	<tr><td><FONT COLOR="red"><b>@mensaje_error_cuentas_cte@</b></FONT></td></tr>      
+      </table>
+        
+                        
+        <table border="0" id="datos_unidad_inv" style="display:none" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="4" ALIGN="center">
+                 Datos de la Unidad de Inversi&oacute;n
+            </th>
+        </tr>
+        
+        <tr>
+			<td>Emisor:</td>
+			<td>@empres_nombre@</td>
+			
+			<td>Financiamiento disponible:</td>
+			<td>@undinv_pct_max_finan format-mask='#,###,##0.00'@ %</td>
+			
+		</tr>
+		
+		<tr>
+			<td>Instrumento Financiero:</td>
+			<td>@insfin_descripcion@</td>
+			
+			<td>Tipo Instrumento</td>
+			<td>@insfin_tipo@</td>
+			
+		</tr>
+		
+		@montos_blotter@	
+			
+		@disponible_inventario@
+		
+		@cantidades_blotter@
+				
+		@rangos_precio_subasta@
+		
+		<tr>
+		<td>
+		Multiplo Inversi&oacute;n
+		</td>
+		<td>
+		@undinv_multiplos@
+		</td>
+		
+		@valor_por_unidad@
+		
+		</tr>
+		
+		</table>
+		
+		<table border="0" id="datos_unidad_inv2" style="display:none" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+                
+        <tr>
+            <th COLSPAN="4" ALIGN="center">
+                 Datos de La Inversi&oacute;n
+            </th>
+        </tr>
+		
+		<tr>
+					
+			
+			<td>Blotter:</td>
+			<td>		
+			@blotter_descripcion@
+			@blotter_id@				
+			@combo_blotters_ui@
+			</td>
+					
+			<td>Precio Compra:</td>
+			<td>@precio_compra@ %</td> 			
+			
+		</tr>
+	
+		<tr>
+			@monto_cant_comprar@				
+	
+		</tr>	
+		
+		<tr><td colspan="4">
+			@encab_campos_dinamicos@  
+	  		
+	        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+	        
+	        <rows_campos_din>
+			@trtd@
+			</rows_campos_din>	        
+	        
+	        </table>
+ 
+		</td></tr>
+	
+		
+    </table>
+    
+        
+         
+         <INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/> 	
+         <INPUT TYPE="HIDDEN" VALUE="1" NAME="form_toma_orden"/> 	
+         
+          
+            <br>
+            <button TYPE="button" name="boton_calcular" onclick="llamadaCalculos();">Calcular</button>         
+                <SPAN> </SPAN>
+            <button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+
+	</div>
+	
+	 <INPUT TYPE="hidden" VALUE="@calculos@" NAME="calculos"/>
+	 
+	  <INPUT TYPE="hidden" VALUE="1" NAME="in_cartera_propia"/>
+	 
+	<input type="hidden" value="@client_id@" name="client_id"/>
+	
+	<INPUT TYPE='hidden' VALUE="1" NAME='in_cartera_propia'/> 
+	<INPUT TYPE='hidden' VALUE="@fechavalor@" NAME='fe_valor'/> 
+	<INPUT TYPE='hidden' VALUE="@fechavalor@" NAME='fe_pacto'/> 
+	 
+	<!-- ZONA DE CALCULOS -->
+	<div id="calculos_orden" style="display:none">
+			
+	</div>
+	
+	<!-- ZONA DE COMPROBACI&Oacute;N -->
+	<div id="comprobacion_orden" style="display:none">
+		
+	</div>
+ 	
+ 
+  </form>
+  	</center>
+</body>
+</html>

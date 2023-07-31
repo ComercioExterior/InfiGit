@@ -1,0 +1,100 @@
+<HTML>
+
+<HEAD>
+<LINK REL="stylesheet" type="text/css"
+	href="../js/calendar/popcalendar.css" />
+<SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+
+
+<script language="javascript" src="../js/default.js"></script>
+<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+
+<TITLE>Sistema INFI</TITLE>
+</HEAD>
+
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+	<TABLE border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+			<TD class="headerBox"><FONT class="headerText">Intercambio / Intervencion / Editar </FONT></TD>
+
+			<TD class="headerBox" valign="middle" align="right"><img
+				border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17"
+				onclick="helpOpen(window.document.location.href);"
+				style="cursor: hand" title="Mostrar ayuda en l&iacute;nea">
+			</TD>
+
+			<td class="headerBox" aling="right"></td>
+	</TABLE>
+	<CENTER>
+		<form NAME="dataentry" METHOD="POST" ACTION="intercambio_intervencion_bancaria-update">
+			<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+				<tr>
+					<th COLSPAN="4" ALIGN="center">Editar Cliente</th>
+				</tr>
+				<tr>
+					<td>ID Operacion:</td>
+					<td><INPUT TYPE="TEXT" VALUE="@id_oper@" NAME="operacion"
+						SIZE="40" MAXLENGTH="200" class="inputControl" readonly=readonly/>
+					</td>
+				</tr>
+				<tr>
+					<td>Rif Cliente:</td>
+					<td><INPUT TYPE="TEXT" VALUE="@nro_ced_rif@" NAME="rif"
+						SIZE="40" MAXLENGTH="200" class="inputControl" readonly=readonly/>
+					</td>
+				</tr>
+				<tr>
+					<td>Nombre Cliente:</td>
+					<td><INPUT TYPE="TEXT" VALUE="@nom_clien@" NAME="nombre"
+						SIZE="40" MAXLENGTH="200" class="inputControl" />
+					</td>
+				</tr>
+				<tr>
+					<td>Fecha Valor:</td>
+					<td><INPUT TYPE="TEXT" VALUE="@fech_oper@" NAME="fecha"
+						SIZE="40" MAXLENGTH="200" class="inputControl" readonly=readonly/>
+					</td>
+				</tr>
+				<tr>
+					<td>Monto:</td>
+					<td><INPUT TYPE="TEXT" VALUE="@mto_divisas@" NAME="monto"
+						SIZE="40" MAXLENGTH="200" class="inputControl" readonly=readonly/>
+					</td>
+				</tr>
+				<tr>
+					<td>Cuenta Divisas:</td>
+					<td><INPUT TYPE="TEXT" VALUE="@cta_clien_divisas@"
+						NAME="cuentadivisas" SIZE="40" MAXLENGTH="200"
+						class="inputControl" />
+					</td>
+				</tr>
+				<tr>
+					<td>Cuenta Bs:</td>
+					<td><INPUT TYPE="TEXT" VALUE="@cta_clien@"
+						NAME="cuentabolivares" SIZE="40" MAXLENGTH="200"
+						class="inputControl" />
+					</td>
+				</tr>
+
+				<tr>
+					<td>Codigo Moneda:</td>
+					<td><INPUT TYPE="TEXT" VALUE="@cod_divisas@" NAME="moneda"
+						SIZE="40" MAXLENGTH="200" class="inputControl" />
+					</td>
+				</tr>
+
+			</table>
+
+			<br>
+			<button TYPE="submit">Procesar</button>
+			&nbsp;
+			<button type="button" onclick="history.back();">Regresar</button>
+			&nbsp;
+			<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+		</form>
+	</CENTER>
+</BODY>
+
+</HTML>
+

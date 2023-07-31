@@ -1,0 +1,142 @@
+<HTML>
+	<HEAD>
+		<TITLE>Sistema INFI</TITLE>
+    	<LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+    	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		<SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+		<script language="javascript" src="../js/default.js"></script>   
+		<script type="text/javascript">
+        
+        
+        //Funci&oacute;n para abrir un picklist o limpiar el valor anteriormente seleccionado
+		function showPickList(ind ,id, tx, campo)
+		{
+		   var r
+		   if (ind == '1') {  // llamar a picklist		
+		   	  r = window.open(campo +'?name_id=' + id.name +"&name_tx=" + tx.name, 'Picklist','resizable=yes,scrollbars=yes,width=600,height=450,Left=200,top=150,Status=yes,unadorned:true');
+		   }
+		   else{
+			id.value= "";//limpiar id de cliente
+			tx.value= "";//limpiar campo de cliente			
+		  }
+		}		
+		
+		</script>
+	</HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    	<TR>
+        	<TD class="headerBox">                
+            	<FONT class="headerText">Custodia / Transacciones / Salida Interna</FONT>
+       		</TD>
+        	<!-- help online -->
+   			<TD class="headerBox" valign="middle" align="right">
+   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   			</TD>
+   			<!-- fin help online -->
+        	<td class="headerBox" aling="right"></td>
+        </TR>
+	</TABLE>
+	<CENTER>
+
+	<!--formulario-->
+	<form NAME="dataentry" METHOD="POST" ACTION="transacciones_salida_interna-procesar1">
+		<table border="1" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+			 <!--titulo-->
+			<tr>
+				<th COLSPAN="4" ALIGN="center">Datos de la Transacci&oacute;n</th>
+			</tr>
+			<!--campo-->
+			<tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Cliente que transfiere:
+            </td>
+            <td>
+                  @client_nombre@  	                       
+            </td>
+        </tr>
+        
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Titulo:
+            </td>
+            <td>
+                   @titulo_descripcion@  	                       
+            </td>
+        </tr>
+        
+        
+            <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Cantidad  Disponible:
+            </td>
+            <td>
+                @cantidad_desbloqueada@
+            </td>
+        </tr>
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Cantidad a Transferir:
+            </td>
+            <td>
+                <input type="text" id="cantidad" name="cantidad" value="@cantidad_desbloqueada@" onchange="verificar_monto(this.value)">    	                       
+            </td>
+        </tr>
+        
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Valor Nominal:
+            </td>
+            <td>
+                    @titulo_valor_nominal@ 	                       
+            </td>
+        </tr>
+        
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Valor Total:
+            </td>
+            <td>
+                  @valor_total@  	                       
+            </td>
+        </tr>
+     <tr CLASS="formElement">
+            <td  CLASS="formLabel2" WIDTH="35%">
+            Depositario:
+            </td>
+            <td  CLASS="formLabel">
+            <SELECT NAME="depositario" CLASS="inputControl">
+			<OPTION VALUE=""></OPTION>
+			<depositario>
+			<OPTION VALUE="@empres_id@">@empres_nombre@</OPTION>
+			</depositario>
+			</SELECT>
+			</td>
+        </tr>
+		</table>
+		<INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/> 	
+		<br>
+		<button TYPE="submit" onmouseover="verificar_monto(document.getElementById('cantidad').value)"/>Aceptar</button>
+		<SPAN> </SPAN>
+		<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+		<input type="hidden" value="@client_id1@" name="client_nombre1">
+		<input type="hidden" value="@client_cta_custod_id@" name="cuentaCliente">
+		<input type="hidden" value="@client_id@" name="clienteTransfiere">
+		<input type="hidden" value="@titulo_id@" name="titulo_id">
+	</form>
+	
+	</CENTER>
+</BODY>
+<script type="text/javascript">
+function verificar_monto(monto){
+var monto_disponible=@cantidad_desbloqueada@
+if(monto>monto_disponible){
+alert("La Cantidad a transferir debe ser menor a la Cantidad disponible")
+document.getElementById("cantidad").value="";
+}
+}
+</script>
+</HTML>

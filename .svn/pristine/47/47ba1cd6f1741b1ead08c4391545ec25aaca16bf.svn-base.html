@@ -1,0 +1,82 @@
+<html>
+
+<head>
+<script language="javascript" src="../js/default.js"></script>
+<!-- <script language="javascript" src="../js/menudeo/conciliacion/browse.js"></script> -->
+<script language="javascript" src="../js/menudeo/conciliacion/browse.js"></script>
+<script type="text/javascript" src="../js/menu/jquery-1.2.2.pack.js"></script>
+<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+<title>Sistema INFI</title>
+</head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+	<TABLE border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+			<TD class="headerBox"><FONT class="headerText"> Conciliacion / Anuladas </FONT></TD>
+			<TD class="headerBox" valign="left" align="left"><img border="0"
+				src="../images/infi_gn_ayuda.gif" width="17" height="17"
+				onclick="helpOpen(window.document.location.href);"
+				style="cursor: hand" title="Mostrar ayuda en l&iacute;nea" /></TD>
+		</TR>
+	</TABLE>
+
+	<center>
+		<br>
+
+		<form name="dataentry" onsubmit="" action="" method="post" id='buscar'>
+			<table border="0" cellspacing="1" cellpadding="2" width="100%"
+				class="datatable" style="table-layout: auto;" id="Table">
+			<tr CLASS="formCaption">
+				 <th COLSPAN="12" ALIGN=left>
+				 <input type="checkbox" id="todos" name="todos" onclick="seleccionarTodos()" />Procesar todos los registros:
+				 </th>   
+            </tr>         
+                
+				<tr>
+				 	<th width="2%">Seleccione<br/>
+	        	       <input width="2%" type="checkbox" id="todosPagina" name="todosPagina" onclick="seleccionarTodosPagina()" />
+	                </th>
+					<th nowrap width="7%">ID</th>
+					<th nowrap width="10%">Id operacion</th>
+					<th nowrap width="5%">C.I./Rif Cliente</th>
+					<th nowrap width="7%">Producto</th>
+					<th nowrap width="7%">Fecha</th>
+					<th nowrap width="7%">Monto</th>
+					<th nowrap width="4%">id rechazo</th>
+					<th nowrap width="10%">Estatus</th>
+
+				</tr>
+				<tbody>
+					<rows>
+					<tr class="tableCell">
+						<td align="center">
+	                		<input type="checkbox" name="ordenes" id="@ID@" onclick="validarSeleccion(this, '@fecha_aplicar@') "/>
+	            		</td>  
+						<td nowrap>@ID@</td>
+						<td nowrap>@ID_OPERACION@</td>
+						<td nowrap>@CEDULA_RIF@</td>
+						<td nowrap>@PRODUCTO@</td>
+						<td nowrap>@FECHA@</td>
+						<td nowrap>@MONTO@</td>
+						<td nowrap>@ID_RECHAZO@</td>
+						<td nowrap>@ESTATUS@</td>
+					</tr>
+					</rows>
+				</tbody>
+			</table>
+			@page_index@ <BR> 
+			<input type="HIDDEN" id="statusBusqueda" value="@statusp@"> 
+			<input type="HIDDEN" id="estatusEnvio" value="@statuse@"> 
+			<input type="HIDDEN" id="fecha" value="@fecha@"> 
+			<input type="HIDDEN" id="tipoOperacion" value="@tipo@"> 
+			@boton_procesar@ &nbsp;
+			<button type="button" onclick="exportarCVS()">Exportar Ordenes CSV</button>
+			&nbsp;
+			<button type="button" onclick="regresar()">Regresar</button>
+
+		</form>
+
+	</center>
+</body>
+</html>
+

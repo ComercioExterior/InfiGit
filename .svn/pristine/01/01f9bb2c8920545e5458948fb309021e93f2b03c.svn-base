@@ -1,0 +1,7 @@
+
+<SELECT NAME="tipo_cuentas" onchange="mostrar(this.value); verificarControlCambio(this.value);">				
+	<OPTION VALUE="" SELECTED></OPTION>
+	<rows_cuenta_ajax>			 
+	<OPTION VALUE="@tipo_instruccion_id@">@instruccion_nombre@</OPTION>
+ 	</rows_cuenta_ajax> 
+</SELECT>

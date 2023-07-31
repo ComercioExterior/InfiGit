@@ -1,0 +1,122 @@
+package com.bdv.infi.model.menudeo;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.List;
+
+//import sun.org.mozilla.javascript.internal.regexp.SubString;
+
+import com.bdv.infi.data.ClienteMenudeo;
+
+
+public class Movimientos extends AutorizacionStub{
+	private List<ClienteMenudeo> lstCliente = new ArrayList<ClienteMenudeo>();
+	private List<String> lstClienteBeta = new ArrayList<String>();
+	
+	public Movimientos() throws Exception {
+		super();
+	}
+	
+	public void EjecutarMovimiento(String fecha) throws java.lang.Exception{
+		
+		String WS = Stub.MOVIMIENTOS(fecha);
+		Cargar(WS,"MOVIMIENTO");
+	}
+		
+	
+	public void lecturaMovimientoBcv() {
+
+		BigDecimal MontoTrans;
+
+		System.out.println("llego lecturaMovimientoBcv");
+		ClienteMenudeo cltMenudeo = new ClienteMenudeo();
+		
+		org.w3c.dom.Node ele = nodo;
+		
+		String codigoOperacion = ((org.w3c.dom.Element) ele).getAttribute("ID");
+		String cliente = ((org.w3c.dom.Element) ele).getElementsByTagName("CLIENTE").item(0).getTextContent();
+		String fecha = ((org.w3c.dom.Element) ele).getElementsByTagName("FECHA").item(0).getTextContent();
+		String monedaBase = ((org.w3c.dom.Element) ele).getElementsByTagName("MONEDABASE").item(0).getTextContent();
+		String montoBase = ((org.w3c.dom.Element) ele).getElementsByTagName("MONTOBASE").item(0).getTextContent();
+		String monedaTranssacion = ((org.w3c.dom.Element) ele).getElementsByTagName("MONEDATRANS").item(0).getTextContent();
+		String montoTranssacion = ((org.w3c.dom.Element) ele).getElementsByTagName("MONTOTRANS").item(0).getTextContent();
+		String tipoMovimiento = ((org.w3c.dom.Element) ele).getElementsByTagName("TIMOVIMIENTO").item(0).getTextContent();
+
+		MontoTrans = new BigDecimal(montoTranssacion);
+		
+		
+		cltMenudeo.MonedaBase = codigoOperacion;
+		cltMenudeo.Cedula = cliente;
+		cltMenudeo.Fecha = fecha;
+		cltMenudeo.MonedaBase = monedaBase;
+		cltMenudeo.MontoBase = new BigDecimal(montoBase);
+		cltMenudeo.MonedaTransaccion = monedaTranssacion;
+		cltMenudeo.MontoTransaccion = MontoTrans.setScale(8,RoundingMode.DOWN);
+		cltMenudeo.TipoMovimiento = tipoMovimiento;
+		System.out.println("llego lecturaMovimientoBcv 1");
+		System.out.println("lstMonedaaaa-->"+lstCliente.size());
+		lstCliente.add(cltMenudeo);
+		
+
+	}
+	
+	public void lecturaMovimientoBcvBeta() {
+
+		org.w3c.dom.Node ele = nodo;
+		
+		String codigoOperacion = ((org.w3c.dom.Element) ele).getAttribute("ID");
+		String cliente = ((org.w3c.dom.Element) ele).getElementsByTagName("CLIENTE").item(0).getTextContent();
+		String fecha = ((org.w3c.dom.Element) ele).getElementsByTagName("FECHA").item(0).getTextContent();
+		String montoBase = ((org.w3c.dom.Element) ele).getElementsByTagName("MONTOBASE").item(0).getTextContent();
+		fecha = fecha.substring(6,8) + "-" + fecha.substring(4,6) + "-"+ fecha.substring(0,4);
+		System.out.println("lecturaMovimientoBcvBeta : Cadena " + codigoOperacion+";"+cliente+";"+"0"+";"+montoBase+";"+fecha);
+		lstClienteBeta.add(codigoOperacion+";"+cliente+";"+"0"+";"+montoBase+";"+fecha);
+		
+	}
+	
+	public void generarDocumento() {
+
+		org.w3c.dom.Node ele = nodo;
+		String codigoOperacion = ((org.w3c.dom.Element) ele).getAttribute("ID");
+		Documento.put(codigoOperacion, codigoOperacion);
+
+		String codigoBcv = ((org.w3c.dom.Element) ele).getElementsByTagName("ID").item(0).getTextContent();
+		Documento.put(codigoBcv, codigoBcv);
+		
+		String movimiento = ((org.w3c.dom.Element) ele).getElementsByTagName("CLIENTE").item(0).getTextContent();
+		Documento.put(movimiento, movimiento);
+		
+		String cliente = ((org.w3c.dom.Element) ele).getElementsByTagName("CLIENTE").item(0).getTextContent();
+		Documento.put(cliente, cliente);
+		
+		String fecha = ((org.w3c.dom.Element) ele).getElementsByTagName("FECHA").item(0).getTextContent();
+		Documento.put(fecha, fecha);
+		
+		String monedaBase = ((org.w3c.dom.Element) ele).getElementsByTagName("MONEDABASE").item(0).getTextContent();
+		Documento.put(monedaBase, monedaBase);
+		
+		String montoBase = ((org.w3c.dom.Element) ele).getElementsByTagName("MONTOBASE").item(0).getTextContent();
+		Documento.put(montoBase, montoBase);
+		
+		String monedaTranssacion = ((org.w3c.dom.Element) ele).getElementsByTagName("MONEDATRANS").item(0).getTextContent();
+		Documento.put(monedaTranssacion, monedaTranssacion);
+		
+		String montoTranssacion = ((org.w3c.dom.Element) ele).getElementsByTagName("MONTOTRANS").item(0).getTextContent();
+		Documento.put(montoTranssacion, montoTranssacion);
+		
+		String tipoMovimiento = ((org.w3c.dom.Element) ele).getElementsByTagName("TIMOVIMIENTO").item(0).getTextContent();
+		Documento.put(tipoMovimiento, tipoMovimiento);
+	}
+	
+	
+	public List<ClienteMenudeo> ListarCliente(){
+		return lstCliente;
+	}
+	
+	
+	
+	public List<String> ListarClienteBeta(){
+		return lstClienteBeta;
+	}
+}

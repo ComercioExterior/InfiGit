@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<config>
+
+	<model-class>models.bcv.intervencion_lectura.LeerarchivoIntervencion</model-class>
+	<view-class>megasoft.GenericView</view-class>
+	<template>form_observaciones.htm</template>
+	<record-def>record.xml</record-def>
+	<content-type>text/html</content-type>
+	<expires>20</expires>
+	<cache>true</cache>
+	<next-action type="redirect">lectura_archivo-informe?framework.controller.outputstream.open=false</next-action>
+	<on-empty source="sales"></on-empty>
+	<err-next-url>lectura_archivo-filter</err-next-url>
+
+</config>

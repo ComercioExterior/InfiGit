@@ -1,0 +1,358 @@
+<HTML>
+<head>
+	<title>Sistema INFI</title>
+<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+	<script language="javascript" src="../js/default.js"></script>	
+	<script language="JavaScript" src="../js/popcalendar.js"></script>
+	<script language="JavaScript" src="../js/decimal.js"></script>
+</head>
+
+<!--poner el focus en el 1er control de la forma-->
+<BODY>
+
+
+	<center>
+	
+	<!--formulario-->
+	<form name="dataentry" method="POST" action="unidad_inversion-insert">
+	
+	<table class="dataform" border="0" cellspacing="1" cellpadding="2" width="100%">
+	
+		<!--titulo-->
+        <tr>
+            <th COLSPAN="4" ALIGN="center">Datos Generales </th>
+        </tr>	
+		<tr class="formElement">        	
+			<td class="formLabel">Nombre:*</td>
+			<td colspan="3">
+				<input type="text" name="nombreUnidadInversion" size="50" maxlength="50" value=""/>
+			</td>
+		</tr>
+		<tr class="formElement">
+			<td class="formLabel">Emision:</td>
+			<td>
+				<input type="text" name="emisionUnidadInversion"  size="50" maxlength="50" value=""/>
+			</td>
+			<td class="formLabel" style="padding-left: 20px;">Serie:</td>
+			<td>
+				<input type="text" name="serieUnidadInversion" size="50" maxlength="50" value=""/>
+			</td>
+		</tr>
+		<tr class="formElement">
+			<td class="formLabel">Descripcion:</td>
+			<td colspan="3">
+				<input type="text" name="descrUnidadInversion" size="50" maxlength="100" value=""/>
+			</td>
+		</tr>
+		<tr class="formElement">
+			<td class="formLabel">Tipo de Instrumento:*</td>
+			<td>
+				<SELECT NAME="istrumentoFinanciero" style="width:272px"
+					onchange="abrirInventario(this);">
+					<option value=""></option>
+				<rowsIF>
+					<OPTION value="@insfin_id@;@insfin_forma_orden@">@insfin_descripcion@</option>
+				</rowsIF>
+				</SELECT>
+			</td>
+			<td class="formLabel"  style="padding-left: 20px;">Emisor:*</td>
+			<td>
+				<SELECT name="idEmpresaEmisor" style="width:272px">
+					<OPTION value=""></option>
+				<rowsEmisor>
+					<OPTION value="@empres_id@">@empres_rif@ - @empres_nombre@</option>
+				</rowsEmisor>
+				</SELECT>
+			</td>
+		</tr>
+		<tr class="formElement">
+			<td class="formLabel">Moneda de Negociacion:*</td>
+			<td>
+				<SELECT name="idMoneda" style="width:272px">
+					<OPTION value=""></option>
+				<rowsMoneda>
+					<OPTION value="@moneda_id@">@moneda_descripcion@</option>
+				</rowsMoneda>
+				</SELECT>
+			</td>
+			<td class="formLabel" style="padding-left: 20px;">Tasa de Cambio a Aplicar:*</td>
+			<td>
+				<input type="text" name="tasaCambioEdited" size="50" maxlength="14" value=""  
+					onKeyDown="darFormato(this,event,6,11);" />
+			</td>
+		</tr>
+		<tr class="formCaption">
+			<th colspan="4" align="center">
+				<font class="formCaptiontext">Fechas</font>
+			</th>
+		</tr>
+		<tr class="formElement">
+			<td class="formLabel">Fecha de Emision:*</td>
+			<td>
+				<input type="text" name="fechaEmisionUI" size="10" maxlength="10" value="@fechaemisionui@" readonly /> 
+					<IMG id="calgif" src="../images/calendar.gif" border="0"	
+						onclick='popUpCalendar(this, document.forms[0].fechaEmisionUI, "dd-mm-yyyy","es",1,-1,-1)'>
+			</td>
+			<td class="formLabel" style="padding-left: 20px;">Fecha de Cierre:*</td>
+			<td>
+				<input type="text" name="fechaCierreUI" size="10" maxlength="10" value="@fechacierreui@" readonly /> 
+					<IMG id="calgif" src="../images/calendar.gif" border="0"				
+						onclick='popUpCalendar(this, document.forms[0].fechaCierreUI, "dd-mm-yyyy","es",1,-1,-1)'>
+			</td>			
+		</tr>
+		<tr class="formElement">
+			<td class="formLabel">Fecha de Liquidacion:*</td>
+			<td>
+				<input type="text" name="fechaLiquidaUI" size="10" maxlength="10" value=""  readonly /> 
+					<IMG id="calgif" src="../images/calendar.gif" border="0"
+						onclick='popUpCalendar(this, document.forms[0].fechaLiquidaUI, "dd-mm-yyyy","es",1,-1,-1)'>
+			</td>
+			<td class="formLabel"  style="padding-left: 20px;">Fecha de Adjudicacion:</td>
+			<td>
+				<input type="text" name="fechaAdjudicacionUI"  size="10" maxlength="10" value="" readonly /> 
+					<IMG id="calgif" src="../images/calendar.gif"	border="0" 
+					onclick='popUpCalendar(this, document.forms[0].fechaAdjudicacionUI, "dd-mm-yyyy","es",1,-1,-1)'>
+			</td>
+		</tr>						
+		<tr class="formCaption">
+			<th colspan="4" align="center">
+				<font class="formCaptiontext">&nbsp;</font>
+			</th>
+		</tr>
+		<tr class="formElement">
+			<td class="formLabel">Porcentaje Maximo de Financiamiento:</td>
+			<td>
+				<input type="text" name="maxFinanciamientoEdited"  size="6" maxlength="6" value="" 				
+				onKeyDown="darFormato(this,event,2,5);">
+			</td>
+		</tr>			
+		<tr class="formElement">
+			<td class="formLabel"></td>
+			<td colspan="2">
+				<input type="checkbox" name="indicaVtaEmpleados" value="1" /> Permite Venta a Empleados
+			</td>
+		</tr>
+		<tr class="formElement">
+			<td class="formLabel"></td>
+			<td colspan="2">
+				<input type="checkbox" name="indicaRecompra" value="1" />Permite Recompra
+			</td>
+		</tr>
+		<tr class="formElement">
+			<td class="formLabel"></td>
+			<td colspan="2">
+				<input type="checkbox" name="indicaRecompraNeteo" value="1" /> Recompra con Neteo
+			</td>
+		</tr>
+		<tr class="formElement">
+			<td class="formLabel">Comentarios:</td>
+			<td colspan="3">
+				<textarea name="comentarios" cols="50" rows="4"></textarea>
+			</td>
+		</tr>
+		<tr class="formCaption">
+			<th colspan="4" align="center">
+				<font class="formCaptiontext">Unidad Minima para Inventario</font>
+			</th>
+		</tr>
+		<tr class="formElement">
+			<td class="formLabel">Total Autorizado:</td>
+			<td>
+				<input type="text" name="totalInversionEdited" value="" size="15" maxlength="15" readonly			
+				onKeyDown="darFormato(this,event,2,15);">
+			</td>
+		</tr>
+		<tr class="formElement">
+			<td class="formLabel">Montos de Compra:</td>
+			<td></td>
+		</tr>
+		<tr class="formElement">
+			<td class="formLabel" style="padding-left: 20px;">Minimo:</td>
+			<td>
+				<input type="text" name="montoMinimoInversionEdited" size="15" maxlength="15" value=""	readonly	
+				onKeyDown="darFormato(this,event,2,15);">
+			</td>
+			<td class="formLabel" style="padding-left: 20px;">Maximo:</td>
+			<td>
+				<input type="text" name="montoMaximoInversionEdited"  size="15" maxlength="15" value="" readonly	
+				onKeyDown="darFormato(this,event,2,15);">
+			</td>
+		</tr>
+		<tr class="formCaption">
+			<th colspan="4" align="center">
+				<font class="formCaptiontext">Unidad Minima para Subasta</font>
+			</th>
+		</tr>
+		<tr class="formElement">        	
+			<td class="formLabel">Precio Minimo:</td>
+			<td>
+				<input type="text" name="precioMinimoEdited" size="7" maxlength="7" value="" readonly	
+					onKeyDown="darFormato(this,event,2,5);" /> %
+			</td>
+			<td class="formLabel" style="padding-left: 20px;">Maximo:</td>
+			<td>
+				<input type="text" name="precioMaximoEdited"  size="12" maxlength="12"	value="" readonly		
+					onKeyDown="darFormato(this,event,2,5);" /> %
+			</td>
+		</tr>			
+
+		<tr class="formElement">
+			<td class="formLabel">Unidades de Compra:</td>
+			<td></td>
+		</tr>	
+		<tr class="formElement">
+			<td class="formLabel" style="padding-left: 20px;">Minimo:</td>
+			<td>
+				<input type="text" name="cantMinimaInversionEdited"  size="12" maxlength="12"	value="" readonly		
+				onKeyDown="formatInteger(this,event);">
+			</td>
+			<td class="formLabel" style="padding-left: 20px;">Maximo:</td>
+			<td>
+				<input type="text" name="cantMaximaInversionEdited"  size="12" maxlength="12"	value="" readonly		
+				onKeyDown="formatInteger(this,event);">
+			</td>
+		</tr>
+		<tr class="formElement">
+			<td class="formLabel" colspan="2">Monto mínimo de negociaci&oacute;n:</td>
+		</tr>	
+		<tr class="formElement">
+			<td class="formLabel" style="padding-left: 20px;">Monto:</td>
+			<td>
+				<input type="text" name="montoMinimoSubastaInversionEdited"  size="12" maxlength="12"	value="" readonly		
+				onKeyDown="formatInteger(this,event);">
+			</td>
+		</tr>		
+	</table>
+	
+	<!--nota sobre los campos obligatorios-->
+    <P><FONT COLOR="red"><B>Nota:</B></FONT> Los campos con * deben ser llenados para poder procesar el formulario.</P>
+	
+	
+	<br>
+	<button type="button" onclick="submitir();">Grabar</button>
+	<span> </span>
+	<button type="button" onclick="window.location='unidad_inversion-browse';">Regresar</button>
+	
+	<!--campo escondido para almacenar el key del record--> 
+		<input type="hidden"  name="idUnidadInversion" value="0"/> 
+		<input type="hidden" name="idInstrumentoFinanciero" value="" /> 
+		<input type="hidden" name="tipoInstrumentoFinanciero" value="" /> 				
+		<input type="hidden" name="tasaCambio"  value="1,0" /> 
+		<input type="hidden" name="maxFinanciamiento"  value="0,0" />  		 
+		<input type="hidden" name="totalInversion" value="0,0" /> 
+		<input type="hidden" name="montoMinimoInversion"  value="0,0" /> 
+		<input type="hidden" name="montoMaximoInversion"  value="0,0" /> 
+		<input type="hidden" name="precioMinimo" value=""  value="0,0" /> 
+		<input type="hidden" name="precioMaximo" value=""  value="0,0" /> 				
+		<input type="hidden" name="cantMinimaInversion"  value="0" /> 
+		<input type="hidden" name="cantMaximaInversion"  value="0" /> 		
+		<input type="hidden" name="montoMinimoSubastaInversion"  value="0" />				
+	</form>
+
+	</center>
+
+</BODY>
+<script language="javascript">
+<!--
+function submitir() {
+	if (document.forms[0].tasaCambioEdited.value != '') {		
+		document.forms[0].tasaCambio.value = quitarFormatoV(document.forms[0].tasaCambioEdited.value);
+	}
+	if (document.forms[0].maxFinanciamientoEdited.value != '') {		
+		document.forms[0].maxFinanciamiento.value = quitarFormatoV(document.forms[0].maxFinanciamientoEdited.value);
+	}
+	if (document.forms[0].totalInversionEdited.value != '') {		
+		document.forms[0].totalInversion.value = quitarFormatoV(document.forms[0].totalInversionEdit.value);
+	}
+	if (document.forms[0].montoMinimoInversionEdited.value != '') {
+		document.forms[0].montoMinimoInversion.value = quitarFormatoV(document.forms[0].montoMinimoInversionEdited.value);
+	}	
+	if (document.forms[0].montoMaximoInversionEdited.value != '') {		
+		document.forms[0].montoMaximoInversion.value = quitarFormatoV(document.forms[0].montoMaximoInversionEdited.value);
+	}
+	if (document.forms[0].precioMinimoEdited.value != '') {		
+		document.forms[0].precioMinimo.value = document.forms[0].precioMinimoEdited.value;
+	}
+	if (document.forms[0].precioMaximoEdited.value != '') {		
+		document.forms[0].precioMaximo.value = document.forms[0].precioMaximoEdited.value;
+	}	
+	if (document.forms[0].cantMinimaInversionEdited.value != '') {		
+		document.forms[0].cantMinimaInversion.value = quitarFormatoV(document.forms[0].cantMinimaInversionEdited.value);
+	}	
+	if (document.forms[0].cantMaximaInversionEdited.value != '')  {		
+		document.forms[0].cantMaximaInversion.value = quitarFormatoV(document.forms[0].cantMaximaInversionEdited.value);
+	}
+	if (document.forms[0].montoMinimoSubastaInversionEdited.value != '')  {		
+		document.forms[0].montoMinimoSubastaInversion.value = quitarFormatoV(document.forms[0].montoMinimoSubastaInversionEdited.value);
+	}	
+	
+	var aux = document.forms[0].istrumentoFinanciero.value;
+	var tokens = aux.split(';');
+	document.forms[0].idInstrumentoFinanciero.value = tokens[0];
+	document.forms[0].tipoInstrumentoFinanciero.value = tokens[1];
+	
+   	document.forms[0].submit();
+}
+function abrirInventario(select) {
+
+	if (select.value == "") {
+		document.forms[0].precioMinimoEdited.setAttribute('readOnly','readonly');  
+		document.forms[0].precioMaximoEdited.setAttribute('readOnly','readonly'); 		  
+		document.forms[0].cantMinimaInversionEdited.setAttribute('readOnly','readonly');  
+		document.forms[0].cantMaximaInversionEdited.setAttribute('readOnly','readonly'); 
+		
+		document.forms[0].precioMinimoEdited.value="";	
+		document.forms[0].precioMaximoEdited.value="";		
+		document.forms[0].cantMinimaInversionEdited.value="";	
+		document.forms[0].cantMaximaInversionEdited.value="";
+		document.forms[0].montoMinimoSubastaInversionEdited.value="";
+		
+		document.forms[0].totalInversionEdited.setAttribute('readOnly','readonly');    
+		document.forms[0].montoMinimoInversionEdited.setAttribute('readOnly','readonly');  
+		document.forms[0].montoMaximoInversionEdited.setAttribute('readOnly','readonly');
+		
+		document.forms[0].totalInversionEdited.value="";	
+		document.forms[0].montoMinimoInversionEdited.value="";	
+		document.forms[0].montoMaximoInversionEdited.value="";	
+		
+		return;
+	}
+	var aux = select.value;
+	aux = aux.toLowerCase();
+	if (aux.indexOf("inventario") > -1) {
+		document.forms[0].totalInversionEdited.removeAttribute('readOnly');
+		document.forms[0].montoMinimoInversionEdited.removeAttribute('readOnly');
+		document.forms[0].montoMaximoInversionEdited.removeAttribute('readOnly'); 
+		
+		document.forms[0].precioMinimoEdited.setAttribute('readOnly','readonly');    
+		document.forms[0].cantMinimaInversionEdited.setAttribute('readOnly','readonly');  
+		document.forms[0].cantMaximaInversionEdited.setAttribute('readOnly','readonly');  
+		
+		document.forms[0].precioMinimoEdited.value="";	
+		document.forms[0].precioMaximoEdited.value="";			
+		document.forms[0].cantMinimaInversionEdited.value="";	
+		document.forms[0].cantMaximaInversionEdited.value="";				
+	} else {
+		document.forms[0].precioMinimoEdited.removeAttribute('readOnly');
+		if (aux.indexOf("subasta_c") > -1) {
+			document.forms[0].precioMaximoEdited.removeAttribute('readOnly');
+		}
+		document.forms[0].cantMinimaInversionEdited.removeAttribute('readOnly');
+		document.forms[0].cantMaximaInversionEdited.removeAttribute('readOnly'); 
+		
+		document.forms[0].totalInversionEdited.setAttribute('readOnly','readonly');    
+		document.forms[0].montoMinimoInversionEdited.setAttribute('readOnly','readonly');  
+		document.forms[0].montoMaximoInversionEdited.setAttribute('readOnly','readonly');  
+		
+		document.forms[0].totalInversionEdited.value="";	
+		document.forms[0].montoMinimoInversionEdited.value="";	
+		document.forms[0].montoMaximoInversionEdited.value="";	
+	}
+}
+abrirInventario(document.forms[0].istrumentoFinanciero);
+-->
+
+
+</script>
+</HTML>
+

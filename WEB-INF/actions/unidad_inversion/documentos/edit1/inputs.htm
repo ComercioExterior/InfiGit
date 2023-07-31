@@ -1,0 +1,9 @@
+	<td nowrap align="left" width="27%">@documento@nombre@@tipcar_id@<br>&iquest;Cambiar Archivo?
+		<INPUT type="radio" name="radio@nombre@@tipcar_id@" id="@nombre@" value="1" class="inputControl" onClick="examinar(this,@cont@)" />Si
+		<INPUT type="radio" name="radio@nombre@@tipcar_id@" id="@nombre@" value="0" class="inputControl" onClick="examinar(this,@cont@)" checked/>No<br>
+		<INPUT type="hidden" name="documento@nombre@@tipcar_id@" value="@id@nombre@@tipcar_id@@" />
+		<center><div id="radio@nombre@@tipcar_id@@cont@" style="display:none">
+					<table><tr><td><INPUT type="file" VALUE="" name="@nombre@@tipcar_id@" /></td></tr></table>
+				</div>
+		</center>
+	</td>

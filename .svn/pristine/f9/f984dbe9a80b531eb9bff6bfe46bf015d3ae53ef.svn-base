@@ -1,0 +1,309 @@
+
+<HTML>
+    
+    <HEAD>
+    	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <LINK REL="stylesheet" type="text/css" href="../css/EstiloFichas.css" />
+        <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/>
+        <SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+        <script language="javascript" src="../js/default.js"></script>   
+         
+        
+        <TITLE>Sistema INFI</TITLE>
+       <script>
+       
+       function showPickList(ind ,id, tx, campo)
+		{
+		   var r
+		   if (ind == '1') {  // llamar a picklist		
+		   	  r = window.open(campo +'?name_id=' + id.name +"&name_tx=" + tx.name, 'Picklist','resizable=yes,scrollbars=yes,width=600,height=450,Left=200,top=150,Status=yes,unadorned:true');
+		   	  
+		   }
+		   else{
+			id.value= "";//limpiar id de cliente
+			tx.value= "";//limpiar campo de cliente
+		  }
+		} 
+		
+		function mostrar(obj,id,ocultar){
+			
+			if (id=='_porcentaje'){
+				var monto = document.getElementsByName('mto'+ocultar);
+				for (var i = 0; i < monto.length; i++ ){
+					monto[i].disabled= true;
+				}
+				var moneda = document.getElementsByName('moneda'+ocultar);
+				for (var i = 0; i < moneda.length; i++ ){
+					moneda[i].disabled= true;
+				}
+				var porcentaje = document.getElementsByName('pct'+ocultar);
+				for (var i = 0; i < porcentaje.length; i++ ){
+					porcentaje[i].disabled= false;
+				}
+			}
+			if(id=='_monto'){
+				var porcentaje = document.getElementsByName('pct'+ocultar);
+				for (var i = 0; i < porcentaje.length; i++ ){
+					porcentaje[i].disabled= true;
+				}
+				var monto = document.getElementsByName('mto'+ocultar);
+				for (var i = 0; i < monto.length; i++ ){
+					monto[i].disabled= false;
+				}
+				var moneda = document.getElementsByName('moneda'+ocultar);
+				for (var i = 0; i < moneda.length; i++ ){
+					moneda[i].disabled= false;
+				}
+			}
+		}
+		
+		function chequear(){
+			if(document.dataentry.pct_trans_interna.value>0||document.dataentry.pct_trans_interna.value==""){
+				document.dataentry.ind_salida_interna[0].checked = true;
+				document.dataentry.mto_trans_interna.disabled = true;
+				document.dataentry.moneda_trans_interna.disabled = true;
+			}
+			if(document.dataentry.mto_trans_interna.value>0){
+				document.dataentry.ind_salida_interna[1].checked = true;
+				document.dataentry.pct_trans_interna.disabled = true;
+				document.dataentry.mto_trans_interna.disabled = false;
+				document.dataentry.moneda_trans_interna.disabled = false;
+			}
+			if(document.dataentry.pct_trans_externa.value>0||document.dataentry.pct_trans_externa.value==""){
+				document.dataentry.ind_salida_externa[0].checked = true;
+				document.dataentry.mto_trans_externa.disabled = true;
+				document.dataentry.moneda_trans_externa.disabled = true;
+			}
+			if(document.dataentry.mto_trans_externa.value>0){
+				document.dataentry.ind_salida_externa[1].checked = true;
+				document.dataentry.pct_trans_externa.disabled = true;
+				document.dataentry.mto_trans_externa.disabled = false;
+				document.dataentry.moneda_trans_externa.disabled = false;
+			}
+			if(document.dataentry.pct_anual_nacional.value>0||document.dataentry.pct_anual_nacional.value==""){
+				document.dataentry.ind_anual_nac[0].checked = true;
+				document.dataentry.mto_anual_nacional.disabled = true;
+				document.dataentry.moneda_anual_nacional.disabled = true;
+			}
+			if(document.dataentry.mto_anual_nacional.value>0){
+				document.dataentry.ind_anual_nac[1].checked = true;
+				document.dataentry.pct_anual_nacional.disabled = true;
+				document.dataentry.mto_anual_nacional.disabled = false;
+				document.dataentry.moneda_anual_nacional.disabled = false;
+			}
+			if(document.dataentry.pct_anual_extranjera.value>0||document.dataentry.pct_anual_extranjera.value==""){
+				document.dataentry.ind_anual_ext[0].checked = true;
+				document.dataentry.mto_anual_extranjera.disabled = true;
+				document.dataentry.moneda_anual_extranjera.disabled = true;
+			}
+			if(document.dataentry.mto_anual_extranjera.value>0){
+				document.dataentry.ind_anual_ext[1].checked = true;
+				document.dataentry.pct_anual_extranjera.disabled = true;
+				document.dataentry.mto_anual_extranjera.disabled = false;
+				document.dataentry.moneda_anual_extranjera.disabled = false;
+			}
+			
+		}
+
+		function pestana(valor){
+			if(valor==1){//Comision General
+				generalA.style.display ="block";
+				generalB.style.display ="block";
+			}
+			if(valor==0){//Comision Especifica
+				especifica.style.display ="block";
+			}
+		}
+		
+       </script>
+    </HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript:chequear();pestana(@com_in_general@);{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <td class="headerBox">             
+	           <font class="headerText">Custodia / Estructura Tarifaria</font>
+		</td>
+        
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+        <td class="headerBox" aling="right"></td>
+</TABLE>
+        
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="estructura_tarifaria-transacciones_guardar">
+	
+	<div id="menu">
+		<table border="0" cellspacing="1" cellpadding="2">
+			<tr>
+				<td id="navigation" nowrap><a href="estructura_tarifaria-comision_edit?comision_id=@comision_id@"><span>Comisi&oacute;n</span></a></td>
+				<td id="navigationActivo" nowrap><a><span>Transacciones</span></a></td>
+				<td id="navigation" nowrap><div id="especifica" style="display:none"><a href="estructura_tarifaria-clientes?comision_id=@comision_id@"><span>Clientes</span></a></div></td>
+				<td id="navigation" nowrap><div id="generalA" style="display:none"><a href="estructura_tarifaria-depositarios_centrales?comision_id=@comision_id@"><span>Depositarios Centrales</span></a></div></td>
+				<td id="navigation" nowrap><div id="generalB" style="display:none"><a href="estructura_tarifaria-titulos?comision_id=@comision_id@"><span>T&iacute;tulos</span></a></div></td>			
+			</tr>
+		</table>
+	</div>		
+		
+     <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="2" ALIGN="center">       
+                 Seleccione Criterios 
+            </th>
+        </tr>
+        
+        <!--campo-->
+        <tr class="formElement">
+			<th width="50%" align="center">Salida Interna</th>
+			<th width="50%" align="center">Salida Externa</th> 
+		</tr>
+		<tr class="tableCell">
+			<td>
+				&nbsp;&nbsp;<input type="radio" value="0" name="ind_salida_interna" onclick="mostrar(this,'_porcentaje','_trans_interna');"/>Porcentaje 
+			</td> 
+			<td>
+				&nbsp;&nbsp;<input type="radio" value="0" name="ind_salida_externa" onclick="mostrar(this,'_porcentaje','_trans_externa');"/>Porcentaje
+			</td>   
+		</tr>
+		<tr class="tableCell">
+			<td>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<INPUT type="text" value="@pct_trans_interna@" name="pct_trans_interna" style="width:70px;" MAXLENGTH="6" class="inputControl" onkeypress="EvaluateText('%f', this);"/>
+				%
+				<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<font size="1px" style><i>Formato: 12.123</i></font>
+			</td>   
+			<td>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<INPUT type="text" value="@pct_trans_externa@" name="pct_trans_externa" style="width:70px;" MAXLENGTH="6" class="inputControl" onkeypress="EvaluateText('%f', this);"/>
+				%
+				<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<font size="1px" style><i>Formato: 12.123</i></font>
+			</td>
+		</tr>
+		<tr class="tableCell">
+			<td>
+				&nbsp;&nbsp;<input type="radio" value="1" name="ind_salida_interna" onclick="mostrar(this,'_monto','_trans_interna');"/>Monto 
+			</td> 
+			<td>
+				&nbsp;&nbsp;<input type="radio" value="1" name="ind_salida_externa" onclick="mostrar(this,'_monto','_trans_externa');"/>Monto
+			</td>   
+		</tr>
+		<tr class="tableCell">
+			<td>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<INPUT type="text" value="@mto_trans_interna@" name="mto_trans_interna" style="width:70px;" MAXLENGTH="11" class="inputControl" onkeypress="EvaluateText('%f', this);"/>
+				<SELECT NAME="moneda_trans_interna" CLASS="inputControl">
+					<rows_moneda1>
+						<OPTION VALUE="@moneda_id@">@moneda_siglas@ - @moneda_descripcion@</OPTION>
+					</rows_moneda1>
+				</SELECT>
+				<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<font size="1px" style><i>Formato: 1234567.123</i></font>
+			</td> 
+			<td>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<INPUT type="text" value="@mto_trans_externa@" name="mto_trans_externa" style="width:70px;" MAXLENGTH="11" class="inputControl" onkeypress="EvaluateText('%f', this);"/>
+				<SELECT NAME="moneda_trans_externa" CLASS="inputControl">
+					<rows_moneda2>
+						<OPTION VALUE="@moneda_id@">@moneda_siglas@ - @moneda_descripcion@</OPTION>
+					</rows_moneda2>
+				</SELECT>
+				<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<font size="1px" style><i>Formato: 1234567.123</i></font>
+			</td>
+		</tr>
+		<tr class="formElement">
+			<th align="center">Anual Nacional</th>
+			<th align="center">Anual Extranjera</th> 
+		</tr>
+		<tr class="tableCell">
+			<td>
+				&nbsp;&nbsp;<input type="radio" value="0" name="ind_anual_nac" onclick="mostrar(this,'_porcentaje','_anual_nacional');"/>Porcentaje 
+			</td> 
+			<td>
+				&nbsp;&nbsp;<input type="radio" value="0" name="ind_anual_ext" onclick="mostrar(this,'_porcentaje','_anual_extranjera');"/>Porcentaje
+			</td>   
+		</tr>
+		<tr class="tableCell">
+			<td>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<INPUT type="text" value="@pct_anual_nacional@" name="pct_anual_nacional" style="width:70px;" MAXLENGTH="6" class="inputControl" onkeypress="EvaluateText('%f', this);"/>
+				%
+				<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<font size="1px" style><i>Formato: 12.123</i></font>
+			</td>    
+			<td>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<INPUT type="text" value="@pct_anual_extranjera@" name="pct_anual_extranjera" style="width:70px;" MAXLENGTH="6" class="inputControl" onkeypress="EvaluateText('%f', this);"/>
+				%
+				<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<font size="1px" style><i>Formato: 12.123</i></font>
+			</td>
+		</tr>
+		<tr class="tableCell">
+			<td>
+				&nbsp;&nbsp;<input type="radio" value="1" name="ind_anual_nac" onclick="mostrar(this,'_monto','_anual_nacional');"/>Monto 
+			</td> 
+			<td>
+				&nbsp;&nbsp;<input type="radio" value="1" name="ind_anual_ext" onclick="mostrar(this,'_monto','_anual_extranjera');"/>Monto
+			</td>   
+		</tr>
+		<tr class="tableCell">
+			<td>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<INPUT type="text" value="@mto_anual_nacional@" name="mto_anual_nacional" style="width:70px;" MAXLENGTH="11" class="inputControl" onkeypress="EvaluateText('%f', this);"/>
+				<SELECT NAME="moneda_anual_nacional" CLASS="inputControl">
+					<rows_moneda3>
+						<OPTION VALUE="@moneda_id@">@moneda_siglas@ - @moneda_descripcion@</OPTION>
+					</rows_moneda3>
+				</SELECT>
+				<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<font size="1px" style><i>Formato: 1234567.123</i></font>
+			</td>
+			<td>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<INPUT type="text" value="@mto_anual_extranjera@" name="mto_anual_extranjera" style="width:70px;" MAXLENGTH="11" class="inputControl" onkeypress="EvaluateText('%f', this);"/>
+				<SELECT NAME="moneda_anual_extranjera" CLASS="inputControl">
+					<rows_moneda4>
+						<OPTION VALUE="@moneda_id@">@moneda_siglas@ - @moneda_descripcion@</OPTION>
+					</rows_moneda4>
+				</SELECT>
+				<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<font size="1px" style><i>Formato: 1234567.123</i></font>
+			</td>
+		</tr>
+      </table>
+         <br>
+<center>
+			<INPUT type="hidden" value="@comision_id@" name="comision_id"/>
+				
+
+         	<button type="submit">&nbsp;Grabar&nbsp;</button>
+			&nbsp;<button type="button" onclick="window.location='estructura_tarifaria-browse'">Regresar</button>
+   			 &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+       </center>
+    </form>       
+        
+        
+    </BODY>
+
+</HTML>

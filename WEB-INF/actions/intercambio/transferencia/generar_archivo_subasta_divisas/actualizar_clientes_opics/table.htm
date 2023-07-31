@@ -1,0 +1,138 @@
+<html>
+	<head>        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		<!-- >meta http-equiv="refresh" content="5" /-->
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+        <script type="text/javascript">
+        function excel(unidadInversion,vehiculoColocador) {
+            if (confirm("El proceso de generación de archivo excel puede tardar varios minutos. ¿Está seguro que desea iniciar el proceso?")){
+            	document.dataentry.action="generar_archivo_subasta_divisas-generar_excel?undinv_id="+unidadInversion+"&ordene_veh_col="+vehiculoColocador+"&tipo_reporte=excel"; 
+            	document.dataentry.submit();
+            }                
+        }
+        function txt(unidadInversion,vehiculoColocador) {           
+        	document.dataentry.action="generar_archivo_subasta_divisas-generar_txt?undinv_id="+unidadInversion+"&ordene_veh_col="+vehiculoColocador+"&tipo_reporte=txt&framework.controller.outputstream.open=false"; 
+        	document.dataentry.submit();        	
+        }
+          function csv(unidadInversion,vehiculoColocador) {
+            if (confirm("El proceso de generación de archivo CSV puede tardar varios minutos. ¿Está seguro que desea iniciar el proceso?")){
+            	document.dataentry.action="generar_archivo_subasta_divisas-generar_excel?undinv_id="+unidadInversion+"&ordene_veh_col="+vehiculoColocador+"&tipo_reporte=excel&framework.controller.outputstream.open=false"; 
+            	document.dataentry.submit();
+            }                
+        }
+        
+        function mostrarGeneracionCSVCLaveNet(){
+
+		var validacion=document.getElementById('flag').value;
+
+		if (validacion=='1'){
+
+		 	 document.getElementById('CSV_TH').style.display='block';  
+        	 document.getElementById('CSV_TD').style.display ='block'; 
+        	         	         	 
+	 		 document.getElementById('EXCEL_TH').style.display='none';  
+        	 document.getElementById('TXT_TH').style.display ='none'; 				
+			 document.getElementById('detalle_TH').style.display ='none'; 				
+ 	 		 document.getElementById('EXCEL_TD').style.display='none';  
+        	 document.getElementById('TXT_TD').style.display ='none'; 				
+			 document.getElementById('detalle_TD').style.display ='none'
+	 	}
+		
+ 	}
+        </script>
+	
+    </head>
+
+<body onload="mostrarGeneracionCSVCLaveNet()"> <!--  -->
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+			<TD class="headerBox">                
+            	<FONT class="headerText">Intercambio / Transferencia / Generar Archivo Subasta Divisas </FONT>
+        	</TD>
+        	<!-- help online -->
+   			<TD class="headerBox" valign="middle" align="right">
+   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   			</TD>
+   			<!-- fin help online -->
+		</TR>
+	</TABLE>
+
+   <center>
+	<br>
+	<form NAME="dataentry" METHOD="POST" ACTION="">
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+		<!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="6" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Lista de Registros ( @t_registros@ )
+                </FONT>
+            </th>
+        </tr>
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="TABLE-LAYOUT: auto; ">
+		<!--encabezados de columna-->
+		<tr>
+			<th id="EXCEL_TH" width="2%"></th>
+			<!-- <th id="TXT_TH" width="2%"></th>-->
+			<th id="detalle_TH" width="2%"></th>			
+            <th nowrap >Veh&iacute;culo</th>
+            <th nowrap>Monto $</th>
+            <th nowrap>Total Ordenes</th>
+            <th nowrap>Ordenes Enviadas</th>
+            <th nowrap>Ordenes Registradas</th>
+    	</tr>
+
+		<!--data-->
+	   <rows>
+    	<tr>
+    		<td id="EXCEL_TD" align="center">
+    			<span style="cursor:hand; text-decoration:underline;" class="span" title="Generar Archivo Excel"
+							onclick="javascript:excel(@uniinv_id@,@ordene_veh_col@);"> 
+							<IMG SRC="../images/infi_gn_doc.gif"  BORDER="0" ALIGN="top" >
+				</span>
+				<!-- a href="generar_archivo-generar_excel?undinv_id=@uniinv_id@&ordene_veh_col=@ordene_veh_col@&framework.controller.outputstream.open=false"><IMG SRC="../images/infi_gn_doc.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Generar Archivo Excel" BORDER="0" style="cursor:hand"></a-->
+			</td>
+			<!-- <td id="TXT_TD" align="center">
+    			<span style="cursor:hand; text-decoration:underline;" class="span" title="Generar Archivo .txt"
+							onclick="javascript:txt(@uniinv_id@,@ordene_veh_col@);"> 
+							.txt
+				</span>
+				
+			</td>-->
+			
+			<td id="detalle_TD" align="center">
+				<a href="generar_archivo_subasta_divisas-detalle?undinv_id=@uniinv_id@&ordene_veh_col=@ordene_veh_col@"><IMG SRC="../images/infi_gn_find.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Ver Detalle" BORDER="0" style="cursor:hand"></a>
+			</td>  		
+			
+			<td align="right" nowrap>@vehicu_nombre@</td>
+			<td align="right" nowrap>@ordene_ped_monto format-mask='###,###,###.00'@</td>
+			<td align="right" nowrap>@ordenes@</td>
+			<td align="right" nowrap>@enviadas@</td>
+			<td align="right" nowrap>@para_enviar@</td>
+			
+		</tr>
+	   </rows>
+	</table>
+	</form>
+	@page_index@
+	<BR>
+	<BR>
+		<button type="button" onclick="window.location='generar_archivo_subasta_divisas-filter'">Regresar</button>
+		&nbsp;
+		<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+   </center>
+   <form name="dataentry1" action="">
+   	<INPUT TYPE="hidden" NAME="undinv_id" VALUE="" />
+   	<INPUT TYPE="hidden" NAME="orden_veh_col" VALUE="" />
+   	<INPUT TYPE="hidden" id="flag" VALUE="@flag@"/>
+   </form>
+</body>
+</html>

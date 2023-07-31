@@ -1,0 +1,83 @@
+<HTML>
+	<HEAD>
+		<TITLE>Sistema INFI</TITLE>
+    	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		<script language="javascript" src="../js/default.js"></script>
+		<script language="javascript">
+		  function procesar(tipo){
+			  if (tipo == 2){
+			    document.forms[0].action="cobro_batch_liquidacion_sitme_detalle";
+				document.forms[0].submit();			    
+			  }else{
+				document.forms[0].action="cobro_batch_liquidacion_sitme_generar";
+				confirmacion();  
+			  }			  
+		  }
+
+		  function confirmacion(){
+			  alert("El proceso iniciará, y para consultar los resultados de las operaciones que se aplicarán sobre ALTAIR debe consultar el reporte destinado para ello.\n" +
+					"Este proceso puede durar varios minutos");
+			  if (confirm("¿Desea continuar?")){
+				  document.forms[0].submit();
+			  };
+
+		  }
+		  
+		</script>   
+	</HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    	<TR>
+        	<TD class="headerBox">                
+            	<FONT class="headerText">Intercambio / Cobro Liquidación Batch / Enviar Archivo Sitme</FONT>
+       		</TD>
+        	<!-- help online -->
+   			<TD class="headerBox" valign="middle" align="right">
+   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   			</TD>
+   			<!-- fin help online -->
+        	<td class="headerBox" aling="right"></td>
+        </TR>
+	</TABLE>
+	<CENTER>
+
+	<!--formulario-->
+	<form NAME="dataentry" METHOD="POST" ACTION="cobro_batch_adjudicacion_sitme_detalle">
+		<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+			 <!--titulo-->
+			<tr>
+				<th COLSPAN="5" ALIGN="center">Resumen</th>
+			</tr>
+			<tr>
+			   <th >Unidad</th>
+			   <th >Estatus</th>
+			   <th >Monto Total</th>
+			   <th >Tipo</th>
+			   <th >Cantidad de Operaciones</th>
+			</tr>
+			<rows_resumen>
+            <tr>
+                <td width="53%">@undinv_nombre@</td>
+				<td width="2%">@status_operacion@</td>
+				<td width="20%" align="right">@monto_operacion format-mask='###,###,###,###.00'@ </td>
+				<td width="5%" align="right">@trnf_tipo@</td>
+				<td width="20%" align="right">@total format-mask='###,###,###,###'@</td>
+        	</tr>			
+			</rows_resumen>
+			<tr>
+			  <td colspan="3" align="right"><span class="negrita">Monto Total de Operaciones:</span> @totalmontooperaciones@</td>
+			  <td colspan="2" align="right"><span class="negrita">Cantidad Total de Operaciones:</span> @totalcantidadoperaciones@</td>
+			<tr>
+		</table>
+		<br>
+		<input type="hidden" name="undinv_id" value="@undinv_id@">		
+		<button id="deshabilita" onclick="procesar(1)">Procesar</button>&nbsp;
+		<button type="submit"/ onclick="procesar(2)">Ver Detalle</button>
+		&nbsp;<button type="button" ONCLICK="javascript:history.back()">&nbsp;Regresar&nbsp;</button>
+	</form>
+	</CENTER>
+</BODY>
+</HTML>

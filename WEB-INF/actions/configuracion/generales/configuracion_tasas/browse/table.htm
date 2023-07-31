@@ -1,0 +1,103 @@
+<html>
+	<head>   
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title> 
+
+    </head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Generales /  Configuraci&oacute;n Tasas</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+<center>
+<form name="dataentry" METHOD="POST" action="precios_recompra-update">
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="TABLE-LAYOUT: auto;">
+           <tr CLASS="formCaption">
+            <th COLSPAN="16" ALIGN="center">
+                <FONT class="formCaptionText">
+                  Aprobaci&oacute;n / Modificaci&oacute;n de Tasas
+                </FONT>
+            </th>
+        </tr>
+    
+    <!--encabezados de columna-->
+    
+    <tr class="tableCell">
+
+		<th width="5%"nowrap></th>
+		<th width="5%"nowrap></th>
+
+		<th>Tipo de Producto</th>
+		<th>Tipo Transacci&oacute;n</th>
+		<th>Monto Tasa</th>
+		<th>Fecha Tasa</th>		
+		<th>Usuario Registro</th>
+		<th>Usuario Modificador</th>
+		<th>Usuario Aprobador</th>
+		<th>Fecha Aprobaci&oacute;n</th>
+							
+	</tr>
+
+    <!--data-->
+    <tasas_aprobar>  
+    <tr class="tableCell">
+	
+		<td align="center" width="3%" name="definicion" id="definicion">
+			<a href='configuracion_tasa-config_modificacion?tasa_id=@config_tasa_id@'><IMG SRC="../images/infi_gn_edit.gif"  BORDER="0" ALIGN="top" title="Modificar Tasa"></a>
+			<input type="hidden" name="indice" value="@_row@"/>
+		</td>
+		
+		<td align="center" width="3%"name="definicion" id="definicion">
+			<a href='configuracion_tasa-confirm_aprobacion?tasa_id=@config_tasa_id@'><IMG SRC="../images/infi_gn_report.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Aprobar Tasa" BORDER="0" style="cursor:hand"></a>                
+		</td>
+		
+
+		<td VALIGN="middle" align="left" nowrap>@tipo_producto_id@<input type="hidden" value="@titulo_id@" name="titulo_id"></td>
+		<td align="center" width="25%">
+			<input type="hidden" name="moneda_id_@titulo_id@" value="@transa_id@">@transa_id@</td>
+		<td  align="center" width="18%">@tasa@<input type="hidden" name="tipo_producto_id" value="@tipo_producto_id@" /></td>    
+		
+		<td  align="center" width="18%">@fecha@</td>
+		<td  align="center" width="18%">@nm_registro_tasa@</td>		
+		<td  align="center" width="18%">@nm_modificacion_tasa@</td>		
+		<td  align="center" width="18%">@nm_aprobacion_tasa@</td>
+		<td  align="center" width="18%">@fecha_aprobacion@</td>
+				    
+     </tr>
+     </tasas_aprobar>
+    
+    </table>
+    <BR>    
+   
+	<button type="button" onclick="javascript:history.back();">Regresar</button>
+    &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>    
+</form>
+</center>
+<script type="text/javascript">
+function makeDoubleDelegate(function1, function2) {
+		return function() {
+		if (function1)
+		function1();
+		if (function2)
+			function2();
+	}
+}
+///window.onload = makeDoubleDelegate(window.onload,seleccionarMoneda());
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<config>
+
+	<model-class>models.bcv.menudeo_cambio_clave.Browse</model-class>
+	<view-class>megasoft.GenericView</view-class>
+	<template>table.htm</template>
+	<record-def>record.xml</record-def>
+	<content-type>text/html</content-type>
+	<expires></expires>
+	<no-cache>false</no-cache>
+	<next-action type="redirect"></next-action>
+	<on-empty source="sales"></on-empty>
+	
+</config>

@@ -1,0 +1,1859 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<binding value-style="attribute">
+  <mapping class="com.bdv.infi.webservices.beans.B501" name="b501">
+    <value style="element" name="codigo-cta-cliente" field="codigoCtaCliente" usage="optional"/>
+    <value style="element" name="importe" field="importe" usage="optional"/>
+    <value style="element" name="codigo-operacion" field="codigoOperacion" usage="optional"/>
+    <value style="element" name="numero-cheque" field="numeroCheque" usage="optional"/>
+    <value style="element" name="fecha-valor" field="fechaValor" usage="optional"/>
+    <value style="element" name="carta" field="carta" usage="optional"/>
+    <value style="element" name="autorizar" field="autorizar" usage="optional"/>
+    <value style="element" name="guardar-anotado" field="guardarAnotado" usage="optional"/>
+    <value style="element" name="divisa-de-cargo" field="divisaDeCargo" usage="optional"/>
+    <value style="element" name="numero-de-retencion" field="numeroDeRetencion" usage="optional"/>
+    <value style="element" name="fecha-hora-oper-off" field="fechaHoraOperOff" usage="optional"/>
+    <value style="element" name="fecha-de-giro" field="fechaDeGiro" usage="optional"/>
+    <value style="element" name="literal" field="literal" usage="optional"/>
+    <value style="element" name="numero-de-libreta" field="numeroDeLibreta" usage="optional"/>
+    <value style="element" name="serial" field="serial" usage="optional"/>
+    <value style="element" name="numero-de-planilla" field="numeroDePlanilla" usage="optional"/>
+    <value style="element" name="indicador-titular" field="indicadorTitular" usage="optional"/>
+  </mapping>
+  
+  <mapping name='oficinarespuesta' class='com.bdv.infi.data.OficinaRespuestaDTO'>
+  	<value name='code' usage='optional' field='code' style='element'/>
+  	<collection field="data" usage="optional"/>
+    <value name='id' usage='optional' field='id' style='element'/>
+    <value name='message' usage='optional' field='message' style='element'/>
+    <value name='status' usage='optional' field='status' style='element'/>
+  </mapping>
+  
+  <mapping class="com.bdv.infi.data.OficinaDTO" name="oficinadto">
+    <value style="element" name="city" field="city" usage="optional"/>
+    <value style="element" name="code" field="code" usage="optional"/>
+    <value style="element" name="latitude" field="latitude" usage="optional"/>
+    <value style="element" name="longitude" field="longitude" usage="optional"/>
+    <value style="element" name="name" field="name" usage="optional"/>
+    <value style="element" name="producttype" field="productType" usage="optional"/>
+    <value style="element" name="town" field="town" usage="optional"/>
+    <value style="element" name="address" field="address" usage="optional"/>
+    <value style="element" name="dayfrom" field="dayFrom" usage="optional"/>
+    <value style="element" name="dayto" field="dayTo" usage="optional"/>
+    <value style="element" name="hourfrom" field="hourFrom" usage="optional"/>
+    <value style="element" name="hourto" field="hourTo" usage="optional"/>
+    <value style="element" name="municipality" field="municipality" usage="optional"/>
+    <value style="element" name="atm" field="atm" usage="optional"/>
+    <value style="element" name="isavailable" field="isAvailable" usage="optional"/>
+    <value style="element" name="hasatm" field="hasAtm" usage="optional"/>
+    <value style="element" name="hasautobanking" field="hasAutobanking" usage="optional"/>
+    <value style="element" name="hasticketoffice" field="hasTicketOffice" usage="optional"/>
+    <value style="element" name="hasinbox" field="hasInbox" usage="optional"/>
+    <value style="element" name="hascollector" field="hasCollector" usage="optional"/>
+    <value style="element" name="operdivisas" field="operDivisas" usage="optional"/>
+    <value style="element" name="distancefromcurrentposition" field="distanceFromCurrentPosition" usage="optional"/>
+  </mapping>
+  
+  <mapping class="com.bdv.infi.webservices.beans.B501Respuesta" name="b501-respuesta">
+    <structure field="bgm501" usage="optional" name="bgm501">
+      <value style="element" name="codigo-cta-cliente" field="codigoCtaCliente" usage="optional"/>
+      <value style="element" name="importe" field="importe" usage="optional"/>
+      <value style="element" name="codigo-operacion" field="codigoOperacion" usage="optional"/>
+      <value style="element" name="numero-cheque" field="numeroCheque" usage="optional"/>
+      <value style="element" name="fecha-valor" field="fechaValor" usage="optional"/>
+      <value style="element" name="carta" field="carta" usage="optional"/>
+      <value style="element" name="autorizar" field="autorizar" usage="optional"/>
+      <value style="element" name="guardar-anotado" field="guardarAnotado" usage="optional"/>
+      <value style="element" name="divisa-de-cargo" field="divisaDeCargo" usage="optional"/>
+      <value style="element" name="numero-de-retencion" field="numeroDeRetencion" usage="optional"/>
+      <value style="element" name="fecha-hora-oper-off" field="fechaHoraOperOff" usage="optional"/>
+      <value style="element" name="fecha-de-giro" field="fechaDeGiro" usage="optional"/>
+      <value style="element" name="literal" field="literal" usage="optional"/>
+      <value style="element" name="numero-de-libreta" field="numeroDeLibreta" usage="optional"/>
+      <value style="element" name="serial" field="serial" usage="optional"/>
+      <value style="element" name="numero-de-planilla" field="numeroDePlanilla" usage="optional"/>
+      <value style="element" name="indicador-titular" field="indicadorTitular" usage="optional"/>
+    </structure>
+    <structure field="bgmbloq" usage="optional" name="bgmbloq">
+      <value style="element" name="numero-movimiento" field="numeroMovimiento" usage="optional"/>
+    </structure>
+    <structure field="bgmcab" usage="optional" name="bgmcab">
+      <value style="element" name="ccc" field="ccc" usage="optional"/>
+      <value style="element" name="codigo-divisa" field="codigoDivisa" usage="optional"/>
+      <value style="element" name="descripcion-divisa" field="descripcionDivisa" usage="optional"/>
+      <value style="element" name="importe" field="importe" usage="optional"/>
+      <value style="element" name="codigo-de-operacion" field="codigoDeOperacion" usage="optional"/>
+      <value style="element" name="descripcion-codigo" field="descripcionCodigo" usage="optional"/>
+      <value style="element" name="cod-apl-nio" field="codAplNio" usage="optional"/>
+      <value style="element" name="terminal-nio" field="terminalNio" usage="optional"/>
+      <value style="element" name="fecha-nio" field="fechaNio" usage="optional"/>
+      <value style="element" name="hora-nio" field="horaNio" usage="optional"/>
+      <value style="element" name="cheque" field="cheque" usage="optional"/>
+      <value style="element" name="fecha-operacion" field="fechaOperacion" usage="optional"/>
+      <value style="element" name="fecha-valor" field="fechaValor" usage="optional"/>
+      <value style="element" name="fecha-contable" field="fechaContable" usage="optional"/>
+      <value style="element" name="codigo-comision" field="codigoComision" usage="optional"/>
+      <value style="element" name="importe-comision" field="importeComision" usage="optional"/>
+      <value style="element" name="porcentaje-de-comisi" field="porcentajeDeComisi" usage="optional"/>
+      <value style="element" name="codigo-impuesto" field="codigoImpuesto" usage="optional"/>
+      <value style="element" name="importe-del-impuesto" field="importeDelImpuesto" usage="optional"/>
+      <value style="element" name="centro-operacion" field="centroOperacion" usage="optional"/>
+      <value style="element" name="desc-centro-ope" field="descCentroOpe" usage="optional"/>
+      <value style="element" name="terminal-operacion" field="terminalOperacion" usage="optional"/>
+      <value style="element" name="codigo-trans-oper" field="codigoTransOper" usage="optional"/>
+      <value style="element" name="numero-de-movimiento" field="numeroDeMovimiento" usage="optional"/>
+      <value style="element" name="hora-de-operacion" field="horaDeOperacion" usage="optional"/>
+      <value style="element" name="serial" field="serial" usage="optional"/>
+      <value style="element" name="nombre-titular" field="nombreTitular" usage="optional"/>
+      <value style="element" name="apellido1-titular" field="apellido1Titular" usage="optional"/>
+      <value style="element" name="apellido2-titular" field="apellido2Titular" usage="optional"/>
+      <value style="element" name="cedula" field="cedula" usage="optional"/>
+    </structure>
+    <structure field="bgmcca1" usage="optional" name="bgmcca1">
+      <value style="element" name="codigo-oficina-orig" field="codigoOficinaOrig" usage="optional"/>
+      <value style="element" name="nombre-oficina-orig" field="nombreOficinaOrig" usage="optional"/>
+      <value style="element" name="interme-literario1" field="intermeLiterario1" usage="optional"/>
+      <value style="element" name="fecha-valor1" field="fechaValor1" usage="optional"/>
+      <value style="element" name="importe-cargo1" field="importeCargo1" usage="optional"/>
+      <value style="element" name="importe-abono1" field="importeAbono1" usage="optional"/>
+      <value style="element" name="interme-literario2" field="intermeLiterario2" usage="optional"/>
+      <value style="element" name="fecha-valor2" field="fechaValor2" usage="optional"/>
+      <value style="element" name="importe-cargo2" field="importeCargo2" usage="optional"/>
+      <value style="element" name="importe-abono2" field="importeAbono2" usage="optional"/>
+      <value style="element" name="entidad-cuenta" field="entidadCuenta" usage="optional"/>
+      <value style="element" name="centro-cuenta" field="centroCuenta" usage="optional"/>
+      <value style="element" name="digitos" field="digitos" usage="optional"/>
+      <value style="element" name="cuenta" field="cuenta" usage="optional"/>
+      <value style="element" name="fecha-operacion" field="fechaOperacion" usage="optional"/>
+      <value style="element" name="linea1-vent-postal" field="linea1VentPostal" usage="optional"/>
+      <value style="element" name="linea1-oficina-vent" field="linea1OficinaVent" usage="optional"/>
+      <value style="element" name="condicional1" field="condicional1" usage="optional"/>
+      <value style="element" name="linea2-vent-postal" field="linea2VentPostal" usage="optional"/>
+      <value style="element" name="linea2-oficina-vent" field="linea2OficinaVent" usage="optional"/>
+      <value style="element" name="linea3-vent-postal" field="linea3VentPostal" usage="optional"/>
+      <value style="element" name="linea4-vent-postal" field="linea4VentPostal" usage="optional"/>
+      <value style="element" name="linea5-vent-postal" field="linea5VentPostal" usage="optional"/>
+    </structure>
+    <structure field="bgmcom" usage="optional" name="bgmcom">
+      <value style="element" name="concepto" field="concepto" usage="optional"/>
+      <value style="element" name="importe" field="importe" usage="optional"/>
+    </structure>
+    <structure field="bgm6014" usage="optional" name="bgm6014">
+      <value style="element" name="literal-divisa" field="literalDivisa" usage="optional"/>
+      <value style="element" name="fecha-poblacion" field="fechaPoblacion" usage="optional"/>
+      <value style="element" name="titular1" field="titular1" usage="optional"/>
+      <value style="element" name="titular2" field="titular2" usage="optional"/>
+      <value style="element" name="condicional1" field="condicional1" usage="optional"/>
+      <value style="element" name="condicional2" field="condicional2" usage="optional"/>
+      <value style="element" name="condicional3" field="condicional3" usage="optional"/>
+      <value style="element" name="condicional4" field="condicional4" usage="optional"/>
+      <value style="element" name="concepto-operacion" field="conceptoOperacion" usage="optional"/>
+      <value style="element" name="importe-operacion" field="importeOperacion" usage="optional"/>
+      <value style="element" name="descripcion-divisa" field="descripcionDivisa" usage="optional"/>
+      <value style="element" name="comision" field="comision" usage="optional"/>
+      <value style="element" name="importe-comision" field="importeComision" usage="optional"/>
+      <value style="element" name="importe-adeudado" field="importeAdeudado" usage="optional"/>
+      <value style="element" name="literal-de-pts" field="literalDePts" usage="optional"/>
+      <value style="element" name="fecha-valor" field="fechaValor" usage="optional"/>
+      <value style="element" name="codigo-estadistico" field="codigoEstadistico" usage="optional"/>
+      <value style="element" name="numero-de-cheque" field="numeroDeCheque" usage="optional"/>
+      <value style="element" name="numero-de-cuenta" field="numeroDeCuenta" usage="optional"/>
+      <value style="element" name="salto-linea" field="saltoLinea" usage="optional"/>
+      <value style="element" name="salto-linea-titular2" field="saltoLineaTitular2" usage="optional"/>
+      <value style="element" name="salto-linea-titular3" field="saltoLineaTitular3" usage="optional"/>
+      <value style="element" name="salto-linea-cod-est" field="saltoLineaCodEst" usage="optional"/>
+    </structure>
+  </mapping> 
+  <mapping class="com.bdv.infi.webservices.beans.BV61" name="b-v61">
+    <value style="element" name="codigo-cta-cliente" field="codigoCtaCliente" usage="optional"/>
+    <value style="element" name="importe" field="importe" usage="optional"/>
+    <value style="element" name="importe-planilla" field="importePlanilla" usage="optional"/>
+    <value style="element" name="importe-en-cheq-bv" field="importeEnCheqBV" usage="optional"/>
+    <value style="element" name="importe-en-cheq-ob" field="importeEnCheqOB" usage="optional"/>
+    <value style="element" name="numero-planilla" field="numeroPlanilla" usage="optional"/>
+    <value style="element" name="codigo-operacion" field="codigoOperacion" usage="optional"/>
+    <value style="element" name="fecha-valor" field="fechaValor" usage="optional"/>
+    <value style="element" name="carta" field="carta" usage="optional"/>
+    <value style="element" name="autorizar" field="autorizar" usage="optional"/>
+    <value style="element" name="guardar-anotado" field="guardarAnotado" usage="optional"/>
+    <value style="element" name="fecha-hora-oper-off" field="fechaHoraOperOff" usage="optional"/>
+    <value style="element" name="divisa-de-abono" field="divisaDeAbono" usage="optional"/>
+    <value style="element" name="dias-de-retencion" field="diasDeRetencion" usage="optional"/>
+    <value style="element" name="porcentaje-retencion" field="porcentajeRetencion" usage="optional"/>
+    <value style="element" name="afecta-liquidacion" field="afectaLiquidacion" usage="optional"/>
+    <value style="element" name="serial-cmc7" field="serialCmc7" usage="optional"/>
+    <value style="element" name="observaciones" field="observaciones" usage="optional"/>
+    <value style="element" name="numero-de-libreta" field="numeroDeLibreta" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi.webservices.beans.BV61Respuesta" name="b-v61-respuesta">
+    <structure field="bvm601" usage="optional" name="bvm601">
+      <value style="element" name="codigo-cta-cliente" field="codigoCtaCliente" usage="optional"/>
+      <value style="element" name="importe" field="importe" usage="optional"/>
+      <value style="element" name="importe-planilla" field="importePlanilla" usage="optional"/>
+      <value style="element" name="importe-en-cheq-bv" field="importeEnCheqBV" usage="optional"/>
+      <value style="element" name="importe-en-cheq-ob" field="importeEnCheqOB" usage="optional"/>
+      <value style="element" name="numero-planilla" field="numeroPlanilla" usage="optional"/>
+      <value style="element" name="codigo-operacion" field="codigoOperacion" usage="optional"/>
+      <value style="element" name="fecha-valor" field="fechaValor" usage="optional"/>
+      <value style="element" name="carta" field="carta" usage="optional"/>
+      <value style="element" name="autorizar" field="autorizar" usage="optional"/>
+      <value style="element" name="guardar-anotado" field="guardarAnotado" usage="optional"/>
+      <value style="element" name="fecha-hora-oper-off" field="fechaHoraOperOff" usage="optional"/>
+      <value style="element" name="divisa-de-abono" field="divisaDeAbono" usage="optional"/>
+      <value style="element" name="dias-de-retencion" field="diasDeRetencion" usage="optional"/>
+      <value style="element" name="porcentaje-retencion" field="porcentajeRetencion" usage="optional"/>
+      <value style="element" name="afecta-liquidacion" field="afectaLiquidacion" usage="optional"/>
+      <value style="element" name="serial-cmc7" field="serialCmc7" usage="optional"/>
+      <value style="element" name="observaciones" field="observaciones" usage="optional"/>
+      <value style="element" name="numero-de-libreta" field="numeroDeLibreta" usage="optional"/>
+    </structure>
+    <structure field="bgmcab" usage="optional" name="bgmcab">
+      <value style="element" name="ccc" field="ccc" usage="optional"/>
+      <value style="element" name="codigo-divisa" field="codigoDivisa" usage="optional"/>
+      <value style="element" name="descripcion-divisa" field="descripcionDivisa" usage="optional"/>
+      <value style="element" name="importe" field="importe" usage="optional"/>
+      <value style="element" name="codigo-de-operacion" field="codigoDeOperacion" usage="optional"/>
+      <value style="element" name="descripcion-codigo" field="descripcionCodigo" usage="optional"/>
+      <value style="element" name="cod-apl-nio" field="codAplNio" usage="optional"/>
+      <value style="element" name="terminal-nio" field="terminalNio" usage="optional"/>
+      <value style="element" name="fecha-nio" field="fechaNio" usage="optional"/>
+      <value style="element" name="hora-nio" field="horaNio" usage="optional"/>
+      <value style="element" name="cheque" field="cheque" usage="optional"/>
+      <value style="element" name="fecha-operacion" field="fechaOperacion" usage="optional"/>
+      <value style="element" name="fecha-valor" field="fechaValor" usage="optional"/>
+      <value style="element" name="fecha-contable" field="fechaContable" usage="optional"/>
+      <value style="element" name="codigo-comision" field="codigoComision" usage="optional"/>
+      <value style="element" name="importe-comision" field="importeComision" usage="optional"/>
+      <value style="element" name="porcentaje-de-comisi" field="porcentajeDeComisi" usage="optional"/>
+      <value style="element" name="codigo-impuesto" field="codigoImpuesto" usage="optional"/>
+      <value style="element" name="importe-del-impuesto" field="importeDelImpuesto" usage="optional"/>
+      <value style="element" name="centro-operacion" field="centroOperacion" usage="optional"/>
+      <value style="element" name="desc-centro-ope" field="descCentroOpe" usage="optional"/>
+      <value style="element" name="terminal-operacion" field="terminalOperacion" usage="optional"/>
+      <value style="element" name="codigo-trans-oper" field="codigoTransOper" usage="optional"/>
+      <value style="element" name="numero-de-movimiento" field="numeroDeMovimiento" usage="optional"/>
+      <value style="element" name="hora-de-operacion" field="horaDeOperacion" usage="optional"/>
+      <value style="element" name="serial" field="serial" usage="optional"/>
+      <value style="element" name="nombre-titular" field="nombreTitular" usage="optional"/>
+      <value style="element" name="apellido1-titular" field="apellido1Titular" usage="optional"/>
+      <value style="element" name="apellido2-titular" field="apellido2Titular" usage="optional"/>
+      <value style="element" name="cedula" field="cedula" usage="optional"/>
+    </structure>
+  </mapping>
+  <mapping class="com.bdv.infi.webservices.beans.B706" name="b706">
+    <value style="element" name="codigo-cta-cliente" field="codigoCtaCliente" usage="optional"/>
+    <value style="element" name="importe-retencion" field="importeRetencion" usage="optional"/>
+    <value style="element" name="codigo-operacion" field="codigoOperacion" usage="optional"/>
+    <value style="element" name="observaciones" field="observaciones" usage="optional"/>
+    <value style="element" name="dias-de-retencion" field="diasDeRetencion" usage="optional"/>
+    <value style="element" name="afecta-liquidacion" field="afectaLiquidacion" usage="optional"/>
+    <value style="element" name="fecha-vencimiento" field="fechaVencimiento" usage="optional"/>
+    <value style="element" name="fecha-vto-bco" field="fechaVtoBco" usage="optional"/>
+    <value style="element" name="divisa" field="divisa" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi.webservices.beans.BGM7061" name="bg-m7061">
+    <value style="element" name="codigo-cuenta-client" field="codigoCuentaClient" usage="optional"/>
+    <value style="element" name="codigo-divisa" field="codigoDivisa" usage="optional"/>
+    <value style="element" name="desc-divisa" field="descDivisa" usage="optional"/>
+    <value style="element" name="importe" field="importe" usage="optional"/>
+    <value style="element" name="numero-retencion" field="numeroRetencion" usage="optional"/>
+    <value style="element" name="fecha-vencimiento" field="fechaVencimiento" usage="optional"/>
+    <value style="element" name="afecta-liquidacion" field="afectaLiquidacion" usage="optional"/>
+    <value style="element" name="codigo-operacion" field="codigoOperacion" usage="optional"/>
+    <value style="element" name="numero-de-cheque" field="numeroDeCheque" usage="optional"/>
+    <value style="element" name="fecha-de-operacion" field="fechaDeOperacion" usage="optional"/>
+    <value style="element" name="centro-de-operacion" field="centroDeOperacion" usage="optional"/>
+    <value style="element" name="desc-centro-operacio" field="descCentroOperacio" usage="optional"/>
+    <value style="element" name="terminal" field="terminal" usage="optional"/>
+    <value style="element" name="codigo-transaccion" field="codigoTransaccion" usage="optional"/>
+    <value style="element" name="hora-de-la-operacion" field="horaDeLaOperacion" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi.webservices.beans.B756" name="b756">
+    <value style="element" name="codigo-cta-cliente" field="codigoCtaCliente" usage="optional"/>
+    <value style="element" name="divisa" field="divisa" usage="optional"/>
+    <value style="element" name="numero-de-retencion" field="numeroDeRetencion" usage="optional"/>
+    <value style="element" name="fecha-vencimiento" field="fechaVencimiento" usage="optional"/>
+    <value style="element" name="importe" field="importe" usage="optional"/>
+    <value style="element" name="quitar-en-parte" field="quitarEnParte" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi.webservices.beans.B756Respuesta" name="b756-respuesta">
+    <structure field="bgm756" usage="optional" name="bgm756">
+      <value style="element" name="codigo-cta-cliente" field="codigoCtaCliente" usage="optional"/>
+      <value style="element" name="divisa" field="divisa" usage="optional"/>
+      <value style="element" name="numero-de-retencion" field="numeroDeRetencion" usage="optional"/>
+      <value style="element" name="fecha-vencimiento" field="fechaVencimiento" usage="optional"/>
+      <value style="element" name="importe" field="importe" usage="optional"/>
+      <value style="element" name="quitar-en-parte" field="quitarEnParte" usage="optional"/>
+    </structure>
+    <structure field="bgm7061" usage="optional"/>
+  </mapping> 
+  <mapping class="com.bdv.infi.webservices.beans.consult.ConsultaPorCI" name="consulta-por-ci">
+    <structure field="credenciales" usage="optional"/>
+    <value style="element" name="ci" field="ci" usage="optional"/>
+    <value style="element" name="entidad" field="entidad" usage="optional"/>
+    <value style="element" name="numero-persona" field="numeroPersona" usage="optional"/>
+    <value style="element" name="secuencia-documento" field="secuenciaDocumento" usage="optional"/>
+    <value style="element" name="indicador-grupo" field="indicadorGrupo" usage="optional"/>
+    <value style="element" name="nombre-fantasia" field="nombreFantasia" usage="optional"/>
+    <value style="element" name="primer-apellido" field="primerApellido" usage="optional"/>
+    <value style="element" name="segundo-apellido" field="segundoApellido" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi.webservices.beans.consult.ConsultaSaldoCuentaAEA" name="consulta-saldo-cuenta-aea">
+    <structure field="credenciales" usage="optional"/>
+    <value style="element" name="numero-cuenta" field="numeroCuenta" usage="optional"/>
+    <value style="element" name="divisa" field="divisa" usage="optional"/>
+    <value name="comision" field="comision"/>
+  </mapping> 
+  <mapping class="com.bdv.infi.webservices.beans.Cliente" name="cliente">
+    <value style="element" name="ci" field="ci" usage="optional"/>
+    <value style="element" name="nombre-completo" field="nombreCompleto" usage="optional"/>
+    <value style="element" name="codigo-sucursal" field="codigoSucursal" usage="optional"/>
+    <value style="element" name="nombre-sucursal" field="nombreSucursal" usage="optional"/>
+    <value style="element" name="es-empleado" field="esEmpleado" usage="optional"/>
+    <value style="element" name="direccion" field="direccion" usage="optional"/>
+    <value style="element" name="telefono" field="telefono" usage="optional"/>
+    <value style="element" name="correo-electronico" field="correoElectronico" usage="optional"/>
+    <value style="element" name="genero" field="genero" usage="optional"/>
+    <value style="element" name="edad" field="edad" usage="optional"/>    
+    <value style="element" name="tipo" field="tipo" usage="optional"/>
+    <value style="element" name="clase" field="clase" usage="optional"/>
+    <value style="element" name="indicador-grupo" field="indicadorGrupo" usage="optional"/>
+    <value style="element" name="tipo-documento" field="tipoDocumento" usage="optional"/>
+    <value style="element" name="numero-persona" field="numeroPersona" usage="optional"/>
+    <value style="element" name="marca-uai" field="marcaUAI" usage="optional"/>    
+    <value style="element" name="marca-feve" field="marcaFEVE" usage="optional"/>    
+    <structure field="credenciales" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi.webservices.beans.CredencialesDeUsuario" name="credenciales-de-usuario">
+    <value style="element" name="nombre-de-usuario" field="nombreDeUsuario" usage="optional"/>
+    <value style="element" name="clave-secreta" field="claveSecreta" usage="optional"/>
+  </mapping>
+  <mapping name='cuenta' class='com.bdv.infi.webservices.beans.Cuenta' ordered='false'>
+    <value name='activo' usage='optional' field='activo' style='element'/>
+    <value name='fecha-de-inicio' usage='optional' field='fechaDeInicio'/>
+    <value name='numero' usage='optional' field='numero' style='element'/>
+    <value name='tipo-de-cuenta' usage='optional' field='tipoDeCuenta' style='element'/>
+    <value name='fecha-de-saldo' usage='optional' field='fechaDeSaldo'/>
+    <value name='es-saldo-en-linea' usage='optional' field='esSaldoEnLinea'/>
+    <value name='saldo-total' usage='optional' field='saldoTotal'/>
+    <value name='saldo-disponible' usage='optional' field='saldoDisponible'/>
+    <value name='saldo-bloqueado' usage='optional' field='saldoBloqueado'/>
+    <value name='saldo-diferido' usage='optional' field='saldoDiferido'/>
+    <value name='limite-de-credito' usage='optional' field='limiteDeCredito'/>
+    <value name='fecha-de-saldo-promedio' usage='optional' field='fechaDeSaldoPromedio'/>
+    <value name='saldo-promedio' usage='optional' field='saldoPromedio'/>
+    <value name='total-idb' usage='optional' field='totalIdb'/>
+    <value name='cantidad-registros-idb' usage='optional' field='cantidadRegistrosIdb'/>
+    <collection usage='optional' field='movimientos'/>
+    <value name='error' usage='optional' field='error' style='element'/>
+  </mapping>
+
+<!--  
+  <mapping class="com.bdv.infi.webservices.beans.Cuenta" name="cuenta">
+    <value name="fecha-de-inicio" field="fechaDeInicio" usage="optional"/>
+    <value style="element" name="numero" field="numero" usage="optional"/>
+    <value style="element" name="tipo-de-cuenta" field="tipoDeCuenta" usage="optional"/>
+    <value name="fecha-de-saldo" field="fechaDeSaldo" usage="optional"/>
+    <value name="es-saldo-en-linea" field="esSaldoEnLinea"/>
+    <value name="saldo-total" field="saldoTotal" usage="optional"/>
+    <value name="saldo-disponible" field="saldoDisponible" usage="optional"/>
+    <value name="saldo-bloqueado" field="saldoBloqueado" usage="optional"/>
+    <value name="saldo-diferido" field="saldoDiferido" usage="optional"/>
+    <value name="limite-de-credito" field="limiteDeCredito" usage="optional"/>
+    <value name="fecha-de-saldo-promedio" field="fechaDeSaldoPromedio" usage="optional"/>
+    <value name="saldo-promedio" field="saldoPromedio" usage="optional"/>
+    <value name="total-idb" field="totalIdb" usage="optional"/>
+    <value name="cantidad-registros-idb" field="cantidadRegistrosIdb" usage="optional"/>
+    <value style="element" name="activo" field="activo"/>
+  </mapping>
+  -->
+  <mapping name='tarjeta-de-credito' class='com.bdv.infi.webservices.beans.TarjetaDeCredito' ordered='false'>
+    <value name='activo' usage='optional' field='activo' style='element'/>
+    <value name='fecha-de-inicio' usage='optional' field='fechaDeInicio'/>
+    <value name='numero' usage='optional' field='numero' style='element'/>
+    <value name='fecha-de-consulta' usage='optional' field='fechaDeConsulta'/>
+    <value name='es-saldo-en-linea' usage='optional' field='esSaldoEnLinea'/>
+    <value name='tipo-de-tarjeta' usage='optional' field='tipoDeTarjeta' style='element'/>
+    <value name='saldo-disponible' usage='optional' field='saldoDisponible'/>
+    <value name='pago-minimo' usage='optional' field='pagoMinimo'/>
+    <value name='limite-de-credito' usage='optional' field='limiteDeCredito'/>
+    <value name='credito-disponible' usage='optional' field='creditoDisponible'/>
+    <value name='fecha-de-corte' usage='optional' field='fechaDeCorte'/>
+    <value name='plazo-de-credito' usage='optional' field='plazoDeCredito' style='element'/>
+    <value name='pago-de-contado' usage='optional' field='pagoDeContado'/>
+    <value name='fecha-de-proximo-corte' usage='optional' field='fechaDeProximoCorte'/>
+    <value name='fecha-estado-de-cuenta' usage='optional' field='fechaEstadoDeCuenta'/>
+    <value name='fecha-limite-de-pago' usage='optional' field='fechaLimiteDePago'/>
+    <value name='totales-cargos' usage='optional' field='totalesCargos'/>
+    <value name='totales-creditos' usage='optional' field='totalesCreditos'/>
+    <value name='intereses-y-comisiones' usage='optional' field='interesesYComisiones'/>
+    <value name='saldo-actual' usage='optional' field='saldoActual'/>
+    <value name='centro-de-alta' usage='optional' field='centroDeAlta' style='element'/>
+    <value name='numero-de-contrato' usage='optional' field='numeroDeContrato' style='element'/>
+    <collection usage='optional' field='movimientos'/>
+    <structure usage='optional' field='credenciales'/>
+  </mapping>
+  
+  <mapping name='movimiento-tarjeta-de-credito' class='com.bdv.infi.webservices.beans.MovimientoTarjetaDeCredito' ordered='false'>
+    <value name='fecha' usage='optional' field='fecha'/>
+    <value name='referencia' usage='optional' field='referencia' style='element'/>
+    <value name='descripcion' usage='optional' field='descripcion' style='element'/>
+    <value name='monto-en-dolares' usage='optional' field='montoEnDolares'/>
+    <value name='monto-en-bolivares' usage='optional' field='montoEnBolivares'/>
+  </mapping>
+  
+  <mapping name='movimiento-cuenta' class='com.bdv.infi.webservices.beans.MovimientoCuenta' ordered='false'>
+    <value name='fecha' usage='optional' field='fecha'/>
+    <value name='referencia' usage='optional' field='referencia' style='element'/>
+    <value name='descripcion' usage='optional' field='descripcion' style='element'/>
+    <value name='debito' usage='optional' field='debito'/>
+    <value name='credito' usage='optional' field='credito'/>
+    <value name='saldo-total' usage='optional' field='saldoTotal'/>
+    <value name='tipo-movimiento' usage='optional' field='tipoMovimiento' style='element'/>
+  </mapping>
+  
+  <mapping name='lista-de-tarjetas-de-credito' class='com.bdv.infi.webservices.beans.ListaDeTarjetasDeCredito' ordered='false'>
+    <collection usage='optional' field='tarjetas'/>
+  </mapping>
+  
+  <mapping name='lista-de-productos' class='com.bdv.infi.webservices.beans.ListaDeProductos' ordered='false'>
+    <structure usage='optional' field='listaDeCuentas'/>
+    <structure usage='optional' field='listaDeTarjetasDeCredito'/>
+    <structure usage='optional' field='listaDeCreditos'/>
+  </mapping>
+
+  <mapping name='lista-de-creditos' class='com.bdv.infi.webservices.beans.ListaDeCreditos' ordered='false'>
+    <collection usage='optional' field='creditos'/>
+  </mapping>  
+
+  <mapping class="com.bdv.infi.webservices.beans.ListaDeCuentas" name="lista-de-cuentas">
+    <collection field="cuentas" usage="optional"/>
+  </mapping>
+  
+  <mapping class="com.bdv.infi.webservices.beans.consult.ConsultaListaProductos" name="consulta-lista-productos">
+    <structure field="cliente" usage="optional"/>
+  </mapping>
+  
+  
+  <mapping name='credito' class='com.bdv.infi.webservices.beans.Credito' ordered='false'>
+    <value name='activo' usage='optional' field='activo' style='element'/>
+    <value name='fecha-de-inicio' usage='optional' field='fechaDeInicio'/>
+    <value name='fecha' usage='optional' field='fecha'/>
+    <value name='numero' usage='optional' field='numero' style='element'/>
+    <value name='fecha-de-consulta' usage='optional' field='fechaDeConsulta'/>
+    <value name='es-saldo-en-linea' usage='optional' field='esSaldoEnLinea'/>
+    <value name='tipo-de-credito' usage='optional' field='tipoDeCredito' style='element'/>
+    <value name='saldo-deudor' usage='optional' field='saldoDeudor'/>
+    <value name='fecha-resumen-deuda' usage='optional' field='fechaResumenDeuda'/>
+    <value name='pendiente-por-facturar' usage='optional' field='pendientePorFacturar'/>
+    <value name='pendiente-por-pago' usage='optional' field='pendientePorPago'/>
+    <value name='otros-gastos' usage='optional' field='otrosGastos'/>
+    <value name='deuda-total' usage='optional' field='deudaTotal'/>
+    <value name='comision-cancel' usage='optional' field='comisionCancel'/>
+    <value name='cancel-total' usage='optional' field='cancelTotal'/>
+    <value name='cancel-cuota' usage='optional' field='cancelCuota'/>
+    <value name='fecha-estado-de-cuenta' usage='optional' field='fechaEstadoDeCuenta'/>
+    <value name='plazo-actual' usage='optional' field='plazoActual' style='element'/>
+    <value name='ultimo-pago-a-capital' usage='optional' field='ultimoPagoACapital'/>
+    <value name='capital-aprobado' usage='optional' field='capitalAprobado'/>
+    <value name='saldo-deudor-capital' usage='optional' field='saldoDeudorCapital'/>
+    <value name='fecha-de-liquidacion' usage='optional' field='fechaDeLiquidacion'/>
+    <value name='fecha-de-vencimiento' usage='optional' field='fechaDeVencimiento'/>
+    <value name='tasa-de-interes' usage='optional' field='tasaDeInteres'/>
+    <value name='estatus' usage='optional' field='estatus' style='element'/>
+    <value name='capital-pendiete-por-facturar' usage='optional' field='capitalPendietePorFacturar'/>
+    <value name='interes-ordinario-pendiente-por-facturar' usage='optional' field='interesOrdinarioPendientePorFacturar'/>
+    <value name='seguro-pendiente-por-facturar' usage='optional' field='seguroPendientePorFacturar'/>
+    <value name='gastos-pendientes-por-facturar' usage='optional' field='gastosPendientesPorFacturar'/>
+    <value name='comisiones-pendientes-por-facturar' usage='optional' field='comisionesPendientesPorFacturar'/>
+    <value name='impuestos-pendientes-por-facturar' usage='optional' field='impuestosPendientesPorFacturar'/>
+    <value name='capital-pendiente-de-pago' usage='optional' field='capitalPendienteDePago'/>
+    <value name='interes-ordinario-pendiente-de-pago' usage='optional' field='interesOrdinarioPendienteDePago'/>
+    <value name='seguro-pendiente-de-pago' usage='optional' field='seguroPendienteDePago'/>
+    <value name='gastos-pendiente-de-pago' usage='optional' field='gastosPendienteDePago'/>
+    <value name='comisiones-pendiente-de-pago' usage='optional' field='comisionesPendienteDePago'/>
+    <value name='impuestos-pendiente-de-pago' usage='optional' field='impuestosPendienteDePago'/>
+    <value name='comi-cob-exter-pendiente-de-pago' usage='optional' field='comiCobExterPendienteDePago'/>
+    <value name='mora-pendiente-de-pago' usage='optional' field='moraPendienteDePago'/>
+    <value name='intereses-transcurridos-pendiente-de-pago' usage='optional' field='interesesTranscurridosPendienteDePago'/>
+    <value name='fecha-pendiente-por-vencer' usage='optional' field='fechaPendientePorVencer'/>
+    <value name='capital-pendiente-por-vencer' usage='optional' field='capitalPendientePorVencer'/>
+    <value name='interes-ordinario-pendiente-por-vencer' usage='optional' field='interesOrdinarioPendientePorVencer'/>
+    <value name='seguro-pendiente-por-vencer' usage='optional' field='seguroPendientePorVencer'/>
+    <value name='cuota-detalle-deuda' usage='optional' field='cuotaDetalleDeuda' style='element'/>
+    <value name='mora-pendiente-detalle-deuda' usage='optional' field='moraPendienteDetalleDeuda'/>
+    <collection usage='optional' field='tablaDeAmortizacion'/>
+    <value name='error' usage='optional' field='error' style='element'/>
+    <structure usage='optional' field='credenciales'/>
+  </mapping>  
+  
+  <mapping name='p-e55' class='com.bdv.infi.webservices.beans.PE55' ordered='false'>
+    <value name='numero-de-cliente' usage='optional' field='numeroDeCliente' style='element'/>
+    <value name='tipo-de-ducumento' usage='optional' field='tipoDeDucumento' style='element'/>
+    <value name='numero-de-documento' usage='optional' field='numeroDeDocumento' style='element'/>
+    <value name='secuen-identifdoc' usage='optional' field='secuenIdentifdoc' style='element'/>
+    <value name='nombre-de-fantasia' usage='optional' field='nombreDeFantasia' style='element'/>
+    <value name='primer-apellido' usage='optional' field='primerApellido' style='element'/>
+    <value name='segundo-apellido' usage='optional' field='segundoApellido' style='element'/>
+    <value name='nombre-razon-social' usage='optional' field='nombreRazonSocial' style='element'/>
+    <value name='fecha-nacimi-constit' usage='optional' field='fechaNacimiConstit' style='element'/>
+    <value name='tipo-de-empresa' usage='optional' field='tipoDeEmpresa' style='element'/>
+    <value name='estado-persona' usage='optional' field='estadoPersona' style='element'/>
+    <value name='condicion' usage='optional' field='condicion' style='element'/>
+    <value name='nivel-de-acceso' usage='optional' field='nivelDeAcceso' style='element'/>
+    <value name='ind-relac-entre-pers' usage='optional' field='indRelacEntrePers' style='element'/>
+    <value name='ind-de-tener-contrat' usage='optional' field='indDeTenerContrat' style='element'/>
+    <value name='ind-de-pertene-grupo' usage='optional' field='indDePerteneGrupo' style='element'/>
+    <value name='indicador-de-aviso' usage='optional' field='indicadorDeAviso' style='element'/>
+    <value name='ind-uso1' usage='optional' field='indUso1' style='element'/>
+    <value name='ind-uso2' usage='optional' field='indUso2' style='element'/>
+    <value name='ind-uso3' usage='optional' field='indUso3' style='element'/>
+    <value name='ind-uso4' usage='optional' field='indUso4' style='element'/>
+    <value name='ind-uso5' usage='optional' field='indUso5' style='element'/>
+    <value name='tipo-de-via' usage='optional' field='tipoDeVia' style='element'/>
+    <value name='calle' usage='optional' field='calle' style='element'/>
+    <value name='obser-domicilio1' usage='optional' field='obserDomicilio1' style='element'/>
+    <value name='obser-domicilio2' usage='optional' field='obserDomicilio2' style='element'/>
+    <value name='bloq-num-casilla-apt' usage='optional' field='bloqNumCasillaApt' style='element'/>
+    <value name='localidad' usage='optional' field='localidad' style='element'/>
+    <value name='comuna' usage='optional' field='comuna' style='element'/>
+    <value name='codigo-postal' usage='optional' field='codigoPostal' style='element'/>
+    <value name='ruta-cartero' usage='optional' field='rutaCartero' style='element'/>
+    <value name='dodigo-provincia' usage='optional' field='dodigoProvincia' style='element'/>
+    <value name='codigo-pais' usage='optional' field='codigoPais' style='element'/>
+    <value name='arca-normalizacion' usage='optional' field='arcaNormalizacion' style='element'/>
+    <value name='cotiza-en-bolsa' usage='optional' field='cotizaEnBolsa' style='element'/>
+    <value name='tip-entid-comer-no-c' usage='optional' field='tipEntidComerNoC' style='element'/>
+    <value name='cantidad-de-personas' usage='optional' field='cantidadDePersonas' style='element'/>
+    <value name='tip-relac-clien-banc' usage='optional' field='tipRelacClienBanc' style='element'/>
+    <value name='fecha-de-disolucion' usage='optional' field='fechaDeDisolucion' style='element'/>
+    <value name='fecha-inicio-socieda' usage='optional' field='fechaInicioSocieda' style='element'/>
+    <value name='art-correspon-empre' usage='optional' field='artCorresponEmpre' style='element'/>
+    <value name='plazo-duracuin-socie' usage='optional' field='plazoDuracuinSocie' style='element'/>
+    <value name='firma-de-solicitud' usage='optional' field='firmaDeSolicitud' style='element'/>
+    <value name='fecha-cambio-direcci' usage='optional' field='fechaCambioDirecci' style='element'/>
+    <value name='fecha-vencim-directo' usage='optional' field='fechaVencimDirecto' style='element'/>
+    <value name='fecha-inscripcion' usage='optional' field='fechaInscripcion' style='element'/>
+    <value name='nombre-notario' usage='optional' field='nombreNotario' style='element'/>
+    <value name='numero-registro-insc' usage='optional' field='numeroRegistroInsc' style='element'/>
+    <value name='tomo-inscrip-registr' usage='optional' field='tomoInscripRegistr' style='element'/>
+    <value name='folio-inscrip-regist' usage='optional' field='folioInscripRegist' style='element'/>
+    <value name='jurisdic-inscr-regis' usage='optional' field='jurisdicInscrRegis' style='element'/>
+    <value name='propiedad-nacio-mult' usage='optional' field='propiedadNacioMult' style='element'/>
+    <value name='ramo-de-la-empresa' usage='optional' field='ramoDeLaEmpresa' style='element'/>
+    <value name='ult-modif-reg-cam-co' usage='optional' field='ultModifRegCamCo' style='element'/>
+    <value name='facturacion-anual' usage='optional' field='facturacionAnual' style='element'/>
+    <value name='patrimonio-neto' usage='optional' field='patrimonioNeto' style='element'/>
+    <value name='codigo-de-moneda' usage='optional' field='codigoDeMoneda' style='element'/>
+    <value name='timestamp' usage='optional' field='timestamp' style='element'/>
+    <value name='objeto-social1' usage='optional' field='objetoSocial1' style='element'/>
+    <value name='objeto-social2' usage='optional' field='objetoSocial2' style='element'/>
+  </mapping>
+  <mapping name='p-e55-respuesta' class='com.bdv.infi.webservices.beans.PE55Respuesta' ordered='false'>
+    <collection usage='optional' item-type='com.bdv.infi.webservices.beans.PEM287' field='pem287'/>
+  </mapping>  
+  <mapping name='pe-m287' class='com.bdv.infi.webservices.beans.PEM287' ordered='false'>
+    <value name='numero-de-cliente' usage='optional' field='numeroDeCliente' style='element'/>
+    <value name='tipo-de-ducumento' usage='optional' field='tipoDeDucumento' style='element'/>
+    <value name='numero-de-documento' usage='optional' field='numeroDeDocumento' style='element'/>
+    <value name='secuen-identifdoc' usage='optional' field='secuenIdentifdoc' style='element'/>
+    <value name='nombre-de-fantasia' usage='optional' field='nombreDeFantasia' style='element'/>
+    <value name='primer-apellido' usage='optional' field='primerApellido' style='element'/>
+    <value name='segundo-apellido' usage='optional' field='segundoApellido' style='element'/>
+    <value name='nombre-razon-social' usage='optional' field='nombreRazonSocial' style='element'/>
+    <value name='fecha-nacimi-constit' usage='optional' field='fechaNacimiConstit' style='element'/>
+    <value name='tipo-de-empresa' usage='optional' field='tipoDeEmpresa' style='element'/>
+    <value name='estado-persona' usage='optional' field='estadoPersona' style='element'/>
+    <value name='condicion' usage='optional' field='condicion' style='element'/>
+    <value name='nivel-de-acceso' usage='optional' field='nivelDeAcceso' style='element'/>
+    <value name='ind-relac-entre-pers' usage='optional' field='indRelacEntrePers' style='element'/>
+    <value name='ind-de-tener-contrat' usage='optional' field='indDeTenerContrat' style='element'/>
+    <value name='ind-de-pertene-grupo' usage='optional' field='indDePerteneGrupo' style='element'/>
+    <value name='indicador-de-aviso' usage='optional' field='indicadorDeAviso' style='element'/>
+    <value name='ind-uso1' usage='optional' field='indUso1' style='element'/>
+    <value name='ind-uso2' usage='optional' field='indUso2' style='element'/>
+    <value name='ind-uso3' usage='optional' field='indUso3' style='element'/>
+    <value name='ind-uso4' usage='optional' field='indUso4' style='element'/>
+    <value name='ind-uso5' usage='optional' field='indUso5' style='element'/>
+    <value name='tipo-de-via' usage='optional' field='tipoDeVia' style='element'/>
+    <value name='calle' usage='optional' field='calle' style='element'/>
+    <value name='obser-domicilio1' usage='optional' field='obserDomicilio1' style='element'/>
+    <value name='obser-domicilio2' usage='optional' field='obserDomicilio2' style='element'/>
+    <value name='bloq-num-casilla-apt' usage='optional' field='bloqNumCasillaApt' style='element'/>
+    <value name='localidad' usage='optional' field='localidad' style='element'/>
+    <value name='comuna' usage='optional' field='comuna' style='element'/>
+    <value name='codigo-postal' usage='optional' field='codigoPostal' style='element'/>
+    <value name='ruta-cartero' usage='optional' field='rutaCartero' style='element'/>
+    <value name='dodigo-provincia' usage='optional' field='dodigoProvincia' style='element'/>
+    <value name='codigo-pais' usage='optional' field='codigoPais' style='element'/>
+    <value name='arca-normalizacion' usage='optional' field='arcaNormalizacion' style='element'/>
+    <value name='cotiza-en-bolsa' usage='optional' field='cotizaEnBolsa' style='element'/>
+    <value name='tip-entid-comer-no-c' usage='optional' field='tipEntidComerNoC' style='element'/>
+    <value name='cantidad-de-personas' usage='optional' field='cantidadDePersonas' style='element'/>
+    <value name='tip-relac-clien-banc' usage='optional' field='tipRelacClienBanc' style='element'/>
+    <value name='fecha-de-disolucion' usage='optional' field='fechaDeDisolucion' style='element'/>
+    <value name='fecha-inicio-socieda' usage='optional' field='fechaInicioSocieda' style='element'/>
+    <value name='art-correspon-empre' usage='optional' field='artCorresponEmpre' style='element'/>
+    <value name='plazo-duracuin-socie' usage='optional' field='plazoDuracuinSocie' style='element'/>
+    <value name='firma-de-solicitud' usage='optional' field='firmaDeSolicitud' style='element'/>
+    <value name='fecha-cambio-direcci' usage='optional' field='fechaCambioDirecci' style='element'/>
+    <value name='fecha-vencim-directo' usage='optional' field='fechaVencimDirecto' style='element'/>
+    <value name='fecha-inscripcion' usage='optional' field='fechaInscripcion' style='element'/>
+    <value name='nombre-notario' usage='optional' field='nombreNotario' style='element'/>
+    <value name='numero-registro-insc' usage='optional' field='numeroRegistroInsc' style='element'/>
+    <value name='tomo-inscrip-registr' usage='optional' field='tomoInscripRegistr' style='element'/>
+    <value name='folio-inscrip-regist' usage='optional' field='folioInscripRegist' style='element'/>
+    <value name='jurisdic-inscr-regis' usage='optional' field='jurisdicInscrRegis' style='element'/>
+    <value name='propiedad-nacio-mult' usage='optional' field='propiedadNacioMult' style='element'/>
+    <value name='ramo-de-la-empresa' usage='optional' field='ramoDeLaEmpresa' style='element'/>
+    <value name='ult-modif-reg-cam-co' usage='optional' field='ultModifRegCamCo' style='element'/>
+    <value name='facturacion-anual' usage='optional' field='facturacionAnual' style='element'/>
+    <value name='patrimonio-neto' usage='optional' field='patrimonioNeto' style='element'/>
+    <value name='codigo-de-moneda' usage='optional' field='codigoDeMoneda' style='element'/>
+    <value name='timestamp' usage='optional' field='timestamp' style='element'/>
+    <value name='objeto-social1' usage='optional' field='objetoSocial1' style='element'/>
+    <value name='objeto-social2' usage='optional' field='objetoSocial2' style='element'/>
+  </mapping>
+  
+  <mapping name='pe-v7' class='com.bdv.infi.webservices.beans.PEV7' ordered='false'>
+    <value name='codigo-entidad' usage='optional' field='codigoEntidad' style='element'/>
+    <value name='numero-persona' usage='optional' field='numeroPersona' style='element'/>
+    <value name='sucursal-admin' usage='optional' field='sucursalAdmin' style='element'/>
+    <value name='descripc-sucursal' usage='optional' field='descripcSucursal' style='element'/>
+    <value name='nombre-cliente' usage='optional' field='nombreCliente' style='element'/>
+    <value name='marca-futura' usage='optional' field='marcaFutura' style='element'/>
+    <value name='banca' usage='optional' field='banca' style='element'/>
+    <value name='descripc-banca' usage='optional' field='descripcBanca' style='element'/>
+    <value name='segmento' usage='optional' field='segmento' style='element'/>
+    <value name='descripcion-segmento' usage='optional' field='descripcionSegmento' style='element'/>
+    <value name='area-de-negocio' usage='optional' field='areaDeNegocio' style='element'/>
+    <value name='descrip-area-negocio' usage='optional' field='descripAreaNegocio' style='element'/>
+    <value name='condicion-cliente' usage='optional' field='condicionCliente' style='element'/>
+    <value name='codigo-sujeto' usage='optional' field='codigoSujeto' style='element'/>
+    <value name='descripcion-sujeto' usage='optional' field='descripcionSujeto' style='element'/>
+    <value name='marca-del-empleado' usage='optional' field='marcaDelEmpleado' style='element'/>
+    <value name='indi-firma-persona' usage='optional' field='indiFirmaPersona' style='element'/>
+    <value name='clase-de-secuencia' usage='optional' field='claseDeSecuencia' style='element'/>
+    <value name='descripcion-seg-clie' usage='optional' field='descripcionSegClie' style='element'/>
+    <value name='scoring-del-cliente' usage='optional' field='scoringDelCliente' style='element'/>
+    <value name='desc-scoring-cliente' usage='optional' field='descScoringCliente' style='element'/>
+    <value name='cod-negative-file' usage='optional' field='codNegativeFile' style='element'/>
+    <value name='valor-del-campo-ansr' usage='optional' field='valorDelCampoAnsr' style='element'/>
+    <value name='tipo-de-documento' usage='optional' field='tipoDeDocumento' style='element'/>
+    <value name='numero-documento' usage='optional' field='numeroDocumento' style='element'/>
+    <value name='secuencia-documento' usage='optional' field='secuenciaDocumento' style='element'/>
+    <value name='tipo-persona' usage='optional' field='tipoPersona' style='element'/>
+    <value name='puntos' usage='optional' field='puntos' style='element'/>
+  </mapping>    
+
+  <mapping name='pe-m1403' class='com.bdv.infi.webservices.beans.PEM1403' ordered='false'>
+    <value name='codigo-entidad' usage='optional' field='codigoEntidad' style='element'/>
+    <value name='numero-persona' usage='optional' field='numeroPersona' style='element'/>
+    <value name='sucursal-admin' usage='optional' field='sucursalAdmin' style='element'/>
+    <value name='descripc-sucursal' usage='optional' field='descripcSucursal' style='element'/>
+    <value name='nombre-cliente' usage='optional' field='nombreCliente' style='element'/>
+    <value name='marca-futura' usage='optional' field='marcaFutura' style='element'/>
+    <value name='banca' usage='optional' field='banca' style='element'/>
+    <value name='descripc-banca' usage='optional' field='descripcBanca' style='element'/>
+    <value name='segmento' usage='optional' field='segmento' style='element'/>
+    <value name='descripcion-segmento' usage='optional' field='descripcionSegmento' style='element'/>
+    <value name='area-de-negocio' usage='optional' field='areaDeNegocio' style='element'/>
+    <value name='descrip-area-negocio' usage='optional' field='descripAreaNegocio' style='element'/>
+    <value name='condicion-cliente' usage='optional' field='condicionCliente' style='element'/>
+    <value name='codigo-sujeto' usage='optional' field='codigoSujeto' style='element'/>
+    <value name='descripcion-sujeto' usage='optional' field='descripcionSujeto' style='element'/>
+    <value name='marca-del-empleado' usage='optional' field='marcaDelEmpleado' style='element'/>
+    <value name='indi-firma-persona' usage='optional' field='indiFirmaPersona' style='element'/>
+    <value name='clase-de-secuencia' usage='optional' field='claseDeSecuencia' style='element'/>
+    <value name='descripcion-seg-clie' usage='optional' field='descripcionSegClie' style='element'/>
+    <value name='scoring-del-cliente' usage='optional' field='scoringDelCliente' style='element'/>
+    <value name='desc-scoring-cliente' usage='optional' field='descScoringCliente' style='element'/>
+    <value name='cod-negative-file' usage='optional' field='codNegativeFile' style='element'/>
+    <value name='valor-del-campo-ansr' usage='optional' field='valorDelCampoAnsr' style='element'/>
+    <value name='tipo-de-documento' usage='optional' field='tipoDeDocumento' style='element'/>
+    <value name='numero-documento' usage='optional' field='numeroDocumento' style='element'/>
+    <value name='secuencia-documento' usage='optional' field='secuenciaDocumento' style='element'/>
+    <value name='tipo-persona' usage='optional' field='tipoPersona' style='element'/>
+    <value name='puntos' usage='optional' field='puntos' style='element'/>
+  </mapping>
+
+<!-- Lista de cuentas -->  
+  <mapping name='pe-v9' class='com.bdv.infi.webservices.beans.PEV9' ordered='false'>
+    <value name='numero-persona' usage='optional' field='numeroPersona' style='element'/>
+    <value name='indicador-rellamada' usage='optional' field='indicadorRellamada' style='element'/>
+    <value name='rut-llamada' usage='optional' field='rutLlamada' style='element'/>
+    <value name='penumper-rellamada' usage='optional' field='penumperRellamada' style='element'/>
+    <value name='num-contrat-rel' usage='optional' field='numContratRel' style='element'/>
+    <value name='pecodent-rell' usage='optional' field='pecodentRell' style='element'/>
+    <value name='codigo-of-rell' usage='optional' field='codigoOfRell' style='element'/>
+    <value name='calidad-par-rell' usage='optional' field='calidadParRell' style='element'/>
+    <value name='cod-prod-rell' usage='optional' field='codProdRell' style='element'/>
+    <value name='cod-subpro-rell' usage='optional' field='codSubproRell' style='element'/>
+  </mapping>
+  
+  <mapping name='pe-v9-respuesta' class='com.bdv.infi.webservices.beans.PEV9Respuesta' ordered='false'>
+    <collection usage='optional' item-type='com.bdv.infi.webservices.beans.PEM804A' field='pem804a'/>
+    <collection usage='optional' item-type='com.bdv.infi.webservices.beans.PEM8040' field='pem8040'/>
+  </mapping>
+  <mapping name='pe-m804-a' class='com.bdv.infi.webservices.beans.PEM804A' ordered='false'>
+    <value name='numper-persona' usage='optional' field='numperPersona' style='element'/>
+    <value name='numero-de-contrato' usage='optional' field='numeroDeContrato' style='element'/>
+    <value name='codigo-de-oficina' usage='optional' field='codigoDeOficina' style='element'/>
+    <value name='codigo-de-entidad' usage='optional' field='codigoDeEntidad' style='element'/>
+    <value name='calidad-participacio' usage='optional' field='calidadParticipacio' style='element'/>
+    <value name='orden-participacion' usage='optional' field='ordenParticipacion' style='element'/>
+    <value name='codigo-producto' usage='optional' field='codigoProducto' style='element'/>
+    <value name='codigo-sub-producto' usage='optional' field='codigoSubProducto' style='element'/>
+    <value name='fecha-baja' usage='optional' field='fechaBaja' style='element'/>
+    <value name='estado-relacion' usage='optional' field='estadoRelacion' style='element'/>
+    <value name='responsabilidad' usage='optional' field='Responsabilidad' style='element'/>
+    <value name='marca-verifica-paqte' usage='optional' field='marcaVerificaPaqte' style='element'/>
+    <value name='motivo-de-baja' usage='optional' field='motivoDeBaja' style='element'/>
+    <value name='fecha-alta' usage='optional' field='fechaAlta' style='element'/>
+    <value name='timestamp' usage='optional' field='timestamp' style='element'/>
+    <value name='descripcion-producto' usage='optional' field='descripcionProducto' style='element'/>
+    <value name='prod-relacion-linea' usage='optional' field='prodRelacionLinea' style='element'/>
+    <value name='subp-relacion-linea' usage='optional' field='subpRelacionLinea' style='element'/>
+  </mapping>
+  <mapping name='pe-m8040' class='com.bdv.infi.webservices.beans.PEM8040' ordered='false'>
+    <value name='numero-persona' usage='optional' field='numeroPersona' style='element'/>
+    <value name='indicador-rellamada' usage='optional' field='indicadorRellamada' style='element'/>
+    <value name='rut-llamada' usage='optional' field='rutLlamada' style='element'/>
+    <value name='penumper-rellamada' usage='optional' field='penumperRellamada' style='element'/>
+    <value name='num-contrat-rel' usage='optional' field='numContratRel' style='element'/>
+    <value name='pecodent-rell' usage='optional' field='pecodentRell' style='element'/>
+    <value name='codigo-of-rell' usage='optional' field='codigoOfRell' style='element'/>
+    <value name='calidad-par-rell' usage='optional' field='calidadParRell' style='element'/>
+    <value name='cod-prod-rell' usage='optional' field='codProdRell' style='element'/>
+    <value name='cod-subpro-rell' usage='optional' field='codSubproRell' style='element'/>
+  </mapping>    
+<!-- Lista de cuentas -->      
+
+<!-- Servicios Web de INFI -->
+
+  <mapping class="com.bdv.infi_services.beans.entidades.ParametrosPaginacion" name="parametros-paginacion">
+    <value style="element" name="indica-pagineo" field="indicaPagineo" usage="optional"/>
+    <value style="element" name="pagina-requerida" field="paginaRequerida" usage="optional"/>
+    <value style="element" name="registros-pagina" field="registrosPagina" usage="optional"/>
+    <value style="element" name="cant-paginas" field="cantPaginas" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.MensajesServicio" name="mensajes-servicio">
+    <collection field="valorAtributo" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.ValorAtributo" name="valor-atributo">
+    <value style="element" name="valor-att" field="valorAtt" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_peticion.ParametrosConsultaUI" name="parametros-consulta-ui">
+    <structure field="credenciales" usage="optional"/>
+    <structure field="parametrosPaginacion" usage="optional"/>
+    <value style="element" name="criterio-status" field="criterioStatus" usage="optional"/>
+    <value style="element" name="criterio-moneda" field="criterioMoneda" usage="optional"/>
+    <collection field="valorAtributo" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_peticion.ParametrosConsultaOrden" name="parametros-consulta-orden">
+    <structure field="credenciales" usage="optional"/>
+    <structure field="parametrosPaginacion" usage="optional"/>
+    <value style="element" name="id-orden" field="idOrden" usage="optional"/>
+    <value style="element" name="cedula-indentidad" field="cedulaIndentidad" usage="optional"/>
+    <value style="element" name="fecha-desde" field="fechaDesde" usage="optional"/>
+    <value style="element" name="fecha-hasta" field="fechaHasta" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_peticion.ParametrosConsultaOrdenTitulos" name="parametros-consulta-orden-titulos">
+    <structure field="credenciales" usage="optional"/>
+    <structure field="parametrosPaginacion" usage="optional"/>
+    <value style="element" name="id-orden" field="idOrden" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_peticion.ParametrosConsultaTitulosCustodia" name="parametros-consulta-titulos-custodia">
+    <structure field="credenciales" usage="optional"/>
+    <structure field="parametrosPaginacion" usage="optional"/>
+    <value style="element" name="cedula-identidad" field="cedulaIdentidad" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_peticion.ParametrosTomaDeOrden" name="parametros-toma-de-orden">
+    <structure field="credencialesDeUsuario" usage="optional"/>
+    <value style="element" name="id-unidad-inversion" field="idUnidadInversion" usage="optional"/>
+    <value style="element" name="id-blotter" field="idBlotter" usage="optional"/>
+    <value style="element" name="tipo-persona" field="tipoPersona" usage="optional"/>
+    <value style="element" name="cedula-cliente" field="cedulaCliente" usage="optional"/>
+    <value style="element" name="estado-civil-casado" field="estadoCivilCasado" usage="optional"/>
+    <value style="element" name="cedula-conyuge" field="cedulaConyuge" usage="optional"/>
+    <value style="element" name="monto-inversion" field="montoInversion" usage="optional"/>
+    <value style="element" name="cantidad-comprar" field="cantidadComprar" usage="optional"/>
+    <value style="element" name="precio-ofrecido" field="precioOfrecido" usage="optional"/>
+    <value style="element" name="numero-cuenta-cliente" field="numeroCuentaCliente" usage="optional"/>
+    <value style="element" name="porcentaje-financiado" field="porcentajeFinanciado" usage="optional"/>
+    <value style="element" name="generar-orden" field="generarOrden" usage="optional"/>
+    <structure field="camposDinamicos" usage="optional"/>
+    <structure field="listaTitulosRecompra" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_respuesta.UnidadInversion" name="unidad-inversion">
+    <value style="element" name="tipo-instrumento" field="tipoInstrumento" usage="optional"/>
+    <value style="element" name="id-unidad-inversion" field="idUnidadInversion" usage="optional"/>
+    <value style="element" name="bloter-id" field="bloterId" usage="optional"/>
+    <value style="element" name="fecha-desde-toma-orden" field="fechaDesdeTomaOrden" usage="optional"/>
+    <value style="element" name="fecha-hasta-toma-orden" field="fechaHastaTomaOrden" usage="optional"/>
+    <value style="element" name="hora-desde-toma-orden" field="horaDesdeTomaOrden" usage="optional"/>
+    <value style="element" name="hora-hasta-toma-orden" field="horaHastaTomaOrden" usage="optional"/>
+    <value style="element" name="hora-desde-ultimo-dia" field="horaDesdeUltimoDia" usage="optional"/>
+    <value style="element" name="hora-hasta-ultimo-dia" field="horaHastaUltimoDia" usage="optional"/>
+    <value style="element" name="nombre-unidad-inversion" field="nombreUnidadInversion" usage="optional"/>
+    <value style="element" name="descr-unidad-inversion" field="descrUnidadInversion" usage="optional"/>
+    <value style="element" name="descr-instrumento-financiero" field="descrInstrumentoFinanciero" usage="optional"/>
+    <value style="element" name="emision-unidad-inversion" field="emisionUnidadInversion" usage="optional"/>
+    <value style="element" name="serie-unidad-inversion" field="serieUnidadInversion" usage="optional"/>
+    <value style="element" name="tasa-cambio" field="tasaCambio" usage="optional"/>
+    <value style="element" name="multiplo-inversion" field="multiploInversion" usage="optional"/>
+    <value style="element" name="fecha-emision-ui" field="fechaEmisionUI" usage="optional"/>
+    <value style="element" name="indica-vta-empleados" field="indicaVtaEmpleados" usage="optional"/>
+    <value style="element" name="fecha-adjudicacion-ui" field="fechaAdjudicacionUI" usage="optional"/>
+    <value style="element" name="fecha-liquida-ui" field="fechaLiquidaUI" usage="optional"/>
+    <value style="element" name="indica-recompra" field="indicaRecompra" usage="optional"/>
+    <value style="element" name="descr-moneda" field="descrMoneda" usage="optional"/>
+    <value style="element" name="inventario-total" field="inventarioTotal" usage="optional"/>
+    <value style="element" name="inventario-monto-minimo" field="inventarioMontoMinimo" usage="optional"/>
+    <value style="element" name="inventario-monto-maximo" field="inventarioMontoMaximo" usage="optional"/>
+    <value style="element" name="inventario-disponible" field="inventarioDisponible" usage="optional"/>
+    <value style="element" name="id-status" field="idStatus" usage="optional"/>
+    <value style="element" name="descr-status" field="descrStatus" usage="optional"/>
+    <structure field="titulosAsociados" usage="optional"/>
+    <structure field="tipoPersonasValidas" usage="optional"/>
+    <structure field="camposDinamicos" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_respuesta.UnidadesInversion" name="unidades-inversion">
+    <value style="element" name="mensaje-excepcion" field="mensajeExcepcion" usage="optional"/>
+    <structure field="parametrosPaginacion" usage="optional"/>
+    <collection field="unidadInversion" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_respuesta.OrdenRespuesta" name="orden-respuesta">
+    <value style="element" name="id-orden" field="idOrden" usage="optional"/>
+    <value style="element" name="emisor" field="emisor" usage="optional"/>
+    <value style="element" name="tasa" field="tasa" usage="optional"/>
+    <value style="element" name="instrumento-financiero" field="instrumentoFinanciero" usage="optional"/>
+    <value style="element" name="serie" field="serie" usage="optional"/>
+    <value style="element" name="fecha-emision" field="fechaEmision" usage="optional"/>
+    <value style="element" name="fecha-adjudicacion" field="fechaAdjudicacion" usage="optional"/>
+    <value style="element" name="fecha-valor-orden" field="fechaValorOrden" usage="optional"/>
+    <value style="element" name="moneda-id" field="monedaId" usage="optional"/>
+    <value style="element" name="descr-transaccion" field="descrTransaccion" usage="optional"/>
+    <value style="element" name="nombre-unidad-inversion" field="nombreUnidadInversion" usage="optional"/>
+    <value style="element" name="fecha-orden" field="fechaOrden" usage="optional"/>
+    <value style="element" name="nombre-cliente" field="nombreCliente" usage="optional"/>
+    <value style="element" name="descr-status" field="descrStatus" usage="optional"/>
+    <value style="element" name="monto-pedido" field="montoPedido" usage="optional"/>
+    <value style="element" name="monto-adjudicado" field="montoAdjudicado" usage="optional"/>
+    <value style="element" name="monto-reintegro-capital" field="montoReintegroCapital" usage="optional"/>
+    <value style="element" name="monto-reintegro-comision" field="montoReintegroComision" usage="optional"/>
+    <value style="element" name="depositario" field="depositario" usage="optional"/>
+    <value style="element" name="contraparte" field="contraparte" usage="optional"/>
+    <structure field="operacionesFinancieras" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_respuesta.OrdenesRespuesta" name="ordenes-respuesta">
+    <value style="element" name="mensaje-excepcion" field="mensajeExcepcion" usage="optional"/>
+    <structure field="parametrosPaginacion" usage="optional"/>
+    <collection field="ordenRespuesta" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_respuesta.OrdenRespuestaTitulos" name="orden-respuesta-titulos">
+    <value style="element" name="mensaje-excepcion" field="mensajeExcepcion" usage="optional"/>
+    <structure field="parametrosPaginacion" usage="optional"/>
+    <value style="element" name="id-orden" field="idOrden" usage="optional"/>
+    <collection field="tOrdenTitulo" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_respuesta.TituloCustodia" name="titulo-custodia">
+    <value style="element" name="id-titulo" field="idTitulo" usage="optional"/>
+    <value style="element" name="moneda-id" field="monedaId" usage="optional"/>
+    <value style="element" name="fecha-emision" field="fechaEmision" usage="optional"/>
+    <value style="element" name="fecha-vencimiento" field="fechaVencimiento" usage="optional"/>
+    <value style="element" name="tasa-cupon-vigente" field="tasaCuponVigente" usage="optional"/>
+    <value style="element" name="tasa-cambio-vigente" field="tasaCambioVigente" usage="optional"/>
+    <value style="element" name="descr-titulo" field="descrTitulo" usage="optional"/>
+    <value style="element" name="fecha-ingreso" field="fechaIngreso" usage="optional"/>
+    <value style="element" name="valor-nominal" field="valorNominal" usage="optional"/>
+    <value style="element" name="total-nominal-titulo" field="totalNominalTitulo" usage="optional"/>
+    <value style="element" name="cantidad-bloqueada" field="cantidadBloqueada" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_respuesta.TitulosCustodia" name="titulos-custodia">
+    <value style="element" name="mensaje-excepcion" field="mensajeExcepcion" usage="optional"/>
+    <structure field="parametrosPaginacion" usage="optional"/>
+    <collection field="tituloCustodia" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_respuesta.TomaDeOrden" name="toma-de-orden">
+    <value style="element" name="id-orden" field="idOrden" usage="optional"/>
+    <value style="element" name="fecha-orden" field="fechaOrden" usage="optional"/>
+    <value style="element" name="monto-invertido" field="montoInvertido" usage="optional"/>
+    <value style="element" name="cantidad-ordenada" field="cantidadOrdenada" usage="optional"/>
+    <value style="element" name="monto-remanente" field="montoRemanente" usage="optional"/>
+    <value style="element" name="monto-total-comisiones" field="montoTotalComisiones" usage="optional"/>
+    <value style="element" name="monto-intereses" field="montoIntereses" usage="optional"/>
+    <value style="element" name="monto-total" field="montoTotal" usage="optional"/>
+    <value style="element" name="tasa-cambio" field="tasaCambio" usage="optional"/>
+    <structure field="documentosAsociados" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_respuesta.TOrdenTitulo" name="t-orden-titulo">
+    <value style="element" name="id-titulo" field="idTitulo" usage="optional"/>
+    <value style="element" name="descr-titulo" field="descrTitulo" usage="optional"/>
+    <value style="element" name="porcentaje" field="porcentaje" usage="optional"/>
+    <value style="element" name="porcentaje-recompra" field="porcentajeRecompra" usage="optional"/>
+    <value style="element" name="valor-nominal" field="valorNominal" usage="optional"/>
+    <value style="element" name="valor-invertido" field="valorInvertido" usage="optional"/>
+    <value style="element" name="fecha-emision" field="fechaEmision" usage="optional"/>
+    <value style="element" name="fecha-vencimiento" field="fechaVencimiento" usage="optional"/>
+    <value style="element" name="tasa-cupon-vigente" field="tasaCuponVigente" usage="optional"/>
+    <value style="element" name="moneda-id" field="monedaId" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_respuesta.TOrdenTitulos" name="t-orden-titulos">
+    <collection field="tOrdenTitulo" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_respuesta.TOrdenOperacion" name="t-orden-operacion">
+    <value style="element" name="id-transaccion-financiera" field="idTransaccionFinanciera" usage="optional"/>
+    <value style="element" name="descr-transaccion-financiera" field="descrTransaccionFinanciera" usage="optional"/>
+    <value style="element" name="monto" field="monto" usage="optional"/>
+    <value style="element" name="tasa" field="tasa" usage="optional"/>
+    <value style="element" name="tipo-operacion" field="tipoOperacion" usage="optional"/>
+    <value style="element" name="comision" field="comision" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_respuesta.TOrdenOperaciones" name="t-orden-operaciones">
+    <collection field="tOrdenOperacion" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_respuesta.TomaOrdenResultado" name="toma-orden-resultado">
+    <structure field="mensajesServicio" usage="optional"/>
+    <structure field="tomaDeOrden" usage="optional"/>
+    <structure field="tOrdenTitulos" usage="optional"/>
+    <structure field="tOrdenOperaciones" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_peticion.ParametrosConsultaOperacionPagar" name="parametros-consulta-operacion-pagar">
+    <structure field="credenciales" usage="optional"/>
+    <structure field="beanPaginacion" usage="optional"/>
+    <value style="element" name="cedula-identidad" field="cedulaIdentidad" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_respuesta.OperacionCheque" name="operacion-cheque">
+    <value style="element" name="descripcion-titulo" field="descripcionTitulo" usage="optional"/>
+    <value style="element" name="fecha-emision" field="fechaEmision" usage="optional"/>
+    <value style="element" name="fecha-vencimiento" field="fechaVencimiento" usage="optional"/>
+    <value style="element" name="concepto" field="concepto" usage="optional"/>
+    <value style="element" name="id-orden" field="idOrden" usage="optional"/>
+    <value style="element" name="id-operacion-financiera" field="idOperacionFinanciera" usage="optional"/>
+    <value style="element" name="monto-operacion" field="montoOperacion" usage="optional"/>
+    <value style="element" name="id-moneda-operacion" field="idMonedaOperacion" usage="optional"/>
+    <value style="element" name="descripcion-moneda" field="descripcionMoneda" usage="optional"/>
+    <value style="element" name="fecha-operacion" field="fechaOperacion" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_respuesta.OperacionesCheque" name="operaciones-cheque">
+    <value style="element" name="mensaje-excepcion" field="mensajeExcepcion" usage="optional"/>
+    <structure field="credenciales" usage="optional"/>
+    <structure field="beanPaginacion" usage="optional"/>
+    <collection field="listaOperaciones" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_peticion.ParametroActualizarOperacionesFinancieras" name="parametro-actualizar-operaciones-financieras">
+    <structure field="credenciales" usage="optional"/>
+    <value style="element" name="id-orden" field="idOrden" usage="optional"/>
+    <value style="element" name="id-operacion-financiera" field="idOperacionFinanciera" usage="optional"/>
+    <value style="element" name="numero-cheque" field="numeroCheque" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_peticion.ParametrosActualizarOperacionesFinancieras" name="parametros-actualizar-operaciones-financieras">
+    <structure field="credenciales" usage="optional"/>
+    <value style="element" name="cedula-cliente" field="cedulaCliente" usage="optional"/>
+    <collection field="parametrosOperacionesFinancieras" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_respuesta.OperacionFinanciera" name="operacion-financiera">
+    <value style="element" name="id-orden" field="idOrden" usage="optional"/>
+    <value style="element" name="id-operacion-financiera" field="idOperacionFinanciera" usage="optional"/>
+    <value style="element" name="status" field="status" usage="optional"/>
+    <value style="element" name="error" field="error" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_respuesta.OperacionesFinancieras" name="operaciones-financieras">
+    <collection field="operaciones" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_respuesta.Persona" name="persona">
+    <value style="element" name="tipo-persona" field="tipoPersona" usage="optional"/>
+    <value style="element" name="precio-minimo" field="precioMinimo" usage="optional"/>
+    <value style="element" name="precio-maximo" field="precioMaximo" usage="optional"/>
+    <value style="element" name="pct-maximo-financiamiento" field="pctMaximoFinanciamiento" usage="optional"/>
+    <value style="element" name="monto-minimo-inversion" field="montoMinimoInversion" usage="optional"/>
+    <value style="element" name="monto-maximo-inversion" field="montoMaximoInversion" usage="optional"/>
+    <value style="element" name="cantidad-minima-inversion" field="cantidadMinimaInversion" usage="optional"/>
+    <value style="element" name="cantidad-maxima-inversion" field="cantidadMaximaInversion" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_respuesta.CampoDinamico" name="campo-dinamico">
+    <value style="element" name="id-campo" field="idCampo" usage="optional"/>
+    <value style="element" name="descr-campo" field="descrCampo" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_respuesta.CamposDinamicos" name="campos-dinamicos">
+    <collection field="camposDinamicos" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_respuesta.TipoPersonasValidas" name="tipo-personas-validas">
+    <collection field="tipoPersonasValidas" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_peticion.Credenciales" name="credenciales">
+    <value style="element" name="usuario-canal" field="usuarioCanal" usage="optional"/>
+    <value style="element" name="ip-terminal" field="ipTerminal" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_peticion.CamposDinamicosTo" name="campos-dinamicos-to">
+    <collection field="camposDinamicos" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_peticion.CampoDinamicoTo" name="campo-dinamico-to">
+    <value style="element" name="id-campo" field="idCampo" usage="optional"/>
+    <value style="element" name="valor-campo" field="valorCampo" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_respuesta.TitulosAsociados" name="titulos-asociados">
+    <collection field="titulosAsociados" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_respuesta.Titulo" name="titulo">
+    <value style="element" name="titulo-id" field="tituloId" usage="optional"/>
+    <value style="element" name="moneda-denominacion" field="monedaDenominacion" usage="optional"/>
+    <value style="element" name="porcentaje-distribucion" field="porcentajeDistribucion" usage="optional"/>
+    <value style="element" name="fecha-emision" field="fechaEmision" usage="optional"/>
+    <value style="element" name="fecha-vencimiento" field="fechaVencimiento" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_respuesta.OperacionFinancieraOrden" name="operacion-financiera-orden">
+    <value style="element" name="monto" field="monto" usage="optional"/>
+    <value style="element" name="tasa" field="tasa" usage="optional"/>
+    <value style="element" name="moneda-id" field="monedaId" usage="optional"/>
+    <value style="element" name="tipo-operacion" field="tipoOperacion" usage="optional"/>
+    <value style="element" name="indicador-comision" field="indicadorComision" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_respuesta.OperacionesFinancierasOrden" name="operaciones-financieras-orden">
+    <collection field="operacionesFinancierasOrden" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_respuesta.Documento" name="documento">
+    <value style="element" name="orden-documento-id" field="ordenDocumentoId" usage="optional"/>
+    <value style="element" name="contenido" field="contenido" usage="optional"/>
+    <value style="element" name="nombre-documento" field="nombreDocumento" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_respuesta.DocumentosAsociados" name="documentos-asociados">
+    <collection field="documento" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_peticion.ListaTitulosRecompra" name="lista-titulos-recompra">
+    <collection field="listaTitulosRecompra" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi_services.beans.entidades.mensajes_peticion.TituloRecompra" name="titulo-recompra">
+    <value style="element" name="id-titulo" field="idTitulo" usage="optional"/>
+    <value style="element" name="porcentaje-recompra" field="porcentajeRecompra" usage="optional"/>
+  </mapping>
+
+  <!-- Tasas de cambio -->
+  <mapping class="com.bdv.infi.webservices.beans.TCCC" name="tccc">
+    <value style="element" name="cod-divisa" field="codDivisa" usage="optional"/>
+    <value style="element" name="inddivbi" field="inddivbi" usage="optional"/>
+    <value style="element" name="fecha-cambio" field="fechaCambio" usage="optional"/>
+    <value style="element" name="compra" field="compra" usage="optional"/>
+    <value style="element" name="venta" field="venta" usage="optional"/>
+    <value style="element" name="fixing" field="fixing" usage="optional"/>
+  </mapping>
+	<mapping class="com.bdv.infi.webservices.beans.TCCCFMT" name="tcccfmt">
+    <value style="element" name="cod-divisa" field="codDivisa" usage="optional"/>
+    <value style="element" name="inddivbi" field="inddivbi" usage="optional"/>
+    <value style="element" name="fecha-cambio" field="fechaCambio" usage="optional"/>
+    <value style="element" name="codret" field="codret" usage="optional"/>
+    <value name="compra" field="compra" usage="optional"/>
+    <value name="venta" field="venta" usage="optional"/>
+    <value name="fixing" field="fixing" usage="optional"/>
+  </mapping>
+  <!-- Reverso de aplicaciones financieras--> 
+  <mapping class="com.bdv.infi.webservices.beans.B731" name="b731">
+    <value style="element" name="codigo-cta-cliente" field="codigoCtaCliente" usage="optional"/>
+    <value style="element" name="divisa" field="divisa" usage="optional"/>
+    <value style="element" name="importe" field="importe" usage="optional"/>
+    <value style="element" name="nio" field="nio" usage="optional"/>
+    <value style="element" name="numero-de-movimiento" field="numeroDeMovimiento" usage="optional"/>
+    <value style="element" name="ind-origen-operacion" field="indOrigenOperacion" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi.webservices.beans.B731Respuesta" name="b731-respuesta">
+    <collection field="bgmcri" usage="optional"/>
+    <collection field="bgm731" usage="optional"/>
+    <collection field="bgmval2" usage="optional"/>
+    <collection field="bgmcab" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi.webservices.beans.BGMCRI" name="bgmcri">
+    <value style="element" name="indicador-debe-haber" field="indicadorDebeHaber" usage="optional"/>
+    <value style="element" name="importe" field="importe" usage="optional"/>
+    <value style="element" name="codigo-divisa" field="codigoDivisa" usage="optional"/>
+    <value style="element" name="descripcion-divisa" field="descripcionDivisa" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi.webservices.beans.BGM731" name="bg-m731">
+    <value style="element" name="codigo-cta-cliente" field="codigoCtaCliente" usage="optional"/>
+    <value style="element" name="divisa" field="divisa" usage="optional"/>
+    <value style="element" name="importe" field="importe" usage="optional"/>
+    <value style="element" name="nio" field="nio" usage="optional"/>
+    <value style="element" name="numero-de-movimiento" field="numeroDeMovimiento" usage="optional"/>
+    <value style="element" name="ind-origen-operacion" field="indOrigenOperacion" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi.webservices.beans.BGMVAL2" name="bgmva-l2">
+    <value style="element" name="centro-cuenta" field="centroCuenta" usage="optional"/>
+    <value style="element" name="fecha-contable" field="fechaContable" usage="optional"/>
+    <value style="element" name="importe" field="importe" usage="optional"/>
+    <value style="element" name="codigo-de-operacion" field="codigoDeOperacion" usage="optional"/>
+    <value style="element" name="num-movto" field="numMovto" usage="optional"/>
+    <value style="element" name="fecha-valor" field="fechaValor" usage="optional"/>
+  </mapping>
+<mapping class="com.bdv.infi.webservices.beans.BKDS" name="bkds">
+    <value style="element" name="rutina-via-dpl" field="rutinaViaDpl" usage="optional"/>
+    <value style="element" name="tipo-link-o-call" field="tipoLinkOCall" usage="optional"/>
+    <value style="element" name="cant-parametros" field="cantParametros" usage="optional"/>
+    <value style="element" name="longitud1er-parm" field="longitud1erParm" usage="optional"/>
+    <value style="element" name="codigo-de-retorno" field="codigoDeRetorno" usage="optional"/>
+    <value style="element" name="parmetros001-a120" field="parmetros001A120" usage="optional"/>
+    <value style="element" name="parmetros002-a120" field="parmetros002A120" usage="optional"/>
+    <value style="element" name="parmetros003-a120" field="parmetros003A120" usage="optional"/>
+    <value style="element" name="parmetros004-a120" field="parmetros004A120" usage="optional"/>
+    <value style="element" name="parmetros005-a120" field="parmetros005A120" usage="optional"/>
+    <value style="element" name="parmetros006-a120" field="parmetros006A120" usage="optional"/>
+    <value style="element" name="parmetros007-a120" field="parmetros007A120" usage="optional"/>
+    <value style="element" name="parmetros008-a120" field="parmetros008A120" usage="optional"/>
+    <value style="element" name="parmetros009-a120" field="parmetros009A120" usage="optional"/>
+    <value style="element" name="parmetros010-a120" field="parmetros010A120" usage="optional"/>
+    <value style="element" name="parmetros011-a120" field="parmetros011A120" usage="optional"/>
+    <value style="element" name="parmetros012-a120" field="parmetros012A120" usage="optional"/>
+    <value style="element" name="parmetros013-a120" field="parmetros013A120" usage="optional"/>
+    <value style="element" name="parmetros014-a120" field="parmetros014A120" usage="optional"/>
+    <value style="element" name="parmetros015-a120" field="parmetros015A120" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi.webservices.beans.QDMUTL" name="qdmutl">
+    <value style="element" name="sin-uso" field="sinUso" usage="optional"/>
+    <value style="element" name="cuenta" field="cuenta" usage="optional"/>
+    <value style="element" name="saldo-disponible" field="saldoDisponible" usage="optional"/>
+    <value style="element" name="saldo-dispuesto" field="saldoDispuesto" usage="optional"/>
+    <value style="element" name="saldo-canje" field="saldoCanje" usage="optional"/>
+    <value style="element" name="saldo-canje48" field="saldoCanje48" usage="optional"/>
+    <value style="element" name="saldo-remesas" field="saldoRemesas" usage="optional"/>
+    <value style="element" name="saldo-retencion" field="saldoRetencion" usage="optional"/>
+    <value style="element" name="limite-inte" field="limiteInte" usage="optional"/>
+    <value style="element" name="numl-limd" field="numlLimd" usage="optional"/>
+    <value style="element" name="status-miscelaneos" field="statusMiscelaneos" usage="optional"/>
+    <value style="element" name="miscelaneos" field="miscelaneos" usage="optional"/>
+    <value style="element" name="cta-asociada" field="ctaAsociada" usage="optional"/>
+    <value style="element" name="microficha" field="microficha" usage="optional"/>
+  </mapping>
+  <mapping class="models.security.login.ConsultaDeUsuario" name="consulta-de-usuario">
+    <!--  <structure field="credenciales" usage="optional" name="credenciales">
+      <value style="element" name="nombre-de-usuario" field="nombreDeUsuario" usage="optional"/>
+      <value style="element" name="clave-secreta" field="claveSecreta" usage="optional"/>
+    </structure>
+    -->
+    <value style="element" name="usuario" field="usuario" usage="optional"/>
+    <value style="element" name="password" field="password" usage="optional"/>
+    <value style="element" name="nueva-password" field="nuevaPassword" usage="optional"/>
+    <value style="element" name="verif-nueva-password" field="verifNuevaPassword" usage="optional"/>
+    <value style="element" name="direccion" field="direccion" usage="optional"/>
+    <value style="element" name="oficina" field="oficina" usage="optional"/>
+    <value name="fecha" field="fecha" usage="optional"/>
+    <value style="element" name="sesion" field="sesion" usage="optional"/>
+    <value style="element" name="tipo-de-caja" field="tipoDeCaja" usage="optional"/>
+  </mapping>
+  <mapping class="models.security.login.Usuario" name="usuario">
+    <structure field="credenciales" usage="optional" name="credenciales">
+      <value style="element" name="nombre-de-usuario" field="nombreDeUsuario" usage="optional"/>
+      <value style="element" name="clave-secreta" field="claveSecreta" usage="optional"/>
+    </structure>
+    <value style="element" name="oficina" field="oficina" usage="optional"/>
+    <value name="fecha" field="fecha" usage="optional"/>
+    <value style="element" name="terminal" field="terminal" usage="optional"/>
+    <value style="element" name="entidad" field="entidad" usage="optional"/>
+    <value style="element" name="usuario" field="usuario" usage="optional"/>
+    <value style="element" name="cics" field="cics" usage="optional"/>
+    <value style="element" name="literal" field="literal" usage="optional"/>
+    <value style="element" name="enviroment" field="enviroment" usage="optional"/>
+    <value style="element" name="days-left" field="daysLeft" usage="optional"/>
+    <value style="element" name="perfil-usuario" field="perfilUsuario" usage="optional"/>
+    <value style="element" name="ubicacion" field="ubicacion" usage="optional"/>
+    <value style="element" name="sesion" field="sesion" usage="optional"/>
+    <value name="fecha-contable" field="fechaContable" usage="optional"/>
+  </mapping>
+<mapping class="com.bdv.infi.webservices.beans.PE68" name="p-e68">
+    <value style="element" name="numero-persona" field="numeroPersona" usage="optional"/>
+    <value style="element" name="tipo-de-document" field="tipoDeDocument" usage="optional"/>
+    <value style="element" name="numero-documento" field="numeroDocumento" usage="optional"/>
+    <value style="element" name="secuencia-documento" field="secuenciaDocumento" usage="optional"/>
+    <value style="element" name="nombre-fantasia" field="nombreFantasia" usage="optional"/>
+    <value style="element" name="primer-apellido" field="primerApellido" usage="optional"/>
+    <value style="element" name="segundo-apellido" field="segundoApellido" usage="optional"/>
+    <value style="element" name="nombre-persona" field="nombrePersona" usage="optional"/>
+    <value style="element" name="fecha-de-ingreso" field="fechaDeIngreso" usage="optional"/>
+    <value style="element" name="sucursal-administrad" field="sucursalAdministrad" usage="optional"/>
+    <value style="element" name="estado-civil" field="estadoCivil" usage="optional"/>
+    <value style="element" name="sexo-persona" field="sexoPersona" usage="optional"/>
+    <value style="element" name="tipo-persona" field="tipoPersona" usage="optional"/>
+    <value style="element" name="fecha-de-nacimiento" field="fechaDeNacimiento" usage="optional"/>
+    <value style="element" name="fecha-inicio-activ" field="fechaInicioActiv" usage="optional"/>
+    <value style="element" name="canal-de-venta" field="canalDeVenta" usage="optional"/>
+    <value style="element" name="canal-de-captacion" field="canalDeCaptacion" usage="optional"/>
+    <value style="element" name="pais-de-origen" field="paisDeOrigen" usage="optional"/>
+    <value style="element" name="codigo-campa-a" field="codigoCampaA" usage="optional"/>
+    <value style="element" name="agrupacion-oficiales" field="agrupacionOficiales" usage="optional"/>
+    <value style="element" name="nacionalidad" field="nacionalidad" usage="optional"/>
+    <value style="element" name="pais-residencia" field="paisResidencia" usage="optional"/>
+    <value style="element" name="sector" field="sector" usage="optional"/>
+    <value style="element" name="tipo-de-ocupacion" field="tipoDeOcupacion" usage="optional"/>
+    <value style="element" name="codigo-actividad" field="codigoActividad" usage="optional"/>
+    <value style="element" name="tiempo-de-residencia" field="tiempoDeResidencia" usage="optional"/>
+    <value style="element" name="forma-juridica" field="formaJuridica" usage="optional"/>
+    <value style="element" name="naturaleza-juridica" field="naturalezaJuridica" usage="optional"/>
+    <value style="element" name="unidad-de-negocio" field="unidadDeNegocio" usage="optional"/>
+    <value style="element" name="codigo-de-sujeto" field="codigoDeSujeto" usage="optional"/>
+    <value style="element" name="marca-banca-privada" field="marcaBancaPrivada" usage="optional"/>
+    <value style="element" name="nivel-de-acceso" field="nivelDeAcceso" usage="optional"/>
+    <value style="element" name="estado-persona" field="estadoPersona" usage="optional"/>
+    <value style="element" name="condicion-persona" field="condicionPersona" usage="optional"/>
+    <value style="element" name="indicadores" field="indicadores" usage="optional"/>
+    <value style="element" name="cod-act-riu" field="codActRiu" usage="optional"/>
+    <value style="element" name="subsegmento" field="subsegmento" usage="optional"/>
+    <value style="element" name="idioma" field="idioma" usage="optional"/>
+    <value style="element" name="timestamp1" field="timestamp1" usage="optional"/>
+    <value style="element" name="expedido-por" field="expedidoPor" usage="optional"/>
+    <value style="element" name="fecha-de-vencimiento" field="fechaDeVencimiento" usage="optional"/>
+    <value style="element" name="marca-verificacion" field="marcaVerificacion" usage="optional"/>
+    <value style="element" name="condicion-documento" field="condicionDocumento" usage="optional"/>
+    <value style="element" name="codigo-pais" field="codigoPais" usage="optional"/>
+    <value style="element" name="fecha-de-expedicion" field="fechaDeExpedicion" usage="optional"/>
+    <value style="element" name="lugar-exposicion" field="lugarExposicion" usage="optional"/>
+    <value style="element" name="timestamp2" field="timestamp2" usage="optional"/>
+    <value style="element" name="campo-agregado1" field="campoAgregado1" usage="optional"/>
+    <value style="element" name="campo-agregado2" field="campoAgregado2" usage="optional"/>
+    <value style="element" name="ruta-cartero" field="rutaCartero" usage="optional"/>
+    <value style="element" name="acmpo-agregado" field="acmpoAgregado" usage="optional"/>
+    <value style="element" name="fecha-verificacion" field="fechaVerificacion" usage="optional"/>
+    <value style="element" name="campo-agregado" field="campoAgregado" usage="optional"/>
+    <value style="element" name="campo-variable1" field="campoVariable1" usage="optional"/>
+    <value style="element" name="campo-variable2" field="campoVariable2" usage="optional"/>
+    <value style="element" name="timestamp3" field="timestamp3" usage="optional"/>
+    <value style="element" name="secuencia-domicilio" field="secuenciaDomicilio" usage="optional"/>
+    <value style="element" name="agregado-telefono" field="agregadoTelefono" usage="optional"/>
+    <value style="element" name="timestamp4" field="timestamp4" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi.webservices.beans.PE68Respuesta" name="p-e68-respuesta">
+    <collection field="pem1400" usage="optional"/>
+    <collection field="pe1400" usage="optional"/>
+  </mapping>
+<mapping class="com.bdv.infi.webservices.beans.PEM1400" name="pe-m1400">
+    <value style="element" name="numero-persona" field="numeroPersona" usage="optional"/>
+    <value style="element" name="tipo-de-document" field="tipoDeDocument" usage="optional"/>
+    <value style="element" name="numero-documento" field="numeroDocumento" usage="optional"/>
+    <value style="element" name="secuencia-documento" field="secuenciaDocumento" usage="optional"/>
+    <value style="element" name="nombre-fantasia" field="nombreFantasia" usage="optional"/>
+    <value style="element" name="primer-apellido" field="primerApellido" usage="optional"/>
+    <value style="element" name="segundo-apellido" field="segundoApellido" usage="optional"/>
+    <value style="element" name="nombre-persona" field="nombrePersona" usage="optional"/>
+    <value style="element" name="fecha-de-ingreso" field="fechaDeIngreso" usage="optional"/>
+    <value style="element" name="sucursal-administrad" field="sucursalAdministrad" usage="optional"/>
+    <value style="element" name="estado-civil" field="estadoCivil" usage="optional"/>
+    <value style="element" name="sexo-persona" field="sexoPersona" usage="optional"/>
+    <value style="element" name="tipo-persona" field="tipoPersona" usage="optional"/>
+    <value style="element" name="fecha-de-nacimiento" field="fechaDeNacimiento" usage="optional"/>
+    <value style="element" name="fecha-inicio-activ" field="fechaInicioActiv" usage="optional"/>
+    <value style="element" name="canal-de-venta" field="canalDeVenta" usage="optional"/>
+    <value style="element" name="canal-de-captacion" field="canalDeCaptacion" usage="optional"/>
+    <value style="element" name="pais-de-origen" field="paisDeOrigen" usage="optional"/>
+    <value style="element" name="agrupacion-oficiales" field="agrupacionOficiales" usage="optional"/>
+    <value style="element" name="nacionalidad" field="nacionalidad" usage="optional"/>
+    <value style="element" name="pais-residencia" field="paisResidencia" usage="optional"/>
+    <value style="element" name="sector" field="sector" usage="optional"/>
+    <value style="element" name="tipo-de-ocupacion" field="tipoDeOcupacion" usage="optional"/>
+    <value style="element" name="codigo-actividad" field="codigoActividad" usage="optional"/>
+    <value style="element" name="tiempo-de-residencia" field="tiempoDeResidencia" usage="optional"/>
+    <value style="element" name="forma-juridica" field="formaJuridica" usage="optional"/>
+    <value style="element" name="naturaleza-juridica" field="naturalezaJuridica" usage="optional"/>
+    <value style="element" name="unidad-de-negocio" field="unidadDeNegocio" usage="optional"/>
+    <value style="element" name="codigo-de-sujeto" field="codigoDeSujeto" usage="optional"/>
+    <value style="element" name="marca-banca-privada" field="marcaBancaPrivada" usage="optional"/>
+    <value style="element" name="nivel-de-acceso" field="nivelDeAcceso" usage="optional"/>
+    <value style="element" name="estado-persona" field="estadoPersona" usage="optional"/>
+    <value style="element" name="condicion-persona" field="condicionPersona" usage="optional"/>
+    <value style="element" name="indicadores" field="indicadores" usage="optional"/>
+    <value style="element" name="cod-act-riu" field="codActRiu" usage="optional"/>
+    <value style="element" name="subsegmento" field="subsegmento" usage="optional"/>
+    <value style="element" name="idioma" field="idioma" usage="optional"/>
+    <value style="element" name="timestamp1" field="timestamp1" usage="optional"/>
+    <value style="element" name="expedido-por" field="expedidoPor" usage="optional"/>
+    <value style="element" name="fecha-de-vencimiento" field="fechaDeVencimiento" usage="optional"/>
+    <value style="element" name="marca-verificacion" field="marcaVerificacion" usage="optional"/>
+    <value style="element" name="condicion-documento" field="condicionDocumento" usage="optional"/>
+    <value style="element" name="codigo-pais" field="codigoPais" usage="optional"/>
+    <value style="element" name="fecha-de-expedicion" field="fechaDeExpedicion" usage="optional"/>
+    <value style="element" name="lugar-exposicion" field="lugarExposicion" usage="optional"/>
+    <value style="element" name="timestamp2" field="timestamp2" usage="optional"/>
+    <value style="element" name="campo-agregado1" field="campoAgregado1" usage="optional"/>
+    <value style="element" name="campo-agregado2" field="campoAgregado2" usage="optional"/>
+    <value style="element" name="ruta-cartero" field="rutaCartero" usage="optional"/>
+    <value style="element" name="acmpo-agregado" field="acmpoAgregado" usage="optional"/>
+    <value style="element" name="fecha-verificacion" field="fechaVerificacion" usage="optional"/>
+    <value style="element" name="campo-agregado" field="campoAgregado" usage="optional"/>
+    <value style="element" name="campo-variable1" field="campoVariable1" usage="optional"/>
+    <value style="element" name="campo-variable2" field="campoVariable2" usage="optional"/>
+    <value style="element" name="timestamp3" field="timestamp3" usage="optional"/>
+    <value style="element" name="secuencia-domicilio" field="secuenciaDomicilio" usage="optional"/>
+    <value style="element" name="agregado-telefono" field="agregadoTelefono" usage="optional"/>
+    <value style="element" name="timestamp4" field="timestamp4" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi.webservices.beans.PE1400" name="p-e1400">
+    <value style="element" name="numero-persona" field="numeroPersona" usage="optional"/>
+    <value style="element" name="tipo-de-document" field="tipoDeDocument" usage="optional"/>
+    <value style="element" name="numero-documento" field="numeroDocumento" usage="optional"/>
+    <value style="element" name="secuencia-documento" field="secuenciaDocumento" usage="optional"/>
+    <value style="element" name="nombre-fantasia" field="nombreFantasia" usage="optional"/>
+    <value style="element" name="primer-apellido" field="primerApellido" usage="optional"/>
+    <value style="element" name="segundo-apellido" field="segundoApellido" usage="optional"/>
+    <value style="element" name="nombre-persona" field="nombrePersona" usage="optional"/>
+    <value style="element" name="fecha-de-ingreso" field="fechaDeIngreso" usage="optional"/>
+    <value style="element" name="sucursal-administrad" field="sucursalAdministrad" usage="optional"/>
+    <value style="element" name="estado-civil" field="estadoCivil" usage="optional"/>
+    <value style="element" name="sexo-persona" field="sexoPersona" usage="optional"/>
+    <value style="element" name="tipo-persona" field="tipoPersona" usage="optional"/>
+    <value style="element" name="fecha-de-nacimiento" field="fechaDeNacimiento" usage="optional"/>
+    <value style="element" name="fecha-inicio-activ" field="fechaInicioActiv" usage="optional"/>
+    <value style="element" name="canal-de-venta" field="canalDeVenta" usage="optional"/>
+    <value style="element" name="canal-de-captacion" field="canalDeCaptacion" usage="optional"/>
+    <value style="element" name="pais-de-origen" field="paisDeOrigen" usage="optional"/>
+    <value style="element" name="agrupacion-oficiales" field="agrupacionOficiales" usage="optional"/>
+    <value style="element" name="nacionalidad" field="nacionalidad" usage="optional"/>
+    <value style="element" name="pais-residencia" field="paisResidencia" usage="optional"/>
+    <value style="element" name="sector" field="sector" usage="optional"/>
+    <value style="element" name="tipo-de-ocupacion" field="tipoDeOcupacion" usage="optional"/>
+    <value style="element" name="codigo-actividad" field="codigoActividad" usage="optional"/>
+    <value style="element" name="tiempo-de-residencia" field="tiempoDeResidencia" usage="optional"/>
+    <value style="element" name="forma-juridica" field="formaJuridica" usage="optional"/>
+    <value style="element" name="naturaleza-juridica" field="naturalezaJuridica" usage="optional"/>
+    <value style="element" name="unidad-de-negocio" field="unidadDeNegocio" usage="optional"/>
+    <value style="element" name="codigo-de-sujeto" field="codigoDeSujeto" usage="optional"/>
+    <value style="element" name="marca-banca-privada" field="marcaBancaPrivada" usage="optional"/>
+    <value style="element" name="nivel-de-acceso" field="nivelDeAcceso" usage="optional"/>
+    <value style="element" name="cheques-rechazados" field="chequesRechazados" usage="optional"/>
+    <value style="element" name="estado-persona" field="estadoPersona" usage="optional"/>
+    <value style="element" name="condicion-persona" field="condicionPersona" usage="optional"/>
+    <value style="element" name="indicadores" field="indicadores" usage="optional"/>
+    <value style="element" name="timestamp1" field="timestamp1" usage="optional"/>
+    <value style="element" name="expedido-por" field="expedidoPor" usage="optional"/>
+    <value style="element" name="fecha-de-vencimiento" field="fechaDeVencimiento" usage="optional"/>
+    <value style="element" name="marca-verificacion" field="marcaVerificacion" usage="optional"/>
+    <value style="element" name="condicion-documento" field="condicionDocumento" usage="optional"/>
+    <value style="element" name="codigo-pais" field="codigoPais" usage="optional"/>
+    <value style="element" name="fecha-de-expedicion" field="fechaDeExpedicion" usage="optional"/>
+    <value style="element" name="lugar-exposicion" field="lugarExposicion" usage="optional"/>
+    <value style="element" name="timestamp2" field="timestamp2" usage="optional"/>
+    <value style="element" name="campo-agregado1" field="campoAgregado1" usage="optional"/>
+    <value style="element" name="campo-agregado2" field="campoAgregado2" usage="optional"/>
+    <value style="element" name="ruta-cartero" field="rutaCartero" usage="optional"/>
+    <value style="element" name="acmpo-agregado" field="acmpoAgregado" usage="optional"/>
+    <value style="element" name="reside-desde" field="resideDesde" usage="optional"/>
+    <value style="element" name="observaciones" field="observaciones" usage="optional"/>
+    <value style="element" name="fecha-verificacion" field="fechaVerificacion" usage="optional"/>
+    <value style="element" name="fecha-verificacion2" field="fechaVerificacion2" usage="optional"/>
+    <value style="element" name="latitud-coordenada" field="latitudCoordenada" usage="optional"/>
+    <value style="element" name="longitud-coordenada" field="longitudCoordenada" usage="optional"/>
+    <value style="element" name="campo-agrupacion5" field="campoAgrupacion5" usage="optional"/>
+    <value style="element" name="timestamp3" field="timestamp3" usage="optional"/>
+    <value style="element" name="secuencia-domicilio" field="secuenciaDomicilio" usage="optional"/>
+    <value style="element" name="agregado-telefono" field="agregadoTelefono" usage="optional"/>
+    <value style="element" name="timestamp4" field="timestamp4" usage="optional"/>
+  </mapping>
+
+  <!--Representante legal de la empresa -->
+  <mapping class="com.bdv.infi.webservices.beans.PE81" name="p-e81">
+    <value style="element" name="numero-de-cliente" field="numeroDeCliente" usage="optional"/>
+    <value style="element" name="tipo-de-documento" field="tipoDeDocumento" usage="optional"/>
+    <value style="element" name="numero-de-documento" field="numeroDeDocumento" usage="optional"/>
+    <value style="element" name="secuen-identf-docum" field="secuenIdentfDocum" usage="optional"/>
+    <value style="element" name="codigo-de-relacion" field="codigoDeRelacion" usage="optional"/>
+    <value style="element" name="num-clien-relacionad" field="numClienRelacionad" usage="optional"/>
+    <value style="element" name="ind-relacion-princip" field="indRelacionPrincip" usage="optional"/>
+    <value style="element" name="segunda-llamada" field="segundaLlamada" usage="optional"/>
+    <value style="element" name="nombre-de-fantasia" field="nombreDeFantasia" usage="optional"/>
+    <value style="element" name="primer-apellido" field="primerApellido" usage="optional"/>
+    <value style="element" name="segundo-apellido" field="segundoApellido" usage="optional"/>
+    <value style="element" name="nombre-razon-social" field="nombreRazonSocial" usage="optional"/>
+    <value style="element" name="fecha-nacimi-constit" field="fechaNacimiConstit" usage="optional"/>
+    <value style="element" name="tipo-de-persona" field="tipoDePersona" usage="optional"/>
+    <value style="element" name="estado-persona" field="estadoPersona" usage="optional"/>
+    <value style="element" name="condicion" field="condicion" usage="optional"/>
+    <value style="element" name="nivel-de-acceso" field="nivelDeAcceso" usage="optional"/>
+    <value style="element" name="ind-relac-entre-pers" field="indRelacEntrePers" usage="optional"/>
+    <value style="element" name="ind-de-tener-contrat" field="indDeTenerContrat" usage="optional"/>
+    <value style="element" name="ind-de-tener-grupo" field="indDeTenerGrupo" usage="optional"/>
+    <value style="element" name="indicador-de-aviso" field="indicadorDeAviso" usage="optional"/>
+    <value style="element" name="ind-uso1" field="indUso1" usage="optional"/>
+    <value style="element" name="ind-uso2" field="indUso2" usage="optional"/>
+    <value style="element" name="ind-uso3" field="indUso3" usage="optional"/>
+    <value style="element" name="ind-uso4" field="indUso4" usage="optional"/>
+    <value style="element" name="ind-uso5" field="indUso5" usage="optional"/>
+    <value style="element" name="tipo-de-via" field="tipoDeVia" usage="optional"/>
+    <value style="element" name="calle" field="calle" usage="optional"/>
+    <value style="element" name="observa-dom1" field="observaDom1" usage="optional"/>
+    <value style="element" name="observa-dom2" field="observaDom2" usage="optional"/>
+    <value style="element" name="casilla-apto-correo" field="casillaAptoCorreo" usage="optional"/>
+    <value style="element" name="localidad-ciudad" field="localidadCiudad" usage="optional"/>
+    <value style="element" name="comuna" field="comuna" usage="optional"/>
+    <value style="element" name="codigo-postal" field="codigoPostal" usage="optional"/>
+    <value style="element" name="ruta-cartero" field="rutaCartero" usage="optional"/>
+    <value style="element" name="codigo-provincia" field="codigoProvincia" usage="optional"/>
+    <value style="element" name="codigo-pais" field="codigoPais" usage="optional"/>
+    <value style="element" name="marca-normalizacion" field="marcaNormalizacion" usage="optional"/>
+    <value style="element" name="timestamp" field="timestamp" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi.webservices.beans.PE81Respuesta" name="p-e81-respuesta">
+    <structure field="pem4200" usage="optional"/>
+    <structure field="pem4210" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi.webservices.beans.PEM4200" name="pe-m4200">
+    <value style="element" name="numero-de-cliente" field="numeroDeCliente" usage="optional"/>
+    <value style="element" name="tipo-de-documento" field="tipoDeDocumento" usage="optional"/>
+    <value style="element" name="numero-de-documento" field="numeroDeDocumento" usage="optional"/>
+    <value style="element" name="secuen-identf-docum" field="secuenIdentfDocum" usage="optional"/>
+    <value style="element" name="codigo-de-relacion" field="codigoDeRelacion" usage="optional"/>
+    <value style="element" name="num-clien-relacionad" field="numClienRelacionad" usage="optional"/>
+    <value style="element" name="ind-relacion-princip" field="indRelacionPrincip" usage="optional"/>
+    <value style="element" name="segunda-llamada" field="segundaLlamada" usage="optional"/>
+    <value style="element" name="nombre-de-fantasia" field="nombreDeFantasia" usage="optional"/>
+    <value style="element" name="primer-apellido" field="primerApellido" usage="optional"/>
+    <value style="element" name="segundo-apellido" field="segundoApellido" usage="optional"/>
+    <value style="element" name="nombre-razon-social" field="nombreRazonSocial" usage="optional"/>
+    <value style="element" name="fecha-nacimi-constit" field="fechaNacimiConstit" usage="optional"/>
+    <value style="element" name="tipo-de-persona" field="tipoDePersona" usage="optional"/>
+    <value style="element" name="estado-persona" field="estadoPersona" usage="optional"/>
+    <value style="element" name="condicion" field="condicion" usage="optional"/>
+    <value style="element" name="nivel-de-acceso" field="nivelDeAcceso" usage="optional"/>
+    <value style="element" name="ind-relac-entre-pers" field="indRelacEntrePers" usage="optional"/>
+    <value style="element" name="ind-de-tener-contrat" field="indDeTenerContrat" usage="optional"/>
+    <value style="element" name="ind-de-tener-grupo" field="indDeTenerGrupo" usage="optional"/>
+    <value style="element" name="indicador-de-aviso" field="indicadorDeAviso" usage="optional"/>
+    <value style="element" name="ind-uso1" field="indUso1" usage="optional"/>
+    <value style="element" name="ind-uso2" field="indUso2" usage="optional"/>
+    <value style="element" name="ind-uso3" field="indUso3" usage="optional"/>
+    <value style="element" name="ind-uso4" field="indUso4" usage="optional"/>
+    <value style="element" name="ind-uso5" field="indUso5" usage="optional"/>
+    <value style="element" name="tipo-de-via" field="tipoDeVia" usage="optional"/>
+    <value style="element" name="calle" field="calle" usage="optional"/>
+    <value style="element" name="observa-dom1" field="observaDom1" usage="optional"/>
+    <value style="element" name="observa-dom2" field="observaDom2" usage="optional"/>
+    <value style="element" name="casilla-apto-correo" field="casillaAptoCorreo" usage="optional"/>
+    <value style="element" name="localidad-ciudad" field="localidadCiudad" usage="optional"/>
+    <value style="element" name="comuna" field="comuna" usage="optional"/>
+    <value style="element" name="codigo-postal" field="codigoPostal" usage="optional"/>
+    <value style="element" name="ruta-cartero" field="rutaCartero" usage="optional"/>
+    <value style="element" name="codigo-provincia" field="codigoProvincia" usage="optional"/>
+    <value style="element" name="codigo-pais" field="codigoPais" usage="optional"/>
+    <value style="element" name="marca-normalizacion" field="marcaNormalizacion" usage="optional"/>
+    <value style="element" name="timestamp" field="timestamp" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi.webservices.beans.PEM4210" name="pe-m4210">
+    <value style="element" name="numero-de-cliente" field="numeroDeCliente" usage="optional"/>
+    <value style="element" name="numero-clien-relacio" field="numeroClienRelacio" usage="optional"/>
+    <value style="element" name="codigo-de-relacion" field="codigoDeRelacion" usage="optional"/>
+    <value style="element" name="porcen-de-participa" field="porcenDeParticipa" usage="optional"/>
+    <value style="element" name="porcen-de-utilidad" field="porcenDeUtilidad" usage="optional"/>
+    <value style="element" name="ind-relacion-princip" field="indRelacionPrincip" usage="optional"/>
+    <value style="element" name="observaciones1" field="observaciones1" usage="optional"/>
+    <value style="element" name="observaciones2" field="observaciones2" usage="optional"/>
+    <value style="element" name="tipo-de-documento" field="tipoDeDocumento" usage="optional"/>
+    <value style="element" name="numero-de-documento" field="numeroDeDocumento" usage="optional"/>
+    <value style="element" name="secuencia-documento" field="secuenciaDocumento" usage="optional"/>
+    <value style="element" name="nombre-de-fantasia" field="nombreDeFantasia" usage="optional"/>
+    <value style="element" name="primer-apellido" field="primerApellido" usage="optional"/>
+    <value style="element" name="segundo-apellido" field="segundoApellido" usage="optional"/>
+    <value style="element" name="nombre-razon-social" field="nombreRazonSocial" usage="optional"/>
+    <value style="element" name="fecha-nacimi-constit" field="fechaNacimiConstit" usage="optional"/>
+    <value style="element" name="tipo-de-persona" field="tipoDePersona" usage="optional"/>
+    <value style="element" name="estado-persona" field="estadoPersona" usage="optional"/>
+    <value style="element" name="condicion" field="condicion" usage="optional"/>
+    <value style="element" name="nivel-de-acceso" field="nivelDeAcceso" usage="optional"/>
+    <value style="element" name="ind-relacion" field="indRelacion" usage="optional"/>
+    <value style="element" name="ind-contratos" field="indContratos" usage="optional"/>
+    <value style="element" name="ind-grupos" field="indGrupos" usage="optional"/>
+    <value style="element" name="ind-avisos" field="indAvisos" usage="optional"/>
+    <value style="element" name="ind-uso1" field="indUso1" usage="optional"/>
+    <value style="element" name="ind-uso2" field="indUso2" usage="optional"/>
+    <value style="element" name="ind-uso3" field="indUso3" usage="optional"/>
+    <value style="element" name="ind-uso4" field="indUso4" usage="optional"/>
+    <value style="element" name="ind-uso5" field="indUso5" usage="optional"/>
+    <value style="element" name="tipo-de-via" field="tipoDeVia" usage="optional"/>
+    <value style="element" name="calle" field="calle" usage="optional"/>
+    <value style="element" name="obsevacion-dom1" field="obsevacionDom1" usage="optional"/>
+    <value style="element" name="obsevacion-dom2" field="obsevacionDom2" usage="optional"/>
+    <value style="element" name="bloque-num-casilla-a" field="bloqueNumCasillaA" usage="optional"/>
+    <value style="element" name="localidad-ciudad" field="localidadCiudad" usage="optional"/>
+    <value style="element" name="comuna" field="comuna" usage="optional"/>
+    <value style="element" name="codigo-postal" field="codigoPostal" usage="optional"/>
+    <value style="element" name="ruta-cartero" field="rutaCartero" usage="optional"/>
+    <value style="element" name="codigo-provincia" field="codigoProvincia" usage="optional"/>
+    <value style="element" name="codigo-pais" field="codigoPais" usage="optional"/>
+    <value style="element" name="marca-normalizacion" field="marcaNormalizacion" usage="optional"/>
+    <value style="element" name="timestamp" field="timestamp" usage="optional"/>
+  </mapping>
+ <!--fin de representante legal  -->  
+
+   <mapping class="models.security.login.QG30" name="q-g30">
+    <value style="element" name="nombre-de-usuario" field="nombreDeUsuario" usage="optional"/>
+    <value style="element" name="password" field="password" usage="optional"/>
+    <value style="element" name="nueva-password" field="nuevaPassword" usage="optional"/>
+    <value style="element" name="verif-nueva-password" field="verifNuevaPassword" usage="optional"/>
+    <value style="element" name="direccion-fisica" field="direccionFisica" usage="optional"/>
+    <value style="element" name="oficina-del-logon" field="oficinaDelLogon" usage="optional"/>
+    <value style="element" name="fecha-del-logon" field="fechaDelLogon" usage="optional"/>
+    <value style="element" name="sesion" field="sesion" usage="optional"/>
+    <value style="element" name="tipo-de-caja" field="tipoDeCaja" usage="optional"/>
+  </mapping>
+  <mapping class="models.security.login.QG30Respuesta" name="q-g30-respuesta">
+    <structure field="qgrcmis" usage="optional"/>
+    <structure field="qgrmcod" usage="optional"/>
+    <structure field="qgrmcof" usage="optional"/>
+    <structure field="qgrminis" usage="optional"/>
+    <structure field="ypless3" usage="optional"/>
+  </mapping>
+  <mapping class="models.security.login.QGRCMIS" name="qgrcmis">
+    <value style="element" name="texto-salida-qgdtcmi" field="textoSalidaQgdtcmi" usage="optional"/>
+  </mapping>
+  <mapping class="models.security.login.QGRMCOD" name="qgrmcod">
+    <value style="element" name="rafaga" field="rafaga" usage="optional"/>
+  </mapping>
+  <mapping class="models.security.login.QGRMCOF" name="qgrmcof">
+    <value style="element" name="rafag0" field="rafag0" usage="optional"/>
+    <value style="element" name="rafag1" field="rafag1" usage="optional"/>
+    <value style="element" name="rafag2" field="rafag2" usage="optional"/>
+    <value style="element" name="rafag3" field="rafag3" usage="optional"/>
+  </mapping>
+  <mapping class="models.security.login.QGRMINIS" name="qgrminis">
+    <value style="element" name="oficina-para-ps2" field="oficinaParaPs2" usage="optional"/>
+    <value style="element" name="fecha-ps2-ddmmaa" field="fechaPs2Ddmmaa" usage="optional"/>
+    <value style="element" name="terminal-ps2" field="terminalPs2" usage="optional"/>
+    <value style="element" name="entidad-ps2" field="entidadPs2" usage="optional"/>
+    <value style="element" name="usuario-ps2" field="usuarioPs2" usage="optional"/>
+    <value style="element" name="cics-conectado" field="cicsConectado" usage="optional"/>
+    <value style="element" name="literal" field="literal" usage="optional"/>
+    <value style="element" name="environment-descrip" field="environmentDescrip" usage="optional"/>
+    <value style="element" name="daysleft" field="daysleft" usage="optional"/>
+    <value style="element" name="cod-perfil-usuario" field="codPerfilUsuario" usage="optional"/>
+    <value style="element" name="ofic-ubicacion-ps2" field="oficUbicacionPs2" usage="optional"/>
+    <value style="element" name="sesion-del-usuario" field="sesionDelUsuario" usage="optional"/>
+    <value style="element" name="fecha-contable" field="fechaContable" usage="optional"/>
+  </mapping>
+  <mapping class="models.security.login.YPLESS3" name="yples-s3">
+    <value style="element" name="fecha-comienzo-val" field="fechaComienzoVal" usage="optional"/>
+    <value style="element" name="divisa" field="divisa" usage="optional"/>
+    <value style="element" name="descripcion-divisa" field="descripcionDivisa" usage="optional"/>
+  </mapping>
+  <mapping class="com.bdv.infi.webservices.beans.BGMCAB" name="bgmcab">
+    <value style="element" name="ccc" field="ccc" usage="optional"/>
+    <value style="element" name="codigo-divisa" field="codigoDivisa" usage="optional"/>
+    <value style="element" name="descripcion-divisa" field="descripcionDivisa" usage="optional"/>
+    <value style="element" name="importe" field="importe" usage="optional"/>
+    <value style="element" name="codigo-de-operacion" field="codigoDeOperacion" usage="optional"/>
+    <value style="element" name="descripcion-codigo" field="descripcionCodigo" usage="optional"/>
+    <value style="element" name="cod-apl-nio" field="codAplNio" usage="optional"/>
+    <value style="element" name="terminal-nio" field="terminalNio" usage="optional"/>
+    <value style="element" name="fecha-nio" field="fechaNio" usage="optional"/>
+    <value style="element" name="hora-nio" field="horaNio" usage="optional"/>
+    <value style="element" name="cheque" field="cheque" usage="optional"/>
+    <value style="element" name="fecha-operacion" field="fechaOperacion" usage="optional"/>
+    <value style="element" name="fecha-valor" field="fechaValor" usage="optional"/>
+    <value style="element" name="fecha-contable" field="fechaContable" usage="optional"/>
+    <value style="element" name="codigo-comision" field="codigoComision" usage="optional"/>
+    <value style="element" name="importe-comision" field="importeComision" usage="optional"/>
+    <value style="element" name="porcentaje-de-comisi" field="porcentajeDeComisi" usage="optional"/>
+    <value style="element" name="importe-del-impuesto" field="importeDelImpuesto" usage="optional"/>
+    <value style="element" name="centro-operacion" field="centroOperacion" usage="optional"/>
+    <value style="element" name="desc-centro-ope" field="descCentroOpe" usage="optional"/>
+    <value style="element" name="terminal-operacion" field="terminalOperacion" usage="optional"/>
+    <value style="element" name="codigo-trans-oper" field="codigoTransOper" usage="optional"/>
+    <value style="element" name="numero-de-movimiento" field="numeroDeMovimiento" usage="optional"/>
+    <value style="element" name="hora-de-operacion" field="horaDeOperacion" usage="optional"/>
+    <value style="element" name="serial" field="serial" usage="optional"/>
+    <value style="element" name="nombre-titular" field="nombreTitular" usage="optional"/>
+    <value style="element" name="apellido1-titular" field="apellido1Titular" usage="optional"/>
+    <value style="element" name="apellido2-titular" field="apellido2Titular" usage="optional"/>
+    <value style="element" name="cedula" field="cedula" usage="optional"/>
+  </mapping>  
+   <mapping name='pevb' class='com.bdv.infi.webservices.beans.PEVB' ordered='false'>
+    <!--value name='entidad' usage='optional' field='entidad' style='element'/-->
+    <!--value name='numero-de-persona' usage='optional' field='numeroDePersona' style='element'/-->
+    <value name='tipo-de-documento' usage='optional' field='tipoDeDocumento' style='element'/>
+    <value name='numero-documento' usage='optional' field='numeroDocumento' style='element'/>
+    <value name='secuencia-documento' usage='optional' field='secuenciaDocumento' style='element'/>
+    <value name='indicador-grupo' usage='optional' field='indicadorGrupo' style='element'/>
+    <!--value name='nombre-fantasia' usage='optional' field='nombreFantasia' style='element'/>
+    <value name='primer-apellido' usage='optional' field='primerApellido' style='element'/>
+    <value name='segundo-apellido' usage='optional' field='segundoApellido' style='element'/>
+    <value name='nombre' usage='optional' field='nombre' style='element'/>
+    <value name='fecha-de-ingreso' usage='optional' field='fechaDeIngreso' style='element'/>
+    <value name='sucursal-administra' usage='optional' field='sucursalAdministra' style='element'/>
+    <value name='condicion-cliente' usage='optional' field='condicionCliente' style='element'/>
+    <value name='tipo-de-persona' usage='optional' field='tipoDePersona' style='element'/>
+    <value name='tipo-ocupacion' usage='optional' field='tipoOcupacion' style='element'/>
+    <value name='estado-civil' usage='optional' field='estadoCivil' style='element'/>
+    <value name='sexo' usage='optional' field='sexo' style='element'/>
+    <value name='fcha-de-nacimiento' usage='optional' field='fchaDeNacimiento' style='element'/>
+    <value name='codigo-act' usage='optional' field='codigoAct' style='element'/>
+    <value name='forma-juridica' usage='optional' field='formaJuridica' style='element'/>
+    <value name='area-negocio' usage='optional' field='areaNegocio' style='element'/>
+    <value name='codigo-de-sujeto' usage='optional' field='codigoDeSujeto' style='element'/>
+    <value name='oficial-corporativ' usage='optional' field='oficialCorporativ' style='element'/>
+    <value name='tipoact' usage='optional' field='tipoact' style='element'/>
+    <value name='tipo-domicilio' usage='optional' field='tipoDomicilio' style='element'/>
+    <value name='fecfal' usage='optional' field='fecfal' style='element'/>
+    <value name='penivest' usage='optional' field='penivest' style='element'/>
+    <value name='personas-a-cargo' usage='optional' field='personasACargo' style='element'/>
+    <value name='tipo-domicilio2' usage='optional' field='tipoDomicilio2' style='element'/>
+    <value name='descrip-domicilio' usage='optional' field='descripDomicilio' style='element'/>
+    <value name='tipo-de-via' usage='optional' field='tipoDeVia' style='element'/>
+    <value name='nombre-de-calle' usage='optional' field='nombreDeCalle' style='element'/>
+    <value name='tipo-construccion' usage='optional' field='tipoConstruccion' style='element'/>
+    <value name='nucleo-urbano' usage='optional' field='nucleoUrbano' style='element'/>
+    <value name='casilla-correo' usage='optional' field='casillaCorreo' style='element'/>
+    <value name='nro-de-bloque' usage='optional' field='nroDeBloque' style='element'/>
+    <value name='localidad' usage='optional' field='localidad' style='element'/>
+    <value name='descrip-localidad' usage='optional' field='descripLocalidad' style='element'/>
+    <value name='descrip-ciudad' usage='optional' field='descripCiudad' style='element'/>
+    <value name='comuna' usage='optional' field='comuna' style='element'/>
+    <value name='descripcion-comuna' usage='optional' field='descripcionComuna' style='element'/>
+    <value name='codigo-postal' usage='optional' field='codigoPostal' style='element'/>
+    <value name='ruta-cartero' usage='optional' field='rutaCartero' style='element'/>
+    <value name='codigo-provincia' usage='optional' field='codigoProvincia' style='element'/>
+    <value name='descrip-provincia' usage='optional' field='descripProvincia' style='element'/>
+    <value name='pais' usage='optional' field='pais' style='element'/>
+    <value name='desc-pais' usage='optional' field='descPais' style='element'/>
+    <value name='tit-de-domicilio' usage='optional' field='titDeDomicilio' style='element'/>
+    <value name='observ1' usage='optional' field='observ1' style='element'/>
+    <value name='observ2' usage='optional' field='observ2' style='element'/>
+    <value name='tipo-telefono' usage='optional' field='tipoTelefono' style='element'/>
+    <value name='clase-de-telefono' usage='optional' field='claseDeTelefono' style='element'/>
+    <value name='relacion-telefono' usage='optional' field='relacionTelefono' style='element'/>
+    <value name='pecartel' usage='optional' field='pecartel' style='element'/>
+    <value name='penumte' usage='optional' field='penumte' style='element'/>
+    <value name='numero-interno' usage='optional' field='numeroInterno' style='element'/>
+    <value name='proemp' usage='optional' field='proemp' style='element'/>
+    <value name='plazo-duracion' usage='optional' field='plazoDuracion' style='element'/>
+    <value name='numero-de-registro' usage='optional' field='numeroDeRegistro' style='element'/>
+    <value name='fecha-de-inscripcion' usage='optional' field='fechaDeInscripcion' style='element'/>
+    <value name='facturacion-anual' usage='optional' field='facturacionAnual' style='element'/>
+    <value name='jurisdiccion-inscrip' usage='optional' field='jurisdiccionInscrip' style='element'/>
+    <value name='folio-de-inscrip' usage='optional' field='folioDeInscrip' style='element'/>
+    <value name='tomo-de-inscripcion' usage='optional' field='tomoDeInscripcion' style='element'/>
+    <value name='fecha-vto-directorio' usage='optional' field='fechaVtoDirectorio' style='element'/>
+    <value name='numero-de-grupo' usage='optional' field='numeroDeGrupo' style='element'/>
+    <value name='segmento-del-cliente' usage='optional' field='segmentoDelCliente' style='element'/>
+    <value name='ingresos' usage='optional' field='ingresos' style='element'/-->
+  </mapping>
+  
+  <mapping name='pe-m2010' class='com.bdv.infi.webservices.beans.PEM2010' ordered='false'>
+    <value name='entidad' usage='optional' field='entidad' style='element'/>
+    <value name='numero-de-persona' usage='optional' field='numeroDePersona' style='element'/>
+    <value name='tipo-de-documento' usage='optional' field='tipoDeDocumento' style='element'/>
+    <value name='numero-documento' usage='optional' field='numeroDocumento' style='element'/>
+    <value name='secuencia-documento' usage='optional' field='secuenciaDocumento' style='element'/>
+    <value name='indicador-grupo' usage='optional' field='indicadorGrupo' style='element'/>
+    <value name='nombre-fantasia' usage='optional' field='nombreFantasia' style='element'/>
+    <value name='primer-apellido' usage='optional' field='primerApellido' style='element'/>
+    <value name='segundo-apellido' usage='optional' field='segundoApellido' style='element'/>
+    <value name='nombre' usage='optional' field='nombre' style='element'/>
+    <value name='fecha-de-ingreso' usage='optional' field='fechaDeIngreso' style='element'/>
+    <value name='sucursal-administra' usage='optional' field='sucursalAdministra' style='element'/>
+    <value name='condicion-cliente' usage='optional' field='condicionCliente' style='element'/>
+    <value name='tipo-de-persona' usage='optional' field='tipoDePersona' style='element'/>
+    <value name='tipo-ocupacion' usage='optional' field='tipoOcupacion' style='element'/>
+    <value name='estado-civil' usage='optional' field='estadoCivil' style='element'/>
+    <value name='sexo' usage='optional' field='sexo' style='element'/>
+    <value name='fcha-de-nacimiento' usage='optional' field='fchaDeNacimiento' style='element'/>
+    <value name='codigo-act' usage='optional' field='codigoAct' style='element'/>
+    <value name='forma-juridica' usage='optional' field='formaJuridica' style='element'/>
+    <value name='area-negocio' usage='optional' field='areaNegocio' style='element'/>
+    <value name='codigo-de-sujeto' usage='optional' field='codigoDeSujeto' style='element'/>
+    <value name='oficial-corporativ' usage='optional' field='oficialCorporativ' style='element'/>
+    <value name='tipoact' usage='optional' field='tipoact' style='element'/>
+    <value name='tipo-domicilio' usage='optional' field='tipoDomicilio' style='element'/>
+    <value name='fecfal' usage='optional' field='fecfal' style='element'/>
+    <value name='penivest' usage='optional' field='penivest' style='element'/>
+    <value name='personas-a-cargo' usage='optional' field='personasACargo' style='element'/>
+    <value name='tipo-domicilio2' usage='optional' field='tipoDomicilio2' style='element'/>
+    <value name='descrip-domicilio' usage='optional' field='descripDomicilio' style='element'/>
+    <value name='tipo-de-via' usage='optional' field='tipoDeVia' style='element'/>
+    <value name='nombre-de-calle' usage='optional' field='nombreDeCalle' style='element'/>
+    <value name='tipo-construccion' usage='optional' field='tipoConstruccion' style='element'/>
+    <value name='nucleo-urbano' usage='optional' field='nucleoUrbano' style='element'/>
+    <value name='casilla-correo' usage='optional' field='casillaCorreo' style='element'/>
+    <value name='nro-de-bloque' usage='optional' field='nroDeBloque' style='element'/>
+    <value name='localidad' usage='optional' field='localidad' style='element'/>
+    <value name='descrip-localidad' usage='optional' field='descripLocalidad' style='element'/>
+    <value name='descrip-ciudad' usage='optional' field='descripCiudad' style='element'/>
+    <value name='comuna' usage='optional' field='comuna' style='element'/>
+    <value name='descripcion-comuna' usage='optional' field='descripcionComuna' style='element'/>
+    <value name='codigo-postal' usage='optional' field='codigoPostal' style='element'/>
+    <value name='ruta-cartero' usage='optional' field='rutaCartero' style='element'/>
+    <value name='codigo-provincia' usage='optional' field='codigoProvincia' style='element'/>
+    <value name='descrip-provincia' usage='optional' field='descripProvincia' style='element'/>
+    <value name='pais' usage='optional' field='pais' style='element'/>
+    <value name='desc-pais' usage='optional' field='descPais' style='element'/>
+    <value name='tit-de-domicilio' usage='optional' field='titDeDomicilio' style='element'/>
+    <value name='observ1' usage='optional' field='observ1' style='element'/>
+    <value name='observ2' usage='optional' field='observ2' style='element'/>
+    <value name='tipo-telefono' usage='optional' field='tipoTelefono' style='element'/>
+    <value name='clase-de-telefono' usage='optional' field='claseDeTelefono' style='element'/>
+    <value name='relacion-telefono' usage='optional' field='relacionTelefono' style='element'/>
+    <value name='pecartel' usage='optional' field='pecartel' style='element'/>
+    <value name='penumte' usage='optional' field='penumte' style='element'/>
+    <value name='numero-interno' usage='optional' field='numeroInterno' style='element'/>
+    <value name='proemp' usage='optional' field='proemp' style='element'/>
+    <value name='plazo-duracion' usage='optional' field='plazoDuracion' style='element'/>
+    <value name='numero-de-registro' usage='optional' field='numeroDeRegistro' style='element'/>
+    <value name='fecha-de-inscripcion' usage='optional' field='fechaDeInscripcion' style='element'/>
+    <value name='facturacion-anual' usage='optional' field='facturacionAnual' style='element'/>
+    <value name='jurisdiccion-inscrip' usage='optional' field='jurisdiccionInscrip' style='element'/>
+    <value name='folio-de-inscrip' usage='optional' field='folioDeInscrip' style='element'/>
+    <value name='tomo-de-inscripcion' usage='optional' field='tomoDeInscripcion' style='element'/>
+    <value name='fecha-vto-directorio' usage='optional' field='fechaVtoDirectorio' style='element'/>
+    <value name='numero-de-grupo' usage='optional' field='numeroDeGrupo' style='element'/>
+    <value name='segmento-del-cliente' usage='optional' field='segmentoDelCliente' style='element'/>
+    <value name='ingresos' usage='optional' field='ingresos' style='element'/>
+  </mapping>
+  
+  <mapping name='tcgg' class='com.bdv.infi.webservices.beans.TCGG' ordered='false'>
+    <value name='tabla-general' usage='optional' field='tablaGeneral' style='element'/>
+    <value name='entidad' usage='optional' field='entidad' style='element'/>
+    <value name='idioma' usage='optional' field='idioma' style='element'/>
+    <value name='clave-tab-general' usage='optional' field='claveTabGeneral' style='element'/>
+    <value name='numero-registros' usage='optional' field='numeroRegistros' style='element'/>
+    <value name='tipo-acceso' usage='optional' field='tipoAcceso' style='element'/>
+    <value name='datos-ini' usage='optional' field='datosIni' style='element'/>
+  </mapping>
+  <mapping name='tcgg-respuesta' class='com.bdv.infi.webservices.beans.TCGGRespuesta' ordered='false'>
+    <collection usage='optional' item-type='com.bdv.infi.webservices.beans.TCMGenx' field='arrayTCMGenx'/>
+    <collection usage='optional' item-type='com.bdv.infi.webservices.beans.TCMGen1' field='arrayTCMGen1'/>
+  </mapping>
+  <mapping name='tcmgenx' class='com.bdv.infi.webservices.beans.TCMGenx' ordered='false'>
+    <value name='tabla-general' usage='optional' field='tablaGeneral' style='element'/>
+    <value name='entidad' usage='optional' field='entidad' style='element'/>
+    <value name='idioma' usage='optional' field='idioma' style='element'/>
+    <value name='clave-tab-general' usage='optional' field='claveTabGeneral' style='element'/>
+    <value name='numero-registros' usage='optional' field='numeroRegistros' style='element'/>
+    <value name='tipo-acceso' usage='optional' field='tipoAcceso' style='element'/>
+  </mapping>
+  <mapping name='tcmge-n1' class='com.bdv.infi.webservices.beans.TCMGen1' ordered='false'>
+    <value name='nombre-de-tabla' usage='optional' field='nombreDeTabla' style='element'/>
+    <value name='nombre-de-la-entidad' usage='optional' field='nombreDeLaEntidad' style='element'/>
+    <value name='idioma' usage='optional' field='idioma' style='element'/>
+    <value name='clave' usage='optional' field='clave' style='element'/>
+    <value name='datos1-tabl-general' usage='optional' field='datos1TablGeneral' style='element'/>
+    <value name='datos2-tabl-general' usage='optional' field='datos2TablGeneral' style='element'/>
+    <value name='datos3-tabl-general' usage='optional' field='datos3TablGeneral' style='element'/>
+  </mapping>
+
+  
+  <mapping name='b705' class='com.bdv.infi.webservices.beans.B705' ordered='false'>
+    <value name='codigo-cta-cliente' usage='optional' field='codigoCtaCliente' style='element'/>
+    <value name='clave-operacion' usage='optional' field='claveOperacion' style='element'/>
+    <value name='bloqueo-desbloqueo' usage='optional' field='bloqueoDesbloqueo' style='element'/>
+    <value name='motivo-bloqueo' usage='optional' field='motivoBloqueo' style='element'/>
+  </mapping>
+  <mapping name='b705-respuesta' class='com.bdv.infi.webservices.beans.B705Respuesta' ordered='false'>
+    <structure usage='optional' field='bgm7051'/>
+    <structure usage='optional' field='bgm7052'/>
+    <structure usage='optional' field='bgm7053'/>
+    <collection usage='optional' item-type='com.bdv.infi.webservices.beans.BGM7054' field='bgm7054'/>
+  </mapping>
+  
+  <mapping name='bg-m7051' class='com.bdv.infi.webservices.beans.BGM7051' ordered='false'>
+    <value name='clave-de-bloqueo' usage='optional' field='claveDeBloqueo' style='element'/>
+    <value name='entidad' usage='optional' field='entidad' style='element'/>
+    <value name='centro-alta' usage='optional' field='centroAlta' style='element'/>
+    <value name='cuenta' usage='optional' field='cuenta' style='element'/>
+    <value name='motivo' usage='optional' field='motivo' style='element'/>
+    <value name='observaciones' usage='optional' field='observaciones' style='element'/>
+    <value name='linea-final' usage='optional' field='lineaFinal' style='element'/>
+    <value name='linea-condicional' usage='optional' field='lineaCondicional' style='element'/>
+  </mapping>
+  <mapping name='bg-m7052' class='com.bdv.infi.webservices.beans.BGM7052' ordered='false'>
+    <value name='clave-de-bloqueo' usage='optional' field='claveDeBloqueo' style='element'/>
+    <value name='descripcion' usage='optional' field='descripcion' style='element'/>
+    <value name='entidad' usage='optional' field='entidad' style='element'/>
+    <value name='centro-alta' usage='optional' field='centroAlta' style='element'/>
+    <value name='cuenta' usage='optional' field='cuenta' style='element'/>
+    <value name='motivo' usage='optional' field='motivo' style='element'/>
+    <value name='observaciones' usage='optional' field='observaciones' style='element'/>
+    <value name='linea-final' usage='optional' field='lineaFinal' style='element'/>
+    <value name='linea-condicional' usage='optional' field='lineaCondicional' style='element'/>
+    <value name='fecha-bloqueo' usage='optional' field='fechaBloqueo' style='element'/>
+    <value name='oficina-de-modif' usage='optional' field='oficinaDeModif' style='element'/>
+    <value name='usuario-de-modif' usage='optional' field='usuarioDeModif' style='element'/>
+    <value name='fecha-de-modif' usage='optional' field='fechaDeModif' style='element'/>
+  </mapping>
+  <mapping name='bg-m7053' class='com.bdv.infi.webservices.beans.BGM7053' ordered='false'>
+    <value name='entidad' usage='optional' field='entidad' style='element'/>
+    <value name='centro' usage='optional' field='centro' style='element'/>
+    <value name='numero-de-la-cuenta' usage='optional' field='numeroDeLaCuenta' style='element'/>
+  </mapping>
+  <mapping name='bg-m7054' class='com.bdv.infi.webservices.beans.BGM7054' ordered='false'>
+    <value name='codigo' usage='optional' field='codigo' style='element'/>
+    <value name='descrip' usage='optional' field='descrip' style='element'/>
+    <value name='motivo' usage='optional' field='motivo' style='element'/>
+    <value name='obs' usage='optional' field='obs' style='element'/>
+    <value name='fecha-bloqueo' usage='optional' field='fechaBloqueo' style='element'/>
+    <value name='usuario-ult-mod' usage='optional' field='usuarioUltMod' style='element'/>
+  </mapping>
+  
+  <mapping name='pevi' class='com.bdv.infi.webservices.beans.PEVI' ordered='false'>
+    <value name='entidad' usage='optional' field='entidad' style='element'/>
+    <value name='numero-de-persona' usage='optional' field='numeroDePersona' style='element'/>
+    <value name='tipo-de-documento' usage='optional' field='tipoDeDocumento' style='element'/>
+    <value name='numero-documento' usage='optional' field='numeroDocumento' style='element'/>
+    <value name='secuencia-documento' usage='optional' field='secuenciaDocumento' style='element'/>
+    <value name='indicador-grupo' usage='optional' field='indicadorGrupo' style='element'/>
+    <value name='nombre-fantasia' usage='optional' field='nombreFantasia' style='element'/>
+    <value name='primer-apellido' usage='optional' field='primerApellido' style='element'/>
+    <value name='segundo-apellido' usage='optional' field='segundoApellido' style='element'/>
+    <value name='nombre' usage='optional' field='nombre' style='element'/>
+    <value name='sexo' usage='optional' field='sexo' style='element'/>
+    <value name='observacion-correo' usage='optional' field='observacionCorreo' style='element'/>
+    <value name='fecha-nacimiento' usage='optional' field='fechaNacimiento' style='element'/>
+    <value name='indicador-tcp-unico' usage='optional' field='indicadorTcpUnico' style='element'/>
+  </mapping>
+  <mapping name='pe-m2080' class='com.bdv.infi.webservices.beans.PEM2080' ordered='false'>
+    <value name='entidad' usage='optional' field='entidad' style='element'/>
+    <value name='numero-de-persona' usage='optional' field='numeroDePersona' style='element'/>
+    <value name='tipo-de-documento' usage='optional' field='tipoDeDocumento' style='element'/>
+    <value name='numero-documento' usage='optional' field='numeroDocumento' style='element'/>
+    <value name='secuencia-documento' usage='optional' field='secuenciaDocumento' style='element'/>
+    <value name='indicador-grupo' usage='optional' field='indicadorGrupo' style='element'/>
+    <value name='nombre-fantasia' usage='optional' field='nombreFantasia' style='element'/>
+    <value name='primer-apellido' usage='optional' field='primerApellido' style='element'/>
+    <value name='segundo-apellido' usage='optional' field='segundoApellido' style='element'/>
+    <value name='nombre' usage='optional' field='nombre' style='element'/>
+    <value name='sexo' usage='optional' field='sexo' style='element'/>
+    <value name='observacion-correo' usage='optional' field='observacionCorreo' style='element'/>
+    <value name='fecha-nacimiento' usage='optional' field='fechaNacimiento' style='element'/>
+    <value name='indicador-tcp-unico' usage='optional' field='indicadorTcpUnico' style='element'/>
+  </mapping>
+  <mapping name='OFERTA' class='com.bdv.infi.webservices.beans.OfertaBCV' ordered='false'>
+    <value name='CODIGO' usage='optional' field='codigo' style='attribute'/>
+    <value name='REFINST' usage='optional' field='refInst' style='element'/>
+    <value name='TASA' usage='optional' field='tasa' style='element'/>
+    <value name='ESTADO' usage='optional' field='estado' style='element'/>
+    <value name='JORNADA' usage='optional' field='jornada' style='element'/>
+    <value name='OFERTANTE' usage='optional' field='ofertante' style='element'/>
+    <value name='CLIENTE' usage='optional' field='cliente' style='element'/>
+    <value name='MONTO' usage='optional' field='monto' style='element'/>    
+  </mapping>  
+  <mapping name='OFERTAS' class='com.bdv.infi.webservices.beans.OfertaBCVRespuesta' ordered='false'>
+     <collection usage='optional' item-type='com.bdv.infi.webservices.beans.OfertaBCV' field='ofertasBCVList'/>   
+  </mapping>
+  <mapping name='PACTO' class='com.bdv.infi.webservices.beans.PactoBCV' ordered='false'>
+    <value name='CODIGO' usage='optional' field='idPacto' style='attribute'/>
+    <value name='OFERTA' usage='optional' field='idOfertaBCV' style='element'/>
+    <value name='DEMANDA' usage='optional' field='idDemandaBCV' style='element'/>
+    <value name='TASA' usage='optional' field='tasaCambio' style='element'/>
+    <value name='ESTADO' usage='optional' field='estado' style='element'/>
+    <value name='JORNADA' usage='optional' field='nroJornada' style='element'/>
+    <value name='PACTOMONTO' usage='optional' field='montoPacto' style='element'/>
+    <value name='OFERTANTE' usage='optional' field='ofertante' style='element'/>
+    <value name='DEMANDANTE' usage='optional' field='demandante' style='element'/> 
+  </mapping>  
+  <mapping name='PACTOS' class='com.bdv.infi.webservices.beans.PactoBCVRespuesta' ordered='false'>
+     <collection usage='optional' item-type='com.bdv.infi.webservices.beans.PactoBCV' field='pactosBCVList'/> 
+  </mapping>
+  <mapping name='DEMANDA' class='com.bdv.infi.webservices.beans.DemandaXMLBCV' ordered='false'>
+    <value name='CODIGO' usage='optional' field='idOfertaBCV' style='attribute'/>
+    <value name='REFINST' usage='optional' field='refInstitucion' style='element'/>
+    <value name='TASA' usage='optional' field='tasaCambio' style='element'/>
+    <value name='ESTADO' usage='optional' field='estado' style='element'/>
+    <value name='JORNADA' usage='optional' field='nroJornada' style='element'/>
+    <value name='DEMANDANTE' usage='optional' field='demandante' style='element'/>
+    <value name='CLIENTE' usage='optional' field='cliente' style='element'/>
+    <value name='MONTO' usage='optional' field='monto' style='element'/>
+  </mapping>
+  <mapping name='DEMANDAS' class='com.bdv.infi.webservices.beans.DemandasXMLBCVRespuesta' ordered='false'>
+     <collection usage='optional' item-type='com.bdv.infi.webservices.beans.DemandaXMLBCV' field='demandasXMLBCVList'/> 
+  </mapping>
+   
+</binding>

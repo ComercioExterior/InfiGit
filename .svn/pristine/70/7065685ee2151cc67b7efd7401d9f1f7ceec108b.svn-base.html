@@ -1,0 +1,145 @@
+<HTML>
+    
+	<head> 
+          
+           
+     <link rel="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <LINK REL="stylesheet" type="text/css" href="../css/EstiloFichas.css" />		
+         <script language="javascript" src="../js/default.js"></script>
+        
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+           
+        <script type="text/javascript">
+        
+          function mostrarStatus(id){
+				if(id==2){
+					menu.style.display="none";
+				}
+			}
+          
+        </script>
+	
+    </head>
+  
+  <body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+  
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Documentos / Definici&oacute;n / Campos Disponibles</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" TARGET="_blank" ACTION="">
+		@recomendaciones@
+		<br>
+	<div id="menu">
+		<table border="0">
+			<tr>
+				<td id="navigation"><a href="documentos_definicion-plantilla?dirigir=@dirigir@&id=@id@&unidad=@unidad@"><span>Generales</span></a></td>
+				<td id="navigation"><a href="unidad_inversion_plantilla?dirigir=@dirigir@&id=@id@&unidad=@unidad@"><span>Unidad Inversi&oacute;n</span></a></td>
+				<td id="navigationActivo"><a><span>T&iacute;tulos</span></a></td>			
+			</tr>
+		</table>
+	</div>
+	 <CENTER>
+<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="TABLE-LAYOUT: auto; ">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="4" ALIGN="center">
+                <FONT class="formCaptionText">
+                  T&iacute;tulos disponibles para la plantilla
+                </FONT>
+            </th>
+        </tr>
+  
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+		<th>Unidad de Inversi&oacute;n</th>
+		<th>T&iacute;tulo</th>
+		<th>Nombre del campo</th>
+		<th>Descripci&oacute;n del campo</th>
+    </tr>
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+    	<td VALIGN="middle">@undinv_nombre@ </td>
+    	
+        <td VALIGN="middle">@titulo_descripcion@ </td>
+        
+		<td nowrap VALIGN="middle">
+		 <!--@titulo@ y @precio @ sera reemplazado por la palabra titulo o precio respectivamente y seguido del ID del titulo correspondiente Ej: titulo_bono123ab -->
+			&#64;@titulo@&#64;<br>
+			&#64;@precio@&#64;<br>
+			&#64;monto_@titulo@&#64;<br>
+			&#64;porcentaje_@titulo@&#64;<br>
+			&#64;@titulo@_monto_pedido&#64;<br>
+			&#64;@titulo@_monto_adjudicado&#64;<br>
+			&#64;@titulo@_contra_valor&#64;<br>
+			&#64;@titulo@_intereses_caidos&#64;<br>
+			&#64;@titulo@_dias_int_transcurridos&#64;<br>
+			&#64;base_calculo_@titulo@&#64;<br>
+			&#64;tasa_cupon_@titulo@&#64;<br>
+			&#64;moneda_@titulo@&#64;<br>
+			&#64;@titulo@_dias_al_vencimiento&#64;<br>
+			&#64;dia_vencimiento_@titulo@&#64;<br>
+			&#64;mes_vencimiento_@titulo@&#64;<br>
+			&#64;nombre_mes_vencimiento_@titulo@&#64;<br>
+			&#64;anio_vencimiento_@titulo@&#64;<br>
+			&#64;recompra_@titulo@&#64;<br>
+			&#64;recompra_@titulo@_pct&#64;<br>
+			&#64;recompra_@titulo@_monto&#64;<br>
+			&#64;recompra_@titulo@_total&#64;
+			
+		</td>
+		
+		<td nowrap VALIGN="middle">
+			Nombre del T&iacute;tulo<br>
+			Precio ofrecido para la Compra del T&iacute;tulo<br>
+			Monto de la compra o venta del T&iacute;tulo al momento de la Compra<br>
+			Porcentaje del T&iacute;tulo en el momento de la compra<br>
+			Monto de la compra o venta del T&iacute;tulo al momento de la Adjudicacion<br>
+			Monto Adjudicado para el T&iacute;tulo<br>
+			Monto Adjudicado<br>
+			Intereses Ca&iacute;dos para el T&iacute;tulo<br>
+			D&iacute;as al Vencimiento del T&iacute;tulo<br>
+			Base de C&cacute;alculo del T&iacute;tulo<br>
+			Tasa de Cupon del T&iacute;tulo<br>
+			Moneda de Negociaci&oacute;n del T&iacute;tulo<br>
+			D&iacute;as de Intereses Transcurridos<br>
+			D&iacute;a Vencimiento del T&iacute;tulo<br>
+			Mes Vencimiento del T&iacute;tulo<br>
+			Nombre Mes Vencimiento del T&iacute;tulo<br>
+			A&ntilde;o Vencimiento del T&iacute;tulo<br>
+			Nombre del T&iacute;tulo con Recompra<br>
+			Porcentaje del T&iacute;tulo en el momento de la Recompra<br>
+			Monto de la Recompra del T&iacute;tulo<br>
+			Total Monto Recompra (porcentaje * monto)
+		</td>
+     </tr>
+     </rows>
+    </table>
+<br>
+  		<button ONCLICK="window.close();">Regresar</button>
+ 
+    </form>
+
+        
+        </CENTER>
+        
+    </BODY>
+
+</HTML>

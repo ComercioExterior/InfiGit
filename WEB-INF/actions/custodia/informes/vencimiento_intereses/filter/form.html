@@ -1,0 +1,120 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Vencimiento Intereses</title>
+  <link rel="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+    <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+    <SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+    <script language="javascript" src="../js/default.js"></script>  
+  <script type="text/javascript">
+          //Funci&oacute;n para abrir un picklist o limpiar el valor anteriormente seleccionado
+		function showPickList(ind ,id, tx, campo)
+		{
+		   var r
+		   if (ind == '1') {  // llamar a picklist		
+		   	  r = window.open(campo +'?name_id=' + id.name +"&name_tx=" + tx.name, 'Picklist','resizable=yes,scrollbars=yes,width=600,height=450,Left=200,top=150,Status=yes,unadorned:true');
+		   	  
+		   } else if(ind == '0'){
+		   	  tx.value= ""; //limpiar los campos fecha
+		   }
+		   else{
+			id.value= "";//limpiar id de cliente
+			tx.value= "<Todos>";//limpiar campo de cliente
+		  }
+		} 
+  </script>
+</head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Custodia / Informes /Vencimiento de Intereses y/o Capital</FONT>
+        </TD>
+        
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+        <td class="headerBox" aling="right"></td>
+</TABLE>
+
+  <!--formulario-->
+  	<center>
+  <form NAME="dataentry" METHOD="POST" ACTION="vencimiento_intereses-view" target="_self">
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="4" ALIGN="center">
+                 Seleccione criterios
+            </th>
+        </tr>   
+        
+        <!--campo-->
+        <tr>
+            <td>
+             Fecha Desde: *
+            </td>
+            <td>
+             <input type="text" name="fecha_desde" value="@fecha_hoy@" size="10" maxlength="10"  readonly /> 
+					<a onclick="popUpCalendar(this, document.forms[0].fecha_desde, 'dd-mm-yyyy')">
+					<IMG SRC="../images/infi_gn_calendar.gif" class="boton" TITLE="Seleccionar Fecha"/>
+					</a>						        
+            </td>
+        </tr>
+        
+         <!--campo-->
+        <tr>
+            <td>
+             Fecha Hasta: *
+            </td>
+            <td>
+             <input type="text" name="fecha_hasta" value="@fecha_hoy@" size="10" maxlength="10"  readonly /> 
+					<a onclick="popUpCalendar(this, document.forms[0].fecha_hasta, 'dd-mm-yyyy')">
+					<IMG SRC="../images/infi_gn_calendar.gif" class="boton" TITLE="Seleccionar Fecha"/>
+					</a>						        
+            </td>
+        </tr>
+        
+       <!--campo-->
+        <tr>
+            <td>
+				Tipo:
+            </td>
+            <td>
+            <SELECT NAME="tipo" CLASS="inputControl" >
+					<OPTION VALUE="Intereses"/>INTERESES</OPTION>	
+					<OPTION VALUE="Capital"/>CAPITAL</OPTION>				 							 
+					</rows>
+		    </SELECT>
+		</tr>		
+        <tr>
+            <td>
+				Formato de Salida:
+            </td>
+            <td>
+            <SELECT NAME="formato_salida" CLASS="inputControl" >
+					<rows>
+					<!-- <OPTION VALUE="pdf"/>PDF</OPTION>-->	
+					<OPTION VALUE="excel"/>EXCEL</OPTION>				 							 
+					</rows>
+		    </SELECT>
+		</tr>		
+          
+    </table>
+         
+         
+         <INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/> 	
+            <br>
+            <button TYPE="submit">Procesar</button>         
+                <SPAN> </SPAN>
+            <button type="button" onclick="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+            <input type="hidden" value="false" name="framework.controller.outputstream.open">
+  </form>
+  	</center>
+</body>
+</html>

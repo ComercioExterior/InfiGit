@@ -1,0 +1,96 @@
+<html>
+
+<head>
+
+	<title>Sistema INFI</title>
+	<script language="javascript" src="../js/default.js"></script>
+	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+	
+</head>
+
+<body>
+
+	<!--page name bar-->
+	<table  border="0" cellspacing="0" WIDTH="100%">
+	    <tr>
+			<TD class="headerBox">
+				<FONT class="headerText">Eventos / Amortizaciones Generadas</FONT>
+			</TD>
+	        <!-- help online -->
+	   		<td class="headerBox" valign="middle" align="right">
+	   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+	   		</td>
+	   		<!-- fin help online -->	        
+	   	</tr>
+	</table>
+	
+	<center>
+	<br>
+	
+	<table border="0" cellspacing="1" cellpadding="2" width="100%"
+		class="datatable">
+	
+		<!--titulo-->
+		<tr CLASS="formCaption">
+			<th COLSPAN="8" ALIGN="center">
+				<FONT class="formCaptionText">
+				Eventos /Generaci&oacute;n de Amortizaciones @contador@
+				</FONT>
+			</th>
+		</tr>
+	
+	</table>
+	
+	<!--tabla de data-->
+	<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="TABLE-LAYOUT: auto; ">
+	
+		<!--encabezados de columna-->
+		<tr class="tableHeader">
+			<th width="7%">Cedula/RIF</th>		
+			<th width="25%">Nombre</th>
+			<th width="20%">Titulo</th>
+			<th width="10%">Fecha de Pago</th>
+			<th width="10%">Fecha Proximo Pago</th>
+			<th width="8%">Moneda de Pago</th>			
+			<th width="10%">Monto Pagado</th>					
+			<th width="17%">Status</th>		
+		</tr>
+	
+		<!--data-->
+		<tbody id="tBody">
+			<rows>
+			<tr class="tableCell">	
+				<td align="center" >@client_cedrif@</td>								
+				<td>@client_nombre@</td>		
+				<td> @titulo_id@</td>						
+				<td align="center" nowrap>@fecha_aplicar@</td>
+				<td align="center" nowrap>@fecha_prox_pago@</td>
+				<td align="center" nowrap>@moneda_id@</td>											
+				<td align="right" style="padding-right: 10px;">@monto_operacion@</td>			
+				<td align="center">@status_operacion@</td>				
+			</tr>
+			</rows>
+		</tbody>
+	
+	</table>
+	
+		@page_index@
+		
+	<br>
+	<table align="center">
+		<tr>
+			<td>
+			<button type="button" onclick="window.location='show-view'">Regresar</button>
+			</td>
+		</tr>
+	</table>
+		
+	</center>
+
+
+</body>
+
+<script type="text/javascript">
+
+</script>
+</html>

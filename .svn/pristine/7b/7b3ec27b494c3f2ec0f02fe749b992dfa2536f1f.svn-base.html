@@ -1,0 +1,288 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Toma de Orden</title>
+  <link rel="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+  <link rel="stylesheet" type="text/css" href="../css/EstiloFichas.css" />
+  <script type="text/javascript">
+          //Funci&oacute;n para abrir un picklist o limpiar el valor anteriormente seleccionado
+		function showPickList(ind ,id, tx, campo)
+		{
+		   var r
+		   if (ind == '1') {  // llamar a picklist		
+		   	  r = window.open(campo +'?name_id=' + id.name +"&name_tx=" + tx.name, 'Picklist','resizable=yes,scrollbars=yes,width=600,height=450,Left=200,top=150,Status=yes,unadorned:true');
+		   	  
+		   }
+		   else{
+			id.value= "";//limpiar id de cliente
+			tx.value= "";//limpiar campo de cliente
+		  }
+		} 
+		
+		function mostrarOcultarDatosUnidadInv(){
+       
+        	if(document.dataentry.undinv_id.value!='0' && document.dataentry.calculos.value == '1'){//Unidad de Inversi&oacute;n
+        		
+        		mostrarCalculos();        		
+        		document.getElementById('datos_unidad_inv').style.display='none';        		
+        	}else{
+        		if(document.dataentry.undinv_id.value!='0'){
+        			mostrarDatos();
+        			document.getElementById('datos_unidad_inv').style.display ='block';
+        		}        		
+        	}       
+        }
+        
+        function mostrarCalculos(){        	
+        	
+       	 	document.getElementById('calculos_orden').style.display='block';
+       	 	document.getElementById('datos_orden').style.display='none';
+       	
+        }
+        
+        function llamadaCalculos(){
+	        
+	        if(document.dataentry.undinv_id.value=='0'){
+	        	 alert("Debe ingresar los datos de la Unidad de Inversi&oacute;n");
+    		}else{
+    			document.dataentry.action='cartera-datos?calculos=1';
+    			document.dataentry.submit();    			
+    		}
+	        
+        }
+        
+        function mostrarDatos(){        	
+        	 document.getElementById('datos_orden').style.display='block';            	 
+        	 document.getElementById('calculos_orden').style.display='none';
+        
+        }
+        
+ 
+  </script>
+         <script language="javascript" src="../js/default.js"></script>  
+</head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()}; mostrarOcultarDatosUnidadInv();">
+
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Ordenes / Toma de Orden Cartera Propia </FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+  <!--formulario-->	
+  <form NAME="dataentry" METHOD="POST" ACTION="cartera-calculo">
+
+      <center>     
+      <!-- ZONA DE DATOS -->
+      <div id="datos_orden">     
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">      
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="4" ALIGN="center">
+                 Buscar
+            </th>
+        </tr>       
+        <!--campo-->
+        <tr >
+            <td>
+             Unidad de inversi&oacute;n:
+            </td>
+            <td>
+				<SELECT NAME="undinv_id" SIZE="1" onchange="dinamicBlotter(this.value);">				
+					<OPTION VALUE="0" SELECTED>Seleccione</OPTION>
+					<rows_undinv>					
+					<OPTION VALUE="@undinv_id@">@undinv_nombre@</OPTION>						
+					</rows_undinv>
+	 			</SELECT> 			
+                        
+            </td>           
+        </tr>       
+        </table>  
+        <!--campo-->          
+        <table border="0" id="datos_unidad_inv" style="display:none" cellspacing="1" cellpadding="2" width="100%" class="dataform">      
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="4" ALIGN="center">
+                 Datos de la Unidad de Inversi&oacute;n
+            </th>
+        </tr>       
+        <tr>
+			<td>Emisor:</td>
+			<td>@empres_nombre@</td>
+			
+			<td>Financiamiento disponible:</td>
+			<td>@undinv_pct_max_finan format-mask='#,###,##0.00'@ %</td>			
+		</tr>
+		<tr>
+			<td>Instrumento Financiero:</td>
+			<td>@insfin_descripcion@</td>
+			<td>Tipo Instrumento</td>
+			<td>@insfin_tipo@</td>			
+		</tr>
+		<tr>
+			<td>Cantidad M&iacute;nima a Comprar:</td>
+			<td>@undinv_umi_um_cant_min@</td>
+			
+			<td>Cantidad M&aacute;xima a Comprar:</td>
+			<td>@undinv_umi_um_cant_max@</td>
+			
+		</tr>
+		<tr>
+			<td>Monto M&iacute;nimo a Comprar:</td>
+			<td>@undinv_umi_inv_mto_min@</td>
+			
+			<td>Monto M&aacute;ximo a Comprar:</td>
+			<td>@undinv_umi_inv_mto_max@</td>
+			
+		</tr>
+		<tr>
+			<td>Recompra permitida:</td>
+			<td>@in_recompra@</td>
+			
+			<td>Precio de Recompra:</td>
+			<td></td>
+			
+		</tr>	
+		<tr>
+			<td>Precio m&iacute;nimo:</td>
+			<td>@undinv_precio_minimo@ %</td>
+			
+            <td>
+             Bloter:
+				<SELECT NAME="bloter_id" SIZE="1" ">				
+					<OPTION VALUE="">Seleccione</OPTION>
+					<bloter>					
+					<OPTION VALUE="@bloter_id@-@id_agrupacion@">@bloter_descripcion@</OPTION>						
+					</bloter>
+	 			</SELECT> 			      
+            </td>           
+		</tr>	
+		<tr>
+			<td>Veh&iacute;culo:</td>
+			<td>Veh&iacute;culo por defecto Unidad de Inversi&oacute;n</td>
+		</tr>
+
+		<tr>
+			<td>Porcentaje a Financiar:</td>
+			<td>
+			  @campo_financiamiento@ %
+			</td>
+			<td>Monto a comprar:</td>
+			<td>
+			  <INPUT TYPE="TEXT" VALUE="" style="text-align:right" NAME="monto_comprar" SIZE="12" MAXLENGTH="10" onkeypress="EvaluateText('%f',this)">
+			</td>
+			
+		</tr>
+ 
+    </table>
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="4" ALIGN="center">
+                 Datos del cliente
+            </th>
+        </tr>      
+        <!--campo-->
+        <tr>
+            <td>
+             Cliente:
+            </td>
+            <td>
+            <INPUT TYPE="TEXT" VALUE="" NAME="pick_cliente" SIZE="30" MAXLENGTH="50" class="inputControl" readonly/>
+            	<input type="hidden" value="" name="client_id"/>
+				<!--IMAGENES/BOTONES PARA EL PICKLIST-->
+				<IMG src="../images/infi_gn_picklist.gif" title="Haga CLICK para ver la lista de opciones." onclick="showPickList(1,document.dataentry.client_id,document.dataentry.pick_cliente,'pick_clientes-find')" style="cursor:hand"/>
+				<IMG src="../images/infi_gn_picklist-clear.gif" title="Haga CLICK para borrar la opci&oacute;n seleccionada." onclick="showPickList(0,document.dataentry.client_id,document.dataentry.pick_cliente,'pick_clientes-find')" style="cursor:hand"/>                        
+            </td>
+            
+            <td>Cuenta del Cliente:</td>
+			<td>
+				<SELECT NAME="cta_cliente" SIZE="1">				
+					<OPTION VALUE="" SELECTED>Seleccione</OPTION>
+					<OPTION VALUE="2235691">Cta corriente 2235691 Disponible: 50.000.000,00</OPTION>	
+					<OPTION VALUE="332248">Cta de ahorros 332248 Disponible: 12.000.000,00</OPTION>	
+	 			</SELECT> 	
+			</td>
+            
+        </tr>
+    </table>
+
+         <INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/> 	
+            <br>
+            <button TYPE="button" onclick="llamadaCalculos();">Calcular</button>         
+                <SPAN> </SPAN>
+            <button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+	</div>	
+	 <INPUT TYPE="hidden" VALUE="@calculos@" NAME="calculos"/>	 
+	<!-- ZONA DE CALCULOS -->
+	<div id="calculos_orden" style="display:none">	
+		 <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">	        
+	        <!--titulo-->
+	        <tr>
+	            <th COLSPAN="2" ALIGN="center">
+	                 Unidad de Inversi&oacute;n seleccionada
+	            </th>
+	        </tr>	        
+	        <!--campo-->
+	        <tr>
+	            <td>Unidad de inversi&oacute;n:</td>
+				<td>@undinv_nombre@</td>
+	        </tr>
+	        <tr>
+	            <td>Fecha de emisi&oacute;n:</td>
+				<td>@undinv_fe_emision@</td>
+	        </tr>
+	        <tr>
+	            <td>Instrumento financiero:</td>
+				<td>@insfin_id@</td>
+	        </tr>          
+	        
+	        <tr>
+				<td>Inventario disponible:</td>
+				<td>@undinv_umi_inv_disponible@</td>
+			</tr>
+	    </table>
+	<!--Datos de los t&iacute;tulos -->
+	   <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+	        <tr>
+	            <th COLSPAN="4" ALIGN="center">
+	                 Datos de los T&iacute;tulos
+	            </th>
+	        </tr>
+	        <tr>
+				<th>T&iacute;tulo</th>
+				<th>Valor equivalente</th>
+				<th>Porcentaje</th>
+				<th>Moneda denominaci&oacute;n</th>
+			</tr>			
+			<rows_titulos_ui>
+	        <tr>
+				<td>@titulo_descripcion@</td>
+				<td align="right">@uititu_valor_equivalente@</td>
+				<td align="right">@uititu_porcentaje@</td>
+				<td align="right">@titulo_moneda_den@</td>
+			</tr>
+			</rows_titulos_ui>
+			
+		</table>     
+	   <INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/>
+	   <br>
+	   <button TYPE="submit">Comprar t&iacute;tulos</button>
+	   <SPAN> </SPAN>
+	   <button TYPE="button" onclick="javascript:history.back();">Regresar</button>
+	</div>	
+	<!-- ZONA DE COMPROBACI&Oacute;N -->
+	<div id="comprobacion_orden">
+	
+	</div>
+  </form>
+ </center>
+</body>
+</html>

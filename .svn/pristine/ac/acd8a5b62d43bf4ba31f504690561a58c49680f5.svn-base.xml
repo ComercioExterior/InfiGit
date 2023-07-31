@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+    <!--
+    
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, decimal, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+    
+    -->
+    
+        <field 
+        name="comision_id" 
+        type="integer" 
+        description="Id de Comisi&oacute;n"
+        nullable="1"
+        size="6" />    
+    
+          <field 
+        name="comision_nombre" 
+        type="varchar" 
+        description="Nombre"
+        nullable="0"
+        size="50" />        
+        
+       
+        <field 
+        name="codigo_operacion" 
+        type="varchar" 
+        description="C&oacute;digo de Operaci&oacute;n"
+        nullable="0"
+        size="100" /> 
+ 
+ 
+         <field 
+        name="comision_monto_fijo" 
+        type="varchar" 
+        description="Monto Fijo"
+        nullable="1"
+        size="100" /> 
+        
+        <field 
+        name="comision_pct" 
+        type="varchar" 
+        description="Porcentaje"
+        nullable="1"
+        size="100" /> 
+        
+        <field 
+        name="trnfin_id_op" 
+        type="varchar" 
+        description="Tipo de Operacion: Efectivo o Transferencia"
+        nullable="1"
+        size="12" />  
+    
+</record>
+

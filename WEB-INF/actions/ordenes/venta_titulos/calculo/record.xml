@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+    <!--
+    
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, decimal, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+    
+    -->
+    
+        <field 
+        name="client_id" 
+        type="integer" 
+        description="Cliente"
+        nullable="1"
+        size="100" />
+        
+        <field 
+        name="titulo_id" 
+        type="varchar" 
+        description="Titulo"
+        nullable="1"
+        size="100" />
+
+        <field 
+        name="forma_negociacion" 
+        type="varchar" 
+        description="Forma de negociación"
+        nullable="1"
+        size="5" />        
+              
+        
+        
+        <!-- field 
+        name="cantidad_venta" 
+        type="integer" 
+        description="Cantidad a Vender"
+        nullable="0"
+        size="100" />      
+        
+               
+       <field 
+        name="moneda_id" 
+        type="varchar" 
+        description="Moneda de Negociaci&oacute;n"
+        nullable="0"
+        size="10" />      
+        
+  
+        <field 
+        name="forma_pago_id" 
+        type="integer" 
+        description="Forma de Pago"
+        nullable="0"
+        size="100" />      
+        
+ 
+       <field 
+        name="ctecta_numero_inter" 
+        type="varchar" 
+        description="Nro. Cuenta Internacional"
+        nullable="1"
+        size="30" />      
+        
+ 
+       <field 
+        name="cta_nac_numero" 
+        type="varchar" 
+        description="Nro. Cuenta Nacional"
+        nullable="1"
+        size="30" /-->      
+ 
+    
+</record>
+

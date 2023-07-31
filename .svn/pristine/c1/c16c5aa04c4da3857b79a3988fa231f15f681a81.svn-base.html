@@ -1,0 +1,203 @@
+<html>
+
+	<head>
+        
+        <!--LINK REL="stylesheet" type="text/css" href="../megasoft.css" /-->
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+<script type="text/javascript">
+        
+        function callAjax(id_contenedor){		
+		var pagResponse = false;
+		var url = "transf_data-ajax_browse?cod_proceso="+document.dataentry.cod_proceso.value;
+	
+		if (window.XMLHttpRequest) {// Si es Mozilla, Safari etc
+			pagResponse = new XMLHttpRequest()
+		} else if (window.ActiveXObject){ // pero si es IE
+			try {
+				pagResponse = new ActiveXObject("Msxml2.XMLHTTP")
+			} 
+			catch (e){ // en caso que sea una versi&oacute;n antigua
+				try{
+					pagResponse = new ActiveXObject("Microsoft.XMLHTTP")
+				}
+				catch (e){}
+			}
+		}
+		else
+			return false
+	
+		//alert("AL INICIO " + pagResponse);
+			pagResponse.onreadystatechange=function(){ // funci&oacute;n de respuesta
+			cargarpagina(pagResponse, id_contenedor)
+		}
+		
+		pagResponse.open('GET', url, true) // asignamos los m&eacute;todos open y send
+		pagResponse.send(null)
+		 
+	}
+	
+        //ejecuci&oacute;n del proceso
+        function cargar_archivo(){
+        //colocar bandera en 1 indicando que el proceso se est&aacute; ejecutando
+        	document.dataentry.ejecucion_proc.value = "1";
+        	document.dataentry.boton_procesar.disabled = true;
+        	document.dataentry.boton_cancelar.disabled = true;
+        	//document.getElementById('tb2').style.display='block';
+        	
+        	try{
+        		callAjax('tb2');
+        		document.dataentry.submit();
+        	}catch (e){
+        		document.getElementById('tb2').style.display='none';
+        		//document.dataentry.fichero.value = "";
+        		//alert("Archivo no valido");        		
+        	}
+        }
+        //		document.dataentry.submit();
+        //}
+        
+        //funci&oacute;n ajax para cargar los datos en la pagina actual
+        function cargarpagina(pagResponse, id_contenedor){
+		if (pagResponse.readyState == 4 && (pagResponse.status==200 || window.location.href.indexOf("http")==-1))
+			document.getElementById(id_contenedor).innerHTML=pagResponse.responseText
+		}
+		
+        //Cancelar ejecuci&oacute;n de proceso o retornar
+        function cancelar_proceso(){
+        	
+        	//proceso en ejecuci&oacute;n: llamar a Cancelar ejecuci&oacute;n y actualizar estatus del proceso
+        	if(document.dataentry.ejecucion_proc.value == "1"){
+        		document.dataentry.action='transf_data-find'; 
+        		       		
+        		if (confirm('¿Cancelar Proceso?'))        		
+        			document.dataentry.submit();
+        		
+        	}else{
+        		history.back();//regresar al filtro en caso de que no haya empezado la ejecuci&oacute;n
+        	}
+        		
+        }
+        
+</script>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Carga Inicial / Transformaci&oacute;n de Registros</FONT>
+        </TD>
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+<form name="dataentry" method="post" action="transf_data-procesar?band=1">
+
+   <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+    
+     <tr class="tableCell">
+     	<th colspan="2">Seleccionar Archivo a Procesar</th>
+     </tr>
+     
+    <tr class="tableCell">
+        <td CLASS="formLabel">
+           Archivo:*
+         </td>
+        
+        <td>
+        <SELECT NAME="cod_archivo" SIZE="1" ONCHANGE = "javascript:document.dataentry.action='transf_data-find?band=1'; document.dataentry.submit();"/>
+		  <OPTION VALUE="" SELECTED/></OPTION>
+		  <rows_archivos>				 
+		  <OPTION VALUE="@COD_ARCHIVO@"/>@COD_ARCHIVO@ - @NOM_ARCHIVO@</OPTION>
+ 		  </rows_archivos>
+ 		</SELECT>  
+ 	  </td>  
+                
+     </tr>     
+        
+       </tr>
+        
+
+      <tr CLASS="formElement">
+           <td CLASS="formLabel">
+            N&uacute;mero de Mapa:*
+           </td>
+           <td>
+                     	
+          		<SELECT NAME="cod_mapa" SIZE="1"> 
+          		<OPTION VALUE="" SELECTED/></OPTION>
+				<rows_mapas>				 
+				 <OPTION VALUE="@COD_MAPA@"/>@COD_MAPA@ - @NOM_MAPA@</OPTION>
+ 				</rows_mapas>
+ 				</SELECT>
+               
+          	
+          
+           </td>
+           
+           
+       </tr>
+       <!--campo-->
+       <tr CLASS="formElement">
+           <td CLASS="formLabel">
+            Proceso:*
+           </td>
+           <td>
+                     	
+          		<SELECT NAME="cod_proceso" SIZE="1"/>
+				<OPTION VALUE="" SELECTED/></OPTION>
+				<rows_procesos>				 
+				 <OPTION VALUE="@COD_PROCESO@"/>@Z11_NU_NUMERO_PROCESO@ - @FEC_PROCESO@</OPTION>
+ 				</rows_procesos>
+ 				</SELECT>
+               
+          	
+          
+           </td>
+           
+     
+ 
+ 
+    </table>
+    
+ <div id="tb2">
+		<!--EN ESTE DIV SE MUESTRAN LA HORA DE COMIENZO DEL PROCESO, LLAMANDO A LA FUNCION AJAX QUE EJECUTAR&Aacute; UNA CLASE PARA OBTENER LA HORA DEL SERVIDOR-->
+          
+       <!-- table style="display:none" border="0" cellspacing="1" cellpadding="2" width="60%" class="dataform">
+    
+         <tr>
+            <td width="50%">
+             <b>Cargando datos...<b>
+            </td>
+          
+        </tr
+        
+    	</table>-->
+ 
+</div> 
+ 
+    <BR>
+	<!-- Campo hidden para indicar que el proceso esta ejecutandose -->
+	<INPUT TYPE="hidden" VALUE="0" NAME="ejecucion_proc" SIZE="30" MAXLENGTH="50" />
+	
+    <button name="boton_procesar" onclick="cargar_archivo();"/>Procesar</button>
+    <!-- &nbsp;<button type="reset">Limpiar</button> -->
+    &nbsp;<button name="boton_cancelar" onclick="cancelar_proceso();">Cancelar</button>
+</form> 
+
+</center>
+
+</body>
+
+</html>
+

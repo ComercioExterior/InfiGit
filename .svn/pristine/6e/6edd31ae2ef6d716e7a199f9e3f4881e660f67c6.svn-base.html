@@ -1,0 +1,102 @@
+<html>
+
+	<head> 
+          
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+           
+        <script type="text/javascript">
+        
+          
+        </script>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Generales / Instrumentos Financieros</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Instrumentos Financieros ( @t_registros@ )
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="TABLE-LAYOUT: auto; ">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+		<th width="1%" nowrap></th>
+		<th width="1%" nowrap></th>
+   		<th width="90%">Descripci&oacute;n</th>
+    	<th nowrap>Forma Orden</th>
+   		<th nowrap>Rendimiento</th>
+    	<th nowrap>M&uacute;ltiples Ordenes</th>
+    	<th nowrap>Inventario</th>
+    	<th nowrap>Tipo de Producto</th>
+    	<th nowrap>Manejo de Producto</th>
+    </tr>
+
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+		<td VALIGN="middle">
+			<a href="insfin-confirm?insfin_id=@insfin_id@&insfin_descripcion=@insfin_descripcion@"><IMG SRC="../images/infi_gn_delete.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Eliminar Registro" BORDER="0" style="cursor:hand"></a>			 </td>
+		<td VALIGN="middle">
+			<a href="insfin-edit?insfin_id=@insfin_id@"><IMG SRC="../images/infi_gn_edit2.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Editar Registro" BORDER="0" style="cursor:hand"></a>                
+		</td>               
+		<td VALIGN="middle" align="left">@insfin_descripcion@</td>
+		<td nowrap>@insfin_forma_orden_desc@</td>                
+		<td nowrap>@insfin_metodo_cupones@</td>
+		<td align="center" nowrap>@insfin_multiples_ordenes@</td>
+		<td align="center" nowrap>@insfin_in_inventario@</td>
+		<td align="left" nowrap>@nombre_tipo_producto@</td>
+		<td align="left" nowrap>@manejo_productos@</td>
+	</tr>
+     </rows>
+    
+    </table>
+
+	@page_index@
+    <BR>
+<form>
+
+    <button type="button" ONCLICK="window.location='insfin-addnew'">&nbsp;Agregar&nbsp;</button>
+    &nbsp;<button type="button" onclick="window.location='insfin-filter';">Regresar</button>
+    &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>     
+</form>
+
+</center>
+
+</body>
+
+</html>
+

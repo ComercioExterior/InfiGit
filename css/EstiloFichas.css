@@ -1,0 +1,52 @@
+<!--
+#navigation a{
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 13px;
+color: #FFFFFF;
+text-decoration: none;
+font-weight: bold;
+background: #A5A4A5 url(../images/bizquierdo.gif) left top no-repeat;
+padding-left: 10px;
+}
+
+#navigation a span{
+background: url(../images/bderecho.gif) right top  no-repeat;
+padding-right: 10px;
+}
+
+#navigation a:hover{
+background: #ff8986 url(../images/bizquierdo-act.gif) left top no-repeat;
+padding-left: 10px;
+color: #000000;
+}
+
+#navigation a:hover span
+{
+background: url(../images/bderecho-act.gif) right top  no-repeat;
+padding-right: 10px;
+cursor: pointer;
+}
+
+#menu{
+	//position:relative;
+	margin:0pt 0pt -2pt 0px;
+	//margin:0pt 0pt -2pt 0px;
+	width:900px;
+}
+
+#navigationActivo a{
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 13px;
+color: #FFFFFF;
+text-decoration: none;
+font-weight: bold;
+background: #fd1813 url(../images/bizquierdo_on.gif) left top no-repeat;
+padding-left: 10px;	
+}
+
+#navigationActivo a span{
+background: url(../images/bderecho_on.gif) right top  no-repeat;
+padding-right: 10px;
+}
+
+//-->

@@ -1,0 +1,170 @@
+<html>
+<head>
+	<title>Sistema INFI</title>
+	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+	<LINK REL="stylesheet" type="text/css" href="../css/EstiloFichas.css" />
+	<script language="javascript" src="../js/default.js"></script>	
+	<script language="JavaScript" src="../js/decimal.js"></script>
+	
+	<script type="text/javascript">
+        function mostrar(accion){
+			if(accion==1){
+				var elementos = document.getElementsByName('unidad');
+				for (var i = 0; i < elementos.length; i++ ){
+					elementos[i].style.display ="block";
+				}
+				titulou.style.display ="block";
+			}
+			if(accion==2){//Modulo Publicacion
+				titulop.style.display ="block";
+			}
+			if(accion==3){//Modulo Consulta
+				tituloc.style.display ="block";
+			}	
+			if(accion==4){//Modulo Modificacion
+				var elementos = document.getElementsByName('unidad');
+					for (var i = 0; i < elementos.length; i++ ){
+						elementos[i].style.display ="block";
+					}
+				titulom.style.display ="block";
+			}
+			
+		}
+          
+	</script>
+	
+</head>
+
+<body
+	ONLOAD="javascript:mostrar(@accion@);{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+	<!--page name bar-->
+	<table  border="0" cellspacing="0" WIDTH="930px">
+	    <tr>
+	        <td class="headerBox">
+	        	<div id="titulou" style="display:none">               
+	            	<font class="headerText">Unidad de Inversi&oacute;n</font>
+	            </div>
+				<div id="titulop" style="display:none">               
+	            	<font class="headerText">Publicaci&oacute;n Unidad de Inversi&oacute;n</font>
+	            </div>
+	            <div id="tituloc" style="display:none">               
+	            	<font class="headerText">Consulta Unidad de Inversi&oacute;n</font>
+	            </div>
+	            <div id="titulom" style="display:none">               
+	            	<font class="headerText">Modificaci&oacute;n Unidad de Inversi&oacute;n</font>
+	            </div>
+			</td>
+	        <!-- help online -->
+	   		<td class="headerBox" valign="middle" align="right">
+	   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+	   		</td>
+	   		<!-- fin help online -->	        
+	   	</tr>
+	</table>
+	<form>
+	<div id="menu">
+		<table border="0" cellspacing="1" cellpadding="2">
+			<tr>
+				<td id="navigation" nowrap><a href="unidad_inversion-edit"><span>Unidad de Inversi&oacute;n</span></a></td>			
+				<td id="navigation" nowrap><a href="unidad_inversion_titulos-edit"><span>T&iacute;tulos / Subastas</span></a></td>
+				<td id="navigation" nowrap><a href="unidad_inversion_blotter-browse"><span>Blotters</span></a></td>
+				<td id="navigation" nowrap><a href="unidad_inversion_indicadores-edit"><span>Indicadores</span></a></td>
+				<td id="navigationActivo" nowrap><a><span>Empresas</span></a></td>
+				<td id="navigation" nowrap><a href="unidad_inversion_campos-edit"><span>Campos Din&aacute;micos</span></a></td>      
+				<td id="navigation" nowrap><a href="unidad_inversion_documentos-browse"><span>Documentos</span></a></td>
+				<td id="navigation" nowrap><a href="unidad_inversion_comisiones-browse"><span>Comisiones</span></a></td>	
+			</tr>
+		</table>
+	</div>
+
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="930px">	
+		<!--titulo-->
+		<tr class="formCaption">
+			<th colspan="7" ALIGN="center">
+				<font class="formCaptionText">
+				Empresas Asociadas &nbsp; @total_records@
+			</th>
+		</tr>
+	</table>
+		
+	<!--tabla de data-->
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="930px">
+	
+		<!--encabezados de columna-->
+		<tr class="tableHeader">
+			<th width="5%" colspan="2"></th>			
+			<th width="25%" colspan="2">Empresa</th>
+			<th width="10%">Rol</th>
+			<th width="13%">Nombre del Contacto</th>	
+			<th width="14%">Tel&eacute;fono del Contacto</th>								
+		</tr>
+	
+		<!--data-->
+		<rowsUIE>
+		<tr class="tableCell">	
+			<td align="center">
+			<div name="unidad" id="unidad" style="display:none">
+				<span style="cursor:hand; text-decoration:underline" title="Eliminar Asociacion Unidad de Inversion - Empresa"
+					onclick="enviarA('del','@empres_id@')">
+					<IMG SRC="../images/infi_gn_delete.gif" align="top" border="0">								 
+				</span>	
+				</div>				
+			</td>					
+			<td align="center">
+			<div name="unidad" id="unidad" style="display:none">
+				<span style="cursor:hand; text-decoration:underline" title="Editar Asociacion Unidad de Inversion - Empresa"
+					onclick="enviarA('edit','@empres_id@')">
+					<IMG SRC="../images/infi_gn_edit.gif" align="top" border="0">			 
+				</span>
+				</div>
+			</td>			
+			<td>@empres_rif@</td>			
+			<td>@empres_nombre@</td>
+			<td align="center">@roles_descripcion@</td>											
+			<td align="center">@uiempr_contacto_nom@</td>	
+			<td align="center">@uiempr_contacto_tlf@</td>							
+		</tr>
+		</rowsUIE>	
+	</table>
+<div align="center" style="width:930px;">
+	@page_index@
+
+	<div name="unidad" id="unidad" style="display:none">				
+	<button type="button" onclick="agregar();">Agregar Empresa</button>
+	</div>
+</div>
+</form>	
+	<form name="dataentry" method="post" action="unidad_inversion_empresas-browse">
+		<input TYPE="hidden" name="idUnidadInversion" value="@undinv_id@" />
+		<input TYPE="hidden" name="idEmpresa" value="" />		
+	</form>
+
+</body>
+
+<script type="text/javascript">
+<!--
+function enviarA(action, id) {
+	document.forms[1].idEmpresa.value = id;
+	if (action == 'edit') {
+		document.forms[1].action="unidad_inversion_empresas-edit";
+	} else 	if (action == 'del') {
+		if (! confirm('Desea eliminar la Asociacion con la Empresa seleccionada?')) {
+			return;
+		}
+		document.forms[1].action="unidad_inversion_empresas-delete";
+	}
+	document.forms[1].submit();
+}
+
+function agregar() {
+	parm = "?entry=unidadinversion&idUnidadInversion=" + document.forms[1].idUnidadInversion.value;
+	r = window.open('unidad_inversion_empresas-select' + parm,'picklist', 'resizable=yes,scrollbars=yes,width=900,height=650,top=50,left=190');
+}
+function reload(){
+	document.forms[1].submit();
+}
+-->
+</script>
+</html>
+

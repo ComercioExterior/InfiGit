@@ -1,0 +1,43 @@
+<cache>
+	<cache_config id="datasource" enable="false" classname="com.megasoft.plugins.cache.CacheDataSource" objectType="javax.sql.DataSource">
+		<property>
+			<name>driverClassName</name>
+			<value>oracle.jdbc.driver.OracleDriver</value>
+		</property>
+		<property>
+			<name>JNDIName</name>
+			<value>jdbc/infi</value>
+		</property>
+		<property>
+			<name>url</name>
+			<value></value>
+		</property>
+		<property>
+			<name>username</name>
+			<value></value>
+		</property>
+		<property>
+			<name>password</name>
+			<value></value>
+		</property>
+		<property>
+			<name>maxIdle</name>
+			<value>0</value>
+		</property>
+		<property>
+			<name>minIdle</name>
+			<value>0</value>
+		</property>
+		<property>
+			<name>initialSize</name>
+			<value>10</value>
+		</property>
+	</cache_config>
+		
+	<cache_config id="AuditInfo" enable="false" classname="com.megasoft.plugins.cache.CacheAuditInfo" objectType="java.util.HasTable">
+		<property>
+			<name>JNDIName</name>
+			<value>jdbc/infi</value>
+		</property>
+	</cache_config>
+</cache>

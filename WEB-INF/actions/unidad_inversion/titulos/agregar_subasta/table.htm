@@ -1,0 +1,109 @@
+<html>
+<head>
+	<title>Sistema INFI</title>
+	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+	<script language="javascript" src="../js/default.js"></script>	
+	<script type="text/javascript">				
+		function reloadOpener() {
+			window.opener.reload();
+		}		
+		function regresar() {
+			window.opener.reload();
+			window.close();
+		}
+		function grabar() {					
+			if(document.form_subasta.nombre.value== ""||document.form_subasta.monto.value==""||document.form_subasta.porcentaje==""){
+				alert("Debe indicar Nombre, Monto y Porcentaje")
+			}else{
+				if(document.form_subasta.idbcheck.checked){
+					document.form_subasta.idb.value='1'
+				}else{
+					document.form_subasta.idb.value='0'
+				}
+				if(document.form_subasta.monto_disponible_check.checked){
+					document.form_subasta.monto_disponible.value='1'
+				}else{
+					document.form_subasta.monto_disponible.value='0'
+				}
+				document.form_subasta.submit();
+			}
+		}	
+	</script>
+</head>
+
+<body
+	ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};
+			reloadOpener();">
+
+	<br><br>
+	<!--page name bar-->
+	<table border="0" cellspacing="0" WIDTH="100%">
+		<tr>
+			<td class="headerBox">
+				<font class="headerText">Subasta de Divisas</font>
+			</td>
+			<!-- help online -->
+			<td class="headerBox" valign="middle" align="right">
+				<img src="../images/infi_gn_ayuda.gif"	border="0"  width="17" height="17"
+					style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"
+					onclick="helpOpen(window.document.location.href);">
+			</td>
+			<!-- fin help online -->	
+		</tr>
+	</table>
+
+	<br>
+
+	<!--formulario-->
+	<form name="form_subasta" method="POST" action="unidad_inversion_titulos-insertar_subasta">
+		<input type="hidden" name="idUnidadInversion" value="@ui_id@" />
+		<input type="hidden" name="entry" value="seleccion" />
+
+		<table border="0" cellspacing="0" cellpadding="0" width="90%" class="datatable" align="center">
+			<tr style="font-size:9pt;">
+			    <th width="40%" colspan="2" align="center">Agregar datos de la subasta</th>			   
+			</tr>	
+			<tr style="font-size:9pt;">
+			    <td width="40%">&nbsp;Nombre</td>
+			    <td width="80%">
+					&nbsp;<input type="text" style="font-size:8pt;" size="30" maxlength="25" name="nombre" value="" />
+				</td>
+			</tr>	
+			<tr style="font-size:9pt;">	
+				<td>&nbsp;Monto total a subastar</td>
+				<td>
+					&nbsp;<input type="text" style="font-size:8pt;" size="25" maxlength="20" name="monto" value="" onkeypress="solo_numericos()"/>
+					
+				</td>
+			</tr>		
+			<tr style="font-size:9pt;">	
+				<td>&nbsp;Porcentaje</td>
+				<td>
+					&nbsp;<input type="text" style="font-size:8pt;" size="15" maxlength="7" name="porcentaje" value="" onkeypress="EvaluateText('%f',this);"/>				
+				</td>
+			</tr>			
+			<tr style="font-size:9pt;">	
+				<td>IDB</td>
+				<td>
+					<input type="checkbox" name="idbcheck" value="" />
+					<input type="hidden" name="idb" value="" />						
+				</td>
+			</tr>
+			<tr style="font-size:9pt;">	
+				<td>Control monto disponible: </td>
+				<td>
+					<input type="checkbox" name="monto_disponible_check" value="" />
+					<input type="hidden" name="monto_disponible" value="" />						
+				</td>
+			</tr>
+		</table>			
+		<center>
+			</br>
+			<button type="button" onclick="grabar();">Grabar</button>&nbsp;
+			<button type="button" onclick="regresar();">Regresar</button>	
+		</center>				
+	</form>		
+
+</body>
+</html>
+

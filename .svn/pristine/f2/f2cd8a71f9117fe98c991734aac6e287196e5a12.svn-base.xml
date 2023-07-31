@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+
+	<field name="id" type="varchar" description="codigo operacion"
+		nullable="0" size="200" />
+
+	<field name="jornada" type="varchar" description="numero de jornada"
+		nullable="0" size="200" />
+	<field name="monto" type="varchar" description="monto del pacto"
+		nullable="0" size="200" />
+	<field name="montobase" type="varchar" description="monto base del pacto"
+		nullable="0" size="200" />
+
+	<field name="contravalor" type="varchar" description="contravalor del pacto"
+		nullable="0" size="200" />
+	<field name="tasa" type="varchar" description="tasa del pacto"
+		nullable="0" size="200" />
+	<field name="tipopacto" type="varchar" description="tipo de pacto"
+		nullable="0" size="200" />
+	<field name="coddemanda" type="varchar" description="codigo bcv de la demanda"
+		nullable="0" size="200" />
+
+
+	<field name="codoferta" type="varchar" description="codigo bcv de la oferta"
+		nullable="0" size="200" />
+
+
+
+
+
+
+<!-- 	<field name="operacion" type="varchar" description="codigo operacion esta vacio" -->
+<!-- 		nullable="0" size="200" /> -->
+
+
+<!-- 	<field name="monto" type="varchar" -->
+<!-- 		description="Monto de la operacion divisas esta vacio" nullable="0" -->
+<!-- 		size="200" /> -->
+
+<!-- 	<field name="montobs" type="varchar" -->
+<!-- 		description="Monto de la operacion bolivares esta vacio" nullable="0" -->
+<!-- 		size="200" /> -->
+
+<!-- 	<field name="tasa" type="varchar" description="tasa esta vacio" -->
+<!-- 		nullable="0" size="200" /> -->
+
+<!-- 	<field name="nacionalidadf" type="varchar" -->
+<!-- 		description="nacionalidad del ofertante esta vacio" nullable="0" size="200" /> -->
+
+<!-- 	<field name="cedulaf" type="varchar" description="cedula del ofertante esta vacio" -->
+<!-- 		nullable="0" size="200" /> -->
+
+<!-- 	<field name="nombref" type="varchar" description="nombre del ofertante esta vacio" -->
+<!-- 		nullable="0" size="200" /> -->
+
+<!-- 	<field name="cuentafmn" type="varchar" description="cuenta ofertante mn esta vacio" -->
+<!-- 		nullable="0" size="200" /> -->
+
+<!-- 	<field name="cuentafme" type="varchar" description="cuenta ofertante me esta vacio" -->
+<!-- 		nullable="0" size="200" /> -->
+
+<!-- 	<field name="nacionalidadd" type="varchar" description="nacionalidad demandante" -->
+<!-- 		nullable="0" size="200" /> -->
+
+<!-- 	<field name="cedulad" type="varchar" description="cedula demandante" -->
+<!-- 		nullable="0" size="200" /> -->
+
+<!-- 	<field name="nombred" type="varchar" description="nombre del demandante" -->
+<!-- 		nullable="0" size="200" /> -->
+
+<!-- 	<field name="cuentadmm" type="varchar" description="cuenta demandante mn esta vacio" -->
+<!-- 		nullable="0" size="200" /> -->
+
+<!-- 	<field name="cuentadme" type="varchar" description="cuenta demandante me esta vacio" -->
+<!-- 		nullable="0" size="200" /> -->
+
+
+<!-- 	<field name="moneda" type="varchar" description="codigo moneda esta vacio" -->
+<!-- 		nullable="0" size="200" /> -->
+
+
+<!-- 	<field name="pacto" type="varchar" description="codigo de pacto" -->
+<!-- 		nullable="0" size="200" /> -->
+        
+    
+</record>
+

@@ -1,0 +1,176 @@
+<html>
+
+	<head>
+        
+         <script language="javascript" src="../js/default.js"></script>   
+         <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" /> 
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+   	 <script type="text/javascript">
+   	 
+	  	  var idOrdenes = "";
+		  var TempIdOrdenes = "";
+        function detalleOrden(nombreFormulario){
+
+			var orden = nombreFormulario;
+			var action="ficha_venta_titulo-detalle?ordene_id="+orden;
+			window.location=action;
+			//document.getElementById(longitud).submit();
+        }
+        
+
+        
+        function seleccionarTodos(){        
+	        	
+	        	
+        	for (i=0;i<document.getElementById('form_checks').elements.length;i++){
+
+		      if(document.getElementById('form_checks').elements[i].type == "checkbox"){	      	
+				 document.forms[0].todos.checked;
+	    	     document.getElementById('form_checks').elements[i].checked=document.forms[0].todos.checked;     	     
+	          }        	
+           }   	      
+   	    }  
+   	        
+           function checksSeleccionados(){
+	        for (i=0;ele=document.forms[0].elements[i];i++){
+
+			  if (ele.type=='checkbox'){
+			    if (ele.checked && ele.id!='todos'){			   
+			    	TempIdOrdenes+=ele.id+",";			    	
+			    	idOrdenes+=ele.id+",";			    	
+			    }
+			  }
+			} 
+			
+			if(idOrdenes!=""){				
+				TempIdOrdenes=TempIdOrdenes.substring(0,idOrdenes.length-1);
+				return true;  
+			} else {			
+				alert('Debe seleccionar al menos una Orden');
+				return false; 
+			}
+        }  
+        
+         function procesar(seleccion){             	      	
+         	alert('Estimado usuario debe cerrar cualquier archivo EXCEL que se encuentre abierto para la ejecucion de impresion de Instrucciones para la Venta');
+        	if(document.getElementById('todos').checked){
+        		mensaje='¿Está seguro que desea procesar "Todas" las operaciones de Instrucciones para la venta?'
+        		seleccion='todos'
+        	}else
+        		mensaje='¿Está seguro que desea procesar las operaciones de Instrucciones para la venta seleccionadas ?'
+        	if(checksSeleccionados()||document.getElementById('todos').checked){
+		        if(confirm(mensaje))
+		        {		
+                idOrdenes=TempIdOrdenes;
+                TempIdOrdenes="";
+		        	//alert("Se envia " + idOrdenes);	        	
+		        	window.location='instrucciones_liquidacion_venta-impresion-masiva-sitme?ordene_id='+idOrdenes+'&framework.controller.outputstream.open=false';
+		        }
+	        }	       
+        }     
+        
+        function validarSeleccion(check){
+	        if(document.forms[0].todos.checked && !check.checked){
+	        	document.getElementById('todos').checked=false;
+	        } 
+        }
+        </script>
+    </head>
+
+<body >
+		
+<form id="form_checks">	
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Instrucci&oacute;n para la Venta y Recompra de T&iacute;tulos</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="TABLE-LAYOUT: auto;>
+    
+    <!--encabezados de columna-->
+    <tr>
+    		
+    		<th nowrap colspan="1" width="4%"></th>
+			<th nowrap width="6%"><input type="checkbox" id="todos" name="todos" onclick="seleccionarTodos()" /></th>     
+			<th nowrap width="6%">Detalle</th>        
+    		<th nowrap width="6%">Id Orden</th>        
+			<th nowrap width="12%">Id Recompra</th>   
+            <th nowrap>Cliente</th>         
+            <th nowrap="nowrap">C&eacute;dula Rif</th>
+            <th nowrap="nowrap">Fecha Valor</th>
+            <th nowrap width="15%">Transacci&oacute;n</th>     
+            <th nowrap width="15%">Estatus</th>
+
+    </tr>
+    <!--data-->
+     <rows>
+    <tr class="table">
+       			<td align="center" nowrap>
+				<input  id="@ordene_id@" name="check" type="checkbox" onclick="javaScript:validarSeleccion(this);">
+                </td> 
+                
+   				<td align="center" nowrap>
+				<a href="javascript:detalleOrden('@ordene_id@');"><IMG SRC="../images/infi_gn_document.gif" WIDTH="15" ALIGN="top" HEIGHT="13" title="Detalles de la Orden" BORDER="0" style="cursor:hand"></a>
+                </td> 
+                <!-- form id="@ordene_id@" name="@ordene_id@" action="ficha_venta_titulo-detalle" method="post" target="_blank"><input type="HIDDEN" value="@ordene_id@" name="ID_ORDEN"> </form-->
+                <a id="@ordene_id@" href="javascript:detalleOrden('@ordene_id@');"> <input type="HIDDEN" value="@ordene_id@" name="ID_ORDEN"> </input> </a>
+
+ 				<td nowrap align="center" >
+				@ORDENE_ID@
+                </td> 
+      
+                <td align="center" nowrap>                
+				@ID_RECOMPRA@
+                </td>
+                
+ 				<td align="center" nowrap>
+				@CLIENT_NOMBRE@
+                </td>                    
+
+                <td align="center" nowrap>
+				@CLIENT_CEDRIF@
+                </td>
+        
+                <td align="center" nowrap>
+				@FECHA_VALOR@
+                </td>
+                
+                <td align="center" nowrap>
+				@TRANSA_ID@ 
+                </td>
+                
+                <td align="center" nowrap>
+				@ORDSTA_ID@ 
+                </td>        
+     </tr>
+     </rows>     
+    </table>
+		@page_index@
+		
+		<button id="Imprimir" type="button"  onclick="javaScript:procesar()">Procesar Seleccion</button>
+		&nbsp;<button type="button" onclick="window.location='instrucciones_liquidacion_venta-browse-sitme'">Regresar</button>
+        &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+</center>
+</form>
+</body>
+
+</html>
+

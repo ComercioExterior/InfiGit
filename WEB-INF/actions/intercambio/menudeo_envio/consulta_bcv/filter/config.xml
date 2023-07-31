@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+
+
+<config>
+
+	<model-class>models.bcv.menudeo_bcv.Filter</model-class>
+	<view-class>megasoft.GenericView</view-class>
+	<template>form.htm</template>
+	<record-def>record.xml</record-def>
+	<content-type>text/html</content-type>
+	<expires>20</expires>
+	<cache>true</cache>
+	<next-action type="redirect"></next-action>
+	<on-empty source="sales"></on-empty>
+
+
+	<bind type="replace" source="fechas"/>
+	
+</config>

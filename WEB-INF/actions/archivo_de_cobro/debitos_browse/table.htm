@@ -1,0 +1,56 @@
+<html>
+	<head>        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        <script type="text/javascript">
+        function detalleOrden(nombreFormulario){
+	        var longitud = nombreFormulario.length;
+	        var str=nombreFormulario.substr(8,longitud);
+			document.getElementById(str).submit();
+        }
+        </script>
+    </head>
+  <body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+   <form NAME="principal" METHOD="POST" ACTION="">
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+			<TD class="headerBox">                
+            	<FONT class="headerText">Generacion de Archivo (Batch) / Debitos a Clientes /Archivos: </FONT>
+        	</TD>
+        	<!-- help online -->
+   			<TD class="headerBox" valign="middle" align="right">
+   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   			</TD>
+   			<!-- fin help online -->
+		</TR>
+	</TABLE>
+	
+	</form>
+  <center>
+  <BR><BR>
+  <TABLE  border="0" cellspacing="0" WIDTH="90%">
+		<TR>
+			<TD>  			   
+				<button type="button" onclick="window.location='archivo_de_cobro-generar?undinv_id=@unidad_inversion@&tipo=0&blotter=@blotter@&framework.controller.outputstream.open=false'">Generar Archivo para Capital</button>
+				<button type="button" onclick="window.location='archivo_de_cobro-generar?undinv_id=@unidad_inversion@&tipo=1&blotter=@blotter@&framework.controller.outputstream.open=false'">Generar Archivo para Comisión</button>		
+				<button type="button" onclick="window.location='archivo_de_cobro-generar_excel?undinv_id=@unidad_inversion@&blotter=@blotter@&framework.controller.outputstream.open=false'">Generar Archivo para Desbloqueo</button>		
+  			</TD>  			
+		</TR>
+		<TR>
+			<TD align="center">	
+		 		<button type="button" onclick="window.location='archivo_de_cobro-filter'">Regresar</button>&nbsp;
+		   	</TD>  			
+		</TR>
+	</TABLE>
+   </center>
+</body>
+</html>
+
+
+
+
+
+

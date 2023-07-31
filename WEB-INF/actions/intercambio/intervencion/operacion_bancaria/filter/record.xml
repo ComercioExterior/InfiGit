@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+
+	<field name="tipo_prod" type="varchar" description="Tipo de producto"
+		nullable="1" size="100" />
+
+	<field name="estatus" type="varchar"
+		description="Estatus válido para la unidad de inversion" nullable="1"
+		size="40" />
+
+</record>

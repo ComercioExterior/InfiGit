@@ -1,0 +1,98 @@
+<html>
+
+	<head>
+        
+        <!--LINK REL="stylesheet" type="text/css" href="../megasoft.css" /-->
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Seguridad</title>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Seguridad / Roles</FONT>
+        </TD>
+   		<!-- help online -->
+   		<!--TD class="headerBox" valign="middle" align="right">
+   		<img border="0" src="@url_images@ayuda.gif" width="17" height="17"  onclick="helpOpen();" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD-->
+   		<!-- fin help online -->
+   </TR>
+</TABLE>
+
+<center>
+
+<br>
+
+	<table border="0" cellspacing="1" cellpadding="2" width="70%" class="datatable">
+        <tr><th colspan="2">
+        Usuarios asociados al Rol @role_name@
+        </th></tr>      
+        
+    </table>    
+
+
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="70%" class="datatable">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+    	<th colspan="2" width="4%"></th>
+              
+              <th width="9%">User ID</th>
+                           
+              <th width="17%">Nombre y Apellido</th>          
+             
+			  <th width="12%">E-Mail</th>         
+			   
+    </tr>
+
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+        
+                <td align="center">
+                <a href="msc_user-confirm?id=@msc_user_id@"><P ALIGN="CENTER"><IMG SRC="../images/infi_gn_delete.gif" WIDTH="18" HEIGHT="18" ALIGN="BOTTOM" title="Haga CLICK para Eliminar el Usuario." BORDER="0" style="cursor:hand"/></a>
+                </td>
+            
+                <td align="center">
+                <a href="msc_user-edit?id=@msc_user_id@"><P ALIGN="CENTER"><IMG SRC="../images/infi_gn_edit.gif" WIDTH="18" HEIGHT="18" ALIGN="BOTTOM" title="Haga CLICK para Actualizar los Datos del Usuario." BORDER="0" style="cursor:hand"/></a>
+                </td>
+        
+                
+                <td align="left">
+                @userid@
+                </td>
+                
+              <td>
+                @fullname@
+                </td>   
+                
+					<td>
+                @email@
+                </td>
+                  
+              
+     </tr>
+     </rows>
+    
+    </table>
+
+    <BR>
+<form>
+    <!--input type="button" value="Añadir Registro" onclick="window.location='msc_user-addnew'"/-->
+    <button onclick="history.back();">Cancelar</button>
+</form>
+
+</center>
+
+</body>
+
+</html>
+

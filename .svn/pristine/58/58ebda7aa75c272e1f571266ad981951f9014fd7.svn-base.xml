@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+ 
+        <field 
+        name="undinv_id" 
+        type="integer" 
+        description="Unidad de Inversion"
+        nullable="0"
+        size="100" />
+        
+</record>
+

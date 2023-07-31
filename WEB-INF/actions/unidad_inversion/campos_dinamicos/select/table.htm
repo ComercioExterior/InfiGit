@@ -1,0 +1,134 @@
+<html>
+<head>
+	<title>Sistema INFI</title>
+	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+	<script language="javascript" src="../js/default.js"></script>	
+</head>
+
+<body
+	ONLOAD="javascript:mostrar(@accion@);{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};
+			reloadOpener()">
+
+	<br><br>
+	<!--page name bar-->
+	<table border="0" cellspacing="0" WIDTH="100%">
+		<tr>
+			<td class="headerBox">
+	        	<div id="titulou" style="display:none">               
+	            	<font class="headerText">Unidad de Inversi&oacute;n / Campos Din&aacute;micos</font>
+	            </div>
+				<div id="titulop" style="display:none">               
+	            	<font class="headerText">Publicaci&oacute;n Unidad de Inversi&oacute;n / Campos Din&aacute;micos</font>
+	            </div>
+	            <div id="tituloc" style="display:none">               
+	            	<font class="headerText">Consulta Unidad de Inversi&oacute;n / Campos Din&aacute;micos</font>
+	            </div>			
+	            <div id="titulom" style="display:none">               
+	            	<font class="headerText">Modificaci&oacute;n Unidad de Inversi&oacute;n / Campos Din&aacute;micos</font>
+	            </div>
+			</td>
+			<!-- help online -->
+			<td class="headerBox" valign="middle" align="right">
+				<img src="../images/infi_gn_ayuda.gif"	border="0"  width="17" height="17"
+					style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"
+					onclick="helpOpen(window.document.location.href);">
+			</td>
+			<!-- fin help online -->	
+		</tr>
+	</table>
+
+	<br>
+			
+	<center>
+
+	<!--formulario-->
+	<form name="dataentry" method="POST" action="unidad_inversion_campos-insert">
+		<input type="hidden" name="idUnidadInversion" value="@undinv_id@" />
+		<input type="hidden" name="origen" value="select" />			
+		<input type="hidden" name="entry" value="update" />	
+	
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="100%">	
+		<!--titulo-->
+		<tr class="formCaption">
+			<th colspan="7" ALIGN="center">
+				<font class="formCaptionText">
+					Campos Din&aacute;micos Disponibles
+					@boton_encab_ini@(@page_total_records@)@boton_encab_fin@						
+				</font>
+			</th>
+		</tr>	
+	</table>
+	
+	<!--tabla de data-->
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="100%">
+	
+		<!--encabezados de columna-->
+		<tr class="tableHeader">
+			<th width="5%"></th>
+			<th width="30%">Nombre</th>
+			<th width="45%">Descripci&oacute;n</th>
+			<th width="15%">Tipo</th>		
+		</tr>
+
+		<!--data-->
+		<rowsCD>
+		<tr class="tableCell">
+			<td align="center">
+				<INPUT TYPE="CHECKBOX" NAME="idCampoDinamico" VALUE="@campo_id@" @selecc@ /> 							
+			</td>			
+			<td>@campo_nombre@</td>	
+			<td>@campo_descripcion@</td>		
+			<td>@desc_campo_tipo@</td>					
+		</tr>
+		</rowsCD>	
+	</table>
+
+	@page_index@
+
+ 	<input type="hidden" name="idCampoDinamico" value="" />		
+
+	<br>
+
+	@boton_grabar_ini@	
+	<button type="button" onclick="submitir();">Grabar</button>
+	&nbsp;
+	@boton_grabar_fin@	
+	<button type="button" onclick="regresar();">Regresar</button>
+	
+	</form>
+
+	</center>
+
+</body>
+<script type="text/javascript">
+<!--
+function submitir() {
+
+   	document.forms[0].submit();
+}
+function regresar() {
+	window.opener.reload();
+   	window.close();
+}
+
+function reloadOpener() {
+	window.opener.reload();
+}
+function mostrar(accion){
+	if(accion==1){
+		titulou.style.display ="block";
+	}
+	if(accion==2){////Modulo Publicacion
+		titulop.style.display ="block";
+	}
+	if(accion==3){////Modulo Consulta
+		tituloc.style.display ="block";
+	}	
+	if(accion==4){//Modulo Modificacion
+		titulom.style.display ="block";
+	}
+}
+-->
+</script>
+</html>
+

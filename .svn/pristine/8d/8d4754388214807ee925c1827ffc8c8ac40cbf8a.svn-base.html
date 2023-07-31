@@ -1,0 +1,165 @@
+<HTML>    
+    <HEAD>
+	<LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" /> 
+    <TITLE>Sistema INFI</TITLE>
+	<SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+	<script language="javascript" src="../js/default.js"></script>
+	<script language="javascript" src="../js/menu/jquery-1.2.2.pack.js"></script>	     
+	<script type="text/javascript">
+   
+    	
+		//Funci&oacute;n que bloquea el campo Moneda si se selecciona alg&uacute;n titulo espec&iacute;fico
+		
+		function Verificar(){
+		
+			//if(document.dataentry.cant_bloqueada.value!='' && document.dataentry.cant_desbloquear.value!=''){
+				if(parseInt(document.dataentry.cant_desbloquear.value) > parseInt(document.dataentry.cant_bloqueada.value)){
+					alert("Cantidad a desbloquear debe ser menor o igual a la cantidad total bloqueada. Verifique.");
+					document.dataentry.cant_desbloquear.focus();
+				}
+				else{
+					if (confirm("¿Está seguro que desea efectuar el desbloqueo del título?")){
+						$("#bsubmit").attr("disabled", "disabled");
+						document.dataentry.submit();
+					}else{
+					   document.dataentry.cant_desbloquear.focus();
+					}
+				}
+			//}
+		}
+       
+        </script>     
+    </HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY>
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+			<TD class="headerBox">                
+				<FONT class="headerText">Custodia / Transacciones / Desbloqueo de T&iacute;tulos</FONT>
+        	</TD>
+	        <!-- help online -->
+   			<TD class="headerBox" valign="middle" align="right">
+   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   			</TD>
+   			<!-- fin help online -->
+        	<td class="headerBox" aling="right"></td>
+	</TABLE>
+        
+	
+
+	<!--formulario-->
+	<form NAME="dataentry" METHOD="POST" ACTION="desbloqueo_titulos-procesar_desbloqueo">
+	
+		<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+        
+             <tr>
+            	<th COLSPAN="7" ALIGN="center">Datos Generales</th>
+        	</tr>
+        
+        <tr>
+            <td><b>Titulo:</b></td>
+            <td COLSPAN="6">@titulo_id@</td>                
+        </tr>
+        <tr>
+            <td><b>Cliente:</b></td>
+            <td COLSPAN="6">@pick_cliente@</td>                
+        </tr>         
+        <tr>
+            <td><b>Tipo de Producto:</b></td>
+            <td COLSPAN="6">@tipo_producto_id@</td>                
+        </tr>    
+	</table>
+	
+	<br>
+	
+	<CENTER>
+		<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+			<!--titulo-->
+        	<tr>
+            	<th COLSPAN="4" ALIGN="center">Datos del Bloqueo</th>
+        	</tr>
+        	<tr>
+            	<td nowrap>Fecha de Bloqueo:</td>
+            	<td>
+					<INPUT TYPE="TEXT" VALUE="@fecha@" NAME="fe_bloqueo" SIZE="12" MAXLENGTH="10" class="inputControl" readonly /> 
+				</td>
+        	</tr>
+			<!--campo-->      
+			<tr>
+            	<td nowrap>C&oacute;digo de Bloqueo:</td>
+            	<td nowrap>  
+            		<INPUT TYPE="hidden" VALUE="@tipblo_id@" NAME="tipblo_id" size="70"/> 	 			            		
+					<INPUT TYPE="TEXT" VALUE="@tipblo_descripcion@" NAME="cod_bloqueo" size="70" MAXLENGTH="200" class="inputControl" readonly /> 	 			
+				</td>
+			</tr>
+			<tr>
+            	<td nowrap>Beneficiario:</td>
+            	<td nowrap>   
+            		<INPUT TYPE="hidden" VALUE="@beneficiario_id@" NAME="beneficiario_id" size="70"/>      
+              		<INPUT TYPE="TEXT" VALUE="@beneficiario_nombre@" NAME="beneficiario" SIZE="70" MAXLENGTH="200" class="inputControl" readonly /> 			
+				</td>
+			</tr>
+			
+		<tr>
+            <td>
+				N&uacute;mero de Garant&iacute;a:
+            </td>
+            <td>
+				<INPUT TYPE="TEXT" VALUE="@numero_garantia@" NAME="numero_garantia" SIZE="35" MAXLENGTH="30" onkeypress="solo_numericos();"/> 
+			</td>
+        </tr>
+    	
+			
+			<!--campo-->
+        	<tr>
+           		<td nowrap>Cantidad Bloqueada:</td>
+            	<td>
+            		<INPUT TYPE="hidden" VALUE="@titulo_id@" NAME="titulo_id" size="30"/> 
+            		<INPUT TYPE="hidden" VALUE="@client_id@" NAME="client_id" size="30"/>
+            		<INPUT TYPE="hidden" VALUE="@tipo_producto@" NAME="tipo_producto" size="30"/>             		
+          			<INPUT TYPE="hidden" VALUE="@pick_cliente@" NAME="pick_cliente"/> 	
+            		
+					<INPUT TYPE="TEXT" VALUE="@titcus_cantidad@" NAME="cant_bloqueada" SIZE="10" STYLE="text-align:right" MAXLENGTH="20" readonly/> 
+				</td>
+       		</tr>
+       		
+       		
+		</table>
+		
+		<br>
+		
+		<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+			
+        	<tr>
+            	<th COLSPAN="4" ALIGN="center">Datos del Desbloqueo</th>
+        	</tr>
+        	<tr>
+            	<td nowrap>Fecha de Desbloqueo*</td>
+            	<td>
+					<INPUT TYPE="TEXT" VALUE="@fecha_hoy@" NAME="fe_desbloqueo" SIZE="12" MAXLENGTH="10" class="inputControl" readonly /> 
+				</td>
+        	</tr>
+			
+        	<tr>
+            	<td nowrap>Cantidad a Desbloquear:*</td>
+            	<td>
+					<INPUT TYPE="TEXT" VALUE="" NAME="cant_desbloquear" STYLE="text-align:right" SIZE="12" MAXLENGTH="15" onkeypress="solo_numericos();"/> 
+				</td>
+        	</tr>
+		</table>
+		<INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/> 	
+		<br>
+
+		<button id="bsubmit" type="button" ONCLICK="javascript:Verificar();">Aceptar</button>
+		&nbsp;<button type="button" onclick="javascript:history.back();">Regresar</button>
+		&nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+
+    </form>
+	</CENTER>
+</BODY>
+</HTML>

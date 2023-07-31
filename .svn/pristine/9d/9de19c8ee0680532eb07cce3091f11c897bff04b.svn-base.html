@@ -1,0 +1,200 @@
+<html>
+	<head>        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+        <script type="text/javascript">
+        function detalleOrden(unidadId,blotter,status){
+			document.forms.formulario.unidad.value =unidadId;
+			document.forms.formulario.status.value =status;
+        }
+          
+        function instrucciones(){
+        document.forms.instrucciones.submit();
+        }
+        
+        function procesar(){
+	        if(confirm("¿Está seguro que desea empezar el proceso de Liquidación?"))
+	        {
+	        	window.location='proceso_liquidacion_blotter-procesar'
+	        }//fin if
+        }//fin procesar
+        </script>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+			<TD class="headerBox">                
+            	<FONT class="headerText">Liquidaci&oacute;n / Proceso de Liquidaci&oacute;n</FONT>
+        	</TD>
+        	<!-- help online -->
+   			<TD class="headerBox" valign="middle" align="right">
+   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   			</TD>
+   			<!-- fin help online -->
+		</TR>
+	</TABLE>
+
+   <center>
+	<br>
+	<form id="formulario" name="formulario" action="liquidacion_blotter_ordenes" method="post" target="_self">
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;>
+		<!--encabezados de columna-->
+		<tr CLASS="formCaption">
+            <th COLSPAN="6" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Lista de Registros ( @t_registros@ ) para Unidad : @nombre_unidad@
+                </FONT>
+            </th>
+        </tr>
+		<tr class="tableHeader">
+			<th></th>
+    		<th width="" nowrap>Status</th>  
+            <th width="" nowrap >Cantidad</th>
+            <th width="" nowrap>Total</th>                         
+            <th width="" nowrap>Cobrado</th>
+            <th width="" nowrap>Pendiente</th>
+    	</tr>
+
+		<!--data-->
+	   <ordenes>
+    	<tr class="tableCell">
+    	<td align="center">
+          <input type="radio" value="" name="radio" onclick="javascript:detalleOrden('@unidad_inversion_id@','@blotter@','@ordsta_id@');">
+    	</td>
+		<td nowrap="nowrap">@ordsta_id@</td>
+		<td align="center" nowrap="nowrap">@ordenes@</td>
+		<td align="right" nowrap="nowrap">@total format-mask='#,###,##0.00'@ @m_bs_rep@</td>
+		<td align="right" nowrap="nowrap">@monto_cobrado format-mask='#,###,##0.00'@ @m_bs_rep@</td>
+		<td align="right" nowrap="nowrap">@monto_pendiente format-mask='#,###,##0.00'@ @m_bs_rep@</td>
+		</tr>
+	   </ordenes>
+	   <_totales>
+		<tr class="tableHeader">
+		<th></th>
+    		<th nowrap>TOTALES</th>  
+            <th nowrap >@total_ordenes@</th>
+            <th nowrap align="right">@total_monto format-mask='#,###,##0.00'@ @m_bs_rep@</th>                         
+            <th nowrap align="right">@total_cobrado format-mask='#,###,##0.00'@ @m_bs_rep@</th>
+            <th nowrap align="right">@total_pendiente format-mask='#,###,##0.00'@ @m_bs_rep@</th>
+    	</tr>
+	  </_totales>
+	</table>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<div style="display:@div@">
+	<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;>
+		<!--encabezados de columna-->
+		<tr CLASS="formCaption">
+            <th COLSPAN="5" ALIGN="center">
+                <FONT class="formCaptionText">
+                 DEPOSITOS AL EMISOR POR VEH&Iacute;CULO
+                </FONT>
+            </th>
+        </tr>
+		<tr class="tableHeader">
+    		<th width="" nowrap>Cliente</th>  
+    		<th width="" nowrap>Veh&iacute;culo</th>
+            <th width="" nowrap>Monto Operaci&oacute;n</th>                         
+            <th width="" nowrap>Enviado con Exito</th>
+            <th width="10%" nowrap>Intentos</th>
+    	</tr>
+
+		<!--data-->
+		<bcv>
+    	<tr class="tableCell">
+    	<td align="left" nowrap="nowrap">@client_nombre@</td>
+    	<td align="left" nowrap="nowrap">@vehicu_nombre@</td>
+		<td align="right" nowrap="nowrap">@monto_operacion format-mask='#,###,###.##'@ @m_bs_rep@</td>
+		<td align="right" nowrap="nowrap">@status_operacion@</td>
+		<td align="center" nowrap="nowrap"><a href="status_operacion_browse?ordene_id=@ordene_operacion_id@"  target="_blank"><IMG SRC="../images/infi_gn_document.gif" WIDTH="15" ALIGN="top" HEIGHT="13" title="Detalles Operacion" BORDER="0" style="cursor:hand"></a></td>
+		</tr>
+		</bcv>
+		<tr class="tableHeader">
+			<th nowrap >TOTAL</th>
+    		<th nowra align="right"></th>  
+            <th nowrap align="right">@total_monto format-mask='#,###,###.00'@ @m_bs_rep@</th>  
+            <th nowrap align="right"></th>  
+            <th width="" nowrap></th>                       
+    	</tr>
+	</table>
+	
+	</div>
+    <BR>
+	
+	<input type="hidden" id="unidad" name="unidad" value="">
+	<input type="hidden" id="blotter" name="blotter" value="">
+	<input type="hidden" id="status" name="status" value="">
+	<input type="hidden" name="nombre_unidad" value="@nombre_unidad@">
+	
+	<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;>
+		<!--encabezados de columna-->
+		<tr CLASS="formCaption">
+            <th COLSPAN="6" ALIGN="center">
+                <FONT class="formCaptionText">
+                 DETALLES POR VEH&Iacute;CULO
+                </FONT>
+            </th>
+        </tr>
+		<tr class="tableHeader">
+    		<th width="" nowrap>Nombre</th>  
+            <!--th width="" nowrap>RIF</th-->                     
+            <!--<th width="" nowrap>Siglas</th>-->
+            <th width="" nowrap>N&uacute;mero Cuenta</th>
+            <th width="" nowrap>Ordenes</th>
+            <th width="" nowrap>Total</th>
+            <th width="" nowrap>Cobrado</th>
+            <th width="" nowrap>Pendiente</th>
+    	</tr>
+
+		<!--data-->
+		<vehiculo>
+    	<tr class="tableCell">
+    	<td align="left" nowrap="nowrap">@vehicu_nombre@</td>
+		<!--<td align="center" nowrap="nowrap">@vehicu_rif@</td>--> 
+		<!--<td align="center" nowrap="nowrap">@vehicu_siglas@</td>-->
+		<td align="right" nowrap="nowrap">@vehicu_numero_cuenta@</td>
+		<td align="right" nowrap="nowrap">@cantidad@</td>
+		<td align="right" nowrap="nowrap">@total format-mask='#,###,##0.00'@ @m_bs_rep@</td>
+		<td align="right" nowrap="nowrap">@monto_cobrado format-mask='#,###,##0.00'@ @m_bs_rep@</td>
+		<td align="right" nowrap="nowrap">@monto_pendiente format-mask='#,###,##0.00'@ @m_bs_rep@</td>
+		</tr>
+
+		</vehiculo>
+		<tr class="tableHeader">
+			<th nowrap >TOTALES</th>
+            <th nowrap ></th>
+            <th nowrap ></th>
+            <th nowrap align="right">@total_ordenes@</th>
+            <th nowrap align="right">@total_monto format-mask='#,###,##0.00'@ @m_bs_rep@</th>                         
+            <th nowrap align="right">@total_cobrado format-mask='#,###,##0.00'@ @m_bs_rep@</th>                         
+    	</tr>
+	</table>
+
+   <br>
+   <br>
+
+    	
+		&nbsp;
+		<button TYPE="button" onclick="javascript:procesar();">Procesar</button>
+		&nbsp;
+		<button TYPE="submit">Detalle</button>
+		&nbsp;
+		<button TYPE="button" onclick="window.location='proceso_liquidacion_blotter-filter'">Regresar</button>
+		&nbsp;
+		<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+	</form>
+	<form name="instrucciones" id="instrucciones" action="asociar_instrucciones_browse">
+           		<input type="hidden" name="unidad_inversion" value="@unidad_inversion_id@&@nombre_unidad@">
+           		<input type="hidden" name="action_liquidacion" value="@action_liquidacion@">
+           		<input type="hidden" name="nombre_unidad" value="@nombre_unidad@">
+    </form>
+   </center>
+</body>
+</html>

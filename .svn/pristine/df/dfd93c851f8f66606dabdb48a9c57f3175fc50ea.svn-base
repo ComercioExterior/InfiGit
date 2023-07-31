@@ -1,0 +1,36 @@
+package com.bdv.pruebas.junit;
+
+import javax.sql.DataSource;
+
+import junit.framework.TestCase;
+
+/**
+ * Clase padre de todas las pruebas
+ * @author ct09153
+ *
+ */
+public class PrincipalTest extends TestCase {
+
+	protected DataSource ds = null;
+
+	public PrincipalTest(String nombre) {
+		super(nombre);
+		try {
+			// Setting up the DataSource object
+			oracle.jdbc.pool.OracleDataSource ds = new oracle.jdbc.pool.OracleDataSource();
+			ds.setDriverType("thin");
+			ds.setServerName("bdvdesa2");
+			ds.setPortNumber(1510);
+			ds.setDatabaseName("infid"); // Oracle SID
+			ds.setUser("ADM_INFI");
+			ds.setPassword("ADM_INFI");
+
+			// Getting a connection object
+			this.ds = ds;
+			System.out.println("Conexión establecida");
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Error en la conexión a base de datos");
+		}
+	}
+}

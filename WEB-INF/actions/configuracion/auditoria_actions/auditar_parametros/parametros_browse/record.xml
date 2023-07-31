@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+     <field 
+        name="id_config" 
+        type="integer" 
+        description="Primary Key"
+        nullable="1"
+        size="1" />
+        
+     <field 
+        name="name" 
+        type="varchar" 
+        description="Action"
+        nullable="1"
+        size="200" />
+        
+    <!--
+    
+    Definicion de campos y reglas de validacion
+    de un formulario HTML que sera almacenado
+    en un DataSet
+
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, decimal, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+    
+	<field 
+    name="pagecount" 
+    type="integer" 
+    description="Page Count"
+    nullable="1"
+    size="4" />
+
+    <field 
+    name="recordcount" 
+    type="integer" 
+    description="Record Count"
+    nullable="1"
+    size="4" />
+
+    <field 
+    name="pagenumber" 
+    type="integer" 
+    description="Page Number"
+    nullable="0"
+    size="4" />
+
+    <field 
+    name="pagenext" 
+    type="integer" 
+    description="Next Page"
+    nullable="1"
+    size="4" />
+
+    <field 
+    name="pageprev" 
+    type="integer" 
+    description="Prev Page"
+    nullable="1"
+    size="4" />
+    -->
+</record>
+

@@ -1,0 +1,90 @@
+
+<HTML>
+    
+    <HEAD>
+    
+        <!--LINK REL="stylesheet" type="text/css" href="megasoft.css"/-->
+        <LINK REL="stylesheet" type="text/css" href="./css/HojadeEstilo.css"/>
+        <script language="javascript" src="js/activex.js"></script>
+        <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE" />
+        <META HTTP-EQUIV="EXPIRES" CONTENT="-1" />
+
+        <!--cambiar: nombre de la aplicacion-->
+        <TITLE>Sistema INFI</TITLE>
+        
+    </HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+    <BODY ONLOAD="document.forms[0].elements[0].focus();">
+        
+
+
+<!--page name bar-->
+<TABLE WIDTH="100%">
+    <TR>
+        <TD class="headerBox_login">                
+            <FONT class="headerText">&nbsp;</FONT>
+        </TD>
+    </TR>
+</TABLE>
+        
+        
+        <!--centrar la forma-->
+        <CENTER>
+
+        <H3 style="color:red">Credencial incorrecta - Intente de nuevo</H3>
+
+
+    <!--formulario-->
+    <form METHOD="POST" ACTION="j_login">
+		
+        <table border="0" cellspacing="1" cellpadding="2" width="40%" class="dataform">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="2" ALIGN="center">
+                <FONT class="formCaptionText">
+                    Credenciales del Usuario
+                </FONT>
+            </th>
+        </tr>
+        
+        <!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+                Identificaci&oacute;n
+            </td>
+            <td>
+                <INPUT TYPE="TEXT" size="15" NAME="j_username" class="inputControl" autocomplete="off"/>
+            </td>
+        </tr>
+        
+        <!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+                Contraseña
+            </td>
+            <td>
+                <INPUT TYPE="password" size="15" NAME="j_password" class="inputControl" autocomplete="off" />
+            </td>
+        </tr>
+        
+        </table>
+
+        <BR>
+        
+        <!--boton para grabar-->
+        <!--INPUT TYPE="submit" VALUE="Ingresar"/-->
+        <button type="submit"> Ingresar </button>
+         <!-- Campo utilizado para enviar las propiedades del usuario (archivo .ini que se encuentra en la maquina del cliente)-->
+        <input type="hidden" id="iniFile" name="iniFile" value="">
+
+    </form>
+        
+    </CENTER>
+     
+    </BODY>
+
+</HTML>
+
+

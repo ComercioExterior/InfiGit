@@ -1,0 +1,183 @@
+
+<HTML>
+    
+	<head> 
+          
+         <script language="javascript" src="../js/default.js"></script>   
+         <script language='javascript' src="../js/calendar/popcalendar.js"></script>   
+        <link rel="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />	
+        <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/>     			
+        
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+           
+          <script type="text/javascript">
+        	
+        	var fechaTipoRango=3;
+			var fechaSinValidacion=4;
+		    var fechaMayor=5;
+        	var fechaMenor=6;
+          
+				function invocacion(elem){		
+					if(elem.value==fechaTipoRango) {
+						document.getElementById('fechas_rango').style.display='block';
+						document.getElementById('fechas').style.display='none';
+						document.getElementById('fecha_1').value="";								
+					} else if(elem.value==fechaSinValidacion || elem.value==fechaMayor || elem.value==fechaMenor) {					
+						document.getElementById('fechas').style.display='block';
+						document.getElementById('fechas_rango').style.display='none';
+						document.getElementById('fecha_rango_1').value="";						
+						document.getElementById('fecha_rango_2').value="";													
+					}else {
+						document.getElementById('fechas_rango').style.display='none';
+						document.getElementById('fechas').style.display='none';
+						document.getElementById('fecha_rango_1').value="";						
+						document.getElementById('fecha_rango_2').value="";				
+						document.getElementById('fecha_1').value="";				
+					}				
+				}
+            </script>
+	
+    </head>
+  
+  <body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};invocacion(document.forms[0].tipo_campo)">
+  
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Generales / Campos Din&aacute;micos</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+        
+        <CENTER>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="campos_dinamicos-confirm_update">
+		
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="2" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Editar Registro
+                </FONT>
+            </th>
+        </tr>
+        
+        <!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Nombre:*
+            </td>
+            <td>
+            <INPUT TYPE="TEXT" VALUE="@campo_nombre@" NAME="campo_nombre_disable" SIZE="50" MAXLENGTH="200" class="inputControl" disabled="disabled"/>
+            <INPUT TYPE="hidden" VALUE="@campo_nombre@" NAME="campo_nombre" SIZE="50" MAXLENGTH="20" class="inputControl"/>
+            </td>
+        </tr>
+        
+        <!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Descripci&oacute;n:*
+            </td>
+            <td>
+            <INPUT TYPE="TEXT" VALUE="@campo_descripcion@" NAME="campo_descripcion" SIZE="50" MAXLENGTH="100" class="inputControl" />
+            </td>
+        </tr>
+
+       <!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+            Tipo:*
+            </td>
+            <td>
+            	<SELECT ID="campo_tipo_disable" NAME="campo_tipo" CLASS="inputControl" disabled="disabled">
+					<rows>
+					<OPTION VALUE="@num@">@tipo@</OPTION>
+					</rows>				
+				</SELECT>
+			</td>
+        </tr>
+    </table>
+
+   <div id="fechas_rango" name="fechas_rango" style='display:none'>
+      	<table border="0" cellspacing="1" cellpadding="1" width="100%" class="dataform">
+      	  <!--  tr CLASS="formElement"-->
+      	  <tr>
+          <td>
+            <!--  td CLASS="formLabel"-->
+             Fecha_1:*
+            </td>
+             <td align="left">
+				<INPUT TYPE="TEXT" VALUE="@fecha_rango_1@" id="fecha_rango_1"  NAME="fecha_rango_1" SIZE="12" MAXLENGTH="10" class="inputControl" readonly/> 
+				<a onclick="popUpCalendar(this, fecha_rango_1, 'dd-mm-yyyy')">
+				<IMG SRC="../images/infi_gn_calendar.gif" TITLE="Seleccionar Fecha"/> 
+				</a>
+			</td>
+        </tr>
+       
+       <!--campo-->
+       <tr>
+          <td>
+             Fecha_2:*
+            </td>
+            <td align="left">
+				<INPUT TYPE="TEXT" VALUE="@fecha_rango_2@" id="fecha_rango_2"  NAME="fecha_rango_2" SIZE="12" MAXLENGTH="10" class="inputControl" readonly/> 
+				<a onclick="popUpCalendar(this, fecha_rango_2, 'dd-mm-yyyy')">
+				<IMG SRC="../images/infi_gn_calendar.gif" TITLE="Seleccionar Fecha"/> 
+				</a>
+			</td>
+        </tr>
+
+      	</table>
+      </div>
+      
+    <div id="fechas" name="fechas" style='display:none'>
+      	<table border="0" cellspacing="1" cellpadding="1" width="100%" class="dataform">
+      	  <!--  tr CLASS="formElement"-->
+      	  <tr>
+          <td>
+            <!--  td CLASS="formLabel"-->
+             Fecha:*
+            </td>
+             <td align="left">
+				<INPUT TYPE="TEXT" VALUE="@fecha_1@" id="fecha_1"  NAME="fecha_1" SIZE="12" MAXLENGTH="10" class="inputControl" readonly/> 
+				<a onclick="popUpCalendar(this, fecha_1, 'dd-mm-yyyy')">
+				<IMG SRC="../images/infi_gn_calendar.gif" TITLE="Seleccionar Fecha"/> 
+				</a>
+			</td>
+        </tr>
+
+      	</table>
+      </div>
+      
+            <!--nota sobre los campos obligatorios-->
+            <P><FONT COLOR="red"><B>Nota:</B></FONT> Los campos con * deben ser llenados para poder procesar el formulario.</P>
+            
+             <button TYPE="submit">Grabar</button>
+            &nbsp;<button type="button" onclick="javascript:history.back();">Regresar</button>
+            &nbsp;<button type="button" onclick="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+
+            <!--campo escondido para almacenar el key del record-->
+            <INPUT TYPE="HIDDEN" VALUE="@campo_id@" NAME="campo_id" />
+            <INPUT TYPE="HIDDEN" id="tipo_campo" VALUE="@campo_tipo@" NAME="campo_tipo" />
+
+    </form>
+
+        
+        </CENTER>
+        
+    </BODY>
+</HTML>
+

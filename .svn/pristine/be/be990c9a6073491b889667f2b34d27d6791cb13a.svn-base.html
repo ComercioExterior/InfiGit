@@ -1,0 +1,146 @@
+<html>
+
+	<head>
+        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+     
+   <script type="text/javascript">
+
+	function mostrar(id){
+		if(id==1){
+			var elementos = document.getElementsByName('definicion')
+			for (var i = 0; i < elementos.length; i++ ){
+				elementos[i].style.display ="block";
+			}
+			titulod.style.display ="block";
+		}
+		if(id==2){
+			var elementos = document.getElementsByName('aprobacion')
+			for (var i = 0; i < elementos.length; i++ ){
+				elementos[i].style.display ="block";
+			}
+			tituloa.style.display ="block";
+		}	
+	}
+	
+	function eliminar(comision,id){
+		if (confirm("¿Está seguro que desea eliminar la Comision: ("+comision+")?")){
+			document.forms[0].action='estructura_tarifaria-delete_comision?comision_id='+id;
+			document.forms[0].comision_id.value=id;
+			document.forms[0].submit();
+			return;
+		}else{
+			return;
+		}
+	}
+	
+	</script>
+     
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <td class="headerBox">               
+	            	<font class="headerText">Custodia / Estructura Tarifaria</font>	
+		</td>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="TABLE-LAYOUT: auto; ">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="19" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Comisiones Registradas ( @t_registros@ )
+                </FONT>
+            </th>
+        </tr>
+
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+		<th width="2%"></th>
+		<th width="2%"></th>
+		<th nowrap>Comisi&oacute;n</th>
+		<th nowrap>General</th>
+		<th nowrap>Clientes</th>
+		<th nowrap>% Salida Interna</th>
+		<th nowrap>Monto Salida Interna</th>
+		<th nowrap>Moneda Salida Interna</th>
+		<th nowrap>% Salida Externa</th>
+		<th nowrap>Monto Salida Externa</th>
+		<th nowrap>Moneda Salida Externa</th>
+		<th nowrap>%Anual Nacional</th>
+		<th nowrap>Monto Anual Nacional</th>
+		<th nowrap>Moneda Anual Nacional</th>
+		<th nowrap>% Anual Extranjero</th>		
+		<th nowrap>Monto Anual Extranjero</th>
+		<th nowrap>Moneda Anual Extranjera</th>
+		<th nowrap>Fecha</th>
+		<th nowrap>Usuario</th>
+    </tr>
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+    	<td align="center">
+            <IMG onclick="eliminar('@comision_nombre@',@comision_id@);" SRC="../images/infi_gn_delete.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Eliminar Registro" BORDER="0" style="cursor:hand">
+        </td>
+		<td align="center">
+			<a href="estructura_tarifaria-comision_edit?comision_id=@comision_id@&comision_in_general=@comision_in_general@"><IMG SRC="../images/infi_gn_edit2.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Editar registro" BORDER="0" style="cursor:hand"></a>
+		</td>
+		<td align="left" nowrap>@comision_nombre@</td>
+		<td align="center" nowrap>@indicador@</td>
+		<td align="right" nowrap>@clientes@</td>                
+		<td align="right" nowrap>@pct_trans_interna@</td>
+		<td align="right" nowrap>@mto_trans_interna@</td>
+		<td align="center" nowrap>@moneda_trans_interna@</td>
+		<td align="right" nowrap>@pct_trans_externa@</td>
+		<td align="right" nowrap>@mto_trans_externa@</td>
+		<td align="center" nowrap>@moneda_trans_externa@</td>
+		<td align="right" nowrap>@pct_anual_nacional@</td>
+		<td align="right" nowrap>@mto_anual_nacional@</td>
+		<td align="center" nowrap>@moneda_anual_nacional@</td>
+		<td align="right" nowrap>@pct_anual_extranjera@</td>
+		<td align="right" nowrap>@mto_anual_extranjera@</td>
+		<td align="center" nowrap>@moneda_anual_extranjera@</td>
+		<td align="center" nowrap>@fecha_ult_act@</td>
+		<td align="left" nowrap>@userid@</td>
+     </tr> 
+     </rows>
+    
+    </table>
+	@page_index@
+	<br>
+<form>
+	<input type="hidden" name="comision_id" value="@comision_id@">
+	<input type="hidden" name="pagestart" value="true">
+	<input type="hidden" name="comision_nombre" value="@comision_nombre@">
+	<input type="hidden" name="client_id" value="@client_id@">
+        	<button type="button" ONCLICK="window.location='estructura_tarifaria-comision?comision_id=X'">&nbsp;Agregar&nbsp;</button>
+   			&nbsp;<button type="button" onclick="window.location='estructura_tarifaria-filter'">Regresar</button>
+   			&nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+
+</form>
+
+</center>
+
+</body>
+
+</html>

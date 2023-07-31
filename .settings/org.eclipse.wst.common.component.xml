@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="infi_TTS-550_INTERVENCION_BANCARIA3.0">
+        <wb-resource deploy-path="/" source-path="/WEB-INF/source"/>
+        <wb-resource deploy-path="/" source-path="/WEB-INF/services/infiActualizarOperacionesFinancieras"/>
+        <wb-resource deploy-path="/" source-path="/WEB-INF/services/infiConsultaOperacionCheque"/>
+        <wb-resource deploy-path="/" source-path="/WEB-INF/services/infiConsultaOrdenes"/>
+        <wb-resource deploy-path="/" source-path="/WEB-INF/services/infiConsultaOrdenTitulos"/>
+        <wb-resource deploy-path="/" source-path="/WEB-INF/services/infiConsultaTitulosCustodia"/>
+        <wb-resource deploy-path="/" source-path="/WEB-INF/services/infiConsultaUnidadDeInversion"/>
+        <wb-resource deploy-path="/" source-path="/WEB-INF/services/infiRegistrarTomaDeOrden"/>
+        <wb-resource deploy-path="/" source-path="/WEB-INF/services/infiSimularTomaOrden"/>
+    </wb-module>
+</project-modules>

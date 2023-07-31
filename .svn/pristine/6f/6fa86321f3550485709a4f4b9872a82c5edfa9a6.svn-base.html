@@ -1,0 +1,75 @@
+<HTML>
+	<HEAD>
+		<TITLE>Sistema INFI</TITLE>
+    	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		<script language="javascript" src="../js/default.js"></script>   
+	</HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    	<TR>
+        	<TD class="headerBox">                
+            	<FONT class="headerText">Intercambio / Recepci&oacute;n / Cruce SIMADI / @menu_migaja@ / Cierre</FONT>
+       		</TD>
+        	<!-- help online -->
+   			<TD class="headerBox" valign="middle" align="right">
+   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   			</TD>
+   			<!-- fin help online -->
+        	<td class="headerBox" aling="right"></td>
+        </TR>
+	</TABLE>
+	<CENTER>
+
+	<!--formulario-->
+	<!-- cruce_sicad2_clavenet_p_cierre-browse -->
+	<form NAME="dataentry" METHOD="POST" ACTION="cruce_sicad2_cierre-browse" onSubmit="document.dataentry.ui_nombre.value=document.dataentry.ui_txt.value">
+		<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+			 <!--titulo-->
+			<tr>
+				<th COLSPAN="2" ALIGN="center">Seleccione la Unidad de Inversión</th>
+			</tr>
+			
+			<!--campo-->
+<!-- 			<tr> -->
+<!-- 				<td nowrap width="20%">Unidad de Inversi&oacute;n:*</td> -->
+<!--             	<td nowrap> -->
+<!--             		<SELECT NAME="undinv_id" SIZE="1"> -->
+<!--             			<OPTION VALUE="">Seleccione</OPTION>	 -->
+<!-- 					   <rows_unidad>		 -->
+<!-- 						<OPTION VALUE="@undinv_id null-value=''@">@undinv_nombre@ @undinv_serie@</OPTION>	 -->
+<!-- 					   </rows_unidad>		 -->
+<!-- 					</SELECT> -->
+<!--             	</td> -->
+<!--         	</tr>   -->
+			
+			<!--campo-->
+    		<!--PICKILIST UNIDAD-->
+     <tr id="ui_tr" class="tableCell">
+            <td>Unidad de Inversi&oacute;n:</td>
+			<td>
+            	<INPUT TYPE="TEXT" VALUE="" NAME="ui_txt" SIZE="50" MAXLENGTH="50" class="inputControl" readonly/>
+            	<input type="hidden" value="" name="ui_id"/>
+            	<input type="hidden" value="" name="ui_nombre"/>
+				<!--IMAGENES/BOTONES PARA EL PICKLIST-->
+				<IMG src="../images/infi_gn_picklist.gif" title="Haga CLICK para ver la lista de opciones." onclick="showEnterUIFiltro(1,document.dataentry.ui_id,document.dataentry.ui_txt,'enter_ui_filtro-find?estatus=@estatus@&tipo_prod=@tipo_prod@&tipo_negocio=@tipo_negocio@&')" style="cursor:hand"/>
+				<IMG src="../images/infi_gn_picklist-clear.gif" title="Haga CLICK para borrar la opci&oacute;n seleccionada." onclick="showEnterOrden(0,document.dataentry.ui_id,document.dataentry.ui_txt,'enter_ui_filtro-find')" style="cursor:hand"/>
+			</td>
+        </tr> 
+		</table>
+		<br>
+		<button id="deshabilita" type="submit"/>Procesar</button>
+		&nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+		<INPUT TYPE="HIDDEN" VALUE="@tipo_transaccion@" NAME="tipo_transaccion"/>
+		<INPUT TYPE="HIDDEN" VALUE="@tipo_prod@" NAME="tipo_producto"/>
+		<INPUT TYPE="hidden" VALUE="@tipo_negocio@" NAME="tipo_negocio"/>
+		<INPUT TYPE="HIDDEN" VALUE="@menu_migaja@" NAME="mensaje_menu"/>
+		<INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/>
+
+
+	</form>
+	</CENTER>
+</BODY>
+</HTML>

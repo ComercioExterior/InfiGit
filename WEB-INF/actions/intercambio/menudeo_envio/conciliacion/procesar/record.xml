@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+        <field 
+        name="id_unidad" 
+        type="varchar" 
+        description="Unidad Inversi&oacute;n"
+        nullable="1"
+        size="50" />
+
+         <field 
+        name="id_ejecucion" 
+        type="varchar" 
+        description="id_ejecucion"
+        nullable="1"
+        size="50" />
+   
+</record>
+

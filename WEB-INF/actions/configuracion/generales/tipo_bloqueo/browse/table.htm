@@ -1,0 +1,104 @@
+<html>
+
+	<head> 
+          
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+           
+        <script type="text/javascript">
+        function posterProcesar(formulario){
+        	var formulario = document.getElementById(formulario);
+        	//alert(formulario.action)
+        	formulario.submit();
+        	
+        	//alert('SUBMIT')
+        } 
+        </script>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Generales / Tipo Bloqueo de T&iacute;tulos</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Tipo de Bloqueos ( @t_registros@ )
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="TABLE-LAYOUT: auto; ">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+		<th width="1%" nowrap></th>
+		<th width="1%" nowrap></th>
+   		<th width="90%" nowrap>Descripci&oacute;n</th>
+    	<th nowrap>Estatus</th>
+   		
+
+    </tr>
+
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+		<td VALIGN="middle">
+			<form action="tipo_bloqueo-confirm" method="post" name="@_row@">
+			<input type="hidden" name="tipblo_id" value="@tipblo_id@">
+			<input type="hidden" name="tipblo_descripcion" value="@tipblo_descripcion@">
+			</form>
+			<a style="display:@display@"  ONCLICK="posterProcesar(@_row@);"><IMG SRC="../images/infi_gn_delete.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Eliminar Registro" BORDER="0" style="cursor:hand"></a></td>
+		<td VALIGN="middle">
+			<a href="tipo_bloqueo-edit?tipblo_id=@tipblo_id@"><IMG SRC="../images/infi_gn_edit2.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Editar Registro" BORDER="0" style="cursor:hand"></a>                
+		</td>               
+		<td VALIGN="middle" align="left">@tipblo_descripcion@</td>
+		<td nowrap>@tipblo_status@</td>                
+		
+	</tr>
+     </rows>
+    
+    </table>
+    @page_index@
+    <BR>
+
+<form >
+    <button type="button" ONCLICK="window.location='tipo_bloqueo-addnew'">&nbsp;Agregar&nbsp;</button>
+    &nbsp;<button type="button" onclick="window.location='tipo_bloqueo-filter'">Regresar</button>
+    &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+<input id="display" type="hidden" value="@display@" name="display"> 
+</form>
+
+</center>
+
+</body>
+
+</html>
+

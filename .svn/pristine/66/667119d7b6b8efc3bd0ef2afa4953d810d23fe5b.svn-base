@@ -1,0 +1,100 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+
+<%@page import="java.math.BigDecimal" %>
+<%@page import="javax.naming.InitialContext" %>
+<%@page import="javax.sql.DataSource" %>
+<%@page import="java.util.*" %>
+<%@page import="java.text.*" %>
+<%@page import="java.util.Date" %>
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<%@page import="java.util.Date"%>
+<%@page import="com.bdv.infi.util.Utilitario"%>
+<%@page import="com.bdv.infi.logic.interfaz_altair.FactoryAltair"%>
+<%@page import="com.bdv.infi.logic.interfaces.TransaccionFinanciera"%>
+<%@page import="com.bancovenezuela.comun.data.OrdenOperacion"%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Probando conexiones INFI</title>
+</head>
+<body>
+<form action="">
+<%
+try {
+	String jndiInfi= "java:comp/env/jdbc/infi";
+	InitialContext ic = new InitialContext();	
+	DataSource dsInfi = (DataSource) ic.lookup(jndiInfi);
+	
+	FactoryAltair factoryAltair = new FactoryAltair(dsInfi,this.getServletContext());
+	
+	%>
+		<form action="procesoAltair.jsp">
+		
+		Id Operación Financiera :<input type="text" name="idoperacion" value="<%=request.getParameter("idoperacion")==null?"0":request.getParameter("idoperacion")%>"><br>
+		Id Orden : <input type="text" name="idorden" value="<%=request.getParameter("idorden")==null?"0":request.getParameter("idorden")%>"><br>
+		Código Operación : <input type="text" name="codoperacion" value="<%=request.getParameter("codoperacion")==null?"Especificar":request.getParameter("codoperacion")%>"><br>
+		Número de Cuenta : <input type="text" name="cuenta" value="<%=request.getParameter("cuenta")==null?"Especificar":request.getParameter("cuenta")%>"><br>
+		Serial Contable : <input type="text" name="serial" value="<%=request.getParameter("serial")==null?"Especificar":request.getParameter("serial")%>"><br>
+		Monto Operación (separador decimal el punto):  <input type="text" name="monto" value="<%=request.getParameter("monto")==null?"0":request.getParameter("monto")%>"><br>
+		Moneda : <input type="text" name="moneda" value="<%="VEF"%>" readonly="readonly"><br>
+		Centro Contable :  <input type="text" name="centro" value="<%=request.getParameter("centro")==null?"Especificar":request.getParameter("centro")%>"><br>
+		Número de Retención : <input type="text" name="retencion" value="<%=request.getParameter("retencion")==null?"Especificar":request.getParameter("retencion")%>"><br>
+		<SELECT NAME="transaccion" SIZE=1/>				
+					<OPTION VALUE="CRE" SELECTED/>Crédito-2484</OPTION>
+					<OPTION VALUE="DES" SELECTED/>Desbloqueo</OPTION>
+					<OPTION VALUE="BLO" SELECTED/>Bloqueo-1501</OPTION>
+					<OPTION VALUE="DEB" SELECTED/>Débito-6975</OPTION>
+	 	</SELECT>
+	 	<input type="checkbox" value="rev" name="rev">Aplicar Reverso<br>
+		<input type="submit" value="Probar">
+</form>
+	<%
+	if(!request.getParameter("idoperacion").equals(null) && !request.getParameter("idoperacion").equals("0"))
+	{
+		OrdenOperacion ordenOperacion = new OrdenOperacion();
+		ordenOperacion.setIdOperacion(Long.parseLong(request.getParameter("idoperacion")));
+		ordenOperacion.setIdOrden(Long.parseLong(request.getParameter("idorden")));
+		ordenOperacion.setCodigoOperacion(request.getParameter("codoperacion"));
+		ordenOperacion.setNumeroCuenta(request.getParameter("cuenta"));
+		ordenOperacion.setSerialContable(request.getParameter("serial"));
+		ordenOperacion.setMontoOperacion(new BigDecimal(request.getParameter("monto")));
+		ordenOperacion.setIdMoneda(request.getParameter("moneda"));
+		ordenOperacion.setCentroContable(request.getParameter("centro"));
+		ordenOperacion.setNumeroRetencion(request.getParameter("retencion"));
+		ordenOperacion.setTipoTransaccionFinanc(request.getParameter("transaccion"));
+		
+		
+		ArrayList ordenesOperacionArrayList = new ArrayList();
+		ordenesOperacionArrayList.add(ordenOperacion);
+		factoryAltair.nombreUsuario=request.getParameter("nm");
+		factoryAltair.aplicarOrdenes(ordenesOperacionArrayList);		
+		
+		//Verifica si es reverso
+		if(request.getParameter("rev")!=null){
+			%>
+			Aplicando Reverso
+			<%
+			factoryAltair.aplicarReverso(ordenOperacion);
+		}
+	
+	%>
+	<p style="color:blue;">Número Retención:<%=ordenOperacion.getNumeroRetencion()%></p>
+	<p style="color:blue;">Número Movimiento:<%=ordenOperacion.getNumeroMovimiento()%></p>	
+	<p style="color:blue;">Status de la Operación:<%=ordenOperacion.getStatusOperacion()%></p>		
+	<%
+	}
+} catch(Exception e){
+	%>
+	<p style="color:FF0000;">Error <%=e.getMessage() %></p>	
+	<%
+	e.printStackTrace();
+}
+%>
+<input type="text" name="nm" value="NM13749">
+
+</form>
+</body>
+</html>

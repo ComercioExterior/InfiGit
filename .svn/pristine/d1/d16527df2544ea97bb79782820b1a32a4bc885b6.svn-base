@@ -1,0 +1,138 @@
+package models.bcv.intervencion;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+//import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+//import java.net.URI;
+import java.net.URL;
+import java.security.KeyManagementException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.Security;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+
+import megasoft.DataSet;
+import megasoft.Logger;
+import models.msc_utilitys.MSCModelExtend;
+
+import com.bdv.infi.config.Propiedades;
+import com.bdv.infi.logic.interfaces.ConstantesGenerales;
+import com.bdv.infi.util.Utilitario;
+
+public class Filter extends MSCModelExtend {
+	DataSet dsFecha = new DataSet();
+	String hoy;
+
+	static Propiedades propiedades;
+
+	public void execute() throws Exception {
+
+		capturarFecha();
+		publicarDatos();
+		// Configuracion conf = new Configuracion();
+//		ObtenerHolaMundoNuevo();
+
+	}
+
+	public String capturarFecha() {
+		try {
+			Calendar fechaHoy = Calendar.getInstance();
+			SimpleDateFormat sdIO = new SimpleDateFormat(ConstantesGenerales.FORMATO_FECHA);
+			this.hoy = sdIO.format(fechaHoy.getTime());
+
+		} catch (Exception e) {
+			System.out.println("Filter : capturarFecha()");
+
+		}
+		return hoy;
+	}
+
+	public void publicarDatos() {
+		dsFecha.append("fechahoy", java.sql.Types.VARCHAR);
+
+		try {
+			dsFecha.addNew();
+			dsFecha.setValue("fechahoy", hoy);
+			storeDataSet("fechas", dsFecha);
+
+		} catch (Exception e) {
+			System.out.println("Filter : publicarDatos()");
+
+		}
+
+	}
+	
+//	public void doTrustToCertificates() throws Exception {
+//		Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+//		TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
+//			public X509Certificate[] getAcceptedIssuers() {
+//				return null;
+//			}
+//
+//			public void checkServerTrusted(X509Certificate[] certs, String authType) throws CertificateException {
+//				return;
+//			}
+//
+//			public void checkClientTrusted(X509Certificate[] certs, String authType) throws CertificateException {
+//				return;
+//			}
+//		} };
+//		SSLContext sc = SSLContext.getInstance("SSL");
+//		sc.init(null, trustAllCerts, new SecureRandom());
+//		HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+//		HostnameVerifier hv = new HostnameVerifier() {
+//			public boolean verify(String urlHostName, SSLSession session) {
+//				if (!urlHostName.equalsIgnoreCase(session.getPeerHost())) {
+//					System.out.println("Warning: URL host '" + urlHostName + "' is different to SSLSession host '" + session.getPeerHost() + "'.");
+//				}
+//				return true;
+//			}
+//		};
+//		HttpsURLConnection.setDefaultHostnameVerifier(hv);
+//	}
+//	
+//	public String ObtenerHolaMundoNuevo() throws NoSuchAlgorithmException, KeyStoreException, CertificateException, FileNotFoundException, IOException {
+//
+//		String response = "";
+//		Utilitario.configurarProxy();
+//
+//		try {
+//			doTrustToCertificates();			
+//			URL url = new URL("https://intervencionbancaria.cert.extra.bcv.org.ve/intervencion/");
+//			HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+//			conn.setRequestMethod("GET");
+//	
+//			if (conn.getResponseCode() != 200) {
+//				System.err.println("Fallo la conexion al servicio ObtenerHolaMundoNuevo");
+//				throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
+//
+//			}
+//			BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+//			String output;
+//
+//			while ((output = br.readLine()) != null) {
+//				response = output;
+//				System.out.println(output);
+//
+//			}
+//			conn.disconnect();
+//		} catch (Exception e) {
+//			System.out.println("Filter : ObtenerHolaMundoNuevo() " + e);
+//			Logger.error(this, "Filter : ObtenerHolaMundoNuevo() " + e);
+//		}
+//
+//		return response;
+//	}
+}

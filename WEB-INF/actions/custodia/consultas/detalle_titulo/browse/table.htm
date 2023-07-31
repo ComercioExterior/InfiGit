@@ -1,0 +1,142 @@
+<html>
+
+	<head>
+        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+        <script type="text/javascript">
+        
+          
+        </script>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Custodia / Consultas / Detalle T&iacute;tulo</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                 T&iacute;tulo (@titulo_id@)
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+		<td>Nombre T&iacute;tulo</td>
+		<td>@titulo_id@</td>
+    </tr>   
+    <tr class="tableHeader">
+		<td>Descripci&oacute;n</td>
+		<td>@titulo_descripcion@</td>
+    </tr>
+     <tr class="tableHeader">
+		<td>Fecha de Emisi&oacute;n</td>
+		<td>@fecha_emision@</td>
+    </tr>
+     <tr class="tableHeader">
+		<td>Fecha de Vencimiento</td>
+		<td>@fecha_vencimiento@</td>
+    </tr>
+    <tr class="tableHeader">
+		<td>Moneda Denominaci&oacute;n</td>
+		<td>@titulo_moneda_den@</td>
+    </tr>
+    
+     <tr class="tableHeader">
+		<td>Moneda de Negociaci&oacute;n</td>
+		<td>@titulo_moneda_neg@</td>
+    </tr>
+     <tr class="tableHeader">
+		<td>Moneda Pago Interes</td>
+		<td>@intccy@</td>
+    </tr>
+    <!--data-->
+   
+    </table>
+   <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                Detalle T&iacute;tulo 
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+		<td align="center">Fecha Inicio Cup&oacute;n</td>
+		<td align="center">Fecha Fin Cup&oacute;n</td>
+		<td align="center">Tasa de Cup&oacute;n</td>
+		<td align="center">Base de C&aacute;lculo</td>
+		<td align="center">% de Amortizaci&oacute;n</td>
+		<td align="center">Depreciaci&oacute;n</td>
+    </tr>
+    <!--data-->
+    </table>
+    <div style="overflow:auto;width:100%;height:200px">
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+    <rows>
+ 	 <tr class="tableHeader" >
+		<td align="center">@INTSTRTDTE@</td>
+		<td align="center">@INTENDDTE@</td>
+		<td align="center">@INTRATE_8 format-mask='#,###.000000'@</td>
+		<td align="center">@BASIS@</td>
+		<td align="center">@PRINAMT_8 format-mask='0.000'@</td>
+		<td align="center">@PRINPAYAMT_8 format-mask='0.000'@</td>	
+		
+    </tr>
+    </rows>
+    <!--data-->
+    </table>
+    </div>
+    <BR>
+<form>
+    <button onclick="javascript:history.back();">Regresar</button>
+     &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+</form>
+
+</center>
+
+</body>
+
+</html>
+

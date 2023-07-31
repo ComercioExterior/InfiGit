@@ -1,0 +1,238 @@
+<html>
+
+<head>
+
+<script language="javascript" src="../js/default.js"></script>
+<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+
+<!--cambiar: nombre de la aplicacion-->
+<title>Sistema INFI</title>
+
+	<script type="text/javascript">
+        function mostrar(accion){
+			if(accion==1){
+				var elementos = document.getElementsByName('unidad')
+				for (var i = 0; i < elementos.length; i++ ){
+					elementos[i].style.display ="block";
+				}
+				titulou.style.display ="block";
+			}
+			if(accion==2){//Modulo Publicacion
+				var elementos = document.getElementsByName('publicar')
+				for (var i = 0; i < elementos.length; i++ ){
+					elementos[i].style.display ="block";
+				}
+				titulop.style.display ="block";
+			}
+			if(accion==3){//Modulo Consulta
+				var elementos = document.getElementsByName('consultar')
+				for (var i = 0; i < elementos.length; i++ ){
+					elementos[i].style.display ="block";
+				}
+				tituloc.style.display ="block";
+			}
+			if(accion==4){//Modulo Modificacion
+				var elementos = document.getElementsByName('modificar')
+				for (var i = 0; i < elementos.length; i++ ){
+					elementos[i].style.display ="block";
+				}
+				titulom.style.display ="block";
+			}
+			
+		}
+          
+	</script>
+
+</head>
+
+<body
+	ONLOAD="javascript:mostrar(@accion@);{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+	<!--page name bar-->
+	<table  border="0" cellspacing="0" WIDTH="100%">
+	    <tr>
+	        <td class="headerBox">
+	        	<div id="titulou" style="display:none">               
+	            	<font class="headerText">Unidades de Inversi&oacute;n</font>
+	            </div>
+				<div id="titulop" style="display:none">               
+	            	<font class="headerText">Publicaci&oacute;n Unidad de Inversi&oacute;n</font>
+	            </div>
+	            <div id="tituloc" style="display:none">               
+	            	<font class="headerText">Consulta Unidad de Inversi&oacute;n</font>
+	            </div>
+	            <div id="titulom" style="display:none">               
+	            	<font class="headerText">Modificaci&oacute;n Unidad de Inversi&oacute;n</font>
+	            </div>
+			</td>
+	        <!-- help online -->
+	   		<td class="headerBox" valign="middle" align="right">
+	   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+	   		</td>
+	   		<!-- fin help online -->	        
+	   	</tr>
+	</table>
+	
+	<center>
+	<br>
+	
+	<table border="0" cellspacing="1" cellpadding="2" width="100%"
+		class="datatable">
+	
+		<!--titulo-->
+		<tr CLASS="formCaption">
+			<th COLSPAN="7" ALIGN="center">
+				<FONT class="formCaptionText">
+					Unidades de Inversi&oacute;n ( @t_registros@ )
+				</FONT>
+			</th>
+		</tr>
+	
+	</table>
+	
+	<!--tabla de data-->
+	<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="TABLE-LAYOUT: auto; ">
+	
+		<!--encabezados de columna-->
+		<tr class="tableHeader">
+	
+			<th nowrap></th>
+			<th width="25%">Unidad de Inversi&oacute;n</th>
+			<th width="20%">Tipo de Instrumento</th>
+			<th nowrap>Emisor</th>		
+			<th width="8%">Fecha de Emision</th>
+			<th width="8%">Fecha de Liquidacion</th>
+			<th width="8%">Fecha de Cierre</th>		
+			<th nowrap>Status</th>		
+		</tr>
+	
+		<!--data-->
+		<tbody id="tBody">
+			<rowUI>
+			<tr class="tableCell">
+				<td nowrap align="center" style="display:none" name="unidad" id="unidad">
+				 <table class="dataform" border="0">
+					<tr><td>
+						<span style="cursor:hand; text-decoration:underline" class="span" title="Eliminar la Unidad de Inversion"
+							onclick="javascript:enviarA('del',@idUnidadInversion@);"> 
+							<IMG SRC="../images/infi_gn_papelera.gif"  BORDER="0" ALIGN="top" WIDTH="15" HEIGHT="15">
+						</span>
+					</td><td>
+						<span style="cursor:hand; text-decoration:underline" class="span" title="Editar la Unidad de Inversion"
+							onclick="javascript:enviarA('edit',@idUnidadInversion@);"> 
+							<IMG SRC="../images/infi_gn_edit.gif"  BORDER="0" ALIGN="top" >
+						</span>
+					</td></tr>
+				 </table>
+				</td>
+				<td nowrap align="center" style="display:none" name="modificar" id="modificar">
+				 <table class="dataform" border="0">
+					<tr>
+						<td>
+                			<span style="cursor:hand; text-decoration:underline" class="span" title="Cancelar Unidad de Inversi&oacute;n"
+								onclick="javascript:cancelar('canc',@idUnidadInversion@,'@nombreUnidadInversion@');"> 
+								<IMG SRC="../images/infi_gn_delete.gif"  BORDER="0" ALIGN="top" >
+							</span>
+                		</td>
+					
+						<td>
+							<span style="cursor:hand; text-decoration:underline" class="span" title="Modificar la Unidad de Inversion"
+								onclick="javascript:enviarA('edit',@idUnidadInversion@);"> 
+								<IMG SRC="../images/infi_gn_edit.gif"  BORDER="0" ALIGN="top" >
+							</span>
+						</td>
+					</tr>
+				 </table>
+				</td>				
+				<td width="6%" align="center" style="display:none" name="consultar" id="consultar">
+					<span style="cursor:hand; text-decoration:underline" class="span" title="Ver Detalle de la Unidad de Inversi&oacute;n"
+					onclick="javascript:enviarA('edit',@idUnidadInversion@);"> 
+					<IMG SRC="../images/infi_gn_find.gif"  BORDER="0" ALIGN="top" >
+					</span>
+				</td>
+				
+				<td width="6%" align="center" style="display:none" name="publicar" id="publicar">
+					<span style="cursor:hand; text-decoration:underline" class="span" title="Publicar Unidad de Inversi&oacute;n"
+					onclick="javascript:enviarA('edit',@idUnidadInversion@);"> 
+					<IMG SRC="../images/infi_gn_edit.gif"  BORDER="0" ALIGN="top" >
+					</span>
+				</td>
+								
+				<td>@nombreUnidadInversion@</td>		
+				<td align="center">
+					@descrInstrumento@ 
+					<br>
+					@tipoInstrumento@
+				</td>	
+				<td>@nombreEmpresa@</td>					
+				<td align="center" nowrap>@fechaEmisionUI@</td>
+				<td align="center" nowrap>@fechaLiquidaUI null-value='-'@</td>
+				<td align="center" nowrap>@fechaCierreUI@</td>			
+				<td align="center">@descrUIStatus@</td>				
+			</tr>
+			</rowUI>
+		</tbody>
+	
+	</table>
+	
+		@page_index@
+		
+	<br>
+	
+	
+	<form NAME="dataentry" METHOD="POST" ACTION="unidad_inversion-edit">
+	<INPUT TYPE="hidden" NAME="idUnidadInversion" VALUE="" />
+	<INPUT TYPE="hidden" NAME="undinv_nombre" VALUE="" />
+	</form>
+	<table align="center">
+		<tr>
+			<td>
+			<div align="center" align="center" style="display:none" name="unidad" id="unidad">	
+			<button type="button" onclick="window.location='unidad_inversion-addnew'">&nbsp;Agregar&nbsp;</button>
+			</div>
+			</td>
+			<td>
+			<div align="center" align="center" style="display:none" name="unidad" id="unidad">	
+			<button type="button" onclick="window.location='unidad_inversion-filter'">Regresar</button>
+			</div>
+			</td>
+			<td>
+			<div align="center" align="center" style="display:none" name="publicar" id="publicar">	
+			<button type="button" onclick="window.location='publicar_unidad_inversion-filter'">Regresar</button>
+			</div>
+			</td>
+			<td>
+			<div align="center" align="center" style="display:none" name="modificar" id="modificar">	
+			<button type="button" onclick="window.location='modificar_unidad_inversion-filter'">Regresar</button>
+			</div>
+			</td>
+			<td>
+			<div align="center" align="center" style="display:none" name="consultar" id="consultar">	
+			<button type="button" onclick="window.location='consultar_unidad_inversion-filter'">Regresar</button>
+			</div>
+			</td>
+		</tr>
+	</table>
+		
+	</center>
+
+
+</body>
+
+<script type="text/javascript">
+function enviarA(action, id) {
+	document.forms[0].idUnidadInversion.value = id;
+	if (action == 'del')
+		document.forms[0].action="unidad_inversion-confirm";
+	else if (action == 'view')
+		document.forms[0].action="unidad_inversion-view";	
+	document.forms[0].submit();
+}
+function cancelar(action, id,nombre) {
+	document.forms[0].idUnidadInversion.value = id;
+	document.forms[0].undinv_nombre.value = nombre;
+	document.forms[0].action="cancelacion_unidad_inversion-view?undinv_id="+id+"&undinv_nombre="+nombre;
+	document.forms[0].submit();
+}
+</script>
+</html>

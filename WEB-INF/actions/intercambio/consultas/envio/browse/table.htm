@@ -1,0 +1,84 @@
+<html>
+	<head>        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+        <script type="text/javascript">
+        
+          
+        </script>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+			<TD class="headerBox">                
+            	<FONT class="headerText">Intercambio / Consultas / Env&iacute;o</FONT>
+        	</TD>
+        	<!-- help online -->
+   			<TD class="headerBox" valign="middle" align="right">
+   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   			</TD>
+   			<!-- fin help online -->
+		</TR>
+	</TABLE>
+
+   <center>
+	<br>
+	<form NAME="dataentry" METHOD="POST" ACTION="">	
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+		<!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="6" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Lista de Registros ( @t_registros@ )
+                </FONT>
+            </th>
+        </tr>
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="TABLE-LAYOUT: auto; ">
+		<!--encabezados de columna-->
+		<tr>
+			<th width="2%"></th>
+			<th nowrap >N&uacute;mero Env&iacute;o</th>
+            <th nowrap >Archivo</th>
+            <th nowrap>Fecha</th>
+            <th nowrap>Registros</th>
+            <th nowrap>Unidad Inversi&oacute;n</th>
+            <th nowrap>Usuario</th>
+    	</tr>
+
+		<!--data-->
+	   <rows>
+    	<tr>
+    		<!--<td align="center">
+				<a href="consulta_envio-cerrar?undinv_id=@uniinv_id@"><IMG SRC="../images/infi_gn_delete.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Generar Archivo XML" BORDER="0" style="cursor:hand"></a>
+			</td>-->
+			<td align="center">
+				<a href="consulta_envio-detalle?ejecucion_id=@ejecucion_id@"><IMG SRC="../images/infi_gn_find.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Ver Detalle" BORDER="0" style="cursor:hand"></a>
+			</td>
+			<td align="right" nowrap>@ejecucion_id@</td>
+			<td align="left" nowrap>@nombre@</td>
+			<td align="center" nowrap>@fecha@</td>
+			<td align="right" nowrap>@registros@</td>
+			<td align="left" nowrap>@undinv_nombre undinv_serie@</td>
+			<td align="left" nowrap>@usuario@</td>
+		</tr>
+	   </rows>
+	</table>
+	@page_index@
+    <BR><BR>
+		<button type="button" onclick="javascript:history.back();">Regresar</button>
+		&nbsp;
+		<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+	</form>
+   </center>
+</body>
+</html>

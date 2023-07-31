@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+    <!--
+    
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, decimal, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+	-->
+
+		<field
+        name="mensaje_confirmacion" 
+        type="varchar"
+        description="Cantidad de Correos seleccionados"
+        nullable="1"
+        size="4" />
+        
+        <field 
+		name="ciclo"
+        type="varchar"
+        description="ID del Ciclo"
+        nullable="1"
+        size="7" />
+        
+        <field 
+        name="plantilla_id" 
+        type="varchar"
+        description="Id de la Plantilla"
+        nullable="0"
+        size="4" />
+        
+<!--         <field  -->
+<!--         name="tipo_destinatario"  -->
+<!--         type="varchar" -->
+<!--         description="Tipo de Destinatario" -->
+<!--         nullable="0" -->
+<!--         size="2" /> -->
+        
+        <field
+        name="todos_val" 
+        type="varchar"
+        description="Selección de todos los correos"
+        nullable="1"
+        size="1" />
+        
+        <field 
+		name="tipo_filtro"
+        type="varchar"
+        description="Tipo de Filtro"
+        nullable="1"
+        size="10" />
+        
+        <field 
+		name="correo_ids_concat"
+        type="varchar"
+        description="Correos Filtrados"
+        nullable="1"
+        size="9999" />
+        
+
+</record>

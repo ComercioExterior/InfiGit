@@ -1,0 +1,25 @@
+Se detect&oacute; un error en la Aplicaci&oacute;n: @host@
+
+Por favor verifique el Log del Servlet Engine 
+para obtener mas informaci&oacute;n sobre el error.
+
+Caracter&iacute;sticas del Error:
+-----------------------------
+
+Error: @errormsg@
+
+Fecha y Hora de ocurrencia: @datetime@
+
+URI: @uri@
+
+Servlet: @servletname@
+
+User: @userid@
+
+Remote Address: @remoteaddr@
+
+Stack Trace:
+
+@stacktrace@
+
+

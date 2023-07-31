@@ -1,0 +1,200 @@
+
+<HTML>
+    
+    <HEAD>
+    <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+            <SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+            <script language="javascript" src="../js/menu/jquery-1.2.2.pack.js"></script>   
+             <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        
+        <TITLE>Sistema INFI</TITLE>
+        
+        <script type="text/javascript">
+        
+					
+		function Verificar(){
+			
+				if(document.dataentry.cant_bloquear.value!='' && document.dataentry.cant_disp_bloquear.value!=''){
+					if(parseInt(document.dataentry.cant_bloquear.value) > parseInt(document.dataentry.cant_disp_bloquear.value)){
+						alert("Cantidad a bloquear debe ser menor o igual a la cantidad total disponible. Verifique.");
+					}else{
+
+			        	if (confirm("¿Está seguro que desea bloquear el título?")){
+			        		$("#bsubmit").attr("disabled", "disabled");
+			        		document.dataentry.submit();
+						}							
+						
+					}
+				}else{
+					alert("Ingrese los datos marcados con asterisco (*)");
+				}
+					
+		}
+        
+        </script>
+        
+         
+    </HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Custodia / Transacciones / Bloqueo de T&iacute;tulos</FONT>
+        </TD>
+        
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+        <td class="headerBox" aling="right"></td>
+</TABLE>
+        
+        <CENTER>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="bloqueo_titulos-procesar_bloqueo">
+		
+	<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+        
+               <!--titulo-->
+        <tr>
+            <th COLSPAN="7" ALIGN="center">                
+                 Datos Generales               
+            </th>
+        </tr>
+ 
+        <tr>
+            <td><b>Titulo:</b></td>
+            <td COLSPAN="6">@titulo_id@</td>                
+        </tr>
+        <tr>
+            <td><b>Cliente:</b></td>
+            <td COLSPAN="6">@client_nombre@</td>                
+        </tr>  
+	</table>
+	
+	<br>
+		
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="4" ALIGN="center">                
+                 Datos del Bloqueo             
+            </th>
+        </tr>
+        <tr>
+            <td>
+				Tipo de Producto:
+            </td>
+            <td>
+				@tipo_producto@ 
+			</td>
+        </tr>
+        
+         <tr>
+            <td>
+				Fecha de Bloqueo*
+            </td>
+            <td>
+				<INPUT TYPE="TEXT" VALUE="@fecha_hoy@" NAME="fe_bloqueo" SIZE="12" MAXLENGTH="10" class="inputControl" readonly /> 
+			</td>
+        </tr>
+        
+        
+      <!--campo-->      
+        
+        <tr>
+            <td>
+             C&oacute;digo de Bloqueo:*
+            </td>
+            <td>         
+              	<SELECT NAME="tipblo_id" SIZE="1">				
+					<OPTION VALUE="" SELECTED></OPTION>
+					<rows_tipo_bloq>		
+					<OPTION VALUE="@tipblo_id@">@tipblo_descripcion@</OPTION>					
+					</rows_tipo_bloq>		
+					
+	 			</SELECT>  			
+ 			
+           </td>
+        </tr>
+                
+         <tr id="benef">
+            <td>
+				Beneficiario:*
+            </td>
+            <td>
+           		<SELECT NAME="beneficiario_id" SIZE="1">				
+					<OPTION VALUE="" SELECTED></OPTION>
+					<rows_benef>		
+					<OPTION VALUE="@beneficiario_id@">@beneficiario_nombre@</OPTION>						
+					</rows_benef>				
+	 			</SELECT>  			
+ 			</td>
+        </tr>
+    	
+    	
+    	<tr>
+            <td>
+				N&uacute;mero de Garant&iacute;a:
+            </td>
+            <td>
+				<INPUT TYPE="TEXT" VALUE="" NAME="numero_garantia" SIZE="35" MAXLENGTH="20" onkeypress="solo_numericos();"/> 
+			</td>
+        </tr>
+    	
+        <!--campo-->
+        <tr>
+            <td>
+				Cantidad Total:*
+            </td>
+            <td>
+				<INPUT TYPE="TEXT" VALUE="@cantidad_disponible@"  STYLE="text-align:right" NAME="cant_disp_bloquear" SIZE="12" MAXLENGTH="15" readonly/> 
+			</td>
+        </tr>
+        
+               <!--campo-->
+        <tr>
+            <td>
+				Cantidad a Bloquear:*
+            </td>
+            <td>
+				<INPUT TYPE="TEXT" VALUE="" NAME="cant_bloquear"  STYLE="text-align:right" SIZE="12" MAXLENGTH="15" onkeypress="solo_numericos();"/> 
+			</td>
+        </tr>
+           
+         </table>
+         
+         
+         <INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/> 	
+         
+          <INPUT TYPE="hidden" VALUE="@titulo_id@" NAME="titulo_id"/> 
+          <INPUT TYPE="hidden" VALUE="@tipo_producto_id@" NAME="tipo_producto"/>
+          <INPUT TYPE="hidden" VALUE="@client_id@" NAME="client_id"/> 	
+            <br>
+                  
+ 			<button id="bsubmit" type="button" onclick="javascript:Verificar();">Aceptar</button>
+            &nbsp; <button type="button" onclick="javascript:history.back();">Regresar</button>
+			
+            &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+
+    </form>
+
+        
+        </CENTER>
+        
+    </BODY>
+
+</HTML>
+

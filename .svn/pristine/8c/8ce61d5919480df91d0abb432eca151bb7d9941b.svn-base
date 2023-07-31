@@ -1,0 +1,92 @@
+	<html>
+	<head>        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>    
+		<script type="text/javascript">
+		
+		function enviar(){
+			var mensaje="Esta seguro que desea realizar el proceso de Cierre Cruce ? "
+			if(confirm(mensaje)){
+				 document.dataentry.action='cruce_sicad2_cierre-procesar';
+	 			 document.dataentry.submit();
+			}
+			
+		}
+		</script>
+
+    </head>
+
+<body>
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+			<TD class="headerBox">                
+            	<FONT class="headerText">Intercambio / Recepci&oacute;n / Cruce SICAD II @menu_migaja@ / Cierre</FONT>
+        	</TD>
+        	<!-- help online -->
+   			<TD class="headerBox" valign="middle" align="right">
+   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   			</TD>
+   			<!-- fin help online -->
+		</TR>
+	</TABLE>
+
+   <center>
+	<br>
+	<!-- cruce_sicad2_clavenet_p_cierre-procesar -->
+	<form NAME="dataentry" METHOD="POST" ACTION="cruce_sicad2_cierre-procesar">
+	<!-- table class="datatable" border="0" cellspacing="1" cellpadding="2" width="100%">
+	
+		<!--encabezados de columna>
+		<tr class="tableHeader">
+			<th>Unidad de Inversi&oacute;n</th>													
+		</tr>
+		<ui>
+		<tr class="tableHeader">
+			<td><b>@INSFIN_DESCRIPCION@</b></td>													
+		</tr>
+		</ui>
+	</table-->	
+    <!--tabla de data-->
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="80%">
+		<tr>
+			<th nowrap colspan="3">Unidad Inversion</th>
+		</tr>
+		<tr align="center">
+	   		<td align="center" nowrap colspan="3">@unidad_inversion@</td>	
+		</tr>
+		<tr>
+            <th nowrap>Ordenes No Cargadas</th>
+            <th nowrap>Ordenes Cargadas CRUCE</th>
+            <th nowrap>Ordenes Cargadas NO CRUCE</th>
+    	</tr>
+	   <resumen>
+	    <tr>		
+
+	    </tr>
+    	<tr>					
+			<td align="right" nowrap>@no_cargada@</td>
+			<td align="right" nowrap>@carga_cruce@</td>
+			<td align="right" nowrap>@carga_no_cruce@</td>			
+		</tr>
+	   </resumen>
+	</table>
+	<br>
+			<input type="hidden" name="ui_id" value="@ui_id@">
+	<!-- @page_index@-->
+		<button TYPE="button" NAME="boton_adjudicar" onclick="javaScript:enviar();">Procesar</button>	
+		&nbsp;
+		<button type="button" onclick="javascript:history.back();">Regresar</button>
+		<INPUT TYPE="hidden" VALUE="@marcador_idb@" NAME="marcador_idb"/>
+		<INPUT TYPE="hidden" VALUE="@vehiculos@" NAME="vehiculos"/>
+		<INPUT TYPE="hidden" VALUE="@inst_financiero@" NAME="inst_financiero"/>
+		<INPUT TYPE="hidden" VALUE="@tipo_prod@" NAME="tipo_producto"/>
+		<INPUT TYPE="hidden" VALUE="@tipo_transaccion@" NAME="tipo_transaccion"/>
+		<INPUT TYPE="hidden" VALUE="@menu_migaja@" NAME="mensaje_menu"/>
+		<INPUT TYPE="hidden" VALUE="@tipo_negocio@" NAME="tipo_negocio"/>
+		</form>
+</body>
+</html>

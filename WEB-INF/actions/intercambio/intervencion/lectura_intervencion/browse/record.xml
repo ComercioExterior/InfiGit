@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+
+	<field name="archivo.tempfile" type="varchar" description="Archivo"
+		nullable="0" size="1000" />
+
+	<field name="archivo.filename" type="varchar" description="Nombre original del archivo"
+		nullable="0" size="100" />
+
+	<field name="archivo.content-type" type="varchar"
+		description="Content type del archivo descargado" nullable="1" size="100" />
+
+</record>
+

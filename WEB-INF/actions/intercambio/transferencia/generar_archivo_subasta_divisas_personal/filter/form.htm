@@ -1,0 +1,88 @@
+<HTML>
+	<HEAD>
+		<TITLE>Sistema INFI</TITLE>
+    	<LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+    	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		<SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+		<script language="javascript" src="../js/default.js"></script>   
+		<script type="text/javascript">
+        
+		</script>
+	</HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    	<TR>
+        	<TD class="headerBox">                
+            	<FONT class="headerText">Intercambio / Transferencia / Generar Archivo Subasta Divisas Personas</FONT>
+       		</TD>
+        	<!-- help online -->
+   			<TD class="headerBox" valign="middle" align="right">
+   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   			</TD>
+   			<!-- fin help online -->
+        	<td class="headerBox" aling="right"></td>
+        </TR>
+	</TABLE>
+	<CENTER>
+
+	<!--formulario-->
+	<form NAME="dataentry" METHOD="POST" ACTION="generar_archivo_subasta_divisas_personal-browse">
+		<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+			 <!--titulo-->
+			<tr>
+				<th COLSPAN="2" ALIGN="center">Seleccione Criterios</th>
+			</tr>
+			<!--campo-->
+			<tr>
+				<td nowrap width="20%">Unidad de Inversi&oacute;n:*</td>
+            	<td nowrap>
+            		<SELECT NAME="undinv_id" SIZE="1">
+            			<!--OPTION VALUE="">Seleccione</OPTION-->	
+					   <rows_unidad>		
+						<OPTION VALUE="@undinv_id@">@undinv_nombre@</OPTION>	
+					   </rows_unidad>		
+					</SELECT>
+            	</td>
+        	</tr>
+        	<tr>
+				<td class="formLabel" style="visibility: normal">Fecha desde:</td>
+				<td style="visibility: normal"><div name="calendar">
+				<input type="text" name="fecha"  size="10" maxlength="10" value="@fecha_actual@" readonly/> 
+				<a name="link" onclick="popUpCalendar(this, document.forms[0].fecha, 'dd-mm-yyyy')">
+				<IMG SRC="../images/infi_gn_calendar.gif" class="boton" TITLE="Seleccion de fecha desde"/>
+					</a></div>
+				</td>
+        	</tr>
+        	
+        	<tr>
+				<td nowrap width="20%">Estatus de la solicitud:*</td>
+            	<td nowrap>
+            		<SELECT NAME="estatus_solicitud" SIZE="1">            		
+					   <estatus>		
+						<OPTION VALUE="@estatusId@">@estatusDesc@</OPTION>	
+					   </estatus>		
+					</SELECT>
+            	</td>
+        	</tr>
+        	<tr>
+				<td nowrap width="20%">Tipo de solicitud:*</td>
+            	<td nowrap>
+            		<SELECT NAME="tipo_solicitud" SIZE="1"> 
+						<OPTION VALUE="6">Demanda</OPTION>	
+					 	<OPTION VALUE="7">Oferta</OPTION>	
+					</SELECT>
+            	</td>
+        	</tr>
+ 		</table>
+		<INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/> 	
+		<br>
+		<button TYPE="submit"/>Procesar</button>
+		<SPAN> </SPAN>
+		<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+	</form>
+	</CENTER>
+</BODY>
+</HTML>

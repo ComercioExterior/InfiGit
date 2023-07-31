@@ -1,0 +1,99 @@
+<html>
+
+	<head>
+        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+        <script type="text/javascript">
+        
+          
+        </script>
+	
+    </head>
+
+<body>
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Custodia / Consultas / Movimientos</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Movimientos ( @t_registros@ )
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+		<th width="5%"></th>
+		<th width="5%">Orden</th> 
+		<th width="30%">Cliente</th>                          
+		<th width="15%">Transacci&oacute;n</th>
+		<th width="10%">Tipo de Producto</th>
+		<th width="10%">Título</th>
+		<th width="10%">Monto</th>
+		<th width="10%">Fecha De Orden</th>
+		
+                            
+    </tr>
+
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+		<td align="center" width="5%">
+			<a href="javascript:abrirPopupDetalles('detalle_orden-find?ord_id=@ordene_id@','100', '380')"><IMG SRC="../images/infi_gn_document.gif" WIDTH="15" ALIGN="top" HEIGHT="13" title="Detalles de la Orden" BORDER="0" style="cursor:hand"></a>
+		</td>
+		<td align="center" width="5%">@ordene_id@</td>
+		<td VALIGN="middle" width="30%">@client_nombre@</td>
+		<td width="15%">@transa_id@ </td>
+		<td width="10%">@tipo_producto_id@ </td>
+		<td width="10%">@titulo_id@ </td>
+		<td width="10%" align="right">@titulo_unidades format-mask='###,###'@ </td>
+		<td align="center" width="10%">@fecha@</td>		
+     </tr>
+     </rows>
+    
+    </table>
+
+@page_index@
+    <BR>
+<form>
+    <button onclick="javascript:history.back();">Regresar</button>
+     &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+</form>
+
+</center>
+
+</body>
+
+</html>
+

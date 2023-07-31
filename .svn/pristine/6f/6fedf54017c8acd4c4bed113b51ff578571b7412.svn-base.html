@@ -1,0 +1,46 @@
+<html>
+	<head>        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>  
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+			<TD class="headerBox">                
+            	<FONT class="headerText">Liquidaci&oacute;n / Proceso de Liquidaci&oacute;n</FONT>
+        	</TD>
+        	<!-- help online -->
+   			<TD class="headerBox" valign="middle" align="right">
+   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   			</TD>
+   			<!-- fin help online -->
+		</TR>
+	</TABLE>
+
+   <center>
+	<br>
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;>
+		<tr class="tableHeader">
+		<th width="5%" nowrap >Fecha</th>
+            <th width="95%" nowrap >Mensajes</th>
+    	</tr>
+    	
+
+		<!--data-->
+	   <intentos>
+    	<tr class="tableCell">
+			<td width="5%" align="center" nowrap="nowrap">@fecha@</td>
+			<td width="95%" align="left" nowrap="nowrap">@error_desc null-value='La operación financiera fue procesada con exito'@</td>
+		</tr>
+		</intentos>
+	</table>
+<br>
+		<button TYPE="button" onclick="window.close()">Regresar</button>
+
+   </center>
+</body>
+</html>

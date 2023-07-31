@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<config>
+	<ldap_server>ldap://bdvsun03.banvenez.com:4032</ldap_server>
+	<datasource-security>java:comp/env/jdbc/security</datasource-security>
+</config>

@@ -1,0 +1,76 @@
+<html>
+	<head>
+        <link rel="stylesheet" type="text/css" href="../megasoft.css" />
+		<script type="text/javascript">		
+		function postear(archivo){
+			document.forms[0].directorio.value = archivo;
+			document.forms[0].submit();
+		}
+		</script>
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Logger Viewer</title>
+    </head>
+<body>
+
+<form action="" name="logger-find" method="post">
+<!--page name bar-->
+<TABLE WIDTH="100%">
+    <TR>
+        <TD class="headerBox" colspan="2"> 
+            <FONT class="headerText">Logger Viewer</FONT>
+        </TD>
+    </TR>
+    <TR class="tableHeader">       
+        <TD> 
+            <input type="hidden" name="directorio" value="@filename@" size="100" readonly="readonly">
+        </TD>        
+    </TR>
+</TABLE>
+<center>
+<br>
+    <!--tabla de data-->
+    <table border="3" cellspacing="3" cellpadding="2" width="50%">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+              <th colspan="2">Contenido del Directorio</th>
+    </tr>
+	<ficheros>
+    <tr>
+		<td onclick="postear('@filename@@nombre@')" width="50%">
+			@_row@-<font color="blue"><u>@nombre@</u></font>
+		</td>
+		<td width="50%" align="center">@fecha@</td>
+     </tr>
+     </ficheros>
+
+    </table>  
+    <table border="0" cellspacing="1" cellpadding="2" width="100%">
+    
+
+     <tr colspan=3  class="tableCell">
+        
+                <td colspan="2">
+                @logger@
+                </td>
+     </tr>
+
+    
+    </table>
+    <BR>
+
+<BR>
+
+
+</center>
+<script language="javascript">
+//ir a la pagina deseada
+function gotoPage(page_send)
+{
+	window.location="msc_role-find?pagenumber="+page_send;
+}
+</script>
+<input type="hidden" value="" name="log">
+</form>
+</body>
+</html>

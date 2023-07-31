@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<properties>
+  <!--
+    El presente archivo contiene las definiciones de las propiedades de la Aplicacion Web.
+    
+    Estas propiedades y sus valores estar&aacute;n disponibles para todos los modelos a traves
+    del m&eacute;todo getAppParameter( String parameter) de AbstractModel
+    -->
+  <property>
+    <name>my-app-property</name>
+    <value>my-app-value</value>
+    <description>This is a Sample Property Value</description>
+  </property>
+  <property>
+    <name>my-app-property-II</name>
+    <value>Sample-Value-1</value>
+    <description>This is a Sample Property Value</description>
+  </property>
+  <!-- Descomentar en caso de requerir acceso a Base de Datos. -->
+  <property>
+    <name>datasource</name>
+    <value>java:comp/env/jdbc/infi</value>
+    <description>DataSource principal de la aplicacion</description>
+  </property>
+  <!--   
+  <property>
+    <name>datasource-perflog</name>
+    <value>java:comp/env/jdbc/security</value>
+    <description>DataSource para performance-log</description>
+  </property>
+  <property>
+    <name>datasource-security</name>
+    <value>java:comp/env/jdbc/security</value>
+    <description>DataSource para seguridad - registro de logins</description>
+  </property>
+  -->
+  <property>
+    <name>template-dir</name>
+    <value>/WEB-INF/templates/</value>
+    <description>Directorio de plantillas de la aplicacion - debe estar dentro del contexto</description>
+  </property>
+  <property>
+    <name>enable-perflog</name>
+    <value>false</value>
+    <description>Activar/Desactivar performance log de servlets - true|false</description>
+  </property>
+  <property>
+    <name>print-out-enabled</name>
+    <value>false</value>
+    <description>Activar/Desactivar la impresion del metodo _printOut() en los modelos. ATENCION: este mecanismo de trazas es Obsoleto y fue Sustituido por Logger.</description>
+  </property>
+  <property>
+    <name>print-err-enabled</name>
+    <value>false</value>
+    <description>Activar/Desactivar la impresion del metodo _printErr() en los modelos. ATENCION: este mecanismo de trazas es Obsoleto y fue Sustituido por Logger.</description>
+  </property>
+  <property>
+    <name>logger-pluging</name>
+    <value>megasoft.logger.Log4j</value>
+    <description>PlugIn que implementa el mecanismo de Trazas</description>
+  </property>
+  <property>
+    <name>logger-enabled</name>
+    <value>true</value>
+    <description>Activa(true)/Inactiva(false) el Plugin del Logger para registrar trazas.</description>
+  </property>
+  <property>
+    <name>debug-online</name>
+    <value>true</value>
+    <description>Activa(true) o Desactiva (false) la Depuracion en Linea</description>
+  </property>
+  
+    <property>
+    <name>debug-mode</name>
+    <value>true</value>
+    <description>Define el estilo de visualización de Excepciones. Muestra StackTrace detallado si es true, o un resumen si es false (Ambientes de Producción) Valores posibles: true / false</description>
+  </property>  
+  <property>
+    <name>app-name</name>
+    <value>INFI</value>
+    <description>Nombre de la aplicacion</description>
+  </property>
+  <property>
+    <name>framework.controller.explicit-redirect</name>
+    <value>true</value>
+    <description>Para aplicacion correcta de los redirect en otros contenedores</description>
+  </property> 
+  <property>
+  <name>framework.security.login.validate.single-user</name> 
+  <value>false</value> 
+  <description>Valida que solo un usuario pueda estar autenticado en la aplicación.</description> 
+  </property>
+  <property>
+  <name>framework.mapping.profiler.clear</name> 
+  <value>/framework.mapping.profiler.clear</value> 
+  <description>Mapping encargado de Limpiar el Contenido Estadistico del Profiler. Debe ser accedido desde action/[valor de la propiedad]. Importante: la propiedad DEBE comenzar con "/".</description> 
+  <enabled>true</enabled> 
+  </property>
+  <property>
+  <name>framework.mapping.profiler.view</name> 
+  <value>/framework.mapping.profiler.view</value> 
+  <description>Mapping encargado de Mostrar el Contenido Estadistico del Profiler. Debe ser accedido desde action/[valor de la propiedad]. Importante: la propiedad DEBE comenzar con "/".</description> 
+  <enabled>true</enabled> 
+  </property>
+  <property>
+  <name>framework.mapping.framework.version.view</name> 
+  <value>/framework.mapping.framework.version.view</value> 
+  <description>Mapping encargado de Mostrar la versión de la Fundación y Changes Log Debe ser accedido desde action/[valor de la propiedad]. Importante: la propiedad DEBE comenzar con "/".</description> 
+  <enabled>true</enabled> 
+  </property>
+  <property>
+  <name>megasoft.fundacion2.dataset.capitalizar</name> 
+  <value>false</value> 
+  <description>Caputaliza todos los valores de campos tipo Varchar en un DataSet al momento de ejecutar una consulta a Base de Datos o cargar un XML de datos. DataSet.setValue nunca capitaliza. Posibles valores de la Propiedad: true o false.</description> 
+  </property>  
+   
+</properties>

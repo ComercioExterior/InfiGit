@@ -1,0 +1,83 @@
+<html>
+<head>
+<script language="javascript" src="../js/default.js"></script>
+<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+<title>Sistema INFI</title>
+
+<script type="text/javascript">
+	function submitir() {
+		var mensaje = "Esta seguro de querer realizar el Procesamiento del archivo de Inventario ?";
+
+		if (confirm(mensaje)) {
+			if (confirm("El proceso de Intervencion puede tardar varios minutos. ¿Está seguro que desea iniciar el proceso de Inventario?")) {
+				document.dataentry.boton_adjudicar.disabled = true;
+				document.dataentry.boton_back.disabled = true;
+				document.dataentry.action = 'intercambio_intervencion_lectura_inventario-procesar';
+				document.dataentry.submit();
+// 				setInterval("callAjax('resumen')", 10000);
+			}
+		}
+	}
+
+	//Funci&oacute;n Ajax
+// 	function callAjax(id_contenedor) {
+// 		var pagResponse = false;
+// 		var url = "resumen_adj";
+
+// 		if (window.XMLHttpRequest) {// Si es Mozilla, Safari etc
+// 			pagResponse = new XMLHttpRequest()
+// 		} else if (window.ActiveXObject) { // pero si es IE
+// 			try {
+// 				pagResponse = new ActiveXObject("Msxml2.XMLHTTP")
+// 			} catch (e) { // en caso que sea una versi&oacute;n antigua
+// 				try {
+// 					pagResponse = new ActiveXObject("Microsoft.XMLHTTP")
+// 				} catch (e) {
+// 				}
+// 			}
+// 		} else
+// 			return false
+
+// 		pagResponse.onreadystatechange = function() { // funci&oacute;n de respuesta
+// 			if (pagResponse.readyState == 4
+// 					&& (pagResponse.status == 200 || window.location.href
+// 							.indexOf("http") == -1))
+// 				document.getElementById(id_contenedor).innerHTML = pagResponse.responseText
+// 		}
+// 		pagResponse.open('GET', url, true) // asignamos los m&eacute;todos open y send
+// 		pagResponse.send(null)
+// 	}
+</script>
+</head>
+<body>
+	<TABLE border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+			<TD class="headerBox"><FONT class="headerText">Intercambio/ Inventario / Inventario</FONT></TD>
+			<TD class="headerBox" valign="middle" align="right"><img
+				border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17"
+				onclick="helpOpen(window.document.location.href);"
+				style="cursor: hand" title="Mostrar ayuda en l&iacute;nea"></TD>
+		</TR>
+	</TABLE>
+	<center>
+		<br>
+		<form NAME="dataentry" METHOD="POST" ACTION="">
+			<table border="0" cellspacing="1" cellpadding="2" width="100%"
+				class="datatable">
+				<tr CLASS="formCaption">
+					<th COLSPAN="6" ALIGN="center"><FONT class="formCaptionText">
+							Archivo Inventario </FONT> <datos_entrada>
+						</datos_entrada></th>
+				</tr>
+			</table>
+			<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="100%">
+			</table>
+			<br>
+			<button TYPE="button" NAME="boton_adjudicar" ONCLICK="javascript:submitir();">Procesar</button>
+			&nbsp;
+			<button TYPE="button" NAME="boton_back" ONCLICK="window.location='intercambio_intervencion_lectura_inventario-filter'">Regresar</button>
+		</form>
+		<br>
+		<div id="resumen"></div>
+</body>
+</html>

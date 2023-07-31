@@ -1,0 +1,30 @@
+<!-- 
+Campos sustituidos dinámicamente:
+@page_action@ : Mapping de la acción actual
+@page_param@  : Query String recibido por el action
+@page_last    : Número de la última página
+-->
+    <br>
+    <table border="0" cellspacing="1" cellpadding="2" width="60%">
+		<tr >
+			<td align="center" >
+
+				<SELECT NAME="_p" onChange="getPage(this.value);">
+					<page_index>
+@page_number@
+					</page_index>
+				</SELECT>
+
+			</td>
+		</tr>
+    </table>
+
+    <script language="javascript">
+
+    /* Fundación2-R6: envia a la pagina indicada. */
+    function getPage( pagenumber )
+    {
+	 window.location= "@page_action@?pagenumber="+ pagenumber;
+    }
+    </script>
+

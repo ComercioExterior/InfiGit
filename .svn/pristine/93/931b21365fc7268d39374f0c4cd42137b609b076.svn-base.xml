@@ -1,0 +1,169 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (https://github.com/eclipse-ee4j/metro-jax-ws). RI's version is JAX-WS RI 2.3.3 git-revision#b4c5bb6. --><xs:schema xmlns:tns="http://serviceInterface.bcv.org.ve/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://serviceInterface.bcv.org.ve/">
+
+<xs:element name="ANULAR" type="tns:ANULAR"/>
+
+<xs:element name="ANULARResponse" type="tns:ANULARResponse"/>
+
+<xs:element name="COMPRADIV" type="tns:COMPRADIV"/>
+
+<xs:element name="COMPRADIVResponse" type="tns:COMPRADIVResponse"/>
+
+<xs:element name="ERRORES" type="tns:ERRORES"/>
+
+<xs:element name="ERRORESResponse" type="tns:ERRORESResponse"/>
+
+<xs:element name="Exception" type="tns:Exception"/>
+
+<xs:element name="MOTIVOS" type="tns:MOTIVOS"/>
+
+<xs:element name="MOTIVOSResponse" type="tns:MOTIVOSResponse"/>
+
+<xs:element name="MOVIMIENTOS" type="tns:MOVIMIENTOS"/>
+
+<xs:element name="MOVIMIENTOSResponse" type="tns:MOVIMIENTOSResponse"/>
+
+<xs:element name="TASASCAMBIO" type="tns:TASASCAMBIO"/>
+
+<xs:element name="TASASCAMBIOResponse" type="tns:TASASCAMBIOResponse"/>
+
+<xs:element name="TIPOSMOVIMIENTOS" type="tns:TIPOSMOVIMIENTOS"/>
+
+<xs:element name="TIPOSMOVIMIENTOSResponse" type="tns:TIPOSMOVIMIENTOSResponse"/>
+
+<xs:element name="VENTADIV" type="tns:VENTADIV"/>
+
+<xs:element name="VENTADIVResponse" type="tns:VENTADIVResponse"/>
+
+<xs:element name="cambiarClave" type="tns:cambiarClave"/>
+
+<xs:element name="cambiarClaveResponse" type="tns:cambiarClaveResponse"/>
+
+<xs:complexType name="TIPOSMOVIMIENTOS">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="TIPOSMOVIMIENTOSResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="Exception">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="MOTIVOS">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="MOTIVOSResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cambiarClave">
+<xs:sequence>
+<xs:element name="CLAVENUEVA" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cambiarClaveResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="MOVIMIENTOS">
+<xs:sequence>
+<xs:element name="FEMOVIMIENTO" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="MOVIMIENTOSResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="COMPRADIV">
+<xs:sequence>
+<xs:element name="COTIMOVIMIENTO" type="xs:string" minOccurs="0"/>
+<xs:element name="COCLIENTE" type="xs:string" minOccurs="0"/>
+<xs:element name="NBCLIENTE" type="xs:string" minOccurs="0"/>
+<xs:element name="MOBASE" type="xs:decimal" minOccurs="0"/>
+<xs:element name="TSCAMBIO" type="xs:decimal" minOccurs="0"/>
+<xs:element name="COUCTATRANS" type="xs:string" minOccurs="0"/>
+<xs:element name="MOTRANS" type="xs:decimal" minOccurs="0"/>
+<xs:element name="COMOTIVOOPERACION" type="xs:long"/>
+<xs:element name="NUCTACONV20" type="xs:string" minOccurs="0"/>
+<xs:element name="TXTLFCLIENTE" type="xs:string" minOccurs="0"/>
+<xs:element name="TXEMAILPINC" type="xs:string" minOccurs="0"/>
+<xs:element name="RIFCOMERCIO" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="COMPRADIVResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ANULAR">
+<xs:sequence>
+<xs:element name="CO_MOVIMIENTO" type="xs:string" minOccurs="0"/>
+<xs:element name="COTIMOVIMIENTO" type="xs:string" minOccurs="0"/>
+<xs:element name="TXMOTIVOANULA" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ANULARResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ERRORES">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="ERRORESResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="VENTADIV">
+<xs:sequence>
+<xs:element name="COTIMOVIMIENTO" type="xs:string" minOccurs="0"/>
+<xs:element name="COCLIENTE" type="xs:string" minOccurs="0"/>
+<xs:element name="NBCLIENTE" type="xs:string" minOccurs="0"/>
+<xs:element name="MOBASE" type="xs:decimal" minOccurs="0"/>
+<xs:element name="TSCAMBIO" type="xs:decimal" minOccurs="0"/>
+<xs:element name="COUCTATRANS" type="xs:string" minOccurs="0"/>
+<xs:element name="MOTRANS" type="xs:decimal" minOccurs="0"/>
+<xs:element name="COMOTIVOOPERACION" type="xs:long"/>
+<xs:element name="NUCTACONV20" type="xs:string" minOccurs="0"/>
+<xs:element name="TXTLFCLIENTE" type="xs:string" minOccurs="0"/>
+<xs:element name="TXEMAILPINC" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="VENTADIVResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="TASASCAMBIO">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="TASASCAMBIOResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

@@ -1,0 +1,77 @@
+<HTML>
+
+<HEAD>
+<LINK REL="stylesheet" type="text/css"
+	href="../js/calendar/popcalendar.css" />
+<SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+
+
+<script language="javascript" src="../js/default.js"></script>
+<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+<script type="text/javascript">
+function isNumberKey(evt){
+    var charCode = (evt.which) ? evt.which : evt.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57))
+        return false;
+    return true;
+}
+</script>
+
+<TITLE>Sistema INFI</TITLE>
+</HEAD>
+
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+	<TABLE border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+			<TD class="headerBox"><FONT class="headerText">Intercambio / Intervencion / Editar Dias </FONT></TD>
+
+			<TD class="headerBox" valign="middle" align="right"><img
+				border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17"
+				onclick="helpOpen(window.document.location.href);"
+				style="cursor: hand" title="Mostrar ayuda en l&iacute;nea">
+			</TD>
+
+			<td class="headerBox" aling="right"></td>
+	</TABLE>
+	<CENTER>
+		<form NAME="dataentry" METHOD="POST" ACTION="intercambio_intervencion_oficina_dias-update">
+			<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+				<tr>
+					<th COLSPAN="4" ALIGN="center">Editar dias por lote</th>
+				</tr>
+				<tr>
+					<td>INVENTARIO DIAS:</td>
+					<td><INPUT TYPE="TEXT" VALUE="" NAME="diasentrega"
+						SIZE="15" MAXLENGTH="3" class="inputControl" onkeypress="return isNumberKey(event)"/>
+					</td>
+				</tr>
+				
+				<tr CLASS="formElement">
+					<td CLASS="formLabel2" WIDTH="35%">INVENTARIO CON SALDO:</td>
+					<td CLASS="formLabel"><SELECT NAME="saldo"
+						CLASS="inputControl" style="width: 100px;">
+							<OPTION VALUE="1">SI</OPTION>
+							<OPTION VALUE="0">NO</OPTION>
+					</SELECT></td>
+				</tr>
+				
+	
+				<INPUT TYPE="hidden" VALUE="@moneda@" NAME="moneda"/>
+				<INPUT TYPE="hidden" VALUE="@fecha@" NAME="fecha"/>
+				<INPUT TYPE="hidden" VALUE="@estado@" NAME="estado"/>
+			
+			</table>
+
+			<br>
+			<button TYPE="submit">Procesar</button>
+			&nbsp;
+			<button type="button" onclick="history.back();">Regresar</button>
+			&nbsp;
+			<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+		</form>
+	</CENTER>
+</BODY>
+
+</HTML>
+

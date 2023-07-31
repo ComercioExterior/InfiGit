@@ -1,0 +1,161 @@
+<html>
+
+<head>
+<script language="javascript" src="../js/default.js"></script>  
+    <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+    <title>Sistema INFI</title>
+
+	<script type="text/javascript">
+    
+	function closeWindow(v1,v2)
+	{
+		//alert('entre a close Window');
+	    window.opener.document.forms[0].@name_id@.value=v1;
+	    window.opener.document.forms[0].@name_tx@.value=v2;
+	    //IMPORTANTE setear este valor para Toma Orden Subasta Divisas Personas, sino no se muestran los datos de la unidad de inversion
+	    if(window.opener.document.forms[0].consultado!=undefined){
+	    	window.opener.document.forms[0].consultado.value="1";
+		//alert('Consultado = 1');
+		}
+	   
+	   	//***Para busquedas de Titulos por el cliente seleccionado en el picklist***///
+	    if(window.opener.callAjax!=undefined){
+	    	if(window.opener.document.getElementById('tit_cliente')!=undefined){
+	    		window.opener.callAjax('tit_cliente', '1');	    		
+	    	}
+	   	}
+	   	
+	    if(window.opener.document.forms[0].moneda_id!=undefined){
+	    	window.opener.document.forms[0].moneda_id.disabled = false;//habilitar campo moneda
+	   	}
+	   	
+	   	//Evento para el formulario de toma de orden
+	   	if(window.opener.document.forms[0].form_toma_orden!=undefined){
+		//alert('Form toma orden definido');
+	   		if(window.opener.document.forms[0].form_toma_orden.value='1'){
+		//alert('Form toma orden value 1');
+	   			window.opener.recargarPagina3();
+	   		}
+	   	}
+	   	///**************************************/////////////////////////////////////
+	   	
+	    window.close();
+	}
+	
+	function Verificar()
+	{
+		
+		if( document.forms[0].name_ui.value.replace(/ /g, '') == '' ){
+			alert("Debe introducir algún criterio de búsqueda");
+		}else{
+			//document.forms[0].action='pick_clientes-find?buscar=1';
+			//document.getElementById('tb').style.display='block'; 
+			document.forms[0].submit();	
+			
+		}
+	}
+		
+	</script>
+
+</head>
+
+<body>
+
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Unidades de Inversi&oacute;n</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<CENTER>
+    <BR>
+
+    <!--formulario-->
+    <form method="POST" action="enter_ui_filtro-find?estatus=@estatus@&tipo_prod=@tipo_prod@&tipo_negocio=@tipo_negocio@&forma_orden=@forma_orden@&tipo_solicitud=@tipo_solicitud@">
+
+        <table border="2" cellspacing="1" cellpadding="2" width="100%"  class="dataform">
+        
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="2" ALIGN="center">
+                      Filtro                      
+            </th>
+        </tr>
+        
+        <!-- Status -->
+        
+        <tr>
+            <td width="20%" nowrap>
+                Nombre de Unidad de Inversi&oacute;n:
+            </td>
+            <td>
+                <INPUT TYPE="input" VALUE="" NAME="name_ui" size="32" MAXLENGTH="100" /> <!-- class="inputControl" -->
+            	
+            </td>
+			</tr>
+	        </table>
+
+        <BR>
+        <mensajes>
+        	<P><FONT COLOR="red"><B>@mensaje@</B></FONT></P>
+       	</mensajes>
+       
+       <input type="hidden" name="buscar" value="1" >
+		<button name="boton_buscar"  onclick="Verificar();"/>Buscar</button> 
+		
+        &nbsp;
+		<button ONCLICK="window.close();">Regresar</button>
+   
+    </form>
+
+	<div id="tb" style="display:@visibility@">
+    <BR>
+    <b>Seleccione una Unidad de Inversi&oacute;n</b>
+    <BR>
+    <BR>      
+          
+    <TABLE width="100%" class="datatable" style="TABLE-LAYOUT: auto; ">
+    
+        
+    	<TR class="tableCell">
+            <TH WIDTH="5%">
+            </TH>
+            <TH nowrap>
+            <b>Nombre Unidad de Inversi&oacute;n</b>
+            </TH>
+		</TR>
+	
+		<rows>
+	        <TR>
+	            <TD align="center">
+		    	<a href="javascript:closeWindow('@UNDINV_ID@','@UNDINV_NOMBRE@');"><b>OK</b></a>
+	            </TD>
+				<TD nowrap>
+			    	@UNDINV_NOMBRE@
+	            </TD>
+			</TR>
+	    </rows>
+		
+	    
+    
+    </TABLE>
+    
+    </div>
+    </CENTER>
+
+
+		
+</body>
+
+
+
+</html>

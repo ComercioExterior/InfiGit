@@ -1,0 +1,95 @@
+
+<HTML>
+    
+    <HEAD>
+    <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+            <SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+        
+    
+             <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        
+        <TITLE>Sistema INFI</TITLE>
+    </HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Equivalencia Portafolio</FONT>
+        </TD>
+        
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+        <td class="headerBox" aling="right"></td>
+</TABLE>
+        
+        <CENTER>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="config_porta_equivalencia-confirm_insert">
+		
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="4" ALIGN="center">       
+                 Agregar Equivalencia Portafolio 
+            </th>
+        </tr>
+        
+        <!--campo-->
+        <tr>
+            <td>
+             Codigo de Segmento:*
+            </td>
+            <td>
+            	<INPUT TYPE="text" VALUE="" size="4" NAME="segmento_id" MAXLENGTH="4"/> 	
+            	
+            </td>
+        </tr>
+        
+        <!--campo-->
+        <tr>
+            <td>
+             Segmento Descripci&oacute;n:
+            </td>
+            <td>
+            	<INPUT TYPE="text" VALUE="" size="20" NAME="segmento_descripcion" MAXLENGTH="20"/> 	
+            	
+            </td>
+        </tr>
+        
+        <!--campo-->
+        <tr>
+            <td>
+             Portafolio:
+            </td>
+            <td>
+            	<INPUT TYPE="text" VALUE="" size="4" NAME="portafolio" MAXLENGTH="4"/> 	
+            </td>
+        </tr>       
+         </table>           
+     
+            <br>
+            <button TYPE="submit">Grabar</button>
+            &nbsp;<button type="button" onclick="history.back();">Regresar</button>
+            &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+
+    </form>
+
+        
+        </CENTER>
+        
+    </BODY>
+
+</HTML>
+

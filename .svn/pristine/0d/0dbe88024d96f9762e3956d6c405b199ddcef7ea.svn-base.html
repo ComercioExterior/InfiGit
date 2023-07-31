@@ -1,0 +1,113 @@
+<html>
+
+	<head>
+        
+        <!--link rel="stylesheet" type="text/css" href="../megasoft.css"/-->
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css"/>
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI - Seguridad</title>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Seguridad / Consultas / Opciones de Men&uacute; por URL</FONT>
+        </TD>
+   <!-- help online <TD class="headerBox" valign="middle" align="right"><img border="0" src="@url_images@ayuda.gif" width="17" height="17"  onclick="helpOpen();" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" ></TD> fin help online --></TR>
+</TABLE>
+
+<center>
+
+<br>
+
+<form NAME="dataentry" METHOD="POST">
+
+	<table border="0" cellspacing="1" cellpadding="2" width="50%" class="dataform">
+        <tr><th colspan="2">
+        Filtro
+        </th></tr>
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+                    Aplicaci&oacute;n:
+            </td>
+            <td>
+				<SELECT NAME="id_application" SIZE=1 ONCHANGE="javascript:document.dataentry.action='consulta_opciones_url-find?band=1'; document.dataentry.submit();"/>
+				<OPTION VALUE="" SELECTED/></OPTION>
+				<rows_app>				 
+				 <OPTION VALUE="@id_application@"/>@description@ - @siglas_applic@</OPTION>
+ 				</rows_app>
+ 				</SELECT>
+               
+            </td>
+        </tr>
+        
+        </table>
+       
+       <INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/> 
+ </form>
+        
+     
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+                  
+              <th width="30%">Opci&oacute;n de Men&uacute;</th>
+              
+              <th width="22%">URL</th>
+              
+              @cab_applic@
+              
+              <th width="40%">Ruta</th>
+
+            
+              
+    </tr>
+
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+        
+                
+                <td>
+                @tab@@st_nombre@
+                </td>
+                
+                <td>
+                @st_url@
+                </td>
+                  
+                @columna_applic@
+                 
+             
+                <td>
+                @ruta@
+                </td>
+                  
+                
+        
+     </tr>
+     </rows>
+    
+    </table>
+
+ @page_index@
+ 
+    <BR>
+<form>
+    <!--input type="button" value="Añadir Registro" onclick="window.location='menu_items-addnew'"/-->
+   <button onclick="history.back();">Cancelar</button>
+</form>
+
+</center>
+
+</body>
+
+</html>
+

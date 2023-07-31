@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+    <!--
+    
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, decimal, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+    
+    -->
+    
+        <field 
+        name="pick_cliente" 
+        type="varchar" 
+        description="Cliente"
+        nullable="1"
+        size="100" />
+        
+        <field 
+        name="client_id" 
+        type="varchar" 
+        description="Cliente id"
+        nullable="0"
+        size="50" />   
+                
+         <field 
+        name="fe_ord_desde" 
+        type="varchar" 
+        description="fecha Desde"
+        nullable="0"
+        size="50" />
+        
+         <field 
+        name="fe_ord_hasta" 
+        type="varchar" 
+        description="Fecha Hasta"
+        nullable="0"
+        size="50" />
+        
+         <field 
+        name="transaccion" 
+        type="varchar" 
+        description="Transacción"
+        nullable="0"
+        size="50" />
+        
+         <field 
+        name="ordenes_por_cliente" 
+        type="varchar" 
+        description="Transacción"
+        nullable="1"
+        size="50" />
+        
+        <field 
+        name="tipo_producto_id" 
+        type="varchar" 
+        description="Tipo de Producto"
+        nullable="1"
+        size="50" />
+</record>
+

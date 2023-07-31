@@ -1,0 +1,166 @@
+
+<HTML>
+    
+    <HEAD>
+    <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+            <SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+        
+    
+             <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        
+        <TITLE>Sistema INFI</TITLE>
+        
+        <script type="text/javascript">
+        
+	
+        
+        </script>
+        
+         
+    </HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Unidad de Inversi&oacute;n / Cancelaci&oacute;n</FONT>
+        </TD>
+        
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+        <td class="headerBox" aling="right"></td>
+</TABLE>
+        
+        <CENTER>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="cancelacion_unidad_inversion-confirm">
+		
+	<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+        
+               <!--titulo-->
+        <tr>
+            <th COLSPAN="2" ALIGN="center">                
+                 Datos de la Unidad de Inversi&oacute;n a Cancelar           
+            </th>
+        </tr>
+        
+        <tr>
+            <td><b>Nombre:</b></td>
+            <td>@undinv_nombre@</td>                
+        </tr>
+        <tr>
+            <td><b>Instrumento Financiero:</b></td>
+            <td>@insfin_descripcion@ - @insfin_tipo@</td>                
+        </tr>  
+	</table>
+	
+	<br>
+		
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+        
+               <!--titulo-->
+        <tr>
+            <th COLSPAN="4" ALIGN="center">                
+                 Ordenes a cancelar        
+            </th>
+        </tr>
+	</table>
+    
+     <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Ordenes asociadas a la unidad de inversi&oacute;n (@t_registros@)
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+    
+    		   <th width="4%"></th>            
+               <th>Nro. Orden</th>
+               <th>Cliente</th>
+               <th>Monto Pedido</th>
+               <th>Blotter</th>      
+               <th>Fecha Orden</th>                                                 
+    </tr>
+
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+              
+ 				<td align="center" width="2%">
+					<a href="javascript:abrirPopupDetalles('detalle_orden-find?ord_id=@ordene_id@','100', '380')"><IMG SRC="../images/infi_gn_document.gif" WIDTH="15" ALIGN="top" HEIGHT="13" title="Detalles de la Orden" BORDER="0" style="cursor:hand"></a>
+				</td>
+                                     
+                <td align="center">
+                @ordene_id@
+                </td>         
+                
+                <td align="left">
+                @client_nombre@
+                </td>          
+ 
+                <td align="right">
+                @ordene_ped_monto format-mask='#,###,##0.00'@ @moneda_id@
+                </td>
+        
+                <td align="left">
+                @bloter_descripcion@
+                </td>
+                
+                <td align="center">
+                @ordene_ped_fe_orden@
+                </td>
+ 
+                
+        </tr> 
+
+     </rows>
+    
+    </table>
+        
+      
+         
+         <br>
+          <INPUT TYPE="hidden" VALUE="@undinv_id@" NAME="undinv_id"/>         
+           <INPUT TYPE="hidden" VALUE="@undinv_nombre@" NAME="undinv_nombre"/>         
+
+            <br>
+                                
+ 			<button type="submit">Cancelar Unidad</button>
+            &nbsp; <button type="button" onclick="javascript:history.back();">Regresar</button>
+			
+            &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+
+    </form>
+
+        
+        </CENTER>
+        
+    </BODY>
+
+</HTML>
+

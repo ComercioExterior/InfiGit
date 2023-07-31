@@ -1,0 +1,84 @@
+<HTML>
+<HEAD>
+<LINK REL="stylesheet" type="text/css"
+	href="../js/calendar/popcalendar.css" />
+<SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+<script language="javascript" src="../js/default.js"></script>
+<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+
+<TITLE>Sistema INFI</TITLE>
+</HEAD>
+<BODY>
+	<!--page name bar-->
+	<TABLE border="0" cellspacing="0" WIDTH="100%">
+		<TD class="headerBox"><FONT class="headerText">
+				Operaciones / Mesa de Cambio </FONT></TD>
+	</TABLE>
+	<CENTER>
+		<form NAME="dataentry" METHOD="POST"
+			ACTION="intercambio_mesas_cambios-browse"
+			enctype="multipart/form-data">
+
+			<table border="0" cellspacing="1" cellpadding="2" width="100%"
+				class="dataform">
+				<tr>
+					<th COLSPAN="4" ALIGN="center">Seleccione Criterios de
+						B&uacute;squeda</th>
+				</tr>
+				<tr CLASS="formElement">
+	           	 	<td  CLASS="formLabel2" WIDTH="35%">
+	            		Cedula o Rif:
+	            	</td>
+	            	<td><SELECT NAME="nacionalidad" CLASS="inputControl" style="width:50px;">
+							<OPTION VALUE="">Seleccion</OPTION>
+							<OPTION VALUE="V">V</OPTION>
+							<OPTION VALUE="E">E</OPTION>
+							<OPTION VALUE="P">P</OPTION>
+							<OPTION VALUE="J">J</OPTION>
+						</SELECT><INPUT TYPE="TEXT" VALUE="" NAME="rif" style="width:100px;"
+					class="inputControl" />
+				</td>
+	        	</tr>
+				<tr CLASS="formElement">
+					<td CLASS="formLabel2" WIDTH="35%">TIPO NOTIFICACION:</td>
+					<td CLASS="formLabel"><SELECT NAME="statusP"
+						CLASS="inputControl" style="width: 150px;">
+							<OPTION VALUE="T">TODAS</OPTION>
+							<OPTION VALUE="PD">PACTO DIRECTO</OPTION>
+					</SELECT></td>
+				</tr>
+				<tr CLASS="formElement">
+					<td CLASS="formLabel2" WIDTH="35%">ENVIO BCV:</td>
+					<td CLASS="formLabel"><SELECT NAME="statusE"
+						CLASS="inputControl" style="width: 150px;">
+							<OPTION VALUE="5">TODAS</OPTION>
+							<OPTION VALUE="4">RECHAZADA</OPTION>
+							<OPTION VALUE="3">ANULADA</OPTION>
+							<OPTION VALUE="1">ENVIADAS</OPTION>
+							<OPTION VALUE="0">NO ENVIADAS</OPTION>
+					</SELECT></td>
+				</tr>
+				<tr CLASS="formElement">
+					<td CLASS="formLabel2" WIDTH="35%">TIPO DE PRODUCTO:</td>
+					<td CLASS="formLabel"><SELECT NAME="Tipo" CLASS="inputControl"
+						style="width: 150px;">
+							<OPTION VALUE="1111">TODAS</OPTION>
+							<OPTION VALUE="MECA">MESA CAMBIO</OPTION>
+					</SELECT></td>
+				</tr>
+				<tr class="formElement">
+					<td class="formLabel" width="25%">FECHA:</td>
+					<td width="75%"><input type="text" name="fecha"
+						value="@fechahoy@" size="10" maxlength="10" readonly /> <a
+						onclick="popUpCalendar(this, document.forms[0].fecha, 'dd-mm-yyyy')">
+							<IMG SRC="../images/infi_gn_calendar.gif" class="boton"
+							TITLE="Seleccionar Fecha" /> </a></td>
+				</tr>
+			</table>
+			<br>
+			<button TYPE="submit">Procesar</button>
+			<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+		</form>
+	</CENTER>
+</BODY>
+</HTML>

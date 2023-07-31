@@ -1,0 +1,90 @@
+ 				
+ 	    <table id="@num_regla_transac@" border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="4" ALIGN="center">
+                 Regla de Comisi&oacute;n  @num_regla_transac@
+            </th>
+        </tr>
+        
+        <tr><td style="display:none"><INPUT TYPE="checkbox" checked VALUE="@num_regla_transac@" NAME="reglas_transac"/></td></tr>
+                      
+         <tr>         
+            
+            <td>
+             Blotter:
+            </td>
+            <td>
+                    <SELECT NAME="bloter_id_@num_regla_transac@" SIZE="1" ONCHANGE="callAjax('reglas_transac', '3',this.value); eliminarElemento('@num_regla_transac@')">				
+					<OPTION VALUE="" >Seleccione</OPTION>
+					<rows_blott>		
+					<OPTION VALUE="@bloter_id@" @selected@>@bloter_id@ - @bloter_descripcion@</OPTION>						
+					</rows_blott>	
+					</SELECT> 	
+            
+            </td>
+            
+              <td CLASS="formLabel">
+	                 Tipo de Persona:
+	            </td>
+	            <td>
+					<SELECT NAME="tipper_id_@num_regla_transac@" SIZE="1">				
+					<OPTION VALUE="" SELECTED>Seleccione</OPTION>
+					<rows_tp>				 
+					 <OPTION VALUE="@tipper_id@">@tipper_nombre@</OPTION>					 							 
+	 				</rows_tp>
+	 				</SELECT>  
+	
+	       		</td>
+            
+            
+        </tr>                    
+        
+        <tr>
+            <td>
+             Porcentaje:
+            </td>
+            <td>
+            <INPUT TYPE="TEXT" VALUE="0" NAME="porcentaje_@num_regla_transac@" SIZE="15" STYLE="text-align:right; width:50px" MAXLENGTH="7" class="inputControl" onkeypress="return NumCheck(event, this)"/>
+             %	
+            </td>
+            
+            <td>
+             Monto:
+            </td>
+            <td>
+            <INPUT TYPE="TEXT" VALUE="0" NAME="monto_@num_regla_transac@" SIZE="15" STYLE="text-align:right" MAXLENGTH="8" class="inputControl" onkeypress="EvaluateText('%f', this);"/>
+            	
+            </td>
+            
+        </tr>
+        
+        <tr>
+            <td>
+             Rango M&iacute;nimo:
+            </td>
+            <td>
+            <INPUT TYPE="TEXT" VALUE="" NAME="rango_min_@num_regla_transac@" SIZE="15" STYLE="text-align:right" MAXLENGTH="10" class="inputControl"  onkeypress="solo_numericos();"/>
+            
+            </td>
+            
+            <td>
+             Rango M&aacute;ximo:
+            </td>
+            <td>
+            <INPUT TYPE="TEXT" VALUE="" NAME="rango_max_@num_regla_transac@" SIZE="15" STYLE="text-align:right" MAXLENGTH="10" class="inputControl"  onkeypress="solo_numericos();"/>
+            	
+            </td>
+            
+        </tr>
+        
+        
+        <tr><td>		
+		<button ONCLICK="eliminarElemento('@num_regla_transac@');" >Quitar</button>
+     	</td></tr>
+        
+     
+ 		</table>
+    	
+ 

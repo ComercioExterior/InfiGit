@@ -1,0 +1,93 @@
+
+<HTML>
+    
+    <HEAD>
+        <LINK REL="stylesheet" type="text/css" href="../megasoft.css" />
+        <TITLE>Adminstrador de Portales</TITLE>
+    </HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+    <BODY>
+        
+        
+<!--page name bar-->
+
+<TABLE WIDTH="889">
+    <TR>
+    <TABLE WIDTH="889">
+        <TD class="headerBox" > 
+            <FONT class="headerText">Propiedades de la Aplicaci&oacute;n</FONT>
+        </TD>
+    </TR>
+</TABLE>
+        
+        <CENTER>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="appproperties-insert">
+		
+        <table border="0" cellspacing="1" cellpadding="2" width="70%">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="2" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Nuevo Registro
+                </FONT>
+            </th>
+        </tr>
+        
+        <!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel" width="50%">
+				Nombre:*
+            </td>
+            <td>
+            <INPUT TYPE="TEXT" VALUE="" NAME="nombre" SIZE="30" MAXLENGTH="50" class="inputControl" />
+            </td>
+        </tr>
+                
+        <!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+				Valor:*
+            </td>
+            <td>
+            <INPUT TYPE="TEXT" VALUE="" NAME="valor" SIZE="30" MAXLENGTH="100" class="inputControl" />
+            </td>
+        </tr>
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+				Descripci&oacute;n:
+            </td>
+            <td>
+<textarea name="descripcion" cols="35" rows="8">
+</textarea>
+
+            </td>
+        </tr>
+                
+
+
+        </table>
+
+            <!--nota sobre los campos obligatorios-->
+           <P><font size="1"><b>NOTA: Los campos resaltados en negrita deben ser llenados para poder procesar el formulario</b></font></P>
+            
+   <button TITLE="Agregar" onclick="javascript:document.forms[0].submit();" class="boton"/>Guardar</button>
+            
+            <SPAN> </SPAN>
+            
+            <button TITLE="Cancelar" onclick="history.back();" class="boton"/>Cancelar</button>
+            
+            <!--campo escondido para almacenar el key del record-->
+            <INPUT TYPE="HIDDEN" VALUE="" NAME="id" />
+
+    </form>
+
+        
+        </CENTER>
+        
+    </BODY>
+
+</HTML>

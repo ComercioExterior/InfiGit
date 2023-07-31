@@ -1,0 +1,190 @@
+<html>
+
+<head>
+<script language="javascript" src="../js/default.js"></script>  
+    <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+    <title>Sistema INFI</title>
+
+	<script type="text/javascript">
+    
+	function closeWindow(v1,v2)
+	{
+	    window.opener.document.forms[0].@name_id@.value=v1;
+	    window.opener.document.forms[0].@name_tx@.value=v2;
+		
+		//IMPORTANTE setear este valor para Toma Orden Subasta Divisas Personas, sino no se muestran los datos de la unidad de inversion
+	    if(window.opener.document.forms[0].consultado!=undefined){
+	    	window.opener.document.forms[0].consultado.value="1";
+		}
+		
+	   	//***Para busquedas de Titulos por el cliente seleccionado en el picklist***///
+	    if(window.opener.callAjax!=undefined){
+	    	if(window.opener.document.getElementById('tit_cliente')!=undefined){
+	    		window.opener.callAjax('tit_cliente', '1');	    		
+	    	}
+	   	}
+	   	
+	    if(window.opener.document.forms[0].moneda_id!=undefined){
+	    	window.opener.document.forms[0].moneda_id.disabled = false;//habilitar campo moneda
+	   	}
+	   	
+	   	//Evento para el formulario de toma de orden
+	   	if(window.opener.document.forms[0].form_toma_orden!=undefined){
+	   		if(window.opener.document.forms[0].form_toma_orden.value='1'){
+	   			window.opener.recargarPagina2();
+	   		}
+	   	}
+	   	///**************************************/////////////////////////////////////
+	   	
+	    window.close();
+	}
+	
+	function Verificar()
+	{
+		
+		if((document.forms[0].client_nombre.value.replace(/ /g, '') == '') && (document.forms[0].client_cedrif.value.replace(/ /g, '') == '') && (document.forms[0].tipper_id.value.replace(/ /g, '') == '') ){
+			alert("Debe introducir algún criterio de búsqueda");
+		}else{
+			//document.forms[0].action='pick_clientes-find?buscar=1';
+			//document.getElementById('tb').style.display='block'; 
+			document.forms[0].submit();	
+			
+		}
+	}
+		
+	</script>
+
+</head>
+
+<body>
+
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Clientes </FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<CENTER>
+    <BR>
+
+    <!--formulario-->
+    <form method="POST" action="pick_clientes-find">
+
+        <table border="2" cellspacing="1" cellpadding="2" width="100%"  class="dataform">
+        
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="2" ALIGN="center">
+                      Filtro
+            </th>
+        </tr>
+        
+        <!-- Status -->
+        
+        <tr>
+				<td width="20%" nowrap>
+					C&eacute;dula o Rif :
+				</td>
+				<td>
+					<SELECT NAME="tipper_id" />				
+					<OPTION VALUE="" SELECTED/></OPTION>
+					<rows_tp>				 
+					 <OPTION VALUE="@tipper_id@"/>@tipper_nombre@</OPTION>					 							 
+	 				</rows_tp>
+	 				</SELECT>
+	 				<INPUT TYPE="text" VALUE="" NAME="client_cedrif" size="15" MAXLENGTH="10" onkeypress="solo_numericos();" />
+	  			</td>
+			</tr>
+        
+        <tr>
+            <td width="20%" nowrap>
+                Nombre (contiene):
+            </td>
+            <td>
+                <INPUT TYPE="input" VALUE="" NAME="client_nombre" size="32" MAXLENGTH="50" class="inputControl" />
+            </td>
+			</tr>
+	        </table>
+
+        <BR>
+        <P><FONT COLOR="red"><B>Nota:</B></FONT> Si no consigue un cliente por nombre, por favor ingrese la C&eacute;dula o Rif para su b&uacute;squeda</P>
+        <BR>
+        <mensajes>
+        <P><FONT COLOR="red"><B>@mensaje@</B></FONT></P>
+       	</mensajes>
+       
+       <input type="hidden" name="buscar" value="1" >
+		<button name="boton_buscar"  onclick="Verificar();"/>Buscar</button> 
+		
+        &nbsp;
+		<button ONCLICK="window.close();">Regresar</button>
+   
+    </form>
+
+	<div id="tb">
+    <BR>
+    <b>Seleccione un Cliente</b>
+    <BR>
+    <BR>      
+          
+    <TABLE width="100%" class="datatable" style="TABLE-LAYOUT: auto; ">
+    
+        
+    	<TR class="tableCell">
+            <TH WIDTH="5%">
+            </TH>
+            
+            <TH nowrap>
+            <b>Nombre de Cliente</b>
+            </TH>
+            <TH WIDTH="20%" nowrap>
+            	<b>C&eacute;dula o Rif</b>
+            </TH>
+			<TH WIDTH="20%" nowrap>
+          	Actualizar datos
+            </TH>
+		</TR>
+	
+		<rows>
+	        <TR>
+	            <TD align="center">
+		    	<a href="javascript:closeWindow('@client_id@','@client_nombre@');"><b>OK</b></a>
+	            </TD>
+				<TD nowrap>
+			    	@client_nombre@
+	            </TD>
+
+	            <TD nowrap>
+		    	@tipper_id@-@client_cedrif@
+	            </TD>
+	            <TD nowrap align="center">
+	            <a href="javascript:closeWindow('@client_id@','@client_nombre@');">
+		    	<IMG SRC="../images/infi_gn_edit2.gif"  BORDER="0" ALIGN="top" >
+		    	</a>
+	            </TD>  
+			</TR>
+	    </rows>
+		
+	    
+    
+    </TABLE>
+    
+    </div>
+    </CENTER>
+
+
+		
+</body>
+
+
+
+</html>

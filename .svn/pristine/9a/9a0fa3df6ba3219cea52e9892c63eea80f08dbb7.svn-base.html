@@ -1,0 +1,153 @@
+<HTML>
+    
+    <HEAD>
+    <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+            <SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+        
+    
+             <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        
+        <TITLE>Sistema INFI</TITLE>
+    
+    </HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Empresas / Veh&iacute;culos / Definici&oacute;n</FONT>
+        </TD>
+        
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+        <td class="headerBox" aling="right"></td>
+</TABLE>
+        
+        <CENTER>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="empresas_vehiculos_definicion-confirm_insert">
+		
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        <rows>
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="4" ALIGN="center"> 
+                 Agregar
+            </th>
+        </tr>
+        
+        <!--campo-->
+        <tr>
+            <td>
+             Veh&iacute;culo: 
+            </td>
+            <td>
+            	<INPUT type="text" value="@vehicu_nombre@" name="vehicu_nombre" style="width:300px;" MAXLENGTH="50" class="inputControl" onkeypress="return sin_caracteres_especiales(event)" readonly />
+            </td>
+        </tr>
+        <tr>
+            <td>
+             RIF Veh&iacute;culo: *
+            </td>
+            <td>
+            <SELECT NAME="tipper_id" CLASS="inputControl">
+					<OPTION VALUE="G">G</OPTION>
+					<OPTION VALUE="J" SELECTED>J</OPTION>
+				</SELECT>
+            	<INPUT type="text" value="@vehicu_rif@" name="vehicu_rif" style="width:90px;" MAXLENGTH="9" class="inputControl" onkeypress="return sin_caracteres_especiales(event)" />
+            	&nbsp;Ej: J-123456789 &nbsp;<button type="button" onclick="javascript: mostrarMensajeEspera(document.getElementById('mensaje_espera')); document.dataentry.action='empresas_vehiculos_definicion-addnew?band_buscar=1'; document.dataentry.submit();">Buscar</button>
+              
+               	<INPUT TYPE="hidden" VALUE="@vehicu_rif_altair@" NAME="vehicu_rif_altair" />
+            	<INPUT TYPE="hidden" VALUE="@tipper_id_altair@" NAME="tipper_id_altair" />
+                                  
+            </td>
+           
+        </tr>
+         <tr>
+            <td>
+             Siglas Veh&iacute;culo: * 
+            </td>
+            <td>
+            	<INPUT type="text" value="@vehicu_siglas@" name="vehicu_siglas" style="width:90px;" MAXLENGTH="4" class="inputControl" onkeypress="return sin_caracteres_especiales(event)" />
+            </td>
+        </tr> 
+        
+         <tr>
+            <td>
+             Branch: 
+            </td>
+            <td>
+            	<INPUT type="text" value="@vehicu_branch@" name="vehicu_branch" style="width:60px;" MAXLENGTH="2" class="inputControl" onkeypress="return sin_caracteres_especiales(event)" />
+            </td>
+        </tr>
+        
+        
+         <tr style="@display_cuenta@">
+            <td>
+             Nro. de Cuenta Veh&iacute;culo: 
+            </td>
+            <td>
+			    <SELECT NAME="vehicu_numero_cuenta" SIZE="1">				
+					<OPTION VALUE="" SELECTED>Seleccione</OPTION>
+					<rows_cta>
+					<OPTION VALUE="@numero@">Cta @tipo@ @numero@</OPTION>	
+					</rows_cta>
+	 			</SELECT> 	
+            </td>
+        </tr>
+          
+         <tr>
+            <td>
+             Nro. de Cuenta BCV: 
+            </td>
+            <td>
+            	<INPUT type="text" value="@vehicu_numero_cuenta_bcv@" name="vehicu_numero_cuenta_bcv" style="width:300px;" MAXLENGTH="20" class="inputControl"/>
+            </td>
+        </tr>
+        
+        
+        </rows>
+         </table>
+         
+       <!-- MENSAJES DE ERROR CONSULTANDO DATOS DEL VEHICULO EN ARQUITECTURA EXTENDIDA -->
+      <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+       		<tr><td><FONT COLOR="red"><b>@mensaje@</b></FONT></td></tr>       
+        	
+      </table>
+      
+      <!-- MENSAJES DE ERROR CONSULTANDO CUENTAS DEL VEHICULO EN ARQUITECTURA EXTENDIDA -->
+      <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+       		<tr><td><FONT COLOR="red"><b>@mensaje_error_user_webs@</b></FONT></td></tr>       
+        	<tr><td><FONT COLOR="red"><b>@mensaje_error_cuentas_cte@</b></FONT></td></tr>      
+      </table>
+      
+        
+     <table id="mensaje_espera" border="0" style="display:none" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+		<tr><td><b>Buscando datos...</b></td></tr>
+	</table>   
+       
+         
+         <INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/> 	
+
+		<P><FONT COLOR="red"><B>Nota:</B></FONT> Los campos con * deben ser llenados para poder procesar el formulario.</P>            
+
+            <button TYPE="submit">Grabar</button>
+            &nbsp;<button type="button" onclick="window.location='empresas_vehiculos_definicion-filter'">Regresar</button>
+            &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+
+    </form>        
+        </CENTER>
+        
+    </BODY>
+
+</HTML>

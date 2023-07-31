@@ -1,0 +1,135 @@
+<html>
+
+	<head>
+        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+        <script type="text/javascript">
+        function enviar(tituloId,clienteId,tituloDescripcion,clienteNombre,tipoProducto,action){
+        	document.getElementById('titulo_id').value=tituloId
+        	document.getElementById('client_id').value=clienteId   
+        	document.getElementById('tipo_producto').value=tipoProducto    
+        	document.getElementById('titulo_descripcion').value=tituloDescripcion
+        	document.getElementById('client_nombre').value=clienteNombre 
+        	document.forms[0].action=action;
+        	document.forms[0].submit();
+        }      
+          
+        </script>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Custodia / Transacciones / Bloqueo de T&iacute;tulos</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                 T&iacute;tulos del Cliente: @client_nombre@ ( @t_registros@ )
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+    
+    		   <th colspan="2" width="6%"></th>                           
+               <th>T&iacute;tulo</th>
+               <th>Producto</th>
+                <th>Cant. Disponible</th>
+                <th>Cant. Custodia</th>
+                <th>Moneda Den.</th>
+                <th>Bloqueo</th>                                          
+    </tr>
+
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+                                      
+                <td align="center">
+                <a onclick="enviar('@titulo_id@','@client_id@','@titulo_descripcion@','@client_nombre@','@tipo_producto_id@','bloqueo_titulos-bloquear')"><IMG SRC="../images/infi_gn_edit.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Bloquear T&iacute;tulo" BORDER="0" style="cursor:hand"></a>
+                <!--a href="bloqueo_titulos-bloquear?titulo_id=@titulo_id@&client_id=@client_id@&client_nombre=@client_nombre@&tipo_producto=@tipo_producto_id@"><IMG SRC="../images/infi_gn_edit.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Bloquear T&iacute;tulo" BORDER="0" style="cursor:hand"></a-->
+                </td>
+                        
+                 <td align="center">
+                <!--a href="bloqueo_titulos-lista_bloqueos?titulo_id=@titulo_id@&client_id=@client_id@&client_nombre=@client_nombre@&tipo_producto=@tipo_producto_id@"><IMG SRC="../images/infi_gn_doc.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Ver Lista de Bloqueos" BORDER="0" style="cursor:hand"></a-->
+                <a onclick="enviar('@titulo_id@','@client_id@','@titulo_descripcion@','@client_nombre@','@tipo_producto_id@','bloqueo_titulos-lista_bloqueos')"><IMG SRC="../images/infi_gn_doc.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Ver Lista de Bloqueos" BORDER="0" style="cursor:hand"></a>
+                </td>
+                        
+                <td>
+                @titulo_id@
+                </td>                
+                 <td>
+                @tipo_producto_id@
+                </td>     
+                <td align="right">
+                @cantidad_disponible format-mask='#,###,##0.00'@
+                </td>
+                
+               <td align="right">
+                @titcus_cantidad format-mask='#,###,##0.00'@
+                </td>
+          
+                 <td align="center">
+                 @titulo_moneda_den@
+                </td>
+                
+                <td align="center">
+                @estado_bloqueo@
+                </td>
+ 
+     </tr> 
+
+     </rows>
+    
+    </table>
+
+    @page_index@
+    <BR>
+<form name="bloqueo_form" method="POST" action="bloqueo_titulos-bloquear">
+
+    <button type="button" onclick="window.location='bloqueo_titulos-filter'">Regresar</button>
+     &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+	<input type="hidden" value="" id="titulo_id" name="titulo_id"/>
+	<input type="hidden" value="" id="client_id" name="client_id"/>
+	<input type="hidden" value="" id="tipo_producto" name="tipo_producto"/>
+	<input type="hidden" value="" id="titulo_descripcion" name="titulo_descripcion"/>
+	<input type="hidden" value="" id="client_nombre" name="client_nombre"/>
+</form>
+
+</center>
+
+</body>
+
+</html>
+

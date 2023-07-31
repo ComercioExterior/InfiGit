@@ -1,0 +1,22 @@
+		<field 
+        name="@nombre@@tipcar_id@.tempfile" 
+        type="varchar" 
+        description="Archivo "
+        nullable="1"
+        size="100" />
+        
+        <field 
+        name="@nombre@@tipcar_id@.filename" 
+        type="varchar" 
+        description="Nombre original del archivo"
+        nullable="1"
+        size="100" />
+        
+        <field 
+        name="@nombre@@tipcar_id@.content-type" 
+        type="varchar" 
+        description="Content type del archivo descargado"
+        nullable="1"
+        size="100" />
+
+        

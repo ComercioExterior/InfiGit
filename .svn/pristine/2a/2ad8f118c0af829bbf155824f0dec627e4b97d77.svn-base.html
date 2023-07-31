@@ -1,0 +1,211 @@
+<html>
+
+<head>
+<script language="javascript" src="../js/default.js"></script>
+<script type="text/javascript" src="../js/menu/jquery-1.2.2.pack.js"></script>
+<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+
+<title>Sistema INFI</title>
+<script type="text/javascript">
+	
+	$(document).ready(
+			function() {
+				var met= $('#metodo').val();
+				if (met == 1) {
+					
+					var codigo = $('#codigo').val();
+					var oferta = $('#oferta').val();
+					var demanda = $('#demanda').val();
+					var tasa = $('#tasa').val();
+					var estado = $('#estado').val();
+					var jornada = $('#jornada').val();
+					var monedaPacto = $('#monedapacto').val();
+					var pactoMonto = $('#pactomonto').val();
+					var monedaBase = $('#monedabase').val();
+					var montoPactoBase = $('#montopactobase').val();
+					var tcPactoBase = $('#tcpactobase').val();
+					var ofertante = $('#ofertante').val();
+					var demandante = $('#demandante').val();
+					var tipoPacto = $('#tipopacto').val();
+
+					var codigoArray = codigo.split(",");
+					var ofertaArray = oferta.split(",");
+					var demandaArray = demanda.split(",");
+					var tasaArray = tasa.split(",");
+					var estadoArray = estado.split(",");
+					var jornadaArray = jornada.split(",");
+					var monedaPactoArray = monedaPacto.split(",");
+					var pactoMontoArray = pactoMonto.split(",");
+					var monedaBaseArray = monedaBase.split(",");
+					var montoPactoBaseArray = montoPactoBase.split(",");
+					var tcPactoBaseArray = tcPactoBase.split(",");
+					var ofertanteArray = ofertante.split(",");
+					var demandanteArray = demandante.split(",");
+					var tipoPactoArray = tipoPacto.split(",");
+					var th = '<tr><th nowrap width="7%">CODIGO BCV</th><th nowrap width="7%">OFERTA</th><th nowrap width="10%">DEMANDA</th><th nowrap width="5%">TASA</th><th nowrap width="7%">ESTADO</th><th nowrap width="4%">JORNADA</th><th nowrap width="7%">MONEDA PACTO</th><th nowrap width="7%">PACTO MONTO</th><th nowrap width="4%">MONEDA BASE</th><th nowrap width="4%">MONTO PACTO BASE</th><th nowrap width="4%">TC PACTO BASE</th><th nowrap width="4%">OFERTANTE</th><th nowrap width="4%">DEMANDANTE</th><th nowrap width="4%">TIPO PACTO</th></tr>'
+					$("#cabecera").append(th)
+					var cantida = codigoArray.length;
+					for ( var i = 0; i < cantida; i++) {
+
+						var tr = '<tr><td>' + codigoArray[i] + '</td>' + '<td>'
+								+ ofertaArray[i] + '</td> ' + '<td>'
+								+ demandaArray[i] + '</td>' + '<td>'
+								+ tasaArray[i] + '</td>' + '<td>'
+								+ estadoArray[i] + '</td>' + '<td>'
+								+ jornadaArray[i] + '</td>' + '<td>'
+								+ monedaPactoArray[i] + '</td>' + '<td>'
+								+ pactoMontoArray[i] + '</td> ' + '<td>'
+								+ monedaBaseArray[i] + '</td> ' + '<td>'
+								+ montoPactoBaseArray[i] + '</td>' + '<td>'
+								+ tcPactoBaseArray[i] + '</td>' + '<td>'
+								+ ofertanteArray[i] + '</td>' + '<td>'
+								+ demandanteArray[i] + '</td>' + '<td>'
+								+ tipoPactoArray[i] + '</td> </tr>';
+						// 	        var tr = `<tr>	   
+						// 	          <td>`+interArray[i]+`</td>
+						// 	          <td>`+codigoArray[i]+`</td>
+						// 	          <td>`+fechaIArray[i]+`</td>
+						// 	          <td>`+fechaFArray[i]+`</td>
+						// 	          <td>`+fechaVArray[i]+`</td>
+						// 	          <td>`+tasaArray[i]+`</td>
+						// 	          <td>`+monedaArray[i]+`</td>
+						// 	          <td>`+saldoArray[i]+`</td>
+						// 	          <td>`+numeroIntervenArray[i]+`</td>
+						// 	        </tr>`;
+						$("#bodyCuerpo").append(tr)
+					}
+
+				} else {
+					var codigo = $('#codigo').val();
+					var codigoinstitucion = $('#codigoinstitucion').val();
+					var tasa = $('#tasa').val();
+					var estado = $('#estado').val();
+					var jornada = $('#jornada').val();
+					var cedula = $('#cedula').val();
+					var nombre = $('#nombre').val();
+					var monto = $('#monto').val();
+
+					var codigoArray = codigo.split(",");
+					var codigoinstitucionArray = codigoinstitucion.split(",");
+					var tasaArray = tasa.split(",");
+					var estadoArray = estado.split(",");
+					var jornadaArray = jornada.split(",");
+					var cedulaArray = cedula.split(",");
+					var nombreArray = nombre.split(",");
+					var montoArray = monto.split(",");
+					var th = '<tr><th>CODIGO BCV</th><th>INSTITUCION</th><th>TASA</th><th>ESTADO</th><th>JORNADA</th><th>CEDULA</th><th>CLIENTE</th><th>MONTO</th></tr>';
+					$("#cabecera").append(th)
+					var cantida = codigoArray.length;
+					for ( var i = 0; i < cantida; i++) {
+
+						var tr = '<tr><td>' + codigoArray[i] + '</td>' + '<td>'
+								+ codigoinstitucionArray[i] + '</td> ' + '<td>'
+								+ tasaArray[i] + '</td>' + '<td>'
+								+ estadoArray[i] + '</td>' + '<td>'
+								+ jornadaArray[i] + '</td>' + '<td>'
+								+ cedulaArray[i] + '</td>' + '<td>'
+								+ nombreArray[i] + '</td> ' + '<td>'
+								+ montoArray[i] + '</td></tr>';
+						// 	        var tr = `<tr>	   
+						// 	          <td>`+interArray[i]+`</td>
+						// 	          <td>`+codigoArray[i]+`</td>
+						// 	          <td>`+fechaIArray[i]+`</td>
+						// 	          <td>`+fechaFArray[i]+`</td>
+						// 	          <td>`+fechaVArray[i]+`</td>
+						// 	          <td>`+tasaArray[i]+`</td>
+						// 	          <td>`+monedaArray[i]+`</td>
+						// 	          <td>`+saldoArray[i]+`</td>
+						// 	          <td>`+numeroIntervenArray[i]+`</td>
+						// 	        </tr>`;
+						$("#bodyCuerpo").append(tr)
+					}
+				}
+
+			});
+
+	function regresar() {
+		window.location = "intercambio_mesas_cambios_operaciones-filter";
+	}
+
+	function exportarCVS() {
+
+		if (confirm("Se Generará un archivo CSV con las Jornada intervencion. Esto puede tardar varios minutos. ¿Está seguro que desea iniciar el proceso?")) {
+
+			window.location = "intercambio_mesas_cambios_operaciones-export?framework.controller.outputstream.open=false&jornada=@jornadaa@&metodo=@metodo@";
+			return true;
+		} else {
+
+			return false;
+		}
+	}
+</script>
+
+</head>
+
+<body
+	ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+	<TABLE border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+
+			<TD class="headerBox"><FONT class="headerText">Mesa de
+					Cambio BCV / Operaciones / Mesa de Cambio</FONT></TD>
+			<TD class="headerBox" valign="left" align="left"><img border="0"
+				src="../images/infi_gn_ayuda.gif" width="17" height="17"
+				onclick="helpOpen(window.document.location.href);"
+				style="cursor: hand" title="Mostrar ayuda en l&iacute;nea" /></TD>
+
+		</TR>
+	</TABLE>
+	<center>
+		<br>
+		<form NAME="dataentry" METHOD="POST" ACTION=""
+			enctype="multipart/form-data">
+			&nbsp;
+			<button type="button" onclick="exportarCVS()">Exportar CSV</button>
+			&nbsp;
+			<button type="button" onclick="regresar()">Regresar</button>
+			<table border="0" cellspacing="1" cellpadding="2" width="100%"
+				class="datatable" style="table-layout: auto;" id="table">
+
+	<thead id="cabecera">
+	</thead>
+				<!--encabezados de columna-->
+			
+				<!--data-->
+				<tbody id="bodyCuerpo">
+				</tbody>
+			</table>
+			<BR> &nbsp; <input type="hidden" id="codigo" value="@codigo@" />
+			<input type="hidden" id="oferta" value="@oferta@" /> <input
+				type="hidden" id="demanda" value="@demanda@" /> <input
+				type="hidden" id="tasa" value="@tasa@" /> <input type="hidden"
+				id="estado" value="@estado@" /> <input type="hidden" id="jornada"
+				value="@jornada@" /> <input type="hidden" id="jornadaa"
+				value="@jornadaa@" /> <input type="hidden" id="monedapacto"
+				value="@monedapacto@" /> <input type="hidden" id="pactomonto"
+				value="@pactomonto@" /> <input type="hidden" id="monedabase"
+				value="@monedabase@" /> <input type="hidden" id="montopactobase"
+				value="@montopactobase@" /> <input type="hidden" id="tcpactobase"
+				value="@tcpactobase@" /> <input type="hidden" id="ofertante"
+				value="@ofertante@" /> <input type="hidden" id="demandante"
+				value="@demandante@" /> <input type="hidden" id="tipopacto"
+				value="@tipopacto@" /> <input type="hidden" id="jornada"
+				value="@jornada@" />
+				
+				<input type="hidden" id="codigo" value="@codigo@" />
+				<input type="hidden" id="codigoinstitucion" value="@codigoinstitucion@" />
+				<input type="hidden" id="tasa" value="@tasa@" />
+				<input type="hidden" id="estado" value="@estado@" />
+				<input type="hidden" id="cedula" value="@cedula@" />
+				<input type="hidden" id="nombre" value="@nombre@" />
+				<input type="hidden" id="monto" value="@monto@" />
+				<input type="hidden" id="metodo" value="@metodo@" />
+			<!-- 				@page_index@ -->
+
+		</form>
+
+	</center>
+</body>
+</html>
+

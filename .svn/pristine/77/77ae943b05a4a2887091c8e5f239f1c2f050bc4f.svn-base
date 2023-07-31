@@ -1,0 +1,36 @@
+	<field 
+        name="@nombre@@tipcar_id@.tempfile" 
+        type="varchar" 
+        description="Archivo "
+        nullable="1"
+        size="100" />
+        
+	<field 
+        name="@nombre@@tipcar_id@.filename" 
+        type="varchar" 
+        description="Nombre original del archivo"
+        nullable="1"
+        size="100" />
+        
+	<field 
+        name="@nombre@@tipcar_id@.content-type" 
+        type="varchar" 
+        description="Content type del archivo descargado"
+        nullable="1"
+        size="100" />
+        
+	<field 
+        name="documento@nombre@@tipcar_id@" 
+        type="integer" 
+        description="Identificador del Documento"
+        nullable="0"
+        size="100" />
+        
+	<field 
+        name="radio@nombre@@tipcar_id@" 
+        type="integer" 
+        description="¿Cambiar Archivo?"
+        nullable="0"
+        size="100" />
+
+        

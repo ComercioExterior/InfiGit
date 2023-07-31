@@ -1,0 +1,80 @@
+<html>
+
+<head>
+    
+    <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstiloSuperior.css"/>
+    
+    <script language="javascript">
+   
+    /* solo para IE5.x */
+
+	var _colorOn = "navy";
+	var _colorOff = "navy";
+
+
+    function mouseOn(e)
+    {
+       	e.style.backgroundColor = _colorOn;
+    }
+
+    function mouseOff(e)
+    {
+       	e.style.backgroundColor = _colorOff;
+    }
+   
+	function obtenerFechaActual(){	
+		
+		var mydate=new Date()
+		var year=mydate.getYear()
+		if (year < 1000)
+		year+=1900
+		var day=mydate.getDay()
+		var month=mydate.getMonth()
+		var daym=mydate.getDate()
+		if (daym<10)
+		daym="0"+daym
+		var dayarray=new Array("Domingo","Lunes","Martes","Mi&eacute;rcoles","Jueves","Viernes","Sabado")
+		var montharray=new Array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre")
+		document.write("<b><font color='FFFFFF' size='1px' face='Arial'>"+dayarray[day]+" "+daym+" de "+montharray[month]+" de "+year+"</font></b>")
+	}	
+
+    </script>
+
+<head>
+
+<body leftMargin="0" rightMargin="0" bottomMargin="0" topMargin="0" marginheight="0" marginwidth="0">
+ 	
+ 	
+ 	<TABLE border="0" cellspacing="0" cellpadding="0" width="100%">
+  
+    <TR>
+    
+       <TD aling="left" class="headerBox">                
+            <IMG src="../images/infi_logo_cabecera.jpg" align="left"/>
+        </TD>
+    
+        <TD aling="right" class="headerBox">        
+            <IMG src="../images/infi_gn_logo03.jpg" align="right"/>           
+        </TD>
+    </TR>
+    
+    <TR>
+    <TD>&nbsp;</TD>
+    <TD>
+    <div align="right">
+    
+   		<b><font color='FFFFFF' size='1px' face='Arial'>@fecha_actual@</font></b>
+   		</BR>
+   		PRODUCCION
+   		</font>
+	</div>
+    </TD></TR>
+    
+   
+    </TABLE>
+
+
+
+</BODY>
+
+</html>

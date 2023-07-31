@@ -1,0 +1,127 @@
+	<html>
+	<head>        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>    
+		<script type="text/javascript">
+		
+		function enviar(){
+		
+			if(document.dataentry.indica_undinvact.value=="1" && document.dataentry.check_undinvact.checked==true){
+				alert("La unidad de inversion que intenta Activar ya se encuentra en estatus ACTIVA ");				
+			}else if(document.dataentry.indica_undinvact.value=="0" && document.dataentry.check_undinvact.checked==false){
+				alert("La unidad de inversion que intenta Inactivar ya se encuentra en estatus DESACTIVADA ");							
+			} else {
+				
+				document.dataentry.action="activacion_unidad_inversion-confirm";
+				document.dataentry.submit();
+			}
+		}
+		
+		function activarCheck(){
+			if(document.dataentry.indica_undinvact.value=="1"){
+				 document.dataentry.check_undinvact.checked=true;
+			}			
+		}
+		
+		
+		</script>
+
+    </head>
+
+<body onload="activarCheck();">
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+			<TD class="headerBox">                
+            	<FONT class="headerText">Unidad Inversi&oacute;n / Activaci&oacute;n Unidad Inversi&oacute;n </FONT>
+        	</TD>
+        	<!-- help online -->
+   			<TD class="headerBox" valign="middle" align="right">
+   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   			</TD>
+   			<!-- fin help online -->
+		</TR>
+	</TABLE>
+
+   <center>
+	<br>
+	<!-- cruce_sicad2_clavenet_p_cierre-procesar -->
+	<form NAME="dataentry" METHOD="POST" ACTION="activacion_unidad_inversion-confirm">
+	<!-- table class="datatable" border="0" cellspacing="1" cellpadding="2" width="100%">
+	
+		<!--encabezados de columna>
+		<tr class="tableHeader">
+			<th>Unidad de Inversi&oacute;n</th>													
+		</tr>
+		<ui>
+		<tr class="tableHeader">
+			<td><b>@INSFIN_DESCRIPCION@</b></td>													
+		</tr>
+		</ui>
+	</table-->	
+    <!--tabla de data-->
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="80%">
+	   <unidad_inversion>
+		<tr>
+			<th nowrap colspan="4">Unidad Inversion </th>
+		</tr>
+		<tr align="center">
+	   		<td align="center" nowrap colspan="4">@undinv_nombre@   - <b>@estado_unidad@</b> </td>	
+		</tr>
+		<tr align="center"></tr>
+	
+		<td nowrap colspan="2">
+			<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="100%">
+		<tr>
+          <td nowrap>Instrumento Financiero:</td>
+		  <td nowrap align="center">@insfin_descripcion@</td>
+       	</tr>
+		<tr>
+            <td nowrap>Tasa Cambio referencia:</td>
+            <td nowrap align="center">@undinv_tasa_cambio@</td>
+       	</tr>    
+       	<tr>
+            <td nowrap>Fecha Emision:</td>
+            <td nowrap align="center">@undinv_fe_emision@</td>
+       	</tr>     	       	
+       	</table>
+		</td>
+		<td nowrap colspan="2">
+		<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="100%">
+		<tr>
+          <td nowrap>Tipo subasta:</td>
+		  <td nowrap align="center">@insfin_tipo@</td>
+       	</tr>
+		<tr>
+            <td nowrap>Empresa:</td>
+            <td nowrap align="center">@empres_nombre@</td>
+       	</tr>    
+		<tr>
+            <td nowrap>Tipo Negocio:</td>
+            <td nowrap align="center">@desc_tipo_negocio@</td>
+       	</tr>    
+       	<tr>
+            <td nowrap>Unidad Inversion Activa:</td>            
+            <!-- td nowrap>@undinv_active@</td-->
+            <td align="center"><input type="checkbox" id="check_undinvact" name="check_undinvact" value="1">
+            <input type="hidden" id="indica_undinvact" name="indica_undinvact" value="@undinv_active@">
+             <input type="hidden" name="tipo_negocio" value="@tipo_negocio@">
+            </td>            
+       	</tr>
+		</table> 
+		</td>
+	   </unidad_inversion>
+	</table>
+	<br>
+			<input type="hidden" name="ui_id" value="@ui_id@">
+			<input type="hidden" name="undinv_nombre" value="@undinv_nombre@">
+	<!-- @page_index@-->
+		<button TYPE="button" onclick="javaScript:enviar();">Procesar</button>	
+		&nbsp;
+		<button type="button" onclick="javascript:history.back();">Regresar</button>
+		</form>
+</body>
+</html>

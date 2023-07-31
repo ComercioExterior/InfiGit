@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<config>
+
+	<model-class>models.bcv.intervencion_lectura_inventario.Browse</model-class>
+	<view-class>megasoft.GenericView</view-class>
+	<template>table.htm</template>
+	<record-def>record.xml</record-def>
+	<content-type>text/html</content-type>
+	<expires></expires>
+	<no-cache>false</no-cache>
+	<next-action type="redirect"></next-action>
+	<on-empty source="sales"></on-empty>
+
+<!-- 	<bind type="repeat" source="table" tag="rows"/> -->
+	<bind type="replace" source="total"/>
+	<bind type="replace" source="table"/>
+	<bind type="replace" source="visible"/>
+	<bind type="replace" source="datos_intrada" tag="datos_entrada"/>
+	
+</config>

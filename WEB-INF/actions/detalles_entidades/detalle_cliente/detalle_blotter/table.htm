@@ -1,0 +1,201 @@
+<html>
+
+	<head>
+        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>        
+      
+    </head>
+
+<!-- body onload="centrar();"-->
+<body>
+<!--page name bar-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Toma de orden</title>
+  <link rel="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+  <link rel="stylesheet" type="text/css" href="../css/EstiloFichas.css" />
+  <script type="text/javascript">
+          //Funci&oacute;n para abrir un picklist o limpiar el valor anteriormente seleccionado
+		function showPickList(ind ,id, tx, campo)
+		{
+		   var r
+		   if (ind == '1') {  // llamar a picklist		
+		   	  r = window.open(campo +'?name_id=' + id.name +"&name_tx=" + tx.name, 'Picklist','resizable=yes,scrollbars=yes,width=600,height=450,Left=200,top=150,Status=yes,unadorned:true');
+		   	  
+		   }
+		   else{
+			id.value= "";//limpiar id de cliente
+			tx.value= "<Todos>";//limpiar campo de cliente
+		  }
+		} 
+  </script>
+         <script language="javascript" src="../js/default.js"></script>  
+</head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Detalles </FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+
+
+  <!--formulario-->
+  	
+  <form NAME="dataentry" METHOD="POST" ACTION="toma_de_orden-calculo">
+
+<div id="menu">
+<table border="0">
+<tr>
+<td id="navigationActivo"><a><span>Datos</span></a></td>
+</tr>
+</table>
+</div>
+<table border="0" cellspacing="1" cellpadding="2" width="60%" class="dataform" >
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="4" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Datos
+                </FONT>
+            </th>
+        </tr>
+        
+  <rows>    
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Unidad de Inversi&oacute;n:
+            </td>
+            <td>
+            @undinv_nombre@         	                       
+            </td>
+        </tr>
+        
+       <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Cliente:
+            </td>
+            <td>
+            @client_nombre@           	                       
+            </td>
+        </tr>
+ 
+          
+       <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Status:
+            </td>
+            <td>
+             @ordsta_nombre@        	                       
+            </td>
+        </tr>
+          
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Sistema:
+            </td>
+            <td>
+             @sistema_nombre@          	                       
+            </td>
+        </tr>
+           
+      
+         <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Depositario:
+            </td>
+            <td>
+            @empres_nombre@         	                       
+            </td>
+        </tr>
+
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Contraparte:
+            </td>
+            <td>
+             @contraparte@            	                       
+            </td>
+        </tr>
+        
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Transacci&oacute;n:
+            </td>
+            <td>
+             @transa_descripcion@           	                       
+            </td>
+        </tr>
+          
+
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Enviado a BCV:
+            </td>
+            <td>
+             @enviado@           	                       
+            </td>
+        </tr>
+        
+         <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Fecha Orden:
+            </td>
+            <td>
+           @ordene_ped_fe_orden@            	                       
+            </td>
+        </tr>
+              
+        
+       <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Monto Total Orden:
+            </td>
+            <td>
+            @ordene_ped_monto@            	                       
+            </td>
+        </tr>
+        
+
+       <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Blotter:
+            </td>
+            <td>
+            @bloter_descripcion@           	                       
+            </td>
+        </tr>
+        
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Veh&iacute;culo Tomador:
+            </td>
+            <td>
+            @vehicu_nombre@           	                       
+            </td>
+        </tr>
+        
+</rows>
+         </table>
+         <br>
+    <button type="button" onclick="javascript:window.close();">Regresar</button>
+        
+
+</TABLE>
+
+

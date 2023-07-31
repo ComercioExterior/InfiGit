@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+    <!--
+    
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, decimal, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+    
+    -->
+    
+        <field 
+        name="ci" 
+        type="varchar" 
+        description="C&eacute;dula"
+        nullable="1"
+        size="12" />
+        
+        <field 
+        name="userid" 
+        type="varchar" 
+        description="Nick"
+        nullable="1"
+        size="25" />
+        
+        <field 
+        name="fullname" 
+        type="varchar" 
+        description="Nombre"
+        nullable="1"
+        size="50" />
+        
+        <field 
+        name="lastname" 
+        type="varchar" 
+        description="Apellido"
+        nullable="1"
+        size="50" />
+ 
+    
+        
+</record>
+

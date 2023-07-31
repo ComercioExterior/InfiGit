@@ -1,0 +1,123 @@
+<html>
+
+	<head>
+        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+        <script type="text/javascript">
+        
+          
+        </script>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Custodia / Transacciones / Bloqueo de T&iacute;tulos</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Bloqueos sobre el T&iacute;tulo @titulo_id@ del Cliente @client_nombre@ (@t_registros@)
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+                               
+               <th>T&iacute;tulo</th>
+               <th>Producto</th>
+                <th>Cant. Bloqueada</th>
+               <th>Cant. Custodia</th>
+                <th>Moneda Den.</th>
+                <th>Bloqueo</th>
+                <th>Beneficiario</th>
+                <th>N&uacute;mero de Garant&iacute;a</th>
+                                                         
+    </tr>
+
+    <!--data-->
+    <rows>
+    <tr class="tableCell">                   
+                        
+                <td>
+                @titulo_id@
+                </td>
+                <td>
+                @tipo_producto@
+                </td> 
+                <td align="right">
+                @cantidad_bloqueada format-mask='#,###,##0.00'@
+                </td>
+                         
+                 <td align="right">
+                @cantidad_custodia format-mask='#,###,##0.00'@
+                </td>
+                
+                 <td align="center">
+                 @titulo_moneda_den@
+                </td>
+               
+                <td align="left">
+                @tipblo_descripcion@
+                </td>
+ 
+
+               <td align="left">
+                @beneficiario_nombre@
+                </td>
+
+               <td align="center">
+                @numero_garantia@
+                </td>
+ 
+     </tr> 
+
+     </rows>
+    
+    </table>
+
+
+    <BR>
+<form>
+
+    <button type="button" onclick="javascript:history.back();">Regresar</button>
+     &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+</form>
+
+</center>
+
+</body>
+
+</html>
+

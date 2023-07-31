@@ -1,0 +1,71 @@
+<HTML>   
+    <HEAD>
+		<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <script language="javascript" src="../js/default.js"></script>   
+        <TITLE>Sistema INFI</TITLE> 
+    </HEAD>   
+<!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+               
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Liquidaci&oacute;n / Instrucciones de pago</FONT>
+        </TD>
+        
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+        <td class="headerBox" aling="right"></td>
+</TABLE>
+        
+        <CENTER>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="asociar_instrucciones_insert">
+		
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform" style="TABLE-LAYOUT: auto; ">
+        
+        <!--titulo-->
+        <rows>
+        </rows>
+        <tr>
+            <td COLSPAN="3" ALIGN="center" nowrap>
+                 <b>Confirme si desea procesar la transacci&oacute;n</b>
+            </td>
+        </tr>
+         
+        </table>
+         <INPUT TYPE="HIDDEN" VALUE="@ordene_id@" NAME="ordene_id"/> 
+         <INPUT TYPE="HIDDEN" VALUE="@client_id@" NAME="client_id"/>
+         <INPUT TYPE="HIDDEN" VALUE="@tipo_inst_int@" NAME="tipo_inst_int"/>
+         <INPUT TYPE="HIDDEN" VALUE="@ctecta_numero_ext@" NAME="ctecta_numero_ext"/>
+         <INPUT TYPE="HIDDEN" VALUE="@iban_cta_europea@" NAME="iban_cta_europea"/>
+         <INPUT TYPE="HIDDEN" VALUE="@ctecta_bcocta_bco@" NAME="ctecta_bcocta_bco"/>
+         <INPUT TYPE="HIDDEN" VALUE="@ctecta_bcocta_direccion@" NAME="ctecta_bcocta_direccion"/>
+         <INPUT TYPE="HIDDEN" VALUE="@ctecta_bcocta_telefono@" NAME="ctecta_bcocta_telefono"/>
+         <INPUT TYPE="HIDDEN" VALUE="@ctecta_bcocta_bic@" NAME="ctecta_bcocta_bic"/>
+         <INPUT TYPE="HIDDEN" VALUE="@ctecta_bcocta_aba@" NAME="ctecta_bcocta_aba"/>
+         <INPUT TYPE="HIDDEN" VALUE="@ctecta_observacion@" NAME="ctecta_observacion"/>
+         <INPUT TYPE="HIDDEN" VALUE="@intermediario@" NAME="intermediario"/>
+         <INPUT TYPE="HIDDEN" VALUE="@ctecta_bcoint_bco@" NAME="ctecta_bcoint_bco"/>
+         <INPUT TYPE="HIDDEN" VALUE="@ctecta_bcoint_direccion@" NAME="ctecta_bcoint_direccion"/>
+         <INPUT TYPE="HIDDEN" VALUE="@ctecta_bcoint_bic@" NAME="ctecta_bcoint_bic"/>
+         <INPUT TYPE="HIDDEN" VALUE="@ctecta_bcoint_telefono@" NAME="ctecta_bcoint_telefono"/>
+         <INPUT TYPE="HIDDEN" VALUE="@cta_bco_bcoint@" NAME="cta_bco_bcoint"/>
+         <INPUT TYPE="HIDDEN" VALUE="@ctecta_bcoint_aba@" NAME="ctecta_bcoint_aba"/>
+         <INPUT TYPE="HIDDEN" VALUE="@ctecta_bcoint_observacion@" NAME="ctecta_bcoint_observacion"/>
+         <INPUT TYPE="HIDDEN" VALUE="@tit_cliente@" NAME="tit_cliente"/>
+         <input type="hidden" name="moneda_n" value="@moneda_n@">
+		 <input type="hidden" name="moneda_e" value="@moneda_e@">
+            <br>
+			&nbsp;<button type="submit">&nbsp;Aceptar&nbsp;</button>
+			&nbsp;<button type="button" ONCLICK="window.close()">&nbsp;Salir&nbsp;</button>   
+    </form>        
+        </CENTER>      
+    </BODY>
+</HTML>

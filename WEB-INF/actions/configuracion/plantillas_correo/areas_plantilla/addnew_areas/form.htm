@@ -1,0 +1,170 @@
+
+<HTML>
+    
+	<head> 
+          
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        <script type="text/javascript">
+        
+  		//Funci&oacute;n Ajax
+		function callAjax(id_contenedor, cod_ajax){	
+			
+			var pagResponse = false;
+			var url = "plantillas_correo-areas_ajax_addnew?cod_ajax="+cod_ajax;
+			
+			if (window.XMLHttpRequest) {// Si es Mozilla, Safari etc
+				pagResponse = new XMLHttpRequest()
+			} else if (window.ActiveXObject){ // pero si es IE
+				try {
+					pagResponse = new ActiveXObject("Msxml2.XMLHTTP")
+				} 
+				catch (e){ // en caso que sea una versi&oacute;n antigua
+					try{
+						pagResponse = new ActiveXObject("Microsoft.XMLHTTP")
+					}
+					catch (e){}
+				}
+			}
+			else
+				return false
+		
+			pagResponse.onreadystatechange = function(){ // funci&oacute;n de respuesta
+				cargarpagina(pagResponse, id_contenedor)
+			}
+			
+			pagResponse.open('GET', url, true) // asignamos los m&eacute;todos open y send
+			pagResponse.send(null)
+			 
+		}
+		//funci&oacute;n ajax para cargar los datos en la pagina actual
+		function cargarpagina(pagResponse, id_contenedor){
+			if (pagResponse.readyState == 4 && (pagResponse.status==200 || window.location.href.indexOf("http")==-1))
+				document.getElementById(id_contenedor).innerHTML= document.getElementById(id_contenedor).innerHTML + pagResponse.responseText
+								
+		}
+		
+		function retornar(){
+			window.location='plantillas_correo-filter';
+		}
+		
+		/*function verifDest(dest) {
+			if (dest.value == "F") {
+				document.getElementById('boton_agregar_area').style.display='block';
+			}else{
+				document.getElementById('boton_agregar_area').style.display='none';
+			}
+		}	*/
+  					
+		</script>
+	
+    </head>
+  
+  <body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+  
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Plantillas de Correos / Areas</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+        
+        <CENTER>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" TARGET="_blank" ACTION="plantillas_correo-confirm_insert_areas">
+		
+		        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="2" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Plantilla de Correo
+                </FONT>
+            </th>
+        </tr>
+		
+		<!--campo-->
+		<tr class="tableCell">
+			<td>Producto:</td>
+			<td>				
+				@prod_name@ 
+			</td>        
+		</tr>
+		
+		<!--campo-->
+		<tr class="tableCell">
+			<td>Evento a notificar:</td>
+			<td>				
+				@evento_name@ 
+			</td>        
+		</tr>
+		
+			<tr>
+			<td width="30%">Tipo de Destinatario:</td>
+			<td>
+				@tipo_destinatario_desc@
+			</td>
+		</tr>
+		
+		</table>
+		
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="2" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Agregar Areas
+                </FONT>
+            </th>
+        </tr>		
+		</table>
+		
+		<!-- Zona de Areas de Plantilla -->
+		<div id="areas_plant"> 	 	 
+       </div>     
+       
+       <br>
+       
+       <div id="boton_agregar_area">
+       	<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform2"> 
+		<tr><td>
+		<button ONCLICK="callAjax('areas_plant', '3');" >Agregar Area</button>&nbsp;		
+		</td></tr>
+		</table>
+ 
+       </div>
+		
+		<INPUT TYPE="hidden" VALUE="@plantilla_mail_id@" NAME="plantilla_mail_id"/> 
+		
+            <!--nota sobre los campos obligatorios-->
+            <P><FONT COLOR="red"><B>Nota:</B></FONT> Los campos con * deben ser llenados para poder procesar el formulario.</P>
+  
+            <button TYPE="submit">Grabar</button>
+            &nbsp;<button type="button" onclick="javascript:history.back();">Regresar</button>
+            &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+
+    </form>
+
+        
+        </CENTER>
+        
+    </BODY>
+
+</HTML>
+

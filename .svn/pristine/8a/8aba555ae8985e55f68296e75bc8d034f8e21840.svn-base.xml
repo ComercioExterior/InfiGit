@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+    <!--
+    
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, decimal, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+    
+    -->
+    
+  <field 
+    name="ordene_id" 
+    type="varchar" 
+    description="Orden"
+    nullable="1"
+    size="100" 
+    /> 
+    
+     <field 
+    name="moneda_e" 
+    type="varchar" 
+    description="Moneda Extranjera"
+    nullable="1"
+    size="100" 
+    /> 
+    
+     <field 
+    name="moneda_n" 
+    type="varchar" 
+    description="Moneda Nacional"
+    nullable="1"
+    size="100" 
+    /> 
+    
+    <field 
+    name="moneda" 
+    type="varchar" 
+    description="moneda"
+    nullable="1"
+    size="100" 
+    />
+    
+    <field 
+    name="tipo_inst_int" 
+    type="varchar" 
+    description="Instrucci&oacute;n Internacional"
+    nullable="1"
+    size="100" 
+    />
+    
+    <field 
+    name="ctecta_numero_ext" 
+    type="varchar" 
+    description="n&uacute;mero cuenta Internacional"
+    nullable="1"
+    size="100" 
+    />
+    
+    <field 
+    name="iban_cta_europea" 
+    type="varchar" 
+    description="IBAN"
+    nullable="1"
+    size="100" 
+    />
+    
+    <field 
+    name="ctecta_bcocta_bco" 
+    type="varchar" 
+    description="Nombre del Banco"
+    nullable="1"
+    size="100" 
+    />
+    
+    <field 
+    name="ctecta_bcocta_direccion" 
+    type="varchar" 
+    description="Direcci&oacute;n"
+    nullable="1"
+    size="100" 
+    />
+    
+    <field 
+    name="ctecta_bcocta_telefono" 
+    type="varchar" 
+    description="Tel&eacute;fono"
+    nullable="1"
+    size="100" 
+    />
+    
+    <field 
+    name="ctecta_bcocta_bic" 
+    type="varchar" 
+    description="BIC"
+    nullable="1"
+    size="100" 
+    />
+    
+    <field 
+    name="ctecta_bcocta_aba" 
+    type="varchar" 
+    description="ABA"
+    nullable="1"
+    size="100" 
+    />
+    
+    <field 
+    name="ctecta_observacion" 
+    type="varchar" 
+    description="Observaci&oacute;n"
+    nullable="1"
+    size="100" 
+    />
+    
+    <field 
+    name="intermediario" 
+    type="varchar" 
+    description="Intermediario"
+    nullable="1"
+    size="100" 
+    />
+    
+    <field 
+    name="ctecta_bcoint_bco" 
+    type="varchar" 
+    description="Nombre del Banco Intermediario"
+    nullable="1"
+    size="100" 
+    />
+    
+    <field 
+    name="ctecta_bcoint_direccion" 
+    type="varchar" 
+    description="Direcci&oacute;n Banco Intermediario"
+    nullable="1"
+    size="100" 
+    />
+    
+    <field 
+    name="ctecta_bcoint_bic" 
+    type="varchar" 
+    description="BIC banco intermediario"
+    nullable="1"
+    size="100" 
+    />
+    
+    <field 
+    name="ctecta_bcoint_telefono" 
+    type="varchar" 
+    description="Tel&eacute;fono banco intermediario"
+    nullable="1"
+    size="100" 
+    />
+    
+    <field 
+    name="cta_bco_bcoint"  
+    type="varchar" 
+    description="Cuenta del Banco intermediario"
+    nullable="1"
+    size="100" 
+    />
+    
+    <field 
+    name="ctecta_bcoint_aba" 
+    type="varchar" 
+    description="ABA intermediario"
+    nullable="1"
+    size="100" 
+    />
+    
+    <field 
+    name="ctecta_bcoint_observacion" 
+    type="varchar" 
+    description="Observacion intermediario"
+    nullable="1"
+    size="100" 
+    />
+    
+    <field 
+    name="tit_cliente" 
+    type="varchar" 
+    description="Cuenta Nacional"
+    nullable="1"
+    size="100" 
+    />
+</record>
+

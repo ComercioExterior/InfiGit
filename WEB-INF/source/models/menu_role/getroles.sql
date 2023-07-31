@@ -1,0 +1,1 @@
+select rolename from MSC_ROLE group by rolename

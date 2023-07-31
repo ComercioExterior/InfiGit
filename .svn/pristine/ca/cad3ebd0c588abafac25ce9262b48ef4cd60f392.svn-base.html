@@ -1,0 +1,49 @@
+<HTML>
+<HEAD>
+<TITLE>Sistema INFI</TITLE>
+<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+<script language="javascript" src="../js/default.js"></script>
+</HEAD>
+<!--poner el focus en el 1er control de la forma-->
+<BODY
+	ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+<!--page name bar-->
+<TABLE border="0" cellspacing="0" WIDTH="100%">
+	<TR>
+		<TD class="headerBox"><FONT class="headerText">Intercambio / Operaciones DICOM / Enviar Operaciones Liquidadas BCV vía Web Service</FONT></TD>
+		<!-- help online -->
+		<TD class="headerBox" valign="middle" align="right"><img
+			border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17"
+			onclick="helpOpen(window.document.location.href);"
+			style="cursor: hand" title="Mostrar ayuda en l&iacute;nea"></TD>
+		<!-- fin help online -->
+		<td class="headerBox" aling="right"></td>
+	</TR>
+</TABLE>
+<CENTER><!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="envio_operaciones_liquidadas_previo">
+<table border="0" cellspacing="1" cellpadding="2" width="100%"
+	class="dataform">
+	<tr>
+      	<td>Numero de Jornada:</td>
+        <td><INPUT TYPE="TEXT" VALUE="" NAME="nro_jornada"/></td>
+    </tr>
+    <tr>
+      	<td>Codigo Moneda:</td>
+        <td><INPUT TYPE="TEXT" VALUE="@valor@" NAME="valor" class="inputControl" readonly="readonly"/></td>
+    </tr>  
+    <tr>
+      	<td>Incluir:</td>
+        <td> <!--input type="radio" name="solo_op_liquidadas"  value="1"> S&oacute;lo operaciones liquidadas<br-->
+			<input type="radio" name="solo_op_liquidadas"  value="0" checked> Todas las operaciones adjudicadas<br>           </td>
+    </tr>         	
+</table>
+<br>
+<button id="deshabilita" type="submit" />Procesar</button>
+&nbsp;
+<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+<INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/>
+</form>
+</CENTER>
+</BODY>
+</HTML>

@@ -1,0 +1,144 @@
+<html>
+
+	<head>
+        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+       <script type="text/javascript">
+        function detalleOrden(nombreFormulario){
+        var longitud = nombreFormulario.length;
+        var str=nombreFormulario.substr(8,longitud);
+		document.getElementById(str).submit();
+		
+        }
+        
+        /**
+        *Se deshabilita el boton  de resumen cuando no existen datos
+        */
+        function ocultarResumen()
+        {        
+        	var tabla  = document.getElementById('tabla');
+	        if(tabla.rows.length=='1')
+	        {
+	        	document.getElementById('resumen').disabled='true'
+	        }
+	    }
+          
+        </script>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};ocultarResumen()">
+	   <center> 	
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Ordenes / Consultas / Ordenes por Veh&iacute;culo</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+<br>
+    <table  border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                  Ordenes ( @t_registros@ )
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table id="tabla" border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+    
+    <!--encabezados de columna-->
+    <tr>
+    		<th colspan="1" width="3%"></th>         
+              <th nowrap>Veh. Tomador</th>
+              <!--th nowrap>Veh. Recompra</th-->
+              <!--th nowrap>Veh. Colocador</th-->
+              <th nowrap>Orden</th>
+              <th nowrap>Transacci&oacute;n Negocio</th>              
+              <th nowrap>Cliente</th>             
+              <th nowrap>Fecha Orden</th>  
+              <th nowrap>Status</th>                                  
+    </tr>
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+                
+                <td align="center">
+                <a href="javascript:detalleOrden('19569633@ordene_id@');"><IMG SRC="../images/infi_gn_document.gif" WIDTH="15" ALIGN="top" HEIGHT="13" title="Detalles de la Orden" BORDER="0" style="cursor:hand"></a>
+                </td>
+            	<form id="@ordene_id@" name="@ordene_id@" action="detalle_orden-find" method="post" target="_blank"><input type="hidden" value="@ordene_id@" name="ord_id"> </form>
+            	<td nowrap align="left">
+                @tomador@
+                </td>
+                
+                <!-- td VALIGN="middle">                
+                @recompra_vec@
+                </td--->              
+                
+                <!--td nowrap>
+                @colocador@
+                </td-->                
+                <td align="center" nowrap>
+                @ordene_id@
+                </td>
+                
+                <td>
+                @transa_descripcion@
+                </td>    
+ 
+                <td align="left" nowrap >
+                @client_nombre@
+                </td>                
+                 <td align="center" nowrap>
+                @ordene_ped_fe_orden@
+                </td>
+                 <td align="left" nowrap>
+                @ordsta_nombre@
+                </td>
+     </tr>
+     </rows>
+    </table>
+		@page_index@
+    <BR>
+<form name="dataentry"  method="post" action="ordenes_vehiculo-resumen">
+    <input type="HIDDEN" name="undinv_id" value="@uniinv_id@">
+    <input type="HIDDEN" name="vehiculo_tomador_nombre" value="@tomador@">
+    <input type="HIDDEN" name="vehiculo_tomador_id" value="@ordene_veh_tom@">
+    <input type="HIDDEN" name="vehiculo_recompra_nombre" value="@recompra_vec@">
+    <!--  <input type="HIDDEN" name="vehiculo_recompra_id" value="@ordene_veh_rec@">-->
+    <input type="HIDDEN" name="vehiculo_colocador_nombre" value="@colocador@">
+    <!--<input type="HIDDEN" name="vehiculo_colocador_id" value="@ordene_veh_col@">-->
+    <input type="HIDDEN" name="fe_ord_desde" value="@fe_ord_desde@">
+    <input type="HIDDEN" name="fe_ord_hasta" value="@fe_ord_hasta@">
+    <input type="HIDDEN" name="status" value="@status@">
+    <input type="HIDDEN" name="undinv_nombre" value="@undinv_nombre@">
+    <button type="submit" id="resumen">Resumen</button>&nbsp;&nbsp;
+    <button type="button" onclick="window.location='ordenes_vehiculo-filter'">Regresar</button>
+     &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+     
+</form>
+
+</center>
+
+</body>
+
+</html>
+

@@ -1,0 +1,629 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Toma de Orden</title>
+  <link rel="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+  <link rel="stylesheet" type="text/css" href="../css/EstiloFichas.css" />
+  <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+  <SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+  <script language="javascript" src="../js/default.js"></script>   
+  
+  <link href="../css/jquery_smoothness/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+  <script src="../js/jquery_datepicker/jquery-1.9.1.js"></script>
+  <script src="../js/jquery_datepicker/jquery-ui-1.10.3.custom.js"></script>
+  
+  <script type="text/javascript">
+  
+  		@funciones_datepicker@
+  
+		/*$(function() {
+			$( "#datepicker" ).datepicker({
+				dateFormat: "dd-mm-yy",
+				monthNames: [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ],
+				dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
+				inline: false,
+				showOn: "both",
+				minDate: null, 
+				maxDate: "25-09-2013",
+				buttonImage: "../images/infi_gn_calendar.gif",
+				buttonImageOnly: true
+			});
+		});*/
+  
+          //Funci&oacute;n para abrir un picklist o limpiar el valor anteriormente seleccionado
+		function showPickList(ind ,id, tx, campo)
+		{
+		   var r
+		   if (ind == '1') {  // llamar a picklist		
+		   	  r = window.open(campo +'?name_id=' + id.name +"&name_tx=" + tx.name, 'Picklist','resizable=yes,scrollbars=yes,width=600,height=450,Left=200,top=150,Status=yes,unadorned:true');
+		   	  
+		   }
+		   else{
+			id.value= "";//limpiar id de cliente
+			tx.value= "";//limpiar campo de cliente
+			recargarPagina2();
+		  }
+		} 
+		
+		var bandera_comprobacion = 0;
+		
+		function mostrarOcultarDatosUnidadInv(){
+       
+        	/*if(document.dataentry.undinv_id.value!='0'){//Unidad de Inversi&oacute;n
+        		
+        		mostrarCalculos();        		
+        		document.getElementById('datos_unidad_inv').style.display='none'; */       		
+        	//}else{
+        		if(document.dataentry.undinv_id.value!='0' && document.dataentry.vehicu_rol_id!=undefined){
+        			mostrarDatos();
+        			//document.getElementById('datos_unidad_inv').style.display ='block';
+        		}else{
+        			document.dataentry.undinv_id.value='0';
+        			document.getElementById('datos_unidad_inv').style.display='none';
+        			document.getElementById('datos_unidad_inv2').style.display='none';
+        		}       		
+        	//}       
+        }
+        
+        //verifica si mostrar o no la comprobaci&oacute;n final
+		/*function mostrarOcultarComprobacion(){
+			//if(document.dataentry.undinv_id.value!='0' && document.dataentry.calculos.value == '1' && bandera_comprobacion==1){//Unidad de Inversi&oacute;n
+			if(document.dataentry.undinv_id.value!='0' && document.dataentry.calculos.value == '1'){//Unidad de Inversi&oacute;n
+        		
+        		llamarComprobacion();       		
+        	}
+			
+		}*/
+        
+         //Muestra los c&aacute;lculos sobre la inversi&oacute;n
+        function mostrarCalculos(){        	
+        	
+       	 	document.getElementById('calculos_orden').style.display='block';
+       	 	document.getElementById('datos_orden').style.display='none';
+       	 	document.getElementById('comprobacion_orden').style.display='none';
+       	
+        }
+        
+      	//llama a refrescar la pagina para realizar los calculos y validaciones correspondientes
+      	//llamada a hacer calculos
+        function llamadaCalculos(){
+        	var myBoolean=new Boolean(evitarValoresNulos());
+        	var calcular=new Boolean(true);
+        	if(document.forms[0].sitme.value!=""){
+        		myBoolean=true;
+            }
+        	if(document.dataentry.undinv_id.value=='0'){
+	        	 alert("Debe ingresar los datos de la Unidad de Inversión");
+	        	 calcular=false;
+    		}else{
+    			if(myBoolean==false){
+            		alert("Debe Ingresar Actividad Económica, Sector Productivo, y Concepto.")
+            		calcular=false;
+       			}else{
+       				//NM32454 SIMADI TAQUILLA
+       				//SE AGREGA VALIDACION DE LOS MONTOS EN CERO
+       				
+       				/*
+       				if(document.dataentry.monto_comprar!=undefined){
+       					if(document.dataentry.monto_comprar.value.length!=0 && document.dataentry.monto_comprar.value == 0){
+           					alert("Debe indicar el monto a comprar y éste debe ser un número mayor a 0.")
+           	        		calcular=false;
+           				}	
+       				}
+       				
+       				if(document.dataentry.monto_comprar_efec!=undefined){
+       					if(document.dataentry.monto_comprar_efec.value.length!=0 && document.dataentry.monto_comprar_efec.value == 0){
+           					alert("Debe indicar el monto a comprar en efectivo y éste debe ser un número mayor a 0.")
+           	        		calcular=false;
+           				}
+       				}
+       				*/
+       				
+       				
+       			
+       				/*
+       				//NM32454 LPEREZ SIMADI TAQUILLA
+       				//SE ELIMINA VALIDACION DEL MONTO ESTA VALIDACION SE REALIZA MAS ADELANTE EN LOS .JAVA
+       				//if( !(/^[\d]+[.][\d]+$/.test(document.dataentry.monto_comprar.value)) ){
+       				if( !(/^[\d]+([.][\d]+)?$/.test(document.dataentry.monto_comprar.value)) ){
+       	        		//alert("El monto a comprar debe ser un número decimal positivo. Solo la parte decimal debe ser indicada con punto.")
+       	        		alert("Debe indicar el monto a comprar y éste debe ser un número.")
+       	        		calcular=false;
+       	        	}else{
+       	        	*/	
+       	        		
+       	        		///if(redondear2decimales(document.dataentry.monto_comprar.value) > document.dataentry.monto_max_sol.value){
+       	        			//alert("Monto a comprar: '"+redondear2decimales(document.dataentry.monto_comprar.value)+"'");
+       	        			//alert("El monto a comprar no puede ser mayor al monto máximo a comprar permitido.")
+       	            		//calcular=false;
+       	        		//}else{
+       		        		/*
+       	        			if(document.dataentry.monto_comprar.value <= 0){
+       		        			alert("El monto a comprar debe ser mayor que cero.")
+       		            		calcular=false;
+       		        		}else{
+       			       		*/	
+       		        			//if(!(/^[\d]+[.][\d]+$/.test(document.dataentry.tasa_propuesta.value))){
+       			       			if(!(/^[\d]+([.][\d]+)?$/.test(document.dataentry.tasa_propuesta.value))){
+       			            		//alert("La tasa propuesta no puede ser vacía y debe ser un número. Solo la parte decimal debe ser indicada con punto.")
+       			            		alert("Debe indicar la tasa propuesta y ésta debe ser un número.")
+       			            		calcular=false;
+       			            	}else{
+       			            		if(document.dataentry.tasa_propuesta.value <= 0){
+       				        			alert("La tasa propuesta debe ser mayor que cero.")
+       				            		calcular=false;
+       				        		}else{
+       				            		//alert("Propuesta: '"+redondear2decimales(document.dataentry.tasa_propuesta.value)+"'");
+       				            		//alert("Referencial: '"+document.dataentry.tasa_referencial.value+"'");
+       				        			//if(redondear2decimales(document.dataentry.tasa_propuesta.value) < document.dataentry.tasa_referencial.value){
+       				            		if(document.dataentry.tasa_propuesta.value < document.dataentry.tasa_referencial.value){
+       				        				if(!confirm("La tasa propuesta ingresada es menor a la tasa de cambio referencial. ¿Desea continuar?")){
+       				            				calcular=false;
+       				            			}
+       				            		}
+       			            		}
+       			            	}
+       		        		//}
+       	        		//}
+       	        	//}
+       			}
+    		}
+        	
+        	if(calcular==true){
+    			deshabilitarBotones();
+				//document.dataentry.action='toma_orden_divisas-datos?calculos=1';
+    			document.dataentry.action='toma_de_orden_divisas-calculo';
+    			document.dataentry.submit();
+    		}
+        }
+        
+        //Muestra los datos de la Inversi&oacute;n
+        function mostrarDatos(){        	
+        	 document.getElementById('datos_orden').style.display='block';  
+        	 document.getElementById('datos_unidad_inv').style.display ='block'; 
+        	 document.getElementById('datos_unidad_inv2').style.display ='block';          	 
+        	// document.getElementById('calculos_orden').style.display='none';
+        	// document.getElementById('comprobacion_orden').style.display='none';
+        
+        }
+        
+        //LLamada a comprobaci&oacute;n Final para la toma de orden
+        function llamarComprobacion(){
+           	 document.getElementById('datos_orden').style.display='none';  
+        	 document.getElementById('datos_unidad_inv').style.display ='none';    
+        	 document.getElementById('calculos_orden').style.display='none';      	 
+        	 document.getElementById('comprobacion_orden').style.display='block';
+        	 desplegarCartaMandato();
+        	 bandera_comprobacion = 1;
+      	}
+        
+        
+        function mostrarBotones(){
+			if (document.getElementById("condiciones").checked){
+		      document.getElementById("guardar").style.visibility="visible";
+			  return;
+			}
+            document.getElementById("guardar").style.visibility="hidden";
+		}
+
+		function desplegarCartaMandato(){
+			abrirPopupDetalles('toma_de_orden-cartaMandato', '600', '600') ;
+			//window.open('toma_de_orden-cartaMandato');
+		}
+		
+		function abrirDetallesVehiculos(){
+			
+			var vehiculo_rol_id = document.dataentry.vehicu_rol_id.value;				
+			
+			var aurl = "detalles_vehiculo_rol-find?vehiculo_rol_id=@vehiculo_rol_id@";
+			var url = aurl.replace("@vehiculo_rol_id@", vehiculo_rol_id);
+			abrirPopupDetalles(url ,'200', '300');
+
+        }    
+        
+        function recargarPagina(){
+        	if(document.dataentry.client_id.value!='' && document.dataentry.undinv_id.value != '0'){
+        		deshabilitarBotones();
+        		mostrarMensajeEspera(document.getElementById('mensaje_espera'));
+        		document.dataentry.action='toma_orden_divisas-datos?band=1&calculos=0&sicad2=@sicad2@'; 
+        		document.dataentry.submit();
+        	}else{
+        		document.dataentry.undinv_id.value = '0';
+        		document.getElementById('datos_unidad_inv').style.display='none';
+        		document.getElementById('datos_unidad_inv2').style.display='none';
+
+        		if(document.dataentry.client_id.value=='')
+        			alert("Debe seleccionar el cliente");        		
+        	}
+        }   
+        
+        function recargarPagina2(){
+            if(document.dataentry.client_id.value!=''){
+            	deshabilitarBotones();
+            	mostrarMensajeEspera(document.getElementById('mensaje_espera'));
+        		document.dataentry.action='toma_orden_divisas-datos?band=1&calculos=0&sicad2=@sicad2@'; 
+        		document.dataentry.submit();
+        	}else{
+        		/*document.dataentry.undinv_id.value = '0';
+        		document.getElementById('datos_unidad_inv').style.display='none';
+        		document.getElementById('datos_unidad_inv2').style.display='none';
+        		
+        		alert("Debe seleccionar el cliente");  */      		
+        	}
+ 		}
+ 		
+ 		/** muestra el campo para los datos del conyuge en caso de que el cliente sea casado*/
+ 		function mostrarDatosCasado(){
+ 		
+ 			if(document.dataentry.estado_casado!=undefined){
+	 			if(document.dataentry.estado_casado.value == "SI"){
+	 				//alert("SI Casadiiisimo")
+	 				document.getElementById('campo_ced_conyuge').style.display='block';
+	 			}else{
+	 				//alert("NO Libre y feliz");
+	 				document.getElementById('campo_ced_conyuge').style.display='none';
+	 			}
+	 		}
+ 		}
+ 		
+ 		function deshabilitarBotones(){
+ 			document.dataentry.boton_calcular.disabled = true;
+        	document.dataentry.boton_salir.disabled = true; 			
+ 		}
+
+ 		function evitarValoresNulos() {
+ 			var actividadeconomica=document.forms[0].actividad_economica.value;
+ 			var sectorproductivo=document.forms[0].sector_productivo.value;
+ 			var concepto=document.forms[0].concepto.value;
+ 			if (actividadeconomica!="" && sectorproductivo!="" && concepto!=""){
+ 				return true; 	
+ 			}
+ 			else{
+ 				return false;
+ 			}   
+ 		}
+ 		
+ 		function redondear2decimales(numero) {
+	 		var original = parseFloat(numero);
+	 		var result = Math.round(original*100)/100 ;
+	 		return result;
+ 		}
+ 		
+ 		function recargarVehiculo() {
+ 			recargarPagina();
+ 		}
+
+
+ 
+  </script>
+         <script language="javascript" src="../js/default.js"></script>  
+</head>
+<body ONLOAD="javascript: mostrarOcultarDatosUnidadInv(); mostrarDatosCasado();">
+
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Ordenes / @menu_migaja@</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+  <!--formulario-->
+  	
+  <form NAME="dataentry" METHOD="POST" ACTION="toma_de_orden-guardar">
+
+<div id="menu">
+<table border="0">
+<tr>
+<td id="navigationActivo"><a><span>Datos</span></a></td>
+<td id="navigation"><a style="cursor:hand"><span>C&aacute;lculos</span></a></td>
+<td id="navigation"><a style="cursor:hand"><span>Documentos</span></a></td>
+</tr>
+</table>
+</div>
+      <center>
+      
+      <!-- ZONA DE DATOS -->
+      <div id="datos_orden">
+      
+        
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="4" ALIGN="center">
+                 Datos Principales
+            </th>
+        </tr>
+        
+        <!--campo-->
+        <tr>
+            <td>
+             Cliente:
+            </td>
+            <td>
+            <INPUT TYPE="TEXT" VALUE="@pick_cliente@" NAME="pick_cliente" SIZE="50" MAXLENGTH="50" class="inputControl" readonly/>
+            	<input type="hidden" value="@client_id@" name="client_id"/>
+            	<input type="hidden" value="@numero_persona@" name="numero_persona"/> 
+				
+				<!--IMAGENES/BOTONES PARA EL PICKLIST SIN CORRELATIVOS -->
+				<!--IMG src="../images/infi_gn_picklist.gif" title="Haga CLICK para ver la lista de opciones." onclick="showPickList(1,document.dataentry.client_id,document.dataentry.pick_cliente,'pick_clientes-find')" style="cursor:hand"/>
+				<IMG src="../images/infi_gn_picklist-clear.gif" title="Haga CLICK para borrar la opci&oacute;n seleccionada." onclick="showPickList(0,document.dataentry.client_id,document.dataentry.pick_cliente,'pick_clientes-find')" style="cursor:hand"/-->                        
+                <!--IMAGENES/BOTONES PARA EL PICKLIST CORRELATIVOS -->
+                <IMG src="../images/infi_gn_picklist.gif" title="Haga CLICK para ver la lista de opciones...." onclick="showPickListCorre(1,document.dataentry.client_id,document.dataentry.pick_cliente,document.dataentry.numero_persona,'pick_clientes-find-correlativos')" style="cursor:hand"/>
+				<IMG src="../images/infi_gn_picklist-clear.gif" title="Haga CLICK para borrar la opci&oacute;n seleccionada." onclick="showPickListCorre(0,document.dataentry.client_id,document.dataentry.pick_cliente,document.dataentry.numero_persona,'pick_clientes-find-correlativos')" style="cursor:hand"/>
+				
+            </td>
+            
+         </tr>
+         
+                 <!--campo-->
+        <tr >
+            <td>
+             Unidad de Inversi&oacute;n:
+            </td>
+            <td>
+				<SELECT NAME="undinv_id" SIZE="1" ONCHANGE="javascript:recargarPagina();">				
+					<OPTION VALUE="0" SELECTED>Seleccione</OPTION>
+					<rows_undinv>					
+					<OPTION VALUE="@undinv_id@">@undinv_nombre@</OPTION>						
+					</rows_undinv>
+	 			</SELECT> 			
+                        
+            </td>
+            
+        </tr>
+        
+                  
+		@datos_conyuge@     
+
+        <tr>
+            <td>Cuenta del Cliente:</td>
+			<td>
+			    <SELECT NAME="cta_cliente" SIZE="1">				
+					<OPTION VALUE="" SELECTED>Seleccione</OPTION>
+					<rows_ctacte>
+					<!--OPTION VALUE="@numero@">Cta @tipo@ @numero@</OPTION-->	
+					<OPTION VALUE="@cuenta_banco@">Cta @tipo_cuenta@ @cuenta_mostrar@</OPTION>
+					</rows_ctacte>
+	 			</SELECT> 	
+			</td>
+        </tr>
+        
+        <tr style="display: @mostrar_combo_cta_nac_dolares@">
+            <td>Cuenta Nacional en D&oacute;lares del Cliente:</td>
+			<td>
+			    <SELECT NAME="cta_nac_dolares_cte" SIZE="1">				
+					<OPTION VALUE="" SELECTED>Seleccione</OPTION>
+					<rows_ctanacdolarescte>
+					<OPTION VALUE="@cuenta_banco@">Cta @tipo_cuenta@ @cuenta_mostrar@</OPTION>	
+					</rows_ctanacdolarescte>
+	 			</SELECT> 	
+			</td>
+        </tr>
+          
+        
+        </table>  
+       
+       <!-- MENSAJES DE ERROR CONSULTANDO CUENTAS DEL CLIENTE EN ARQUITECTURA EXTENDIDA -->
+      <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+       		<tr><td><FONT COLOR="red"><b>@mensaje_error_user_webs@</b></FONT></td></tr>       
+        	<tr><td><FONT COLOR="red"><b>@mensaje_error_cuentas_cte@</b></FONT></td></tr>
+        	<tr><td><FONT COLOR="red"><b>@mensaje_error_cuenta_custodia@</b></FONT></td></tr>
+        	<tr><td><FONT COLOR="red"><b>@mensaje_error_cuenta_swift@</b></FONT></td></tr>      
+      </table>
+                        
+        <table border="0" id="datos_unidad_inv" style="display:none" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="4" ALIGN="center">
+                 Datos de la Unidad de Inversi&oacute;n
+            </th>
+        </tr>
+        
+        <tr>
+			<td>Emisor:</td>
+			<td>@empres_nombre@</td>
+			
+			<td>Financiamiento disponible:</td>
+			<td>@undinv_pct_max_finan format-mask='#,###,##0.00'@ %</td>
+			
+		</tr>
+		
+		<tr>
+			<td>Instrumento Financiero:</td>
+			<td>@insfin_descripcion@</td>
+			
+			<td>Tipo Instrumento</td>
+			<td>@insfin_tipo@</td>
+			
+		</tr>
+		
+		@montos_blotter@	
+			
+		@disponible_inventario@
+		
+		@cantidades_blotter@
+				
+		@rangos_precio_subasta@
+		
+		<tr>
+		<td>
+		Multiplo Inversi&oacute;n
+		</td>
+		<td>
+		@undinv_multiplos@
+		</td>
+		
+		@valor_por_unidad@
+		
+		</tr>
+		
+		</table>
+		
+		<!-- NM32454 REQUERIMIENTO SIMADI TAQUILLA-->
+		@insfin_forma_orden@
+		<table border="0" id="datos_unidad_inv2" style="display:none" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+                
+        <tr>
+            <th COLSPAN="4" ALIGN="center">
+                 Datos de La Inversi&oacute;n
+            </th>
+        </tr>
+		
+		<tr>
+			<td>Recompra permitida:</td>
+			<td>@in_recompra@</td>
+			
+			<td>Veh&iacute;culo:</td>
+			<td>
+			
+			@vehicu_nombre@
+			@vehicu_rol_id@				
+			@combo_vehiculos@
+						<IMG SRC="../images/infi_gn_doc.gif" ONCLICK="javascript:abrirDetallesVehiculos();" WIDTH="15" HEIGHT="16" ALIGN="top" title="Detalles" BORDER="0" style="cursor:hand"/>
+			
+							
+			</td>
+						
+		</tr>
+
+		<tr>
+			<td>Precio Compra:</td>
+			<td>@precio_compra@ %</td> 
+			
+			<td>Blotter:</td>
+			<td>		
+			@blotter_descripcion@
+			@blotter_id@				
+			@combo_blotters_ui@
+			</td>
+	
+		</tr>	
+	
+		<tr>
+			<td>Porcentaje a Financiar:</td>
+			<td> @campo_financiamiento@ % </td>
+			 @monto_cant_comprar@			
+		</tr>
+		
+		<tr>
+			<td></td>
+			<td></td>
+			@monto_comprar_efec@
+		</tr>	
+		
+		<tr>
+            @tasa_propuesta@
+		</tr>
+		
+		<tr @fv_activa@>
+            <td>
+				Fecha Pacto:*
+            </td>
+            <td>
+            	<INPUT TYPE='TEXT' VALUE="@fecha_pacto@" NAME='fe_pacto' SIZE='12' MAXLENGTH='10' class='inputControl' readonly /> 
+			</td>
+			<td>
+				Fecha Valor:*
+            </td>
+            <td>
+				<INPUT TYPE='TEXT' VALUE="@fechavalor@" NAME='fe_valor' SIZE='12' MAXLENGTH='10' class='inputControl' readonly /> 
+				</a>
+			</td>
+		</tr>	
+		<tr @fv_activa@>
+			<td>
+				Actividad Económica:*
+            </td>
+			<td>
+		    <SELECT NAME="actividad_economica" SIZE="1">				
+				<OPTION VALUE="" SELECTED>Seleccione</OPTION>
+				<ae>					
+					<OPTION VALUE="@codigo_id@">@sector@</OPTION>						
+				</ae>	
+			</SELECT> 	
+			</td>
+			<td>
+				Sector Productivo:*
+            </td>
+			<td>
+		    <SELECT NAME="sector_productivo" SIZE="1">				
+				<OPTION VALUE="" SELECTED>Seleccione</OPTION>
+				<sp>					
+					<OPTION VALUE="@sector_id@">@descripcion@</OPTION>						
+				</sp>	
+			</SELECT> 	
+			</td>
+			</tr>
+		<tr @fv_activa@>
+			<td>
+				Concepto:*
+            </td>
+			<td>
+		    <SELECT NAME="concepto" SIZE="1">				
+				<OPTION VALUE="" SELECTED>Seleccione</OPTION>
+				<con>					
+					<OPTION VALUE="@codigo_id@">@concepto@</OPTION>						
+				</con>	
+			</SELECT> 	
+			</td>
+			<INPUT TYPE="HIDDEN" VALUE="@fv_activa@" NAME="sitme"/>			
+		</tr>
+
+		<tr><td colspan="4">
+			@encab_campos_dinamicos@  
+	  		
+	        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+			
+	        <rows_campos_din>
+			@trtd@
+			</rows_campos_din>	        
+	        
+	        </table>
+			
+		</td></tr>
+ 
+    </table>
+    
+    <table id="mensaje_espera" border="0" style="display:none" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+		<tr><td><b>Buscando datos...</b></td></tr>
+	</table>   
+    
+        
+         
+         <INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/> 	
+         <INPUT TYPE="HIDDEN" VALUE="1" NAME="form_toma_orden"/>
+         <INPUT TYPE="HIDDEN" VALUE="@sicad2@" NAME="sicad2"/>
+         <!-- NM32454 15/02/2015 INFI_TTS_491_CONTINGENCIA -->
+         <INPUT TYPE="HIDDEN" VALUE="@tasa_propuesta_hidden@" NAME="tasa_propuesta_hidden"/>
+         
+          
+            <br>
+            <button TYPE="button" name="boton_calcular" onclick="llamadaCalculos();">Calcular</button>         
+                <SPAN> </SPAN>
+            <button type="button" name="boton_salir" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+
+	</div>
+	
+	 <INPUT TYPE="hidden" VALUE="@calculos@" NAME="calculos"/>
+	 
+	<!-- ZONA DE CALCULOS -->
+	<div id="calculos_orden" style="display:none">
+			
+	</div>
+	
+	<!-- ZONA DE COMPROBACI&Oacute;N -->
+	<div id="comprobacion_orden" style="display:none">
+		
+	</div>	
+  </form>
+  	</center>
+</body>
+</html>

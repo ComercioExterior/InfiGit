@@ -1,0 +1,107 @@
+<HTML>
+	<HEAD>
+		<TITLE>Sistema INFI</TITLE>
+    	<LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+    	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		<SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+		<script language="javascript" src="../js/default.js"></script>   		
+	</HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY>
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    	<TR>
+        	<TD class="headerBox">                
+            	<FONT class="headerText">Custodia / Transacciones / Salida Interna</FONT>
+       		</TD>
+        	<!-- help online -->
+   			<TD class="headerBox" valign="middle" align="right">
+   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   			</TD>
+   			<!-- fin help online -->
+        	<td class="headerBox" aling="right"></td>
+        </TR>
+	</TABLE>
+	<CENTER>
+
+	<!--formulario-->
+	<form NAME="dataentry" METHOD="POST" ACTION="transacciones_salida_interna-transaccion">
+	<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        <tr CLASS="formCaption">
+            <th COLSPAN="2" ALIGN="left">
+                <FONT class="formCaptionText1">
+                Cliente que Transfiere:
+                </FONT>
+            </th>
+            <th COLSPAN="5" ALIGN="left">
+                <FONT class="formCaptionText1">
+                @nombre_transfiere@
+                </FONT>
+            </th>            
+        </tr>
+        <tr CLASS="formCaption">
+            <th COLSPAN="2" ALIGN="left">
+                <FONT class="formCaptionText1">
+                Cliente que Recibe:
+                </FONT>
+            </th>
+            <th COLSPAN="5" ALIGN="left">
+                <FONT class="formCaptionText1">
+                @nombre_recibe@&nbsp;&nbsp;&nbsp;&nbsp;Cuenta Custodia:&nbsp;@cuenta_custodia_recibe@
+                </FONT>
+            </th>            
+        </tr>        
+	</table>
+		<table border="1" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+			 <!--titulo-->
+			 <!--titulo-->
+
+        <tr CLASS="formElement">
+            <th colspan="5" CLASS="formLabel">Titulo</th>
+            <th colspan="4" CLASS="formLabel">Producto</th>
+            <th colspan="3" CLASS="formLabel">Moneda Negociaci&oacute;n</th>
+            <th colspan="3" CLASS="formLabel">Cantidad a Transferir</th>
+        </tr>
+        <titulos>
+        <tr>
+        <td colspan="5" CLASS="formLabel">@titulo_id@</td>
+        <td colspan="4" CLASS="formLabel">@tipo_producto@</td>
+        <td colspan="3" CLASS="formLabel">@moneda_id@</td>
+        <td colspan="3" align="center"><input align="center"  size="10" type="text" value="@cantidad_disponible@" maxlength="9" name="transferir" onkeypress="solo_numericos()"></td>
+        </tr>
+        </titulos>
+        		<tr CLASS="formCaption">
+            <th COLSPAN="15" ALIGN="left">
+                <FONT class="formCaptionText1">
+                &nbsp;
+                </FONT>
+            </th>
+        </tr>
+        <tr>
+       <td colspan="15" CLASS="formLabel2" align="left">
+            Depositario:*
+            <SELECT NAME="depositario" CLASS="inputControl">
+			<OPTION VALUE=""></OPTION>
+			<depositario>
+			<OPTION VALUE="@empres_id@">@empres_nombre@</OPTION>
+			</depositario>
+			</SELECT>
+			</td>
+        </tr>
+        
+		</table>
+
+		<!--nota sobre los campos obligatorios-->
+            <P><FONT COLOR="red"><B>Nota:</B></FONT> Los campos con * deben ser llenados para poder procesar el formulario.</P>
+
+            <SPAN> </SPAN>
+		<INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/>	
+		<br>
+		<button TYPE="submit" />Procesar</button>
+		&nbsp;<button type="button" onclick="javascript:history.back();">Regresar</button>&nbsp;&nbsp;
+		<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+	</form>
+	</CENTER>
+</BODY>
+</HTML>

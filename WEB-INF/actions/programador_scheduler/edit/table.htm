@@ -1,0 +1,91 @@
+<html>
+	<head>      
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        <script type="text/javascript"> 
+        </script> 
+    </head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Custodia / Consultas / Exportar</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+<center>
+<br>
+<form NAME="dataentry" METHOD="POST" ACTION="consulta_clientes_titulos_custodia-exportar">
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                 T&iacute;tulos en Custodia
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+		<th>Cliente</th> 
+		<th>T&iacute;tulo</th> 
+		<th>Estado</th>                         
+		<th>Moneda Den.</th>
+		<th>Moneda Neg.</th>
+		<th width="10%">Emisi&oacute;n</th>
+		<th>Vencimiento</th>
+		<th>Fecha Custodia</th>
+                            
+    </tr>
+
+    <!--data-->
+    <titulos_custodia>
+    <tr class="tableCell">
+		<td>@client_nombre@</td>
+		<td>@titulo_id@</td>
+		<td>@estado@</td>
+		<td align="center">@titulo_moneda_den@</td>
+		<td align="center">@titulo_moneda_neg@</td>
+		<td align="center">@titulo_fe_emision@</td>
+		<td align="center">@titulo_fe_vencimiento@</td>
+		<td align="center">@titulo_fe_ingreso_custodia@</td>
+     </tr>
+     </titulos_custodia>
+    
+    </table>
+@page_index@
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+    <BR>
+	<button TYPE="submit">&nbsp;Exportar&nbsp;</button>&nbsp;
+    <button onclick="window.location='consulta_clientes_titulos_custodia-filter'">&nbsp;Regresar&nbsp;</button>
+     &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+</form>
+
+</center>
+
+</body>
+
+</html>
+

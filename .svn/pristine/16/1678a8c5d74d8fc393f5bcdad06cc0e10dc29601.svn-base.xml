@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+
+	Configuracion de la accion
+
+	Describe el modelo y la vista a utilizar, asi
+	como informacion sobre data-binding entre la vista y el modelo
+
+-->
+
+<config>
+
+	<!--model class-->
+	<model-class>models.configuracion.cuentasCliente.Browse</model-class>
+	
+	<!--view class-->
+	<view-class>megasoft.GenericView</view-class>
+	
+	<!--template-->
+	<template>table.htm</template>
+	
+	<!--control de cache  (true|false)-->
+	<no-cache>false</no-cache>
+
+	<!--reglas de validacion de la forma-->
+	<record-def>record.xml</record-def>
+	
+	
+	<!--response content-type-->
+	<content-type>text/html</content-type>
+	
+	<!--expiracion de la pagina (en segundos - puede estar vacio)-->
+	<expires></expires>
+	
+	<!--control de cache  (true|false)-->
+	<no-cache>false</no-cache>
+	
+	<!--URI a redireccionar despues de ejecutar el model - type=redirect|forward-->
+	<next-action type="redirect"></next-action>
+	
+	<!--mostrar este template de WEB-INF/templates si el dataset esta vacio-->
+	<on-empty source="table"></on-empty>
+	
+	<paged-dataset source="rows" rows-max="15">paging_scroll/index-scroll</paged-dataset>
+	
+	<bind type="repeat" source="rows" tag="rows"/>
+	<bind type="replace" source="rows" tag="" control-name="" field-name=""/>
+	<bind type="replace" source="cantidad" tag="" control-name="" field-name=""/>
+</config>

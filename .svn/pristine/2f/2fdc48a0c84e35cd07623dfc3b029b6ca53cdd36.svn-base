@@ -1,0 +1,113 @@
+package models.bcv.mesas_operaciones;
+
+import java.util.ArrayList;
+import java.util.List;
+import megasoft.DataSet;
+import megasoft.Logger;
+import models.msc_utilitys.*;
+import com.bdv.infi.model.mesaCambio.ConsultaOperaciones;
+import com.bdv.infi.model.mesaCambio.OperacionesBCV;
+import java.lang.reflect.Method;
+
+public class Browse extends MSCModelExtend {
+
+	private DataSet _operaciones = new DataSet();
+	List<OperacionesBCV> listaOperaciones;
+
+	public void execute() throws Exception {
+		String jornadas = _record.getValue("jornada");
+
+		try {
+			System.out.println("jornadas : " + jornadas);
+			ConsultaOperaciones consulta = new ConsultaOperaciones(jornadas);
+			Method Fn = ConsultaOperaciones.class.getMethod("lecturaBcvOperaciones");
+			consulta.procesar(consulta, Fn);
+			this.listaOperaciones = consulta.ListarOperaciones();
+
+			if (listaOperaciones != null) {
+				iniciar_datos_sql();
+			}
+
+			List<String> lstcodigo = new ArrayList<String>();
+			List<String> lstoferta = new ArrayList<String>();
+			List<String> lstdemanda = new ArrayList<String>();
+			List<String> lsttasa = new ArrayList<String>();
+			List<String> lstestado = new ArrayList<String>();
+			List<String> lstjornada = new ArrayList<String>();
+			List<String> lstmonedaPacto = new ArrayList<String>();
+			List<String> lstpactoMonto = new ArrayList<String>();
+			List<String> lstmonedaBase = new ArrayList<String>();
+			List<String> lstmontoPactoBase = new ArrayList<String>();
+			List<String> lsttcPactoBase = new ArrayList<String>();
+			List<String> lstofertante = new ArrayList<String>();
+			List<String> lstdemandante = new ArrayList<String>();
+			List<String> lsttipoPacto = new ArrayList<String>();
+
+			for (OperacionesBCV lst : listaOperaciones) {
+				lstcodigo.add(lst.getCodigo());
+				lstoferta.add(lst.getOferta());
+				lstdemanda.add(lst.getDemanda());
+				lsttasa.add(lst.getTasa());
+				lstestado.add(lst.getEstado());
+				lstjornada.add(lst.getJornada());
+				lstmonedaBase.add(lst.getMonedaBase());
+				lstpactoMonto.add(lst.getPactoMonto());
+				lstmonedaPacto.add(lst.getMonedaPacto());
+				lstmontoPactoBase.add(lst.getMontoPactoBase());
+				lsttcPactoBase.add(lst.getTasaPactoBase());
+				lstofertante.add(lst.getOfertante());
+				lstdemandante.add(lst.getDemandante());
+				lsttipoPacto.add(lst.getTipoPacto());
+			}
+
+			_operaciones.setValue("codigo", lstcodigo.toString());
+			_operaciones.setValue("oferta", lstoferta.toString());
+			_operaciones.setValue("demanda", lstdemanda.toString());
+			_operaciones.setValue("tasa", lsttasa.toString());
+			_operaciones.setValue("estado", lstestado.toString());
+			_operaciones.setValue("jornada", lstjornada.toString());
+			_operaciones.setValue("monedaPacto", lstmonedaPacto.toString());
+			_operaciones.setValue("pactoMonto", lstpactoMonto.toString());
+			_operaciones.setValue("monedaBase", lstmonedaBase.toString());
+			_operaciones.setValue("montoPactoBase", lstmontoPactoBase.toString());
+			_operaciones.setValue("tcPactoBase", lsttcPactoBase.toString());
+			_operaciones.setValue("ofertante", lstofertante.toString());
+			_operaciones.setValue("demandante", lstdemandante.toString());
+			_operaciones.setValue("tipoPacto", lsttipoPacto.toString());
+
+			storeDataSet("operaciones", _operaciones);
+
+		} catch (Exception e) {
+			storeDataSet("jornada", _operaciones);
+			System.out.println("Browse : execute() Transacciones " + e);
+			Logger.error(this, "Browse : execute() Transacciones " + e);
+		}
+
+	}
+
+	public String[] campos_datos() {
+
+		String Campos[] = { "codigo", "oferta", "demanda", "tasa", "estado", "jornada", "monedaPacto", "montoPactoBase", "tcPactoBase", "ofertante", "demandante", "tipoPacto" };
+		return Campos;
+	}
+
+	public void iniciar_datos_sql() {
+		String Campos[] = campos_datos();
+		int cant = Campos.length;
+		for (int i = 0; i < cant; i++) {
+			_operaciones.append(Campos[i], java.sql.Types.VARCHAR);
+		}
+		try {
+			_operaciones.addNew();
+		} catch (Exception e) {
+			System.out.println("Browse : iniciar_datos_sql()" + e);
+			Logger.error(this, "Browse : iniciar_datos_sql()" + e);
+		}
+
+	}
+
+	public boolean pru() throws Exception {
+		return false;
+	}
+
+}

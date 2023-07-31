@@ -1,0 +1,80 @@
+<html>
+	<head>        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        <script type="text/javascript">
+        function detalleOrden(nombreFormulario){
+	        var longitud = nombreFormulario.length;
+	        var str=nombreFormulario.substr(8,longitud);
+			document.getElementById(str).submit();
+        }
+        </script>
+    </head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+			<TD class="headerBox">                
+            	<FONT class="headerText">Liquidaci&oacute;n / Consulta / Status de Cobranza </FONT>
+        	</TD>
+        	<!-- help online -->
+   			<TD class="headerBox" valign="middle" align="right">
+   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   			</TD>
+   			<!-- fin help online -->
+		</TR>
+	</TABLE>
+   <center>
+	<br>
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+		<!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Lista de Registros (@t_registros@)
+                </FONT>
+            </th>
+        </tr>
+	</table>
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;>
+		<!--encabezados de columna-->
+		<tr class="tableHeader">
+			<th></th>
+    		<th width="27%" nowrap>Blotter</th>  
+            <th width="7%" nowrap >Orden</th>
+            <th  nowrap>Cliente</th>                         
+            <th width="15%" nowrap>Adjudicado</th>
+            <th width="15%" nowrap>Pendiente</th>
+            <th width="15%" nowrap>Financiado</th>
+    	</tr>
+		<!--data-->
+	   <ordenes>
+    	<tr class="tableCell">
+    	<td align="center">
+                <a href="javascript:detalleOrden('19569633@ordene_id@');"><IMG SRC="../images/infi_gn_document.gif" WIDTH="15" ALIGN="top" HEIGHT="13" title="Detalles de la Orden" BORDER="0" style="cursor:hand"></a>
+                </td>
+          		<form id="@ordene_id@" name="@ordene_id@" action="detalle_orden-find" method="post" target="_blank"><input type="hidden" value="@ordene_id@" name="ord_id"> </form>
+		<td>@bloter_descripcion@</td>
+		<td align="center">@ordene_id@</td>
+		<td align="left" nowrap="nowrap">@client_nombre@</td>
+		<td align="right">@ordene_adj_monto format-mask='#,###,###.##'@</td>
+		<td align="right">@pendiente format-mask='#,###,###.##'@ @m_bs_rep@</td>
+		<td align="right">@ordene_ped_total_pend format-mask='#,###,###.##'@ @m_bs_rep@</td>
+		</tr>
+	   </ordenes>
+	</table>
+    <BR>
+    @page_index@
+	<BR>
+	<BR>
+    	<button TYPE="button" onclick="window.location='status_cobranza-filter'">Regresar</button>
+		&nbsp;
+		<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+	</form>
+   </center>
+</body>
+</html>

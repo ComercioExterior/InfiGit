@@ -1,0 +1,149 @@
+<html>
+	<head> 
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        <script type="text/javascript">
+         
+         function detalle_proceso(nombreFormulario){
+	        document.forms.dataentry.action="actualizar_numero_cheque-confirm_update?proceso="+nombreFormulario;
+	        document.forms.dataentry.submit();
+        }
+        
+        function detallerecompra(orden){
+	        document.forms.dataentry.action="actualizar_numero_cheque-confirm_update?transaccion=1&orden="+orden;
+	        document.forms.dataentry.submit();
+        }
+        
+        function deshabilitar_procesar(){
+       
+         var procesos = document.getElementById('procesos');
+         var procesos1 = document.getElementById('procesos1')
+        
+         var recompra = document.getElementById('recompra');
+         var recompra1 = document.getElementById('recompra1')
+
+	        if(procesos.rows.length==1){
+		        procesos.style.display = 'none';
+		        procesos1.style.display = 'none';
+	        }
+
+	        if(recompra.rows.length==1){
+		        recompra.style.display = 'none';
+		        recompra1.style.display = 'none';
+	        }
+        }
+
+        </script>
+    </head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};deshabilitar_procesar()">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Actualizaci&oacute;n de Cheques</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+<center>
+
+<br>
+<form name="dataentry" action="actualizar_numero_cheque-confirm_update" method="post">
+<table id="procesos1" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                  Procesos del cliente &nbsp;@pick_cliente@
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table id="procesos" border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;display: block" id="procesos">
+    
+    <!--encabezados de columna-->
+    <tr>         
+    		  <th nowrap width="10%">Detalle</th>
+              <th nowrap>Proceso</th>            
+              <th nowrap>Fecha Registro</th>
+              <th nowrap>Usuario</th>                                  
+    </tr>
+    <!--data-->
+    <procesos>
+    <tr class="tableCell">
+		   <td align="center">
+                <a href="javascript:detalle_proceso(@proceso_id@);"><IMG SRC="../images/infi_gn_document.gif" WIDTH="15" ALIGN="top" HEIGHT="13" title="Detalles del Proceso" BORDER="0" style="cursor:hand"></a>
+                </td>
+           <td nowrap align="center">@proceso_id@</td>
+           <td nowrap align="center">@fecha_registro@</td> 
+           <td nowrap align="center">@userid@</td>                
+    </tr>
+     </procesos>
+    </table>
+
+    <table id="recompra1" border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                  Ordenes de Recompra
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table id="recompra" border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;display: block" id="procesos">
+    
+    <!--encabezados de columna-->
+    <tr>         
+    		  <th nowrap width="10%">Detalle</th>
+              <th nowrap>Orden</th>            
+              <th nowrap>Id Operaci&oacute;n</th>
+              <th nowrap>Estatus</th>
+              <th nowrap>Transacci&oacute;n</th>
+              <th nowrap>Usuario</th>
+              <th nowrap>Moneda</th>
+              <th nowrap>Monto</th>                                  
+    </tr>
+    
+    <!--data-->
+    <recompra>
+    <tr class="tableCell">
+		   <td align="center">
+                <a href="javascript:detallerecompra(@ordene_id@);"><IMG SRC="../images/infi_gn_document.gif" WIDTH="15" ALIGN="top" HEIGHT="13" title="Detalles del Proceso" BORDER="0" style="cursor:hand"></a>
+                </td>           
+           <td nowrap align="center">@ordene_id@</td> 
+           <td nowrap align="center">@ordene_operacion_id@</td>
+           <td nowrap align="center">@status_operacion@</td>
+           <td nowrap align="center">@transa_id@</td>
+           <td nowrap align="center">@ordene_usr_nombre@</td>
+           <td nowrap align="center">@moneda_id@</td>
+           <td nowrap align="right">@monto_operacion@</td>
+                           
+    </tr>
+     </recompra>
+    </table>
+
+    <BR>
+    &nbsp;<button type="button" onclick="window.location='actualizar_numero_cheque-filter'">Regresar</button>
+    <SPAN></SPAN>
+    <button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+</form>
+</center>
+</body>
+</html>

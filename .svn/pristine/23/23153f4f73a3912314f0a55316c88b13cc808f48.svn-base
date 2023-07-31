@@ -1,0 +1,467 @@
+
+<HTML>
+
+<head>
+
+<script language="javascript" src="../js/default.js"></script>
+<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+
+<!--cambiar: nombre de la aplicacion-->
+<title>Sistema INFI</title>
+<script type="text/javascript">
+	//Funci&oacute;n para abrir un picklist o limpiar el valor anteriormente seleccionado
+	function showPickList(ind, id, tx, campo) {
+		var r
+		if (ind == '1') { // llamar a picklist		
+			r = window
+					.open(
+							campo + '?in_precio=0&name_id=' + id.name
+									+ "&name_tx=" + tx.name,
+							'Picklist',
+							'resizable=yes,scrollbars=yes,width=600,height=450,Left=200,top=150,Status=yes,unadorned:true');
+		} else {
+			id.value = "";//limpiar id de cliente
+			tx.value = "";//limpiar campo de cliente			
+		}
+	}
+
+	//Funci&oacute;n Ajax
+	function callAjax(id_contenedor, cod_ajax) {
+
+		var pagResponse = false;
+		var url = "plantillas_correo-areas_ajax_addnew?cod_ajax=" + cod_ajax;
+
+		if (window.XMLHttpRequest) {// Si es Mozilla, Safari etc
+			pagResponse = new XMLHttpRequest()
+		} else if (window.ActiveXObject) { // pero si es IE
+			try {
+				pagResponse = new ActiveXObject("Msxml2.XMLHTTP")
+			} catch (e) { // en caso que sea una versi&oacute;n antigua
+				try {
+					pagResponse = new ActiveXObject("Microsoft.XMLHTTP")
+				} catch (e) {
+				}
+			}
+		} else
+			return false
+
+		pagResponse.onreadystatechange = function() { // funci&oacute;n de respuesta
+			cargarpagina(pagResponse, id_contenedor)
+		}
+
+		pagResponse.open('GET', url, true) // asignamos los m&eacute;todos open y send
+		pagResponse.send(null)
+
+	}
+	//funci&oacute;n ajax para cargar los datos en la pagina actual
+	function cargarpagina(pagResponse, id_contenedor) {
+		if (pagResponse.readyState == 4
+				&& (pagResponse.status == 200 || window.location.href
+						.indexOf("http") == -1))
+			document.getElementById(id_contenedor).innerHTML = document.getElementById(id_contenedor).innerHTML
+					+ pagResponse.responseText
+
+	}
+
+	/*function verifDest(dest) {
+		if (dest.value == "F") {
+			document.getElementById('boton_agregar_area').style.display='block';
+		}else{
+			document.getElementById('boton_agregar_area').style.display='none';
+		}
+	}	*/
+
+	/*function showPlantilla() {		  	   
+	   var indice = document.dataentry.plantilla_mail_name.selectedIndex;
+	   var valor = document.dataentry.plantilla_mail_name.options[indice].value;
+	   //llamar a la plantilla	
+	   var ventana;				   	   	   		  
+	   ventana = window.open('plantillas_correo-plantilla'+'?id=' + valor +'&name=' + 'plantilla.htm', 'Plantilla','resizable=yes,scrollbars=yes,width=600,height=450,Left=200,top=150,Status=yes,unadorned:true');		   	   		   
+	}*/
+
+	function showPlantilla(cruce) {
+		//var indice = document.dataentry.plantilla_mail_name.selectedIndex;
+		//var valor = document.dataentry.plantilla_mail_name.options[indice].value;
+		//var valor = document.dataentry.transac_plant;
+		//En la clase a la que se redirecciona se setea el id (de la transaccion) en ENVIO_CORREOS
+		//Por ende no se asigna nada a valor}
+
+		var indice = document.dataentry.tipo_destinatario.selectedIndex;
+		var tipoDest = document.dataentry.tipo_destinatario.options[indice].value;
+
+		if (tipoDest.toUpperCase() != 'C') {
+			alert('Las etiquetas sólo aplican para el tipo de destinatario Cliente');
+		} else {
+			var valor = "";
+			//llamar a la plantilla	
+			var ventana;
+			ventana = window
+					.open(
+							'plantillas_correo-plantilla' + '?cruce=' + cruce
+									+ '&id=' + valor + '&name='
+									+ 'plantilla.htm',
+							'Plantilla',
+							'resizable=yes,scrollbars=yes,width=600,height=450,Left=200,top=150,Status=yes,unadorned:true');
+		}
+	}
+
+	function showBtnPlant() {
+		if (document.dataentry.plantilla_mail_name.value != "") { //Si se selecciono algun tipo de plantilla
+			//plantilla.style.display="block"; //Se muestra el boton
+			plantilla.style.visibility = "visible";
+		} else {
+			//plantilla.style.display="none"; //No se muestra el boton
+			plantilla.style.visibility = "hidden";
+		}
+	}
+
+	//NM29643 infi_TTS_466
+	//Funcion Ajax que lista los eventos dado un id de producto
+	function callAjax2(id_contenedor, url) {
+
+		var name;
+		if (id_contenedor === 'eventos_listados') {
+			name = 'evento';
+		} else {
+			if (id_contenedor === 'areas_listadas') {
+				name = 'area';
+			}
+		}
+
+		//Siempre se intenta primero eliminar select si se encuentra generado
+		removeSelect("tabla_eventos", name);
+
+		if ((url.indexOf("ajax_eventos") != -1
+				&& document.dataentry.producto.value != '' && document.dataentry.producto.value.length > 0)
+				|| (url.indexOf("ajax_areas") != -1 && document.dataentry.tipo_destinatario.value === 'F')) {
+
+			var pagResponse = false;
+			// 	 		var url = "plantillas_correo-filter_ajax_eventos?prod="+document.dataentry.producto.value;
+			// 	 		alert('url: '+url)
+
+			if (window.XMLHttpRequest) {// Si es Mozilla, Safari etc
+				pagResponse = new XMLHttpRequest()
+			} else if (window.ActiveXObject) { // pero si es IE
+				try {
+					pagResponse = new ActiveXObject("Msxml2.XMLHTTP")
+				} catch (e) { // en caso que sea una versi&oacute;n antigua
+					try {
+						pagResponse = new ActiveXObject("Microsoft.XMLHTTP")
+					} catch (e) {
+					}
+				}
+			} else
+				return false
+
+			pagResponse.onreadystatechange = function() { // funci&oacute;n de respuesta
+				cargarpagina3(pagResponse, id_contenedor, name)
+			}
+
+			pagResponse.open('GET', url, true) // asignamos los m&eacute;todos open y send
+			pagResponse.send(null)
+
+		}
+	}
+
+	//NM29643 infi_TTS_466
+	//Funcion que elimina el select llenado con la llamada a la funcion ajax
+	function removeSelect(id_contenedor, name) {
+// 		var select = document.getElementById(id_contenedor).cells[1].childNodes[0]; //select
+		var select = document.getElementById(id_contenedor);
+		if (select === undefined || select === null) {
+		} else { //Esta definido el select (se habia llamado a la funcion ajax antes)
+			select.parentNode.removeChild(select);
+		}
+	}
+
+	//NM29643 infi_TTS_466
+	//Funcion ajax para cargar los datos en la pagina actual
+	function cargarpagina2(pagResponse, id_contenedor, name) {
+		if (pagResponse.readyState == 4
+				&& (pagResponse.status == 200 || window.location.href
+						.indexOf("http") == -1)) {
+			//Se llena el select con la respuesta de la llamada a la funcion ajax
+			alert('responseText: '+pagResponse.responseText);
+			var html = pagResponse.responseText.substr(0, pagResponse.responseText.indexOf("<iframe"))
+			alert('html: '+html);
+			document.getElementById(id_contenedor).cells[1].innerHTML = document
+					.getElementById(id_contenedor).cells[1].innerHTML
+					+ html
+			// 	 			document.getElementById(id_contenedor).innerHTML = document.getElementById(id_contenedor).innerHTML + pagResponse.responseText
+			alert('Final: '+document.getElementById(id_contenedor).cells[1].innerHTML);
+		}
+	}
+
+	
+	//NM29643 infi_TTS_466
+	//Funcion ajax para cargar los datos en la pagina actual
+	function cargarpagina3(pagResponse, id_contenedor, name) {
+		if (pagResponse.readyState == 4 && (pagResponse.status == 200 || window.location.href.indexOf("http") == -1)) {
+			//Se llena el select con la respuesta de la llamada a la funcion ajax
+			document.getElementById(id_contenedor).innerHTML = pagResponse.responseText;
+		}
+	}
+	
+	
+	function verifEvento() {
+
+		var select_evento = document.dataentry.evento;
+		if (select_evento.selectedIndex != 0) {
+			var evento_name = select_evento.options[select_evento.selectedIndex].text;
+			document.getElementById('evento_nombre').value = evento_name;
+			// 	 			alert(document.getElementById('evento_nombre').value);
+		}
+
+		//  			var evento = document.dataentry.evento.value;
+		//  			var bloque1 = document.getElementById('tr1_bloque');
+		//  			var bloque2 = document.getElementById('tr2_bloque');
+		//  			if( evento==='CRUCE_RED' || evento==='NO_CRUCE_RED' || evento==='RECEPCION_TITULO_RED' || evento==='LIQUIDACION_EFECTIVO_RED' ||
+		//  				evento==='CRUCE_PER' || evento==='NO_CRUCE_PER' || evento==='RECEPCION_TITULO_PER' || evento==='LIQUIDACION_EFECTIVO_PER'
+		//  			){
+		//  				bloque1.style.display = 'block';
+		//  				bloque2.style.display = 'block';
+		//  			}else{
+		//  				if( evento==='' || evento==='TOMA_ORDEN_RED' || evento==='ENVIO_BCV_RED' || evento==='ENVIO_BCV_PER'){
+		//  	 				bloque1.style.display = 'none';
+		//  	 				bloque2.style.display = 'none';
+		//  	 			}
+		//  			}
+
+		displayBloqueCruce(true);
+
+	}
+
+	function verifEtiqueta() {
+		if (displayBloqueCruce(false)) {
+			var cuerpo = document.dataentry.cuerpo.value;
+			var nameEtiqueta = document.dataentry.name_etiqueta.value;
+// 			alert('cuerpo: ' + cuerpo + ' etiq: ' + nameEtiqueta);
+			if (cuerpo.indexOf('@' + nameEtiqueta + '@') === -1) {
+				alert('Debe incluir la etiqueta del Bloque por Cruce en el cuerpo de la plantilla para este tipo de evento');
+				return false;
+			}
+			return true;
+		}
+	}
+
+	function displayBloqueCruce(setDisplay) {
+		var bloque = false;
+		var bloque1 = document.getElementById('tr1_bloque');
+		var bloque2 = document.getElementById('tr2_bloque');
+		var bloque3 = document.getElementById('msg_etiqueta');
+		if (document.dataentry.evento != undefined) {
+			var evento = document.dataentry.evento.value;
+// 			alert('EVENTO: '+evento);
+			if (evento === 'CRUCE' || evento === 'RECEPCION_TITULO'
+			){
+// 				alert('CRUCE RECEPCION!');
+				if (setDisplay === true) {
+					bloque1.style.display = 'block';
+					bloque2.style.display = 'block';
+					bloque3.style.display = 'block';
+				}
+				bloque = true;
+			}else{
+				if(evento === '' || evento === 'TOMA_ORDEN_RED'
+						|| evento === 'ENVIO_BCV_RED'
+						|| evento === 'ENVIO_BCV_PER'
+						|| evento === 'NO_CRUCE'
+						|| evento === 'LIQUIDACION_EFECTIVO'
+				){
+// 					alert('OTRO EVENTO!');
+					if (setDisplay === true) {
+						bloque1.style.display = 'none';
+						bloque2.style.display = 'none';
+						bloque3.style.display = 'none';
+					}
+				}
+			}
+		}else{
+// 			alert('Debe seleccionar un Evento para el Producto');
+		}
+// 		alert('BLOQUE: '+bloque);
+		return bloque;
+	}
+	
+	function recargarPagina(){
+	
+	}
+	
+</script>
+
+</head>
+
+<body
+	ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+
+
+	<!--page name bar-->
+	<TABLE border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+			<TD class="headerBox"><FONT class="headerText">Configuraci&oacute;n
+					/ Plantillas de Correos / Agregar</FONT></TD>
+			<!-- help online -->
+			<TD class="headerBox" valign="middle" align="right"><img
+				border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17"
+				onclick="helpOpen(window.document.location.href);"
+				style="cursor: hand" title="Mostrar ayuda en l&iacute;nea"></TD>
+			<!-- fin help online -->
+
+		</TR>
+	</TABLE>
+
+	<CENTER />
+
+
+<!-- <div id="eventos_listados" style="position:absolute; top:100px; left:100px;"></div> -->
+
+
+	<!--formulario-->
+	<form NAME="dataentry" METHOD="POST"
+		ACTION="plantillas_correo-confirm_insert">
+
+		<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+
+			<!--titulo-->
+			<tr CLASS="formCaption">
+				<th COLSPAN="3" ALIGN="center"><FONT class="formCaptionText">
+						Agregar Registro </FONT></th>
+			</tr>
+
+			<!--campo-->
+			<!-- 	<SELECT NAME="plantilla_mail_name" SIZE="1" onchange="showBtnPlant()" -->
+
+			
+			<!--campo-->
+<!-- 			<tr class="tableCell"> -->
+			<tr>
+				<td>Producto con eventos a notificar asociados:</td>
+				<td>
+					<SELECT NAME="producto" SIZE="1" onchange="callAjax2('eventos_listados', 'plantillas_correo-filter_ajax_eventos?prod='+this.value);">
+						<OPTION VALUE="">Seleccione</OPTION>
+						<rows_productos>
+						<OPTION VALUE="@tipo_producto_id@">@nombre@</OPTION>
+						</rows_productos>
+					</SELECT>
+				</td>
+<!-- 				<td></td> -->
+			</tr>
+			
+			</table>
+			
+			<div id="eventos_listados">
+			</div>
+			
+			
+
+			<!--campo-->
+<!-- 			<tr id="eventos_listados" class="tableCell"> -->
+<!-- 				<td>Evento a notificar del producto seleccionado:</td> -->
+<!-- 				<td> -->
+<!-- 					Aqui se insertan con ajax los eventos del producto seleccionado -->
+<!-- 				</td> -->
+<!-- 			</tr> -->
+			<input name="evento_nombre" type="hidden" value="" />
+
+		
+		<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+			
+			<!--campo-->
+			<tr CLASS="formElement">
+				<td CLASS="formLabel">Nombre:</td>
+				<td><INPUT TYPE="text" NAME="plantilla_mail_name" value=""
+					SIZE="50" MAXLENGTH="100" class="inputControl"
+					onkeypress="return sin_caracteres_especiales(event)" /></td>
+			</tr>
+			
+			<tr>
+				<td width="30%">Tipo de Destinatario:*</td>
+				<td><SELECT NAME="tipo_destinatario" CLASS="inputControl">
+						<OPTION VALUE="" selected>Seleccione</OPTION>
+						<rows_dest>
+						<OPTION VALUE="@tipo_destinatario@">@nombre_tipo_destinatario@</OPTION>
+						</rows_dest>
+				</SELECT></td>
+			</tr>
+
+			<!--campo-->
+			<tr CLASS="formElement">
+				<td CLASS="formLabel">Remitente:</td>
+				<td><INPUT TYPE="text" NAME="remitente" value="" SIZE="50"
+					MAXLENGTH="100" class="inputControl"
+					onkeypress="return sin_caracteres_especiales(event)" /></td>
+			</tr>
+
+
+			<!--campo-->
+			<tr CLASS="formElement">
+				<td CLASS="formLabel">Asunto:</td>
+				<td><INPUT TYPE="text" NAME="asunto" value="" SIZE="80"
+					MAXLENGTH="100" class="inputControl"
+					onkeypress="return sin_caracteres_especiales(event)" /></td>
+			</tr>
+
+
+			<tr>
+				<td CLASS="formLabel">Cuerpo:</td>
+				<td id="plantilla" style="visibility: visible">
+					<!--IMAGEN BOTON PARA VISUALIZAR LA PLANTILLA--> <IMG
+					src="../images/infi_gn_document.gif"
+					title="Campos disponibles para la plantilla."
+					onclick="showPlantilla(0);" style="cursor: hand" />
+					&nbsp;(Etiquetas que s&oacute;lo aplican para el cuerpo)
+				</td>
+			</tr>
+
+			<tr>
+				<td colspan="2"><textarea name="cuerpo" cols="80" rows="15"></textarea></td>
+				<td id="msg_etiqueta" style="display:none">Debe incluir la etiqueta
+					&#64;@etiqueta@&#64;<br>(Se sustituye por el Bloque por Cruce)
+				</td>
+				<!-- 				<div id="msg_etiqueta" style="clear:both; float:right;">Debe incluir la etiqueta &#64;@etiqueta@&#64; (Se sustituye por el Bloque por Cruce)</div> -->
+			</tr>
+			<input name="name_etiqueta" type="hidden" value="@etiqueta@" />
+
+			<tr id="tr1_bloque" style="display: none">
+				<td CLASS="formLabel">Bloque por Cruce:</td>
+				<td id="plantilla" style="visibility: visible">
+					<!--IMAGEN BOTON PARA VISUALIZAR LA PLANTILLA--> <IMG
+					src="../images/infi_gn_document.gif"
+					title="Campos disponibles para la plantilla."
+					onclick="showPlantilla(1);" style="cursor: hand" />
+					&nbsp;(Etiquetas que s&oacute;lo aplican para el bloque por cruce)
+				</td>
+			</tr>
+
+
+			<tr id="tr2_bloque" style="display: none">
+				<td colspan="2"><textarea name="bloque" cols="80" rows="15"></textarea></td>
+			</tr>
+
+
+		</table>
+
+
+		<INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart" />
+		<!--nota sobre los campos obligatorios-->
+		<P>
+			<FONT COLOR="red"><B>Nota:</B></FONT> Los campos con * deben ser
+			llenados para poder procesar el formulario.
+		</P>
+
+		<button TYPE="submit" onclick="return verifEtiqueta();">Grabar</button>
+		&nbsp;
+		<button type="button" onclick="javascript:history.back();">Regresar</button>
+		&nbsp;
+		<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+
+	</form>
+
+
+	</CENTER>
+
+</BODY>
+
+</HTML>
+

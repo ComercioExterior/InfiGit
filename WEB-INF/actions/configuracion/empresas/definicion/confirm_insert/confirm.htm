@@ -1,0 +1,96 @@
+
+<HTML>
+    
+    <HEAD>
+    <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+            <SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+        
+    
+             <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        
+        <TITLE>Sistema INFI</TITLE>
+                
+        <script type="text/javascript">
+        
+        function ocultarMostrarRif(){
+        	//si es depositario ocultar rif
+        	if(document.dataentry.empres_in_depositario_central.value==1){
+        		document.getElementById('colum_rif').style.display='none';
+        	}else{
+        		document.getElementById('colum_rif').style.display='block';
+        	}
+        }
+        </script>
+         
+    </HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript: ocultarMostrarRif();">
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Empresas / Definici&oacute;n</FONT>
+        </TD>
+        
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+        <td class="headerBox" aling="right"></td>
+</TABLE>
+        
+        <CENTER>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="empresas_definicion-insert">
+		
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform" style="TABLE-LAYOUT: auto; ">
+        
+        <!--titulo-->
+        <tr>
+            <td COLSPAN="3" ALIGN="center" nowrap>
+                 <b>Por favor confirme si desea agregar este registro</b>
+            </td>
+        </tr>
+        <tr class="tableCell">
+			<td align="center" nowrap>
+			<b>Empresa:</b> @empres_nombre@
+			</td>
+			<td id="colum_rif" align="center" nowrap>
+			<b>Rif:</b> @empres_rif_altair@
+			</td>
+		</tr>
+        </table>
+         <INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/> 	
+         <INPUT TYPE="HIDDEN" VALUE="@empres_nombre@" NAME="empres_nombre"/>
+         <INPUT TYPE="HIDDEN" VALUE="@empres_rif@" NAME="empres_rif"/>
+         <INPUT TYPE="HIDDEN" VALUE="@empres_siglas@" NAME="empres_siglas"/>
+         <INPUT TYPE="HIDDEN" VALUE="@empres_in_emisor@" NAME="empres_in_emisor"/>
+         <INPUT TYPE="HIDDEN" VALUE="@empres_in_depositario_central@" NAME="empres_in_depositario_central"/>
+         <INPUT TYPE="HIDDEN" VALUE="@empres_status@" NAME="empres_status"/>       
+         <INPUT TYPE="HIDDEN" VALUE="@tipper_id@" NAME="tipper_id"/>
+         <INPUT TYPE="HIDDEN" VALUE="@empres_rif_altair@" NAME="empres_rif_altair"/>
+         <INPUT TYPE="HIDDEN" VALUE="@tipper_id_altair@" NAME="tipper_id_altair"/>
+         <INPUT TYPE="HIDDEN" VALUE="@empresa_numero_cuenta@" NAME="empresa_numero_cuenta"/>
+         <INPUT TYPE="HIDDEN" VALUE="@depositario_numero_cuenta@" NAME="depositario_numero_cuenta"/>
+ 
+
+            <br>
+            <button TYPE="submit">Procesar</button>
+            &nbsp;<button type="button" onclick="javascript:history.back();">Regresar</button>
+            &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+
+    </form>
+        
+        </CENTER>
+        
+    </BODY>
+
+</HTML>
+

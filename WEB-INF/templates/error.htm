@@ -1,0 +1,67 @@
+<html>
+
+<HEAD>
+    <TITLE>Evento en la Aplicaci&oacute;n</TITLE>
+    <LINK REL="stylesheet" type="text/css" href="../megasoft.css" />
+     <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+</HEAD>
+
+<script type="text/javascript">
+function regresar(){
+	
+	//si la ventana fue abierta como un popup: cerrar
+	if(window.opener!=null){
+		window.close();
+	}else{//sino regresar al formulario anterior
+		window.history.back();
+	}
+}
+</script>
+
+<body ONLOAD="document.forms[0].elements[0].focus();">
+
+<center>
+
+<TABLE border="0" width="100%" CELLSPACING="2" CELLPADDING="5" >
+<TR>
+
+<TD WIDTH="90%" VALIGN="TOP" ALIGN='center' VALIGN='TOP'>
+<h2 style="color:red">
+<IMG SRC="../images/infi_gn_warning.gif" width="20" />
+   Evento en la Aplicaci&oacute;n
+</h2>
+</TD>
+
+</TR>
+
+</TABLE>
+
+
+<table border="0" width="90%">
+<TR><TD BGCOLOR="gray">
+    <table  border="0" width="100%" CELLSPACING="1" CELLPADDING="5" >
+
+        <tr>
+    		<td width="30%" BGCOLOR="#D6D6D6" VALIGN="top">
+                <b>Para su informaci&oacute;n</b>
+            </td>
+    		<td width="70%" BGCOLOR="white">
+                @errormsg@
+            </td>
+    	</tr>
+
+    </table>
+</TD></TR>
+</table>
+
+
+    
+    <FORM>
+    <button type="button" onclick="regresar();">Regresar</button>
+    </FORM>
+
+
+</center>
+</body>
+</html>
+

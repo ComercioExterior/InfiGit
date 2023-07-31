@@ -1,0 +1,1 @@
+delete from MSC_MENU_ITEMS where id = @id@

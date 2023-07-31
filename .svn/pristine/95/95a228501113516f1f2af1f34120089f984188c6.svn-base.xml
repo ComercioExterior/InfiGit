@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+    <!--
+    
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, decimal, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+    
+    -->
+    
+    	<field 
+        name="empres_nombre" 
+        type="varchar" 
+        description="Empresa"
+        nullable="1"
+        size="50" />
+        
+         <field 
+        name="empres_rif" 
+        type="varchar" 
+        description="Rif Empresa"
+        nullable="1"
+        size="10" />
+        
+        
+        <field 
+        name="empres_in_emisor" 
+        type="varchar" 
+        description="Emisor"
+        nullable="1"
+        size="11" />
+        
+        <field 
+        name="empres_in_depositario_central" 
+        type="varchar" 
+        description="Depositario Central"
+        nullable="1"
+        size="11" />
+ 
+        <field 
+        name="empres_status" 
+        type="varchar" 
+        description="Estatus"
+        nullable="1"
+        size="11" />
+       
+        
+        <field 
+        name="tipper_id" 
+        type="varchar" 
+        description="Tipo de Persona"
+        nullable="1"
+        size="50" />
+        
+        <field 
+        name="empres_rif_altair" 
+        type="varchar" 
+        description="Rif Empresa"
+        nullable="1"
+        size="11" />
+        
+        <field 
+        name="tipper_id_altair" 
+        type="varchar" 
+        description="Tipo de Persona"
+        nullable="1"
+        size="50" />
+        
+        <field 
+        name="empres_siglas" 
+        type="varchar" 
+        description="Siglas Empresa"
+        nullable="1"
+        size="4" />
+        
+      	<field 
+        name="empresa_numero_cuenta" 
+        type="varchar" 
+        description="Nro. de Cuenta Empresa"
+        nullable="1"
+        size="20" />
+ 
+      	<field 
+        name="depositario_numero_cuenta" 
+        type="varchar" 
+        description="Nro. de Cuenta Empresa"
+        nullable="1"
+        size="20" />
+ 
+     
+        
+</record>
+

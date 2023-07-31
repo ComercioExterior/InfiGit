@@ -1,0 +1,90 @@
+<HTML>
+	<HEAD>
+		<TITLE>Sistema INFI</TITLE>
+    	<LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+    	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		<SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+		<script language="javascript" src="../js/default.js"></script>   
+		
+	</HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    	<TR>
+        	<TD class="headerBox">                
+            	<FONT class="headerText">Custodia / Transacciones / Entrada de T&iacute;tulos</FONT>
+       		 </TD>
+        	<!-- help online -->
+   			<TD class="headerBox" valign="middle" align="right">
+   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   			</TD>
+   			<!-- fin help online -->
+        	<td class="headerBox" aling="right"></td>
+        </TR>
+	</TABLE>
+	<CENTER>
+
+	<!--formulario-->
+	<form NAME="dataentry" METHOD="POST" ACTION="entrada_titulos-confirm_entrada">
+		<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+			 <!--titulo-->
+			<tr>
+				<th COLSPAN="4" ALIGN="center">Datos de la Transacci&oacute;n</th>
+			</tr>
+			<!--campo-->
+			<tr>
+				<td nowrap>Cliente:</td>
+            	<td nowrap>@client_nombre@</td>
+        	</tr>
+        	<tr>
+				<td nowrap>Titulo:</td>
+				<td nowrap>@titulo_id@</td>
+        	</tr>
+        	<tr>
+				<td nowrap>Moneda Denominaci&oacute;n:</td>
+				<td nowrap>@titulo_moneda_den@</td>
+        	</tr>
+        	<tr>
+				<td nowrap>Tipo de Producto:</td>
+            	<td nowrap>@selectipoproducto@</td>
+        	</tr>
+        	<tr>
+				<td nowrap>Cantidad:</td>
+            	<td>
+            		<INPUT TYPE="TEXT" VALUE="" NAME="cantidad" SIZE="30" MAXLENGTH="25" class="inputControl" />
+            	</td>
+        	</tr>
+        	<tr>
+				<td nowrap>Depositario:</td>
+				<td>
+            	<SELECT NAME="empres_id" CLASS="inputControl" >
+					<rows>
+					<OPTION VALUE="@empres_id@">@empres_nombre@</OPTION>
+					</rows>
+				</SELECT>
+				</td>
+        	</tr>
+        	<tr>
+				<td nowrap>Contraparte:</td>
+				<td>
+	            	<INPUT TYPE="TEXT" VALUE="" NAME="contraparte" SIZE="30" MAXLENGTH="25" class="inputControl" />
+	            </td>
+        	</tr>
+		</table>
+		<INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/> 	
+		<INPUT TYPE="HIDDEN" VALUE="@client_id@" NAME="client_id"/>
+		<INPUT TYPE="HIDDEN" VALUE="@titulo_id@" NAME="titulo_id"/>
+		<INPUT TYPE="HIDDEN" VALUE="@client_nombre@" NAME="client_nombre"/>
+		<INPUT TYPE="HIDDEN" VALUE="@titulo_descripcion@" NAME="titulo_descripcion"/>
+		<INPUT TYPE="HIDDEN" VALUE="@empres_nombre@" NAME="empres_nombre"/>
+
+	<br>
+		<button TYPE="submit"/>Procesar</button>
+		&nbsp;<button type="button" onclick="javascript:history.back();">Regresar</button>
+		&nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+	</form>
+	</CENTER>
+</BODY>
+</HTML>

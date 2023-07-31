@@ -1,0 +1,195 @@
+<html>
+	<head>
+         <script language="javascript" src="../js/default.js"></script>
+         <script type="text/javascript" src="../js/menu/jquery-1.2.2.pack.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <title>Sistema INFI</title>
+        <script type="text/javascript"> 
+        var now = new Date(); 
+        var idOrdenes = "";
+        
+        function seleccionarTodos(){    
+        	if($("#todos").is(":checked")){
+        		$(":checkbox").attr("checked","true");
+        		$(":checkbox").attr("disabled","disabled");
+        		$("#todos").attr("disabled","");
+        	}else{
+        		$(":checkbox").attr("checked","");
+        		$(":checkbox").attr("disabled","");
+        	}
+        }        
+        
+        function seleccionarTodosPagina(){    
+        	if($("#todosPagina").is(":checked")){
+       			$(":checkbox").attr("checked","true");
+        	}else{
+       			$(":checkbox").attr("checked","");
+        	}
+        	$("#todos").attr("checked","");
+        }
+        		
+        function checksSeleccionados(){
+        	
+        	 idOrdenes = "";
+        	 //contados los checks
+        	 var $b = $('input[type=checkbox]');
+        	 var marcados = $b.filter(':checked').length;
+        	 var sinMarcar = $b.not(':checked').length;
+        	 
+        	 if($("#todosPagina").is(":checked"))
+        		 marcados = marcados - 2;
+        	 else
+        		 sinMarcar = sinMarcar - 2
+        	 
+        	 //se envia la menor cantidad de identificadores posible
+        	 if( marcados > sinMarcar && sinMarcar >0 ){ 
+        		 //se envian los check sin marcar, por ser menos cantidad
+       	   	    $($b.not(':checked')).each(function() {
+       	   	  		if( $(this).attr("id")!="todos" && $(this).attr("id")!="todosPagina" ){
+      	   	    		idOrdenes+=$(this).attr("id")+",";
+      	   	    	}
+      	   	     });
+       	   		idOrdenes=idOrdenes.substring(0,idOrdenes.length-1);
+      	   		idOrdenes+='&tipoFiltro=EXCLUIR';
+        	 }else{
+        		 //se envian los que si estan seleccionados, por se menos cantidad
+      	   	     $(':checkbox:checked').each(function() {
+      	   	    	if( $(this).attr("id")!="todos" && $(this).attr("id") !="todosPagina" ){
+       	   	    		idOrdenes+=$(this).attr("id")+",";
+       	   	    	}
+       	   	     });
+      	   		idOrdenes=idOrdenes.substring(0,idOrdenes.length-1);
+      	   		idOrdenes+='&tipoFiltro=INCLUIR';
+        	 }
+			if(idOrdenes!="" && idOrdenes!="&tipoFiltro=EXCLUIR" && idOrdenes!="&tipoFiltro=INCLUIR"){				
+				return true;  
+			} else{			
+				if(!$("#todos").is(":checked") && sinMarcar>0){
+					alert('Debe seleccionar alguna operación');
+					return false;
+				}
+				return false; 
+			}
+        }   
+        
+        function procesar(seleccion){  
+        	var seleccion = "";
+        	if($("#todos").is(":checked")){
+        		mensaje='¿Está seguro que desea procesar "Todas" las operaciones Swift?'
+        		seleccion='todos'
+        	}else
+        		mensaje='¿Está seguro que desea procesar las operaciones Swift seleccionadas?'
+        				
+        	if(checksSeleccionados()||$("#todos").is(":checked")){
+		        if(confirm(mensaje))
+		        {		
+		        	//$("#btnProcesar").attr("disabled","disabled");
+		        	var ruta = 'consulta_operaciones_swift-procesar?';
+		        	if(!$("#todos").is(":checked")){
+		        		ruta+='idOrdenes='+idOrdenes+'&';
+		        	}	        	
+		        	ruta+='seleccion='+seleccion+'&fechaDesde='+document.forms[0].fecha_desde.value+'&fechaHasta='+document.forms[0].fecha_hasta.value+'&tipoProducto=@tipo_producto@&transaccion_id='+document.forms[0].transaccion_id.value;
+		        	//document.getElementById('btnProcesar').disabled='disabled';
+		        	window.location=ruta;
+		        }
+	        }
+        } 
+        
+        function validarSeleccion(check,fecha){
+        	if(document.getElementById('todosPagina').checked && !check.checked){
+        		document.getElementById('todosPagina').checked=false;
+        	}
+        }
+        function desabilitarChecks(){
+			if(document.getElementById('enviado').value!='0')   {      
+				$(":checkbox").attr("disabled","disabled");
+				$("#btnProcesar").attr("disabled","disabled");
+			}
+        }
+        </script>
+    </head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};desabilitarChecks()">	
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Utilitarios / Consulta operaciones SWIFT</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online --> 
+   	</TR>
+</TABLE>
+<center>
+
+<br>
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                  Tipo de Producto: @tipo_producto@ / Operaciones: ( @t_registros@ )
+                </FONT>
+            </th>
+            <th>Procesar todos los registros: 
+            	<input type="checkbox" id="todos" name="todos" onclick="seleccionarTodos()" /></th>
+        </tr>
+  
+	</table>
+<form>	
+<INPUT TYPE="hidden" VALUE="@fecha_desde@" NAME="fecha_desde"/> 
+<INPUT TYPE="hidden" VALUE="@fecha_hasta@" NAME="fecha_hasta"/> 
+<INPUT TYPE="hidden" VALUE="@tipo_producto@" NAME="tipo_producto"/> 
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+    
+    <!--encabezados de columna-->
+    <tr>         
+    		  <th width="4%"></th>
+    		  <th nowrap>Cliente</th>
+              <th nowrap>Id Orden </br>(TOMA DE ORDEN)</th>
+              <th nowrap>Id Orden Recompra/</br>Venta/Cup&oacute;n</th>
+              <th nowrap>Operaci&oacute;n</th>            
+              <th nowrap>Status</th>
+              <th nowrap>Monto</th>
+              <th nowrap>Moneda</th>
+              <th nowrap>Fecha Valor</th>
+              <th nowrap>Transacci&oacute;n</th>
+              <th nowrap>Tipo instrucci&oacute;n</th>               
+              <th>Seleccione <br/><input type="checkbox" id="todosPagina" name="todosPagina" onclick="seleccionarTodosPagina()" /></th>                                   
+    </tr>
+    <!--data-->
+    <registros>
+    <tr class="tableCell"> 
+        <td align="center">
+			<a href="consulta_operaciones_swift-detalle?ordene_id=@ordene_operacion_id@&enviado=@enviado@&tipoProducto=@tipo_producto@"><IMG SRC="../images/infi_gn_edit2.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Detalle instrucción de pago" BORDER="0" style="cursor:hand"></a>
+		</td> 
+		   <td nowrap align="center">@client_nombre@</td>
+		   <td nowrap align="center">@ordene_id_relacion null-value='No aplica'@</td>
+           <td nowrap align="center">@ordene_id@</td>
+           <td nowrap align="center">@ordene_operacion_id@</td>
+           <td nowrap align="center">@status_operacion@</td> 
+           <td nowrap align="center">@monto_operacion@</td>
+           <td nowrap align="center">@moneda_id@</td>
+           <td nowrap align="center">@fecha_aplicar@</td>
+           <td nowrap align="center">@transa_id@</td>
+           <td nowrap align="center">@instruccion_nombre@</td>           
+		   <td nowrap align="center"><input type="checkbox" name="ordenes" id="@ordene_operacion_id@" onclick="validarSeleccion(this, '@fecha_aplicar@')"/></td>                   
+    </tr>    
+     </registros>
+    </table>
+    <br>@page_index@ <br>
+		
+    <BR>
+    <input id="transaccion_id" type="hidden" value="@transaccion_id@" name="transaccion_id"/>
+	<input id="enviado" type="hidden" value="@enviado@" name="enviado"/>
+	&nbsp;<button type="button" onclick="procesar('seleccion')" id="btnProcesar">Procesar Selección</button>
+    &nbsp;<button type="button" onclick="window.location='consulta_operaciones_swift-filtro'">Regresar</button>
+     &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+</form>
+</center>
+</body>
+</html>

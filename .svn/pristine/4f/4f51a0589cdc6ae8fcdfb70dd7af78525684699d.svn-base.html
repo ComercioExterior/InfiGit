@@ -1,0 +1,82 @@
+<html>
+	<head>   
+         <script language="javascript" src="../js/default.js"></script>
+         <script language="javascript" src="../js/consultaOrden.js"></script>    
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>        
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <link rel="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+  <link rel="stylesheet" type="text/css" href="../css/EstiloFichas.css" />  
+</head>
+<body>
+
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Ordenes / Consultas / Detalles </FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+
+
+  <!--formulario-->
+  <form>
+<div id="menu">
+<table border="0">
+<tr>
+<td id="navigation"><a href="javascript:datos();"><span>Datos</span></a></td>
+<td id="navigation"><a href="javascript:transacciones();"><span>Transacciones</span></a></td>
+<td id="navigation"><a href="javascript:titulos();"><span>T&iacute;tulos</span></a></td>
+<td id="navigation"><a href="javascript:documentos();"><span>Documentos</span></a></td>
+<td id="navigationActivo"><a><span>Campos Dinamicos</span></a></td>
+<td id="navigation"><a href="javascript:data();"><span>Data Extendida</span></a></td>
+<td id="navigation"><a href="javascript:requisitos();"><span>Requisitos</span></a></td>
+</tr>
+</table>
+</div>
+<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="overflow: auto;">
+   <!--encabezados de columna-->
+    <tr class="tableHeader">
+		<th nowrap>Campo</th>
+		<th nowrap>Valor</th>
+    </tr>
+        <dinamicos>
+			@trtd@
+        </dinamicos>
+</table>
+         <br>
+    <button type="button" onclick="javascript:window.close();">Cerrar</button>
+
+</form>
+<form name="datos" action="detalle_orden-find" method="post">
+<input type="hidden" name="ord_id" value="@ordene_id@">
+</form>
+<form name="transacciones" action="details_trans" method="post">
+<input type="hidden" name="ord_id" value="@ordene_id@">
+</form>
+<form name="titulos" action="details_titulos" method="post">
+<input type="hidden" name="ord_id" value="@ordene_id@">
+</form>
+<form name="documentos" action="details_documentos" method="post">
+<input type="hidden" name="ord_id" value="@ordene_id@">
+</form>
+<form name="campos" action="details_campos_dinamicos" method="post">
+<input type="hidden" name="ord_id" value="@ordene_id@">
+</form>
+<form name="data" action="details_data_extendida" method="post">
+<input type="hidden" name="ord_id" value="@ordene_id@">
+</form>
+<form name="requisitos" action="details_requisitos" method="post">
+<input type="hidden" name="ord_id" value="@ordene_id@">
+</form> 
+</body>
+</html>
+
+

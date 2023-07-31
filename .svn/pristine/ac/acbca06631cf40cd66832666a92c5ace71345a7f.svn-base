@@ -1,0 +1,164 @@
+
+<HTML>
+    
+	<head> 
+          
+         <script language="javascript" src="../js/default.js"></script>   
+        <link rel="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />		
+        
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+           
+        <script type="text/javascript">
+        
+          
+        </script>
+	
+    </head>
+  
+  <body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+  
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Generales / Instrumentos Financieros</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+        
+        <CENTER>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="insfin-confirm_update">
+		
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="2" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Editar Registro
+                </FONT>
+            </th>
+        </tr>
+        
+        <!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Descripci&oacute;n:*
+            </td>
+            <td>
+            <INPUT TYPE="TEXT" VALUE="@insfin_descripcion@" NAME="insfin_descripcion" SIZE="50" MAXLENGTH="200" class="inputControl" onkeypress="return sin_caracteres_especiales(event)"  onkeyup="dataentry.insfin_descripcion.value=dataentry.insfin_descripcion.value.toUpperCase();" />
+            </td>
+        </tr>
+                
+        <!--campo-->
+       <!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+              Rendimiento:*
+            </td>
+            <td>
+            	<SELECT NAME="insfin_metodo_cupones" CLASS="inputControl">
+					<rows3>
+					<OPTION VALUE="@num@">@valor@</OPTION>
+					</rows3>
+				</SELECT>
+            </td>
+        </tr>
+
+       <tr CLASS="formElement">
+            <td CLASS="formLabel">
+            
+              Forma Orden:*
+            </td>
+            <td>
+            	<SELECT NAME="insfin_forma_orden" CLASS="inputControl">
+					<rows>
+					<OPTION VALUE="@insfin_forma_orden@">@insfin_forma_orden_desc@</OPTION>
+					</rows>
+				</SELECT>
+            </td>
+        </tr>
+
+    	<tr CLASS="formElement">
+            <td CLASS="formLabel">            
+             Tipo de Producto:*
+            </td>
+            <td>
+            @combo_tipo_producto@
+            </td>
+            
+       	</tr>
+       	
+       	<!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Manejo de Producto:*
+            </td>
+            <td>
+            	<SELECT NAME="manejo_productos" CLASS="inputControl">
+					<rows4>
+					<OPTION VALUE="@manejo@">@manejo_productos@</OPTION>
+					</rows4>
+				</SELECT>
+			</td>
+        </tr>
+
+       <!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Multiples Ordenes:*
+            </td>
+            <td>
+            	<SELECT NAME="insfin_multiples_ordenes" CLASS="inputControl">
+					<rows1>
+					<OPTION VALUE="@num@">@valor@</OPTION>
+					</rows1>
+				</SELECT>
+			</td>
+        </tr>
+        
+      <!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Inventario:*
+            </td>
+            <td>
+            	<SELECT NAME="insfin_in_inventario" CLASS="inputControl" >
+					<rows2>
+					<OPTION VALUE="@num@">@valor@</OPTION>
+					</rows2>
+				</SELECT>
+			</td>
+        </tr>
+        </table>
+
+            <!--nota sobre los campos obligatorios-->
+            <P><FONT COLOR="red"><B>Nota:</B></FONT> Los campos con * deben ser llenados para poder procesar el formulario.</P>
+            
+             <button TYPE="submit">Grabar</button>
+            &nbsp;<button type="button" onclick="javascript:history.back();">Regresar</button>
+            &nbsp;<button type="button" onclick="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+
+            <!--campo escondido para almacenar el key del record-->
+            <INPUT TYPE="HIDDEN" VALUE="@insfin_id@" NAME="insfin_id" />
+
+    </form>
+
+        
+        </CENTER>
+        
+    </BODY>
+
+</HTML>
+

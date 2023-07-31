@@ -1,0 +1,54 @@
+<html>
+
+<head>
+	<title>Sistema INFI</title>
+	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+	<script language="javascript" src="../js/default.js"></script>	
+	<script language="JavaScript" src="../js/popcalendar.js"></script>
+	<script language="JavaScript" src="../js/decimal.js"></script>
+</head>
+
+<body
+	ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+	<center>
+	
+	
+	<form NAME="dataentry" METHOD="POST" ACTION="jornada_unidad_inversion-procesar">		
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform" style="TABLE-LAYOUT: auto; ">        
+        <!--titulo-->
+        <tr>
+            <td COLSPAN="3" ALIGN="center" nowrap>
+                 <b>@mensaje@</b>
+            </td>
+        </tr>       
+        </table>
+        
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform" style="TABLE-LAYOUT: auto; ">        
+        <!--titulo-->
+        <tr>
+            <td COLSPAN="3" ALIGN="center" nowrap>
+                 <div style="display:@mostrar_txt_jornada@"><b>Nro Jornada: </b><input type="text" value="@nro_jornada@" name="nro_jornada" /></div>
+            </td>
+        </tr>       
+        </table>	
+            <br>
+            <button TYPE="submit" style="display:@mostrar_btn_procesar@">Procesar</button>
+            &nbsp;
+            <button TYPE="submit" style="display:@mostrar_btn_procesar_manual@">Procesar Manual</button>
+            <br>
+            <button type="button" onclick="javascript:history.back();">Regresar</button>
+            &nbsp;
+           <button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+			&nbsp;
+			<input type="hidden" name="ui_id" value="@ui_id@">	
+			<input type="hidden" value="@parametro_bcv_online@" name="parametro_bcv_online"  />		
+
+    </form>
+ 
+	
+	</center>
+
+</body>
+
+</html>

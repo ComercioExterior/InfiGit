@@ -1,0 +1,92 @@
+<html>
+<head>
+<script language="javascript" src="../js/default.js"></script>
+<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+<!--cambiar: nombre de la aplicacion-->
+<title>Sistema INFI</title>
+
+</head>
+<body
+	ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+<!--page name bar-->
+<TABLE border="0" cellspacing="0" WIDTH="100%">
+	<TR>
+		<TD class="headerBox"><FONT class="headerText">Intercambio / Cobro Adjudicación Batch / Enviar Archivo Subasta Divisas</FONT></TD>
+		<!-- help online -->
+		<TD class="headerBox" valign="middle" align="right"><img
+			border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17"
+			onclick="helpOpen(window.document.location.href);"
+			style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" /></TD>
+		<!-- fin help online -->
+	</TR>
+</TABLE>
+<center><br>
+
+<!--tabla de data-->
+<table border="0" cellspacing="1" cellpadding="2" width="100%"
+	class="datatable" style="table-layout: auto;">
+	<tr CLASS="formCaption">
+		<th COLSPAN="7" ALIGN="center"><FONT class="formCaptionText">
+		Datos de la orden </FONT></th>
+	</tr>
+	  <tr>         
+    		  <th nowrap>Cliente</th>
+              <th nowrap>Id Orden </br>(TOMA DE ORDEN)</th>
+              <th nowrap>Unidad de Inversi&oacute;n</th>            
+              <th nowrap>Monto Capital</th>
+              <th nowrap>Monto Comisión</th>
+              <th nowrap>Estatus Orden</th>
+              <th nowrap>Fecha Valor</th>
+	    </tr>
+			<orden_detalle>
+            <tr>
+                <td width="25%">@CLIENT_NOMBRE@</td>
+				<td width="5%">@ORDENE_ID@</td>
+				<td width="10%">@UNDINV_NOMBRE@</td>		
+				<td width="5%">@monto_capital format-mask='###,###,###,###.00'@</td>
+				<td width="5%">@monto_comision format-mask='###,###,###,###.00'@</td>
+				<td width="5%">@ORDSTA_ID@</td>
+				<td width="5%">@ORDENE_PED_FE_VALOR@</td>				
+        	</tr>			
+			</orden_detalle>
+</table>
+<br/>
+<br/>
+
+<table border="0" cellspacing="1" cellpadding="2" width="100%"
+	class="datatable" style="table-layout: auto;">
+	<tr CLASS="formCaption">
+		<th COLSPAN="6" ALIGN="center"><FONT class="formCaptionText">
+		Detalle Operaciones </FONT></th>
+	</tr>
+	  <tr>         
+    		  <th nowrap>Codigo Operacion</th>
+              <th nowrap>Cta Cliente</br>(TOMA DE ORDEN)</th>
+              <th nowrap>Estatus Operación</th>            
+              <th nowrap>Operación</th>            
+              <th nowrap>Tipo Operacion</th>
+              <th nowrap>Monto Operacion</th>
+              <!-- th nowrap>Estatus Orden</th>
+              <th nowrap>Fecha Valor</th -->
+	    </tr>
+			<operaciones_detalle>
+            <tr>
+                <td width="25%">@ordene_operacion_id@</td>
+				<td width="5%">@ctecta_numero@</td>
+				<td width="10%">@status_operacion@</td>	
+				<td width="10%">@operacion_nombre@</td>				
+				<td width="10%">@trnf_tipo@</td>	
+				<td width="5%">@monto_operacion format-mask='###,###,###,###.00'@</td>
+				<!-- td width="5%">@monto_comision format-mask='###,###,###,###.00'@</td>
+				<td width="5%">@ORDSTA_ID@</td>
+				<td width="5%">@ORDENE_PED_FE_VALOR@</td-->				
+        	</tr>			
+			</operaciones_detalle>
+</table>
+<BR>
+<form>&nbsp;
+<button type="button" onclick="window.history.back()">&nbsp;Regresar&nbsp;</button>
+</form>
+</center>
+</body>
+</html>

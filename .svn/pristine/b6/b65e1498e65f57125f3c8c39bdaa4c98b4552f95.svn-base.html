@@ -1,0 +1,247 @@
+<html>
+
+<head>
+<script language="javascript" src="../js/default.js"></script>  
+    <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+    <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+    <SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+    <title>Sistema INFI</title>
+
+	<script type="text/javascript">
+    
+	function closeWindow(v1,v2)
+	{
+	    window.opener.document.forms[0].@name_id@.value=v1;
+	    window.opener.document.forms[0].@name_tx@.value=v2;
+	    window.close();
+	}
+	
+	function Verificar()
+	{
+		
+		if((document.forms[0].titulo_descripcion.value.replace(/ /g, '') == '') && (document.forms[0].titulo_id.value.replace(/ /g, '') == '') && (document.forms[0].moneda_id.value.replace(/ /g, '') == '') && (document.forms[0].fe_em_desde.value.replace(/ /g, '') == '') && (document.forms[0].fe_em_hasta.value.replace(/ /g, '') == '') && (document.forms[0].fe_venc_desde.value.replace(/ /g, '') == '') && (document.forms[0].fe_venc_hasta.value.replace(/ /g, '') == '')){
+			alert("Debe introducir algún criterio de búsqueda");
+		}else{
+		
+			/*if((document.forms[0].fe_em_desde.value.replace(/ /g, '') == '') && (document.forms[0].fe_em_hasta.value.replace(/ /g, '') == '')){
+				alert("Debe establecer un rango para la fecha desde");
+			}else{*/
+			
+			
+			document.forms[0].submit();	
+			
+		}
+	}
+		
+	</script>
+
+</head>
+
+<body>
+
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">T&iacute;tulos </FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<CENTER>
+    <BR>
+
+    <!--formulario-->
+    <form method="POST" action="pick_titulos-find">
+
+        <table border="0" cellspacing="1" cellpadding="2" width="100%"  class="dataform">
+        
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="2" ALIGN="center">
+                      Filtro
+            </th>
+        </tr>
+                     
+        <!-- tr CLASS="formElement">
+			<td CLASS="formLabel">
+			</td>
+			<td>
+				<INPUT TYPE="hidden" VALUE="" NAME="titulo_id" size="30" MAXLENGTH="25"/>
+			</td>
+		</tr--->      
+		
+		<tr CLASS="formElement">
+            <td CLASS="formLabel">
+                T&iacute;tulo ID (contiene):
+            </td>
+            <td>
+                <INPUT TYPE="input" VALUE="" NAME="titulo_id" size="30" MAXLENGTH="25" class="inputControl" />
+            </td>
+		</tr>	
+		  
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+                Descripci&oacute;n (contiene):
+            </td>
+            <td>
+                <INPUT TYPE="input" VALUE="" NAME="titulo_descripcion" size="30" MAXLENGTH="25" class="inputControl" />
+            </td>
+		</tr>	
+		
+		 <tr>
+            <td>
+                 Moneda de Denominaci&oacute;n:
+            </td>
+            <td>
+				<SELECT NAME="moneda_id" SIZE=1/>				
+				<OPTION VALUE="" SELECTED/></OPTION>
+			
+				<rows_mon>				 
+				 <OPTION VALUE="@moneda_id@"/>@moneda_descripcion@</OPTION>				 							 
+ 				</rows_mon>
+ 				</SELECT>
+               
+            </td>
+        </tr>    
+        
+        
+               <tr>
+            <td>
+				Fecha Emisi&oacute;n Desde:
+            </td>
+            <td>
+				<INPUT TYPE="TEXT" VALUE="" NAME="fe_em_desde" SIZE="12" MAXLENGTH="10" class="inputControl" readonly /> 
+				<a onclick="popUpCalendar(this, fe_em_desde, 'dd-mm-yyyy')" >
+				<IMG SRC="../images/infi_gn_calendar.gif" class="boton" TITLE="Seleccionar Fecha">
+				</a>
+			</td>
+        </tr>
+		
+        <!--campo-->
+        <tr>
+            <td>
+				Fecha Emisi&oacute;n Hasta:
+            </td>
+            <td>
+				<INPUT TYPE="TEXT" VALUE="" NAME="fe_em_hasta" SIZE="12" MAXLENGTH="10" class="inputControl" readonly/> 
+				<a onclick="popUpCalendar(this, fe_em_hasta, 'dd-mm-yyyy')" >
+				<IMG SRC="../images/infi_gn_calendar.gif" class="boton" TITLE="Seleccionar Fecha"> 
+				</a>
+			</td>
+        </tr>
+        
+        <tr>
+            <td>
+				Fecha Vencimiento Desde:
+            </td>
+            <td>
+				<INPUT TYPE="TEXT" VALUE="" NAME="fe_venc_desde"  SIZE="12" MAXLENGTH="10" class="inputControl" readonly/> 
+				<a onclick="popUpCalendar(this, fe_venc_desde, 'dd-mm-yyyy')" >
+				<IMG SRC="../images/infi_gn_calendar.gif" class="boton" TITLE="Seleccionar Fecha">
+				</a>
+			</td>
+        </tr>
+		
+        <!--campo-->
+        <tr>
+            <td>
+				Fecha Vencimiento Hasta:
+            </td>
+            <td>
+				<INPUT TYPE="TEXT" VALUE="" NAME="fe_venc_hasta" SIZE="12" MAXLENGTH="10" class="inputControl" readonly/> 
+				<a onclick="popUpCalendar(this, fe_venc_hasta, 'dd-mm-yyyy')" >
+				<IMG SRC="../images/infi_gn_calendar.gif" class="boton" TITLE="Seleccionar Fecha"> 
+				</a>
+			</td>
+        </tr>
+        
+ 
+
+	 </table>
+
+        <BR>
+       
+       <input type="hidden" name="buscar" value="1" >
+       <input type="hidden" name="in_precio" value="@in_precio@" >
+		<button name="boton_buscar"  onclick="Verificar();"/>Buscar</button> 
+		
+        &nbsp;
+		<button ONCLICK="window.close();">Regresar</button>
+   
+    </form>
+
+	<div id="tb">
+    <BR>
+    <b>Seleccione un T&iacute;tulo</b>
+    <BR>
+    <BR>      
+          
+    <TABLE width="100%" class="datatable">
+    
+        
+    	<TR class="tableCell">
+            <TH WIDTH="5%">
+            </TH>
+            <TH>
+            	<b>T&iacute;tulo ID</b>
+            </TH>
+            <TH>
+            	<b>Descrip&oacute;n</b>
+            </TH>
+            
+            <TH>
+            	<b>Fecha de Emisi&oacute;n</b>
+            </TH>
+            
+            <TH>
+            	<b>Fecha de Vcto.</b>
+            </TH>
+            
+             <TH>
+            	<b>Moneda Den.</b>
+            </TH>
+             
+		</TR>
+	
+		<rows>
+	        <TR>
+	            <TD WIDTH="10%">
+		    	<a href="javascript:closeWindow('@titulo_id@','@titulo_descripcion@');"><b>OK</b></a>
+	            </TD>
+				
+	            <TD>
+		    	@titulo_id@		    	
+	            </TD> 	        
+	            
+	            <TD WIDTH="30%">
+		    	@titulo_descripcion@
+		    	<input type="hidden" value="@titulo_id@">
+	            </TD> 	            
+	            
+	            <TD align="center" WIDTH="15%">
+		    	@titulo_fe_emision@		    	
+	            </TD> 	 
+	            
+	            <TD align="center" WIDTH="15%">
+		    	@titulo_fe_vencimiento@		    	
+	            </TD> 	        
+	                              
+	             <TD WIDTH="8%">
+		    	@titulo_moneda_den@		    	
+	            </TD> 	        
+	            
+	                
+			</TR>
+	    </rows>
+    </TABLE>    
+    </div>
+    </CENTER>	
+</body>
+</html>

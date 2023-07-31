@@ -1,0 +1,111 @@
+<html>
+
+	<head> 
+          
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+           
+        <script type="text/javascript">
+        
+          
+        </script>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Generales / Precios T&iacute;tulos</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                  Precio T&iacute;tulo ( @t_registros@ )
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="TABLE-LAYOUT: auto; ">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+		<th width="2%" nowrap></th>
+		<th width="2%" nowrap></th>
+		<th width="2%" nowrap></th>
+		<th>T&iacute;tulo</th>
+		<th>Tipo de Producto</th>
+		<th>Precio Nominal</th>
+		<th>Precio de Mercado</th>
+		<th>Precio de Recompra</th>
+		<th>Status</th>
+		<th>Usuario Aprobador</th>
+		<th>Fecha Aprobaci&oacute;n</th>
+		
+	</tr>
+
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+		<td VALIGN="middle">
+			<a href="pretit-edit?titulo_id=@titulo_id@&tipo_producto_id=@tipo_producto_id@"><IMG SRC="../images/infi_gn_edit2.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Editar Registro" BORDER="0" style="cursor:hand"></a>                
+		</td>
+		<td VALIGN="middle">
+			<a href="pretit-detail?titulo_id=@titulo_id@&tipo_producto_id=@tipo_producto_id@"><IMG SRC="../images/infi_gn_find.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Historial" BORDER="0" style="cursor:hand"></a>                
+		</td>
+		<td VALIGN="middle">
+			<a href="pretit-confirm_aprobar?titulo_id=@titulo_id@&titulos_precio_nominal=@titulos_precio_nominal@&titulos_precio_mercado=@titulos_precio_mercado@&titulos_precio_recompra=@titulos_precio_recompra@&tipo_producto_id=@tipo_producto_id@"><IMG SRC="../images/infi_gn_report.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Aprobar Precio" BORDER="0" style="cursor:hand"></a>                
+		</td>
+		
+		<td VALIGN="middle" align="left" nowrap>@titulo_id@</td>
+		<td VALIGN="middle" align="left" nowrap>@nombre_tipo_producto@</td>
+		<td VALIGN="middle" align="right" nowrap>@titulos_precio_nominal@</td>
+		<td VALIGN="middle" align="right" nowrap> @titulos_precio_mercado format-mask='0.000000'@</td>                
+		<td VALIGN="middle" align="right" nowrap>@titulos_precio_recompra format-mask='0.000000'@</td>
+		<td VALIGN="middle" align="left" nowrap>@status@</td>
+		<td VALIGN="middle" align="left" nowrap>@usuario_id_aprobador@</td>
+		<td VALIGN="middle" align="center" nowrap>@fecha_aprobacion@</td>
+		
+     </tr>
+     </rows>
+    
+    </table>
+@page_index@
+
+    <BR>
+<form>
+    <button type="button" ONCLICK="window.location='pretit-addnew'">&nbsp;Agregar&nbsp;</button>
+    &nbsp;<button type="button" onclick="window.location='pretit-filter'"">Regresar</button>
+     &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+</form>
+
+</center>
+
+</body>
+
+</html>
+

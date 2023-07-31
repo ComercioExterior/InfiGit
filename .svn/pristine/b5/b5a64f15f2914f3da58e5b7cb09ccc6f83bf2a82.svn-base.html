@@ -1,0 +1,102 @@
+<html>
+
+	<head>
+        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>        
+      
+    </head>
+
+<!-- body onload="centrar();"-->
+<body>
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Roles de Vehiculos</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>		
+        <table border="0" cellspacing="1" cellpadding="2" width="60%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+         	<th>Rol</th>
+            <th>Siglas</th>
+            <th>Nombre</th>            
+        </tr>        
+      
+      <rows>
+        <tr CLASS="formElement">
+           
+            <td>
+            Tomador            	                       
+            </td>  
+           
+            <td>
+            @siglas_tomador@
+            </td>
+                 
+            <td>
+            @nombre_tomador@
+            </td>        
+       
+        </tr>
+    
+        <tr CLASS="formElement">
+           
+            <td>
+            Colocador            	                       
+            </td>  
+           
+            <td>
+            @siglas_colocador@
+            </td>
+                 
+            <td>
+            @nombre_colocador@
+            </td>        
+       
+        </tr>   
+              
+        <tr CLASS="formElement">
+           
+            <td>
+            Recompra            	                       
+            </td>  
+           
+            <td>
+            @siglas_veh_recompra@
+            </td>
+                 
+            <td>
+            @nombre_veh_recompra@
+            </td>        
+       
+        </tr> 
+ 		</rows>
+         </table>
+         <br>
+
+
+    <button onclick="javascript:window.close();">Regresar</button>
+
+</center>
+
+</body>
+
+</html>
+

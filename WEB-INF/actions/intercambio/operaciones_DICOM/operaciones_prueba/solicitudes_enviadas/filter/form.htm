@@ -1,0 +1,64 @@
+<HTML>
+	<HEAD>
+		  <TITLE>Sistema INFI</TITLE>
+	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+	<script language="javascript" src="../js/default.js"></script>
+	<script type="text/javascript">
+
+	function procesar1(){        	
+    	if(confirm("¿Está seguro que desea procesar la tarea?")){	
+        alert("Tarea ejecutada");		        	
+        }
+   }
+	
+   </script>
+   </HEAD>
+   <!--poner el focus en el 1er control de la forma-->
+   <BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Envio de Operaciones DICOM</FONT>
+        </TD>
+        
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+        <td class="headerBox" aling="right"></td>
+</TABLE>
+
+<CENTER><!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="libro_operaciones_prueba_Envio-confirm">
+<table border="0" cellspacing="1" cellpadding="2" width="100%"
+	class="dataform">
+		<tr CLASS="formCaption">
+            <th COLSPAN="4" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Jornada
+                </FONT>
+            </th>
+        </tr>
+      	<td>Numero de Jornada:</td>
+        <td><INPUT TYPE="TEXT" VALUE="@valor@" NAME="valor" class="inputControl" readonly="readonly"/></td>
+             	
+</table>
+
+         <INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/> 	
+		<INPUT TYPE="HIDDEN" VALUE="@valor@" NAME="jornada"/>
+
+<br>
+		<button id="deshabilita" type="submit" />Procesar</button>
+
+&nbsp;
+<tr><td><button type="button" onclick="javascript:procesar1()">Procesar1</button></td>
+<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+</form>
+</CENTER> 
+</BODY>
+</HTML>

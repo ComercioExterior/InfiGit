@@ -1,0 +1,65 @@
+<html>
+
+	<head>
+        
+         <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <script language="javascript" src="../js/default.js"></script>
+
+
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+	
+    </head>
+<body>
+
+<!--page name bar-->
+<TABLE WIDTH="100%">
+    <TR>
+        <td   class="headerBox">                
+            <FONT class="headerText">Unidad de Inversi&oacute;n</FONT>
+        </TD>
+    </TR>
+</TABLE>
+
+<center>
+
+<br>
+
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="1" height="1" width="100%" class="datatable" style="table-layout: auto;">
+    
+   <tr class="tableHeader">
+    	 <th></th>
+         <th class="formCaptionText"> Unidad de Inversi&oacute;n</th>        
+    </tr>
+
+    <!--data-->  
+     <rows>     
+		<tr CLASS="formElement">
+			<td  CLASS="formLabel" align="center" width="10%">
+			<form name="picklist">
+					<input type="hidden" name="undinv_id" value="@undinv_id@" size="1">
+					<input type="hidden" name="undinv_nombre" value="@undinv_nombre@-@undinv_serie@" size="1">
+					<a  onclick="javascript:pickListReturnFormValues( this );" href="javascript:void(0);"><b>OK</b></a>
+				</td>
+				<td  CLASS="formLabel">@undinv_nombre@-@undinv_serie@</td>
+			</form>
+		</tr>	
+	</rows>	 
+    </table>
+
+<br>
+
+<FORM>
+    <td  CLASS="formLabel" align="center">
+				<button ONCLICK="window.close();">Cerrar</button>
+			</td>
+
+</FORM>
+</center>
+
+</body>
+
+</html>
+

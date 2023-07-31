@@ -1,0 +1,13 @@
+<table id="tabla_eventos" border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+<tr class="tableCell">
+	<td>Evento a notificar del producto seleccionado:</td>
+	<td>
+		<SELECT NAME="evento" SIZE="1" ONCHANGE="verifEvento(1); recargarPagina();">				
+			<OPTION VALUE=""></OPTION>
+			<rows_eventos>					
+				<OPTION VALUE="@evento_id@">@evento_name@</OPTION>						
+			</rows_eventos>
+		</SELECT>
+	</td>
+</tr>
+</table>

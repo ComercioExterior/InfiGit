@@ -1,0 +1,118 @@
+
+<HTML>
+    
+    <HEAD>
+    <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+            <SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+        
+    
+        <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        
+        <TITLE>Sistema INFI</TITLE>
+        
+    </HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Carga Inicial / Consultas / Carga y Validaci&oacute;n</FONT>
+        </TD>
+        
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+        <td class="headerBox" aling="right"></td>
+</TABLE>
+        
+        <CENTER>
+
+<!--formulario-->
+<form name="dataentry" method="post" action="consulta_carga_validacion-find">
+
+   <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+    
+     <tr class="tableCell">
+     	<th colspan="2" align="center">Seleccione Criterios</th>
+     </tr>
+        <!--campo-->
+       <tr CLASS="formElement">
+           <td CLASS="formLabel">
+            Archivo:*
+           </td>
+           <td>
+                     	
+          		<SELECT NAME="num_archivo" SIZE="1" ONCHANGE="javascript:document.dataentry.action='consulta_carga_validacion-filter?band=1'; document.dataentry.submit();">
+				<OPTION VALUE="" SELECTED></OPTION>
+				 <rows_archivos>
+				 <OPTION VALUE="@cod_archivo@">@cod_archivo@ - @nom_archivo@</OPTION>
+ 				</rows_archivos>
+ 				</SELECT>
+               
+           </td>
+            
+       </tr>
+        
+
+      <tr CLASS="formElement">
+           <td CLASS="formLabel">
+            Proceso:*
+           </td>
+           <td>
+                     	
+          		<SELECT NAME="cod_proceso" SIZE="1">
+				<OPTION VALUE="" SELECTED></OPTION>
+				 <rows_procesos>
+				 <OPTION VALUE="@id_proceso@">@z11_nu_numero_proceso@ - @fec_inicio@</OPTION>
+ 				</rows_procesos>
+ 				</SELECT>
+               
+           </td>
+           
+           
+       </tr>
+       
+             <tr CLASS="formElement">
+           <td CLASS="formLabel">
+            Mapa de Archivo:*
+           </td>
+           <td>
+                     	
+          		<SELECT NAME="cod_mapa" SIZE="1">
+				<OPTION VALUE="" SELECTED></OPTION>
+				<rows_mapas>				 
+				 <OPTION VALUE="@cod_mapa@">@cod_mapa@ - @nom_mapa@</OPTION>
+ 				</rows_mapas>
+ 				</SELECT>
+               
+          	
+          
+           </td>
+           
+           
+       </tr>
+       
+ 
+ 
+    </table>
+    
+    <br>
+        <button type="submit">Aceptar</button>
+    
+    
+    </form>
+        
+        </CENTER>
+        
+    </BODY>
+
+</HTML>
+

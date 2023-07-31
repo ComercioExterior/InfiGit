@@ -1,0 +1,161 @@
+<html>
+<head>
+<script language="javascript" src="../js/default.js"></script>
+<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+<!--cambiar: nombre de la aplicacion-->
+<title>Sistema INFI</title>
+<script type="text/javascript">
+
+	function mostrarBancoIntermediario(){
+       	if(document.dataentry.bic_intermediario.value==''){
+       		document.getElementById('banco_intermediario').style.display = 'none';      		
+		}else{
+			document.getElementById('banco_intermediario').style.display = 'block';     
+		}
+	}
+		
+</script>
+</head>
+<body
+	ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()}; mostrarBancoIntermediario();">
+<!--page name bar-->
+<TABLE border="0" cellspacing="0" WIDTH="100%">
+	<TR>
+		<TD class="headerBox"><FONT class="headerText">Consulta
+		operaciones SWIFT / Detalle</FONT></TD>
+		<!-- help online -->
+		<TD class="headerBox" valign="middle" align="right"><img
+			border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17"
+			onclick="helpOpen(window.document.location.href);"
+			style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" /></TD>
+		<!-- fin help online -->
+	</TR>
+</TABLE>
+<center><br>
+
+<!--tabla de data-->
+<table border="0" cellspacing="1" cellpadding="2" width="100%"
+	class="datatable" style="table-layout: auto;">
+	<tr CLASS="formCaption">
+		<th COLSPAN="4" ALIGN="center"><FONT class="formCaptionText">
+		Detalles operaci&oacute;n SWIFT </FONT></th>
+	</tr>
+	<!--encabezados de columna-->
+	<tr>
+		<td nowrap="nowrap" class="negrita" width="25%">Tipo de operación:</td>
+		<td nowrap="nowrap" colspan="3">@transa_id@</td>
+	</tr>
+	<tr>
+		<td nowrap="nowrap" class="negrita">Cliente:</td>
+		<td nowrap="nowrap" colspan="3">@client_nombre@</td>
+	</tr>
+	<tr>
+		<td nowrap="nowrap" class="negrita">Id Orden INFI Recompra / Venta/ Cup&oacute;n:</td>
+		<td nowrap="nowrap" colspan="3">@ordene_id@</td>
+	</tr>
+	<tr>
+		<td nowrap="nowrap" class="negrita">Id Orden INFI (TOMA DE ORDEN):</td>
+		<td nowrap="nowrap" colspan="3">@ordene_id_relacion null-value='No aplica'@</td>
+	</tr>
+	<tr>
+		<td nowrap="nowrap" class="negrita">Id Orden Clavenet:</td>
+		<td nowrap="nowrap" colspan="3">@id_ticket_clave@</td>
+	</tr>
+	<tr>
+		<td nowrap="nowrap" class="negrita">Fecha Valor:</td>
+		<td nowrap="nowrap" colspan="3">@fecha_aplicar@</td>
+	</tr>
+	<tr>
+		<td nowrap="nowrap" class="negrita">Monto:</td>
+		<td nowrap="nowrap" align="right" width="25%">@monto_operacion format-mask='###,###,###.00'@</td>
+		<td nowrap="nowrap" class="negrita" width="25%">Moneda:</td>
+		<td nowrap="nowrap">@moneda_id@</td>
+	</tr>
+	<tr>
+		<td nowrap="nowrap" class="negrita">Cuenta Origen:</td>
+		<td nowrap="nowrap" colspan="3">@cuenta_cliente_bs@</td>
+	</tr>
+
+	<tr>
+		<td nowrap="nowrap" class="negrita" colspan="4">Banco Beneficiario</td>
+	</tr>
+	<tr>
+		<td nowrap="nowrap" class="negrita">N&uacute;mero de Cuenta del Beneficiario:</td>
+		<td nowrap="nowrap">@ctecta_numero@</td>
+		<td nowrap="nowrap" class="negrita">Nombre del Banco:</td>
+		<td nowrap="nowrap">@ctecta_bcocta_bco@</td>
+	</tr>
+	<tr>
+		<td nowrap="nowrap" class="negrita">Nombre del Beneficiario:</td>
+		<td nowrap="nowrap">@ctecta_nombre@</td>
+		<td nowrap="nowrap" class="negrita">C&oacute;digo BIC/SWIFT:</td>
+		<td nowrap="nowrap">@ctecta_bcocta_bic@</td>
+	</tr>
+	
+	<tr>
+		<td nowrap="nowrap" class="negrita">Direcci&oacute;n del Banco:</td>
+		<td nowrap="nowrap">@ctecta_bcocta_direccion@</td>
+		<td nowrap="nowrap" class="negrita">Tel&eacute;fono Banco:</td>
+		<td nowrap="nowrap">@ctecta_bcocta_telefono@</td>
+	</tr>
+	
+	<tr>
+		<td nowrap="nowrap" class="negrita">Pa&iacute;s origen:</td>
+		<td nowrap="nowrap">@cod_pais_origen@</td>
+		<td nowrap="nowrap" class="negrita">Estado origen:</td>
+		<td nowrap="nowrap">@desc_estado_origen@</td>
+	</tr>
+
+	<tr>
+		<td nowrap="nowrap" class="negrita">Ciudad origen:</td>
+		<td nowrap="nowrap">@desc_ciudad_origen@</td>
+		<td nowrap="nowrap" class="negrita">Fecha &Uacute;ltima Actualizaci&oacute;n:</td>
+		<td nowrap="nowrap">@ult_fecha_actualizacion@</td>
+	</tr>
+
+</table>
+
+<div id="banco_intermediario" style="display: none;">
+<table border="0" cellspacing="1" cellpadding="2" width="100%" 
+	class="datatable" style="table-layout: auto;">
+
+	<tr>
+		<td nowrap="nowrap" class="negrita" colspan="4">Banco Intermediario:</td>
+	</tr>
+	
+	<tr>
+		<td nowrap="nowrap" class="negrita">Nombre Intermediario:</td>
+		<td nowrap="nowrap">@ctecta_bcoint_bco@</td>
+		<td nowrap="nowrap" class="negrita">BIC/SWIFT Intermediario</td>
+		<td nowrap="nowrap">@ctecta_bcoint_bic@</td>
+	</tr>
+	
+	<tr>
+		<td nowrap="nowrap" class="negrita">Dirección Banco Intermediario:</td>
+		<td nowrap="nowrap">@ctecta_bcoint_direccion@</td>
+		<td nowrap="nowrap" class="negrita">Cuenta en Intermediario</td>
+		<td nowrap="nowrap">@ctecta_bcoint_swift@</td>
+	</tr>
+
+	<tr>
+		<td nowrap="nowrap" class="negrita">Tel&eacute;fono Intermediario</td>
+		<td nowrap="nowrap" colspan="3">@ctecta_bcoint_telefono@</td>
+		<td nowrap="nowrap" class="negrita" style="display: none;">ABA Intermediario:</td>
+		<td nowrap="nowrap" style="display: none;" >@ctecta_bcoint_aba@</td>
+	</tr>
+
+	<!--data-->
+</table>
+ </div>
+<BR>
+
+<form name="dataentry">&nbsp;
+
+<input type="hidden" value="@ctecta_bcoint_bic@" name="bic_intermediario"/>
+
+<button type="button" onclick="window.history.back()">&nbsp;Regresar&nbsp;</button>
+
+</form>
+</center>
+</body>
+</html>

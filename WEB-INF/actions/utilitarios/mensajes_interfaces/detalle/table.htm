@@ -1,0 +1,104 @@
+<html>
+	<head>
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <title>Sistema INFI</title>
+ </head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">	
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Mensajes Interfaces</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online --> 
+   	</TR>
+</TABLE>
+<center>
+
+<br>
+ 
+<form NAME="dataentry" METHOD="POST" ACTION="mensajes_interfaces-procesar">
+
+   <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="4" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Datos del Mensaje
+                </FONT>
+            </th>
+        </tr>
+  	
+    <!--datos principales-->   
+    <tr class="tableCell"> 
+ 		   <td nowrap align="left"><b>Id Mensaje:</b></td>
+           <td nowrap align="left">@mensaje_id@</td>
+                      
+           <td nowrap align="left"><b>Tipo de Mensaje:</b></td>
+           <td nowrap align="left">@tipo_mensaje@</td>           
+    </tr>
+    
+    <tr class="tableCell"> 
+           <td nowrap align="left"><b>Orden:</b></td>
+           <td nowrap align="left">@ordene_id@</td>           
+    
+ 		   <td nowrap align="left"><b>Status:</b></td>
+           <td nowrap align="left">@status_mensaje@</td>                      
+    </tr>
+    
+    <tr class="tableCell"> 
+ 		   <td nowrap align="left"><b>Fecha de Creaci&oacute;n:</b></td>
+           <td nowrap align="left">@fecha_creado@</td>
+                      
+           <td nowrap align="left"><b>Fecha de Envío:</b></td>
+           <td nowrap align="left">@fecha_envio@</td>           
+    </tr>
+    <tr class="tableCell"> 
+ 		   <td nowrap align="left"><b>Error:</b></td>
+           <td nowrap align="left" colspan="3">@observacion@</td>
+    </tr>
+    </table>
+		
+    <BR>
+
+   <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="2" ALIGN="center">
+                <FONT class="formCaptionText">
+                  Detalle de Mensaje( @t_registros@ Campos)
+                </FONT>
+            </th>
+        </tr>
+    
+    <!--encabezados de columna-->
+    <tr>     		
+   		  <th nowrap>Campo</th>
+          <th nowrap>Valor</th>
+                                    
+    </tr>
+    <!--data-->
+    <registros>
+    <tr class="tableCell"> 
+ 		   <td nowrap align="left">@clave_campo@</td>
+           <td nowrap align="left">@valor_campo@</td>
+    </tr>
+     </registros>
+    </table>
+		
+    <BR>
+
+	<!--button type="button" onclick="procesar('todos')">Procesar Todas</button-->
+	 &nbsp;<button type="button" onclick="window.history.back()">Regresar</button>
+     &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+</form>
+</center>
+</body>
+</html>

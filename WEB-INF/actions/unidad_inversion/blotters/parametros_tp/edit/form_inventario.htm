@@ -1,0 +1,220 @@
+<html>
+<head>
+	<title>Sistema INFI</title>
+	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+	<script language="javascript" src="../js/default.js"></script>	
+</head>
+
+<body
+	ONLOAD="javascript:mostrar(@accion@);{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};
+		abrirTag('@tipper_id@','@undinv_in_pedido_monto@');abrirPrecio('@insfin_forma_orden@');">
+
+	<!--page name bar-->
+	<table border="0" cellspacing="0" WIDTH="100%">
+		<tr>
+			<td class="headerBox">
+	        	<div id="titulou" style="display:none">               
+	            	<font class="headerText">Unidad de Inversi&oacute;n / Blotter / Par&aacute;metros</font>
+	            </div>
+				<div id="titulop" style="display:none">               
+	            	<font class="headerText">Publicaci&oacute;n Unidad de Inversi&oacute;n / Blotter / Par&aacute;metros</font>
+	            </div>
+	            <div id="tituloc" style="display:none">               
+	            	<font class="headerText">Consulta Unidad de Inversi&oacute;n / Blotter / Par&aacute;metros</font>
+	            </div>
+	            <div id="titulom" style="display:none">               
+	            	<font class="headerText">Modificaci&oacute;n Unidad de Inversi&oacute;n / Blotter / Par&aacute;metros</font>
+	            </div>		
+			</td>
+			<!-- help online -->
+			<td class="headerBox" valign="middle" align="right">
+				<img src="../images/infi_gn_ayuda.gif"	border="0"  width="17" height="17"
+					style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"
+					onclick="helpOpen(window.document.location.href);">
+			</td>
+			<!-- fin help online -->	
+		</tr>
+	</table>
+
+	<center>
+
+	<!--formulario-->
+	<form method="POST" action="unidad_inversion_blottertp-update">
+
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="100%">
+		<tr class="formCaption">
+			<th align="center">
+				<font class="formCaptionText">Par&aacute;metros por Tipo de Persona </font>
+			</th>
+		</tr>
+	</table>
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="100%">
+		<!--titulo-->
+		<tr class="formElement">
+			<td width="20%" nowrap><b><b>Unidad de Inversi&oacute;n:</b></td>
+			<td nowrap>@undinv_nombre@
+				<input type="hidden" name="nombreUnidadInversion" size="50" maxlength="50" value="@undinv_nombre@" readonly/>
+			</td>
+		</tr>
+		<tr class="formElement"> 
+			<td width="20% nowrap"><b>Blotter:</b></td>
+			<td nowrap>@bloter_descripcion@
+				<input type="hidden" name="nombreBlotter" size="50" maxlength="50" value="@bloter_descripcion@" readonly/>
+			</td>
+		</tr>	
+		<tr class="formElement" name="tp_edit" id="tp_edit" style="display:none" >
+			<td class="formLabel" nowrap><b>Tipo de Persona:</b></td>
+			<td >@tipper_nombre@
+				<input type="hidden" name="nombreTipoPersona" size="50" maxlength="50" value="@tipper_nombre@" readonly/>
+			</td>
+		</tr>		
+		</table>
+		<table class="dataform" border="0" cellspacing="1" cellpadding="2" width="100%">
+		<tr class="formCaption" name="tp_edit" id="tp_edit" style="display:none">
+			<th colspan="5" align="center">
+			<font class="formCaptiontext">Editar</font>
+			</th>
+		</tr>
+		<tr class="formCaption" name="tp_add" id="tp_add" style="display:none">
+			<th colspan="5" align="center">
+			<font class="formCaptiontext">Agregar</font>
+			</th>
+		</tr>
+		<tr class="formElement" name="tp_add" id="tp_add" style="display:none" >			
+			<td>Tipo de Persona</td>
+			<td nowrap>
+				<SELECT NAME="idTipoPersona_select" >
+					<OPTION value=""></OPTION>
+				<rowsTPersona>
+					<OPTION value="@tipper_id@">@tipper_nombre@</OPTION>
+				</rowsTPersona>
+				</SELECT>
+			</td>
+		</tr>						
+		<tr class="formElement">			
+			<td>Tipo de Transacci&oacute;n</td>
+			<td nowrap>
+				<SELECT NAME="trnfin_tipo">
+				<rowsTransa>
+					<OPTION value="@trnfin_tipo@">@trnfin_tipo_descripcion@</OPTION>
+				</rowsTransa>
+				</SELECT>
+			</td>
+		</tr>
+		<tr class="formElement">
+			<td width="30%" nowrap>Comisi&oacute;n del Emisor :*</td>
+			<td>
+				<input type="text" name="comisionEmisor"  size="6" maxlength="6" value="@uiblot_comision_emisor@" 				
+				onkeypress="EvaluateText('%f',this);">
+			</td>
+		</tr>
+		<tr class="formElement">
+			<td width="30%" nowrap>Porcentaje M&aacute;ximo de Financiamiento :*</td>
+			<td>
+				<input type="text" name="maxFinanciamiento"  size="6" maxlength="6" value="@uiblot_pct_max_finan@" 				
+				onkeypress="EvaluateText('%f',this);">
+			</td>
+		</tr>
+	</table>
+	
+	<!-- DATOS PARA INVENTARIO -->		
+	<table class="dataform" border="0" cellspacing="1" cellpadding="2" width="100%">
+		<tr class="formCaption">
+			<th colspan="5" align="center">
+				<font class="formCaptiontext">Par&aacute;metros</font>
+			</th>
+		</tr>	
+		<tr class="formElement"  id="precio" style="display:none">
+			<td class="formLabel" width="25%">Precio :*</td>
+			<td>
+				<input type="text" name="precioMinimo" size="10" maxlength="10" value="@uiblot_precio_minimo@"	
+				onkeypress="EvaluateText('%f',this);"> %
+			</td>
+			<td class="formLabel" width="20%"></td>
+			<td width="20%"></td>
+			<td width="40"></td>
+		</tr>		
+		<tr class="formElement">
+			<td class="formLabel" width="25%">Monto M&iacute;nimo de Compra :*</td>
+			<td>
+				<input type="text" name="montoMinimoInversion" size="10" maxlength="10" value="@uiblot_umi_inv_mto_min@"	
+				onkeypress="EvaluateText('%f',this);">
+			</td>
+			<td class="formLabel" width="20%">Monto M&aacute;ximo de Compra :*</td>
+			<td width="20%">
+				<input type="text" name="montoMaximoInversion"  size="10" maxlength="10" value="@uiblot_umi_inv_mto_max@"
+				onkeypress="EvaluateText('%f',this);">
+			</td>
+			<td width="40"></td>
+		</tr>
+	</table>
+	
+	<input type="hidden" name="idUnidadInversion" value="@undinv_id@" />
+	<input type="hidden" name="idBlotter" value="@bloter_id@" />		
+	<input type="hidden" name="origen" value="@tipper_id@" />
+	<input type="hidden" name="idTipoPersona" value="@tipper_id@" />
+
+	<br><br>
+	<button type="button" onclick="submitir();">Grabar</button>
+	&nbsp;
+	<button type="button" onclick="regresar();">Regresar</button>
+	
+	</form>
+
+	</center>
+
+</body>
+<script type="text/javascript">
+<!--
+function abrirTag (origen, indicaMonto) {
+	if (origen.toLowerCase().indexOf("x") != -1) {
+		var elementos = document.getElementsByName('tp_add');
+		for (var i = 0; i < elementos.length; i++ ){
+			elementos[i].style.display ="block";
+		}
+	} else {
+		var elementos = document.getElementsByName('tp_edit');
+		for (var i = 0; i < elementos.length; i++ ){
+			elementos[i].style.display ="block";
+		}
+	}
+}
+function abrirPrecio(tipoInventario) {
+
+	tipoInventario = tipoInventario.toLowerCase();
+	if (tipoInventario.indexOf("_cp") > -1) {
+		document.getElementById('precio').style.display='block';
+	}
+}
+function submitir() {
+	if (document.forms[0].idTipoPersona.value == 'X') {
+		document.forms[0].idTipoPersona.value = document.forms[0].idTipoPersona_select.value;
+	}
+   	document.forms[0].submit();
+}
+function regresar() {
+	window.close();
+}
+
+function mostrar(accion){
+	if(accion==1){
+		var elementos = document.getElementsByName('unidad');
+		for (var i = 0; i < elementos.length; i++ ){
+			elementos[i].style.display ="block";
+		}
+		titulou.style.display ="block";
+	}	
+	if(accion==2){//Modulo Publicacion
+		titulop.style.display ="block";
+	}
+	if(accion==3){//Modulo Consulta
+		tituloc.style.display ="block";
+	}
+	if(accion==4){//Modulo Modificacion
+		titulom.style.display ="block";
+	}
+}
+-->
+</script>
+</html>
+

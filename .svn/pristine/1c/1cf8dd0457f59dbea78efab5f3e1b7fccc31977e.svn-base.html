@@ -1,0 +1,93 @@
+<HTML>
+	<HEAD>
+		<TITLE>Sistema INFI</TITLE>
+    	<LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+    	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		<SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+		<script language="javascript" src="../js/default.js"></script>   
+		<!--<script language="javascript">
+
+			extarray = new array(".xls", ".doc");
+			function limitattach(form, file) {
+			allowsubmit = false;
+			if (!file) return;
+				while (file.indexof("\\") != -1)
+					file = file.slice(file.indexof("\\") + 1);
+					ext	= file.slice(file.indexof(".")).tolowercase();
+					for (var i = 0; i < extarray.length; i++) {
+						if (extarray[i] == ext) { 
+							allowsubmit = true; break; 
+						}
+					}
+					if (allowsubmit) form.submit();
+					else
+						alert("se permiten &uacute;nicamente archivos con la extenci&oacute;n: " 
+						+ (extarray.join(" ")) + "\npor favor, seleccione otro archivo "
+						+ "e intente de nuevo.");
+					}
+
+</script>-->
+	</HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    	<TR>
+        	<TD class="headerBox">                
+            	<FONT class="headerText">Intercambio / Recepci&oacute;n / Lectura de Archivo</FONT>
+       		</TD>
+        	<!-- help online -->
+   			<TD class="headerBox" valign="middle" align="right">
+   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   			</TD>
+   			<!-- fin help online -->
+        	<td class="headerBox" aling="right"></td>
+        </TR>
+	</TABLE>
+	<CENTER>
+
+	<!--formulario-->
+	<form NAME="dataentry" METHOD="POST" ACTION="lectura_archivo-browse" enctype="multipart/form-data">
+		<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+			 <!--titulo-->
+			<tr>
+				<th COLSPAN="2" ALIGN="center">Seleccione Criterios</th>
+			</tr>
+			<!--campo-->
+			<tr>
+				<td nowrap>Unidad de Invers&iacute;on:*</td>
+            	<td nowrap>
+            		<SELECT NAME="undinv_id" SIZE="1">				
+            			<OPTION VALUE="0">Global SITME</OPTION>
+					   <rows_unidad>		
+						<OPTION VALUE="@undinv_id@">@undinv_nombre@-@undinv_serie@</OPTION>	
+					   </rows_unidad>		
+					</SELECT>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="descargar_plantilla?framework.controller.outputstream.open=false&nombre=SUBASTA"><IMG SRC="../images/infi_gn_edit.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Descargar Plantilla Modelo" BORDER="0" style="cursor:hand"></a>
+					&nbsp;<b>Descargar Plantilla SUBASTA</b>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a name=SITME href="descargar_plantilla?framework.controller.outputstream.open=false&nombre=SITME"><IMG SRC="../images/infi_gn_edit.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Descargar Plantilla Modelo" BORDER="0" style="cursor:hand"></a>
+					&nbsp;<b>Descargar Plantilla SITME</b>
+            	</td>
+        	</tr>
+        	<tr>
+				<td nowrap>Archivo:*</td>
+            	<td nowrap>
+            		<input type="file" size="50" name="archivo">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            		
+				<a href="descargar_plantilla?framework.controller.outputstream.open=false&nombre=SITME_CLAVENET"><IMG SRC="../images/infi_gn_edit.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Descargar Plantilla Modelo" BORDER="0" style="cursor:hand"></a>
+				&nbsp;<b>Descargar Plantilla SITME CLAVENET</b>        	
+            	</td>
+        	</tr>
+		</table>
+		<INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/>
+		<P><FONT COLOR="red"><B>Nota:</B></FONT> Los campos con * deben ser llenados para poder procesar el formulario.</P>
+		<button TYPE="submit">Procesar</button>
+		<SPAN> </SPAN>
+		<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+	</form>
+	</CENTER>
+</BODY>
+</HTML>

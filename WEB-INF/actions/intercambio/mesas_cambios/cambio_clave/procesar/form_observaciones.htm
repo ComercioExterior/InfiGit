@@ -1,0 +1,70 @@
+<HTML>
+	<HEAD>
+		<TITLE>Sistema INFI</TITLE>
+    	<LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+    	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+    	<script language="javascript" src="../js/menudeo/procesar.js"></script>
+		<SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+		<script language="javascript" src="../js/default.js"></script>
+		<script type="text/javascript">
+		function guardar_notas_txt() {
+
+			  var textToWrite = input_textarea.value.replace(/\n/g, "\r\n");
+			  var textFileAsBlob = new Blob([textToWrite], {
+			    type: 'text/plain'
+			  });
+			  var file_name = "Resumen";
+			  var fileNameToSaveAs = file_name + ".txt";
+			  var downloadLink = document.createElement("a");
+			  downloadLink.download = fileNameToSaveAs;
+			  downloadLink.innerHTML = "My Hidden Link";
+			  window.URL = window.URL || window.webkitURL;
+			  downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+			  downloadLink.onclick = destroyClickedElement;
+			  downloadLink.style.display = "none";
+			  document.body.appendChild(downloadLink);
+			  downloadLink.click();
+			}
+
+			function destroyClickedElement(event) {
+			  document.body.removeChild(event.target);
+			}
+		</script>
+	</HEAD>
+	<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+		<TABLE  border="0" cellspacing="0" WIDTH="100%">
+	    	<TR>
+	        	<TD class="headerBox">                
+	            	<FONT class="headerText">Intercambio / Mesa de Cambio / Cambio de clave</FONT>
+	       		</TD>
+	   			<TD class="headerBox" valign="middle" align="right">
+	   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+	   			</TD>
+	        	<td class="headerBox" aling="right"></td>
+	        </TR>
+		</TABLE>
+		<CENTER>
+		<form NAME="dataentry" METHOD="POST" ACTION="intercambio_menudeo_demanda_lectura_archivo-filter">
+			<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="TABLE-LAYOUT: auto; ">
+				<tr>
+					<th nowrap colspan="2" align="center">Cambio de clave a Finalizado</th>
+	        	</tr>
+	        	<tbody>
+					<tr>
+						<td>
+						<textarea rows="20" cols="50" id="input_textarea">
+						@texto@
+						</textarea>
+							
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/> 
+			<br>	
+			<button type="button" onclick="regresar()">Regresar</button>
+			<button onclick="guardar_notas_txt();">Guardar</button>
+		</form>
+		</CENTER>
+	</BODY>
+</HTML>

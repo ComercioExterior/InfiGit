@@ -1,0 +1,68 @@
+<HTML>  
+    <HEAD>
+    	<LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+         <SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css"/>
+        <TITLE>Sistema INFI</TITLE>
+        <SCRIPT>
+        
+        function generarInforme(){
+        	var url = 'envio_correos-informe?ciclo='+document.getElementById('ciclo').value+'&tipo_destinatario='+document.getElementById('tipo_destinatario').value+"&framework.controller.outputstream.open=false";
+			//alert("url: "+url);
+			document.dataentry.action = url;
+			//document.dataentry.action='envio_correos-descartar?ciclo='+@ciclo@+'&plantilla_id='+@plantilla_id@+'&correo_ids_concat='+@correo_ids_concat@+'&todos_val='+@todos_val@+'&tipo_destinatario='+@tipo_destinatario@;
+			document.dataentry.submit();
+        }
+        
+		</SCRIPT>
+        
+    </HEAD>
+    
+   <!--poner el focus en el 1er control de la forma-->
+<BODY>
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Env&iacute;o de Correos</FONT>
+        </TD>
+        
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+        <td class="headerBox" aling="right"></td>
+     </TR>
+</TABLE>
+                
+    <CENTER>
+
+	<br/>
+	
+	<!--  <div style="font-weight:bold">@mens_error@</div-->
+	
+	<br/>
+	<div style="font-weight:bold">Puede verificar el estatus de los correos enviados ingresando a la opci&oacute;n 'Consulta'</div>
+	<br/>
+	<br/>
+	
+	<form NAME="dataentry" METHOD="POST" ACTION="">
+	
+		<INPUT TYPE="hidden" NAME="ciclo" id="ciclo" VALUE="@ciclo@"/>
+		<INPUT TYPE="hidden" NAME="tipo_destinatario" id="tipo_destinatario" VALUE="@tipo_destinatario@"/>
+		
+	</form>
+		
+<!-- 		<button type="button" onclick="generarInforme();">&nbsp;Informe de Env&iacute;o</button> -->
+		&nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp; Salir &nbsp;</button>
+
+	<br/>
+
+    </CENTER>      
+</BODY>
+</HTML>

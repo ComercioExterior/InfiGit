@@ -1,0 +1,136 @@
+<html>
+
+	<head> 
+          
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+           
+        <script type="text/javascript">
+        
+          
+        </script>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Plantillas de Correos</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="TABLE-LAYOUT: auto; ">
+    
+    <tr class="tableHeader">
+    	<th COLSPAN="19" ALIGN="center">
+            <FONT class="formCaptionText">
+              Plantillas de Correo ( @t_registros@ )
+            </FONT>
+		</th>
+    </tr>
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+		<th width="2%" nowrap></th>
+		<th width="2%" nowrap></th>
+		<th width="2%" nowrap></th>
+		<th width="2%" nowrap></th>
+		<th width="2%" nowrap></th>
+		<th width="2%" nowrap></th>
+		<th>Nombre</th>
+		<th>Producto</th>
+		<th>Evento</th>
+<!-- 		<th>Estatus Orden</th> -->
+<!-- 		<th>Transaccion</th> -->
+		<th>Tipo de Destinatario</th>
+		<th>Remitente</th>		
+		<th>Usuario Registro</th>
+		<th>Fecha Registro</th>
+		<th>Usuario Aprobaci&oacute;n</th>
+		<th>Fecha Aprobaci&oacute;n</th>
+		<th>Estatus</th>
+		<th>Activaci&oacute;n</th>	
+		<th>Usuario Ult Modificaci&oacute;n</th>
+		<th>Fecha Ult Modificaci&oacute;n</th>		
+		
+	</tr>
+
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+		<td VALIGN="middle">
+			<a href="plantillas_correo-edit?plantilla_mail_id=@plantilla_mail_id@"><IMG SRC="../images/infi_gn_edit2.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Editar Registro" BORDER="0" style="cursor:hand"></a>                
+		</td>
+		<td VALIGN="middle">
+			<a href="plantillas_correo-detalle?plantilla_mail_id=@plantilla_mail_id@"><IMG SRC="../images/infi_gn_find.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Detalle de Plantilla" BORDER="0" style="cursor:hand"></a>                
+		</td>
+		<td VALIGN="middle">
+			<a href="plantillas_correo-confirm_aprobar?plantilla_mail_id=@plantilla_mail_id@&name_status_orden_plant=@ordsta_nombre@&name_transac_plant=@transa_descripcion@&tipo_destinatario=@tipo_destinatario@"><IMG SRC="../images/infi_gn_report.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Aprobar Plantilla" BORDER="0" style="cursor:hand"></a>
+		</td>
+				
+		<td VALIGN="middle">
+			<a style="display: @areas@" href="plantillas_correo-addnew_areas?plantilla_mail_id=@plantilla_mail_id@"><IMG SRC="../images/infi_gn_documento.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Agregar Areas a la Plantilla" BORDER="0" style="cursor:hand"></a>                
+		</td>
+		
+		<td VALIGN="middle">
+			<a style="display: @areas@" href="plantillas_correo-edit_areas?plantilla_mail_id=@plantilla_mail_id@"><IMG SRC="../images/infi_gn_edit3.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Editar Areas de la Plantilla" BORDER="0" style="cursor:hand"></a>                
+		</td>
+		
+		<td VALIGN="middle">
+			<a href="plantillas_correo-confirm_inactivar?plantilla_mail_id=@plantilla_mail_id@&name_status_orden_plant=@ordsta_nombre@&name_transac_plant=@transa_descripcion@&tipo_destinatario=@tipo_destinatario@"><IMG SRC="../images/infi_gn_delete.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Inactivar Plantilla" BORDER="0" style="cursor:hand"></a>                
+		</td>
+		
+		
+		
+		<td VALIGN="middle" align="left" nowrap>@plantilla_mail_name@</td>
+		<td VALIGN="middle" align="left" nowrap>@nombre@</td>
+		<td VALIGN="middle" align="left" nowrap>@evento_name@</td>
+		<td VALIGN="middle" align="left">@tipo_destinatario_desc@</td>
+		<td VALIGN="middle" align="left">@remitente@</td>
+		<td VALIGN="middle" align="left">@usuario_registro@</td>   
+		<td VALIGN="middle" align="center" nowrap>@fecha_registro@</td>                  
+		<td VALIGN="middle" align="left">@usuario_aprobacion@</td>
+		<td VALIGN="middle" align="center" nowrap>@fecha_aprobacion@</td>
+		<td VALIGN="middle" align="left">@estatus@</td> <!-- Registrada o Aprobada -->
+		<td VALIGN="middle" align="left">@activacion_desc@</td>
+		<td VALIGN="middle" align="left">@usuario_ult_modificacion@</td>
+		<td VALIGN="middle" align="center" nowrap>@fecha_ult_modificacion@</td>
+	
+		
+     </tr>
+     </rows>
+    
+    </table>
+@page_index@
+
+    <BR>
+<form>
+    <button type="button" ONCLICK="window.location='plantillas_correo-addnew'">&nbsp;Agregar&nbsp;</button>
+    &nbsp;<button type="button" onclick="window.location='plantillas_correo-filter'">Regresar</button>
+     &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+</form>
+
+</center>
+
+</body>
+
+</html>
+

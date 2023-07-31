@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+
+	Configuracion de la accion
+
+	Describe el modelo y la vista a utilizar, asi
+	como informacion sobre data-binding entre la vista y el modelo
+
+-->
+
+<config>
+
+	<!--model class-->
+	<model-class>models.intercambio.transferencia.generar_archivo.ExportarOrdenesTxt</model-class>
+	
+	<!--view class-->
+	<view-class></view-class>
+	
+	<!--template-->
+	<template></template>
+
+	<!--reglas de validacion de la forma-->
+	<record-def></record-def>
+	
+	<!--response content-type-->
+	<content-type></content-type>
+	
+	<!--expiracion de la pagina (en segundos - puede estar vacio)-->
+	<expires></expires>
+	
+	<!--control de cache  (true|false)-->
+	<no-cache>true</no-cache>
+	
+	<!--URI a redireccionar despues de ejecutar el model - type=redirect|forward-->
+	<next-action type="redirect"></next-action>
+	
+	<!--mostrar este template de WEB-INF/templates si el dataset esta vacio-->
+	<on-empty source="sales"></on-empty>
+
+	
+	
+</config>

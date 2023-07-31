@@ -1,0 +1,97 @@
+<html>
+
+	<head>
+        
+        <!--LINK REL="stylesheet" type="text/css" href="../megasoft.css" /-->
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		<link href="../css/sic.css" rel="stylesheet" type="text/css">
+		<SCRIPT LANGUAGE="JavaScript" SRC="../js/sorttable.js"></SCRIPT>
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Seguridad</title>
+	
+	<SCRIPT LANGUAGE="JavaScript">
+			var t = new SortTable("t");
+			t.AddColumn("editar","","center","");
+			t.AddColumn("eliminar","","center","");
+			t.AddColumn("User","","center","");
+			t.AddColumn("Nombre","","center","");
+			t.AddColumn("Perfil","","center","");
+			t.AddColumn("Email","","center","");
+			t.AddColumn("CI","","center","");
+			
+	</SCRIPT>
+
+    </head>
+    
+    
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Seguridad / Usuarios</FONT>
+        </TD>
+   		
+   </TR>
+</TABLE>
+
+<center>
+
+<br>
+
+
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+    	<th colspan="2" width="5%"></th>
+              
+              <th width="9%"> <a href="javascript:SortRows(t,1)"> User ID </a></th>
+                        
+              <th width="20%"><a href="javascript:SortRows(t,2)">Nombre y Apellido</a></th>
+              
+              <th width="18%"><a href="javascript:SortRows(t,3)">Perfil o Rol</a></th>         
+              
+               <th width="12%"><a href="javascript:SortRows(t,4)">E-Mail</a></th>
+                
+               <th width="10%"><a href="javascript:SortRows(t,5)">CI</a></th>     
+    </tr>
+
+    <!--data-->
+    <rows>
+    <SCRIPT LANGUAGE="JavaScript">
+
+	      t.AddLine("<a href='msc_user-confirm?id=@msc_user_id@&userid=@userid@'><P ALIGN='CENTER'><IMG SRC='../images/infi_gn_delete.gif' WIDTH='15' HEIGHT='15' ALIGN='BOTTOM' title='Eliminar Usuario.' BORDER='0' style='cursor:hand'/></a>",
+	                "<a href='msc_user-edit?id=@msc_user_id@'><P ALIGN='CENTER'><IMG SRC='../images/infi_gn_edit.gif' WIDTH='15' HEIGHT='15' ALIGN='BOTTOM' title='Editar Datos del Usuario.' BORDER='0' style='cursor:hand'/></a>",
+	                "@userid@",
+						"@nombre_completo@",
+						"@rol@",					
+						"@email@",
+						"@ci@");
+     </SCRIPT>
+     </rows>
+     <tbody id="TInstancias">
+	  <SCRIPT>t.WriteRows()</SCRIPT>
+	 </tbody>
+     
+    
+    </table>
+    
+    @page_index@
+
+    <BR>
+<form>
+    <!--input type="button" value="Añadir Registro" onclick="window.location='msc_user-addnew'"/-->
+    <button style="cursor:hand" onclick="window.location='msc_user-addnew'"> Añadir Registro </button>
+    &nbsp;<button onclick="history.back();">Cancelar</button>
+</form>
+
+</center>
+
+</body>
+
+</html>
+

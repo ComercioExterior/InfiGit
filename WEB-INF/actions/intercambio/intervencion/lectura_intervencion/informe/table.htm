@@ -1,0 +1,69 @@
+<html>
+	<head>        
+         <script language="javascript" src="../js/default.js"></script>   
+         <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+         <title>Sistema INFI</title>
+    </head>
+    <body>
+    	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    		<TR>
+    			<TD class="headerBox">                
+                	<FONT class="headerText">Intercambio / Transferencia / Lectura de Archivo</FONT>
+            	</TD>
+       			<TD class="headerBox" valign="middle" align="right">
+       				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+       			</TD>
+    		</TR>
+    	</TABLE>
+        <center>
+    	<br>
+    	<form NAME="dataentry" METHOD="POST" ACTION="">
+            <table border="0" cellspacing="1" cellpadding="2" width="107%" class="datatable">
+                <tr CLASS="formCaption">
+                    <th ALIGN="center">
+                        <FONT class="formCaptionText">
+                         Lista de Registros ( @t_registros@ )
+                        </FONT>
+                    </th>            
+                </tr>
+                <tr>
+                	<td ALIGN="left">
+                         <b>Unidad de Inversi&oacute;n</b> &nbsp;&nbsp;&nbsp;@undinv_nombre@
+                    </td>
+                </tr>
+        	</table>
+            <table border="0" cellspacing="1" cellpadding="2" width="107%" class="datatable" style="TABLE-LAYOUT: auto; ">
+        		<!--encabezados de columna-->
+        		<tr>
+        			<th nowrap>Orden</th>
+                    <th nowrap>Estatus</th>
+                    <th nowrap>Cliente</th>
+                    <th nowrap>Precio</th>
+                    <th nowrap>Monto<br>Pedido</th>
+                    <th nowrap>Fecha<br>Orden</th>
+                    <th nowrap>Monto<br>Adjudicado</th>
+                    <th nowrap>Fecha<br>Adjudicaci&oacute;n</th>
+            	</tr>
+
+        		<!--data-->
+        	   <rows>
+            	<tr>
+            		<td align="right" nowrap>@ordene_id@</td>
+        			<td align="left" nowrap>@ordsta_nombre@</td>
+        			<td align="left" nowrap>@client_nombre@</td>
+        			<td align="right" nowrap>@ordene_ped_precio@</td>
+        			<td align="right" nowrap>@ordene_ped_monto@</td>
+        			<td align="center" nowrap>@ordene_ped_fe_orden@</td>
+        			<td align="right" nowrap>@ordene_adj_monto@</td>
+        			<td align="center" nowrap>@ordene_fecha_adjudicacion@</td>
+        			
+        		</tr>
+        	   </rows>
+        	</table>
+    	</form>
+    	@page_index@
+    	&nbsp;
+    	<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+        </center>
+    </body>
+</html>

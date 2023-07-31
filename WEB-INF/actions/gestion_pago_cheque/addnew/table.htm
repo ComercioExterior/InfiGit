@@ -1,0 +1,98 @@
+<html>
+
+	<head>
+        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+        <script type="text/javascript">
+        
+          
+        </script>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Generar Datos OPICS</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+<center>
+
+<br>
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                  Resumen de transacciones (Agrupaci&oacute;n por Precio)
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+    
+    <!--encabezados de columna-->
+    <tr>         
+              <th nowrap>Titulo</th>            
+              <th nowrap width="14%">Precio %</th>
+              <th nowrap width="14%">Cantidad</th>
+              <th nowrap width="14%">Monto</th>
+              <th nowrap width="14%">Ordenes</th>                                    
+    </tr>
+    <!--data-->
+    <rows>
+    <tr class="tableCell">         
+           <td nowrap>@titulo_descripcion@</td>
+           <td nowrap align="center">@ordene_ped_rcp_precio@</td> 
+           <td nowrap align="center">@cantidad_titulos@</td>
+           <td nowrap align="center">@monto@</td>
+           <td nowrap align="center">@ordenes@</td>                
+    </tr>
+     </rows>
+    </table>
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+    
+    <!--encabezados de columna-->
+    <tr>         
+              <th nowrap>Totales</th>            
+              <th nowrap width="14%"></th>
+              <th nowrap width="14%">@total_titulos@</th>
+              <th nowrap width="14%">@monto_total@</th>
+              <th nowrap width="14%">@total_ordenes@</th>                                    
+    </tr>
+    </table>
+		@page_index@
+    <BR>
+    <input type="hidden" name="unidad_inversion" value="@unidad_inversion@">
+    <input type="hidden" name="blotter" value="@blotter@">
+<form>
+	<button type="button" onclick="window.location='generar_opics-procesar_group'">Procesar</button>
+    &nbsp;<button type="button" onclick="javascript:history.back();">Regresar</button>
+     &nbsp;<button type="button" onclick="javascript:history.back();">&nbsp;Salir&nbsp;</button>
+</form>
+
+</center>
+
+</body>
+
+</html>
+

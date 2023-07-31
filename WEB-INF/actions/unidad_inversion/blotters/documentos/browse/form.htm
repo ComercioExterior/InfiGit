@@ -1,0 +1,325 @@
+<HTML>
+<head>
+	<title>Sistema INFI</title>
+	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+	<LINK REL="stylesheet" type="text/css" href="../css/EstiloFichas.css" />	
+	<script language="javascript" src="../js/default.js"></script>	
+    <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+	<SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>         
+	
+	<script type="text/javascript">
+        function mostrar(accion){
+			if(accion==1){
+				var elementos = document.getElementsByName('unidad');
+				for (var i = 0; i < elementos.length; i++ ){
+					elementos[i].style.display ="block";
+				}
+				titulou.style.display ="block";
+				document.forms[0].elements[3].focus();
+			}
+			if(accion==2){//Modulo Publicacion
+				var links = document.getElementsByName('link')
+				for (var i = 0; i < links.length; i++ ){
+					links[i].style.display ="none";
+				}
+				var inputs = document.getElementsByTagName('input')
+				for (var i = 0; i < inputs.length; i++ ){
+					inputs[i].disabled = true;
+				}
+				var textareas = document.getElementsByTagName('textarea')
+				for (var i = 0; i < textareas.length; i++ ){
+					textareas[i].disabled = true;
+				}
+				var selects = document.getElementsByTagName('select')
+				for (var i = 0; i < selects.length; i++ ){
+					selects[i].disabled = true;
+				}
+				titulop.style.display ="block";
+			}
+			if(accion==3){//Modulo Consulta
+				var links = document.getElementsByName('link')
+				for (var i = 0; i < links.length; i++ ){
+					links[i].style.display ="none";
+				}
+				var inputs = document.getElementsByTagName('input')
+				for (var i = 0; i < inputs.length; i++ ){
+					inputs[i].disabled = true;
+				}
+				var textareas = document.getElementsByTagName('textarea')
+				for (var i = 0; i < textareas.length; i++ ){
+					textareas[i].disabled = true;
+				}
+				var selects = document.getElementsByTagName('select')
+				for (var i = 0; i < selects.length; i++ ){
+					selects[i].disabled = true;
+				}
+				tituloc.style.display ="block";
+			}	
+			
+		}
+          
+	</script>
+	
+</head>
+
+<!--poner el focus en el 1er control de la forma-->
+<BODY
+	onload="javascript:mostrar(@accion@);{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};
+			abrirGanancia('@insfin_forma_orden@');">
+
+
+
+	<!--page name bar-->
+	<table  border="0" cellspacing="0" WIDTH="100%">
+	    <tr>
+	        <td class="headerBox">
+	        	<div id="titulou" style="display:none">               
+	            	<font class="headerText">Unidad de Inversi&oacute;n</font>
+	            </div>
+				<div id="titulop" style="display:none">               
+	            	<font class="headerText">Publicaci&oacute;n Unidad de Inversi&oacute;n</font>
+	            </div>
+	            <div id="tituloc" style="display:none">               
+	            	<font class="headerText">Consulta Unidad de Inversi&oacute;n</font>
+	            </div>
+	            <div id="titulom" style="display:none">               
+	            	<font class="headerText">Modificaci&oacute;n Unidad de Inversi&oacute;n</font>
+	            </div>			
+			</td>
+	        <!-- help online -->
+	   		<td class="headerBox" valign="middle" align="right">
+	   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+	   		</td>
+	   		<!-- fin help online -->	        
+	   	</tr>
+	</table>
+	
+	<br>
+
+	
+	<!--formulario-->
+	<form name="dataentry" method="POST" action="unidad_inversion_blotter-update">
+		<input type="hidden" name="idUnidadInversion" value="@undinv_id@" />
+		<input type="hidden" name="idBlotter" value="@bloter_id@" />		
+		
+	<div id="menu">
+		<table border="0">
+			<tr>
+				<td id="navigation" nowrap><a href="unidad_inversion_blotter-edit?idUnidadInversion=@undinv_id@&idBlotter=@bloter_id@"><span>Blotter</span></a></td>
+				<td id="navigation" nowrap><a href="unidad_inversion_blottertp-browse?idUnidadInversion=@undinv_id@&idBlotter=@bloter_id@"><span>Par&aacute;metros por Tipo de Persona</span></a></td>			
+				<td id="navigation" nowrap><a href="unidad_inversion_documentos-browse?idUnidadInversion=@undinv_id@&idBlotter=@bloter_id@"><span>Documentos</span></a></td>
+			</tr>
+		</table>
+	</div>
+			
+	<center>
+				
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="100%">
+		<tr class="formCaption">
+			<th align="center">
+				<font class="formCaptionText">Blotter  </font>
+			</th>
+		</tr>
+	</table>
+	<table class="dataform" border="0" cellspacing="1" cellpadding="2" width="100%">
+
+		<tr class="formElement">
+			<td class="formLabel" width="15%">Unidad de Inversi&oacute;n:</td>
+			<td colspan="3">
+				<input type="text" name="nombreUnidadInversion" size="50" maxlength="50" value="@undinv_nombre@" readonly/>
+			</td>
+		</tr>
+		<tr class="formElement">
+			<td class="formLabel" width="15%">Blotter:</td>
+			<td colspan="3">
+				<input type="text" name="nombreBlotter" size="50" maxlength="50" value="@bloter_descripcion@" readonly/>
+			</td>
+		</tr>
+		<tr class="formElement">
+			<td class="formLabel">Toma de Ordenes</td>
+			<td colspan="3"></td>
+		</tr>
+				
+		<tr class="formElement">
+			<td class="formLabel" style="padding-left: 20px;">Desde:*</td>
+			<td align="left">
+				<input type="text" name="periodoInicial" size="10" maxlength="10" value="@pedido_ini@" readonly /> 
+					
+					<a name="link" onclick="popUpCalendar(this, document.forms[0].periodoInicial, 'dd-mm-yyyy')">
+					<IMG SRC="../images/infi_gn_calendar.gif" class="boton" TITLE="Seleccionar Fecha"/>
+					
+					</a>
+			</td>
+			<td class="formLabel">Hasta:* </td>
+			<td align="left"><div name="calendar">
+				<input type="text" name="periodoFinal"  size="10" maxlength="10" value="@pedido_fin@" readonly /> 
+					
+					<a name="link" onclick="popUpCalendar(this, document.forms[0].periodoFinal, 'dd-mm-yyyy')">
+					<IMG SRC="../images/infi_gn_calendar.gif" class="boton" TITLE="Seleccionar Fecha"/>
+					</a></div>
+			</td>
+		</tr>		
+		<tr class="formElement">
+			<td class="formLabel">Horario</td>
+			<td colspan="3"></td>
+		</tr>				
+		<tr class="formElement">
+			<td class="formLabel" width="15%" style="padding-left: 20px;">Desde:*</td>
+			<td width="25%">
+				<SELECT NAME="hh_desde">
+					<OPTION value=""></OPTION>
+				<rowsHoraD>
+					<OPTION value="@hora@">@hora@</OPTION>
+				</rowsHoraD>
+				</SELECT>
+				:
+				<SELECT NAME="mm_desde">
+					<OPTION value=""></OPTION>
+				<rowsMinD>
+					<OPTION value="@min@">@min@</OPTION>
+				</rowsMinD>
+				</SELECT>	
+				<SELECT NAME="ap_desde">
+					<OPTION value=""></OPTION>
+					<OPTION value="AM">AM</OPTION>
+					<OPTION value="PM">PM</OPTION>
+				</SELECT>				
+			</td>
+			<td class="formLabel" width="5%">Hasta:*</td>
+			<td width="40%" align="left">
+				<SELECT NAME="hh_hasta">
+					<OPTION value=""></OPTION>
+				<rowsHoraH>
+					<OPTION value="@hora@">@hora@</OPTION>
+				</rowsHoraH>
+				</SELECT>
+				:
+				<SELECT NAME="mm_hasta">
+					<OPTION value=""></OPTION>
+				<rowsMinH>
+					<OPTION value="@min@">@min@</OPTION>
+				</rowsMinH>
+				</SELECT>	
+				<SELECT NAME="ap_hasta">
+					<OPTION value=""></OPTION>
+					<OPTION value="AM">AM</OPTION>
+					<OPTION value="PM">PM</OPTION>
+				</SELECT>
+			</td>
+		</tr>
+		<tr class="formElement">
+			<td class="formLabel">Horario V&aacute;lido para el &Uacute;ltimo D&iacute;a</td>
+			<td colspan="3"></td>
+		</tr>				
+		<tr class="formElement">
+			<td class="formLabel" width="15%" style="padding-left: 20px;">Desde:*</td>
+			<td width="25%">
+				<SELECT NAME="hh_desde_ult_dia">
+					<OPTION value=""></OPTION>
+				<rowsHoraDUD>
+					<OPTION value="@hora@">@hora@</OPTION>
+				</rowsHoraDUD>
+				</SELECT>
+				:
+				<SELECT NAME="mm_desde_ult_dia">
+					<OPTION value=""></OPTION>
+				<rowsMinDUD>
+					<OPTION value="@min@">@min@</OPTION>
+				</rowsMinDUD>
+				</SELECT>	
+				<SELECT NAME="ap_desde_ult_dia">
+					<OPTION value=""></OPTION>
+					<OPTION value="AM">AM</OPTION>
+					<OPTION value="PM">PM</OPTION>
+				</SELECT>				
+			</td>
+			<td class="formLabel" width="5%">Hasta:*</td>
+			<td width="40%" align="left">
+				<SELECT NAME="hh_hasta_ult_dia">
+					<OPTION value=""></OPTION>
+				<rowsHoraHUD>
+					<OPTION value="@hora@">@hora@</OPTION>
+				</rowsHoraHUD>
+				</SELECT>
+				:
+				<SELECT NAME="mm_hasta_ult_dia">
+					<OPTION value=""></OPTION>
+				<rowsMinHUD>
+					<OPTION value="@min@">@min@</OPTION>
+				</rowsMinHUD>
+				</SELECT>	
+				<SELECT NAME="ap_hasta_ult_dia">
+					<OPTION value=""></OPTION>
+					<OPTION value="AM">AM</OPTION>
+					<OPTION value="PM">PM</OPTION>
+				</SELECT>
+			</td>
+		</tr>						
+		<tr class="formElement">
+			
+			<td colspan="4">
+				<INPUT TYPE="CHECKBOX" NAME="indicaRecompra" VALUE="1" /> Permite Recompra
+			</td>
+		</tr>	
+				
+		<tr class="formCaption" id="titulo_inventario" style="display:none" >
+			<th colspan="4" align="center">
+				<font class="formCaptiontext">Unidad de Inversi&oacute;n Tipo Inventario</font>
+			</th>
+		</tr>
+		<tr class="formElement" id="unidad_inventario" style="display:none" >
+			<td class="formLabel" width="15%">Porcentaje de Ganancia de la Red:</td>
+			<td colspan="3">
+				<input type="text" name="gananciaRed" size="6" maxlength="6" value="@uiblot_ganancia_red@"
+					onkeypress="EvaluateText('%f',this);" />
+			</td>
+		</tr>						
+	</table>
+	
+	<input type="hidden" name="horarioDesde" value="" />
+	<input type="hidden" name="horarioHasta" value="" />
+	<input type="hidden" name="horarioDesdeUltDia" value="" />
+	<input type="hidden" name="horarioHastaUltDia" value="" />			
+	
+	</form>
+	<table>
+		<tr>
+			<td>
+				<div id="unidad" style="display:none">
+				<button type="button" onclick="submitir('grabar');">Grabar</button>	
+				</div>
+			</td>
+			<td>
+				<button type="button" onclick="submitir('regresar');">Regresar</button>
+			</td>
+		</tr>
+	</table>
+	</center>
+
+</BODY>
+<script language="javascript">
+<!--
+function abrirGanancia (indicador) {
+	if (indicador.toLowerCase().indexOf("inventario") > -1) {
+		document.getElementById('titulo_inventario').style.display='block';
+		document.getElementById('unidad_inventario').style.display='block';		
+	}
+}
+function submitir(action) {
+	if (action == 'regresar') {
+		document.forms[0].action="unidad_inversion_blotter-browse";
+		 document.forms[0].submit();
+		 return;
+	} 
+	document.forms[0].horarioDesde.value = document.forms[0].hh_desde.value+":"+document.forms[0].mm_desde.value+document.forms[0].ap_desde.value;
+	document.forms[0].horarioHasta.value = document.forms[0].hh_hasta.value+":"+document.forms[0].mm_hasta.value+document.forms[0].ap_hasta.value;
+	document.forms[0].horarioDesdeUltDia.value = document.forms[0].hh_desde_ult_dia.value+":"+document.forms[0].mm_desde_ult_dia.value+document.forms[0].ap_desde_ult_dia.value;
+	document.forms[0].horarioHastaUltDia.value = document.forms[0].hh_hasta_ult_dia.value+":"+document.forms[0].mm_hasta_ult_dia.value+document.forms[0].ap_hasta_ult_dia.value;	
+	if (document.forms[0].gananciaRed.value == "") {
+		document.forms[0].gananciaRed.value = "0"
+	}
+   	document.forms[0].submit();
+}
+-->
+</script>
+</HTML>

@@ -1,0 +1,138 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Toma de Orden</title>
+  <link rel="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+  <link rel="stylesheet" type="text/css" href="../css/EstiloFichas.css" />
+  <script type="text/javascript">
+          //Funci&oacute;n para abrir un picklist o limpiar el valor anteriormente seleccionado
+		function showPickList(ind ,id, tx, campo)
+		{
+		   var r
+		   if (ind == '1') {  // llamar a picklist		
+		   	  r = window.open(campo +'?name_id=' + id.name +"&name_tx=" + tx.name, 'Picklist','resizable=yes,scrollbars=yes,width=600,height=450,Left=200,top=150,Status=yes,unadorned:true');
+		   	  
+		   }
+		   else{
+			id.value= "";//limpiar id de cliente
+			tx.value= "";//limpiar campo de cliente
+			recargarPagina2();
+		  }
+		} 
+		
+
+  </script>
+         <script language="javascript" src="../js/default.js"></script>  
+</head>
+<body>
+
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Eventos / Generaci&oacute;n de Pago de Cupones </FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+  <!--formulario-->
+  <form NAME="dataentry" METHOD="POST" ACTION="pago_cupones-confirm">
+<div id="menu">
+<table border="0">
+<tr>
+<td id="navigationActivo"><a href="pago_cupones-filtro"><span>Consulta</span></a></td>
+<td id="navigation" nowrap><a href="pago_cupones-consultas"><span>T&iacute;tulos por Vencerse</span></a></td>
+
+</tr>
+</table>
+</div>
+      <center>
+      
+      <!-- ZONA DE DATOS -->
+      <div id="datos_orden">
+
+	<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="5" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Lista T&iacute;tulos Vencidos
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+         <!--encabezados de columna-->
+    <tr class="tableHeader">
+	<th>Selecci&oacute;n</th>    
+	<th>T&iacute;tulos</th>
+	<th>Fecha Inicio Pago de Cupones</th>
+    <th>Fecha Fin Pago de Cupones</th>
+    <th>Interes Cup&oacute;n</th>    
+    <th>Interes Amortizaci&oacute;n</th>
+    <th>Amortizaci&oacute;n</th>        
+ 	<th>Cantidad de Clientes</th>                       
+    </tr>
+  
+	
+	
+	<!--data-->
+    <rows>
+    <tr class="tableCell">
+ 				<td align="center">
+                <input type="radio" name="titulos" value="@secid@--@fecha_inicio_pago_cupones@--@fecha_fin_pago_cupones@">
+                </td> 
+ 				<td>
+                @secid@
+                </td> 
+                <td>
+                @fecha_inicio_pago_cupones@
+                </td>                              
+                <td>
+               @fecha_fin_pago_cupones@
+                </td>
+                <td>
+               @intereses_cupones@
+                </td>
+                <td>
+               @intereses_amortizacion@
+                </td>                 
+                <td>
+               @amortizable format-mask='0.000'@
+                </td>                                     
+                <td>
+               @cantidad_clientes@
+                </td>
+ 
+     </tr>
+     </rows>
+    
+    </table>
+
+  
+    @page_index@  
+        </div>
+   
+        
+        
+
+<INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/> 
+
+            <br>
+            @boton@        
+                <SPAN> </SPAN>
+            <button type="button" onclick="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+ 
+  </form>
+  	</center>
+</body>
+</html>

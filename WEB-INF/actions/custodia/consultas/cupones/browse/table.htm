@@ -1,0 +1,182 @@
+<html>
+
+	<head>
+        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+        <script type="text/javascript">
+        
+          
+        </script>
+	
+    </head>
+
+<body>
+		
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Custodia / Consultas / Cupones</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<br>
+
+    <table align="center"  border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="6" ALIGN="left">
+                <FONT class="formCaptionText">
+                 Cliente: &nbsp;&nbsp; @client_nombre@ &nbsp;&nbsp; @tipper_id@-@client_cedrif@
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+
+    <table align="center"  border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="6" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Intereses Acumulados hasta el @fecha_hoy@
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table align="center"  border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">		
+		<th>T&iacute;tulo</th>                          
+		<th>Fecha Ultimo Pago</th>
+		<th>Fecha Prox. Pago</th>
+		<th>Cant. Custodia</th>		
+		<th>Tasa (%)</th>
+		<th>Moneda Neg.</th>
+		<th>Inter&eacute;s Acumulado</th>
+                            
+    </tr>
+
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+		<td align="left">@titulo_id@</td>
+		<td align="center">@titulo_fe_ult_pago_cupon@ </td>
+		<td align="center">@fecha_prox_pago_cupon@</td>
+		<td align="right">@titcus_cantidad@</td>			
+		<td align="right">@tasa_interes format-mask='#,###.000'@</td>
+		<td align="center">@titulo_moneda_neg@</td>
+		<td align="right">@interes_acumulado format-mask='#,###.000'@</td>
+     </tr>
+     </rows>  
+                 
+    </table>
+     
+   <table style="table-layout:auto" style="display:@display_t1@" cellspacing="1" cellpadding="2" width="40%" class="datatable">
+    	<tr class="tableHeader">		
+    	<th colspan="2">Totales Intereses Acumulados</th>   
+    	</tr>
+    	  
+    	<rows_totales_intereses>
+    	<tr>
+    		<td align="right"><b>Total @moneda_interes@</b></td>
+    		<td align="right"><b>@tolal_interes_moneda format-mask='#,###,##0.00'@</b></td>
+    	</tr>
+    	</rows_totales_intereses>
+
+	</table>
+    <br><br>
+    
+     <table align="center" border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Operaciones Pendientes Por Pagar
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>    
+
+    <!--tabla de data-->
+    <table align="center" border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">		
+		<th nowrap="nowrap">T&iacute;tulo</th>                          
+		<th width="8%">Nro. Orden</th>
+		<th width="8%">Nro. Oper.</th>		
+		<th width="9%">Fecha Aplicar</th>		
+		<th width="9%">Fecha Inicio Cup&oacute;n</th>
+		<th width="9%">Fecha Fin Cup&oacute;n</th>	
+		<th width="7%">Moneda</th>
+		<th width="16%">Monto</th>			
+		<th>Transacci&oacute;n</th>	                            
+    </tr>
+
+    <!--data-->
+    <rows_oper>
+    <tr class="tableCell">
+		<td align="left">@titulo_id@</td>
+		<td align="center">@ordene_id@</td>
+		<td align="center">@ordene_operacion_id@</td>  		
+		<td align="center">@fecha_aplicar@</td>
+		<td align="center">@fecha_inicio_cp@</td>
+		<td align="center">@fecha_fin_cp@</td>
+		<td align="center">@moneda_oper@</td>
+		<td align="right">@monto_operacion@ </td>
+		<td align="left">@transa_descripcion@ </td>
+	</tr>
+     </rows_oper>   
+    
+    </table>
+
+	
+    <table style="display:@display_t2@; table-layout:auto" border="0" cellspacing="1" cellpadding="2" width="40%" class="datatable">
+    	<tr class="tableHeader">		
+    		<th colspan="2">Totales Operaciones</th>     
+    	</tr>
+    	<rows_totales_oper>
+    	<tr>
+    		<td align="right"><b>Total @moneda_id@</b></td>
+    		<td align="right"><b>@monto_por_moneda format-mask='#,###,##0.00'@</b></td>
+    	</tr>
+    	</rows_totales_oper>
+
+	</table>
+	
+    <BR>
+    
+<center>
+    
+<form>
+    <button onclick="javascript:history.back();">Regresar</button>
+     &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+</form>
+
+</center>
+
+</body>
+
+</html>
+

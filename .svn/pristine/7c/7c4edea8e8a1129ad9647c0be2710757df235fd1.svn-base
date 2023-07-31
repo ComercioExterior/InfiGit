@@ -1,0 +1,1 @@
+delete MSC_MENU_ITEMS where nu_parent = @padre@

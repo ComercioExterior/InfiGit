@@ -1,0 +1,21 @@
+          <tr>
+            <td>Estado Civil Casado:</td>
+			<td>			
+			    <SELECT NAME="estado_casado" SIZE="1" ONCHANGE="mostrarDatosCasado();">				
+			    	<OPTION VALUE="" SELECTED></OPTION>
+					<OPTION VALUE="NO">NO</OPTION>
+					<OPTION VALUE="SI">SI</OPTION>				
+	 			</SELECT> 							
+			</td>            
+        </tr>
+                
+        <tr id="campo_ced_conyuge" style="display:none">
+            <td>C&eacute;dula C&oacute;nyuge:</td>
+			<td>			
+			    <SELECT NAME="tipo_persona_conyuge" SIZE="1" ONCHANGE="javascript:mostrarDatosCasado();">				
+					<OPTION VALUE="V" SELECTED>V</OPTION>
+					<OPTION VALUE="E">E</OPTION>				
+	 			</SELECT> 		
+	 			<input type="text" value="@cedula_conyuge@" name="cedula_conyuge" MAXLENGTH="10" onkeypress="solo_numericos();"/>					
+			</td>            
+        </tr>       

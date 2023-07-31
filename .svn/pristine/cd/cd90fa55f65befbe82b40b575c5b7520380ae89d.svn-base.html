@@ -1,0 +1,71 @@
+<html>
+	<head> 
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+    </head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};"> 
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Instrucciones para Venta de T&iacute;tulos</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+<center>
+
+<br>
+<form name="dataentry" action="gestion_procesos_browse?editar=1" method="post">
+<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                  Operaciones Financieras Involucradas
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+    
+    <!--encabezados de columna-->
+    <tr>         
+       <th nowrap>Orden</th>            
+       <th nowrap>Operacion</th>
+       <th nowrap>Status</th>
+       <th nowrap>Descripci&oacute;n</th>
+       <th nowrap>Moneda</th>
+       <th nowrap>Monto</th>                                   
+    </tr>
+
+  <operaciones>
+    <tr class="tableCell">
+       <td nowrap align="center">@ordene_id@</td>
+       <td nowrap align="center">@ordene_operacion_id@</td> 
+       <td nowrap align="center">@status_operacion@</td>
+       <td nowrap align="left">@transa_descripcion@</td>
+       <td nowrap align="center">@moneda@</td>
+       <td nowrap align="right">@monto_operacion format-mask='###,###,###,###.##'@</td>                 
+    </tr>
+  </operaciones>
+     
+    </table>
+    
+    <button type="button" onclick="javascript:window.close();">Cerrar</button>
+</form>
+</center>
+</body>
+</html>

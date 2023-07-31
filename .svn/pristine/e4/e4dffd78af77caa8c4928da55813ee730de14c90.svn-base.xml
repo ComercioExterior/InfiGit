@@ -1,0 +1,316 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (https://github.com/eclipse-ee4j/metro-jax-ws). RI's version is JAX-WS RI 2.3.3 git-revision#b4c5bb6. --><xs:schema xmlns:tns="http://service.bcv.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://service.bcv.org/">
+
+<xs:element name="ANULADEMANDA" type="tns:ANULADEMANDA"/>
+
+<xs:element name="ANULADEMANDAResponse" type="tns:ANULADEMANDAResponse"/>
+
+<xs:element name="ANULAOFERTA" type="tns:ANULAOFERTA"/>
+
+<xs:element name="ANULAOFERTAResponse" type="tns:ANULAOFERTAResponse"/>
+
+<xs:element name="ANULAPACTO" type="tns:ANULAPACTO"/>
+
+<xs:element name="ANULAPACTOResponse" type="tns:ANULAPACTOResponse"/>
+
+<xs:element name="DEMANDASXML" type="tns:DEMANDASXML"/>
+
+<xs:element name="DEMANDASXMLResponse" type="tns:DEMANDASXMLResponse"/>
+
+<xs:element name="Exception" type="tns:Exception"/>
+
+<xs:element name="GETPACTOXML" type="tns:GETPACTOXML"/>
+
+<xs:element name="GETPACTOXMLResponse" type="tns:GETPACTOXMLResponse"/>
+
+<xs:element name="INSTRUMENTOSXML" type="tns:INSTRUMENTOSXML"/>
+
+<xs:element name="INSTRUMENTOSXMLResponse" type="tns:INSTRUMENTOSXMLResponse"/>
+
+<xs:element name="OFERTASXBCV" type="tns:OFERTASXBCV"/>
+
+<xs:element name="OFERTASXBCVResponse" type="tns:OFERTASXBCVResponse"/>
+
+<xs:element name="OFERTASXML" type="tns:OFERTASXML"/>
+
+<xs:element name="OFERTASXMLResponse" type="tns:OFERTASXMLResponse"/>
+
+<xs:element name="TIPOPACTOSXML" type="tns:TIPOPACTOSXML"/>
+
+<xs:element name="TIPOPACTOSXMLResponse" type="tns:TIPOPACTOSXMLResponse"/>
+
+<xs:element name="cambiarClave" type="tns:cambiarClave"/>
+
+<xs:element name="cambiarClaveResponse" type="tns:cambiarClaveResponse"/>
+
+<xs:element name="demanda" type="tns:demanda"/>
+
+<xs:element name="demandaResponse" type="tns:demandaResponse"/>
+
+<xs:element name="errores" type="tns:errores"/>
+
+<xs:element name="erroresResponse" type="tns:erroresResponse"/>
+
+<xs:element name="jornadaActiva" type="tns:jornadaActiva"/>
+
+<xs:element name="jornadaActivaResponse" type="tns:jornadaActivaResponse"/>
+
+<xs:element name="oferta" type="tns:oferta"/>
+
+<xs:element name="ofertaResponse" type="tns:ofertaResponse"/>
+
+<xs:element name="pacto" type="tns:pacto"/>
+
+<xs:element name="pactoResponse" type="tns:pactoResponse"/>
+
+<xs:element name="pactodirecto" type="tns:pactodirecto"/>
+
+<xs:element name="pactodirectoResponse" type="tns:pactodirectoResponse"/>
+
+<xs:element name="statusjornada" type="tns:statusjornada"/>
+
+<xs:element name="statusjornadaResponse" type="tns:statusjornadaResponse"/>
+
+<xs:complexType name="ANULADEMANDA">
+<xs:sequence>
+<xs:element name="COJORNADA" type="xs:string" minOccurs="0"/>
+<xs:element name="CODEMANDA" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ANULADEMANDAResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="Exception">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="DEMANDASXML">
+<xs:sequence>
+<xs:element name="COJORNADA" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="DEMANDASXMLResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cambiarClave">
+<xs:sequence>
+<xs:element name="CLAVENUEVA" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cambiarClaveResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="statusjornada">
+<xs:sequence>
+<xs:element name="COJORNADA" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="statusjornadaResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="pacto">
+<xs:sequence>
+<xs:element name="COJORNADA" type="xs:string" minOccurs="0"/>
+<xs:element name="COOFERTA" type="xs:string" minOccurs="0"/>
+<xs:element name="CODEMANDA" type="xs:string" minOccurs="0"/>
+<xs:element name="MOPACTO" type="xs:decimal" minOccurs="0"/>
+<xs:element name="MOPACTOBASE" type="xs:decimal" minOccurs="0"/>
+<xs:element name="MOCONTRAVALORBASE" type="xs:decimal" minOccurs="0"/>
+<xs:element name="TCPACTOBASE" type="xs:decimal" minOccurs="0"/>
+<xs:element name="TIPACTO" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="pactoResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="GETPACTOXML">
+<xs:sequence>
+<xs:element name="COJORNADA" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="GETPACTOXMLResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="jornadaActiva">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="jornadaActivaResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ANULAPACTO">
+<xs:sequence>
+<xs:element name="COPACTO" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ANULAPACTOResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="errores">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="erroresResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="demanda">
+<xs:sequence>
+<xs:element name="NURIFCLIENTE" type="xs:string" minOccurs="0"/>
+<xs:element name="NBCLIENTE" type="xs:string" minOccurs="0"/>
+<xs:element name="COMONEDADEM" type="xs:string" minOccurs="0"/>
+<xs:element name="MODEMANDA" type="xs:decimal" minOccurs="0"/>
+<xs:element name="TSDEMANDA" type="xs:decimal" minOccurs="0"/>
+<xs:element name="COREFINSTITUCION" type="xs:string" minOccurs="0"/>
+<xs:element name="COJORNADA" type="xs:string" minOccurs="0"/>
+<xs:element name="COCTACONVENIO" type="xs:string" minOccurs="0"/>
+<xs:element name="COCTACLIENTE" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="demandaResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="oferta">
+<xs:sequence>
+<xs:element name="NURIFCLIENTE" type="xs:string" minOccurs="0"/>
+<xs:element name="NBCLIENTE" type="xs:string" minOccurs="0"/>
+<xs:element name="COMONEDAOFE" type="xs:string" minOccurs="0"/>
+<xs:element name="MOOFERTA" type="xs:decimal" minOccurs="0"/>
+<xs:element name="TSOFERTA" type="xs:decimal" minOccurs="0"/>
+<xs:element name="COREFINSTITUCION" type="xs:string" minOccurs="0"/>
+<xs:element name="COJORNADA" type="xs:string" minOccurs="0"/>
+<xs:element name="COCTACONVENIO" type="xs:string" minOccurs="0"/>
+<xs:element name="COCTACLIENTE" type="xs:string" minOccurs="0"/>
+<xs:element name="COTIPOINSTRUM" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ofertaResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="pactodirecto">
+<xs:sequence>
+<xs:element name="NURIFCLIENTE" type="xs:string" minOccurs="0"/>
+<xs:element name="NBCLIENTE" type="xs:string" minOccurs="0"/>
+<xs:element name="COMONEDAOFE" type="xs:string" minOccurs="0"/>
+<xs:element name="MOOFERTA" type="xs:decimal" minOccurs="0"/>
+<xs:element name="TSOFERTA" type="xs:decimal" minOccurs="0"/>
+<xs:element name="COREFINSTITUCION" type="xs:string" minOccurs="0"/>
+<xs:element name="COCTACONVENIO" type="xs:string" minOccurs="0"/>
+<xs:element name="COCTACLIENTE" type="xs:string" minOccurs="0"/>
+<xs:element name="COTIPOINSTRUM" type="xs:string" minOccurs="0"/>
+<xs:element name="NURIFCLIENTEDEM" type="xs:string" minOccurs="0"/>
+<xs:element name="NBCLIENTEDEM" type="xs:string" minOccurs="0"/>
+<xs:element name="COCTACONVENIODEM" type="xs:string" minOccurs="0"/>
+<xs:element name="COCTACLIENTEDEM" type="xs:string" minOccurs="0"/>
+<xs:element name="MOPACTOBASE" type="xs:decimal" minOccurs="0"/>
+<xs:element name="MOCONTRAVALORBASE" type="xs:decimal" minOccurs="0"/>
+<xs:element name="TCPACTOBASE" type="xs:decimal" minOccurs="0"/>
+<xs:element name="TIPACTO" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="pactodirectoResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="TIPOPACTOSXML">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="TIPOPACTOSXMLResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="OFERTASXBCV">
+<xs:sequence>
+<xs:element name="COJORNADA" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="OFERTASXBCVResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="OFERTASXML">
+<xs:sequence>
+<xs:element name="COJORNADA" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="OFERTASXMLResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="INSTRUMENTOSXML">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="INSTRUMENTOSXMLResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ANULAOFERTA">
+<xs:sequence>
+<xs:element name="COJORNADA" type="xs:string" minOccurs="0"/>
+<xs:element name="COOFERTA" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ANULAOFERTAResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

@@ -1,0 +1,35 @@
+<html>
+
+	<head>
+        <LINK REL="stylesheet" type="text/css" href="../megasoft.css" />
+		<title>Sistema INFI - Seguridad</title>
+	</head>
+
+<body>
+
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Seguridad / Roles</FONT>
+        </TD>
+   <!-- help online --><TD class="headerBox" valign="middle" align="right"><img border="0" src="@url_images@ayuda.gif" width="17" height="17"  onclick="helpOpen();" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" ></TD><!-- fin help online --></TR>
+</TABLE>    
+    <center>
+    
+    <h3 STYLE="color:red">
+    Eliminar Registro
+    </h3>
+    
+    <h3>Por favor confirme si desea eliminar este registro</h3>
+
+<form>
+    <button onclick="window.location='portal_role-delete?id=@id@'" />OK - Eliminar</button>
+    <button onclick="history.back();" />NO - Cancelar</button>
+</form>    
+    
+    </center>
+
+</body>
+
+</html>

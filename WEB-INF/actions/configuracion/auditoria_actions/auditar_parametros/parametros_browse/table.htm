@@ -1,0 +1,89 @@
+<HTML>
+    
+    <HEAD>
+        <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+            <SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+            <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        
+    </HEAD>
+	
+	<script language="javascript">
+	function buscar(){
+		document.dataentry.action="url_log_config-browse?pagestart=true";
+		document.dataentry.submit();
+	}
+	
+	function eliminar(id,parametro){
+		if (confirm("¿Está seguro que desea eliminar el Parametro: ("+parametro+")?"))
+				document.dataentry.action='url_log_config-parameters_delete?id_config='+id+'&name='+parametro;
+				document.dataentry.submit();
+	}
+	
+	</script>	 
+	  
+    <!--poner el focus en el 1er control de la forma-->
+    <BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Generales / Auditor&iacute;a</FONT>
+        </TD>
+        
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+        <td class="headerBox" aling="right"></td>
+</TABLE>
+<form NAME="dataentry" METHOD="POST" />
+<center>
+
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="TABLE-LAYOUT: auto; ">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+    	<th colspan="2" width="5%"></th>
+    	<th>Par&aacute;metro</th>
+    </tr>
+    
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+                 <td align="center">
+                   	<IMG onclick="eliminar('@id_config@','@name@');" SRC="../images/infi_gn_delete.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Eliminar Registro" BORDER="0" style="cursor:hand">
+                </td>
+                <td align="center">
+                <a href="url_log_config-parameters_edit?id=@id_config@&name=@name@">
+                	<IMG SRC="../images/infi_gn_edit2.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Editar Registro" BORDER="0" style="cursor:hand">
+                </a>
+                </td>
+                <td>
+                @name@
+                </td>
+                
+                
+        
+     </tr>
+     </rows>
+    
+    </table>
+    @page_index@
+	<br>
+	<button type="button" ONCLICK="window.location='url_log_config-parameters_addnew'">&nbsp;Agregar&nbsp;</button>
+    &nbsp;<button type="button" onclick="window.location='url_log_config-browse'">Regresar</button>
+    &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+
+</center>
+  
+</form>
+
+</body>
+
+</html>

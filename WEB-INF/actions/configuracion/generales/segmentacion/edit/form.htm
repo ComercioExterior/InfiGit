@@ -1,0 +1,115 @@
+
+<HTML>
+    
+	<head> 
+          
+         <script language="javascript" src="../js/default.js"></script>   
+        <link rel="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />		
+        
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+           
+        <script type="text/javascript">
+        
+          
+        </script>
+	
+    </head>
+  
+  <body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+  
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Generales / Segmentaci&oacute;n</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+        
+        <CENTER>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="segmentacion-update">
+		
+        <table border="0" cellspacing="1" cellpadding="2" width="60%" class="dataform">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="2" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Editar Registro
+                </FONT>
+            </th>
+        </tr>
+        
+        <!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Descripci&oacute;n:*
+            </td>
+            <td>
+            <INPUT TYPE="TEXT" VALUE="@cteseg_descripcion@" NAME="cteseg_descripcion" SIZE="50" MAXLENGTH="200" class="inputControl" />
+            </td>
+        </tr>
+                
+        <!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Altair Banco:*
+            </td>
+            <td>
+            <INPUT TYPE="TEXT" VALUE="@cteseg_altair_banco@" NAME="cteseg_altair_banco" SIZE="25" MAXLENGTH="25" class="inputControl" />
+            </td>
+        </tr>
+
+        <!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Altair Segmento:*
+            </td>
+            <td>
+            <INPUT TYPE="TEXT" VALUE="@cteseg_altair_segmento@" NAME="cteseg_altair_segmento" SIZE="25" MAXLENGTH="25" class="inputControl" />
+            </td>
+        </tr>
+
+       <!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Altair Subsegmento:*
+            </td>
+            <td>
+            <INPUT TYPE="TEXT" VALUE="@cteseg_altair_subsegmento@" NAME="cteseg_altair_subsegmento" SIZE="5" MAXLENGTH="1" class="inputControl" />
+            </td>
+        </tr>
+       
+
+        </table>
+
+            <!--nota sobre los campos obligatorios-->
+            <P><FONT COLOR="red"><B>Nota:</B></FONT> Los campos con * deben ser llenados para poder procesar el formulario.</P>
+            
+             <button TYPE="submit">Grabar</button>
+            &nbsp;<button type="button" onclick="javascript:history.back();">Regresar</button>
+            &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+
+            <!--campo escondido para almacenar el key del record-->
+            <INPUT TYPE="HIDDEN" VALUE="@cteseg_id@" NAME="cteseg_id" />
+
+    </form>
+
+        
+        </CENTER>
+        
+    </BODY>
+
+</HTML>
+

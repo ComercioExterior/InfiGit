@@ -1,0 +1,145 @@
+<html>
+	<head> 
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        <script type="text/javascript">
+         function detalle_proceso(nombreFormulario){
+        window.open('instrucciones_liquidacion_venta-detalle_proceso?proceso='+nombreFormulario);
+        }
+        function deshabilitar_procesar(){
+        var operaciones = document.getElementById('operaciones')
+        var procesar    = document.getElementById('procesos')
+		var encabezado  = document.getElementById('encabezado_operaciones')
+        
+	        if(operaciones.rows.length==1){
+		        var button = document.getElementById('procesarButton');
+		        button.style.display = 'none';
+		        operaciones.style.display = 'none';
+		        encabezado.style.display  = 'none';
+	        }
+	        if(procesar.rows.length==1){
+		        procesar.style.display = 'none';
+	        }
+        }
+        
+        function detalle_operaciones(moneda,instruccion){
+        if(instruccion=='')
+        {
+        	alert(instruccion);
+        }
+        
+       	window.open('instrucciones_liquidacion_venta-detalle_operaciones?moneda='+moneda+'&instruccion='+instruccion);
+        }
+        </script>
+    </head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Instrucciones para Venta de T&iacute;tulos</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+<center>
+
+<br>
+<form name="dataentry" action="instrucciones_liquidacion_venta-seleccionar_instruccion" method="post">
+<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                  Procesos del cliente &nbsp;@nombre@
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;display: block" id="procesos">
+    
+    <!--encabezados de columna-->
+    <tr>         
+    		  <th nowrap width="10%">Detalle</th>
+              <th nowrap>Proceso</th>            
+              <th nowrap>Fecha Registro</th>
+              <th nowrap>Usuario</th>                                  
+    </tr>
+    <!--data-->
+    <procesos>
+    <tr class="tableCell">
+		   <td align="center">
+                <a href="javascript:detalle_proceso(@proceso_id@);"><IMG SRC="../images/infi_gn_document.gif" WIDTH="15" ALIGN="top" HEIGHT="13" title="Detalles del Proceso" BORDER="0" style="cursor:hand"></a>
+                </td>
+           <td nowrap align="center">@proceso_id@</td>
+           <td nowrap align="center">@fecha_registro@</td> 
+           <td nowrap align="center">@userid@</td>                
+    </tr>
+     </procesos>
+    </table>
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    <!--tabla de data-->
+    
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;display: block" id="encabezado_operaciones">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                  Operaciones Pendientes
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;display: block" id="operaciones">
+    
+    <!--encabezados de columna-->
+    <tr>        
+    		<th nowrap width="2%"></th>
+            <th nowrap width="2%"></th> 
+            <th nowrap width="8%">Registro</th>            
+            <th nowrap>Moneda</th>
+            <th nowrap>Descripci&oacute;n</th>
+            <th nowrap>Instrucci&oacute;n</th>
+            <th nowrap>Monto</th>                                    
+    </tr>
+    <!--data-->
+    <rows>
+    <tr class="tableCell">  
+    <td nowrap align="center"><input type="radio" name="moneda" value="@moneda_id@-@monto@-@dtaext_valor@" id="radioMoneda"></td> 
+           <td align="center">
+            <a href="javascript:detalle_operaciones('@moneda_id@','@dtaext_valor@')"><IMG SRC="../images/infi_gn_document.gif" WIDTH="15" ALIGN="top" HEIGHT="13" title="Detalles de la Orden" BORDER="0" style="cursor:hand"></a>
+           <td nowrap align="center">@_row@</td>
+           <td nowrap align="center">@moneda_id@</td>
+           <td nowrap align="left">@moneda_descripcion@</td>
+           <td nowrap align="left">@instruccion_nombre null-value=''@</td>
+           <td nowrap align="right">@monto format-mask='###,###,###.00'@</td>                 
+    </tr>
+     </rows>
+    </table>
+    <BR>
+	<button type="submit" id="procesarButton">Procesar</button>
+    &nbsp;<button type="button" onclick="javascript:history.back();">Regresar</button>
+    &nbsp;<button type="button" onclick="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+</form>
+</center>
+</body>
+<script type="text/javascript">
+window.onload = makeDoubleDelegate(window.onload,deshabilitar_procesar());
+</script>
+</html>

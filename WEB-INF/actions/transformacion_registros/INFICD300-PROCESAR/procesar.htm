@@ -1,0 +1,138 @@
+<html>
+
+	<head>
+        
+        <!--LINK REL="stylesheet" type="text/css" href="../megasoft.css" /-->
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+<script type="text/javascript">
+        
+        //ejecuci&oacute;n del proceso
+        function cargar_archivo(){
+        		document.dataentry.submit();
+        }
+        
+        //Cancelar ejecuci&oacute;n de proceso o retornar
+        function cancelar_proceso(){
+        		history.back();//regresar al filtro en caso de que no haya empezado la ejecuci&oacute;n
+        }
+        
+</script>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Carga Inicial / Transformaci&oacute;n de Registros</FONT>
+        </TD>
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+<form name="dataentry" method="post" action="export_data-procesar?band=1">
+
+   <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+    <rows_archivos>	
+     <tr class="tableCell">
+     	<th colspan="2">Inicio de Proceso</th>
+     </tr>
+     
+     <!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel" width="50%">
+             Inicio:
+            </td>
+            <TD CLASS="formLabel" width="50%">
+            
+				@FECHA@
+            
+            </TD>
+            
+        </tr>
+    
+    <tr class="tableCell">
+        <td CLASS="formLabel">
+           Registros a Procesar:
+         </td>
+        <TD CLASS="formLabel" width="50%">
+				@CONTEO@
+        </TD>
+        
+                
+     </tr>     
+        
+	 <tr>
+		<th colspan="2">Fin de Proceso</th>
+     </tr>
+	 
+      <tr CLASS="formElement">
+           <td CLASS="formLabel">
+            Fin:
+           </td>
+           <TD CLASS="formLabel" width="50%">
+				@fecha_fin@
+        </TD>
+       </tr>
+       <tr CLASS="formElement">
+           <td CLASS="formLabel">
+            Duracion:
+           </td>
+           <TD CLASS="formLabel" width="50%">
+				@tiempo_duracion@
+				
+        </TD>
+       </tr>
+       <tr CLASS="formElement">
+           <td CLASS="formLabel">
+            Leidos:
+           </td>
+           <TD CLASS="formLabel" width="50%">
+				@registros_leidos@
+        </TD>
+       </tr>
+       <tr CLASS="formElement">
+           <td CLASS="formLabel">
+            Grabados:
+           </td>
+           <TD CLASS="formLabel" width="50%">
+				@registros_ok@ - @porcentaje@ %
+        </TD>
+       </tr>
+       <!--campo-->
+       <tr CLASS="formElement">
+           <td CLASS="formLabel">
+            Erroneos:
+           </td>
+           <TD CLASS="formLabel" width="50%">
+				@registros_error@ - @porcentaje_error@ %
+        </TD>
+	 </tr>
+	 <tr CLASS="formElement">
+           <TD CLASS="formLabel" width="50%">
+				@mensaje@
+        </TD>
+	 </tr>
+	 </rows_archivos>
+</table>	
+ 	
+    <BR>
+	
+	<button onclick="cancelar_proceso();">Cancelar</button>
+</form> 
+
+</center>
+
+</body>
+
+</html>
+

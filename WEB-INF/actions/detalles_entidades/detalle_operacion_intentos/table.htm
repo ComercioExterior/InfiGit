@@ -1,0 +1,93 @@
+<html>
+	<head>        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>        
+      
+    </head>
+
+<!-- body onload="centrar();"-->
+<body>
+<!--page name bar-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Toma de orden</title>
+  <link rel="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+  <link rel="stylesheet" type="text/css" href="../css/EstiloFichas.css" />
+  <script type="text/javascript">
+          //Funci&oacute;n para abrir un picklist o limpiar el valor anteriormente seleccionado
+		function showPickList(ind ,id, tx, campo)
+		{
+		   var r
+		   if (ind == '1') {  // llamar a picklist		
+		   	  r = window.open(campo +'?name_id=' + id.name +"&name_tx=" + tx.name, 'Picklist','resizable=yes,scrollbars=yes,width=600,height=450,Left=200,top=150,Status=yes,unadorned:true');
+		   	  
+		   }
+		   else{
+			id.value= "";//limpiar id de cliente
+			tx.value= "<Todos>";//limpiar campo de cliente
+		  }
+		} 
+  </script>
+         <script language="javascript" src="../js/default.js"></script>  
+</head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText"> Ordenes / Consultas / Detalles </FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+  <!--formulario-->
+  	
+ <form NAME="dataentry" METHOD="POST" ACTION="">
+<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">     
+        <!--titulo-->
+    <tr CLASS="formCaption">
+            <th COLSPAN="6" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Intentos Realizados
+                </FONT>
+            </th>
+        </tr>
+</table>
+<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+         <tr CLASS="formCaption">
+            <th COLSPAN="" width="5%" ALIGN="center">Nro</th>
+            <th COLSPAN="" width="10%" ALIGN="center">Fecha</th>
+            <th COLSPAN="" width="5%" ALIGN="center">Aplico</th>
+            <th COLSPAN="" ALIGN="center">Error</th>
+        </tr>
+        <operaciones>
+        <tr>
+        <td align="center" style="background-color:@color@;">@operacion_intento_id null-value='No posee'@</td>
+        <td align="center" style="background-color:@color@;">@fecha null-value='No posee'@</td>
+        <td align="center" style="background-color:@color@;">@aplica null-value='No posee'@</td>
+        <td style="background-color:@color@;">@error_desc null-value='No posee'@</td>
+        </tr>
+        </operaciones>
+        </table>
+         <br>
+         <table>
+         <tr>
+         <td align="center">
+         <button type="button" onclick="window.history.back();">Regresar</button>&nbsp;&nbsp;&nbsp;
+         <button type="button" onclick="javascript:window.close();">Cerrar</button>
+         </td>
+         </tr>
+         </table>
+         	 
+</TABLE>
+
+

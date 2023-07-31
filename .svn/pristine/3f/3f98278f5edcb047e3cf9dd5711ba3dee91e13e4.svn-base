@@ -1,0 +1,355 @@
+
+<HTML>
+
+<HEAD>
+	<LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+	<SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+	<script language="javascript" src="../js/default.js"></script>   
+	<TITLE>Sistema INFI</TITLE>
+	<SCRIPT>
+	function showPickList(ind ,id, tx, campo) {
+	   var r
+	   if (ind == '1') {  // llamar a picklist		
+	   	  r = window.open(campo +'?name_id=' + id.name +"&name_tx=" + tx.name, 'Picklist','resizable=yes,scrollbars=yes,width=600,height=450,Left=200,top=150,Status=yes,unadorned:true');
+	   }else{
+		id.value= "";//limpiar id de cliente
+		tx.value= "";//limpiar campo de cliente
+	  }
+	} 
+      
+	function mostrar(id) {
+		if(id==1){
+			agregar.style.display = "block";
+			titulod.style.display = "block";
+		}
+		if(id==2){
+			tituloa.style.display = "block";
+		}
+	}
+	
+	function showPlantilla(x) {		  	   
+	   /*var indice = document.dataentry.plant_id.selectedIndex;
+	   var valor = document.dataentry.plant_id.options[indice].value;
+	   var indix = document.dataentry.dest_id.selectedIndex;
+	   var unidad = document.dataentry.dest_id.options[indix].value;
+	   alert("Tipo Plant: "+valor+" Tipo Dest: "+unidad);
+	   */	   
+	   var tipoPlant = document.dataentry.plant_id.value;
+	   var tipoDest = document.dataentry.dest_id.value;
+	   /*alert("Tipo Plant: "+document.dataentry.plant_id.value+" Tipo Dest: "+document.dataentry.dest_id.value);*/
+	   //Llamar a la plantilla	
+	   /*var ventana;
+	   ventana = window.open('plantillas_definicion-plantilla'+'&tipo_plant='+tipoPlant+'&unidad='+unidad+"&name="+'plantilla.htm', 'Plantilla', 'resizable=yes, scrollbars=yes, width=600, height=450, Left=200, top=150, Status=yes, unadorned:true');*/
+	   var ventana;
+	   ventana = window.open('plantillas_definicion-plantilla'+'&dirigir='+x+'&id='+tipoPlant+'&unidad='+tipoDest+"&name="+'plantilla.htm', 'Plantilla','resizable=yes,scrollbars=yes,width=600,height=450,Left=200,top=150,Status=yes,unadorned:true');
+	   //ventana = window.open('plantillas_definicion-plantilla'+'?dirigir='+x+'&id=' + valor +'&unidad=' + unidad+"&name=" + 'plantilla.htm', 'Plantilla','resizable=yes,scrollbars=yes,width=600,height=450,Left=200,top=150,Status=yes,unadorned:true');
+	}
+	
+	//NM29643 infi_TTS_466
+	//Funcion Ajax que lista los eventos dado un id de producto
+	function callAjax(id_contenedor, url){
+		
+		var name;
+		if(id_contenedor==='eventos_listados'){
+			name='evento';
+		}else{
+			if(id_contenedor==='areas_listadas'){
+				name='area';
+			}
+		}
+		
+		//Siempre se intenta primero eliminar select si se encuentra generado
+		removeSelect("tabla_eventos", name);
+		
+		if( (url.indexOf("ajax_eventos")!=-1 && document.dataentry.producto.value!='' && document.dataentry.producto.value.length>0)
+			|| (url.indexOf("ajax_areas")!=-1 && document.dataentry.tipo_destinatario.value==='F')
+		){
+		
+		var pagResponse = false;
+// 		var url = "plantillas_correo-filter_ajax_eventos?prod="+document.dataentry.producto.value;
+// 		alert('url: '+url)
+		
+		if (window.XMLHttpRequest) {// Si es Mozilla, Safari etc
+			pagResponse = new XMLHttpRequest()
+		} else if (window.ActiveXObject){ // pero si es IE
+			try {
+				pagResponse = new ActiveXObject("Msxml2.XMLHTTP")
+			} 
+			catch (e){ // en caso que sea una versi&oacute;n antigua
+				try{
+					pagResponse = new ActiveXObject("Microsoft.XMLHTTP")
+				}
+				catch (e){}
+			}
+		}
+		else
+			return false
+	
+		pagResponse.onreadystatechange = function(){ // funci&oacute;n de respuesta
+			cargarpagina3(pagResponse, id_contenedor, name)
+		}
+		
+		pagResponse.open('GET', url, true) // asignamos los m&eacute;todos open y send
+		pagResponse.send(null)
+		
+		}
+	}
+	
+	//NM29643 infi_TTS_466
+	//Funcion que elimina el select llenado con la llamada a la funcion ajax
+	function removeSelect(id_contenedor, name){
+// 		var select = document.getElementById(id_contenedor).cells[1].childNodes[0]; //select
+		var select = document.getElementById(id_contenedor);
+		if(select===undefined  || select===null){
+		}else{ //Esta definido el select (se habia llamado a la funcion ajax antes)
+			select.parentNode.removeChild(select);
+		}
+	}
+	
+	//NM29643 infi_TTS_466
+	//Funcion ajax para cargar los datos en la pagina actual
+	function cargarpagina(pagResponse, id_contenedor, name){
+		if (pagResponse.readyState == 4 && (pagResponse.status==200 || window.location.href.indexOf("http")==-1)){
+			//Se llena el select con la respuesta de la llamada a la funcion ajax
+			var html = pagResponse.responseText.substr(0,pagResponse.responseText.indexOf("<iframe"))
+// 			alert('html: '+html);
+			document.getElementById(id_contenedor).cells[1].innerHTML  = document.getElementById(id_contenedor).cells[1].innerHTML + html
+// 			document.getElementById(id_contenedor).innerHTML = document.getElementById(id_contenedor).innerHTML + pagResponse.responseText
+		}							
+	}
+	
+	//NM29643 infi_TTS_466
+		//Funcion ajax para cargar los datos en la pagina actual
+		function cargarpagina3(pagResponse, id_contenedor, name) {
+			if (pagResponse.readyState == 4 && (pagResponse.status == 200 || window.location.href.indexOf("http") == -1)) {
+				//Se llena el select con la respuesta de la llamada a la funcion ajax
+				document.getElementById(id_contenedor).innerHTML = pagResponse.responseText;
+			}
+		}
+		
+	
+	function verifEvento(x){
+		
+	}
+	
+	function recargarPagina(){
+	
+	}
+	
+	</SCRIPT>
+</HEAD>
+    
+<!-- Situa el focus en el 1er control de la forma -->
+<BODY ONLOAD="{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+			<TD class="headerBox">				            
+					<font class="headerText">Configuraci&oacute;n / Plantillas de Correos</font>
+			</TD>        
+			<!-- help online -->
+			<TD class="headerBox" valign="middle" align="right">
+	   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+	   		</TD>
+	   		<!-- fin help online -->
+	        <TD class="headerBox" align="right"></TD>
+		</TR>
+	</TABLE>
+	
+	<CENTER>
+	
+	<!--formulario-->
+	<FORM NAME="dataentry" id="dataentry" METHOD="POST" ACTION="plantillas_correo-browse">
+		
+		<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+		<tr>
+			<th COLSPAN="4" ALIGN="center">Seleccione Criterios</th>
+        </tr>
+        
+		<!--campo-->
+		<tr class="tableCell">
+			<td>Producto con eventos a notificar:</td>
+			<td>
+				<SELECT NAME="producto" SIZE="1" onchange="callAjax('eventos_listados', 'plantillas_correo-filter_ajax_eventos?prod='+this.value);">
+					<OPTION VALUE="">Todos</OPTION>
+					<rows_productos>					
+						<OPTION VALUE="@tipo_producto_id@">@nombre@</OPTION>						
+					</rows_productos>
+				</SELECT>       
+			</td>        
+		</tr>
+		
+		</table>
+		
+		<div id="eventos_listados">
+		</div>
+			
+			
+		<!--campo-->
+<!-- 		<tr id="eventos_listados" class="tableCell"> -->
+<!-- 			<td>Evento a notificar del producto seleccionado:</td> -->
+<!-- 			<td> -->
+<!-- <!-- 			Aqui se insertan con ajax los eventos del producto seleccionado -->
+<!-- 			</td> -->
+<!-- 		</tr> -->
+		
+		
+		<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--campo-->
+		<tr>
+			<td width="30%">Tipo de Destinatario:</td>
+			<td>
+				<SELECT NAME="tipo_destinatario" CLASS="inputControl" onchange="callAjax('areas_listadas', 'plantillas_correo-filter_ajax_areas');">
+					<OPTION VALUE="" selected>Todos</OPTION>
+					<rows_dest>
+						<OPTION VALUE="@tipo_destinatario@">@nombre_tipo_destinatario@</OPTION>
+					</rows_dest>
+				</SELECT>
+			</td>
+		</tr>
+		
+        </table>
+		
+		<div id="areas_listadas">
+		</div>
+		
+<!-- 		<!--campo-->
+<!-- 		<tr id="areas_listadas" class="tableCell"> -->
+<!-- 			<td>&Aacute;rea Funcional:</td> -->
+<!-- 			<td> -->
+<!-- <!-- 			Aqui se insertan con ajax las areas configuradas -->
+<!-- 			</td> -->
+<!-- 		</tr> -->
+		
+		
+		<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--campo-->
+		<tr CLASS="formElement">
+			<td CLASS="formLabel">Nombre:</td>
+			<td>
+				<INPUT TYPE="text" NAME="plant_mail_name" value="" SIZE="50" MAXLENGTH="100" class="inputControl" onkeypress="return sin_caracteres_especiales(event)"/>
+			</td>
+		</tr>
+		
+		<!--campo-->
+		<tr CLASS="formElement">
+			<td CLASS="formLabel">Remitente:</td>
+			<td>
+				<INPUT TYPE="text" NAME="remitente" value="" SIZE="50" MAXLENGTH="100" class="inputControl" onkeypress="return sin_caracteres_especiales(event)"/>
+			</td>
+		</tr>
+	
+		
+		<!--campo-->
+		<tr CLASS="formElement">
+			<td CLASS="formLabel">Asunto:</td>
+			<td>
+				<INPUT TYPE="text" NAME="asunto" value="" SIZE="80" MAXLENGTH="100" class="inputControl" onkeypress="return sin_caracteres_especiales(event)"/>
+			</td>
+		</tr>
+		
+				<tr>
+		<td width="30%">Activación:</td>
+			<td>
+				<SELECT NAME="estatus_activacion" CLASS="inputControl">		
+						<OPTION VALUE="" selected>Todas</OPTION>			
+						<OPTION VALUE="1">Activa</OPTION>
+						<OPTION VALUE="0">Inactiva</OPTION>					
+				</SELECT>
+			</td>
+		</tr>	
+		
+	   <tr>
+		<td width="30%">Estatus:</td>
+			<td>
+				<SELECT NAME="estatus" CLASS="inputControl">
+						<OPTION VALUE="" selected>Todos</OPTION>					
+						<OPTION VALUE="0">Registrada</OPTION>
+						<OPTION VALUE="1">Aprobada</OPTION>					
+				</SELECT>
+			</td>
+		</tr>	
+		
+		        <tr>
+            <td>
+				Fecha Aprobación Desde:
+            </td>
+            <td>
+				<INPUT TYPE="TEXT" VALUE="" NAME="fecha_aprobacion_desde" SIZE="12" MAXLENGTH="10" class="inputControl" readonly /> 
+				<a onclick="popUpCalendar(this, fecha_aprobacion_desde, 'dd-mm-yyyy')">
+				<IMG SRC="../images/infi_gn_calendar.gif" class="boton" TITLE="Seleccionar Fecha"/>
+				</a>
+			</td>
+        </tr>
+        <!--campo-->
+        <tr>
+            <td>
+				Fecha Aprobación Hasta:
+            </td>
+            <td>
+				<INPUT TYPE="TEXT" VALUE="" NAME="fecha_aprobacion_hasta" SIZE="12" MAXLENGTH="10" class="inputControl" readonly/> 
+				<a onclick="popUpCalendar(this, fecha_aprobacion_hasta, 'dd-mm-yyyy')">
+				<IMG SRC="../images/infi_gn_calendar.gif" TITLE="Seleccionar Fecha"/> 
+				</a>
+			</td>
+        </tr>
+ 
+		</tr>	
+		
+		 <tr>
+            <td>
+				Fecha Registro Desde:
+            </td>
+            <td>
+				<INPUT TYPE="TEXT" VALUE="" NAME="fecha_registro_desde" SIZE="12" MAXLENGTH="10" class="inputControl" readonly /> 
+				<a onclick="popUpCalendar(this, fecha_registro_desde, 'dd-mm-yyyy')">
+				<IMG SRC="../images/infi_gn_calendar.gif" class="boton" TITLE="Seleccionar Fecha"/>
+				</a>
+			</td>
+        </tr>
+        <!--campo-->
+        <tr>
+            <td>
+				Fecha Registro Hasta:
+            </td>
+            <td>
+				<INPUT TYPE="TEXT" VALUE="" NAME="fecha_registro_hasta" SIZE="12" MAXLENGTH="10" class="inputControl" readonly/> 
+				<a onclick="popUpCalendar(this, fecha_registro_hasta, 'dd-mm-yyyy')">
+				<IMG SRC="../images/infi_gn_calendar.gif" TITLE="Seleccionar Fecha"/> 
+				</a>
+			</td>
+        </tr>
+		
+		</table>
+		
+		<br>
+	
+		<INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/>
+			
+		<table>
+			<tr>
+				<td>
+					<button TYPE="submit">Procesar</button>
+				</td>
+				<td>					
+					<button type="button" ONCLICK="window.location='plantillas_correo-addnew'">&nbsp;Agregar&nbsp;</button>
+				 </td>
+				<td>
+					<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+				</td>
+			</tr>
+		</table>
+	
+	</FORM>       
+	
+	</CENTER>
+	
+</BODY>
+
+</HTML>

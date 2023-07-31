@@ -1,0 +1,95 @@
+<html>
+
+	<head>
+        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+     	
+     	<script language="javascript">
+     	
+    		function vista(action,fecha,time,ip,usuario){
+    			var accion="action="+action;
+    			var dia="&fecha="+fecha;
+    			var hora="&time="+time;
+    			var dir="&ip="+ip;
+    			var user="&usuario="+usuario;
+    			var accion_map="log_url-parametros?"+accion+dia+hora+dir+user;
+    			window.open(accion_map,"Impresion", "toolbar=0, status=0, location=0, directories=0, menubar=0,scrollbars=1, resizable=1, top=10, left=10, width=650, height=400");
+   			}																				
+   		 </script>
+     
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Auditor&iacute;a / Consulta Transacciones</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="TABLE-LAYOUT: auto; ">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="8" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Url Auditados ( @t_registros@ )
+                </FONT>
+            </th>
+        </tr>
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+		<th width="2%" nowrap></th>
+		<th nowrap>Url</th>
+		<th nowrap>Usuario</th>
+		<th nowrap>IP</th>
+		<th nowrap>Fecha</th>
+		<th nowrap>Hora</th>                                                
+    </tr>
+
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+		<td CLASS="formLabel2" align="center">
+				<img border="0" src="../images/infi_gn_find.gif" alt="Ver Parametros" width="16" height="17" onclick="javascript:vista('@action@','@fecha@','@time@','@ip@','@usuario@');"/>
+        </td>       
+		<td align="left" nowrap><a href="log_url-detalle?url=@action@">@action@</td>                
+		<td align="leftr" nowrap>@userid@</td>
+        <td align="center" nowrap>@ip@</td>
+		<td align="center" nowrap>@fecha@</td>
+		<td align="center" nowrap>@hora@</td>
+     </tr> 
+     </rows>
+    
+    </table>
+		@page_index@
+	<br>
+<form>
+
+    <button type="button" onclick="window.location='log_url-filter';">Regresar</button>
+    &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+</form>
+
+</center>
+
+</body>
+
+</html>
+

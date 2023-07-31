@@ -1,0 +1,154 @@
+<html>
+	<head>        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>        
+      
+    </head>
+
+<!-- body onload="centrar();"-->
+<body>
+<!--page name bar-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Toma de orden</title>
+  <link rel="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+  <link rel="stylesheet" type="text/css" href="../css/EstiloFichas.css" />
+  <script type="text/javascript">
+          //Funci&oacute;n para abrir un picklist o limpiar el valor anteriormente seleccionado
+		function showPickList(ind ,id, tx, campo)
+		{
+		   var r
+		   if (ind == '1') {  // llamar a picklist		
+		   	  r = window.open(campo +'?name_id=' + id.name +"&name_tx=" + tx.name, 'Picklist','resizable=yes,scrollbars=yes,width=600,height=450,Left=200,top=150,Status=yes,unadorned:true');
+		   	  
+		   }
+		   else{
+			id.value= "";//limpiar id de cliente
+			tx.value= "<Todos>";//limpiar campo de cliente
+		  }
+		} 
+  </script>
+         <script language="javascript" src="../js/default.js"></script>  
+</head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText"> Ordenes / Consultas / Detalles </FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+  <!--formulario-->
+  	
+ <form NAME="dataentry" METHOD="POST" ACTION="">
+<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">     
+        <!--titulo-->
+    <tr CLASS="formCaption">
+            <th COLSPAN="6" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Operaciones Financieras
+                </FONT>
+            </th>
+        </tr>
+        <tr CLASS="dataform">
+            <th COLSPAN="6" ALIGN="center">
+                <FONT class="dataform">
+                 T&iacute;tulo:&nbsp;&nbsp;&nbsp;@titulo_descripcion@
+                </FONT>
+            </th>
+        </tr>
+    <tr>
+		<td COLSPAN="1" class="negrita">Orden:</td><td COLSPAN="1">@ordene_id null-value='No posee'@</td>
+		<td colspan="1" class="negrita">Transacci&oacute;n:</td><td colspan="1">@operacion_nombre null-value='No posee'@</td>
+		<td colspan="1" class="negrita">Tipo:</td><td colspan="1">@trnfin_tipo_descripcion null-value='No posee'@</td>
+		
+	</tr>
+	<tr>
+		<td colspan="2" class="negrita">Cuenta N&uacute;mero:</td><td colspan="2">@ctecta_numero null-value='No posee'@</td>
+		<td colspan="1" class="negrita">Aplica Reverso:</td><td colspan="1">@reverso null-value='No posee'@</td>
+	</tr>
+	<tr>
+		
+		<td colspan="1" class="negrita">Fecha Aplicar:</td><td colspan="1">@fecha_aplicar null-value='No posee'@</td>
+		<td colspan="1" class="negrita">Fecha Procesada:</td><td colspan="1">@fecha_procesada null-value='No posee'@</td>
+		<td colspan="1" class="negrita">Comision:</td><td colspan="1">@comisiones null-value='No posee'@</td>
+	</tr>
+	<tr>
+		<td colspan="1" class="negrita">Moneda descripcion:</td><td colspan="1">@moneda_descripcion null-value='No posee'@</td>
+		<td colspan="1" class="negrita">Status:</td><td colspan="1" >@status_operacion null-value='No posee'@</td>
+		<td colspan="1" class="negrita">Observaci&oacute;n:</td><td colspan="1">@serial null-value='No posee'@</td>
+	</tr>
+	<tr>	
+		
+		<td colspan="2" class="negrita">Monto Operacion:</td><td colspan="1" align="right">@monto_operacion format-mask='#,###,##0.00'@</td>
+		<td colspan="2" class="negrita">Tasa:</td><td colspan="1" align="right">@tasa null-value='No posee'@</td>
+	</tr>
+   <tr CLASS="formCaption">
+            <th COLSPAN="6" ALIGN="center">
+                <FONT class="formCaptionText">
+                Banco donde posee la cuenta
+                </FONT>
+            </th>
+        </tr>
+	<tr>
+		<td colspan="1" class="negrita">C&oacute;digo ABA</td><td colspan="2">@ctecta_bcocta_aba null-value='No posee'@</td>
+		<td colspan="1" class="negrita">Nombre del Banco</td><td colspan="2">@ctecta_bcocta_bco null-value='No posee'@</td>
+	</tr>
+	<tr>
+		<td colspan="1" class="negrita">C&oacute;digo BIC</td><td colspan="2">@ctecta_bcocta_bic null-value='No posee'@</td>
+		<td colspan="1" class="negrita">Direcci&oacute;n</td><td colspan="2">@ctecta_bcocta_direccion null-value='No posee'@</td>
+	</tr>
+	<tr>
+		<td colspan="1" class="negrita">Pais</td><td colspan="2">@ctecta_bcocta_pais null-value='No posee'@</td>
+		<td colspan="1" class="negrita">C&oacute;digo SWIFT</td><td colspan="2">@ctecta_bcocta_swift null-value='No posee'@</td>
+	</tr>
+	<tr>
+		<td colspan="3" class="negrita">Tel&eacute;fono:</td><td colspan="3">@ctecta_bcocta_telefono null-value='No posee'@</td>
+	</tr>
+	<tr CLASS="formCaption">
+            <th COLSPAN="6" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Banco Intermediario
+                </FONT>
+            </th>
+        </tr>
+	<tr>
+	<tr>
+		<td colspan="1" class="negrita">C&oacute;digo ABA</td><td colspan="2">@ctecta_bcoint_aba null-value='No posee'@</td>
+		<td colspan="1" class="negrita">Nombre del Banco</td><td colspan="2">@ctecta_bcoint_bco null-value='No posee'@</td>
+	</tr>
+	<tr>
+		<td colspan="1" class="negrita">C&oacute;digo BIC</td><td colspan="2">@ctecta_bcoint_bic null-value='No posee'@</td>
+		<td colspan="1" class="negrita">Direcci&oacute;n</td><td colspan="2">@ctecta_bcoint_direccion null-value='No posee'@</td>
+	</tr>
+	<tr>
+		<td colspan="1" class="negrita">Pa&iacute;s</td><td colspan="2">@ctecta_bcoint_pais null-value='No posee'@</td>
+		<td colspan="1" class="negrita">C&oacute;digo SWIFT</td><td colspan="2">@ctecta_bcoint_swift null-value='No posee'@</td>
+	</tr>
+	<tr>
+		<td colspan="3" class="negrita">Tel&eacute;fono</td><td colspan="3">@ctecta_bcoint_telefono null-value='No posee'@</td>
+	</tr>
+</table>
+         <br>
+          <table>
+         <tr>
+         <td align="center">
+         <button type="button" onclick="window.history.back();">Regresar</button>&nbsp;&nbsp;&nbsp;
+         <button type="button" onclick="javascript:window.close();">Cerrar</button>
+         </td>
+         </tr>
+         </table>
+</TABLE>
+</form>
+

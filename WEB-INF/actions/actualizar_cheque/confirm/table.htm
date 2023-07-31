@@ -1,0 +1,192 @@
+<html>
+	<head> 
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        <script type="text/javascript">
+        function confirmar(){
+        if (confirm("¿Está seguro que desea procesar la operación ?"))
+				document.forms.dataentry.submit();
+        
+        }
+        
+        
+        
+        function deshabilitar_procesar(){
+        
+         var procesos = document.getElementById('procesos');
+         var procesos1 = document.getElementById('procesos1')
+        
+         var recompra = document.getElementById('recompra');
+         var recompra1 = document.getElementById('recompra1')
+
+	        if(procesos.rows.length==2){
+		        procesos.style.display = 'none';
+		        procesos1.style.display = 'none';
+	        }
+
+	        if(recompra.rows.length==1){
+		        recompra.style.display = 'none';
+		        recompra1.style.display = 'none';
+	        }
+        }
+        </script>
+    </head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};deshabilitar_procesar();"> 
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Actualizaci&oacute;n de Cheques</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+<center>
+
+<br>
+<form name="dataentry" action="actualizar_numero_cheque-update" method="post">
+<table id="procesos1" border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="6" ALIGN="center">
+                <FONT class="formCaptionText">
+                  Operaciones Financieras Involucradas
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table id="procesos" border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+    
+    <!--encabezados de columna-->
+    <tr>         
+              <th nowrap>Orden</th>            
+              <th nowrap>Operacion</th>
+              <th nowrap>Status</th>
+              <th nowrap>Descripci&oacute;n</th>
+              <th nowrap>Moneda</th>
+              <th nowrap>Monto</th>                                   
+    </tr>
+    <!--data-->
+    <proceso>
+    <tr class="tableCell">
+          <td nowrap align="center">@ordene_id@</td>
+          <input type="hidden" value="@ordene_id@" name="orden_id">
+           <td nowrap align="center">@ordene_operacion_id@
+           <input type="hidden" value="@ordene_operacion_id@" name="operacion_id">
+           </td> 
+           <td nowrap align="center">@status_operacion@</td>
+           <td nowrap align="left">@transa_descripcion@</td>
+           <td nowrap align="center">@moneda_id@</td>
+           <td nowrap align="right">@monto_operacion format-mask='#,###,##0.00'@</td>               
+    </tr>
+     </proceso>
+     <tr CLASS="formCaption">
+            <th COLSPAN="" ALIGN="center">
+                <FONT class="formCaptionText">
+                  &nbsp;
+                </FONT>
+            </th>
+            <th nowrap align="center">Total</th>
+            <th nowrap align="center"></th>
+            <th nowrap align="center"></th>
+            <th nowrap align="center"></th>
+            <th nowrap align="right">@monto_total@</th>
+            
+        </tr>
+    </table>
+
+
+<table id="recompra1" border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                  Ordenes de Recompra
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table id="recompra" border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;display: block" id="procesos">
+    
+    <!--encabezados de columna-->
+    <tr>         
+              <th nowrap>Orden</th>            
+              <th nowrap>Id Operaci&oacute;n</th>
+              <th nowrap>Estatus</th>
+              <th nowrap>Transacci&oacute;n</th>
+              <th nowrap>Usuario</th>
+              <th nowrap>Moneda</th>
+              <th nowrap>Monto</th>                                  
+    </tr>
+    
+    <!--data-->
+    <recompra>
+    <tr class="tableCell">         
+           <td nowrap align="center">@ordene_id@</td> 
+           <td nowrap align="center">@ordene_operacion_id@</td>
+           <td nowrap align="center">@status_operacion@</td>
+           <td nowrap align="center">@transa_id@</td>
+           <td nowrap align="center">@ordene_usr_nombre@</td>
+           <td nowrap align="center">@moneda_id@</td>
+           <td nowrap align="center">@monto_operacion@</td>
+                           
+    </tr>
+     </recompra>
+    </table>
+	&nbsp;
+    &nbsp;
+    &nbsp;
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="50%" class="datatable" style="table-layout: auto;" id="cheques">
+    <tr CLASS="formCaption">
+            <th COLSPAN="" ALIGN="center">
+                <FONT class="formCaptionText">
+                  Introduzca N&uacute;mero de Cheque
+                </FONT>
+            </th>
+        </tr>
+    <!--encabezados de columna-->
+    <!--data-->
+    <tr class="tableCell" align="center"> 
+    	<td align="center">
+    		<input align="center" type="text" size="30" maxlength="20" value="" name="numerocheque">
+    		<input type="hidden" size="30"  value="@recompra@" name="esrecompra">
+    		<input type="hidden" size="30"  value="@ordene_operacion_id@" name="id_operacion">
+    	</td>            
+	</tr>
+	<tr CLASS="formCaption">
+            <th COLSPAN="" ALIGN="center">
+                <FONT class="formCaptionText">
+                  &nbsp;
+                </FONT>
+            </th>
+        </tr>
+    </table>
+	<br>
+	<P><FONT COLOR="red"><B>Nota:Verifique el monto total para cancelar el cheque.</B></P>
+	<br>
+	<button type="button" onclick="confirmar();">Procesar</button>
+	&nbsp;&nbsp;
+	<button type="button" onclick="window.history.back()">Regresar</button>
+	&nbsp;&nbsp;
+    <button type="button" onclick="javascript:window.close()">Cerrar</button>
+    <input type="hidden" value="@proceso@" name="proceso">
+</form>
+</center>
+</html>

@@ -1,0 +1,58 @@
+<HTML>
+	<HEAD>
+    <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+    <SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+    <script language="javascript" src="../js/default.js"></script>   
+    <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+    <TITLE>Sistema INFI</TITLE>        
+    </HEAD>
+<BODY>
+        
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+	    <TR>
+	        <TD class="headerBox">                
+            <FONT class="headerText">Intercambio / Operaciones DICOM / Libro Operaciones Interbancarias BCV vía Web Service</FONT>
+	        </TD>
+	        
+	        <!-- help online -->
+	   		<TD class="headerBox" valign="middle" align="right">
+	   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+	   		</TD>
+	   		<!-- fin help online -->
+	        
+	        <td class="headerBox" aling="right"></td>
+	</TABLE>
+	
+	<CENTER>	        
+
+		<!--formulario-->
+		<form NAME="dataentry" METHOD="POST" ACTION="libro_operaciones_interbancarias-detalle">		
+			
+			<input type="hidden" name="nombre_archivo" value="@nombre_archivo@"/>	
+			<input type="hidden" name="nro_jornada" value="@nro_jornada@"/>
+				
+	        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform" style="TABLE-LAYOUT: auto; ">        
+	        <!--titulo-->
+	        <tr>
+	            <td COLSPAN="3" ALIGN="center" nowrap>
+	                 <br>
+	                 
+	                <div style="display:@display_message@"> <p color="red">@mensaje_resultado@</p> </div>
+	                 <!-- a href="../@nombre_archivo@" target="_blank"> Vista Previa de Archivo</a -->
+					<div style="display:@display_button@">
+	                 <button type="submit"> Vista Previa de Archivo</button>
+	                 </div>                 
+	            </td>
+	        </tr>
+	        </table>
+	        <br>
+			<!--button id="enviar" type="submit" onClick="confirm('¿Desea descargar el archivo? ')" />&nbsp;Descargar&nbsp;</button-->
+			<br>	        
+		</form>        
+	<!--/div-->
+	</CENTER>
+	
+</BODY>
+</HTML>
+

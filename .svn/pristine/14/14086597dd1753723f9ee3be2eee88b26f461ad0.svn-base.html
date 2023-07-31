@@ -1,0 +1,82 @@
+<html>
+	<head>      
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        <script type="text/javascript">
+        </script>
+    </head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Custodia / Exportaci&oacute;n / T&iacute;tulos en Custodia</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+<center>
+<br>
+<form NAME="dataentry" METHOD="POST" ACTION="titulos_custodia-exportar">
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                 T&iacute;tulos en Custodia ( @t_registros@ )
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+		<th>T&iacute;tulo</th>
+		<th>Tipo de Producto</th> 
+		<th>Tipo de Persona</th>
+		<th>Clientes</th>
+		<th>Porcentaje</th>
+		<th>Total</th>
+    </tr>
+
+    <!--data-->
+    <totales>
+    <tr class="tableCell">
+		<td>@titulo_id@</td>
+		<td>@tipo_producto_id@</td>
+		<td align="right">@tipper_id@</td>
+		<td align="right">@clientes format-mask='###.###'@</td>
+		<td align="right">@porcentaje format-mask='###.###'@</td>
+		<td align="right">@total format-mask='#,###,##0'@</td>
+     </tr>
+     </totales>
+    
+    </table>
+@page_index@
+    <BR>
+
+	<button TYPE="submit">&nbsp;Exportar&nbsp;</button>&nbsp;
+    <button onclick="window.location='titulos_custodia_exportar-filter'">&nbsp;Regresar&nbsp;</button>
+     &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+     <input type="hidden" value="false" name="framework.controller.outputstream.open">
+</form>
+
+</center>
+
+</body>
+
+</html>
+

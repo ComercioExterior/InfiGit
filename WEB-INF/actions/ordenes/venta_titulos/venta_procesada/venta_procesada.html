@@ -1,0 +1,79 @@
+ <html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Sistema INFI</title>
+  <link rel="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+  <link rel="stylesheet" type="text/css" href="../css/EstiloFichas.css" />
+   <script language="javascript" src="../js/default.js"></script>
+   
+   <script type="text/javascript">
+
+	function CerrarRedireccionar(){
+		window.opener.location='venta_titulos-filter';
+	}
+
+</script>
+     
+</head>
+
+<body ONLOAD="javascript:CerrarRedireccionar();">
+
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Ordenes / Venta de T&iacute;tulos </FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+  <!--formulario-->
+  
+  <form NAME="dataentry" METHOD="POST" ACTION="toma_de_orden-guardar">
+  
+  <center>
+	 <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+			<tr>
+			<th width="10%">Descargar</th>
+			<th width="9%">Orden</th>
+			<th>Nombre del Documento</th>
+			</tr>
+			<documentos>
+			<tr>
+			<td align="center">
+			<a href="documentos_ordenes-descargar?documento_id=@ordene_doc_id@&ordene_id=@ordene_id@&framework.controller.outputstream.open=false"><IMG SRC="../images/infi_gn_edit.gif" WIDTH="17" ALIGN="top" HEIGHT="17" title="Descargar Archivo" BORDER="0" style="cursor:hand"></a>
+			</td>
+			<td>@ordene_id@</td>
+			<td>@nombre@</td>
+			</tr>
+			</documentos>
+	  </table>
+
+	            
+  <br>
+  </center>
+  <center>
+     <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+	  <tr>
+	  <td align="center">
+	  La Venta de T&iacute;tulos ha sido realizada exitosamente bajo la orden n&uacute;mero @ordene_id@
+	  </td>
+	  </tr>
+	  
+	 </table>
+
+	
+	
+  <br>
+   <button type="button" ONCLICK="javascript:window.close();">Regresar</button>
+  
+</center>
+
+</form>
+</body>
+</html>

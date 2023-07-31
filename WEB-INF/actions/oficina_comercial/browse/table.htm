@@ -1,0 +1,215 @@
+<html>
+<head>
+<script language="javascript" src="../js/default.js"></script>
+<script type="text/javascript" src="../js/menu/jquery-1.2.2.pack.js"></script>
+<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+<!--cambiar: nombre de la aplicacion-->
+<title>Sistema INFI</title>
+<script type="text/javascript">
+
+function ordenardinamico(xvalor){
+	
+	window.location="oficina_comercial_browse?dinamico="+xvalor+"&dinamicoo=@dinamicoo@";
+} 
+
+function procesar(){ 
+	
+	var seleccion = ""; 
+	mensaje='¿Está seguro que desea modificar el estatus de las operaciones seleccionadas?';	
+		
+	if($("#todos").is(":checked")) {
+		seleccionadosje();
+	}
+				
+	if(seleccionadosje()||$("#todos").is(":checked")){
+		if(confirm(mensaje)) {		
+			var ruta = 'oficina_comercial_edit_estatus?';
+				if(!$("#todos").is(":checked")){
+					ruta+='idOrdenes='+idOrdenes+'';
+				}
+				window.location=ruta;	        		       
+		}		
+	}		      	        	          
+}	
+
+function seleccionadosje(){
+	 
+	idOrdenes = "";
+	var $b = $('input[type=checkbox]');
+	var marcados = $b.filter(':checked').length;
+	var sinMarcar = $b.not(':checked').length;
+	
+	$(':checkbox:checked').each(function() {
+		if( $(this).attr("id")!="todos" && $(this).attr("id") !="todosPagina" ){
+			idOrdenes+=$(this).attr("id")+",";
+		}
+	});
+	idOrdenes=idOrdenes.substring(0,idOrdenes.length-1);
+	
+	if(idOrdenes!=""){				
+		return true;  
+	} else{			
+
+		if(!$("#todos").is(":checked") && sinMarcar>0){
+			alert('Debe seleccionar alguna operación');
+			return false;
+		}
+		return false; 
+	}
+}
+
+function checksSeleccionados(){
+	
+	idOrdenes = "";
+	//contados los checks
+	var $b = $('input[type=checkbox]');
+	var marcados = $b.filter(':checked').length;
+	var sinMarcar = $b.not(':checked').length;
+	
+		if($("#todos").is(":checked"))
+			marcados = marcados - 2;
+		else
+			sinMarcar = sinMarcar - 2;
+        	 
+		//se envia la menor cantidad de identificadores posible
+		if( marcados > sinMarcar && sinMarcar >0 ){ 
+			//se envian los check sin marcar, por ser menos cantidad
+			$($b.not(':checked')).each(function() {
+				if( $(this).attr("id")!="todos" && $(this).attr("id")!="todosPagina" ){
+					idOrdenes+=$(this).attr("id")+",";
+      	   	    
+				}
+			});
+			idOrdenes=idOrdenes.substring(0,idOrdenes.length-1);
+
+		}else{
+			//se envian los que si estan seleccionados, por se menos cantidad
+			$(':checkbox:checked').each(function() {
+				if( $(this).attr("id")!="todos" && $(this).attr("id") !="todosPagina" ){
+					idOrdenes+=$(this).attr("id")+",";
+				}
+			});
+			idOrdenes=idOrdenes.substring(0,idOrdenes.length-1);
+      	
+		}
+        
+		if(idOrdenes!=""){				
+			return true;  
+		}else{			
+
+			if(!$("#todos").is(":checked") && sinMarcar>0){
+				alert('Debe seleccionar alguna operación');
+				return false;
+			}
+				return false; 
+		}
+} 
+
+</script>
+</head>
+<body
+	ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+	<!--page name bar-->
+	<TABLE border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+			<TD class="headerBox"><FONT class="headerText">Configuraci&oacute;n
+					/ Generales / Oficinas Comerciales</FONT></TD>
+			<!-- help online -->
+			<TD class="headerBox" valign="middle" align="right"><img
+				border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17"
+				onclick="helpOpen(window.document.location.href);"
+				style="cursor: hand" title="Mostrar ayuda en l&iacute;nea" /></TD>
+			<!-- fin help online -->
+
+		</TR>
+	</TABLE>
+	<center>
+
+		<br>
+		<form name="dataentry" action="oficina_comercial_browse" method="post">
+
+
+			<table border="0" cellspacing="1" cellpadding="2" width="80%"
+				class="datatable" style="table-layout: auto;">
+				<tr CLASS="formElement">
+					<td CLASS="formLabel2" WIDTH="35%">Ordenar por:</td>
+					<td CLASS="formLabel"><SELECT NAME="ordenar" id ="ordenar" onchange="ordenardinamico(this.value)"
+						CLASS="inputControl" style="width: 100px;">
+							<OPTION VALUE="">Seleccionar</OPTION>
+							<OPTION VALUE="to_number(NRO)">Oficina</OPTION>
+							<OPTION VALUE="ESTADO">Estado</OPTION>
+					</SELECT>
+					</td>
+					
+					<td CLASS="formLabel2" WIDTH="35%"><b>Totales Oficina: @totales@  </b> <br><b>Activa :</b><b style="color:#32CD32";> @activa@</b>  <br><b>Inactiva :</b> <b style="color:#FF0000"> @inactiva@ </b> </td>
+				</tr>
+				<!--titulo-->
+				<tr CLASS="formCaption">
+					<th COLSPAN="7" ALIGN="center"><FONT class="formCaptionText">
+							Oficinas Registradas </FONT></th>
+				</tr>
+
+			</table>
+
+			<!--tabla de data-->
+			<table border="0" cellspacing="1" cellpadding="2" width="80%"
+				class="datatable" style="table-layout: auto; display: block"
+				id="procesos">
+
+				<!--encabezados de columna-->
+				<tr>
+					<th nowrap width="5%"></th>
+					<th nowrap width="5%"></th>
+					<th nowrap width="5%">Marcar</th>
+<!-- 					<th nowrap width="5%">Registro Nro</th> -->
+					<th nowrap>Oficina</th>
+					<th nowrap>Descripcion</th>
+					<th nowrap>Estado</th>
+					<th nowrap>Municipio</th>
+					<th nowrap>Direccion</th>
+					<th nowrap>Estatus</th>
+
+				</tr>
+				<!--data-->
+				<oficinas>
+				<tr class="tableCell">
+					<td align="center"><a
+						href="oficina_comercial_confirm_delete?oficina=@nro@&descripcion=@descripcion@&direccion=@direccion@&estado=@estado@&municipio=@municipio@&estatu=@estatus@"><IMG
+							SRC="../images/infi_gn_delete.gif" WIDTH="15" ALIGN="top"
+							HEIGHT="15" title="Eliminar Registro" BORDER="0"
+							style="cursor: hand">
+					</a></td>
+					<td align="center"><a
+						href="oficina_comercial_edit?oficina=@nro@&descripcion=@descripcion@&direccion=@direccion@&estado=@estado@&municipio=@municipio@&estatu=@estatus@"><IMG
+							SRC="../images/infi_gn_edit2.gif" WIDTH="15" ALIGN="top"
+							HEIGHT="13" title="Editar Registro" BORDER="0"
+							style="cursor: hand">
+					</a></td>
+					<td align="center">
+                <input type="checkbox" name="ordenes" id="@NRO@"/>
+<!--                 <input type="checkbox" name="ordenes" id="@ID_OPER@" onclick="validarSeleccion(this, '@fecha_aplicar@') "/> -->
+            	</td>
+<!-- 					<td nowrap align="center">@_row@</td> -->
+					<td nowrap width="15%" align="center">@NRO@</td>
+					<td nowrap width="30%" align="center">@DESCRIPCION@</td>
+					<td nowrap width="30%" align="center">@ESTADO@</td>
+					<td nowrap width="30%" align="center">@MUNICIPIO@</td>
+					<td nowrap width="30%" align="center">@DIRECCION@</td>
+					<td nowrap width="15%" align="center">@ESTATUS@</td>
+
+				</tr>
+				</oficinas>
+				
+			</table>
+			
+			@page_index@ <BR> &nbsp;
+			<button type="button" onclick="procesar()">Modificar estatus</button>
+			&nbsp;
+			<button type="button" onclick="window.location='oficina_comercial_addnew'">Agregar</button>
+			<SPAN></SPAN>
+			<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+		</form>
+	</center>
+</body>
+</html>

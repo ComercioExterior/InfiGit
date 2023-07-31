@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+ <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+ <title>HTMLHttpRequest Demonstration</title>
+
+ <!-- HTMLHttpRequest v1.0beta by Angus Turnbull http://www.twinhelix.com -->
+ <script type="text/javascript" src="htmlhttprequest_commented.js"></script>
+
+<script type="text/javascript">//<![CDATA[
+
+// Welcome to the HTMLHttpRequest demonstration!
+//
+// This script allows you to make background asynchronous GET and POST requests to a
+// server in an accessible manner that is backwards-compatible with older browsers,
+// mobile devices, screenreaders and search engines.
+//
+// The overall architecture is assembled in 3 layers:
+//
+// 1) A "Transport" object ('HTMLHttpRequest') that makes a request to the server.
+// 2) A "Threading" object ('RemoteFileLoader') that creates and allocates Transports
+//    and provides an easy way of loading content into your existing page.
+// 3) An "Interface" layer of code that captures clicks/submissions on the document.
+//
+// Layers (1) and (2) are objects included in the external .JS file above.
+// Both contain documentation if you are interested in customising the implementation.
+// Otherwise, the code below is the "Interface" layer that will process our document.
+
+
+// First, we create an example object for our document click handler.
+var docClickLoader = new RemoteFileLoader('docClickLoader');
+
+// At any stage you can call docClickLoader.loadInto('file.html', 'IDOfTarget') to trigger
+// a content load into an element from your script.
+// The example below does this when suitable links in the document are clicked.
+
+
+function loadInto(src, destId, evt)
+{
+
+ // Called to when a link with class="loadinto-IdOfTarget" is clicked.
+ // Parameters: src = reference to link, destId = ID of target element, evt = event object.
+ var ok = docClickLoader.loadInto(src.href || src.getAttribute('href'), destId);
+ if (ok) cancelEvent(evt);
+};
+
+//]]></script>
+
+
+</head>
+
+<body style="font: 0.8em/1.6 sans-serif; background-color: #FFF">
+
+<div style="text-align: center">
+ <h1 style="font-size: 20pt">HTMLHttpRequest v1.0beta2</h1>
+</div>
+
+
+<ul id="demoLinkList">
+ <!--
+  Any link with a class="loadinto-IdOfTarget" attribute will load into an
+  element with an id="IdOfTarget" attribute. It's that easy!
+ -->
+ <li><a class="loadinto-xxx" href="content/advantages.html" onclick="javascript:loadInto( this, 'targetArea',event);">AdvantagesXX</a></li>
+ <li><INPUT TYPE="BUTTON" onclick="javascript:docClickLoader.loadInto('content/advantages.html', 'targetArea');" VALUE="OK" NAME="OK">
+ 
+</ul>
+
+<div id="targetArea">
+ <!--
+  Here's our target for the links above.
+  You can have as many different targets in the page as you want.
+ -->
+ For a demonstration of this script, please click one of the links above.
+</div>
+
+<div id="xxx">
+ <!--
+  Here's our target for the links above.
+  You can have as many different targets in the page as you want.
+ -->
+:).
+</div>
+
+
+</body>
+</html>

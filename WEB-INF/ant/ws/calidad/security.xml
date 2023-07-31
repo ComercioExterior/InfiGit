@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<security>
+<!-- CALIDAD -->
+	<!--plugin para la funci&oacute;n de Login-->
+	<!--
+		NOTA: desactivar si se va a utilizar 
+		la seguridad nativa J2EE del Container
+	-->
+	<enable-login-plugin>true</enable-login-plugin>
+	<!--login-plugin>megasoft.SecurityDBLogin</login-plugin-->
+	
+	<!-- <PARA LOGIN SISTEMA LOCAL
+	<login-plugin>models.security.login.SecurityDB</login-plugin>
+	<login-config>/WEB-INF/SecurityDBLogin.xml</login-config>-->
+	
+
+	<!-- PARA LOGIN HACIA RACF>-->
+	<login-plugin>models.security.login.Login</login-plugin>
+	<login-config>/WEB-INF/login_config.xml</login-config>
+	
+
+	<!--plugin para obtener informacion del usuario-->
+	
+	<!-- Plugin de La Foundation -->
+	<!-- userinfo-plugin>megasoft.SecurityDBUserInfo</userinfo-plugin-->
+	
+	<!-- Plugin para INFI -->
+	<userinfo-plugin>models.security.userInfo.SecurityDBUserInfo</userinfo-plugin>
+	<userinfo-config>/WEB-INF/SecurityDBUserInfo.xml</userinfo-config>
+
+	<!--plugin que valida si el usuario tiene acceso a los actions que estan protegidos-->
+	<!--accessmap-plugin>megasoft.SecurityActionAccess</accessmap-plugin-->
+	<accessmap-plugin>models.security.access.SecurityActionAccessApp</accessmap-plugin>
+ 
+
+	<!--configuracion general de la seguridad-->
+
+	<!--formularios para login-->
+	<login-form>/login.htm</login-form>
+	<login-error>/login-error.jsp</login-error>
+
+	<!--action a ejecutar despues del login-->
+	<after-login>/index.htm</after-login>
+
+	<!--action a ejecutar despues del logout-->
+	<after-logout>/index.htm</after-logout>
+
+	<!--protocolo a utilizar a partir del login: http|https-->
+	<protocol>http</protocol>
+	
+	<!--contraints-->
+	<!--security-constraint id="admin" description="Admin pages">
+		<role>admin</role>
+	</security-constraint>
+	
+	<security-constraint id="compras" description="Compras pages">
+		<role>compras</role>
+	</security-constraint-->
+	
+	<security-constraint id="private" description="All users private pages">
+		<!--role>admin</role-->
+</security-constraint>
+	
+</security>

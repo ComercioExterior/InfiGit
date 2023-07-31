@@ -1,0 +1,65 @@
+<html>
+	<head>        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        <script type="text/javascript">
+        function detalleOrden(nombreFormulario){
+	        var longitud = nombreFormulario.length;
+	        var str=nombreFormulario.substr(8,longitud);
+			document.getElementById(str).submit();
+        }
+        </script>
+    </head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+	<!--page name bar-->
+	
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+			<TD class="headerBox">                
+            	<FONT class="headerText">Generacion de Archivo (Batch)</FONT>
+        	</TD>
+        	<!-- help online -->
+   			<TD class="headerBox" valign="middle" align="right">
+   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   			</TD>
+   			<!-- fin help online -->
+		</TR>
+	</TABLE>
+	
+	<form NAME="dataentry" METHOD="POST" ACTION="archivo_de_credito-browse">
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform" style="table-layout: auto;">
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="4" ALIGN="center">                
+                 Criterios Seleccionados               
+            </th>
+        </tr>
+		<tr CLASS="formElement">
+            <td  CLASS="formLabel2" >Generar Archivo Para: </TD>
+            <td><INPUT VALUE="@tipodearchivo@" NAME="tipodearchivo" style="width:250px;" MAXLENGTH="30" CLASS="inputControl">
+            </td>
+       </tr>
+       <tr CLASS="formElement">
+            <td  CLASS="formLabel2" >Con tipo de Transaccion: </TD>
+            <td><INPUT VALUE="@tipodeoperacion@" NAME="tipodeoperacion" style="width:250px;" MAXLENGTH="30" CLASS="inputControl">
+            </td>
+       </tr> 	
+        
+	</TABLE>
+	</form>
+		
+   <center>
+	<BR>
+	<BR>
+	    <button type="button" onclick="window.location='archivo_de_credito-generar?undinv_id=@undinv_id@&tipodeoperacion=@tipodeoperacion@&tipodearchivo=@tipodearchivo@'">&nbsp;Aceptar&nbsp;</button>
+	    &nbsp;
+    	<button TYPE="button" onclick="window.location='archivo_de_credito-filter'">Regresar</button>
+		<INPUT TYPE="Hidden" VALUE="@undinv_id@" NAME="undinv_id" style="width:250px;" MAXLENGTH="30" CLASS="inputControl">
+		<INPUT TYPE="Hidden" VALUE="@tipodearchivo@" NAME="tipodearchivo" style="width:250px;" MAXLENGTH="30" CLASS="inputControl">
+		<INPUT TYPE="Hidden" VALUE="@tipodeoperacion@" NAME="tipodeoperacion" style="width:250px;" MAXLENGTH="30" CLASS="inputControl">
+   </center>
+</body>
+</html>

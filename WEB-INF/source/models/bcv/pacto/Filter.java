@@ -1,0 +1,67 @@
+package models.bcv.pacto;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+import com.bdv.infi.dao.OrdenDAO;
+import com.bdv.infi.dao.OrdenesClienteDAO;
+import com.bdv.infi.dao.OrdenesCrucesDAO;
+import com.bdv.infi.dao.UnidadInversionDAO;
+import com.bdv.infi.logic.interfaces.ActionINFI;
+import com.bdv.infi.logic.interfaces.ConstantesGenerales;
+import com.bdv.infi.logic.interfaces.StatusOrden;
+import com.bdv.infi.logic.interfaces.UnidadInversionConstantes;
+import com.bdv.infi.util.Utilitario;
+
+import megasoft.DataSet;
+import models.msc_utilitys.MSCModelExtend;
+
+public class Filter extends MSCModelExtend {
+	private DataSet datosFilter;
+	private String idProducto;
+	
+	/**
+	 * Ejecuta la transaccion del modelo
+	 */
+	public void execute() throws Exception {
+		UnidadInversionDAO uiDAO = new UnidadInversionDAO(_dso);
+		Integer tipoNegocio = Integer.parseInt(ConstantesGenerales.TIPO_NEGOCIO_ALTO_VALOR);
+		uiDAO.listaUnidadesAdjudicarPorTipoProductoStatus(idProducto,tipoNegocio,StatusOrden.PROCESO_CRUCE,StatusOrden.ENVIADA);
+ 		storeDataSet("uniInverPublicadas", uiDAO.getDataSet());
+		
+		Calendar fechaHoy = Calendar.getInstance();
+		SimpleDateFormat sdIO = new SimpleDateFormat(ConstantesGenerales.FORMATO_FECHA);
+		String hoy = sdIO.format(fechaHoy.getTime());
+		
+		DataSet dsFecha = new DataSet();		
+		dsFecha.append("fechahoy",java.sql.Types.VARCHAR);
+		dsFecha.addNew();
+		dsFecha.setValue("fechahoy",hoy);
+		
+		_record.setValue("tipo_prod",ConstantesGenerales.ID_TIPO_PRODUCTO_SICADII_CLAVENET_PERSONAL+","+ConstantesGenerales.ID_TIPO_PRODUCTO_SICADII_RED_COMERCIAL);
+		//_record.setValue("estatus",UnidadInversionConstantes.UISTATUS_PUBLICADA);
+		//_record.setValue("estatus",UnidadInversionConstantes.UISTATUS_CERRADA+","+UnidadInversionConstantes.UISTATUS_LIQUIDADA+","+UnidadInversionConstantes.UISTATUS_PUBLICADA);
+		//Se puede consultar los pactos en cualquier estado. 
+		
+		storeDataSet("record", _record);
+		storeDataSet("fechas", dsFecha);
+		
+	}
+	
+	public boolean isValid() throws Exception
+	{
+		boolean flag = super.isValid();	
+		
+		datosFilter = new DataSet();
+		datosFilter.append("menu_migaja", java.sql.Types.VARCHAR);
+		datosFilter.append("tipo_prod", java.sql.Types.VARCHAR);
+		datosFilter.append("estatus", java.sql.Types.VARCHAR);
+		datosFilter.addNew();
+		datosFilter.setValue("estatus", "");
+		
+		idProducto = "'"+ConstantesGenerales.ID_TIPO_PRODUCTO_SICADII_CLAVENET_PERSONAL+"'";
+		datosFilter.setValue("tipo_prod", idProducto);
+
+		return flag;
+	}
+}

@@ -1,0 +1,482 @@
+<html>
+
+	<head>
+        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+        <script type="text/javascript">
+        
+        function mostrarOcultarCamposPago(id_forma_pago, id_titulo){
+			//si es usuario especial con permiso de ingresar instrucciones de pago
+	      	if(document.dataentry.usuario_especial.value=="1"){		 
+	          	  
+	        	if(id_forma_pago == 'Cuenta Nacional'){//forma de pago cta nacional
+	        		document.getElementById('cta_nac_'+id_titulo).style.display='block';
+	        		document.getElementById('cta_nac_nomb_'+id_titulo).style.display='block';        		
+	        	}else{
+	        		document.getElementById('cta_nac_'+id_titulo).style.display='none';
+	        		document.getElementById('cta_nac_nomb_'+id_titulo).style.display='none';
+	        		//limpiar valor del combo
+	        		var x = eval("document.dataentry.cta_nac_numero_"+id_titulo);	
+	        		x.value="";        		
+	        	}
+	
+	        	if(id_forma_pago == 'Cuenta Internacional'){//forma de pago cta internacional
+	        		document.getElementById('cta_inter_'+id_titulo).style.display='block';
+	        		document.getElementById('cta_inter_nomb_'+id_titulo).style.display='block';        		
+	        	}else{
+	        		document.getElementById('cta_inter_'+id_titulo).style.display='none';
+	        		document.getElementById('cta_inter_nomb_'+id_titulo).style.display='none';
+	        		//limpiar valor del combo        		
+	        		var x = eval("document.dataentry.ctecta_numero_inter_"+id_titulo);
+	        		x.value="";        		
+	        	}
+
+	      	}
+        
+        }
+        
+        
+        function mostrarOcultarTodosCamposPago(){
+        	
+        	if (document.forms[0].titulos_custodia!=undefined){
+        	
+		        if(document.forms[0].titulos_custodia.length!=undefined){ //si la lista tiene m&aacute;s de un cliente
+					for (i=0; i < document.forms[0].titulos_custodia.length; i++)
+					{		
+							var x = eval("document.dataentry.forma_pago_id_"+ document.forms[0].titulos_custodia[i].value);
+        					
+							mostrarOcultarCamposPago(x.value, document.forms[0].titulos_custodia[i].value)
+					}
+					
+				}else{ //si la lista solo tiene un titulo chequeado
+						
+						var x = eval("document.dataentry.forma_pago_id_"+ document.forms[0].titulos_custodia.value);
+        				
+						mostrarOcultarCamposPago(x.value, document.forms[0].titulos_custodia.value)
+										
+				}
+			
+        	
+        	}
+        }
+        
+        function mostrarOcultarDatosVenta(idTitulo, obj){        	
+        	
+        	//var obj_titulo = eval("document.dataentry."+idTitulo);
+ 			var x = eval("document.getElementById('datos_"+idTitulo+"')");
+ 			
+ 			if(obj.checked)
+ 				x.style.display='block';
+ 			else
+ 				x.style.display='none';
+ 			
+        }
+        
+        
+        /*SCRIPTS PARA INSTRUCCIONES DE PAGO */
+        
+        
+       //Oculta o muestra los datos para la instruccion de pago por recompra cuando es en moneda internacional
+      function mostrarInstruccionCtaInt(instruccion){
+    	//si es usuario especial con permiso de ingresar instrucciones de pago
+    	  if(document.dataentry.usuario_especial.value=="1"){		 
+	      	if(instruccion=="1"){//si es una transferencia
+
+	      		document.getElementById('tit_datos_transferencia').style.display='block';
+        		document.getElementById('div_datos_transferencia').style.display='block';	
+	      		//document.getElementById('datos_transferencia').style.display='block';   
+	      		document.getElementById('cuenta_nacional_dolares').style.display='none'; 
+				document.getElementById('cta_nacional_dol').selectedIndex="0";
+				document.getElementById('text_cta_nacional_dol').value='';
+	      		document.getElementById('datos_beneficiario').style.display='none'; 
+
+	      		//mostrarOcultarIntermediario();
+	      		
+	      		mostrarOcultarDatosBeneficiario();
+	      		 		      		
+	      	}else{//si es un cheque
+	      		if(instruccion=="2"){
+		      		document.getElementById('tit_datos_transferencia').style.display='none';      		
+		      		document.getElementById('datos_transferencia').style.display='none';
+		      		
+		      		document.getElementById('tit_banco_intermediario').style.display='none'; 
+					document.getElementById('banco_intermediario').style.display='none'; 
+					document.getElementById('cuenta_nacional_dolares').style.display='none'; 
+					mostrarOcultarDatosBeneficiario();
+	      		} else {
+	      		if(instruccion=="3"){
+
+					document.getElementById('tit_datos_transferencia').style.display='none';      		
+		      		document.getElementById('div_datos_transferencia').style.display='none';	
+	
+		      		document.getElementById('tit_banco_intermediario').style.display='none'; 
+					document.getElementById('banco_intermediario').style.display='none'; 
+	
+					document.getElementById('producto_cliente').selectedIndex="0";
+					document.getElementById('text_prod_cte').value='';									
+					
+					document.getElementById('instruc_swift').selectedIndex="0";
+					document.getElementById('text_instruc_swift').value='';
+
+					document.getElementById('cuenta_nacional_dolares').style.display='block'; 
+
+	      		}
+
+	      	}     
+
+    	  }
+      	
+      }
+      }
+        
+    
+      function mostrarDatosPago(){
+			      	
+		      	var recompraConMonedaExt = false;
+		      	var recompraConMonedaLocal = false;	    
+		      	
+		      	//ocultar datos beneficiario
+		      	document.getElementById('datos_beneficiario').style.display='none';
+		      		      		      	
+		      	if(document.forms[0].titulos_custodia!=undefined){
+		      	
+		      		if(document.forms[0].titulos_custodia.length!=undefined){
+		      			
+		      			for (i=0; i < document.forms[0].titulos_custodia.length; i++)
+						{			
+							var aux = "document.forms[0].moneda_id_"+(i+1);			
+							
+							var indic_moneda_local = eval(aux); 
+							if(document.forms[0].titulos_custodia[i].checked){
+								
+								if(indic_moneda_local.value!=''){	
+									if(indic_moneda_local.value=='VEF'){						
+										recompraConMonedaLocal = true;
+									}else{
+										recompraConMonedaExt = true;
+									}
+								}
+							}
+						}				
+		      			
+		      		}else{//un solo elemento chequeado
+		      			
+		      				var aux = "document.forms[0].moneda_id_1";
+							var indic_moneda_local = eval(aux); 
+							if (document.forms[0].titulos_custodia.checked){
+								
+								if(indic_moneda_local.value!=''){	
+									if(indic_moneda_local.value=='VEF'){						
+										recompraConMonedaLocal = true;
+									}else{
+										recompraConMonedaExt = true;
+									}
+								}
+							}
+		      			
+		      		}
+		      		//Se valida Si el producto es Sicad II Clavenet o Red
+		      		if(document.forms[0].tipo_producto_id.value == 'SICAD2PER' || document.forms[0].tipo_producto_id.value == 'SICAD2RED'){
+		      			document.getElementById('tipo_inst_int').disabled='true';
+		      		}
+		      	}	      	
+		      	
+		      //si es usuario especial con permiso de ingresar instrucciones de pago
+		      	if(document.dataentry.usuario_especial.value=="1"){		 
+			      	if(recompraConMonedaLocal){
+			      		document.getElementById('moneda_local').style.display='block'; 	      		
+			      	}else{
+			      		document.getElementById('moneda_local').style.display='none'; 	      	
+			      	}    
+			      	
+			      	if(recompraConMonedaExt){	      	
+			      		document.getElementById('tit_instrucciones_pago').style.display='block'; 
+			      		document.getElementById('moneda_internac').style.display='block'; 	      		
+			  		}else{
+			  			document.getElementById('moneda_internac').style.display='none'; 
+			  			document.getElementById('tit_instrucciones_pago').style.display='none'; 	  			
+			  		}
+			  			  		
+			  		if(recompraConMonedaLocal || (recompraConMonedaExt && (document.dataentry.tipo_inst_int.value=="1" || document.dataentry.tipo_inst_int.value=="2"))){
+			  			mostrarOcultarDatosBeneficiario();	  			
+			  		}
+		      	}
+			
+	  	
+      }
+      
+      function mostrarOcultarIntermediario(){
+		
+		if(document.dataentry.intermediario.checked){
+		
+			document.getElementById('tit_banco_intermediario').style.display='block'; 
+			document.getElementById('banco_intermediario').style.display='block'; 
+
+			//ocultar bic y aba del banco destino
+			/*document.getElementById('bic_aba_bco_destino').style.display = "none";
+			document.dataentry.ctecta_bcocta_bic.value="";
+			document.dataentry.ctecta_bcocta_aba.value="";*/
+		
+		}else{
+		
+			document.getElementById('tit_banco_intermediario').style.display='none'; 
+			document.getElementById('banco_intermediario').style.display='none';
+
+			//mostrar bic y aba del banco destino
+			document.getElementById('bic_aba_bco_destino').style.display = "block";
+					 
+		}
+      }
+      
+      function datosIntermediario(){      
+		if (document.dataentry.intermediarioHidden.value=="true")
+			document.dataentry.intermediario.checked=true;
+		else
+			document.dataentry.intermediario.checked=false;
+			
+      	mostrarOcultarIntermediario();
+      	document.dataentry.intermediario.disabled=true;
+      }
+      
+      function mostrarOcultarDatosBeneficiario(){
+      
+      	if(document.dataentry.control_cambio.value=='1'){
+      
+      		document.getElementById('datos_beneficiario').style.display='none'; 
+      	}else{
+      	
+      		document.getElementById('datos_beneficiario').style.display='block'; 
+      	}
+      }
+        
+        function pasarValorText(elem,valor){       		
+        	var element=document.getElementById(elem);
+	        element.value=valor;        	
+        }
+        
+        function busquedaInstruccionVentaTit(etic,elem){			
+			var dato=document.getElementById(elem).value;
+	        llamadaAjax(etic,"venta_titulos-ajax_instr_venta_tit?id_instruccion="+dato);	
+	    } 
+	    
+		function enviarPantallaCtasCtes(){
+		
+			var action="cuentas_cliente-filter";
+			window.location=action;
+		}
+		
+		function calcular(){
+			//document.dataentry.action='cartera-datos?calculos=valor1&valor2=2 
+		}
+        </script>
+      	
+    </head>
+
+<body>
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Ordenes / Venta de T&iacute;tulos</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+
+<form NAME="dataentry" TARGET="_blank" METHOD="GET" ACTION="venta_titulos-calculo">
+
+
+
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="2" ALIGN="center">
+                <FONT class="formCaptionText">  
+                Datos del Cliente               
+                </FONT>
+            </th>
+        </tr>
+        
+        <!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             <b>Cliente:</b>  @client_nombre@
+			</td>
+ 
+        </tr>
+
+          </table>  
+                       
+	<div style="display: @display@">
+	<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             <b>Conyuge:</b>&nbsp;&nbsp; @nombre_conyugue@
+            </td>
+            <td CLASS="formLabel">
+             <b>C&eacute;dula:</b>  @tipo_persona_conyugue@-@cedula_conyugue@
+            </td>
+ 
+        </tr>
+
+          </table> 
+          </div>          
+<br>
+
+   <table  border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+          	<tr CLASS="formCaption">
+			<th  align="center">Fecha Valor</th>
+        	</tr>
+        	<tr>
+        	<td>Fecha Valor: <b><fecha_valor>@fecha_valor@ </fecha_valor></b> </td> 		
+          	</tr>
+          	<tr>
+          		<td> Verifique la fecha valor... En caso de querer modificarla dir&iacute;jase al m&oacute;dulo <b>Configuraci&oacute;n / Fecha Valor</b>
+          		</td> 
+          	</tr>
+          </table> 
+		<br>
+  <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="4" ALIGN="center">
+                <FONT class="formCaptionText">  
+                Titulos en Custodia del Cliente (@t_registros@)             
+                </FONT>
+            </th>
+        </tr>
+        
+  </table>
+  
+      <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+    
+    		    <!--encabezados de columna-->
+		    <tr class="tableHeader">
+		    
+		    		<th colspan="1" width="8%"></th>
+		                            
+		                <th>T&iacute;tulo</th>
+		                <th>Tipo de Producto</th>
+		                <th>Cant. en Custodia</th>
+		                <th>Fecha Custodia</th>  
+		                <th>Cant. Bloqueada</th> 
+		                <th>Precio Recompra</th> 
+		                <!-- th>Moneda Den.</th--> 
+		                 
+		                            
+		    </tr>	
+  
+  <rows_titulos_cust> 
+  
+  <!-- Etiqueta de Informacion de cuentas nacionales en dolares   -->
+  <inst_cta_dolares>
+  </inst_cta_dolares>
+  
+  <!-- Etiqueta de Informacion de instrucciones de pago para la venta de titulos -->
+  <inst_pago_ventas>
+  </inst_pago_ventas>
+  
+   <!-- Etiqueta de Informacion de productos asociados al cliente -->
+  <prods_cte>
+  </prods_cte>
+  
+  <inst_cta_swift>
+  </inst_cta_swift>
+  
+<msn_error_cta_dolares>
+</msn_error_cta_dolares>
+
+<msn_error_prod_cliente>
+</msn_error_prod_cliente>
+
+<msn_error_cta_internacional>
+</msn_error_cta_internacional>
+        <!--campo-->
+        <tr CLASS="formElement">
+            <td align="center">
+            <input type="checkbox" name="titulos_custodia" value="@titulo_id@" ONCLICK="mostrarOcultarDatosVenta('@titulo_id@', this);" >            
+            </td>
+
+            <td CLASS="formLabel">
+			 <b>@titulo_descripcion@<b>
+			 <input type="hidden" value="@titulo_descripcion@" size="15" name="titulo_descripcion_@titulo_id@">
+            </td>
+            <td CLASS="formLabel">
+			 <b>@tipo_producto_id@<b>
+			 <input type="hidden" value="@tipo_producto_id@" size="15" name="tipo_producto_id">
+            </td>  
+                                 
+            <td align="right">
+			 @titcus_cantidad format-mask='###,###,##0'@
+            </td>
+       
+            <td align="center">
+			 @titulo_fe_ingreso_custodia@
+            </td>
+         
+
+            <td align="right">
+			 @cantidad_bloqueada format-mask='###,###,##0'@
+            </td>
+            
+             <td align="center">
+			 @campo_adicional2@ %
+            </td>
+            
+             <!-- td>
+			 @titulos_moneda_den@
+            </td-->
+        </tr>
+    
+    <tr>
+    
+    <td colspan="7">         
+    @campo_adicional@
+    </td>
+    
+    </tr>    
+   
+    </rows_titulos_cust>
+  
+	 </table>    
+	 
+	      <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">	      
+       		<tr><td><FONT COLOR="red"><b>@mensaje_error_precio_recompra@</b></FONT></td></tr>       
+      </table>
+	 
+	 
+ 	<input type="hidden" value="@client_id@" size="15" name="client_id">
+ 	
+ 	<input type="hidden" value="@control_cambio@" size="15" name="control_cambio">
+ 	
+ 	<input type="hidden" value="@usuario_especial@" size="15" name="usuario_especial">
+
+
+<br>
+    <button TYPE="submit">Calcular Venta</button>        <!-- onSubmit="calcular();" -->
+   	&nbsp;<button type="button" onclick="javascript:history.back();">Regresar</button>    
+    &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+ </form>
+</center>
+
+</body>
+
+</html>
+

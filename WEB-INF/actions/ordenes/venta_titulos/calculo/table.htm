@@ -1,0 +1,338 @@
+<html>
+
+	<head>
+        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+      	
+    </head>
+
+<body>
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Ordenes / Venta de T&iacute;tulos</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+
+<form NAME="dataentry" METHOD="POST" ACTION="venta_titulos-insert_transaccion">
+
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="2" ALIGN="center">
+                <FONT class="formCaptionText">  
+                Datos del Cliente               
+                </FONT>
+            </th>
+        </tr>
+        
+     
+        <!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+            <b>Nombre de Cliente:</b>  @client_nombre@
+            </td>
+ 
+        </tr>
+
+          </table>
+	
+	<div style="display: @display@">
+	<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             <b>Conyuge:</b>&nbsp;&nbsp;  @nombre_conyugue@
+            </td>
+            <td CLASS="formLabel">
+             <b>C&eacute;dula:</b>  @tipo_persona_conyugue@-@cedula_conyugue@
+            </td>
+ 
+        </tr>
+
+          </table> 
+          </div>
+<br>
+
+   <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="4" ALIGN="center">
+                <FONT class="formCaptionText">  
+                T&iacute;tulos a Vender
+                </FONT>
+            </th>
+        </tr>
+	</table>
+
+   <rows_titulos_venta>
+   
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="4" ALIGN="center">
+                <FONT class="formCaptionText">  
+                Datos del T&iacute;tulo               
+                </FONT>
+            </th>
+        </tr>
+        
+        </table>
+        
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        <tr class="tableHeader">
+		    
+		        <th>T&iacute;tulo</th>
+		        <th>Cantidad en Custodia</th>
+                <th>Fecha Custodia</th>  
+                <th>Cantidad Bloqueada</th>  
+                <th>Moneda Neg. T&iacute;tulo</th>  
+                <th>Base T&iacute;tulo</th>  
+		                            
+		</tr>		
+          
+     
+        <!--campo-->
+        <tr CLASS="formElement">
+           
+            <td CLASS="formLabel">
+			 @titulo_descripcion@
+            </td>
+ 
+
+            <td CLASS="formLabel">
+			 @titcus_cantidad@
+            </td>
+
+            <td CLASS="formLabel">
+			 @titulo_fe_ingreso_custodia@
+            </td>
+
+            <td CLASS="formLabel">
+			 @bloqueada@
+            </td>
+ 
+			  <td CLASS="formLabel">
+			 @moneda_neg_titulo@
+			 </td>
+			
+			 <td CLASS="formLabel">
+			 @base_titulo@
+			 </td>
+			 
+ 
+        </tr>
+    
+    </table>
+    
+       <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="4" ALIGN="center">
+                <FONT class="formCaptionText">  
+                Datos de la Venta               
+                </FONT>
+            </th>
+        </tr>
+ 
+        
+          <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Cantidad a Vender:
+            </td>
+        
+                        
+            <td>
+            @cantidad_venta@
+            </td>
+            
+                 <td>
+                 Moneda de Pago:
+            </td>
+            <td>
+				@moneda_descripcion@
+			</td>		 
+ 
+        	</tr>
+        	
+        	
+       
+         <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Precio de Recompra del T&iacute;tulo:
+            </td>
+                                
+            <td>
+             @titulos_precio_recompra@ %
+            </td>
+            
+             <td CLASS="formLabel">
+             Tasa de Cambio
+            </td>
+                                
+            <td>
+             @tasa_cambio_moneda_pago@
+            </td>
+            
+       </tr>
+         
+         <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Fecha Valor
+            </td>
+                                
+            <td colspan="3">
+             @fecha_valor@
+            </td>      
+            
+       </tr>
+   </table>
+   
+          <!-- MENSAJES DE ERROR BUSCANDO LA TASA DE CAMBIO DE LA MONEDA -->
+      <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+       		<tr><td><FONT COLOR="red"><b>@error_busqueda_tasa_cambio@</b></FONT></td></tr>       
+      </table>
+   
+ <table style="@display_pago@" border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="4" ALIGN="center">
+                <FONT class="formCaptionText">  
+                Datos de Pago             
+                </FONT>
+            </th>
+        </tr>
+ 
+        
+          <tr CLASS="formElement">
+             
+            <td>
+                 Forma de Pago:
+            </td>
+            <td colspan="@colspan_forma_pago@">
+				@forma_pago_id@
+               
+            </td>
+            
+         	@columna_cuenta_nac@          	
+           
+        	</tr>
+        
+ 
+          </table> 
+          
+          
+     <table style="@display_campos_din@" border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="4" ALIGN="center">
+                <FONT class="formCaptionText">  
+                Campos Adicionales            
+                </FONT>
+            </th>
+        </tr>
+           
+        <rows_campos_dinamicos>    
+      	 <tr CLASS="formElement">
+             
+            <td>
+               @nombre_campo@
+            </td>
+            <td colspan="3">
+			@valor_campo@               
+            </td>
+ 		</tr>
+ 		</rows_campos_dinamicos>    
+ 			
+ 		</table>
+     
+    
+     <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        
+        <tr CLASS="formCaption">
+            <th COLSPAN="2" ALIGN="center">
+                <FONT class="formCaptionText">  
+                Calculos               
+                </FONT>
+            </th>
+        </tr>
+        
+     
+        
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             <b>Precio de Compra:</b>
+            </td>
+            
+            <td align="right">@precio_compra format-mask='#,###,##0.00'@</td>
+
+		</tr>
+
+		<tr>
+            
+            <td CLASS="formLabel">
+            <b>Monto Pago Capital:</b> 
+            </td>  
+            
+            <td align="right">@monto_pago_capital format-mask='#,###,##0.00'@</td>          
+        </tr>
+        
+      
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             <b>Monto Pago Intereses:</b>
+            </td>
+            
+            <td align="right">@monto_intereses_caidos format-mask='#,###,##0.00'@</td>
+
+         </tr>
+                
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             <b>Monto Neto:</b>  
+            </td>
+            
+            <td align="right">@monto_total_neto format-mask='#,###,##0.00'@</td>
+ 
+        </tr>
+    
+    </table>
+          
+    <br>    
+    </rows_titulos_venta>      
+<br>     
+
+    <button TYPE="button" onclick="confirmarOperacion('¿Est&aacute; seguro que desea procesar la venta del T&iacute;tulo?');">Vender</button>        
+   	&nbsp;<button type="button" onclick="javascript:window.close();">Regresar</button>    
+</form>
+
+</center>
+
+</body>
+
+</html>
+

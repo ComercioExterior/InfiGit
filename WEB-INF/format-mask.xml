@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+
+	En este archivo se definen las m&aacute;scaras de formato
+	que se utilizan con el m&eacute;todo Page.repeat.
+
+	Las m&aacute;scaras de formato se definen de esta manera.
+
+	<format field-name="campo1" mask="#,###,##0.0000" />
+	<format field-name="campo1" mask="dd-MM-yyyy" />
+
+	Puede utilizar las m&aacute;scaras soportadas por Java para
+	fechas y n&uacute;meros. El tipo de dato del campo del DataSet
+	al cual se le quiere aplicar el formato, debe ser compatible
+	con la m&aacute;scara; es decir, no se puede formatear un campo VARCHAR
+	usando una m&aacute;scara de fecha. De hecho los formatos solo aplican
+	para campos de tipo DECIMAL (double, numeric, float etc) y DATE.
+	
+-->
+
+<formats>
+
+</formats>

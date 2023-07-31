@@ -1,0 +1,220 @@
+package com.bdv.infi.model.intervencion;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.Reader;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map.Entry;
+
+import javax.net.ssl.HttpsURLConnection;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
+
+import org.bcv.serviceINTERVENCION.ServiceException;
+import org.bcv.serviceINTERVENCION.codigoIsoDivisa;
+import org.bcv.serviceINTERVENCION.codigoVentaBCV;
+import org.bcv.serviceINTERVENCION.operaciones_interbancaria;
+import org.glassfish.jersey.client.JerseyClient;
+import org.json.JSONException;
+
+import com.google.gson.Gson;
+
+public class Interbancaria extends Configuracion {
+	private operaciones_interbancaria datos;
+	private String operacion;
+
+	public Interbancaria() throws Exception {
+		super();
+
+	}
+
+	// public String postIntervencion(String pathWS, String token, String codigoTipoOperacion, String codigoInstitucionCredito, String codigoIsoDivisa, int coVentaBCV, String fechaOperacion, Double montoDivisa) throws JSONException, ServiceException {
+	// reloadUri();
+	//
+	// Gson gson = new Gson();
+	// target = target.path(pathWS);
+	// clientConfig.register(JerseyClient.class);
+	// client = ClientBuilder.newClient(clientConfig);
+	// operaciones_interbancaria reportar_oper = new operaciones_interbancaria();
+	//
+	// reportar_oper.setCodigoInstitucionCredito(codigoInstitucionCredito);
+	// reportar_oper.setCodigoVentaBCV(new codigoVentaBCV(coVentaBCV));
+	// reportar_oper.setFechaOperacion(fechaOperacion);
+	// reportar_oper.setMontoDivisa(montoDivisa);
+	// reportar_oper.setCodigoTipoOperacion(codigoTipoOperacion);
+	// reportar_oper.setCodigoIsoDivisa(new codigoIsoDivisa(codigoIsoDivisa));
+	// String operacion = gson.toJson(reportar_oper);
+	//
+	// String response1 = null;
+	// target = target.queryParam("operacion", operacion.replaceAll("\\{", "%7B").replaceAll("\\}", "%7D"));
+	// Invocation.Builder invocationBuilder = target.request(MediaType.APPLICATION_JSON).header("Authorization", token);
+	// Response response = invocationBuilder.post(Entity.entity(null, MediaType.APPLICATION_JSON));
+	//
+	// int estatus = response.getStatus();
+	//
+	// if (Status.OK.getStatusCode() == estatus) {
+	//
+	// response1 = response.readEntity(String.class);
+	// } else {
+	//
+	// throw new ServiceException(response.readEntity(String.class), estatus);
+	//
+	// }
+	//
+	// return response1;
+	//
+	// }
+
+	public String postBancaria(String pathWS, String token, String codigoTipoOperacion, String codigoInstitucionCredito, String codigoIsoDivisa, int coVentaBCV, String fechaOperacion, Double montoDivisa) {
+		reloadUri();
+
+		Gson gson = new Gson();
+
+		String urlToConnect = "https://intervencionbancaria.cert.extra.bcv.org.ve/intervencion/api/notificaOperaciones/interbancarias?";
+		HttpsURLConnection conn = null;
+		String boundary = Long.toHexString(System.currentTimeMillis());
+
+		operaciones_interbancaria reportar_oper = new operaciones_interbancaria();
+		reportar_oper.setCodigoInstitucionCredito(codigoInstitucionCredito);
+		reportar_oper.setCodigoVentaBCV(new codigoVentaBCV(coVentaBCV));
+		reportar_oper.setFechaOperacion(fechaOperacion);
+		reportar_oper.setMontoDivisa(montoDivisa);
+		reportar_oper.setCodigoTipoOperacion(codigoTipoOperacion);
+		reportar_oper.setCodigoIsoDivisa(new codigoIsoDivisa(codigoIsoDivisa));
+		String operacion = gson.toJson(reportar_oper);
+		System.out.println("operacion : " + operacion);
+		// System.out.println("conn.getResponseCode() " + conn.getResponseCode());
+		HashMap<String, String> params = new HashMap<String, String>();
+		params.put("operacion", operacion);
+
+		StringBuilder postData = new StringBuilder();
+		for (Entry<String, String> param : params.entrySet()) {
+			// if (postData.length() != 0)
+			// postData.append('&');
+			// System.out.println("URLEncoder.encode(param.getKey(), UTF-8) : " + URLEncoder.encode(param.getKey(), "UTF-8"));
+			// System.out.println("param.getKey() : " + param.getKey());
+			// System.out.println("URLEncoder.encode(String.valueOf(param.getValue()), UTF-8) : " + URLEncoder.encode(String.valueOf(param.getValue()), "UTF-8"));
+			// System.out.println("param.getKey() : " + String.valueOf(param.getValue()));
+			postData.append(param.getKey());
+			postData.append('=');
+			postData.append(String.valueOf(param.getValue()));
+		}
+		System.out.println("postData.toString() : " + postData.toString());
+		URL url;
+		try {
+			url = new URL(urlToConnect);
+			conn = (HttpsURLConnection) url.openConnection();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Error en la url : " + e);
+		} catch (IOException e) {
+			System.out.println("Error en la conexion : " + e);
+		}
+
+		System.out.println("token : " + token);
+		conn.setRequestProperty("Authorization", token);
+		conn.setRequestProperty("Content-Type", "application/json");
+
+		conn.setDoInput(true);
+		conn.setDoOutput(true);
+		// conn.getOutputStream().write(postDataBytes);
+		
+		
+	
+		try {
+			conn.setRequestMethod("POST");
+			System.out.println("conn.getResponseCode() " + conn.getResponseCode());
+			OutputStream os = conn.getOutputStream();
+			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+			writer.write(postData.toString());
+			writer.flush();
+			writer.close();
+			System.out.println("conn.getResponseCode() " + conn.getResponseCode());
+			os.close();
+		} catch (Exception e) {
+			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+			try {
+				System.out.println("br : " + br.readLine());
+			} catch (IOException e3) {
+				System.out.println("br1 : " + e3 );
+			}
+			System.out.println("Error en la escritura : " + e);
+			System.out.println("conn.getErrorStream() : " + conn.getErrorStream());
+			System.out.println("conn.getContentEncoding() : " + conn.getContentEncoding());
+			try {
+				System.out.println("getResponseMessage() : " + conn.getResponseMessage());
+				System.out.println(" conn.getContent() : " + conn.getContent());
+				System.out.println(" conn.getPeerPrincipal() : " + conn.getPeerPrincipal());
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				System.out.println(" e1 : " + e1);
+			}
+//			System.out.println("conn.getClass().toString() : " + conn.getClass(String.class));
+			System.out.println(" conn.getRequestProperties() : " + conn.getRequestProperties());
+			InputStream _is;
+			try {
+				if (conn.getResponseCode() < HttpURLConnection.HTTP_BAD_REQUEST) {
+				    _is = conn.getInputStream();
+				} else {
+				     /* error from server */
+				    _is = conn.getErrorStream();
+				}
+				System.out.println("InputStream : " + _is);
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
+			
+		}
+
+		try {
+			Reader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+
+			for (int c; (c = in.read()) >= 0;)
+				System.out.print((char) c);
+		} catch (Exception e) {
+			System.out.println("Error en la lectura : " + e);
+		}
+
+		// conn.connect();
+
+		// System.out.println("conn.getResponseCode() " + conn.getResponseCode());
+		// int responseCode = ((HttpsURLConnection) conn).getResponseCode();
+		// InputStream is = conn.getInputStream();
+		// BufferedInputStream inputStream = new BufferedInputStream(is);
+		// StringBuilder response = new StringBuilder();
+		// int readedBytes;
+		// byte[] buffer = new byte[4096];
+		//
+		// while ((readedBytes = inputStream.read(buffer)) != -1) {
+		// response.append(new String(buffer, 0, readedBytes));
+		// System.out.println(response.toString());
+		//
+		// }
+		// System.out.println("Respuesta : " + response.toString());
+		// System.out.println(responseCode);
+
+		return null;
+
+	}
+
+}

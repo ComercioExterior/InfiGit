@@ -1,0 +1,76 @@
+<html>
+	<head>      
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        <script type="text/javascript"> 
+        </script> 
+    </head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Programador de Tareas (SCHEDULER)</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+<center>
+<br>
+<form NAME="dataentry" METHOD="POST" ACTION="programador_scheduler-browse">
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Tareas
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform" style="table-layout: auto">
+    
+    <!--encabezados de columna-->
+    <tr CLASS="formElement">
+            <td  CLASS="formLabel2" WIDTH="35%">
+            	Proceso: *
+            </td>
+            <td  CLASS="formLabel">
+	            <SELECT NAME="proceso" id="proceso" CLASS="inputControl" style="width:360px;">
+					<OPTION VALUE=""></OPTION>
+					<tareas>
+					<OPTION VALUE="@id@">@description@</OPTION>
+					</tareas>
+				</SELECT>
+			</td>
+       	</tr>
+    </table>
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    <table>
+	    <tr><td><button type="submit">Procesar</button></td>&nbsp;&nbsp;
+	    <td><button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button></td></tr>
+    </table>
+
+</form>
+
+</center>
+
+</body>
+
+</html>
+

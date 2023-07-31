@@ -1,0 +1,146 @@
+<html>
+
+<head>
+<script language="javascript" src="../js/default.js"></script>
+<script type="text/javascript" src="../js/menu/jquery-1.2.2.pack.js"></script>
+<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+
+<title>Sistema INFI</title>
+<script type="text/javascript">
+
+$(document).ready(function() {
+	
+	var codigo = $('#codigo').val();
+	var oferta = $('#oferta').val();
+	var demanda = $('#demanda').val();
+	var tasa = $('#tasa').val();
+	var estado = $('#estado').val();
+	var jornada = $('#jornada').val();
+	var monedaPacto = $('#monedaPacto').val();
+	var pactoMonto = $('#pactoMonto').val();
+	var monedaBase = $('#monedaBase').val();
+	var montoPactoBase = $('#montoPactoBase').val();
+	var tcPactoBase = $('#tcPactoBase').val();
+	var ofertante = $('#ofertante').val();
+	var demandante = $('#demandante').val();
+	var tipoPacto = $('#tipoPacto').val();
+	
+	var codigoArray = codigo.split(",");
+	var ofertaArray = oferta.split(",");
+	var demandaArray = demanda.split(",");
+	var tasaArray = tasa.split(",");
+	var estadoArray = estado.split(",");
+	var jornadaArray = jornada.split(",");
+	var monedaPactoArray = monedaPacto.split(",");
+	var pactoMontoArray = pactoMonto.split(",");
+	var monedaBaseArray = monedaBase.split(",");
+	var montoPactoBaseArray = montoPactoBase.split(",");
+	var tcPactoBaseArray = tcPactoBase.split(",");
+	var ofertanteArray = ofertante.split(",");
+	var demandanteArray = demandante.split(",");
+	var tipoPactoArray = tipoPacto.split(",");
+	
+	var cantida = codigoArray.length;
+	 for(var i=0; i< cantida; i++){
+		 
+		 var tr= '<tr><td>'+codigoArray[i] +'</td>'+'<td>'+ofertaArray[i] +'</td> '+'<td>'+demandaArray[i] +'</td>'+'<td>'+tasaArray[i] +'</td>'+'<td>'+estadoArray[i] +'</td>'+'<td>'+jornadaArray[i] +'</td>'+'<td>'+monedaPactoArray[i] +'</td>'+'<td>'+pactoMontoArray[i] +'</td> '+'<td>'+monedaBaseArray[i]+'</td> '+'<td>'+montoPactoBaseArray[i]+'</td>'+'<td>'+tcPactoBaseArray[i]+'</td>'+'<td>'+ofertanteArray[i]+'</td>'+'<td>'+demandanteArray[i]+'</td>'+'<td>'+tipoPactoArray[i]+'</td> </tr>';
+// 	        var tr = `<tr>	   
+// 	          <td>`+interArray[i]+`</td>
+// 	          <td>`+codigoArray[i]+`</td>
+// 	          <td>`+fechaIArray[i]+`</td>
+// 	          <td>`+fechaFArray[i]+`</td>
+// 	          <td>`+fechaVArray[i]+`</td>
+// 	          <td>`+tasaArray[i]+`</td>
+// 	          <td>`+monedaArray[i]+`</td>
+// 	          <td>`+saldoArray[i]+`</td>
+// 	          <td>`+numeroIntervenArray[i]+`</td>
+// 	        </tr>`;
+	        $("#bodyCuerpo").append(tr)
+	      }
+	
+});
+function regresar() {
+	window.location = "intercambio_intervencion_jornada-filter";
+}
+
+function exportarCVS() {
+
+	
+		if (confirm("Se Generará un archivo CSV con las Jornada intervencion. Esto puede tardar varios minutos. ¿Está seguro que desea iniciar el proceso?")){
+		
+			window.location="intercambio_mesas_cambios_operaciones-export?framework.controller.outputstream.open=false";
+			return true;
+		}else{
+		
+			return false;    	
+		}
+}
+
+</script>
+
+</head>
+
+<body
+	ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+	<TABLE border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+
+			<TD class="headerBox"><FONT class="headerText">Mesa de Cambio
+					BCV / Operaciones / Jornada</FONT>
+			</TD>
+			<TD class="headerBox" valign="left" align="left"><img border="0"
+				src="../images/infi_gn_ayuda.gif" width="17" height="17"
+				onclick="helpOpen(window.document.location.href);"
+				style="cursor: hand" title="Mostrar ayuda en l&iacute;nea" />
+			</TD>
+
+		</TR>
+	</TABLE>
+	<center>
+		<br>
+		<form NAME="dataentry" METHOD="POST" ACTION=""
+			enctype="multipart/form-data">
+
+			<table border="0" cellspacing="1" cellpadding="2" width="100%"
+				class="datatable" style="table-layout: auto;" id="Table">
+
+
+				<!--encabezados de columna-->
+				<tr>
+					<th nowrap width="7%">Tipo de intervencion</th>
+					<th nowrap width="7%">Codigo jornada</th>
+					<th nowrap width="10%">Fecha inicio</th>
+					<th nowrap width="5%">Fecha fin</th>
+					<th nowrap width="7%">Fecha valor</th>
+					<th nowrap width="4%">Tasa de cambio</th>
+					<th nowrap width="7%">Moneda</th>
+					<th nowrap width="7%">Saldo disponible</th>
+					<th nowrap width="4%">Semana</th>
+				</tr>
+				<!--data-->
+				<tbody id="bodyCuerpo">
+				</tbody>
+			</table>
+			<BR>
+			&nbsp;
+			
+		
+				<input type="hidden" id="tipoIntervecion" value="@tipointerven@" />
+				<input type="hidden" id="codigoJornada" value="@codigo@" />
+				<input type="hidden" id="fechaInicio" value="@fechaini@" />
+				<input type="hidden" id="fechaFin" value="@fechafinuno@" />
+				<input type="hidden" id="fechaValor" value="@fechavaloruno@" />
+				<input type="hidden" id="tasaCambio" value="@tasacambiouno@" />
+				<input type="hidden" id="moneda" value="@monedda@" />
+				<input type="hidden" id="numeroIntervencion" value="@numerointerven@" />
+				<input type="hidden" id="saldo" value="@saldodisponibleuno@" />
+		
+			&nbsp;<button type="button" onclick="exportarCVS()">Exportar CSV</button>
+			&nbsp;<button type="button" onclick="regresar()">Regresar</button>
+		</form>
+
+	</center>
+</body>
+</html>
+

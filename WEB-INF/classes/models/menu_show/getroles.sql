@@ -1,0 +1,1 @@
+select r.rolename from MSC_MENU_ROLES mr, MSC_ROLE r where mr.id_role = r.msc_role_id group by rolename

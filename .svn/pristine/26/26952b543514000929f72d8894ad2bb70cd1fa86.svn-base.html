@@ -1,0 +1,187 @@
+<html>
+<head>
+	<title>Sistema INFI</title>
+	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+	<script language="javascript" src="../js/default.js"></script>	
+</head>
+
+<body
+	ONLOAD="javascript:mostrar(@accion@);{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};
+			reloadOpener();">
+
+	<br><br>
+	<!--page name bar-->
+	<table border="0" cellspacing="0" WIDTH="100%">
+		<tr>
+			<td class="headerBox">
+	        	<div id="titulou" style="display:none">               
+	            	<font class="headerText">Unidad de Inversi&oacute;n / Blotters</font>
+	            </div>
+				<div id="titulop" style="display:none">               
+	            	<font class="headerText">Publicaci&oacute;n Unidad de Inversi&oacute;n / Blotters</font>
+	            </div>
+	            <div id="tituloc" style="display:none">               
+	            	<font class="headerText">Consulta Unidad de Inversi&oacute;n / Blotters</font>
+	            </div>			
+	            <div id="titulom" style="display:none">               
+	            	<font class="headerText">Modificaci&oacute;n Unidad de Inversi&oacute;n / Blotters</font>
+	            </div>
+			</td>
+			<!-- help online -->
+			<td class="headerBox" valign="middle" align="right">
+				<img src="../images/infi_gn_ayuda.gif"	border="0"  width="17" height="17"
+					style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"
+					onclick="helpOpen(window.document.location.href);">
+			</td>
+			<!-- fin help online -->	
+		</tr>
+	</table>
+
+	<br>
+
+	<!--formulario-->
+	<form method="POST" action="unidad_inversion_blotter-select">
+		<input type="hidden" name="idUnidadInversion" value="@idunidadinversion@" />
+		<input type="hidden" name="entry" value="seleccion" />
+
+		<table border="0" cellspacing="0" cellpadding="0" width="50%">	
+			<!--titulo-->
+			<tr style="font-size:8pt;">
+				<td width="30%">Descripci&oacute;n</td>
+				<td width="70%">
+					<input type="text" style="font-size:8pt;" size="25" maxlength="50" name="descripcionBlotter" value="" />
+					&nbsp; &nbsp;
+					<button type="button" onclick="submitirBuscar();" style="font-size:8pt;">Buscar</button>	
+				</td>
+			</tr>			
+		</table>						
+	</form>			
+			
+	<center>
+
+	<!--formulario-->
+	<form name="dataentry" method="POST" action="unidad_inversion_blotter-insert">
+		<input type="hidden" name="idUnidadInversion" value="@idunidadinversion@" />
+		<input type="hidden" name="origen" value="select" />			
+		<input type="hidden" name="entry" value="update" />	
+	
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="100%">
+		<tr class="formCaption">
+			<th align="center">
+				<font class="formCaptionText">
+					Blotters Disponibles  @boton_grabar_ini@ (@total_records@) @boton_grabar_fin@
+				</font>
+			</th>
+		</tr>	
+	</table>
+	
+	<!--tabla de data-->
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="100%">
+	
+		<!--encabezados de columna-->
+		<tr class="tableHeader">
+			<th width="4%"></th>
+			<th width="40%">Descripci&oacute;n</th>
+			<th width="25%" colspan="2">
+				Horario 
+				<br> &nbsp; &nbsp; &nbsp; 
+				Desde &nbsp; &nbsp; &nbsp; &nbsp;  
+			 	- &nbsp; &nbsp; &nbsp; &nbsp;  
+				Hasta &nbsp; &nbsp; &nbsp; &nbsp;  
+			</th>					
+		</tr>
+
+		<!--data-->
+		<rowsBlo>
+		<tr class="tableCell">
+			<td align="center">
+				<INPUT TYPE="CHECKBOX" NAME="selecc" VALUE="@_row@" @selecc@ />
+ 				<input type="hidden" name="idBlotter" value="@bloter_id@" />
+			 	<input type="hidden" name="horarioDesde" value="@hora_horario_desde null-value=''@" /> 
+			 	<input type="hidden" name="horarioHasta" value="@hora_horario_hasta null-value=''@" /> 	  							
+			</td>
+			<td>@bloter_descripcion@</td>
+			<td align="center">@hora_horario_desde null-value=''@</td>
+			<td align="center">@hora_horario_hasta null-value=''@</td>						
+		</tr>
+		</rowsBlo>
+	</table>
+		
+	@page_index@
+
+	<input type="hidden" name="selecc" value="" />
+ 	<input type="hidden" name="idBlotter" value="" />
+ 	<input type="hidden" name="horarioDesde" value="" /> 
+ 	<input type="hidden" name="horarioHasta" value="" />   	 				
+
+	<br>
+
+		
+	@boton_grabar_ini@		
+	<button type="button" onclick="submitir();">Grabar</button>
+	&nbsp;
+	@boton_grabar_fin@	
+	<button type="button" onclick="regresar();">Regresar</button>
+	
+	</form>
+
+	</center>
+
+</body>
+<script type="text/javascript">
+<!--
+function submitirBuscar() {	
+	document.forms[0].submit();
+}
+function submitir() {	
+
+	j=0;
+	for (i=0; i<document.forms[1].selecc.length-1; i++) {
+		if (document.forms[1].selecc[i].checked) {
+			++j;
+		}
+	}
+	if (j == 0) {
+		alert("No selecciono Blotter para asociarlo a la Unidad de Inversion");
+		return;
+	}
+	for (i=0; i<document.forms[1].idBlotter.length-1; i++) {
+		if (!document.forms[1].selecc[i].checked) {
+			document.forms[1].idBlotter[i].value = "0";
+		}
+	}
+	document.forms[1].submit();
+}
+function regresar() {
+	window.opener.reload();
+   	window.close();
+}
+function reloadOpener() {
+	window.opener.reload();
+}
+function mostrar(accion){
+	if(accion==1){
+		var elementos = document.getElementsByName('unidad');
+		for (var i = 0; i < elementos.length; i++ ){
+			elementos[i].style.display ="block";
+		}
+		titulou.style.display ="block";
+	}
+	if(accion==2){//Modulo Publicacion
+		titulop.style.display ="block";
+	}
+	if(accion==3){//Modulo Consulta
+		tituloc.style.display ="block";
+	}	
+	if(accion==4){//Modulo Modificacion
+		var elementos = document.getElementsByName('unidad');
+		for (var i = 0; i < elementos.length; i++ ){
+			elementos[i].style.display ="block";
+		}
+		titulom.style.display ="block";
+	}
+}
+-->
+</script>
+</html>
+

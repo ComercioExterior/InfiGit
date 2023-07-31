@@ -1,0 +1,144 @@
+<html>
+
+	<head>
+        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+        <script type="text/javascript">
+        function excel() {
+            if (confirm("El proceso de generación de archivo Excel puede tardar varios minutos. ¿Está seguro que desea iniciar el proceso?")){
+            	return true;
+            }else{
+            	return false;
+            }
+        }
+        </script>
+	
+    </head>
+
+<body>
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Ordenes / Exportaci&oacute;n Excel / Solicitudes SIMADI / Resultados de la b&uacute;squeda </FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+<center>
+
+<br>
+<!-- <form name="dataentry" onsubmit="return excel()" action="exportar_ordenes_simadi-exportar?framework.controller.outputstream.open=false" method="post"> -->
+<form name="dataentry" onsubmit="return excel()" action="exportar_ordenes_simadi-exportar" method="post">
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th width="100%" ALIGN="center">
+                <FONT class="formCaptionText">
+                	<registros>
+                  	Registros ( @t_registros@ )
+                  	</registros>
+                </FONT>
+            </th>
+            <!--  <th WIDTH="5%" VALIGN="right" style="display: block">
+                <a href="javascript:abrirPopupDetalles('resumen_blotter-find?unidad_inversion=@unidad_inversion@&fecha_desde=@fe_ord_desde@&fecha_hasta=@fe_ord_hasta@','100', '550')" style="visibility:@display_detalle_blot@"><IMG SRC="../images/infi_gn_document.gif" WIDTH="15" ALIGN="top" HEIGHT="13" BORDER="0" title="Resumen Unidad de Inversi&oacute;n" alt="Resumen Unidad de Inversi&oacute;n" style="cursor:hand"></a>                
+            </th> -->
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+    
+    <!--encabezados de columna-->
+    <tr>
+    		<!--  <th colspan="1" width="3%"></th>-->
+    		<th nowrap align="center">N&deg; Orden</th>          
+              <th nowrap>N&deg; Orden INFI</th>            
+              <th nowrap >Cliente</th>
+              <th nowrap align="center">C&eacute;dula o RIF</th>
+              <th nowrap >Correo Electr&oacute;nico</th>   
+              <th nowrap >Monto Solicitado</th>
+              <th nowrap >Tasa Cambio</th>
+              <th nowrap >Cuenta en Bs</th>                                    
+              <th nowrap >Cuenta en $</th>
+              <th nowrap >Estatus</th>
+              <th nowrap >Tipo de Solicitud</th>
+    </tr>
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+                
+                <!--  <td align="center">
+                <a href="javascript:abrirPopupDetalles('detalle_orden-find?ord_id=@ordene_id@','100', '550')"><IMG SRC="../images/infi_gn_document.gif" WIDTH="15" ALIGN="top" HEIGHT="13" title="Detalles de la Orden" BORDER="0" style="cursor:hand"></a>
+                </td>-->
+            	<td nowrap align="center">
+                @id_orden@
+                </td>
+                
+                <td VALIGN="middle" >                
+                @numero_orden_infi@
+                </td>              
+                
+                <td nowrap>
+                @nombre_cliente@
+                </td>                
+
+                <td align="center" nowrap >
+                @ced_rif_cliente@
+                </td>
+                
+                 <td align="left" nowrap>
+                @email_cliente@
+                </td>
+                 <td align="right" nowrap>
+                @monto_solicitado@
+                </td>
+                 <td align="center" nowrap>
+                @tasa_cambio@
+                </td>
+                <td align="center" nowrap>
+                @cuenta_bs@
+                </td>
+                <td align="center" nowrap>
+                @cuenta_en_dolares@
+                </td>
+                <td align="center" nowrap>
+                @estatus@
+                </td>
+                <td align="center" nowrap>
+                @tipo_solicitud@
+                </td>
+                
+     </tr>
+     </rows>
+    </table>    
+		@page_index@
+    <BR>
+	<input type="hidden" name="tipo_producto_id" value="@tipo_producto_id@" />
+    
+    <button type="button" onclick="window.location='exportar_ordenes_simadi-filter'">Regresar</button>
+    &nbsp;&nbsp;<button type="submit">Exportar</button>
+     &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+<!-- 	<input type="hidden" value="false" name="framework.controller.outputstream.open"> -->
+
+</form>
+
+</center>
+
+</body>
+
+</html>
+

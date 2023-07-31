@@ -1,0 +1,94 @@
+<HTML>
+
+<HEAD>
+	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+	<LINK REL="stylesheet" type="text/css"	href="../js/calendar/popcalendar.css" />
+	<SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+	<script language="javascript" src="../js/default.js"></script>
+	
+	<TITLE>Sistema INFI</TITLE>
+</HEAD>
+
+<!--poner el focus en el 1er control de la forma-->
+<BODY
+	ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+
+	<!--page name bar-->
+	<TABLE border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+			<TD class="headerBox">
+				<FONT class="headerText">Eventos / Amortizaciones Generadas</FONT>
+			</TD>
+	
+			<!-- help online -->
+			<TD class="headerBox" valign="middle" align="right"><img
+				border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17"
+				onclick="helpOpen(window.document.location.href);"
+				style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"></TD>
+			<!-- fin help online -->
+	
+			<td class="headerBox" aling="right"></td>
+	</TABLE>
+	
+	<CENTER><!--formulario-->
+	<form NAME="dataentry" METHOD="POST" ACTION="generacion-amortizacion-consulta-browse">
+	
+	<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+	
+		<!--titulo-->
+		<tr CLASS="formCaption">
+			<th COLSPAN="4" ALIGN="center"><FONT class="formCaptionText">
+			Seleccione Criterios </FONT></th>
+		</tr>
+	
+	
+		<!--campo-->
+		<tr CLASS="formElement">
+			<td CLASS="formLabel">T&iacute;tulo:*</td>
+			<td CLASS="formLabel">
+				<SELECT NAME="idTitulo" CLASS="inputControl" syle="width:460px;" />
+					<OPTION VALUE=""></OPTION>
+					<rowsTit>
+					<OPTION VALUE="@titulo_id@">@titulo_id@</OPTION>
+					</rowsTit>
+				</SELECT>
+			</td>
+		</tr>
+		<tr class="formElement">
+			<td class="formLabel" width="25%">Fecha Desde:</td>
+			<td width="75%"><input type="text" name="filtroFechaDesde"
+				value="@filtro_fecha_desde@" size="10" maxlength="10" readonly /> <a
+				onclick="popUpCalendar(this, document.forms[0].filtroFechaDesde, 'dd-mm-yyyy')">
+			<IMG SRC="../images/infi_gn_calendar.gif" class="boton"
+				TITLE="Seleccionar Fecha" /> </a> <IMG SRC="../images/infi_gn_delete.gif"
+				BORDER="0" ALIGN="top"
+				onclick='document.forms[0].filtroFechaDesde.value=""'></td>
+		</tr>
+		<tr class="formElement">
+			<td class="formLabel" width="25%">Fecha Hasta:</td>
+			<td width="75%"><input type="text" name="filtroFechaHasta"
+				value="@filtro_fecha_hasta@" size="10" maxlength="10" readonly /> <a
+				onclick="popUpCalendar(this, document.forms[0].filtroFechaHasta, 'dd-mm-yyyy')">
+			<IMG SRC="../images/infi_gn_calendar.gif" class="boton"
+				TITLE="Seleccionar Fecha" /> </a> <IMG SRC="../images/infi_gn_delete.gif"
+				BORDER="0" ALIGN="top"
+				onclick='document.forms[0].filtroFechaHasta.value=""'></td>
+		</tr>
+	</table>
+	<P><FONT COLOR="red"><B>Nota:</B></FONT> El campo con * deben ser llenado para poder procesar el formulario.</P>
+	
+	<INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart" />
+	
+	<button TYPE="submit">Procesar</button>
+	
+	<SPAN> </SPAN>
+	<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+	
+	</form>
+	
+	</CENTER>
+
+</BODY>
+
+</HTML>

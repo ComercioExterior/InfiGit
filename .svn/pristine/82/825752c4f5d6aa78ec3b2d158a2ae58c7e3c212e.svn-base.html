@@ -1,0 +1,78 @@
+<HTML>
+	<HEAD>
+		<TITLE>Sistema INFI</TITLE>
+        <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+        <SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>		
+    	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		<script language="javascript" src="../js/default.js"></script>   
+	</HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    	<TR>
+        	<TD class="headerBox">                            	
+            	<FONT class="headerText">Intercambio / Operaciones DICOM / Operaciones Demanda / Cobros Operaciones / Consulta de Ciclo DICOM</FONT> 
+       		</TD>
+        	<!-- help online -->
+   			<TD class="headerBox" valign="middle" align="right">
+   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   			</TD>
+   			<!-- fin help online -->
+        	<td class="headerBox" aling="right"></td>
+        </TR>
+	</TABLE>
+	<CENTER>
+
+	<!--formulario-->
+	<form NAME="dataentry" METHOD="POST" ACTION="consulta_ciclo_op_cobro_dicom_demanda-browse">
+		<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+			 <!--titulo-->
+			<tr>
+				<th COLSPAN="2" ALIGN="center">Seleccione la Unidad de Inversión</th>
+			</tr>
+			<!--campo-->
+			
+        	<tr id="ui_tr" class="tableCell">
+            <td>Unidad de Inversi&oacute;n:</td>
+			<td>
+            	<INPUT TYPE="TEXT" VALUE="" NAME="ui_txt" SIZE="50" MAXLENGTH="50" class="inputControl" readonly/>
+            	<input type="hidden" value="@uni_id@" name="undinv_id"/>
+            	<input type="hidden" value="@tipo_prod@" name="tipo_producto"/> 
+				<!--IMAGENES/BOTONES PARA EL PICKLIST-->
+				<IMG src="../images/infi_gn_picklist.gif" title="Haga CLICK para ver la lista de opciones." onclick="showEnterUIFiltro(1,document.dataentry.undinv_id,document.dataentry.ui_txt,'enter_ui_filtro-find?estatus=@estatus_ui@&tipo_prod=@tipo_prod@&tipo_solicitud=@tipo_solicitud@&')" style="cursor:hand"/>
+				<IMG src="../images/infi_gn_picklist-clear.gif" title="Haga CLICK para borrar la opci&oacute;n seleccionada." onclick="showEnterOrden(0,document.dataentry.ui_id,document.dataentry.ui_txt,'enter_ui_filtro-find')" style="cursor:hand"/>
+			</td>
+        </tr>
+            <tr>
+        <!--campo
+            <td>
+				Fecha Desde:*
+            </td>
+            <td>
+				<INPUT TYPE="TEXT" VALUE="@fecha_actual@" NAME="fe_desde" SIZE="12" MAXLENGTH="10" class="inputControl" readonly /> 
+				<a onclick="popUpCalendar(this, fe_desde, 'dd-mm-yyyy')">
+				<IMG SRC="../images/infi_gn_calendar.gif" class="boton" TITLE="Seleccionar Fecha"/>
+				</a>
+			</td>
+        </tr>
+        <tr>
+            <td>
+				Fecha Hasta:*
+            </td>
+            <td>
+				<INPUT TYPE="TEXT" VALUE="@fecha_actual@" NAME="fe_hasta" SIZE="12" MAXLENGTH="10" class="inputControl" readonly/> 
+				<a onclick="popUpCalendar(this, fe_hasta, 'dd-mm-yyyy')">
+				<IMG SRC="../images/infi_gn_calendar.gif" TITLE="Seleccionar Fecha"/> 
+				</a>
+			</td>
+        </tr-->        	        	
+		</table>
+		<br>
+		<button id="deshabilita" type="submit"/>Procesar</button>
+		&nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+	</form>
+	</CENTER>
+</BODY>
+</HTML>

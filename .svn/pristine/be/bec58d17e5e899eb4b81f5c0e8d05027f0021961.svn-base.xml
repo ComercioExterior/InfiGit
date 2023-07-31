@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+
+	<field name="unidad_inversion" type="integer" description="Unidad Inversi&oacute;n"
+		nullable="1" size="7" />
+
+	<field name="tipo_operacion" type="varchar" description="Unidad Inversi&oacute;n"
+		nullable="1" size="12" />
+
+</record>
+

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+
+
+
+	<field name="clave" type="varchar" description="clave nueva"
+		nullable="1" size="12" />
+
+</record>
+

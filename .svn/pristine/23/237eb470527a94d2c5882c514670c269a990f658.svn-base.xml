@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+    <!--
+    
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, decimal, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+    
+    -->
+                   
+      
+        <field 
+        name="cod_archivo" 
+        type="integer" 
+        description="codigo del archivo"
+        nullable="1"
+        size="50" />
+        
+        <field 
+        name="nom_archivo" 
+        type="varchar" 
+        description="nombre del archivo"
+        nullable="1"
+        size="50" />
+        
+        <field 
+        name="cod_mapa" 
+        type="varchar" 
+        description="C&oacute;digo de mapa de archivo"
+        nullable="1"
+        size="80" />
+        
+         <field 
+        name="cod_proceso" 
+        type="varchar" 
+        description="codigo de proceso"
+        nullable="1"
+        size="80" />
+        
+        <field 
+        name="cod_entidad" 
+        type="varchar" 
+        description="codigo de entidad"
+        nullable="1"
+        size="80" />
+       
+       <field 
+        name="entidad_archivo" 
+        type="varchar" 
+        description="entidad del archivo"
+        nullable="1"
+        size="80" />
+       
+               
+        
+ 
+    
+</record>
+

@@ -1,0 +1,146 @@
+
+<HTML>
+    
+	<head> 
+          
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        <script type="text/javascript">
+        
+		function verifDest() {
+			if (document.dataentry.tipo_destinatario.value=='F') {
+				document.getElementById('boton_agregar_area').style.display='block';
+			}else{
+				document.getElementById('boton_agregar_area').style.display='none';
+			}
+		}	   
+		
+		function eliminarArea(id_area, num_area){
+         	if (confirm("¿Está seguro que desea eliminar el area número "+num_area+ " de la plantilla de correo?")){         		
+         		document.dataentry.action='plantillas_correo-edit_areas?plantilla_mail_id='+document.dataentry.plantilla_mail_id.value+'&eliminar_area=1&plant_mail_area_id='+id_area;
+         		document.dataentry.target='_self';
+         		document.forms[0].submit();				
+         	}	
+		}
+		
+		function actualizar(){
+       		document.dataentry.action='plantillas_correo-confirm_update_areas';
+       		document.dataentry.target='_blank';
+			document.forms[0].submit();				
+		}
+		
+		function retornar(){
+			window.location='plantillas_correo-filter';
+		}
+		 		
+		
+		</script>
+	
+    </head>
+  
+  <body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+  
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Plantillas de Correos / Areas</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+        
+        <CENTER>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="plantillas_correo-confirm_update_areas">
+
+      <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="2" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Plantilla de Correo
+                </FONT>
+            </th>
+        </tr>
+		
+		<!--campo-->
+		<tr class="tableCell">
+			<td>Producto:</td>
+			<td>				
+				@prod_name@ 
+			</td>        
+		</tr>
+		
+		<!--campo-->
+		<tr class="tableCell">
+			<td>Evento a notificar:</td>
+			<td>				
+				@evento_name@ 
+			</td>        
+		</tr>
+		
+			<tr>
+			<td width="30%">Tipo de Destinatario:</td>
+			<td>
+				@tipo_destinatario_desc@
+			</td>
+		</tr>
+		
+		</table>
+
+		
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="2" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Editar Areas
+                </FONT>
+            </th>
+        </tr>	
+		
+		</table>
+		
+		<!-- AQUI TABLA DE AREAS DE PLANTILLA -->
+              
+       <div id="areas_plant">
+  		 <rows_areas>
+  		 	@area_plantilla@
+  		 </rows_areas>  		 
+       </div>            
+       <!-- FIN DE AREAS  -->          
+     
+		
+		<INPUT TYPE="hidden" VALUE="@plantilla_mail_id@" NAME="plantilla_mail_id"/>
+		
+            <!--nota sobre los campos obligatorios-->
+            <P><FONT COLOR="red"><B>Nota:</B></FONT> Los campos con * deben ser llenados para poder procesar el formulario.</P>
+  
+            <button TYPE="button" onclick="actualizar();">Grabar</button>
+            &nbsp;<button type="button" onclick="window.location='plantillas_correo-filter'">Regresar</button>
+            &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+
+    </form>
+
+        
+        </CENTER>
+        
+    </BODY>
+
+</HTML>
+

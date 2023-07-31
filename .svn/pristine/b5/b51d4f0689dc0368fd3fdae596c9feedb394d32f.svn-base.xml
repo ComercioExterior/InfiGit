@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<config>
+
+	<model-class>models.bcv.intervencion_oficina.InventarioAddNew</model-class>
+	<view-class>megasoft.GenericView</view-class>
+	<template>table.htm</template>
+	<record-def></record-def>
+	<content-type>text/html</content-type>
+	<expires></expires>
+	<no-cache>false</no-cache>
+	<next-action type="redirect"></next-action>
+	<on-empty source=""></on-empty>
+	
+<!-- 	<bind type="replace" source="municipio"/> -->
+<!-- 	<bind type="repeat" source="estados" tag="estados"/> -->
+	
+</config>

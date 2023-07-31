@@ -1,0 +1,87 @@
+<html>
+
+	<head>
+        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+     	
+     	<script language="javascript">
+     	
+    																	
+   		 </script>
+     
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Auditor&iacute;a / Consulta Transacciones</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="TABLE-LAYOUT: auto; ">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="5" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Url Cantidad Modificaciones ( @t_registros@ )
+                </FONT>
+            </th>
+        </tr>
+        <tr class="formElement">
+			<td COLSPAN="1" width="20%" nowrap><b>URL:</b></td>
+			<td COLSPAN="4">@action@</td>
+		</tr>
+    <!--encabezados de columna-->
+    <tr class="formCaption">
+		<th nowrap>Usuario</th>
+		<th nowrap>IP</th>
+		<th nowrap>Fecha</th>
+		<th nowrap>Hora</th>                                                
+		<th nowrap>Par&aacute;metros</th>
+    </tr>
+
+    <!--data-->
+    <rows>
+    <tr class="tableCell">                
+		<td align="lef" nowrap>@userid@</td>
+        <td align="center" nowrap>@ip@</td>
+		<td align="center" nowrap>@fecha@</td>
+		<td align="center" nowrap>@hora@</td>
+		<td align="left" nowrap>@parametros@</td>
+     </tr> 
+     </rows>
+    
+    </table>
+		@page_index@
+	<br>
+<form>
+
+    <button type="button" onclick="window.location='log_url-browse';">Regresar</button>
+    &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+</form>
+
+</center>
+
+</body>
+
+</html>
+

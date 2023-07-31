@@ -1,0 +1,1 @@
+delete from MSC_ROLE where msc_role_id = @id@

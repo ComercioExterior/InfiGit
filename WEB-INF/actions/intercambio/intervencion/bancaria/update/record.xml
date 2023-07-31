@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+
+    <field 
+        name="rif" 
+        type="varchar" 
+        description="rif cliente"
+        nullable="0"
+        size="200" />        
+   <field 
+        name="nombre" 
+        type="varchar" 
+        description="nombre cliente"
+        nullable="0"
+        size="200" /> 
+        
+         <field 
+        name="fecha" 
+        type="varchar" 
+        description="fecha de la operacion"
+        nullable="0"
+        size="200" />
+        
+         <field 
+        name="monto" 
+        type="varchar" 
+        description="monto de operacion"
+        nullable="0"
+        size="200" />
+        
+         <field 
+        name="cuentadivisas" 
+        type="varchar" 
+        description="cuenta divisas"
+        nullable="0"
+        size="200" />
+        
+        <field 
+        name="cuentabolivares" 
+        type="varchar" 
+        description="cuenta bolivares"
+        nullable="0"
+        size="200" />
+        
+        <field 
+        name="moneda" 
+        type="varchar" 
+        description="moneda de la operacion"
+        nullable="0"
+        size="200" />
+     
+        
+        <field 
+        name="operacion" 
+        type="varchar" 
+        description="codigo operacion"
+        nullable="0"
+        size="200" /> 
+    
+</record>
+

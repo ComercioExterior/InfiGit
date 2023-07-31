@@ -1,0 +1,193 @@
+<html>
+<head>
+	<title>Sistema INFI</title>
+	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+	<script language="javascript" src="../js/default.js"></script>	
+</head>
+
+<body ONLOAD="javascript:mostrar(@accion@);{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+	<!--page name bar-->
+	
+	<table border="0" cellspacing="0" WIDTH="930px">
+		<tr>
+			<td class="headerBox">
+	        	<div id="titulou" style="display:none">               
+	            	<font class="headerText">Unidad de Inversi&oacute;n / Documentos</font>
+	            </div>
+				<div id="titulop" style="display:none">               
+	            	<font class="headerText">Publicaci&oacute;n Unidad de Inversi&oacute;n / Documentos</font>
+	            </div>
+	            <div id="tituloc" style="display:none">               
+	            	<font class="headerText">Consulta Unidad de Inversi&oacute;n / Documentos</font>
+	            </div>
+	            <div id="titulom" style="display:none">               
+	            	<font class="headerText">Modificaci&oacute;n Unidad de Inversi&oacute;n / Documentos</font>
+	            </div>
+			</td>
+			<!-- help online -->
+			<td class="headerBox" valign="middle" align="right">
+				<img src="../images/infi_gn_ayuda.gif"	border="0"  width="17" height="17"
+					style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"
+					onclick="helpOpen(window.document.location.href);">
+			</td>
+			<!-- fin help online -->	
+		</tr>
+	</table>
+
+	<br>
+
+	<!--formulario-->
+	<form name="dataentry" method="post" action="" >
+		<input type="hidden" name="idUnidadInversion" value="@idunidadinversion@" />
+		<input type="hidden" name="id_blotter" value="@id_blotter@" />
+		<input type="hidden" name="blotter" value="@blotter@" />
+		<input type="hidden" name="persona" value="" />
+		<input type="hidden" name="unidad" value="@unidad@" />
+		<input type="hidden" name="id_tipper" value="" />
+	
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="930px" style="TABLE-LAYOUT: auto; ">
+		<tr class="tableHeader">	
+			<th colspan="2">Documentos</th>													
+		</tr>
+		<tr class="formElement">
+			<td nowrap width="20%"><b>Unidad de Inversi&oacute;n: </b></td>	
+			<td nowrap>@unidad@</td>				
+		</tr>
+		<tr class="formElement">
+			<td nowrap><b>Blotter: </b></td>													
+			<td nowrap>@blotter@</td>				
+		</tr>
+	</table>
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="930px" style="TABLE-LAYOUT: auto; ">
+		<tr class="tableHeader">
+			<th colspan="3">Tipo de Personas V&aacute;lida para los Documentos</th>													
+		</tr>	
+		<!--encabezados de columna-->
+		<tr class="tableHeader">
+			<th width="5%"></th>			
+			<th nowrap>Tipo de Persona</th>
+			<th>Estado</th>													
+		</tr>
+	
+		<!--data-->
+		<rowsPer>
+		<tr class="tableCell">	
+			<td align="center">
+			<span style="cursor:hand; text-decoration:underline; display:none" name="unidad" id="unidad" class="span" title="Editar Documentos"
+					onclick="javascript:enviarA('@estado@','@tipper_nombre@','@tipper_id@','@id_blotter@','@unidad@','@blotter@');"> 
+					<IMG SRC="../images/infi_gn_edit.gif"  BORDER="0" ALIGN="top" >
+			</span>
+			</td>
+			<td align="left">@tipper_nombre@</td>													
+			<td>@estado@</td>
+		</tr>
+		</rowsPer>	
+	</table>
+	<center>
+	<br>	
+	<button type="button" onclick="window.location='unidad_inversion_documentos-browse'">Regresar</button>
+	
+	</form>
+
+	</center>
+
+</body>
+<script type="text/javascript">
+
+function mostrar(accion){
+	if(accion==1){
+		var elementos = document.getElementsByName('unidad');
+		for (var i = 0; i < elementos.length; i++ ){
+			elementos[i].style.display ="block";
+		}
+		titulou.style.display ="block";
+	}
+	if(accion==2){//Modulo Publicacion
+		var elementos = document.getElementsByName('unidad');
+		for (var i = 0; i < elementos.length; i++ ){
+			elementos[i].style.display ="block";
+			elementos[i].title ="Ver Documentos";
+		}
+		titulop.style.display ="block";
+	}
+	if(accion==3){//Modulo Consulta
+		var elementos = document.getElementsByName('unidad');
+		for (var i = 0; i < elementos.length; i++ ){
+			elementos[i].style.display ="block";
+			elementos[i].title ="Ver Documentos";
+		}
+		tituloc.style.display ="block";
+	}	
+	if(accion==4){
+		var elementos = document.getElementsByName('unidad');
+		for (var i = 0; i < elementos.length; i++ ){
+			elementos[i].style.display ="block";
+		}
+		titulom.style.display ="block";
+	}
+}
+
+function enviarA(estado,tipopersona,idtipper,idblotter,unidad,descripcion) {
+	document.dataentry.unidad.value = unidad;
+	document.dataentry.id_tipper.value = idtipper;
+	document.dataentry.id_blotter.value = idblotter;
+	document.dataentry.blotter.value = descripcion;
+	document.dataentry.persona.value = tipopersona;
+	var nombre=tipopersona;
+	if (estado.toLowerCase().indexOf("sin") != -1) {
+		alert("Los Documentos para el Tipo de Persona ("+nombre+") no han sido agregados");
+	}else{
+		document.dataentry.action="unidad_inversion_documentos-edit"; 
+		document.dataentry.submit();
+	}
+}
+
+/*
+	* Renombra todos los campos de tipo file para que no sean un arreglo de controles.
+	* Los controles file que tengan la propiedad  fixedName=true no son renombrados, esto es en caso de que
+	* un formulario contenga múltiples controles file con nombre distintos.
+	* Se hace agregando un sufijo desde el segundo control tipo file. El nombre del pimer control se mantiene
+	*/
+	function submitUpload( objForm )
+	{
+	    var counter = 1;
+		var counterSufix = 1;
+		
+		// Itera todos los objetos del formulario
+		var objCount = objForm.elements.length;
+		for (var i=0 ; i<objCount; i++)
+		{
+			// Determina el Tipo de objeto
+		    var objControl = objForm.elements[i];
+			//Si el objeto es de tipo 'file' y con algun archivo seleccionado y sin nobre fijo (fixedName='true'), se le cambia el nombre agregándole un consecutivo.
+			// Esto permite enviar al servidor nombres distintos y no y arreglo de control File.
+			if (objControl.type=="file" && objControl.value!="" && objControl.fixedName!="true")
+			{
+				//Sufijo que se agregará al nombre original a partir del tercer elemento
+				//Elemento 1 es el file oculto el cual no viaja
+				//Elemento 2 y posterior son los agregados por el usuario
+				if (counter>1)
+				{
+					objControl.name = objControl.name + "_" + counterSufix;
+					objForm.value = objControl.value;
+					counterSufix++;
+				}
+				counter++;
+
+			}
+		}
+		//Ahora si... submit!.
+		objForm.submit();
+	}
+
+function regresar() {
+	window.location.reload();unidad_inversion_documentos-browse
+   	window.close();
+}
+function reloadOpener() {
+	window.opener.reload();
+} 
+-->
+</script>
+</html>
+

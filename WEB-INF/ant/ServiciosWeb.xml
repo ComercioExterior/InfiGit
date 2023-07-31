@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+ <project name="WebServiceANT" basedir="." default="valor">  
+ 	
+ 	<!--
+ 	  Script de ANT que sirve para sustituir las direcciones URL de los servicios WEB que proporciona INFI.
+ 	  Busca todos los archivos services.xml que esten bajo el directorio de WEB-INF/services y 
+ 	  efectúa la sustitución de los valores que este script solicita. Util cuando se desea llevar la 
+ 	  aplicación de un servidor a otro. 
+ 	-->
+	<target name="informacion">
+	   <echo message="Archivos XML de servicios que se usarán para la sustitución de cadenas..."></echo>
+	   <echo message="infiConsultaOperacionCheque"></echo>
+	   <echo message="infiConsultaOrdenes"></echo>
+	   <echo message="infiConsultaOrdenTitulos"></echo>
+	   <echo message="infiConsultaTitulosCustodia"></echo>		
+	   <echo message="infiConsultaUnidadDeInversion"></echo>
+	   <echo message="infiRegistrarTomaDeOrden"></echo>
+	   <echo message="infiSimularTomaOrden"></echo>		
+	   <echo message="infiActualizarOperacionesFinancieras"></echo>	   	
+	</target>
+		
+	<target name="solicitud" depends="informacion">
+	   <echo message="Obteniendo valores ingresados por el usuario"></echo>
+	   <input
+		    message="Ingrese la cadena de texto a buscar en los archivos de configuración de los servicios web"
+		    addproperty="vorigen"
+            defaultvalue="localhost:8080"		    
+		/>
+	   <input
+		    message="Ingrese la cadena de texto por la cuál se desea sustituir la cadena localhost:8080"
+		    addproperty="vdestino"
+            defaultvalue="localhost:8080"		    
+		/>		
+	</target>
+	
+	<target name="valor" depends="solicitud">
+	   <echo message="Sustituyendo la coincidencia ${vorigen} por ${vdestino} en los archivos XML de los servicios web"></echo>
+	   	<replace dir="../services" includes="**/services.xml">
+	   	  <replacefilter 
+	   	    token="${vorigen}" 
+	   	    value="${vdestino}"
+	   	  />
+	   	</replace>		
+	</target>	
+	
+ </project> 

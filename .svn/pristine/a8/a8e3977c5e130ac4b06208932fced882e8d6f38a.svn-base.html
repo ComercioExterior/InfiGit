@@ -1,0 +1,117 @@
+<html>
+
+	<head>
+        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+        <script type="text/javascript">
+        
+          
+        </script>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Grupo Par&aacute;metros</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Grupo Par&aacute;metros ( @t_registros@ )
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+    
+   		 <!--encabezados de columna-->
+    		<tr class="tableHeader">
+    		<th colspan="1" width="3%"></th>
+    		<th width="9%">Nombre del Grupo</th>
+            <th width="12%">Nombre del Par&aacute;metro</th>
+            <th width="20%">Descripci&oacute;n del Par&aacute;metro</th>
+            <th width="10%">Valor del Par&aacute;metro</th>
+            
+                
+                
+                            
+    </tr>
+
+    <!--data-->
+    <rows>
+    <tr class="tableCell"> 
+    
+               <td align="center">
+                <a href="config_grupo_parametros-edit?PARTIP_NOMBRE_PARAMETRO=@PARTIP_NOMBRE_PARAMETRO@&pargrp_id=@pargrp_id@"><IMG SRC="../images/infi_gn_edit.gif" WIDTH="15" HEIGHT="15" ALIGN="top" title="Editar Grupo de Parametros" BORDER="0" style="cursor:hand"/></a>
+                </td>
+                   
+		 		<!-- td align="center">
+					<a href="javascript:abrirPopupDetalles('detalle_transac_financ-find?trnfin_id=@trnfin_id@','200', '600')"><IMG SRC="../images/infi_gn_doc.gif" WIDTH="15" HEIGHT="16" ALIGN="top" title="Detalles de la Transacci&oacute;n Financiera" BORDER="0" style="cursor:hand"/></a>
+				</td-->
+
+				<td>
+                @pargrp_nombre@
+                </td>
+                
+				<td >
+                @partip_nombre_parametro@
+                </td>
+
+                <td>                
+                @partip_descripcion@
+                </td>
+               
+                <td>
+                @parval_valor@
+                </td>      
+                
+                                
+            
+     </tr>
+     </rows>
+    
+    </table>
+
+@page_index@
+    <BR>
+<form>
+
+	
+    &nbsp;<button onclick="javascript:history.back();">Regresar</button>
+     &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+</form>
+
+</center>
+
+</body>
+
+</html>
+

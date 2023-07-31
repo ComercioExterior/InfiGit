@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+    <!--
+    
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, decimal, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+    
+    -->
+           <field 
+        name="trnfin_id" 
+        type="integer" 
+        description="Id de la Transaccion"
+        nullable="0"
+        size="50" />   
+        
+       <field 
+        name="codigo_operacion" 
+        type="varchar" 
+        description="Codigo de la operaci&oacute;n"
+        nullable="1"
+        size="50" /> 
+          
+        <field 
+        name="cod_operacion_cte_deb" 
+        type="varchar" 
+        description="Codigo de la operaci&oacute;n de D&eacute;bito para el Cliente"
+        nullable="1"
+        size="50" /> 
+        
+       <field 
+        name="cod_operacion_cte_cre" 
+        type="varchar" 
+        description="Codigo de la operaci&oacute;n de Cr&eacute;dito para el Cliente"
+        nullable="1"
+        size="50" /> 
+        
+        <field 
+        name="cod_operacion_cte_blo" 
+        type="varchar" 
+        description="Codigo de la operaci&oacute;n de Bloqueo para el Cliente"
+        nullable="1"
+        size="50" /> 
+        
+        <field 
+        name="cod_operacion_veh_deb" 
+        type="varchar" 
+        description="Codigo de la operaci&oacute;n de D&eacute;bito para el Veh&iacute;culo"
+        nullable="1"
+        size="50" /> 
+        
+       <field 
+        name="cod_operacion_veh_cre" 
+        type="varchar" 
+        description="Codigo de la operaci&oacute;n de Cr&eacute;dito para el Veh&iacute;culo"
+        nullable="1"
+        size="50" /> 
+
+       <field 
+        name="instrumento_id" 
+        type="integer" 
+        description="Instrumento financiero"
+        nullable="1"
+        size="0" />   
+
+    
+</record>
+

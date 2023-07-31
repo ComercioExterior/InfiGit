@@ -1,0 +1,215 @@
+<?xml version="1.0"?>
+ <project name="WebServiceANT" basedir="." default="crearwar">  
+ 	
+ 	
+	<property name="origenInfiUnidad" value="../../../../INFI_V1.0.10_PRODUCCION_INVENTARIO_MEJORA" />
+    <property name="dir.des"  value="${basedir}/war"/>
+    <property name="war.name" value="infi.war"/>
+
+ 	<target name="crearwar" depends="solicitud">       	
+
+  	   <antcall target="sustituyendoXML"/>
+  	   <antcall target="copiandoWebXML"/>
+  	   <antcall target="copiandoWsProperties"/>
+   	   <antcall target="copiandoAxis2"/>
+   	   <antcall target="copiandoLoginConfig"/>
+   	   <antcall target="copiandoApplication"/>
+  	   <antcall target="sustituyendoLog4jProperties"/>
+  	   <antcall target="copiandoLog4jProperties"/>
+   	   <antcall target="sustituyendoAppProperties"/>
+   	   <antcall target="copiandoAppProperties"/>
+  	   <antcall target="sustituyendoSecurity"/>
+   	   <antcall target="copiandoSecurity"/>	
+ 	   <antcall target="deleteContext"/>
+  	   <antcall target="sustituyendoLog4jIni"/>
+   	   <antcall target="copiandoLog4jIni"/>	
+  	   <ant antfile="${origenInfiUnidad}/build_JiBX.xml"/>
+ 	   <antcall target="build"/>
+ 	</target> 
+
+ 	<!--
+ 	 	  Script de ANT que sirve para sustituir las cadenas de dataSource en los xml que contienen esa información
+ 	 	  por la que indique el usuario. 
+ 	 	-->
+ 		<target name="informacion">
+ 		   <echo message="Para servidor resin los dataSource deben contener el prefijo 'java:comp/env/' "></echo>
+ 		   <echo message="Para servidor WebSphere no es necesario el prefijo 'java:comp/env/' "></echo>	   
+ 	       <echo message="Archivos en los que se cambiará el valor..."></echo>	   
+ 	       <echo message="  WEB-INF/ws_properties.xml"></echo>
+ 	       <echo message="  WEB-INF/cache_config.xml"></echo>              
+ 	       <echo message="  WEB-INF/SecurityDBLogin.xml"></echo>
+ 	       <echo message="  WEB-INF/SecurityDBUserInfo.xml"></echo>	
+ 	       <echo message="  WEB-INF/login-config.xml"></echo>
+ 		   <echo message="  WEB-INF/app_properties.xml"></echo>		
+ 		</target> 	
+ 						
+ 		<target name="solicitud" depends="informacion">
+ 		    <!--Reemplazando archivo ws_properties.xml-->		 	
+ 			<echo message="Sustituyendo valores en WEB-INF/ws_properties.xml" />		 	 	
+ 		   	<replace file="${origenInfiUnidad}/WEB-INF/ws_properties.xml">
+ 		   	  <replacefilter 
+ 		   	  	token="&lt;value&gt;java:comp/env/jdbc/infi&lt;/value&gt;" 
+ 		   	    value="&lt;value&gt;jdbc/infi&lt;/value&gt;"
+ 		   	  />
+ 		  	</replace>
+ 			<!--Reemplazando archivo sidebar1.htm -->
+ 		 	<echo message="Sustituyendo valores en WEB-INF/actions/menu_show/sidebar1/sidebar1.htm" />		 	
+ 		   	<replace file="${origenInfiUnidad}/WEB-INF/actions/menu_show/sidebar1/sidebar1.htm">
+ 			  	<replacefilter token="LOCAL" value="PRODUCCION"/>
+ 		   		<replacefilter token="DESARROLLO" value="PRODUCCION"/>
+ 		   		<replacefilter token="CALIDAD"  value="PRODUCCION"/>
+ 			</replace>
+ 			
+ 			<!--Reemplazando archivo sidebar1.htm -->
+ 		 	<echo message="Sustituyendo valores en login.htm" />		 	
+ 		   	<replace file="${origenInfiUnidad}/login.htm">
+ 			  	<replacefilter token="LOCAL" value="PRODUCCION"/>
+ 		   		<replacefilter token="DESARROLLO" value="PRODUCCION"/>
+ 		   		<replacefilter token="CALIDAD"  value="PRODUCCION"/>
+ 			</replace>
+ 			
+ 		    <!--Reemplazando archivo cache_config.xml-->		 	
+ 			<echo message="Sustituyendo valores en WEB-INF/cache_config.xml" />		 	 	
+ 		   	<replace file="${origenInfiUnidad}/WEB-INF/cache_config.xml">
+ 		   	  <replacefilter 
+ 		   	  	token="&lt;value&gt;java:comp/env/jdbc/infi&lt;/value&gt;" 
+ 		   	    value="&lt;value&gt;jdbc/infi&lt;/value&gt;"
+ 		   	  />
+ 		  	</replace>			
+ 			
+ 		    <!--Reemplazando archivo SecurityDBLogin.xml-->		 	
+ 			<echo message="Sustituyendo valores en WEB-INF/SecurityDBLogin.xml" />		 	 	
+ 		   	<replace file="${origenInfiUnidad}/WEB-INF/SecurityDBLogin.xml">
+ 		   	  <replacefilter 
+ 		   	  	token="&lt;datasource-security&gt;java:comp/env/jdbc/security&lt;/datasource-security&gt;" 
+ 		   	    value="&lt;datasource-security&gt;jdbc/security&lt;/datasource-security&gt;"
+ 		   	  />
+ 		  	</replace>
+ 			
+ 		    <!--Reemplazando archivo SecurityDBUserInfo.xml-->		 	
+ 			<echo message="Sustituyendo valores en WEB-INF/SecurityDBUserInfo.xml" />		 	 	
+ 		   	<replace file="${origenInfiUnidad}/WEB-INF/SecurityDBUserInfo.xml">
+ 		   	  <replacefilter 
+ 		   	  	token="&lt;datasource-security&gt;java:comp/env/jdbc/security&lt;/datasource-security&gt;" 
+ 		   	    value="&lt;datasource-security&gt;jdbc/security&lt;/datasource-security&gt;"
+ 		   	  />
+ 		   	</replace> 		
+ 			
+		    <!--Reemplazando archivo login-config.xml-->		 	
+			<echo message="Sustituyendo valores en WEB-INF/login_config.xml" />		 	 	
+		   	<replace file="${origenInfiUnidad}/WEB-INF/login_config.xml">
+		   	  <replacefilter 
+		   	  	token="&lt;datasource-security&gt;java:comp/env/jdbc/security&lt;/datasource-security&gt;" 
+		   	    value="&lt;datasource-security&gt;jdbc/security&lt;/datasource-security&gt;"
+		   	  />	   		
+		   	  <replacefilter 
+			   	  	token="&lt;datasource&gt;java:comp/env/jdbc/infi&lt;/datasource&gt;" 
+			   	    value="&lt;datasource&gt;jdbc/infi&lt;/datasource&gt;"
+			   	  />	   				   		
+ 		  	</replace>			
+ 				
+ 		</target>
+ 	
+ 	<!--Sustituyendo archivo web.xml-->
+	<target name="sustituyendoXML">
+	   <echo message="Eliminando web.xml del WEB-INF"></echo>
+	   <delete file="${origenInfiUnidad}/WEB-INF/web.xml"/>
+	</target>
+ 	
+	<target name="copiandoWebXML">
+	   <echo message="Copiando el web.xml al WEB-INF"></echo>
+	 	<copy file="${origenInfiUnidad}/WEB-INF/ant/ws/web.xml" todir="${origenInfiUnidad}/WEB-INF/" > </copy> 	
+	</target>
+ 	
+ 	<!--Sustituyendo archivo log4j.properties -->
+	<target name="sustituyendoLog4jProperties">
+	   <echo message="Eliminando log4j.properties del WEB-INF"></echo>
+	   <delete file="${origenInfiUnidad}/WEB-INF/log4j.properties"/>
+	</target> 	
+	<target name="copiandoLog4jProperties">
+	   <echo message="Copiando el log4j.properties al WEB-INF"></echo>
+	 	<copy file="${origenInfiUnidad}/WEB-INF/ant/ws/produccion/log4j.properties" todir="${origenInfiUnidad}/WEB-INF/" > </copy> 	
+	</target>
+
+ 	<!--Sustituyendo archivo log4j.ini -->
+	<target name="sustituyendoLog4jIni">
+	   <echo message="Eliminando log4j.ini del WEB-INF"></echo>
+	   <delete file="${origenInfiUnidad}/WEB-INF/log4j.ini"/>
+	</target> 	
+	<target name="copiandoLog4jIni">
+	   <echo message="Copiando el log4j.ini al WEB-INF"></echo>
+	 	<copy file="${origenInfiUnidad}/WEB-INF/ant/resin/log4j.ini" todir="${origenInfiUnidad}/WEB-INF/" > </copy> 	
+	</target>
+ 	
+	<!--Sustituyendo archivo app_properties.xml -->
+	<target name="sustituyendoAppProperties">
+	   <echo message="Eliminando app_properties.xml del WEB-INF"></echo>
+	   <delete file="${origenInfiUnidad}/WEB-INF/app_properties.xml"/>
+	</target> 	
+	<target name="copiandoAppProperties">
+	   <echo message="Copiando el app_properties.xml al WEB-INF"></echo>
+	 	<copy file="${origenInfiUnidad}/WEB-INF/ant/ws/produccion/app_properties.xml" todir="${origenInfiUnidad}/WEB-INF/" > </copy> 	
+	</target> 
+ 	
+	<!--Sustituyendo archivo security.xml -->
+	<target name="sustituyendoSecurity">
+	   <echo message="Eliminando security.xml del WEB-INF"></echo>
+	   <delete file="${origenInfiUnidad}/WEB-INF/security.xml"/>
+	</target> 	
+	<target name="copiandoSecurity">
+	   <echo message="Copiando el security.xml al WEB-INF"></echo>
+	 	<copy file="${origenInfiUnidad}/WEB-INF/ant/ws/produccion/security.xml" todir="${origenInfiUnidad}/WEB-INF/" > </copy> 	
+	</target>
+	<target name="copiandoWsProperties">
+	   <echo message="Copiando el ws.properties al WEB-INF"></echo>
+	 	<copy file="${origenInfiUnidad}/WEB-INF/ant/ws/produccion/ws_https.properties" todir="${origenInfiUnidad}/WEB-INF/" overwrite="true"> </copy> 	
+		<move file="${origenInfiUnidad}/WEB-INF/ws_https.properties" tofile="${origenInfiUnidad}/WEB-INF/ws.properties"/>
+	</target>
+ 	
+ 	<target name="deleteContext">
+ 	 	 		   <echo message="Delete el context.xml del META-INF"></echo>
+ 	 	 		 	<delete file="${origenInfiUnidad}/META-INF/context.xml" > </delete> 	
+ 	</target>
+ 	
+	<target name="copiandoAxis2">
+	   <echo message="Copiando el axis2.xml al WEB-INF"></echo>
+	 	<copy file="${origenInfiUnidad}/WEB-INF/ant/ws/produccion/axis2.xml" todir="${origenInfiUnidad}/WEB-INF/" overwrite="true"> </copy> 	
+	</target> 	
+
+	<target name="copiandoLoginConfig">
+	   <echo message="Copiando el login_config.xml al WEB-INF"></echo>
+	 	<copy file="${origenInfiUnidad}/WEB-INF/ant/ws/produccion/login_config_https.xml" todir="${origenInfiUnidad}/WEB-INF/" overwrite="true"> </copy> 	
+		<move file="${origenInfiUnidad}/WEB-INF/login_config_https.xml" tofile="${origenInfiUnidad}/WEB-INF/login_config.xml"/>
+	</target>
+ 	
+	<target name="copiandoApplication">
+	   <echo message="Copiando el archivo app_properties.xml al WEB-INF"></echo>
+	 	<copy file="${origenInfiUnidad}/WEB-INF/ant/ws/produccion/app_properties.xml" todir="${origenInfiUnidad}/WEB-INF/" overwrite="true"> </copy> 	
+	</target> 	
+
+    <target name="build">
+	<war destfile="${dir.des}/${war.name}" webxml="${origenInfiUnidad}/WEB-INF/web.xml">
+	     <fileset dir="${origenInfiUnidad}">
+		  <exclude name="**/*.svn" /> 	     	
+		  <exclude name="**/*.java" /> 
+		  <exclude name="**/*.metadata*" />
+		  <exclude name="**/*.csv" />	
+		  <exclude name="**/*Thumbs.db*" />
+		  <exclude name="**/.*" /> 
+		  <exclude name=".*/**" /> 	     	
+		  <exclude name="WEB-INF/logs/**" /> 
+		  <exclude name="WEB-INF/tmp/**" /> 
+		  <exclude name="WEB-INF/work/**" /> 
+		  <exclude name="WEB-INF/ant/**" />
+		  <exclude name="insert_data_menu_infi.jsp" />
+	      <exclude name="procesoAltair.jsp" />
+	      <exclude name="pruebaScript.jsp" />
+	      <exclude name="pruebaServicios.jsp" />
+	      <exclude name="tasaCambio.jsp" />
+	      <exclude name="WEB-INF/ChangesLog.*" /> 
+	     </fileset>
+	</war>
+    </target>
+
+</project>
+ 

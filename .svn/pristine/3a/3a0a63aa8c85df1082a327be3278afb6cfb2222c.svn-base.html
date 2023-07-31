@@ -1,0 +1,219 @@
+<html>
+	<head> 
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        <script type="text/javascript">
+        var idOperaciones = "";
+        var montoOperaciones=0;
+        var idOrdenes = "";
+        	    
+        function detalle_proceso(nombreFormulario){
+        	window.open('gestion_procesos_browse?proceso='+nombreFormulario);
+        }
+           
+        function validarSeleccion(check){	
+        	if(document.getElementById('todos').checked && !check.checked){
+        		document.getElementById('todos').checked=false;
+        	}  
+        	document.getElementById('btnCalcular').disabled=false 
+        	document.getElementById('btnProcesar').disabled=true   	
+        }
+         
+        function seleccionarTodos(){        
+        	for (i=0;ele=document.forms[0].elements[i];i++){
+			  if (ele.type=='checkbox'){
+			    ele.checked=document.forms[0].todos.checked;
+			  }
+			} 
+			idOperaciones='';	
+			idOrdenes='';
+			montoOperaciones=0;
+        }
+        function checksSeleccionados(){
+        	montoOperaciones=0;
+        	idOperaciones='';
+        	idOrdenes='';
+        	//Armar la lista de ordenes y operaciones, y calcular el monto total de la orden de pago
+	        for (i=0;ele=document.forms[0].elements[i];i++){
+			  if (ele.type=='checkbox'){
+			    if (ele.checked && ele.id!='todos'){
+			    	idOperaciones+=ele.id+",";	
+			    	idOrdenes+=document.getElementById('ord_'+ele.id).value+",";				    	
+																			
+						var monto_operacion=document.getElementById('monto_'+ele.id).value.split(",").join("");
+						//monto_operacion=monto_operacion.split(".").join(",");
+						montoOperaciones=montoOperaciones+parseFloat(monto_operacion);
+					
+			    	//montoOperaciones=montoOperaciones+parseFloat((document.getElementById('monto_'+ele.id).value).replace('.','').replace(',','.'));			    	 
+			    }
+			  }
+			}
+			montoOperaciones=montoOperaciones.toFixed(2);
+			if(idOperaciones!=""){	
+				//Eliminar la ultima coma de la lista de ordenes y operaciones
+				idOperaciones=idOperaciones.substring(0,idOperaciones.length-1);
+				idOrdenes=idOrdenes.substring(0,idOrdenes.length-1);				
+				return true;  
+			} else{			
+				alert('Debe seleccionar alguna operación');
+				return false; 
+			}
+        }       
+        function procesar(seleccion){             	      	
+        	if(document.getElementById('todos').checked){
+        		mensaje='¿Está seguro que desea procesar "Todas" las operaciones?'
+        		seleccion='todos'
+        	}else
+        		mensaje='¿Está seguro que desea procesar las operaciones de Pago de Cupones seleccionadas?'
+        	if(checksSeleccionados()||document.getElementById('todos').checked){
+		        if(confirm(mensaje))
+		        {			        	
+		        	document.getElementById('btnProcesar').disabled='disabled'	
+		        	document.dataentry.idOperac.value=idOperaciones;		        	
+		        	document.dataentry.idOrds.value=idOrdenes;
+		        	document.dataentry.montoPago.value=montoOperaciones;
+		        	document.dataentry.submit();
+		        }
+	        }
+	       
+        } 
+        function mostrarMontoTotal(){
+        	checksSeleccionados();
+        	document.getElementById('subTotal').innerHTML='<br/><br/><b> El monto total de la Operaci&oacute;n es: '+montoOperaciones+' '+document.getElementById('moneda').value+'</b>'
+        	document.getElementById('subTotal').style.display='block';
+        	document.getElementById('btnProcesar').disabled=false
+        	document.getElementById('btnCalcular').disabled=true
+        	
+        }
+        </script>
+    </head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Pago de Cupones</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+<center>
+
+<br>
+<form name="dataentry" action="gestion_pago-seleccion" method="post">
+<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                  Procesos del cliente &nbsp;@nombre@
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;display: block" id="procesos">
+
+    <tr>         
+    		  <th nowrap width="10%">Detalle</th>
+              <th nowrap>Proceso</th>            
+              <th nowrap>Fecha Registro</th>
+              <th nowrap>Usuario</th>                                  
+    </tr>
+
+    <procesos>
+    <tr class="tableCell">
+		   <td align="center">
+                <a href="javascript:detalle_proceso(@proceso_id@);"><IMG SRC="../images/infi_gn_document.gif" WIDTH="15" ALIGN="top" HEIGHT="13" title="Detalles del Proceso" BORDER="0" style="cursor:hand"></a>
+                </td>
+           <td nowrap align="center">@proceso_id@</td>
+           <td nowrap align="center">@fecha_registro@</td> 
+           <td nowrap align="center">@userid@</td>                
+    </tr>
+     </procesos>
+    </table>-->
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    <!--tabla de data-->
+    
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;display: block" id="encabezado_operaciones">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                  Operaciones Pendientes
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;display: block" id="operaciones">
+    
+    <!--encabezados de columna-->
+    <tr>    
+    		<th nowrap width="5%">Registro</th>  
+    		<th nowrap>Orden</th>            
+       		<th nowrap>Operaci&oacute;n</th>           
+            <th nowrap>Moneda</th>
+            <th nowrap>Descripci&oacute;n</th>
+            <th nowrap>Monto</th>   
+            <th nowrap>Estatus</th>
+            <th nowrap>Fecha Inicio Cupón</th>  
+            <th nowrap>Fecha Fin Cupón</th> 
+            <th nowrap>Tipo Producto</th> 
+            <th>Seleccione <br/><input type="checkbox" id="todos" name="todos" onclick="seleccionarTodos()" /></th>                               
+    </tr>
+    <!--data-->
+    <rows>
+    <tr class="tableCell">  	                
+	    <td nowrap align="center">@_row@</td>	
+	    <td nowrap align="center">@ordene_id@</td>
+        <td nowrap align="center">@ordene_operacion_id@</td>     
+	    <td nowrap align="center">@moneda_id@</td>
+	    <td nowrap align="left">@transa_id@ - @titulo_id@</td>
+	    <td nowrap align="right">@monto_operacion format-mask='###,###,###.00'@</td> 
+	    <td nowrap align="center">@status_operacion@</td>
+	    <td nowrap align="center">@fecha_inicio_cp@</td> 
+	    <td nowrap align="center">@fecha_fin_cp@</td>
+	    <td nowrap align="center">@tipo_producto_id@</td> 
+	    <td nowrap align="center">	    
+	    <input type="checkbox" name="seleccion" id="@ordene_operacion_id@" onclick="validarSeleccion(this)"/>
+	    <input type="hidden" id="monto_@ordene_operacion_id@" value="@monto_operacion@"/>
+	    <input type="hidden" id="ord_@ordene_operacion_id@" value="@ordene_id@"/>
+	    <input type="hidden" name="tipo_producto_id" value="@tipo_producto_id@"/>
+	    <input type="hidden" name="moneda" value="@moneda_id@"/>
+	    </td>
+    </tr>
+    <input type="hidden" id="moneda" value="@moneda_id@"/>
+     </rows>
+    </table>
+    <BR>
+    <div id="subTotal" style="display:none"> 
+    </div>   
+    <BR>
+    
+	<button type="button" onclick="mostrarMontoTotal()" id="btnCalcular">Calcular</button>&nbsp;
+	<button type="button" onclick="procesar('seleccion')" id="btnProcesar" disabled=true>Procesar</button>&nbsp;
+    <button type="button" onclick="window.location='gestion_pago_cheque-filter'">Regresar</button>&nbsp;
+    <button type="button" onclick="window.location='show-view'">&nbsp;Salir&nbsp;</button>	
+	<input TYPE="hidden" name="idOperac" value=""/>
+	<input TYPE="hidden" name="idOrds" value=""/>  
+	<input type="hidden" name="montoPago" value="0"/>
+	
+</form>
+</center>
+</body>
+</html>

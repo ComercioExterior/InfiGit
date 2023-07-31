@@ -1,0 +1,151 @@
+<html>
+<head>
+	<script language="javascript" src="../js/default.js"></script>
+	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+	<!--cambiar: nombre de la aplicacion-->
+	<title>Sistema INFI</title>
+	<script type="text/javascript">	         
+	/**
+	* Function que valida que se haya seleccionado una operacion para poder seleccionar un tipo de instruccion de pago
+	*/       
+	function habilitarInstruccionPago(value){		  
+	  	
+ 		if(value=='internacional'){	
+ 			document.getElementById('internacional_swift').style.display='block'
+ 			document.getElementById('cuenta_nac_moneda_ext').style.display='none'
+ 			
+ 		}else 
+ 		if(value=='nacional_USD'){
+ 			document.getElementById('cuenta_nac_moneda_ext').style.display='block'
+ 			document.getElementById('internacional_swift').style.display='none' 
+ 		}
+		
+	}//fin function
+	
+	function buscarInstruccionSWIFT(idInst){	
+        llamadaAjax('div_datos_swift',"venta_titulos-ajax_instr_venta_tit?id_instruccion="+idInst);	
+    }     
+    
+        function procesar(){             	      	
+			mensaje='¿Está seguro que desea procesar el pago de cupón seleccionado?';
+			if(confirm(mensaje)){        		
+		    	document.dataentry.submit();
+        	}
+	    }
+	       
+         
+	</script>
+</head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+	
+	<!--page name bar-->
+	<TABLE border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+			<TD class="headerBox"><FONT class="headerText">Pago de Cupones</FONT></TD>
+			<!-- help online -->
+			<TD class="headerBox" valign="middle" align="right"><img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" /></TD>
+			<!-- fin help online -->
+	
+		</TR>
+	</TABLE>
+	<center><br>
+	<form name="dataentry" action="gestion_pago_cheque-insert" 	method="post">
+	<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">	
+		<!--titulo-->
+		<tr CLASS="formCaption">
+			<th COLSPAN="3" ALIGN="center"><FONT class="formCaptionText">Instrucciones Financieras &nbsp;&nbsp;</FONT></th>
+		</tr>
+		<tr>         
+		  	<td width="25%"><B>Cliente:</B> @nombre@ </td>
+	        <td width="25%"><B>Monto de la Operaci&oacute;n:</B> <monto_operacion>@monto format-mask='###,###,###,###.00'@</monto_operacion></td>           
+	        <td><b>Fecha Valor:</b> <fecha_valor>@fecha_valor@ </fecha_valor></br>Verifique la fecha valor... En caso de querer modificarla dir&iacute;jase al m&oacute;dulo <b>Configuraci&oacute;n / Fecha Valor</b> </td> 
+    </tr>	
+	</table>		
+	<table border="2" cellspacing="2" cellpadding="3" width="100%" class="datatable" style="table-layout: auto;">
+		<tr>
+			<td width="3%"><input type="radio" name="seleccion"	value="internacional" onClick="habilitarInstruccionPago(this.value)"></td>
+			<td nowrap width="47%">Transferencias Internacionales (SWIFT)</td>
+			<td width="3%"><input type="radio" name="seleccion"	value="nacional_USD" onClick="habilitarInstruccionPago(this.value)"></td>
+			<td nowrap width="47%">Transferencias Nacionales en Moneda Extranjera (BDV)</td>
+		</tr>
+	</table>
+	<div id="cuenta_nac_moneda_ext" style="display:none">
+	<table border="2" cellspacing="2" cellpadding="3" width="100%" class="datatable" style="table-layout: auto;">
+		<tr>
+            <th ALIGN="center" colspan="2">
+                 Datos de la Cuenta Nacional en Moneda Extranjera (D&oacute;lares BDV)
+            </th>
+        </tr>         	 
+        <tr>
+            <td width="50%">
+                 Instrucciones para el Pago de Cupones:* 
+            </td>        
+			<td>
+				<SELECT NAME="cuenta_nac_dolares" SIZE="1">				
+					<OPTION VALUE="" SELECTED>Seleccione</OPTION>
+					<inst_cta_dolares>		
+					<OPTION VALUE="@cuenta_banco@">@tipo_cuenta@ - @cuenta_banco@</OPTION>	
+					</inst_cta_dolares>
+	 			</SELECT>
+ 			</td>
+ 		</tr> 		
+	</table>	
+	</div>
+	
+	<div id="internacional_swift" style="display:none">
+	<table border="2" cellspacing="2" cellpadding="3" width="100%" class="datatable" style="table-layout: auto;">
+		<tr>
+            <th ALIGN="center" colspan="2">
+                 Datos de la Cuenta SWIFT
+            </th>
+        </tr> 
+        <tr>
+            <td width="50%">
+                 Producto asociado al cliente:* 
+            </td>        
+			<td>
+				<SELECT NAME="prod_cliente" SIZE="1">				
+					<OPTION VALUE="" SELECTED>Seleccione</OPTION>
+					<productos_cliente>		
+					<OPTION VALUE="@cuenta_banco@">@tipo_cuenta@ - @cuenta_banco@</OPTION>	
+					</productos_cliente>
+	 			</SELECT>
+ 			</td>
+ 		</tr> 	 
+        <tr>
+            <td width="50%">
+                 Instrucciones para el Pago de Cupones:* 
+            </td>        
+			<td>
+				<SELECT NAME="id_cuenta_swift" SIZE="1" onchange="buscarInstruccionSWIFT(this.value)">				
+					<OPTION VALUE="" SELECTED>Seleccione</OPTION>
+					<inst_cta_swift>	
+					<OPTION VALUE="@ctes_cuentas_id@">BCO:@ctecta_bcocta_bco@ - CTA:@ctecta_numero@</OPTION>	
+					</inst_cta_swift>
+			 	</SELECT>
+			 	<br/>
+			 	<b>Si desea Agregar o Modificar una Instrucción ingrese al modulo <a href="cuentas_cliente-filter"><FONT COLOR="red">Cuentas Cliente</FONT> </a> </b>
+ 			</td>
+ 		</tr> 
+ 		<tr>
+            <td ALIGN="center" colspan="2">                 
+                 <div id="div_datos_swift">
+	
+				</div>
+            </td>
+        </tr> 				
+	</table>	
+	</div>	
+	<input type="hidden" name="fecha_valor" value="@fecha_valor@">
+  	
+	<BR>
+	<button  id="procesarButton" onclick="procesar()">Procesar</button> <!-- type="submit" -->
+	&nbsp;
+	<button type="button"
+		onclick="window.location='gestion_pago_cheque-browse'">Regresar</button>
+	&nbsp;
+	<button type="button" onclick="javascript:history.back();">&nbsp;Salir&nbsp;</button>
+	</form>
+	</center>
+</body>
+</html>

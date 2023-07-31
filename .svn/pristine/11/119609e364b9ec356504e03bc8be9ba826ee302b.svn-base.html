@@ -1,0 +1,74 @@
+<HTML>
+	<HEAD>
+		<LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css" />
+		<SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+		<script language="javascript" src="../js/default.js"></script>
+		<script language="javascript" src="../js/menudeo/conciliacion.js"></script>
+		<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+		<TITLE>Sistema INFI</TITLE>
+	
+	</HEAD>
+
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+	<TABLE border="0" cellspacing="0" WIDTH="100%">
+		<TD class="headerBox"><FONT class="headerText"> Env&iacute;o BCV / Menudeo Conciliacion </FONT></TD>
+		<TD class="headerBox" valign="middle" align="right"><img
+			border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17"
+			onclick="helpOpen(window.document.location.href);"
+			style="cursor: hand" title="Mostrar ayuda en l&iacute;nea"></TD>
+
+	</TABLE>
+	
+	<CENTER>
+		<form name="dataentry" action="intercambio_menudeo_conciliacion-browse" method="post" id='buscar'>
+
+			<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+				<tr>
+					<th COLSPAN="4" ALIGN="center">Seleccione Criterios de B&uacute;squeda</th>
+				</tr>
+<!-- 				<tr CLASS="formElement"> -->
+<!-- 					<td CLASS="formLabel2" WIDTH="35%">Producto:</td> -->
+<!-- 					<td CLASS="formLabel"> -->
+<!-- 					<SELECT NAME="statusE" CLASS="inputControl" style="width: 250px;"> -->
+<!-- 							<OPTION VALUE="T">Todas</OPTION> -->
+<!-- 							<OPTION VALUE="O">Menudeo</OPTION> -->
+<!-- 					</SELECT> -->
+<!-- 					</td> -->
+<!-- 				</tr> -->
+				
+				<tr CLASS="formElement">
+           	 	<td  CLASS="formLabel2" WIDTH="35%">
+            		ENVIO BCV:
+            	</td>
+            	<td  CLASS="formLabel">
+	            	<SELECT NAME="statusE" CLASS="inputControl" style="width:250px;">
+						<OPTION VALUE="TODAS">TODAS</OPTION>
+						<OPTION VALUE="4">RECHAZADA</OPTION>
+						<OPTION VALUE="3">ANULADA</OPTION>
+						<OPTION VALUE="2">MANUAL</OPTION>
+						<OPTION VALUE="1">ENVIADAS</OPTION>
+						<OPTION VALUE="0">NO ENVIADAS</OPTION>
+					</SELECT>
+				</td>
+        		</tr>
+
+				<tr class="formElement">
+					<td class="formLabel" width="25%">Fecha:</td>
+					<td width="75%"><input type="text" name="fecha" value="@fechahoy@" size="10" maxlength="10" readonly /> 
+					<a onclick="popUpCalendar(this, document.forms[0].fecha, 'dd-mm-yyyy')">
+					<IMG SRC="../images/infi_gn_calendar.gif" class="boton" TITLE="Seleccionar Fecha" /> </a>
+					</td>
+				</tr>
+				
+			</table>
+			<SPAN> </SPAN> <INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart" />
+			<br>
+			<button TYPE="submit">Procesar</button>
+			<SPAN> </SPAN>
+			<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+		</form>
+	</CENTER>
+</BODY>
+</HTML>

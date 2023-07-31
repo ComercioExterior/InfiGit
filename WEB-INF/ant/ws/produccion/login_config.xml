@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<config>
+	<endpoint>http://BusdeServicios:9081/ws-f1/services/ValidacionUsuarioEnLinea</endpoint>
+	<!-- endpoint>http://180.183.194.41:34567/axis2-ws8/services/ValidacionUsuarioEnLinea</endpoint-->
+	<schema>http://www.bancovenezuela.com/ws/ValidacionUsuarioEnLinea/xsd</schema>
+	<operation>getUsuarioEnLinea</operation>
+	<datasource-security>jdbc/security</datasource-security>
+	<datasource>jdbc/infi</datasource>
+	<session>0</session>
+</config>

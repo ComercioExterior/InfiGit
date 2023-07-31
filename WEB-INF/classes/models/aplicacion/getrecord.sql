@@ -1,0 +1,1 @@
+select * from MSC_APPLICATIONS where id_application = @id@

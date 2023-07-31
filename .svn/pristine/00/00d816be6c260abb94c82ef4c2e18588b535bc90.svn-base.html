@@ -1,0 +1,91 @@
+<html>
+
+	<head>
+        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+        <script type="text/javascript">
+        
+          
+        </script>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Eventos / Consulta Generaci&oacute;n de Comisiones</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+<form method="post" action="" name="dataentry">
+<br>
+
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                Lista de Registro (@cantidad@)
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+     <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+    <tr CLASS="datatable">
+    	<td align="center">Nombre Cliente</td>
+    	<td align="center">T&iacute;tulo</td>
+    	<td align="center" width="6%">Posici&oacute;n</td>
+    	<td align="center" width="6%">Tasa</td>
+    	<td align="center" width="6%">Comisi&oacute;n</td>
+    	<td align="center">Estatus</td>
+    </tr>
+    <!--encabezados de columna-->
+    <rows>
+    <tr class="tableHeader">	
+		<td nowrap>@client_nombre@<input type="hidden" name="ordene_operacion_id" value="@ordene_operacion_id null-value=''@"></td>
+ 		<td nowrap>@titulo_id@</td>
+  		<td align="right" nowrap>@titcus_cantidad@</td>
+ 		<td align="center"><input type="text" name="tasa" value="@tasa null-value='' format-mask='##0.0'@" size="3" maxlength="5"></td>
+  		<td align="right"  nowrap>@monto_operacion@</td>
+  		<td align="center" nowrap>@status_operacion@</td>
+    </tr>
+    </rows>
+    <!--data-->
+   
+    </table>
+    <br>
+
+    <BR>
+    <br>
+   <button onclick="document.dataentry.action='generacion_comisiones-update?tipo=procesar';document.dataentry.submit();">Grabar</button>
+    &nbsp;<button onclick="document.dataentry.action='generacion_comisiones-filter';document.dataentry.submit();">Retroceder</button>
+    &nbsp;<button onclick="document.dataentry.action='generacion_comisiones-update?tipo=edit';document.dataentry.submit();">Editar</button>
+     &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+</form>
+
+</center>
+
+</body>
+
+</html>
+

@@ -1,0 +1,158 @@
+
+<HTML>
+    
+    <HEAD>
+    	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <LINK REL="stylesheet" type="text/css" href="../css/EstiloFichas.css" />
+        <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/>
+        <SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+        <script language="javascript" src="../js/default.js"></script>   
+         
+        
+        <TITLE>Sistema INFI</TITLE>
+       <script>
+       
+       function showPickList(ind ,id, tx, campo)
+		{
+		   var r
+		   if (ind == '1') {  // llamar a picklist		
+		   	  r = window.open(campo +'?name_id=' + id.name +"&name_tx=" + tx.name, 'Picklist','resizable=yes,scrollbars=yes,width=600,height=450,Left=200,top=150,Status=yes,unadorned:true');
+		   	  
+		   }
+		   else{
+			id.value= "";//limpiar id de cliente
+			tx.value= "";//limpiar campo de cliente
+		  }
+		} 
+		
+		function mostrar(obj,id){
+			
+			if (id=='_porcentaje'){
+				var monto = document.getElementsByName('mto_comision');
+				for (var i = 0; i < monto.length; i++ ){
+					monto[i].disabled= true;
+				}
+				var moneda = document.getElementsByName('moneda_comision');
+				for (var i = 0; i < moneda.length; i++ ){
+					moneda[i].disabled= true;
+				}
+				var porcentaje = document.getElementsByName('pct_comision');
+				for (var i = 0; i < porcentaje.length; i++ ){
+					porcentaje[i].disabled= false;
+				}
+			}
+			if(id=='_monto'){
+				var porcentaje = document.getElementsByName('pct_comision');
+				for (var i = 0; i < porcentaje.length; i++ ){
+					porcentaje[i].disabled= true;
+				}
+				var monto = document.getElementsByName('mto_comision');
+				for (var i = 0; i < monto.length; i++ ){
+					monto[i].disabled= false;
+				}
+				var moneda = document.getElementsByName('moneda_comision');
+				for (var i = 0; i < moneda.length; i++ ){
+					moneda[i].disabled= false;
+				}
+			}
+		}
+		
+		function chequear(){
+			if(document.dataentry.pct_comision.value>0||document.dataentry.pct_comision.value==""){
+				document.dataentry.ind_comision[0].checked = true;
+				document.dataentry.mto_comision.disabled = true;
+				document.dataentry.moneda_comision.disabled = true;
+			}
+			if(document.dataentry.mto_comision.value>0){
+				document.dataentry.ind_comision[1].checked = true;
+				document.dataentry.pct_comision.disabled = true;
+				document.dataentry.mto_comision.disabled = false;
+				document.dataentry.moneda_comision.disabled = false;
+			}
+		}
+		
+       </script>
+    </HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript:chequear();{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <td class="headerBox">             
+	           <font class="headerText">Custodia / Estructura Tarifaria</font>
+		</td>
+        
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+        <td class="headerBox" aling="right"></td>
+</TABLE>
+        
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="estructura_tarifaria-update_titulos">
+	
+	<center>		
+		
+     <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr>
+            <th ALIGN="center">       
+                 Editar 
+            </th>
+        </tr>
+        <tr class="formElement">
+			<td><b>Comision:</b> &nbsp;&nbsp;&nbsp; @comision_nombre@</th> 
+		</tr>
+		</table>
+		<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        <!--campo-->
+        <tr class="formElement">
+        	<td>
+				&nbsp;&nbsp;<input type="radio" value="0" name="ind_comision" onclick="mostrar(this,'_porcentaje');"/>Porcentaje Comisi&oacute;n 
+			</td>
+			<td>
+				<INPUT type="text" value="@pct_comision@" name="pct_comision" style="width:70px;" MAXLENGTH="8" class="inputControl" onkeypress="EvaluateText('%f',this);"/>
+				%
+				<br>
+				<font size="1px" style><i>Formato: 12.123</i></font>
+			</td>
+		</tr>
+        <tr class="formElement">
+        <td>
+				&nbsp;&nbsp;<input type="radio" value="1" name="ind_comision" onclick="mostrar(this,'_monto');"/>Monto Comisi&oacute;n 
+			</td>
+			<td>
+				<INPUT type="text" value="@mto_comision@" name="mto_comision" style="width:70px;" MAXLENGTH="8" class="inputControl" onkeypress="EvaluateText('%f', this);"/>
+				<SELECT NAME="moneda_comision" CLASS="inputControl">
+					<rows_moneda>
+						<OPTION VALUE="@moneda_id@">@moneda_siglas@ - @moneda_descripcion@</OPTION>
+					</rows_moneda>
+				</SELECT>
+				<br>
+				<font size="1px" style><i>Formato: 1234567.123</i></font>
+			</td>
+		</tr>
+      </table>
+         <br>
+
+			<INPUT type="hidden" value="@comision_id@" name="comision_id"/>
+			<INPUT type="hidden" value="@titulo_id@" name="titulo_id"/>
+				
+
+         	<button type="submit">&nbsp;Grabar&nbsp;</button>
+			&nbsp;<button type="button" onclick="window.location='estructura_tarifaria-titulos?comision_id=@comision_id@'">Regresar</button>
+   			 &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+       </CENTER>
+    </form>       
+        
+        
+    </BODY>
+
+</HTML>

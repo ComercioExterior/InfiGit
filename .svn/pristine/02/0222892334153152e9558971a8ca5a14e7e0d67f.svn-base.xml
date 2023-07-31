@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+
+	Configuracion de la accion
+
+	Describe el modelo y la vista a utilizar, asi
+	como informacion sobre data-binding entre la vista y el modelo
+
+-->
+
+<config>
+
+	<!--model class-->
+	<model-class>models.custodia.informes.lista_clientes.Filter</model-class>
+	
+	<!--view class-->
+	<view-class>megasoft.GenericView</view-class>
+	
+	<!--template-->
+	<template>form.html</template>
+
+	<!--reglas de validacion de la forma-->
+	<record-def></record-def>
+	
+	<!--response content-type-->
+	<content-type>text/html</content-type>
+	
+	<!--expiracion de la pagina (en segundos - puede estar vacio)-->
+	<expires></expires>
+	
+	<!--control de cache  (true|false)-->
+	<cache>true</cache>
+	
+	<!--URI a redireccionar despues de ejecutar el model - type=redirect|forward-->
+	<next-action type="redirect"></next-action>
+	
+	<!--mostrar este template de WEB-INF/templates si el dataset esta vacio-->
+	<on-empty source="sales"></on-empty>
+
+	<!-- 
+		Data Binding
+		
+		Se ejecuta en el orden en que aparecen los elementos,
+		el orden es importante
+	
+		type=replace|repeat|select|select-multiple|select-checkbox|select-radio
+
+	Ejemplos para cada tipo de binding:
+
+	<bind type="replace" source="filter" tag="" control-name="" field-name=""/>
+	<bind type="repeat" source="tipo_reclamo" tag="rows" control-name="" field-name=""/>
+	<bind type="select" source="tipo_reclamo" tag="" control-name="combo1" field-name="id"/>
+	<bind type="select-multiple" source="tipo_reclamo" tag="" control-name="combo1" field-name="id"/>
+	<bind type="select-checkbox" source="tipo_reclamo" tag="" control-name="check1" field-name="id"/>
+	<bind type="select-radio" source="tipo_reclamo" tag="" control-name="option1" field-name="id"/>
+
+	-->
+
+	 <bind type="repeat" source="tipoPer" tag="rows" control-name="" field-name=""/>
+	<bind type="replace" source="fecha"/>
+	<bind type="replace" source="tipoProducto"/>
+
+	<paged-dataset source="table" rows-max="10">paging_scroll/index-scroll</paged-dataset>
+	-->
+</config>

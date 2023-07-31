@@ -1,0 +1,37 @@
+<html>
+
+	<head>
+        <!--LINK REL="stylesheet" type="text/css" href="../megasoft.css" /-->
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		<title>Sistema INFI - Seguridad</title>
+	</head>
+
+<body>
+
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%" class="dataform">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Seguridad / Roles</FONT>
+        </TD>
+   <!-- help online --><TD class="headerBox" valign="middle" align="right"><img border="0" src="@url_images@ayuda.gif" width="17" height="17"  onclick="helpOpen();" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" ></TD><!-- fin help online --></TR>
+</TABLE>    
+    <center>
+    
+    <h3 STYLE="color:red">
+    Eliminar Registro
+    </h3>
+    
+    <h4>¿Esta seguro que desea eliminar el rol <i>@rolename@</i>?</h4>
+
+<form>
+
+    <button onclick="window.location='msc_role-delete?id=@id@'" />SI - Eliminar</button>
+    &nbsp;<button onclick="history.back();" />NO - Cancelar</button>
+</form>    
+    
+    </center>
+
+</body>
+
+</html>

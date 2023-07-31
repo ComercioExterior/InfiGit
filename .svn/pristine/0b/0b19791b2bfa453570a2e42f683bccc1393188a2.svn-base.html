@@ -1,0 +1,64 @@
+<html>
+	<head>         
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />	
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>    
+        <script type="text/javascript"> 
+        </script>
+    </head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">		
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Monedas / Definici&oacute;n</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+<center>
+<br>
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th  COLSPAN="5" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Monedas Registros ( @t_registros@ )
+                </FONT>
+            </th>
+        </tr> 
+	</table>	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">  
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+	<th nowrap width="5%">Siglas</th>
+    <th nowrap width="25%">Descripci&oacute;n</th>  
+    <th nowrap width="8%">Status</th>
+    <th nowrap width="6%">Local</th> 
+    </tr>
+    <!--data-->
+    <rows>
+    <tr class="tableCell">                  
+      <td nowrap>@moneda_siglas@</td>
+      <td nowrap>@moneda_descripcion@</td>
+      <td nowrap align="center">@moneda_status@</td>
+      <td nowrap align="center">@moneda_in_local@</td>
+    </tr>
+    </rows> 
+    </table>
+    <BR>
+    @page_index@
+<form>
+     &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+</form>
+</center>
+</body>
+</html>

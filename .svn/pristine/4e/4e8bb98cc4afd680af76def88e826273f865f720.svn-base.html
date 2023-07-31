@@ -1,0 +1,221 @@
+<HTML>
+    
+    <HEAD>
+    <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+            <SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+        
+    
+             <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        
+        <TITLE>Sistema INFI</TITLE>
+        
+        <script type="text/javascript">
+        
+			function verificarDepositario(){	
+				//si es una empresa depositario					
+				if(document.forms[0].empres_in_depositario_central.value==1){					
+					document.dataentry.empres_nombre.readOnly=false;
+					document.dataentry.empres_rif.readOnly=false;
+					document.dataentry.tipper_id_mostrar.disabled=false;	
+
+					document.getElementById('cuenta_depositario').style.display='block';
+					document.getElementById('cuenta_no_depositario').style.display='none';			
+						
+					
+				}else{
+					document.dataentry.empres_nombre.readOnly=true;
+					document.dataentry.empres_rif.readOnly=true;
+					document.dataentry.tipper_id_mostrar.disabled=true;		
+
+					document.getElementById('cuenta_depositario').style.display='none';	
+					document.getElementById('cuenta_no_depositario').style.display='block';			
+							
+				}
+			}
+        
+      	
+		function idRif(){
+			if(document.getElementById("L_RIF").value=='J'){
+				document.getElementById("letraRif").options[1].selected=true;
+			}else{
+				document.getElementById("letraRif").options[0].selected=true;
+			}
+		}
+
+		function colocarTipperId(){
+
+			document.dataentry.tipper_id_1.value = document.dataentry.tipper_id_mostrar.value;
+
+		}
+	
+	</script>
+
+         
+    </HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript: idRif(); verificarDepositario();">        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Empresas / Definici&oacute;n</FONT>
+        </TD>
+        
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+        <td class="headerBox" aling="right"></td>
+</TABLE>
+        
+        <CENTER>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="empresas_definicion-confirm_update">
+		
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        <rows>
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="4" ALIGN="center"> 
+                 Editar
+            </th>
+        </tr>
+        
+        <!--campo-->
+        <tr>
+            <td>
+             Empresa:
+            </td>
+            <td>
+            	<INPUT type="text" name="empres_nombre" value="@empres_nombre@" style="width:300px;" MAXLENGTH="50" class="inputControl" onkeypress="return sin_caracteres_especiales(event)"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+             RIF Empresa:*
+            </td>
+            <td>
+            <SELECT id="letraRif" NAME="tipper_id_mostrar" onchange="colocarTipperId();" CLASS="inputControl" disabled>
+					<OPTION VALUE="G">G</OPTION>
+					<OPTION VALUE="J">J</OPTION>
+				</SELECT>
+				<INPUT type="text" name="empres_rif" value="@empres_rif1@" style="width:90px;" MAXLENGTH="9" class="inputControl" onkeypress="return sin_caracteres_especiales(event)" readonly />
+            	&nbsp;Ej: J123456789
+            </td>
+        </tr>
+        <tr>
+            <td>
+             Siglas:*
+            </td>
+            <td>
+            	<INPUT type="text" value="@empres_siglas@" name="empres_siglas" style="width:40px;" MAXLENGTH="4" class="inputControl" onkeypress="return sin_caracteres_especiales(event)"  />
+            </td>
+        </tr>   
+        
+        <tr style="display:block">
+            <td>
+             Depositario Central:
+            </td>
+            <td>
+            	<SELECT NAME="in_depositario" DISABLED CLASS="inputControl" STYLE="width:100px;">
+					<rows2>
+					<OPTION VALUE="@num@">@valor@</OPTION>
+					</rows2>
+				</SELECT>
+			
+			
+				<INPUT type="hidden" value="@empres_in_depositario_central@" name="empres_in_depositario_central" style="width:40px;" MAXLENGTH="4" class="inputControl"/>
+				 
+				<!-- <script type="text/javascript">document.dataentry.in_depositario.value = document.dataentry.empres_in_depositario_central[document.dataentry.empres_in_depositario_central.selectedIndex].text;</script> -->
+            </td>
+        </tr>
+        
+        
+        <tr>
+            <td>
+             Emisor:
+            </td>
+            <td>
+            	<SELECT NAME="empres_in_emisor" CLASS="inputControl" style="width:100px;">
+					<rows1>
+					<OPTION VALUE="@num@">@valor@</OPTION>
+					</rows1>
+				</SELECT>
+            </td>
+        </tr>        
+        
+        <tr>
+            <td>
+             Estatus:
+            </td>
+            <td>
+            	<SELECT NAME="empres_status" CLASS="inputControl" style="width:100px;">
+					<rows_status>
+					<OPTION VALUE="@num_status@">@estatus@</OPTION>
+					</rows_status>
+				</SELECT>
+            </td>
+        </tr>
+        </rows>
+        
+        <tr id="cuenta_no_depositario">
+            <td>
+             Nro. de Cuenta Empresa: 
+            </td>
+            <td>
+			    <SELECT NAME="empresa_numero_cuenta" SIZE="1">				
+					<OPTION VALUE="" SELECTED>Seleccione</OPTION>
+					<rows_cta>
+					<OPTION VALUE="@numero@">Cta @tipo@ @numero@</OPTION>	
+					</rows_cta>
+	 			</SELECT> 	
+            </td>
+        </tr>
+        
+      
+        <tr id="cuenta_depositario">
+            <td>
+            Nro. de Cuenta Depositario: 
+            </td>
+            <td>
+            	<INPUT type="text" value="@empres_cuenta@" name="depositario_numero_cuenta"  size="40" MAXLENGTH="20" class="inputControl"/>
+            </td>
+        </tr>
+        
+         </table>
+         
+              <!-- MENSAJES DE ERROR CONSULTANDO CUENTAS DEL VEHICULO EN ARQUITECTURA EXTENDIDA -->
+      <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+       		<tr><td><FONT COLOR="red"><b>@mensaje_error_user_webs@</b></FONT></td></tr>       
+        	<tr><td><FONT COLOR="red"><b>@mensaje_error_cuentas_cte@</b></FONT></td></tr>      
+      </table>
+ 
+         <!--nota sobre los campos obligatorios-->
+            <P><FONT COLOR="red"><B>Nota:</B></FONT> Los campos con * deben ser llenados para poder procesar el formulario.</P>
+              			             
+            
+            <SPAN> </SPAN>
+         
+         <INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/> 	
+
+		
+
+            <button TYPE="submit">Grabar</button>
+            &nbsp;<button type="button" onclick="javascript:history.back();">Regresar</button>
+            &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+		
+		<INPUT TYPE="hidden" VALUE="@empres_id@" NAME="empres_id" />
+		<INPUT TYPE="hidden" id="L_RIF" VALUE="@letrarif@" NAME="tipper_id_1" />
+		
+    </form>        
+        </CENTER>
+        
+    </BODY>
+
+</HTML>

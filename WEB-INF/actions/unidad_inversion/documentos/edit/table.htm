@@ -1,0 +1,230 @@
+<html>
+<head>
+	<title>Sistema INFI</title>
+	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+	<script language="javascript" src="../js/default.js"></script>	
+</head>
+
+<body ONLOAD="javascript:cargar('div');mostrar(@accion@);{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+	<!--page name bar-->
+	
+	<table border="0" cellspacing="0" WIDTH="930px">
+		<tr>
+			<td class="headerBox">
+	        	<div id="titulou" style="display:none">               
+	            	<font class="headerText">Unidad de Inversi&oacute;n / Documentos</font>
+	            </div>
+				<div id="titulop" style="display:none">               
+	            	<font class="headerText">Publicaci&oacute;n Unidad de Inversi&oacute;n / Documentos</font>
+	            </div>
+	            <div id="tituloc" style="display:none">               
+	            	<font class="headerText">Consulta Unidad de Inversi&oacute;n / Documentos</font>
+	            </div>
+	            <div id="titulom" style="display:none">               
+	            	<font class="headerText">Modificaci&oacute;n Unidad de Inversi&oacute;n / Documentos</font>
+	            </div>
+			</td>
+			<!-- help online -->
+			<td class="headerBox" valign="middle" align="right" colspan="2">
+				<img src="../images/infi_gn_ayuda.gif"	border="0"  width="17" height="17"
+					style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"
+					onclick="helpOpen(window.document.location.href);">
+			</td>
+			<!-- fin help online -->	
+		</tr>
+	</table>
+
+	<br>
+
+
+	<!--formulario-->
+	<form name="dataentry" method="post" action="unidad_inversion_documentos-update" enctype="multipart/form-data">
+		<input type="hidden" name="idUnidadInversion" value="@idunidadinversion@" />
+		<input type="hidden" name="id_blotter" value="@id_blotter@" />
+		<input type="hidden" name="blotter" value="@blotter@" />
+		<input type="hidden" name="persona" value="@persona@" />
+		<input type="hidden" name="unidad" value="@unidad@" />
+	
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="930px" style="TABLE-LAYOUT: auto; ">
+		<tr class="tableHeader">		
+			<th colspan="2">Documentos</th>													
+		</tr>
+		<tr class="formElement">
+			<td nowrap width="25%"><b>Unidad de Inversi&oacute;n </b></td>													
+			<td nowrap>@unidad@</td>
+		</tr>
+		<tr class="formElement">
+			<td nowrap><b>Blotter: </b></td>													
+			<td nowrap>@blotter@</td>				
+		</tr>
+		<tr class="formElement">
+			<td nowrap><b>Tipo Persona: </b></td>													
+			<td nowrap>@persona@</td>				
+		</tr>
+		<tr class="formElement">
+			<td nowrap><b>Campos disponibles para el Documento:</b></td>
+			<td >Toma de Orden 
+				<!--IMAGEN BOTON PARA VISUALIZAR LA PLANTILLA-->
+				<IMG src="../images/infi_gn_document.gif" title="Campos disponibles para la plantilla." onclick="showPlantilla(2,'TOMA_ORDEN',@idunidadinversion@);" style="cursor:hand"/>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Adjudicaci&oacute;n
+				<IMG src="../images/infi_gn_document.gif" title="Campos disponibles para la plantilla." onclick="showPlantilla(2,'ADJUDICACION',@idunidadinversion@);" style="cursor:hand"/>
+			</td>
+		</tr>
+		</table>
+	<table class="dataform" border="0" cellspacing="1" cellpadding="2" width="930px" style="TABLE-LAYOUT: auto; ">
+		<!--encabezados de columna-->
+		<tr>	
+			<th colspan="2" align="center">
+				<font class="formCaptiontext">Asociar Documentos</font>
+			</th>													
+		</tr>
+	</table>
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="930px" style="TABLE-LAYOUT: auto; ">
+		<tr class="tableHeader">
+			<th>Cartas</th>
+			<th colspan="2">Documento</th>												
+			<th width="70%" nowrap>&iquest;Cambiar Archivo?</th>
+		</tr>
+	
+		<!--data-->
+		<rowsCar>
+		<tr class="tableCell">	
+			<td align="left" nowrap>
+				@tipcar_descripcion@ 
+			</td>
+			<td align="left" nowrap>
+				@nombre_doc@
+			</td>
+			<td align="center" nowrap>
+				<a href="documentos_definicion-descargar?documento_id=@documento_id@&nombre_doc=@nombre_doc@&framework.controller.outputstream.open=false"><IMG SRC="../images/infi_gn_documento.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Descargar Archivo" BORDER="0" style="cursor:hand"></a>
+				<IMG src="../images/infi_gn_find.gif" title="Validar Archivo" ONCLICK="validar('@documento_id@','@transa_id@', '@idunidadinversion@');" style="cursor:hand"/>
+			</td>
+			<td nowrap align="left">
+				<INPUT type="radio" name="doc@tipcar_id@" value="1" class="inputControl" onClick="examinar(this,'div')" />Si
+				<INPUT type="radio" name="doc@tipcar_id@" value="0" class="inputControl" onClick="examinar(this,'div')" checked/>No<br>
+				<input type="hidden" name="id_documento@tipcar_id@" value="@documento_id@" />
+
+					<table class="dataform" border="0" cellspacing="1" cellpadding="2">
+						<tr>
+							<td>
+								<INPUT id="doc@tipcar_id@div" style="display:none" type="file" VALUE="" size="50" name="archivo@tipcar_id@" />
+							</td>
+						</tr>
+					</table>
+
+			</td>
+		</tr>
+		</rowsCar>	
+	</table>
+	<br>
+	<center>
+	<P><FONT COLOR="red"><B>Nota:</B></FONT> Los campos con * deben ser llenados para poder procesar el formulario.</P>	
+	<table>
+		<tr>
+			<td>
+				<div style="display:none" id="grabar" name="grabar">
+					<button type="button" onclick="submitir();" >Grabar</button>
+				</div>
+			</td>
+			<td>
+				<button type="button" onclick="window.location='unidad_inversion_documentos-personas_edit?id_blotter=@id_blotter@&unidad=@unidad@&blotter=@blotter@'">Regresar</button>
+			</td>
+		</tr>
+	</table>
+	<input type="hidden" name="idUnidadInversion" value="@idunidadinversion@" />
+	<input type="hidden" name="id_blotter" value="@id_blotter@" />
+	<input type="hidden" name="id_persona" value="@idpersona@" />
+	</center>
+	</form>
+
+
+</body>
+<script type="text/javascript">
+
+	function mostrar(accion){
+		if(accion==1){
+			var elementos = document.getElementsByName('unidad');
+			for (var i = 0; i < elementos.length; i++ ){
+				elementos[i].style.display ="block";
+			}
+			grabar.style.display ="block";
+			titulou.style.display ="block";
+		}
+		if(accion==2){//Modulo Publicacion
+			var inputs = document.getElementsByTagName('input')
+			for (var i = 0; i < inputs.length; i++ ){
+				inputs[i].disabled = true;
+			}
+			titulop.style.display ="block";
+		}
+		if(accion==3){//Modulo Consulta
+			var inputs = document.getElementsByTagName('input')
+			for (var i = 0; i < inputs.length; i++ ){
+				inputs[i].disabled = true;
+			}
+			tituloc.style.display ="block";
+		}		
+		if(accion==4){//Modulo Modificacion
+			grabar.style.display ="block";
+			titulom.style.display ="block";
+		}
+	}
+
+	function submitir() {
+		var objCount =document.dataentry.elements.length;
+		var bol = false;
+		for (var i=0 ; i<objCount; i++){
+			var type =document.dataentry.elements[i].type;
+			var style =document.dataentry.elements[i].style.display;
+			var value =document.dataentry.elements[i].value;
+			if((type=='file')&&(style=='block')&&(value=='')){
+				bol = true;
+			}
+		}
+		verificar(bol);
+	}
+
+	function verificar(bol){
+		if(bol){
+			alert("Si selecciono (Si) debe especificar la ruta del Archivo a cargar ");
+		}else{
+			document.dataentry.action="unidad_inversion_documentos-update"; 
+			document.dataentry.submit();
+		}
+	}
+
+	function examinar(obj,tex){
+		if(obj.value==1){
+			document.getElementById(obj.name+tex).style.display='block';
+		}
+		if(obj.value==0){
+			document.getElementById(obj.name+tex).style.display='none';
+		}
+	}
+	function showPlantilla(x,transa,unidad){		  	   
+		   // llamar a la plantilla	
+    	   var ventana;				   
+		   ventana = window.open('documentos_definicion-plantilla'+'?dirigir='+x+'&id=' + transa +'&unidad=' + unidad+"&name=" + 'plantilla.htm', 'Plantilla','resizable=yes,scrollbars=yes,width=600,height=450,Left=200,top=150,Status=yes,unadorned:true');		   	   		   
+           
+	}
+
+	function validar(documento,transaccion,unidad) {
+		r = window.open('validacion_documentos?idDocumento='+documento+'&transa_id='+transaccion+'&unidadInversion='+unidad,'Validacion', 'resizable=yes,scrollbars=yes,width=700,height=600,top=50,left=150');
+	}
+
+	<!--mostrara l inpu de ipo file si l Si estaba chequeado previamente-->
+	function cargar(tex){
+		var objCount =document.dataentry.elements.length;
+		for (var i=0 ; i<objCount; i++){
+			var type =document.dataentry.elements[i].type;
+			var value =document.dataentry.elements[i].value;
+			var name =document.dataentry.elements[i].name;
+			var check = document.dataentry.elements[i].checked
+			if(type=='radio' && value==1 && document.dataentry.elements[i].checked==true){
+				document.getElementById(name+tex).style.display='block';
+			}
+		}
+	}
+-->
+</script>
+</html>

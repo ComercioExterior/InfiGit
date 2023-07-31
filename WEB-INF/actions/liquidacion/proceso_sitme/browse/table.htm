@@ -1,0 +1,121 @@
+<html>
+	<head>        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+        <script type="text/javascript">
+        function detalleOrden(unidadId,blotter,status){
+			document.forms.formulario.unidad.value =unidadId;
+			document.forms.formulario.status.value =status;
+        }
+        
+        function procesar(){
+            if (document.forms.formulario.unidades != undefined){
+		        if(confirm("¿Está seguro que desea empezar el proceso de Liquidación?")){
+					var botones = document.getElementById('botones');
+					botones.style.display='none';
+					document.forms.formulario.action = 'proceso_liquidacion_sitme-procesar'; 
+					document.forms.formulario.submit();
+		        }//fin if
+            }else{
+                alert("No hay unidades de inversión para su liquidación");
+            }
+        }//fin procesar
+        </script>
+	
+    </head>
+
+<body>
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+			<TD class="headerBox">                
+            	<FONT class="headerText">Liquidaci&oacute;n / Proceso de Liquidaci&oacute;n SITME</FONT>
+        	</TD>
+        	<!-- help online -->
+   			<TD class="headerBox" valign="middle" align="right">
+   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   			</TD>
+   			<!-- fin help online -->
+		</TR>
+	</TABLE>
+
+   <center>
+	<br>
+	<form id="formulario" name="formulario" action="liquidacion_blotter_ordenes" method="post" target="_self">
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;>
+		<!--encabezados de columna-->
+		<tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Lista de Registros ( @t_registros@ )
+                </FONT>
+            </th>
+        </tr>
+		<tr class="tableHeader">
+			<th></th>
+    		<th width="" nowrap>Status</th>  
+    		<th width="" nowrap>Unidad de Inversión</th>
+            <th width="" nowrap >Cantidad</th>
+            <th width="" nowrap>Total</th>                         
+            <th width="" nowrap>Cobrado</th>
+            <th width="" nowrap>Pendiente</th>
+    	</tr>
+
+		<!--data-->
+	   <ordenes>
+    	<tr class="tableCell">
+    	<td align="center">
+    	  <input type="hidden" value="@unidad_inversion_id@" name="unidades">    	
+          <input type="radio" value="@unidad_inversion_id@" name="radio" onclick="javascript:detalleOrden('@unidad_inversion_id@','@blotter@','@ordsta_id@');">
+    	</td>
+		<td nowrap="nowrap">@ordsta_id@</td>
+		<td nowrap="nowrap">@undinv_nombre@</td>
+		<td align="center" nowrap="nowrap">@ordenes@</td>
+		<td align="right" nowrap="nowrap">@total format-mask='#,###,##0.00'@ @m_bs_rep@ </td>
+		<td align="right" nowrap="nowrap">@monto_cobrado format-mask='#,###,##0.00'@ @m_bs_rep@</td>
+		<td align="right" nowrap="nowrap">@monto_pendiente format-mask='#,###,##0.00'@ @m_bs_rep@</td>
+		</tr>
+	   </ordenes>
+	   <_totales>
+		<tr class="tableHeader">
+		<th></th>
+    		<th nowrap>TOTALES</th>
+    		<th nowrap ></th> 
+            <th nowrap >@total_ordenes@</th>
+            <th nowrap align="right">@total_monto format-mask='#,###,##0.00'@ @m_bs_rep@</th>                         
+            <th nowrap align="right">@total_cobrado format-mask='#,###,##0.00'@ @m_bs_rep@</th>
+            <th nowrap align="right">@total_pendiente format-mask='#,###,##0.00'@ @m_bs_rep@</th>
+    	</tr>
+	  </_totales>
+	</table>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	
+    <BR>
+	
+	<input type="hidden" id="unidad" name="unidad" value="">
+	<input type="hidden" id="blotter" name="blotter" value="">
+	<input type="hidden" id="status" name="status" value="">
+	
+	
+   <br>
+   <br>
+
+    	<div id="botones">
+		&nbsp;
+		<button TYPE="button" onclick="javascript:procesar();">Procesar</button>
+		&nbsp;
+		<button TYPE="submit">Detalle</button>
+		&nbsp;
+		<button TYPE="button" onclick="window.location='proceso_liquidacion_sitme-filter'">Regresar</button>
+		&nbsp;
+		<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+		</div>
+	</form>
+   </center>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<html>
+
+	<head> 
+          
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>     
+        
+    
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Carga Inicial de Cupones</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+<form name="dataentry" method="post" action="carga_inicial_pagos-procesar_ordenes_registros">
+
+    <table border="0" cellspacing="1" cellpadding="2" width="150%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                Ordenes Procesadas de Pago de Cupones ( @t_registros@ )
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="150%" class="datatable" style="TABLE-LAYOUT: auto; ">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">	
+    	<th nowrap>Nro. Orden</th>
+		<th nowrap>Nombre</th>
+   		<th nowrap>C&eacute;dula/Rif</th>
+   		<th nowrap>Valor Nominal</th>  
+   		<th nowrap>Titulo</th>
+   		<th nowrap>Fecha Inicio Pago</th>
+   		<th nowrap>Fecha Final Pago</th>   		
+
+    </tr>
+
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+		<td align="left">@id_orden@</td>	
+		<td align="left">@nombre_cliente@</td>		
+		<td align="left">@cedula_rif@</td>	
+		<td align="left">@nominal@</td>		
+		<td align="left">@titulo@</td>		
+		<td align="left">@fe_inicio_pago@</td>	
+		<td align="left">@fe_fin_pago@</td>			
+						
+	</tr>
+     </rows>
+    
+    </table> 
+
+<br>
+
+@page_index@
+
+<br>
+    <button name="boton_regresar" onclick="window.location='carga_inicial_pagos-filter';">Regresar</button>
+     
+</form>
+
+</center>
+
+</body>
+
+</html>
+

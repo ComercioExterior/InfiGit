@@ -1,0 +1,205 @@
+<html>
+
+	<head>
+        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+           <link rel="stylesheet" type="text/css" href="../css/EstiloFichas.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+        <script type="text/javascript">
+ 
+        
+         function mostrarNoGrabados(){
+         	     document.getElementById('reg_no_grabados').style.display='block';
+         	     document.getElementById('reg_grabados').style.display='none';
+         	     
+       	      	 document.getElementById('menu1').style.display='block';
+       	      	 document.getElementById('menu2').style.display='none';
+         	
+         }
+ 
+         function mostrarGrabados(){
+         	     document.getElementById('reg_no_grabados').style.display='none';
+         	     document.getElementById('reg_grabados').style.display='block';
+         	     
+         	     document.getElementById('menu1').style.display='none';
+       	      	 document.getElementById('menu2').style.display='block';        	     
+         
+         }
+         
+         function mostrarTituloBusqueda(){
+         	if(document.dataentry.titulo_id.value==''){
+         		document.getElementById('titulo_busq').style.display='none';
+         	}else{
+         		document.getElementById('titulo_busq').style.display='block';
+         	}
+         }
+         
+        </script>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()}; mostrarTituloBusqueda();">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Carga Inicial / Consultas / Carga Final de Clientes y T&iacute;tulos</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+
+<center>
+
+<div id="titulo_busq">
+	<br>
+   <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="2" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Datos
+                </FONT>
+            </th>
+        </tr>
+        
+        <tr>
+        
+        <td>
+        <b>T&iacute;tulo</b>        
+        </td>
+        
+        <td><b>@titulo_id@</b></td>
+                     
+        <tr>
+  
+	</table>
+	
+</div>
+
+</center>
+
+
+<br>
+
+<div id="menu2">
+<table border="0">
+<tr>
+
+<td id="navigationActivo"><a style="cursor:hand" onclick="javascript:mostrarGrabados();" ><span>Registros Grabados (@total_registros_ok@)</span></a></td>
+
+<td id="navigation"><a style="cursor:hand" onclick="javascript:mostrarNoGrabados();"><span>Registros No Grabados (@total_registros_no_ok@)</span></a></td>
+
+</tr>
+</table>
+</div>
+
+<div id="menu1" style="display:none">
+<table border="0">
+<tr>
+
+<td id="navigation"><a style="cursor:hand" onclick="javascript:mostrarGrabados();" ><span>Registros Grabados (@total_registros_ok@)</span></a></td>
+
+<td id="navigationActivo"><a style="cursor:hand" onclick="javascript:mostrarNoGrabados();"><span>Registros No Grabados (@total_registros_no_ok@)</span></a></td>
+
+</tr>
+</table>
+</div>
+
+<center>
+ 
+ <div id="reg_grabados">
+   
+  <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+  
+      <!--encabezados de columna-->
+    <tr class="tableHeader">
+		<th>Nombre Cliente</th>                          
+		<th>C&eacute;dula o Rif</th>
+		<th>T&iacute;tulo</th>
+		<th>Bloqueo</th>
+		<th>Cantidad</th>
+		<th>Tipo Producto</th>
+		<th>Comentarios</th>
+                            
+    </tr>
+
+    <!--data-->
+    <rows_reg_grabados>
+    <tr class="tableCell">
+
+		<td>@z51_cliente@</td>
+		<td aling="center">@z51_cedrif_cliente@ </td>
+		<td align="left">@z51_titulo_id@</td>
+		<td align="center">@z51_bloqueo@</td>
+		<td align="right">@z51_monto_adjudicado@</td>
+		<td align="left">@z51_tipo_producto_id@</td>
+		<td align="left">@z51_mensaje_estatus@</td>
+     </tr>
+     </rows_reg_grabados> 
+  
+    </table>
+    
+    
+ </div>
+
+<div id="reg_no_grabados" style="display:none">
+  
+  <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+  
+      <!--encabezados de columna-->
+    <tr class="tableHeader">
+		<th>Nombre Cliente</th>                          
+		<th>C&eacute;dula o Rif</th>
+		<th>T&iacute;tulo</th>
+		<th>Bloqueo</th>
+		<th>Cantidad</th>
+		<th>Tipo Producto</th>
+		<th>Comentarios</th>
+                            
+    </tr>
+
+    <!--data-->
+    <rows_reg_no_grabados>
+    <tr class="tableCell">
+
+		<td>@z51_cliente@</td>
+		<td aling="center">@z51_cedrif_cliente@ </td>
+		<td align="left">@z51_titulo_id@</td>
+		<td align="center">@z51_bloqueo@</td>
+		<td align="right">@z51_monto_adjudicado@</td>
+		<td align="left">@z51_tipo_producto_id@</td>
+		<td align="left">@z51_mensaje_estatus@</td>
+     </tr>
+     </rows_reg_no_grabados> 
+  
+    </table>
+    
+ </div>
+ 
+    <BR>
+<form name="dataentry">
+	<input type="hidden" name="titulo_id" value="@titulo_id@"/>
+
+    <button onclick="javascript:history.back();">Regresar</button>
+     &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+</form>
+
+</center>
+
+</body>
+
+</html>
+

@@ -1,0 +1,118 @@
+<html>
+
+	<head>
+        
+        <!--LINK REL="stylesheet" type="text/css" href="../megasoft.css" /-->
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI - Carga Inicial</title>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Carga Inicial / Carga y Validaci&oacute;n</FONT>
+        </TD>
+   	
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+
+
+   <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+    
+     <tr class="tableCell">
+     	<th colspan="2">Resultado del Proceso</th>
+     </tr>
+    
+    <!-- tr class="tableCell">
+                
+        <td colspan="2" aling="center"><b>Archivo cargado...</b>
+  		
+        </td>
+                
+    </tr-->
+    
+        <tr class="tableCell"> 
+        <td aling="center"><b>Fecha de Inicio:</b>
+  		
+        </td><td> @fecha_inicio@</td>
+        
+     </tr>  
+    
+     
+    <tr class="tableCell"> 
+        <td aling="center"><b>Fecha Fin:</b>
+  		
+        </td><td> @fecha_fin@</td>
+        
+     </tr>  
+     
+     <tr class="tableCell"> 
+        <td aling="center"><b>Duraci&oacute;n:</b>
+  		
+        </td><td>@tiempo_duracion@</td>
+        
+     </tr>  
+ 
+     <tr class="tableCell">           
+        <td aling="center"><b>Procesados:</b>
+  		
+        </td><td>@reg_leidos@</td>
+      </tr>
+     
+     <tr class="tableCell">           
+        <td aling="center"><b>Buenos:</b>
+  		
+        </td><td>@reg_buenos@ (@porc_buenos@%)</td>
+      </tr>
+       
+        
+     <tr class="tableCell">           
+        <td aling="center"><b>Malos:</b>
+  		
+        </td><td>@reg_malos@ (@porc_malos@%)</td>
+      </tr>
+    
+   <!-- tr class="tableCell">
+                
+        <td aling="center">
+        
+        <h5>Archivo cargado...</h5>
+  		
+        
+        <h5>Fin: @fecha_fin@</h5>
+  		
+        
+       <h5>Procesados: @reg_leidos@ </h5>
+  		
+       <h5>Buenos: @reg_buenos@ </h5>
+  		
+       <h5>Malos: @reg_malos@ </h5>
+  		
+        </td>
+      </tr> -->
+
+
+    </table>
+
+    <BR>
+    
+    <button onclick="window.location='carga_inicial-find'">Aceptar</button>
+
+
+</center>
+
+</body>
+
+</html>
+

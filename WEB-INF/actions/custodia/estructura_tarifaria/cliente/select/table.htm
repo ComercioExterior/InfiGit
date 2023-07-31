@@ -1,0 +1,174 @@
+<html>
+<head>
+	<title>Sistema INFI</title>
+	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+	<script language="javascript" src="../js/default.js"></script>	
+	<script language="JavaScript" src="../js/decimal.js"></script>
+	<script language="JavaScript" src="../js/popcalendar.js"></script>	
+</head>
+
+<body
+	ONLOAD="javascript:reloadOpener();{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+	<br><br>
+	<!--page name bar-->
+	<table border="0" cellspacing="0" WIDTH="100%">
+		<tr>
+			<td class="headerBox">
+	            <font class="headerText">Estructura Tarifaria / Clientes</font>
+			</td>
+			<!-- help online -->
+			<td class="headerBox" valign="middle" align="right">
+				<img src="../images/infi_gn_ayuda.gif"	border="0"  width="17" height="17"
+					style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"
+					onclick="helpOpen(window.document.location.href);">
+			</td>
+			<!-- fin help online -->	
+		</tr>
+	</table>
+
+	<br>
+
+	<!--formulario-->
+	<form method="POST" action="estructura_tarifaria-select_clientes">
+		<input type="hidden" name="comision_id" value="@comision_id@" />
+		<input type="hidden" name="entry" value="seleccion" />
+		
+		<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">	
+			<!--cliente-->
+		<tr>
+            <th COLSPAN="2" ALIGN="center">
+                      Filtro
+            </th>
+        </tr>
+         <tr CLASS="formElement">
+            <td CLASS="formLabel">
+                C&eacute;dula / RIF:
+            </td>
+            <td>
+					<SELECT NAME="tipper_id" />				
+					<OPTION VALUE="" SELECTED/></OPTION>
+					<rows_tp>				 
+					 <OPTION VALUE="@tipper_id@"/>@tipper_nombre@</OPTION>					 							 
+	 				</rows_tp>
+	 				</SELECT>
+	 				<INPUT TYPE="text" VALUE="" NAME="client_cedrif" size="15" MAXLENGTH="10" onkeypress="solo_numericos();" />
+	  			</td>
+		</tr>
+		<tr CLASS="formElement">
+            <td CLASS="formLabel">
+                Nombre:
+            </td>
+            <td>
+                <INPUT TYPE="text" VALUE="" NAME="client_nombre" size="30" MAXLENGTH="50" class="inputControl" />
+            </td>
+		</tr>	
+		  
+       
+		<tr>
+         	<td colspan="2" align="center">
+	       		<button type="button" onclick="submitirFiltro();">Buscar</button>
+	       	</td>
+       	</tr>
+		</table>					
+	</form>			
+			
+	<center>
+
+	<!--formulario-->
+	<form name="dataentry" method="POST" action="estructura_tarifaria-insert_clientes">
+		<input type="hidden" name="comision_id" value="@comision_id@" />			
+		<input type="hidden" name="entry" value="update" />	
+			
+	
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="100%">	
+		<!--titulo-->
+		<tr class="formCaption">
+			<th colspan="7" ALIGN="center">
+				<font class="formCaptionText">
+					Clientes Disponibles @boton_grabar_ini@(@t_registros@)	@boton_grabar_fin@
+				</font>
+			</th>
+		</tr>	
+	</table>
+	
+	<!--tabla de data-->
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="100%">
+	
+		<!--encabezados de columna-->
+		<tr class="tableHeader">
+			<th width="4%"></th>
+			<th width="25%">C&eacute;dula / RIF</th>	
+			<th width="45%">Nombre</th>								
+		</tr>
+
+		<!--data-->
+		<rowsCli>
+		<tr class="tableCell">
+			<td align="center">
+				@html@
+			</td>
+			<td>@tipper_id@-@client_cedrif@</td>			
+			<td>@client_nombre@</td>					
+		</tr>
+		</rowsCli>
+	</table>
+
+	@page_index@
+	
+	<input type="hidden" name="selecc" value="" />
+ 	<input type="hidden" name="idCliente" value="" />
+	<input type="hidden" name="client_cedrif" value="" /> 
+	<input type="hidden" name="client_nombre" value="" /> 	 				
+	<input type="hidden" name="comision_id" value="" />
+
+	@boton_grabar_ini@	
+	&nbsp;
+	<button type="button" onclick="submitir();">Grabar</button>
+	&nbsp;
+	@boton_grabar_fin@
+	<button type="button" onclick="regresar();">Regresar</button>
+	
+	</form>
+
+	</center>
+
+</body>
+<script type="text/javascript">
+<!--
+function submitir() {	
+	j=0;
+	for (i=0; i<document.forms[1].selecc.length-1; i++) {
+		if (document.forms[1].selecc[i].checked) {
+			++j;
+		}
+	}
+	if (j == 0) {
+		alert("No selecciono Cliente para asociarla a la Comision");
+		return;
+	}
+	for (i=0; i<document.forms[1].idCliente.length-1; i++) {
+		if (!document.forms[1].selecc[i].checked) {
+			document.forms[1].idCliente[i].value = "0";
+		}
+	}
+	document.forms[1].submit();
+}
+
+function regresar() {
+   	window.opener.location.reload();
+   	window.close();
+}
+
+function reloadOpener() {
+	window.opener.location.reload();
+}
+
+function submitirFiltro() {
+	document.forms[0].submit();
+}
+-->
+-->
+</script>
+</html>
+

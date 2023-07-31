@@ -1,0 +1,115 @@
+
+<HTML>
+    
+    <HEAD>
+    <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+            <SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+        
+    
+             <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css"/>
+        
+        <TITLE>Sistema INFI</TITLE>
+        
+        <script type="text/javascript">
+        
+	  	
+		function procesar(){
+			var mensaje="Desea iniciar el Reproceso del cierre de sistema de forma Manual ?";
+			if(confirm(mensaje)){
+			  document.dataentry.action="cierre_sistema_reprocesamiento-confirm";			  
+			  document.dataentry.submit();			 
+			}
+		}
+        
+        
+        </script>
+        
+         
+    </HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+        
+        
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+	    <TR>
+	        <TD class="headerBox">                
+	            <FONT class="headerText">Cierre Sistema / Reprocesamiento de Cierre Sistema</FONT>
+	        </TD>
+	        
+	        <!-- help online -->
+	   		<TD class="headerBox" valign="middle" align="right">
+	   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+	   		</TD>
+	   		<!-- fin help online -->
+	        
+	        <td class="headerBox" aling="right"></td>
+	</TABLE>
+	        
+	<CENTER>	
+	<!--formulario-->
+		<form NAME="dataentry" METHOD="POST">
+		        <table border="0" cellspacing="1" cellpadding="1" width="80%" class="dataform" > 
+		   	         <reproceso_cierre>
+			        <tr>
+			            <td ALIGN="center" nowrap>
+							Falla en proceso Cierre Sistema:
+			            </td>
+			            <td ALIGN="left" nowrap>
+				            <input type="text" value="@falla_cierre@" size="4" readonly>
+			            </td>
+			            <td ALIGN="center" nowrap> 
+				            Paso en Ejecucion (En caso de error):
+			            </td>
+		   	            <td> 
+		   	            	<input name="paso_ejecucion" type="text" value="@paso_en_ejecucion@" size="4" readonly>
+		   	             </td>					           
+			        </tr>
+			        <tr>
+			        	<td ALIGN="center" nowrap>
+			        		Fecha Sistema:
+			        	</td>
+			        	<td>
+				            <input type="text" value="@fecha_sistema@" readonly>
+			            </td>
+						<td ALIGN="center" nowrap>	        	
+			        		Estatus Proceso Cierre:
+			        	</td>
+			        	<td>
+				            <input type="text" value="@cierre@" readonly>
+				            <input name="estatus_cierre" type="hidden" value="@cierre_activo@" readonly>
+			            </td>	
+			        	            
+			        </tr>
+			        <tr>
+			            <td ALIGN="center" nowrap>
+							Fecha Pre-Cierre:
+			            </td>
+			            <td>
+				            <input type="text" value="@fecha_pre_cierre@" readonly>	            
+						</td>
+						
+						<td ALIGN="center" nowrap>	        	
+			        		Tipo Reprocesamiento:*
+			        	</td>
+			        	<td>
+						<input type="radio" name="tipo_reprocesamiento"  value="1"> Reprocesamiento por Falla<br>
+						<input type="radio" name="tipo_reprocesamiento"  value="2"> Procesamiento bajo demanda<br>
+			            </td>	
+			         </tr> 
+			         </reproceso_cierre>
+		         </table>           
+		
+		            <br>
+		            <button TYPE="button" ONCLICK="javaScript:procesar();">Procesar</button>         
+		            <SPAN> </SPAN>
+		            <button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+		
+		</form>	
+	</CENTER>        
+</BODY>
+
+</HTML>
+

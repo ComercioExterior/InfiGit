@@ -1,0 +1,61 @@
+<HTML>
+	<HEAD>
+		<TITLE>Sistema INFI</TITLE>
+    	<LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+    	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		<SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+		<script language="javascript" src="../js/default.js"></script>   
+
+	</HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    	<TR>
+        	<TD class="headerBox">                
+            	<FONT class="headerText">Intercambio / Recepci&oacute;n / Cierre Unidad Inversion SIMADI Taquilla Aereopuerto </FONT>
+       		</TD>
+        	<!-- help online -->
+   			<TD class="headerBox" valign="middle" align="right">
+   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   			</TD>
+   			<!-- fin help online -->
+        	<td class="headerBox" aling="right"></td>
+        </TR>
+	</TABLE>
+	<CENTER>
+
+	<!--formulario-->
+	<form NAME="dataentry" METHOD="POST" ACTION="cierre_unidad_inv_taquilla-browse" enctype="multipart/form-data">
+		<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+			 <!--titulo-->
+			<tr>
+				<th COLSPAN="2" ALIGN="center">Seleccione Criterios</th>
+			</tr>
+			<!--campo-->
+			<tr>
+				<td nowrap>Unidad de Invers&iacute;on:*</td>
+            	<td nowrap> 
+            		<SELECT NAME="undinv_id" SIZE="1" onchange="document.dataentry.undinv_nombre.value=this.options[this.selectedIndex].text;">				            			
+						<OPTION VALUE="">Seleccione</OPTION>
+					   <rows_unidad>		
+						<OPTION VALUE="@undinv_id@">@undinv_nombre@</OPTION>	
+					   </rows_unidad>		
+					</SELECT>
+					<input type="hidden" value="" name="undinv_nombre"/>
+            	</td>
+        	</tr>               	
+		</table>
+		
+		<INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/>
+		<INPUT TYPE="HIDDEN" VALUE="@tipo_prod@" NAME="tipo_prod"/>
+		
+		<!-- P><FONT COLOR="red"><B>Nota:</B></FONT> Los campos con * deben ser llenados para poder procesar el formulario.</P-->
+		<button TYPE="submit">Procesar</button>
+		<SPAN> </SPAN>
+		<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+	</form>
+	</CENTER>
+</BODY>
+</HTML>

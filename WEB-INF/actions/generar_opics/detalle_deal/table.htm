@@ -1,0 +1,67 @@
+<html>
+	<head>
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+
+    </head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">	
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Generar Datos OPICS</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online --> 
+   	</TR>
+</TABLE>
+<center>
+
+<br>
+    <table border="0" cellspacing="1" cellpadding="2" width="80%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                  Detalles Deal Ticket
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="80%" class="datatable" style="table-layout: auto;">
+    
+    <!--encabezados de columna-->
+    <tr>         
+              <th nowrap>Id Opics</th>
+              <th nowrap>Mensaje</th>
+              <th nowrap>Clave</th>
+              <th nowrap>Valor</th>
+                                   
+    </tr>
+    <!--data-->
+    <deals>
+    <tr class="tableCell"> 
+           <td nowrap align="center">@opics_id@</td>
+           <td nowrap align="center">@mensaje_nro@</td>
+           <td nowrap align="center">@clave_campo@</td>
+           <td nowrap align="center">@valor_campo@</td>
+                        
+    </tr>
+     </deals>
+    </table>
+    <BR>
+<form>
+     &nbsp;<button type="button" onclick="window.history.back()">&nbsp;Regresar&nbsp;</button>
+</form>
+</center>
+</body>
+</html>

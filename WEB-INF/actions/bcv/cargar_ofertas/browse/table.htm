@@ -1,0 +1,118 @@
+<html>
+
+	<head>
+         <script language="javascript" src="../js/default.js"></script>
+         <script type="text/javascript" src="../js/menu/jquery-1.2.2.pack.js"></script>           
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+        <script type="text/javascript">
+      
+        function regresar(){
+        	window.location="cargar_ofertas_opics-filter";
+        }
+        </script>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Env&iacute;o BCV / Carga de Ofertas Alto Valor</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="left" align="left">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+   
+<form name="dataentry" onsubmit="return excel()" action="" method="post">	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;"> 
+    <!--encabezados de columna-->
+    <tr> 
+    	<th nowrap width="5%">Deal Nro</th> 
+    	<th nowrap width="5%">Nro Rif Cliente</th> 
+    	<th nowrap width="10%">Nombre Cliente</th>        
+        <th nowrap width="7%">Monto</th>           
+        <th nowrap width="4%">Tasa</th>
+        <th width="5%">Nro Jornada</th>
+        <th width="5%">Fecha Pacto</th>
+        <th width="5%">N&uacute;mero de orden BCV</th> 
+        <th width="5%">Estatus</th>      
+        <th width="5%">Origen</th>                                  
+    </tr>
+    <!--data-->
+     <datos>
+    <tr class="tableCell"> 
+    			<td nowrap align="center">
+                @dealno@
+                </td>    
+                
+ 				<td nowrap align="center">
+                @tipper_id@@client_cedrif@
+                </td> 
+                
+               	<td nowrap>
+                @client_nombre@
+                </td> 
+
+                <td nowrap>
+                @ordene_monto_ofertado format-mask='#,###,##0.0000'@
+                </td>    
+
+                <td nowrap>
+                @ordene_tasa_cambio format-mask='#,###,##0.0000'@
+                </td>    
+                
+                <td nowrap>
+                @nro_jornada@
+                </td>
+                
+                <td nowrap>
+                @fecha_pacto@
+                </td>
+                           
+                <td nowrap>
+                @ordene_id_bcv@
+                </td>  
+                
+                <td nowrap>
+                @estatus_string@
+                </td> 
+                
+                <td nowrap>
+                @origen_string@
+                </td>                 
+                                 
+     </tr>
+     </datos> 
+    </table>
+    <BR>
+    @page_index@ 
+	<BR><BR>
+	<INPUT TYPE="HIDDEN" NAME="estatus" VALUE="@estatus@" />
+    <INPUT TYPE="HIDDEN" VALUE="fecha" NAME="@fecha@"/> 	
+    &nbsp;<!-- button type="button" onclick="regresar()">Regresar</button-->
+
+</form>
+
+</center>
+
+</body>
+
+</html>
+

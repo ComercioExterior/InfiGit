@@ -1,0 +1,169 @@
+<html>
+	<head>   
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title> 
+        <script type="text/javascript">
+        
+       /* function seleccionarMoneda(){
+		var campos='@monedas@';
+		if(campos!=''){
+			var blotr=campos.split('-');			
+			if(blotr!=undefined){
+				for(var i=0;i<blotr.length;i++){
+					if(blotr[i]!=''){
+						var p=i+1;
+						var sel=document.getElementsByName("moneda_id"+p);
+						var sele=sel[0];
+						if(sele!=undefined){
+							for(var j=0;j<sele.length;j++){
+								if(sele.options[j].value==blotr[i]){
+									sele.options[j].selected=true;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}*/
+	function agregar(idTitulo){
+	alert(idTitulo);
+		//window.open('precios_recompra-addnew?titulo_id=@titulo_id@&titulo_descripcion=@titulo_descripcion@');
+		document.dataentry.action='precios_recompra-addnew?titulo_id='+idTitulo;
+		document.dataentry.submit();
+	}
+	function editar(){
+		document.dataentry.action='precios_recompra-update';
+		document.dataentry.submit();
+	}
+	function reload(){
+		document.dataentry.submit();
+	}
+        </script>
+    </head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Generales / Precios Recompra</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+<center>
+<form name="dataentry" METHOD="POST" action="precios_recompra-update">
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="TABLE-LAYOUT: auto;">
+           <tr CLASS="formCaption">
+            <th COLSPAN="16" ALIGN="center">
+                <FONT class="formCaptionText">
+                  Precios de Recompra( @t_registros@ )
+                </FONT>
+            </th>
+        </tr>
+    
+    <!--encabezados de columna-->
+    
+    <tr class="tableCell">
+		<th width="5%"nowrap></th>	
+		<th width="5%"nowrap></th>
+		<th width="5%"nowrap></th>
+		<th width="10%" nowrap></th>
+		<th>Titulo</th>		
+		<th>Moneda</th>
+		<th>Tipo de Producto</th>
+		<th>Rango Desde</th>
+		<th>Rango Hasta</th>
+		<th>Precio Recompra</th>
+		<th>Tasa Pool</th>
+		<th>Status</th>
+		<th>Usuario Aprobador</th>
+		<th>Fecha Aprobaci&oacute;n</th>
+		<th>Usuario</th>
+		<th>Fecha Actualizaci&oacute;n</th>
+		
+	</tr>
+
+    <!--data-->
+    <precios_recompra>
+    <input type="hidden" value="@titulos_id_registro@" name="titulos_id_registro"></input>
+    <tr class="tableCell">
+		<td align="center" width="3%" name="definicion" id="definicion">
+			<a href="precios_recompra-confirm?id=@titulos_id_registro@"><IMG SRC="../images/infi_gn_delete.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Eliminar Registro" BORDER="0" style="cursor:hand"></a>
+			<input type="hidden" name="indice" value="@_row@"/>
+		</td>
+		<td align="center" width="3%" name="definicion" id="definicion">
+			<a href='precios_recompra-addnew?titulo_id=@titulo_id@'><IMG SRC="../images/infi_gn_doc.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Agregar Registro" BORDER="0" style="cursor:hand"></a>
+			<input type="hidden" name="indice" value="@_row@"/>
+		</td>
+		
+		<td align="center" width="3%"name="definicion" id="definicion">
+			<a href="precios_recompra-confirm_aprobar?titulo_id=@titulo_id@&tipo_producto_id=@tipo_producto_id@"><IMG SRC="../images/infi_gn_report.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Aprobar Precio" BORDER="0" style="cursor:hand"></a>                
+		</td>
+		
+		<td  align="center"><b>@_row@</b></td>
+		<td VALIGN="middle" align="left" nowrap>@titulo_id@<input type="hidden" value="@titulo_id@" name="titulo_id"></td>
+		<td align="center" width="25%">
+			<input type="hidden" name="moneda_id_@titulo_id@" value="@moneda_id@">
+			@moneda_id@
+			
+			<!-- select name="moneda_id@_row@">
+			<moneda_id>
+				<option  value="@moneda_id@">@moneda_descripcion@</option>
+			</moneda_id>
+			</select-->
+		</td>
+		<td  align="left" width="18%"> 
+			@nombre_tipo_producto@
+			<input type="hidden" name="tipo_producto_id" value="@tipo_producto_id@" />
+     		   	
+     	</td>    
+		<td  align="center" width="18%"><input align="right" type="text" name="titulo_rango_invertido_desde"  value="@titulo_rango_invertido_desde@" maxlength="12" size="12" onkeypress="solo_numericos()"/></td>
+		<td  align="center" width="18%"><input type="text" name="titulo_rango_invertido_hasta"  value="@titulo_rango_invertido_hasta@" maxlength="12" size="12" onkeypress="solo_numericos()"/></td>
+		<td  align="center" width="18%"><input type="text" name="titulos_precio_recompra"  	  value="@precio_recompra@" maxlength="10" size="10" onkeypress="EvaluateText('%f',this)"/></td>
+		<td  align="center" width="18%"><input type="text" name="tasa_pool"  	  value="@tasa_pool@" maxlength="10" size="10" onkeypress="EvaluateText('%f',this)"/></td>
+		<td  align="left" nowrap>@status@</td>
+		<td  align="left" nowrap>@usuario_id_aprobador@</td>
+		<td  align="center" nowrap>@fecha_aprobacion@</td>
+		<td  align="left" nowrap>@usuario_id_act@</td>
+		<td  align="center" nowrap>@fecha_act@</td>
+		
+	    
+     </tr>
+     </precios_recompra>
+    
+    </table>
+    <BR>
+    
+    @page_index@
+   
+	<button type="button" ONCLICK="javascript:editar();" @deshabilitar_procesar@>&nbsp;Procesar&nbsp;</button>&nbsp;
+    &nbsp;<button type="button" onclick="window.location='precios_recompra-filter'"">Regresar</button>
+    &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+    <input type="hidden" value="@titulo_id@" name="titulo_id">
+    <input type="hidden" value="@titulo_descripcion@" name="titulo_descripcion">
+</form>
+</center>
+<script type="text/javascript">
+function makeDoubleDelegate(function1, function2) {
+		return function() {
+		if (function1)
+		function1();
+		if (function2)
+			function2();
+	}
+}
+///window.onload = makeDoubleDelegate(window.onload,seleccionarMoneda());
+</script>
+</body>
+</html>

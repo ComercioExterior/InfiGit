@@ -1,0 +1,46 @@
+<html>
+	<head>         
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />	
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>    
+        <script type="text/javascript"> 
+        </script>
+    </head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">		
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Monedas /  Tasas de Cambio</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+<center>
+<br>
+    <table border="0" cellspacing="1" cellpadding="2" width="65%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th  COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Este registro no posee Tasas Asociadas.
+                </FONT>
+            </th>
+        </tr> 
+	</table>
+    <BR>
+<form>
+    <button type="button" ONCLICK="window.location='moneda_tasa_de_cambio-addnew'">&nbsp;Agregar&nbsp;</button>
+	&nbsp;<button ONCLICK="history.back()">&nbsp;Regresar&nbsp;</button>
+     &nbsp;<button ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+</form>
+</center>
+</body>
+</html>

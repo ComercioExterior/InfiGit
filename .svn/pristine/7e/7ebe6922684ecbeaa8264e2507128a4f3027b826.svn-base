@@ -1,0 +1,120 @@
+
+<HTML>
+    
+    <HEAD>
+        <!--LINK REL="stylesheet" type="text/css" href="../megasoft.css"/-->
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css"/>
+        <TITLE>Sistema INFI - Seguridad</TITLE>
+    </HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+    <BODY ONLOAD="javascript:{document.forms[0].elements[0].focus();if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Seguridad / Roles-Men&uacute;</FONT>
+        </TD>
+   <!-- help online -->
+   <!--TD class="headerBox" valign="middle" align="right"><img border="0" src="@url_images@ayuda.gif" width="17" height="17"  onclick="helpOpen();" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" ></TD-->
+   <!-- fin help online --></TR>
+</TABLE>
+        
+        <CENTER>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="menu_role-update">
+		
+        <table border="0" cellspacing="1" cellpadding="2" width="75%" class="dataform">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="2" ALIGN="center" width="50%">
+                <FONT class="formCaptionText">
+                 Asociar Menu
+                </FONT>
+            </th>
+        </tr>
+        
+        <!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Rol (alias corto):*
+            </td>
+            <td>
+            <INPUT TYPE="TEXT" VALUE="@rolename@" NAME="rolename" SIZE="30" MAXLENGTH="50" class="inputControl" READONLY/>
+            </td>
+        </tr>
+                
+        <!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Descripci&oacute;n:*
+            </td>
+            <td>
+            <INPUT TYPE="TEXT" VALUE="@description@" NAME="description" SIZE="30" MAXLENGTH="100" class="inputControl" READONLY/>
+            </td>
+        </tr>
+        
+         <tr CLASS="formElement">
+            <td CLASS="formLabel">
+                    Aplicaci&oacute;n:*
+            </td>
+            <td>
+				<SELECT NAME="id_application" SIZE=1 ONCHANGE="javascript:document.dataentry.action='menu_role-edit?band=1'; document.dataentry.submit();"/>
+				<OPTION VALUE="" SELECTED/></OPTION>
+				<rows_app>				 
+				 <OPTION VALUE="@id_application@"/>@description@ - @siglas_applic@</OPTION>
+ 				</rows_app>
+ 				</SELECT>
+               
+            </td>
+        </tr>
+        
+                
+  <!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+                    Opciones del Men&uacute;:*
+            </td>
+            <td>
+                <!--tabla de data-->
+	    
+   		<rows>
+          		<tr>
+ 			<td align="center">
+				<INPUT TYPE="checkbox" NAME="menusel" class="inputControl"  VALUE="@id@"/>
+          			 
+                	</td>
+                	<td>
+                		@tab@ @st_nombre@ <INPUT TYPE="HIDDEN" VALUE="@nu_parent@" NAME="nu_parent_@id@" SIZE="20" MAXLENGTH="20" class="inputControl" />
+                	</td>
+     			</tr>
+     		</rows>
+             </table>
+            </td>
+        </tr>
+
+        </table>
+         
+         	<br>
+            <!--INPUT TYPE="submit" VALUE="Grabar"/-->
+            <button style="cursor:hand" onclick="submit();">Grabar</button>
+            <SPAN> </SPAN>
+            <!--input TYPE="BUTTON" ONCLICK="history.back();" VALUE="Cancelar" /-->
+            <button style="cursor:hand" onclick="history.back();">Cancelar</button>
+
+            <!--campo escondido para almacenar el key del record-->
+            <INPUT TYPE="hidden" VALUE="@msc_role_id@" NAME="msc_role_id" />
+
+    </form>
+
+        
+        </CENTER>
+        
+    </BODY>
+
+</HTML>
+

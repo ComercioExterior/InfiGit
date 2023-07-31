@@ -1,0 +1,57 @@
+<HTML>
+	<HEAD>
+		<TITLE>Sistema INFI</TITLE>
+    	<LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+    	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		<SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+		<script language="javascript" src="../js/default.js"></script>   
+		
+	</HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    	<TR>
+        	<TD class="headerBox">                
+            	<FONT class="headerText">Eventos / Consultas</FONT>
+       		 </TD>
+        	<!-- help online -->
+   			<TD class="headerBox" valign="middle" align="right">
+   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   			</TD>
+   			<!-- fin help online -->
+        	<td class="headerBox" aling="right"></td>
+        </TR>
+	</TABLE>
+	<CENTER>
+
+	<!--formulario-->
+	<form NAME="dataentry" METHOD="POST" ACTION="pago_cupones-confirm">
+		<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto">
+			 <tr>
+			 <th colspan="1" width="4%"></th>
+			 <th>Descripcion de la Transacci&oacute;n</th>
+			 <th>Fecha Inicio de Proceso</th>
+			 <th>Fecha Fin de proceso</th>
+			 </tr>
+			 <proceso>
+			 <tr>
+			 <td align="center">
+                <a href="javascript:abrirPopupDetalles('detalle-transaccion-proceso-browse?ord_id=@ejecucion_id@','100', '550')"><IMG SRC="../images/infi_gn_document.gif" WIDTH="15" ALIGN="top" HEIGHT="13" title="Detalles de la Transacci&oacute;n" BORDER="0" style="cursor:hand"></a>
+                </td>
+			 <td>@transa_descripcion@</td>
+			 <td align="center">@fecha_inicio@</td>
+			 <td align="center">@fecha_fin@</td>
+			 </tr>
+			 </proceso>
+		</table>
+		<INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/> 	
+
+	<br>
+		&nbsp;<button type="button" onclick="javascript:history.back();">Regresar</button>
+		&nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+	</form>
+	</CENTER>
+</BODY>
+</HTML>

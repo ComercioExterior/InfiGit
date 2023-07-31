@@ -1,0 +1,114 @@
+<html>
+	<head>        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>        
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Toma de orden</title>
+  <link rel="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+  <link rel="stylesheet" type="text/css" href="../css/EstiloFichas.css" />
+  <script type="text/javascript">
+          //Funci&oacute;n para abrir un picklist o limpiar el valor anteriormente seleccionado
+		function showPickList(ind ,id, tx, campo)
+		{
+		   var r
+		   if (ind == '1') {  // llamar a picklist		
+		   	  r = window.open(campo +'?name_id=' + id.name +"&name_tx=" + tx.name, 'Picklist','resizable=yes,scrollbars=yes,width=600,height=450,Left=200,top=150,Status=yes,unadorned:true');
+		   	  
+		   }
+		   else{
+			id.value= "";//limpiar id de cliente
+			tx.value= "<Todos>";//limpiar campo de cliente
+		  }
+		} 
+  </script>
+         <script language="javascript" src="../js/default.js"></script>  
+</head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText"> Ordenes / Consultas / Resumen </FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+  <!--formulario-->
+  	
+ <form NAME="dataentry" METHOD="POST" ACTION="">
+<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">     
+        <!--titulo-->
+        <tr CLASS="dataform">
+            <th COLSPAN="6" ALIGN="center">
+                <FONT class="dataform">
+                 Unidad de Inversi&oacute;n:&nbsp;&nbsp;@undinv_nombre@
+                </FONT>
+            </th>
+        </tr>
+    <tr>
+		<td COLSPAN="1" class="negrita" background="yellow">Veh&iacute;culo Tomador:</td><td COLSPAN="1">@vehiculo_tomador_nombre@</td>
+		<td colspan="1" class="negrita">Veh&iacute;culo Colocador:</td><td colspan="1">@vehiculo_colocador_nombre@</td>
+		<td colspan="1" class="negrita">Veh&iacute;culo Recompra:</td><td colspan="1">@vehiculo_recompra_nombre@</td>
+		
+	</tr>
+	<tr>
+		<td colspan="2" class="negrita">Ordenes</td><td colspan="1" align="right">@ordenes@</td>
+		<td colspan="2" class="negrita" >Porcentaje</td><td colspan="1" align="right">@porcentaje format-mask='##.##'@&nbsp;&nbsp;%</td>
+	</tr>
+	<tr>
+		<td colspan="2" class="negrita">Monto Total</td><td colspan="1" align="right">@total format-mask='#,###,###.00'@ @m_bs_rep@</td>
+		<td colspan="2" class="negrita">Monto Total %</td><td colspan="1" align="right">@porcentaje_unidad@ %</td>
+	</tr>
+</table>
+         <br>
+</TABLE>
+<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;"> 
+                 <!--titulo-->
+        <tr CLASS="dataform">
+            <th COLSPAN="6" ALIGN="center">
+                <FONT class="dataform">
+                 Veh&iacute;culos asociados a la Unidad de Inversi&oacute;n:&nbsp;&nbsp;@undinv_nombre@
+                </FONT>
+            </th>
+        </tr>
+    
+    <tr>
+    <th>Veh&iacute;culo Tomador</th>
+    <th>RIF</th>
+    <th>Ordenes</th>
+    <th>Monto Total</th>
+	</tr>
+	  <totales_unidad>
+	  <tr>
+	  <td>@vehicu_nombre@</td>
+	  <td align="center">@vehicu_rif@</td>
+	  <td align="right">@ordenes@</td>
+	  <td align="right">@monto_total format-mask='#,###,###.00'@ @m_bs_rep@</td>
+	  </tr>
+      </totales_unidad>
+         </table>
+         <center>
+         <br>
+         <br>
+         <br>
+ <table>
+         <tr>
+         <td align="center">
+         <button type="button" onclick="window.history.back();">Regresar</button>&nbsp;&nbsp;&nbsp;
+         &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+         </td>
+         </tr>
+ </table>
+ </center>
+</form>
+</body>
+</html>

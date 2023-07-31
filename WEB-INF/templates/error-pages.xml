@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+Este archivo define que templates html se deben cargar
+en caso de que el error contenga cierta frase y se haya
+producido al ejecutar cierto servlet; Los templates deben
+estar contenidos en /web-inf/templates/
+-->
+
+<errors>
+
+    <!--login duplicado cuando se trata de hacer login via J2EE-->
+    <error 
+        servlet="j_security_check" 
+        template="login-duplicado.htm" 
+        key="constraint violation" />
+
+    <error 
+        servlet="ActionServlet" 
+        template="test-error.htm" 
+        key="Invalid keyword" />
+        
+    <error 
+        servlet="ActionServlet" 
+        template="sql-restriccion-error.htm"
+        key="ERROR-CODE:547"/>
+
+    <error 
+        servlet="ActionServlet" 
+        template="sql-restriccion-error.htm"
+        key="ERROR-CODE:2292"/>
+        
+    <error 
+        servlet="ActionServlet" 
+        template="formato-fecha-error.htm"
+        key="UITIT0001"/>  
+        
+    <error 
+        servlet="ActionServlet" 
+        template="fwrk_sec_0001.htm"
+        key="(FWRK-SEC-0001)"/>   
+
+</errors>
+

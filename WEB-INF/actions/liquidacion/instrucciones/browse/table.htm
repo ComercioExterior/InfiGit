@@ -1,0 +1,110 @@
+<html>
+	<head>        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+         <script type="text/javascript">
+        function detalleOrden(nombreFormulario){
+	        var longitud = nombreFormulario.length;
+	        var str=nombreFormulario.substr(8,longitud);
+			document.getElementById(str).submit();
+        } 
+        
+        function regresar(action){
+	        if(action=='1')
+	        {
+	        	document.forms.liquidacion.submit();
+	        }else {
+	        	window.history.back();
+	        }	
+        }
+        </script>
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+			<TD class="headerBox">Liquidaci&oacute;n / Instrucciones de Pago</TD>
+        	<!-- help online -->
+   			<TD class="headerBox" valign="middle" align="right">
+   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   			</TD>
+   			<!-- fin help online -->
+		</TR>
+	</TABLE>
+
+   <center>
+	<br>
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable"">
+		<!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Lista de Registros (@t_registros@) para @nombre_unidad@
+                </FONT>
+            </th>
+        </tr>
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto";>
+		<!--encabezados de columna-->
+		<tr class="tableHeader">
+			<th width="2%" nowrap></th>
+    		<th width="4%" nowrap>Orden</th>  
+            <th nowrap >Cliente</th>
+            <th nowrap>Adjudicado</th>
+            <th nowrap >Monto Total</th>  
+            <th nowrap>Pendiente</th>                       
+            <th nowrap>Cobrado</th> 
+            <th nowrap>Financiamiento</th> 
+    	</tr>
+
+		<!--data-->
+	   <ordenes>
+    	<tr class="tableCell">
+    	<td align="center">
+                <a href="javascript:detalleOrden('19569633@ordene_id@');"><IMG SRC="../images/infi_gn_document.gif" WIDTH="15" ALIGN="top" HEIGHT="13" title="Detalles de la Orden" BORDER="0" style="cursor:hand"></a>
+                </td>
+            <form id="@ordene_id@" name="@ordene_id@" action="asociar_instrucciones_detalles" method="post" target="_blank">
+            <input type="hidden" value="@ordene_id@" name="ordene_id">
+            <input type="hidden" value="@client_id@" name="client_id"> 
+            </form>
+		<td align="center">@ordene_id@</td>
+		<td align="left" nowrap="nowrap">@client_nombre@</td>
+		<td align="right"  nowrap="nowrap">@ordene_adj_monto format-mask='#,###,###.00'@</td>
+		<td align="right"  nowrap="nowrap">@ordene_ped_total format-mask='#,###,###.00'@</td>
+		<td align="right"  nowrap="nowrap">@monto_pendiente format-mask='#,###,###.00'@</td>
+		<td align="right"  nowrap="nowrap">@cobrado format-mask='#,###,###.00'@</td>
+		<td align="right"  nowrap="nowrap">@ordene_ped_total_pend format-mask='#,###,###.00'@</td>
+		</tr>
+	   </ordenes>
+	   <tr class="tableCell">
+		<td align="center">&nbsp;</td>
+		<td align="center">&nbsp;</td>
+		<td align="left" nowrap="nowrap"><b>TOTALES</b></td>
+		<td align="right"  nowrap="nowrap">@monto_adjudicado@</td>
+		<td align="right"  nowrap="nowrap">@monto_total@</td>
+		<td align="right"  nowrap="nowrap">@total_pendiente format-mask='#,###,###.##'@</td>
+		<td align="right"  nowrap="nowrap">@total_cobrado format-mask='#,###,###.##'@</td>
+		<td align="right"  nowrap="nowrap">@total_financiamiento format-mask='#,###,###.##'@</td>
+		</tr>
+	</table>
+	<BR>
+	<!--  @page_index@-->
+    <BR>
+    <BR>
+		<br>
+		&nbsp;
+    	<button TYPE="button" onclick="regresar(@action_liquidacion@)">Regresar</button>
+		&nbsp;
+		<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+   </center>
+   <form action="proceso_liquidacion_blotter-find" name="liquidacion">
+   	<input type=hidden name="unidad_inversion" value="@unidad_inversion@&@nombre_unidad@">
+   </form>
+</body>
+</html>

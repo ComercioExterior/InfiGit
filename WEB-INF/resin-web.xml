@@ -1,0 +1,18 @@
+<web-app>
+
+  <classpath id='WEB-INF/classes' source='WEB-INF/source' compile='true'/>
+
+  <session-config>
+
+    <reuse-session-id>true</reuse-session-id>
+
+    <!--
+	Descomentar esto si quiere preservar sesiones
+	cuando se recarga la aplicacion - util para modo desarrollo-->
+	<!-- file-store>WEB-INF/sessions</file-store-->
+    
+
+  </session-config>
+
+</web-app>  
+

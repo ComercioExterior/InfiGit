@@ -1,0 +1,64 @@
+<html>
+
+	<head>
+        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+     	
+     	<script language="javascript">
+    </script>
+     
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Auditor&iacute;a / Consulta Transacciones / Par&aacute;metros</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="TABLE-LAYOUT: auto; ">
+
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+	  <th colspan="2" nowrap>Par&aacute;metros Auditados</th>     
+    </tr>
+	<tr class="tableHeader">
+	  <th nowrap width="50%">Par&aacute;metro</th>     
+	  <th nowrap>Valor</th>
+    </tr>
+    <!--data-->
+	@parametros@
+
+ </table>
+
+    <BR>  
+<button type="button" onclick="window.close();">Cerrar</button>
+  
+	<!--campo escondido para almacenar el key del record-->    
+	
+</center>
+
+</form>
+
+</body>
+
+</html>
+

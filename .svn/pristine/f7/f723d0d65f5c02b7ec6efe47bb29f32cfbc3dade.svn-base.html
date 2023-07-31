@@ -1,0 +1,164 @@
+<html>
+	<head> 
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        <script type="text/javascript">
+         function  estatus(estado){
+        	if(estado=='ver')
+        	{
+				var elementos = document.getElementsByName('banco')
+				for (var i = 0; i < elementos.length; i++ )
+				{
+					elementos[i].style.display ="block";
+					var indicador = document.getElementById('indicador')
+					indicador.value ='1'
+					
+				}
+				botonO.style.display ="block";
+				botonA.style.display ="none";
+				
+			}/* Fin del if*/
+			if(estado=='ocultar')
+			{
+				var elementos = document.getElementsByName('banco')
+				for (var i = 0; i < elementos.length; i++ )
+				{
+					elementos[i].style.display ="none";
+					var indicador = document.getElementById('indicador')
+					indicador.value ='0'
+				} /*Fin del For*/
+				botonA.style.display ="block";
+				botonO.style.display ="none";
+			} /*Fin del If*/
+			} /*Fin de la Funcion estatus*/
+			
+			function agregar_internacional(){
+				//document.forms.dataentry.target='myNewWin';
+				//document.forms.dataentry.action='cheques_sesion-up'
+				//sendme();
+	        	window.open('transferencias_internacionales');
+	        }
+	        
+	        function eliminar_proceso_sesion(row){
+	        	//document.forms.dataentry.target='myNewWin';
+				//document.forms.dataentry.action='cheques_sesion-up'
+				//sendme();
+	        	window.open('eliminar_proceso-sesion?row='+row);
+	        }
+	        function sendme() 
+			{ 
+			    window.open("cheques_sesion-up","myNewWin","width=1,height=1,toolbar=0"); 
+			    var a = window.setTimeout("document.dataentry.submit();",500); 
+			    window.close();
+			} 
+			function procesar(){
+				if(confirm('Confirme si desea ejecutar la transacción?'))
+			{
+				document.forms.dataentry.target='';
+				document.forms.dataentry.action='gestion_pago_cheque-insert';
+				document.forms.dataentry.submit();
+			}else{
+		
+			}
+			}
+			
+			function habilitar(){
+			var seleccion = document.getElementById('seleccion')
+			var boton = document.getElementById('boton_internacional')
+			if(seleccion.value=='internacionales')
+				boton.disabled=false
+				boton.enabled=true
+			}
+        </script>
+    </head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};habilitar()">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Pagos Pendientes</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+<center>
+
+<br>
+<form name="dataentry" action="gestion_pago_cheque-insert" method="post" target="">
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+        
+        <cheques>
+       </cheques>
+       <transferencias_internacionales>
+       </transferencias_internacionales>
+       
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                  Transferencias nacionales &nbsp;&nbsp;Cliente : @nombre@
+                </FONT>
+            </th>
+        </tr>
+
+	</table>
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+    
+    <!--encabezados de columna-->
+    <tr>         
+              <th nowrap>Nombre del beneficiario</th>
+              <th nowrap>C&eacute;dula del Beneficiario</th>            
+              <th nowrap>Cuenta</th>
+              <th nowrap>Monto de la Operaci&oacute;n</th>                                  
+    </tr>
+    <!--data-->
+    	<transferencias>
+    	</transferencias>
+    	
+    		<tr class='tableCell'>
+    		<td nowrap align='center'>
+    		<input type='text' value='@nombre@' size="35" name='nombre_transferir_nacional' maxlength="100" readonly="readonly">
+    		</td>
+    		<td nowrap align="right">
+    		<input type='text' value='@cedula@' name='cedula_transferir_nacional' onkeypress="solo_numericos()" maxlength="10" readonly="readonly"></td>
+    		<td nowrap align='center'>
+    		<select name="cuenta_numero_nacional">
+    		<cuentas>
+    		<option value="@numero@">@tipo@-@numero@</option>
+    		</cuentas>
+    		</select>
+    		</td>
+    		<td nowrap align='center'>
+    		<input type='text' value='@monto_operaciones_sin_formato@' name='monto_transferir_nacional'  onkeypress="EvaluateText('%f',this)" maxlength='18' readonly></td>
+    		</tr>
+     	
+     	<tr CLASS="formCaption">
+            <th COLSPAN="4" ALIGN="left">
+                <FONT class="formCaptionText">
+                  <b>@mensaje_error_cuentas_cte@</b>
+                </FONT>
+            </th>
+        </tr>
+    </table>
+     <P><FONT COLOR="red"><B>Nota : La suma de los montos debe ser igual a : @operaciones_monto format-mask='##,###,###,###.##'@ &nbsp;@moneda@</B></FONT></P>
+    &nbsp;
+    &nbsp;
+    <BR>
+    <input type="hidden" value="@seleccion@" id="seleccion">
+	<button type="button" onclick="javascript:procesar();">Procesar</button>&nbsp;&nbsp;
+	<button type="button" onclick="javascript:agregar_internacional()" disabled="disabled" id="boton_internacional">Internacional</button>
+    &nbsp;<button type="button" onclick="window.location='gestion_pago-seleccion'">Regresar</button>
+    &nbsp;<button type="button" onclick="window.location='gestion_pago_cheque-filter'">&nbsp;Salir&nbsp;</button>
+</form>
+</center>
+</body>
+</html>

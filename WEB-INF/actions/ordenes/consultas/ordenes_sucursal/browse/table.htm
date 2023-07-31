@@ -1,0 +1,96 @@
+<html>
+	<head>
+        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        <script type="text/javascript">
+        function detalleOrden(nombreFormulario){
+	        var longitud = nombreFormulario.length;
+	        var str=nombreFormulario.substr(8,longitud);
+			document.getElementById(str).submit();
+        }
+          
+        </script>
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Ordenes / Consultas / Ordenes por Sucursal</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+<center>
+<br>
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">       
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Ordenes ( @t_registros@ )
+                </FONT>
+            </th>
+        </tr> 
+	</table>	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">   
+    <!--encabezados de columna-->
+    <tr>   
+    		<th colspan="1" width="4%"></th>
+            <th width="13%">Sucursal</th>            
+            <th width="12%">Fecha</th>
+            <th width="12%">Orden</th>
+            <th nowrap>Transacci&oacute;n Negocio</th>
+            <th>Unidad de Inversi&oacute;n</th>
+            <th>Status</th>                                         
+    </tr>
+    <!--data-->
+     <sucursales>
+    <tr class="tableCell">
+                <td align="center">
+                <a href="javascript:detalleOrden('19569633@ordene_id@');"><IMG SRC="../images/infi_gn_document.gif" WIDTH="15" ALIGN="top" HEIGHT="13" title="Detalles de la Orden" BORDER="0" style="cursor:hand"></a>
+                </td>
+                <form id="@ordene_id@" name="@ordene_id@" action="detalle_orden-find" method="post" target="_blank"><input type="hidden" value="@ordene_id@" name="ord_id"> </form>
+                <td VALIGN="middle">                
+				@ordene_usr_sucursal@
+                </td>
+                <td align="center">
+				@ordene_ped_fe_orden@
+                </td>                
+                <td align="center">
+				@ordene_id@
+                </td>
+                
+                <td>
+                @transa_descripcion@
+                </td>    
+                                
+                <td align="left">
+				@undinv_nombre@
+                </td>
+                <td align="left">
+				@ordsta_nombre@
+                </td>
+     </tr>
+      </sucursales>
+    </table>
+    <BR>
+    @page_index@
+<form>
+    <button type="button" onclick="window.location='ordenes_sucursal-filter'">Regresar</button>
+     &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+</form>
+</center>
+</body>
+</html>

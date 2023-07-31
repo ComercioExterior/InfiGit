@@ -1,0 +1,85 @@
+<html>
+
+	<head>
+
+    	<script language="javascript" src="../js/default.js"></script>
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstiloAyudaContent.css" />
+
+	    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE" />
+	    <META HTTP-EQUIV="EXPIRES" CONTENT="-1" />
+
+        <TITLE>Sistema SEPA - Seguridad Para Aplicaciones</TITLE>
+
+<script type="text/javascript">
+ 
+ function OcultarMostrarObjeto(tb){
+ 	
+ 	if(document.getElementById(tb).style.display=='none')
+ 		document.getElementById(tb).style.display='block';
+ 	else
+ 		document.getElementById(tb).style.display='none';
+ 		
+ }; 
+ 
+ </script>
+
+
+    </head>
+
+<body>
+
+<form NAME="dataentry" METHOD="POST" ACTION="help-view" TARGET="ayuda">
+
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%" border=1 class="dataform">
+    <TR HEIGHT="32">
+        <TD class="headerBox"> &nbsp;               
+            <font class="headerText">
+            <INPUT TYPE="text" SIZE="15" MAXLENGTH="30" NAME="texto_buscar" /> &nbsp;&nbsp;
+            <button style="cursor=hand" title="Buscar en Contenido" Onclick="submit();"  >Buscar</button>
+            </font>
+        </TD>
+</TR>
+</TABLE>
+<hr>
+
+<TABLE border="0" WIDTH="100%" class="form">
+
+<TR VALIGN="TOP">
+	<TD align="left" class="headerBox">
+
+	Contenido
+
+	</TD>
+</TR>
+
+<TR VALIGN="TOP" WIDTH="1%" >
+	<TD align="center" >
+
+	@contenido@
+
+
+	</TD>
+</TR>
+
+
+	</TABLE>
+	</TD>
+</TR>
+
+</TABLE>
+
+
+<BR>
+<BR>
+
+
+</form>
+
+</body>
+
+
+
+</html>
+
+

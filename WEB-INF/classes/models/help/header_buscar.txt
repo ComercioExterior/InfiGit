@@ -1,0 +1,31 @@
+<html>
+
+	<head>
+        
+        <script language="javascript" src="../js/default.js"></script>
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+
+        <TITLE>Sistema SEPA - Seguridad Para Aplicaciones</TITLE>
+	
+    </head>
+
+<body>
+
+<center>
+<TABLE border="0" height="1%">
+<TR VALIGN="TOP" WIDTH="1%"  HEIGHT="1%">
+<TD>
+  <p align="center"><b>Resultado de B&uacute;squeda en Contenidos de Ayuda</b></p>
+</TD>
+</TR>
+</TABLE>
+
+<br>
+
+
+@result@
+
+<br><br><br><br>
+</boby>
+
+</html>

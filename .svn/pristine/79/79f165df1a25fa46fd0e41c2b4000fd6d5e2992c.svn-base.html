@@ -1,0 +1,52 @@
+<html>
+
+<head>
+	<title>Sistema INFI</title>
+	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+	<script language="javascript" src="../js/default.js"></script>	
+	<script language="JavaScript" src="../js/popcalendar.js"></script>
+	<script language="JavaScript" src="../js/decimal.js"></script>
+</head>
+
+<body
+	ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+	<center>
+	
+	
+	<form NAME="dataentry" METHOD="POST" ACTION="activacion_unidad_inversion-update">		
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform" style="TABLE-LAYOUT: auto; ">        
+        <!--titulo-->
+        <tr>
+            <td COLSPAN="3" ALIGN="center" nowrap>
+                 <b>@mensaje@</b>
+            </td>
+        </tr>
+        <tr class="tableCell">
+			<td align="center" nowrap>
+			<b>Unidad de Inversi&oacute;n en Proceso:</b> @undv_procesar@
+			</td>			
+		</tr>
+        </table>	
+        
+         <INPUT TYPE="hidden" VALUE="@undinv_id@" NAME="idUnidadInversion"/> 
+
+            <br>
+            <button TYPE="submit">Procesar</button>
+            &nbsp;<button type="button" onclick="javascript:history.back();">Regresar</button>
+            &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+			
+			<input type="hidden" name="ui_id" value="@id_undv_procesar@">
+			<input type="hidden" name="condicion_activacion" value="@condicion_activacion@">
+			
+			<input type="hidden" name="undv_procesar" value="@undv_procesar@">
+			<input type="hidden" name="nombre_condicion_activacion" value="@nombre_condicion_activacion@">
+
+    </form>
+ 
+	
+	</center>
+
+</body>
+
+</html>

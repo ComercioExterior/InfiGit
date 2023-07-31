@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+    <!--
+    
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, decimal, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+    
+    -->
+    
+        <field 
+        name="idUnidadInversion" 
+        type="varchar" 
+        description="Identificador de la Unidad de Inversion"
+        nullable="1"
+        size="10" />    
+    
+        <field 
+        name="idBlotter" 
+        type="varchar" 
+        description="Identificador del Blotter"
+        nullable="1"
+        size="100" />
+        
+        <field 
+        name="trnfin_tipo" 
+        type="varchar" 
+        description="Identificador de la Transacci&oacute;n"
+        nullable="1"
+        size="100" />
+        
+        <field 
+        name="idTipoPersona" 
+        type="varchar" 
+        description="Tipo de Persona"
+        nullable="0"
+        size="10" /> 
+        
+   		<field 
+        name="comisionEmisor" 
+        type="varchar" 
+        description="Comisi&oacute;n del Emisor"
+        nullable="0"
+        size="7" /> 
+        
+   		<field 
+        name="maxFinanciamiento" 
+        type="varchar" 
+        description="Porcentaje Maximo de Financiamiento"
+        nullable="1"
+        size="7" />    
+        
+        <field 
+        name="montoMinimoInversion" 
+        type="varchar" 
+        description="Monto Minimo (solo Inventario)"
+        nullable="1"
+        size="10" />
+        
+        <field 
+        name="montoMaximoInversion" 
+        type="varchar" 
+        description="Monto maximo (solo Inventario)"
+        nullable="1"
+        size="10" /> 
+        
+       <field 
+        name="precioMinimo" 
+        type="varchar" 
+        description="Precio Minimo (solo Subasta)"
+        nullable="1"
+        size="7" />                                      
+                
+       <field 
+        name="precioMaximo" 
+        type="varchar" 
+        description="Precio Maximo (solo Subasta)"
+        nullable="1"
+        size="7" />    
+                    
+		<field 
+        name="cantMinimaInversion" 
+        type="varchar" 
+        description="Cantidad Minima (solo Subasta)"
+        nullable="1"
+        size="12" /> 
+                
+        <field 
+        name="cantMaximaInversion" 
+        type="varchar" 
+        description="Cantidad Maximo (solo Subasta)"
+        nullable="1"
+        size="12" />
+        
+        <field 
+        name="tasaPropuestaMinima" 
+        type="varchar" 
+        description="Tasa propuesta Minima (solo Subasta Divisas)"
+        nullable="1"
+        size="12" /> 
+                
+        <field 
+        name="tasaPropuestaMaxima" 
+        type="varchar" 
+        description="Tasa propuesta Maxima (solo Subasta Divisas)"
+        nullable="1"
+        size="12" />  
+        
+        <field 
+        name="montoMinimoAltoValor" 
+        type="varchar" 
+        description="Monto minimo para asignacion de tasas alto valor (SIMADI)"
+        nullable="1"
+        size="12" />           
+        
+        <field 
+        name="origen" 
+        type="varchar" 
+        description="Origen de la transaccion"
+        nullable="1"
+        size="12" />    
+        
+        <field 
+        name="trnfin_id_op" 
+        type="varchar" 
+        description="Tipo de Operacion: Efectivo o Transferencia"
+        nullable="1"
+        size="12" />                          
+                        
+</record>

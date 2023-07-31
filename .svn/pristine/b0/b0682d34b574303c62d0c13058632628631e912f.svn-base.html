@@ -1,0 +1,109 @@
+<HTML>  
+    <HEAD>
+    	<LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+         <SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css"/>
+        <TITLE>Sistema INFI</TITLE>
+    </HEAD>
+    
+   <!--poner el focus en el 1er control de la forma-->
+<BODY>
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Mensajes Interfaces</FONT>
+        </TD>
+        
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+        <td class="headerBox" aling="right"></td>
+</TABLE>
+        
+        <CENTER>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="mensajes_interfaces-browse">
+		
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="2" ALIGN="center">                
+                  Buscar               
+            </th>
+        </tr>
+        
+       <tr CLASS="formElement">
+            <td  CLASS="formLabel" width="20%">
+            Tipo de Mensaje:*
+            </td>
+            <td CLASS="formLabel">
+            <SELECT NAME="tipo_mensaje" CLASS="inputControl">
+            <rows_tm>
+			<OPTION VALUE="@tipo_mensaje_id@">@tipo_mensaje_desc@</OPTION>
+			</rows_tm>
+			</SELECT>
+			</td>
+        </tr>   
+        
+        <!--campo-->
+     <tr CLASS="formElement">
+            <td  CLASS="formLabel" width="20%">
+            Status Mensaje:*
+            </td>
+            <td  CLASS="formLabel">
+            <SELECT NAME="enviado" CLASS="inputControl">
+			<OPTION VALUE="0">No Enviados</OPTION>
+			<OPTION VALUE="1">Enviados</OPTION>
+			</SELECT>
+			</td>
+        </tr>
+                
+        <tr>
+            <td class="formLabel2">
+				Fecha Desde:*
+            </td>
+            <td class="formLabel2">
+				<INPUT TYPE="TEXT" VALUE="@fecha_less60@" NAME="fecha_desde" SIZE="12" MAXLENGTH="10" class="inputControl" readonly /> 
+				<a onclick="popUpCalendar(this, fecha_desde, 'dd-mm-yyyy')">
+				<IMG SRC="../images/infi_gn_calendar.gif" class="boton" TITLE="Seleccionar Fecha"/>
+				</a>
+			</td>
+        </tr>
+        <!--campo-->
+        <tr>
+            <td class="formLabel2">
+				Fecha Hasta:*
+            </td>
+            <td>
+				<INPUT TYPE="TEXT" VALUE="@fecha_actual@" NAME="fecha_hasta" SIZE="12" MAXLENGTH="10" class="inputControl" readonly/> 
+				<a onclick="popUpCalendar(this, fecha_hasta, 'dd-mm-yyyy')">
+				<IMG SRC="../images/infi_gn_calendar.gif" TITLE="Seleccionar Fecha"/> 
+				</a>
+			</td>
+        </tr> 
+         </table>
+         <!--nota sobre los campos obligatorios-->
+            <P><FONT COLOR="red"><B>Nota:</B></FONT> Los campos con * deben ser llenados para poder procesar el formulario.</P>
+              			             
+            
+            <SPAN> </SPAN>
+         
+         <INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/>
+            <br>
+            <button TYPE="submit">Procesar</button>
+         
+                        <SPAN> </SPAN>
+            <button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+    </form>
+        </CENTER>      
+</BODY>
+</HTML>

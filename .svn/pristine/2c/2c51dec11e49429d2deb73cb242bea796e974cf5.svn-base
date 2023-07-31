@@ -1,0 +1,15 @@
+ 				
+ 				<SELECT NAME="titulo_id" SIZE="1" ONCHANGE="javascript:bloquearMoneda();"/>				
+					<OPTION VALUE="" SELECTED/>Todos</OPTION>
+					
+					<rows_tit>				 
+					 <OPTION VALUE="@titulo_id@"/>@titulo_descripcion@</OPTION>				 
+								 
+	 				</rows_tit>
+	 			</SELECT> 				
+ 
+	    
+	
+	    
+    	
+ 

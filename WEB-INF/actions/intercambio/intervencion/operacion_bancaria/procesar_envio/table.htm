@@ -1,0 +1,56 @@
+<HTML>
+
+<HEAD>
+<LINK REL="stylesheet" type="text/css"
+	href="../js/calendar/popcalendar.css" />
+<SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+
+<script language="javascript" src="../js/default.js"></script>
+<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+
+<TITLE>Sistema INFI</TITLE>
+
+<script type="text/javascript">
+	function regresar() {
+		window.location = "intercambio_intervencion_bancaria_operacion-filter";
+	}
+</script>
+
+</HEAD>
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+	<TABLE border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+			<TD class="headerBox"><FONT class="headerText">Env&iacute;o BCV / Interbancaria</FONT></TD>
+			
+			<TD class="headerBox" valign="middle" align="right"><img
+				border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17"
+				onclick="helpOpen(window.document.location.href);"
+				style="cursor: hand" title="Mostrar ayuda en l&iacute;nea"></TD>
+			<td class="headerBox" aling="right"></td>
+	</TABLE>
+
+	<CENTER>
+
+		<form NAME="dataentry" METHOD="POST" ACTION="">
+
+			<table border="0" cellspacing="1" cellpadding="2" width="100%"
+				class="dataform" style="TABLE-LAYOUT: auto;">
+
+				<!--titulo-->
+				<tr>
+					<td COLSPAN="3" ALIGN="center" nowrap><b>El proceso de
+							env&iacute;o a BCV se ha iniciado. Para mas detalles verifique la
+							consulta de procesos con el nombre INTERVENCION_INTERBAN</b></td>
+				</tr>
+			</table>
+			<br> &nbsp;
+			<button type="button" onclick="regresar()">Regresar</button>
+		</form>
+
+	</CENTER>
+
+</BODY>
+
+</HTML>
+

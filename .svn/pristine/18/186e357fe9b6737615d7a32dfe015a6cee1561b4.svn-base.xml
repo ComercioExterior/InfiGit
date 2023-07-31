@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="infi" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+ 
+  <!--Web de WebSphere-->
+  <display-name>infi</display-name>
+
+  <context-param>
+    <param-name>datasource</param-name>
+    <param-value>jdbc/infi</param-value>
+    <!--description>DataSource principal de la aplicacion</description>-->
+  </context-param>
+
+  <context-param>
+    <param-name>datasource-perflog</param-name>
+    <param-value>jdbc/infi</param-value>
+    <!--description>DataSource para performance-log</description-->
+  </context-param>
+ 
+
+  
+  <context-param>
+    <param-name>datasource-security</param-name>
+    <param-value>jdbc/security</param-value>
+    <!--description>DataSource para seguridad - registro de logins</description-->
+  </context-param>
+
+  <context-param>
+    <param-name>template-dir</param-name>
+    <param-value>/WEB-INF/templates/</param-value>
+    <!--description>Directorio de plantillas de la aplicacion - debe estar dentro del contexto</description-->
+  </context-param>
+
+  <context-param>
+    <param-name>enable-perflog</param-name>
+    <param-value>false</param-value>
+    <!--description>Activar/Desactivar performance log de servlets - true|false</description-->
+  </context-param>
+
+  <context-param>
+    <param-name>enable-login-trace</param-name>
+    <param-value>false</param-value>
+    <!--description>Activar/Desactivar traza de logins y sesiones en BD - true|false</description-->
+  </context-param>
+
+  <context-param>
+    <param-name>print-out-enabled</param-name>
+    <param-value>true</param-value>
+    <!--description>Activar/Desactivar la impresi&oacute;n del m&eacute;todo _printOut() en los modelos</description-->
+  </context-param>
+
+  <context-param>
+    <param-name>print-err-enabled</param-name>
+    <param-value>true</param-value>
+    <!--description>Activar/Desactivar la impresi&oacute;n del m&eacute;todo _printErr() en los modelos</description-->
+  </context-param>
+
+
+  <!--
+  	
+  	Session Listener
+  	
+  	des-comentar el bloque que aparece abajo
+  	para activar el manejo de la lista de sesiones activas;
+  	este listener se encarga de eliminar los registros
+  	inactivos de la BD (tabla active_sessions)
+  	cada vez que muere una sesion; solo se debe usar
+  	si el context-param "enable-login-trace" = true.
+
+  	OJO: No funciona en WebSphere4 - requiere Servlets API 2.3
+  	
+  	NOTA para WebLogic 6.1 SP1:
+  	Utilizar megasoft.WebLogic61SessionListener como listener-class
+  	y parametrizar el elemento env-entry al final
+  	de este archivo con el valor del context-parameter
+  	datasource-security.
+  	
+
+
+  <listener>
+        <listener-class>megasoft.SessionListener</listener-class>
+  </listener>
+  -->  
+
+	   <!--
+	   <servlet>
+        <servlet-name>AxisServlet</servlet-name>
+        <display-name>Apache-Axis Servlet</display-name>
+        <servlet-class>com.megasoft.soa.webservices.commom.ServletAxis2Init</servlet-class>
+		<!-servlet-class>com.megasoft.soa.webservices.security.ServletAxis2Init</servlet-class
+		<!-servlet-class>org.apache.axis2.transport.http.AxisServlet</servlet-class 
+        <!-<init-param>
+        <!-<param-name>axis2.xml.path</param-name>->
+        <!-<param-value>/WEB-INF/conf/axis2.xml</param-value>->
+        <!-<param-name>axis2.xml.url</param-name>->
+        <!-<param-value>http://localhot/myrepo/axis2.xml</param-value>->
+        <!-<param-name>axis2.repository.path</param-name>->
+        <!-<param-value>/WEB-INF</param-value>->
+        <!-<param-name>axis2.repository.url</param-name>->
+        <!-<param-value>http://localhot/myrepo</param-value>->
+        <!-</init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>AxisAdminServlet</servlet-name>
+        <display-name>Apache-Axis AxisAdmin Servlet (Web Admin)</display-name>
+        <servlet-class>
+            org.apache.axis2.transport.http.AxisAdminServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AxisServlet</servlet-name>
+        <url-pattern>/servlet/AxisServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>AxisServlet</servlet-name>
+        <url-pattern>*.jws</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>AxisServlet</servlet-name>
+        <url-pattern>/services/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>AxisAdminServlet</servlet-name>
+        <url-pattern>/axis2-admin/*</url-pattern>
+    </servlet-mapping>-->
+   
+     <!--Scheduler/Programador de Tareas-->
+
+    <listener>
+        <listener-class>org.quartz.ee.servlet.QuartzInitializerListener</listener-class>
+    </listener>
+    
+  <servlet>
+    <servlet-name>DebugServlet</servlet-name>
+    <!--description>Debug Servlet Output</description-->
+    <servlet-class>megasoft.DebugServlet</servlet-class>
+  </servlet>
+
+  <servlet id="DefaultController">
+    <servlet-name>ActionServlet</servlet-name>
+    <!--description>Default controller of the MVC mechanism</description-->
+    <servlet-class>megasoft.ActionServlet</servlet-class>
+    <init-param>
+      <param-name>enable-log</param-name>
+      <param-value>false</param-value>
+      <!--description>Indica si se activa la traza detallada del mecanismo MVC (true|false)</description-->
+    </init-param>
+    <init-param>
+      <param-name>input-decimal-separator</param-name>
+      <param-value>,</param-value>
+    </init-param> 
+    <load-on-startup>-1</load-on-startup>
+  </servlet>
+
+  <servlet id="ChartServlet">
+    <servlet-name>ChartServlet</servlet-name>
+    <!--description>Graficador Gen&eacute;rico</description-->
+    <servlet-class>megasoft.ChartServlet</servlet-class>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+  
+   <servlet id="ProgramadorSchedulerServlet">
+    <servlet-name>ProgramadorSchedulerServlet</servlet-name>
+    <!--  description>Servlet de inicio del Scheduler</description-->
+    <servlet-class>models.programador_scheduler.ProgramadorSchedulerServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <servlet id="FileServer"> 
+    <servlet-name>fileserver</servlet-name>
+    <!--description>Servir archivos especificados a trav&eacute;s de atributos del request</description-->
+    <servlet-class>megasoft.FileServer</servlet-class>
+  </servlet>
+    
+  <servlet id="ErrorServlet">
+    <servlet-name>ErrorServlet</servlet-name>
+    <!--description>Error Handler Centralizado para manejo de las excepciones generadas por los Servlets</description-->
+    <servlet-class>megasoft.ErrorServlet</servlet-class>    
+    <init-param>
+      <param-name>debug-mode</param-name>
+      <param-value>yes</param-value>
+    </init-param>
+    <init-param>
+      <param-name>error-template</param-name>
+      <param-value>error.htm</param-value>
+    </init-param>
+    <init-param>
+      <param-name>error-template-debug</param-name>
+      <param-value>error-debug.htm</param-value>
+    </init-param>
+    <init-param>
+      <param-name>email-enabled</param-name>
+      <param-value>no</param-value>
+    </init-param>
+    <init-param>
+      <param-name>email-server</param-name>
+      <param-value>www.megaserv.com</param-value>
+    </init-param>
+    <init-param>
+      <param-name>email-address</param-name>
+      <param-value>admin@megaserv.com.ve</param-value>
+    </init-param>
+    <init-param>
+      <param-name>email-subject</param-name>
+      <param-value>Reporte de Error en aplicacion Web</param-value>
+    </init-param>
+    <load-on-startup>3</load-on-startup>
+  </servlet>
+
+  <!--mappings-->
+
+  <!--controller del framework-->
+  <servlet-mapping>
+    <servlet-name>ActionServlet</servlet-name>
+    <url-pattern>/action/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ActionServlet</servlet-name>
+    <url-pattern>/j_login</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ActionServlet</servlet-name>
+    <url-pattern>/j_logout</url-pattern>
+  </servlet-mapping>
+
+  <!--graficador generico-->
+  <servlet-mapping>
+    <servlet-name>ChartServlet</servlet-name>
+    <url-pattern>/getchart</url-pattern>
+  </servlet-mapping>
+
+  <!--error handler-->
+  <servlet-mapping>
+    <servlet-name>ErrorServlet</servlet-name>
+    <url-pattern>/errorhandler</url-pattern>
+  </servlet-mapping>
+
+  <!--Debug handler-->
+  <servlet-mapping>
+    <servlet-name>DebugServlet</servlet-name>
+    <url-pattern>/foundation_debug</url-pattern>
+  </servlet-mapping>
+
+  <!--File Server-->
+  <servlet-mapping>
+    <servlet-name>fileserver</servlet-name>
+    <url-pattern>/fileserver</url-pattern>
+  </servlet-mapping>
+
+  <!--configuraci&oacute;n de la sesion-->
+  <session-config>
+    <session-timeout>90</session-timeout>
+  </session-config>
+
+	<mime-mapping>
+        <extension>inc</extension>
+        <mime-type>text/plain</mime-type>
+    </mime-mapping>
+    
+  <!--pagina de arranque-->
+  <welcome-file-list>
+    <welcome-file>index.htm</welcome-file>
+  </welcome-file-list>
+
+  <!--manejadores centralizados de errorres-->
+  <error-page>
+    <error-code>401</error-code>
+    <location>/error_401.htm</location>
+  </error-page>
+
+  <error-page>
+    <error-code>403</error-code>
+    <location>/error_403.htm</location>
+  </error-page>
+
+  <error-page>
+    <error-code>404</error-code>
+    <location>/error_404.htm</location>
+  </error-page>
+
+  <error-page>
+    <error-code>500</error-code>
+    <location>/errorhandler</location>
+  </error-page>
+
+  <!--Auditoria de Actions	
+	<filter>
+    	<filter-name>MSCUrlLogFilter</filter-name>
+    	<filter-class>com.bdv.trace.MSCFilterUrlAudit</filter-class>
+	</filter>
+
+	<filter-mapping>
+    	<filter-name>MSCUrlLogFilter</filter-name>
+    	<url-pattern>/action/*</url-pattern>
+	</filter-mapping>
+
+	<servlet id="CacheServlet">
+    	<servlet-name>ServletStartCache</servlet-name>
+    	<servlet-class>com.bdv.trace.ServletStartCache</servlet-class>
+    	<load-on-startup>2</load-on-startup>
+	</servlet>
+  Fin Auditoria de Actions-->
+  
+  <!--FIN Scheduler/Programador de Tareas-->
+
+<!--
+	PATCH: este elemento env-entry solo es
+	necesario para WebLogic 6.1 SP1, ya que su soporte
+	para Servlets 2.3 es limitado y la clase
+	HttpSession implementada por WebLogic no implementa
+	el API para acceder al ServletContext y por ende el 
+	SessionListener no tiene acceso a los context-parameters.
+	Este elemento se usa en combinacion con el
+	WebLogic61SessionListener.
+
+
+  <env-entry>
+        <description>DataSource para seguridad - registro de logins</description>
+        <env-entry-name>datasource-security</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>jdbc/security</env-entry-value>
+  </env-entry>
+
+  <env-entry>
+        <description>Tabla de Secuencias de la Fundaci&oacute;n-R6</description>
+        <env-entry-name>sequence-table-name</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>sequence_numbers</env-entry-value>
+  </env-entry>
+
+Sample DataSource SQL Server
+-->
+
+
+</web-app>

@@ -1,0 +1,4 @@
+post_url=http://127.0.0.1/f2-r6/action/sample-webservice?id=123456
+post_content_type=text/xml; charset=utf-8
+post_data=<?xml version="1.0" encoding="utf-8"?>\r\n<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">\r\n  <soap:Body>\r\n    <ListaFacturas xmlns="http://tempuri.org/MisFacturas/EnLinea">\r\n      <Suscriptor>7779179</Suscriptor>\r\n    </ListaFacturas>\r\n  </soap:Body>\r\n</soap:Envelope>\r\n
+

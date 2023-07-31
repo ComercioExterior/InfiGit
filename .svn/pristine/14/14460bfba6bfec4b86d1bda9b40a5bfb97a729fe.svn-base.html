@@ -1,0 +1,153 @@
+<HTML>
+	<HEAD>
+		<TITLE>Sistema INFI</TITLE>
+    	<LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+    	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		<SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+		<script language="javascript" src="../js/default.js">
+		</script> 
+		<script type="text/javascript">
+		 function detalle_proceso(nombreFormulario){
+        window.open('gestion_procesos_browse?proceso='+nombreFormulario);
+        }
+		</script>  
+		
+	</HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    	<TR>
+        	<TD class="headerBox">                
+            	<FONT class="headerText">Eventos / Consultas </FONT>
+       		 </TD>
+        	<!-- help online -->
+   			<TD class="headerBox" valign="middle" align="right">
+   				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   			</TD>
+   			<!-- fin help online -->
+        	<td class="headerBox" aling="right"></td>
+        </TR>
+	</TABLE>
+	
+	<CENTER>
+
+	<!--formulario-->
+	<form NAME="dataentry" METHOD="POST" ACTION="consulta_eventos-exportar">
+		<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto">
+			 <tr>
+			 <th nowrap="nowrap">Detalle</th>
+			 <th nowrap="nowrap">Proceso</th>
+			 <th nowrap="nowrap">Instrucci&oacute;n</th>
+			 <th nowrap="nowrap">Cliente</th>
+			 <th nowrap="nowrap">T&iacute;tulo</th>
+			 <th nowrap="nowrap">Transacci&oacute;n</th>
+			 <th nowrap="nowrap">Status</th>
+			 <th nowrap="nowrap">Moneda Pago</th>
+			 <th nowrap="nowrap">Calculo</th>
+			 <th nowrap="nowrap">Fecha Valor</th>
+			 <th nowrap="nowrap">Fecha Desde</th>
+			 <th nowrap="nowrap">Fecha Hasta</th>
+			 </tr>
+			 <comisiones>
+			 </comisiones>
+			 <calculo>
+			 <tr>
+			  <td align="center">
+			  <div style="display: @disable@">
+                <a href="javascript:detalle_proceso(@proceso_id@)"><IMG SRC="../images/infi_gn_document.gif" WIDTH="15" ALIGN="top" HEIGHT="13" title="Detalles del Proceso" BORDER="0" style="cursor:hand"></a>
+                </td>
+               </div>
+			 <td nowrap="nowrap">@proceso_id null-value='No posee'@</td>
+			 <td nowrap="nowrap">@tipo_instruccion_id null-value='No posee'@</td>
+			 <td nowrap="nowrap">@client_nombre@</td>
+			 <td nowrap="nowrap">@titulo_descripcion@</td>
+			 <td nowrap="nowrap" align="center">@transa_descripcion@</td>
+			 <td nowrap="nowrap" align="left">@status_operacion@</td>
+			 <td nowrap="nowrap" align="left">@moneda_pago@</td>
+			 <td nowrap="nowrap" align="right">@monto_operacion format-mask='#,###,##0.00'@</td>
+			 <td nowrap="nowrap" align="center">@fecha_aplicar@</td>
+			 <td nowrap="nowrap" align="center">@fecha_inicio_cp@</td>
+			 <td nowrap="nowrap" align="center">@fecha_fin_cp@</td>
+			 </tr>
+			 </calculo>
+		</table>
+		<INPUT TYPE="HIDDEN" VALUE="false" NAME="framework.controller.outputstream.open"/>
+		
+		
+		<TABLE border="0" cellspacing="1" cellpadding="2" width="95%" class="datatable" >
+		<tr>
+            <th COLSPAN="8" ALIGN="center">       
+                 Resumen por Proceso
+            </th>
+        </tr>
+       	<tr>
+       		<th align="left" nowrap="nowrap">T. Operacion</th>
+       		<th align="center" nowrap="nowrap">Cant. Aplicada</th>
+            <th align="center" nowrap="nowrap">Monto</th>
+            <th align="center" nowrap="nowrap">Cant. Espera</th>
+            <th align="center" nowrap="nowrap">Monto</th>
+            <th align="center" nowrap="nowrap">Cant. Rechazadas</th>
+            <th align="center" nowrap="nowrap">Monto</th>
+            <th align="center" >Monto Total</th>
+        </tr>
+        <tr>
+       		<td align="left" nowrap="nowrap">CHEQUE</td>
+            <td align="center" nowrap="nowrap">@cantaplicadas0@</td>
+            <td align="center" >@montoaplicadas0 format-mask='###,###,#00.00'@</td>
+            <td align="center" >@cantenespera0@</td>
+            <td align="center" >@montoenespera0 format-mask='###,###,#00.00'@</td>
+            <td align="center" >@cantrechazadas0@</td>
+            <td align="center" >@montorechazadas0 format-mask='###,###,#00.00'@</td>
+            <td align="center" >@totalgeneralmontox0 format-mask='###,###,#00.00'@</td>
+        </tr>
+        <tr>
+       		<td align="left" nowrap="nowrap">SWIFT</td>
+            <td align="center" nowrap="nowrap">@cantaplicadas1@</td>
+            <td align="center" >@montoaplicadas1 format-mask='###,###,#00.00'@</td>
+            <td align="center" >@cantenespera1@</td>
+            <td align="center" >@montoenespera1 format-mask='###,###,#00.00'@</td>
+            <td align="center" >@cantrechazadas1@</td>
+            <td align="center" >@montorechazadas1 format-mask='###,###,#00.00'@</td>
+            <td align="center" >@totalgeneralmontox1 format-mask='###,###,#00.00'@</td>
+        </tr>
+        <tr>
+       		<td align="left" nowrap="nowrap">NACIONAL</td>
+            <td align="center" nowrap="nowrap">@cantaplicadas2@</td>
+            <td align="center" >@montoaplicadas2 format-mask='###,###,#00.00'@</td>
+            <td align="center" >@cantenespera2@</td>
+            <td align="center" >@montoenespera2 format-mask='###,###,#00.00'@</td>
+            <td align="center" >@cantrechazadas2@</td>
+            <td align="center" >@montorechazadas2 format-mask='###,###,#00.00'@</td>
+            <td align="center" >@totalgeneralmontox2 format-mask='###,###,#00.00'@</td>
+        </tr>
+        <tr>
+       		<td align="left" nowrap="nowrap">OPER. DE CAMBIO</td>
+            <td align="center" nowrap="nowrap">@cantaplicadas3@</td>
+            <td align="center" >@montoaplicadas3 format-mask='###,###,#00.00'@</td>
+            <td align="center" >@cantenespera3@</td>
+            <td align="center" >@montoenespera3 format-mask='###,###,#00.00'@</td>
+            <td align="center" >@cantrechazadas3@</td>
+            <td align="center" >@montorechazadas3 format-mask='###,###,#00.00'@</td>
+            <td align="center" >@totalgeneralmontox3 format-mask='###,###,#00.00'@</td>
+        </tr>
+        <tr>
+            <th align="center" nowrap="nowrap">Totales</th>
+            <th align="center" nowrap="nowrap">@totalgeneralcanty1@</th>
+            <th align="center" nowrap="nowrap">@totalgeneralmontoy1 format-mask='###,###,#00.00'@</th>
+            <th align="center" nowrap="nowrap">@totalgeneralcanty0@</th>
+            <th align="center" nowrap="nowrap">@totalgeneralmontoy0 format-mask='###,###,#00.00'@</th>
+            <th align="center" nowrap="nowrap">@totalgeneralcanty2@</th>
+            <th align="center" nowrap="nowrap">@totalgeneralmontoy2 format-mask='###,###,#00.00'@</th>
+            <th align="center" nowrap="nowrap">@totalgeneral format-mask='###,###,#00.00'@</th>
+        </tr>
+   </table>
+			
+		&nbsp;<button type="submit">Exportar</button>
+		&nbsp;<button type="button" onclick="javascript:history.back();">Regresar</button>
+		&nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+	</form>
+	</CENTER>
+</BODY>
+</HTML>

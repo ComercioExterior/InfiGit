@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+    <!--
+    
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, decimal, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+    
+    -->
+        
+        <field 
+        name="nombre" 
+        type="varchar" 
+        description="Nombre del Parametro"
+        nullable="0"
+        size="50" />
+        
+        <field 
+        name="valor" 
+        type="varchar" 
+        description="Valor del Parametro"
+        nullable="0"
+        size="100" />
+        
+         <field 
+        name="descripcion" 
+        type="varchar" 
+        description="Descripci&oacute;n"
+        nullable="1"
+        size="1000" />
+        
+
+    
+</record>
+

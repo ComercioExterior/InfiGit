@@ -1,0 +1,74 @@
+
+<HTML>
+    
+    <HEAD>
+    <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+            <SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+           <script language="javascript" src="../js/default.js"></script>
+           <script language="javascript" src="../js/cierres.js"></script>
+              
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css"/>
+        
+        <TITLE>Sistema INFI</TITLE>
+        
+         
+    </HEAD>
+    
+<BODY>
+      
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Utilitarios / Consulta de Procesos</FONT>
+        </TD>
+        
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+        <td class="headerBox" align="right"></td>
+</TABLE>
+        
+        <CENTER>
+
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataTable">
+        <tr>
+            <th colspan="7" align="center">                
+                  Lista de Procesos              
+            </th>
+        </tr>
+        <tr>
+	        <th width="5%">Id</th>
+	        <th width="10%">Transacción</th>
+	        <th width="5%">Fecha Inicio</th>
+	        <th width="5%">Fecha Fin</th>
+	        <th width="70%">Error</th>
+	        <th width="5%">Usuario</th>
+	        <th width="5%">Acción</th>
+        </tr>
+        <procesos>
+        <tr>
+            <td align="right">@ejecucion_id format-mask='######'@</td>
+            <td align="right">@transa_id@</td>
+            <td align="center">@fecha_inicio@</td>
+            <td align="center">@fecha_fin@</td>
+            <td>@desc_error@</td>
+            <td>@userid@</td>
+            <td align="center" >@accion@</td>            
+        </tr>
+        </procesos>
+        </table>
+        @page_index@
+        <BR>
+        <INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/> 	
+        <br/>
+        <button  ONCLICK="history.back()">Regresar</button>&nbsp;
+        <button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+        </CENTER>
+    </BODY>
+</HTML>
+

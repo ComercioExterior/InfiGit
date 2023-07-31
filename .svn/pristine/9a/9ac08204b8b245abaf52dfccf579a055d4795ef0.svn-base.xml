@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+       
+       <field name="codigo" type="varchar" description="codigobcv"
+		nullable="1" size="50" />
+		
+		
+       <field name="fecha" type="varchar" description="fech"
+		nullable="1" size="50" />
+		
+		
+       <field name="estatus" type="varchar" description="status"
+		nullable="1" size="50" />
+		
+		<field name="fech" type="varchar" description="fecha busqueda"
+		nullable="1" size="50" />
+		
+		<field name="observacion" type="varchar" description="fecha busqueda"
+		nullable="1" size="50" />
+  
+</record>
+
+
+

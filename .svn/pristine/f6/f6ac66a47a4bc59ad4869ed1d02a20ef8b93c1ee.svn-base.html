@@ -1,0 +1,118 @@
+<html>
+<head>
+<script language="javascript" src="../js/default.js"></script>
+<script language="javascript" src="../js/consultaOrden.js"></script>
+<script language="javascript">
+  function confirmar(){
+	  if (document.forms.actRequisitos.observaciones.value.length > 800){
+		  alert("Las observaciones contienen más de 800 caracteres, no es posible guardar");
+	  }else{	  
+		  if (confirm("¿Está seguro que desea actualizar los requisitos y las observaciones?")){
+			 document.forms.actRequisitos.submit();
+		  }
+	  }
+  }
+</script>
+<!--cambiar: nombre de la aplicacion-->
+<title>Sistema INFI</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Toma de orden</title>
+<link rel="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+<link rel="stylesheet" type="text/css" href="../css/EstiloFichas.css" />
+
+</head>
+<body>
+
+<TABLE border="0" cellspacing="0" WIDTH="100%">
+	<TR>
+		<TD class="headerBox"><FONT class="headerText"> Ordenes /
+		Consultas / Detalles </FONT></TD>
+		<!-- help online -->
+		<TD class="headerBox" valign="middle" align="right"><img
+			border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17"
+			onclick="helpOpen(window.document.location.href);"
+			style="cursor: hand" title="Mostrar ayuda en l&iacute;nea" /></TD>
+		<!-- fin help online -->
+
+	</TR>
+</TABLE>
+<!--formulario-->
+<form name="actRequisitos" method="post" action="actualizar_requisitos">
+<div id="menu">
+<table border="0">
+	<tr>
+		<td id="navigation"><a href="javascript:datos();"><span>Datos</span></a></td>
+		<td id="navigation"><a href="javascript:transacciones();"><span>Transacciones</span></a></td>
+		<td id="navigation"><a href="javascript:titulos();"><span>T&iacute;tulos</span></a></td>
+		<td id="navigation"><a href="javascript:documentos();"><span>Documentos</span></a></td>
+		<td id="navigation"><a href="javascript:campos();"><span>Campos Dinamicos</span></a></td>
+		<td id="navigation"><a href="javascript:data();"><span>Data Extendida</span></a></td>
+		<td id="navigationActivo"><a href="javascript:requisitos();"><span>Requisitos</span></a></td>
+	</tr>
+</table>
+</div>
+<table border="0" cellspacing="1" cellpadding="2" width="100%"
+	class="datatable">
+	<!--titulo-->
+	<tr CLASS="formCaption">
+		<th COLSPAN="3" ALIGN="center"><FONT class="formCaptionText">
+		Requisitos Recibidos </FONT></th>
+	</tr>
+	<tr>
+	  <th class="negrita">Descripci&oacute;n</th>
+	  <th class="negrita">Fecha de Recepci&oacute;n</th>
+	  <th class="negrita">Usuario que Recibi&oacute; Requisito</th>
+	</tr>
+	<detalle_requisitos>
+	<tr>
+		<td>@indica_descripcion@</td>
+		<td>@fecha_recepcion format-mask='dd-MM-yyyy hh:mm:ss a'@</td>
+		<td>@recepcion_usuario_nm@</td>
+	</tr>
+	</detalle_requisitos>
+
+</table>
+
+@encabezado_req_faltantes@
+<detalle_requisitos_pendientes>
+  <input type="checkbox" name="pendientes" value="@ordene_requisito_id@">@indica_descripcion@<br>
+</detalle_requisitos_pendientes>
+
+<table border="0" cellspacing="1" cellpadding="2" width="100%"
+	class="datatable">
+	<!--titulo-->
+	<tr CLASS="formCaption">
+		<th COLSPAN="3" ALIGN="center"><FONT class="formCaptionText">
+		Observaciones </FONT></th>
+	</tr>
+	<tr>
+	  <td COLSPAN="3" align="center"><textarea cols="50" rows="5" name="observaciones">@ordene_observacion@</textarea></td>
+	</tr>
+</table>
+
+<br>
+<center>
+<button type="button" onclick="javascript:confirmar()">Guardar</button>&nbsp;
+<button type="button" onclick="javascript:window.close();">Cerrar</button>
+</center>
+<input type="hidden" name="ord_id" value="@ordene_id@">
+</form>
+<form name="datos" action="detalle_orden-find" method="post"><input
+	type="hidden" name="ord_id" value="@ordene_id@"></form>
+<form name="transacciones" action="details_trans" method="post">
+<input type="hidden" name="ord_id" value="@ordene_id@"></form>
+<form name="titulos" action="details_titulos" method="post"><input
+	type="hidden" name="ord_id" value="@ordene_id@"></form>
+<form name="documentos" action="details_documentos" method="post">
+<input type="hidden" name="ord_id" value="@ordene_id@"></form>
+<form name="campos" action="details_campos_dinamicos" method="post">
+<input type="hidden" name="ord_id" value="@ordene_id@"></form>
+<form name="data" action="details_data_extendida" method="post">
+<input type="hidden" name="ord_id" value="@ordene_id@"></form>
+<form name="requisitos" action="details_requisitos" method="post">
+<input type="hidden" name="ord_id" value="@ordene_id@"></form>
+</body>
+</html>
+
+
+

@@ -1,0 +1,117 @@
+<html>
+
+	<head>
+        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+        <script type="text/javascript">
+        function monstrarReporte(){				    
+			    document.forms[0].action="movimientos_venta_titulo-reporte?framework.controller.outputstream.open=false";
+				document.forms[0].submit();		
+		}
+          
+        </script>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Liquidaci&oacute;n / Informes / Detalle de Venta de T&iacute;tulos</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="120%" class="datatable" style="TABLE-LAYOUT: auto; ">
+    <tr CLASS="formCaption">
+            <th COLSPAN="13" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Movimientos Financieros&nbsp;( @t_registros@ )
+                </FONT>
+            </th>
+        </tr>
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+		<th width="3%"></th> 
+		<th width="3%"></th> 
+		<th>Orden</th>                      
+		<th>Cliente</th> 
+		<th width="30%">T&iacute;tulo</th>
+		<th>Transacci&oacute;n</th>
+		<th>Fecha Transacci&oacute;n</th>
+		<th>Estatus</th>
+		<th>Fecha Valor</th>
+		<th>Monto</th>
+		<th>Moneda</th>
+		<th>Fecha Procesada</th>
+		<th>Tipo Transacci&oacute;n</th>
+                            
+    </tr>
+
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+		<td align="center">
+			<a href="javascript:abrirPopupDetalles('details_trans?ord_id=@ordene_id@','100', '380')"><IMG SRC="../images/infi_gn_document.gif" WIDTH="15" ALIGN="top" HEIGHT="14" title="Detalles de la Orden" BORDER="0" style="cursor:hand"></a>
+		</td>
+		<td align="center">
+        	<a href="javascript:abrirPopupDetalles('detalle_operacion_intentos-browse?id_operacion=@ordene_operacion_id@','500','150')"><IMG SRC="../images/infi_gn_edit.gif" WIDTH="15" ALIGN="top" HEIGHT="14" title="Intentos" BORDER="0" style="cursor:hand"></a>
+        </td>
+		<td align="center">@ordene_id@</td>
+		<td align="left" nowrap="nowrap">@client_nombre@</td>
+		<td VALIGN="middle" align="left" nowrap="nowrap">@titulo_id@</td>
+		<td align="left" nowrap="nowrap">@transa_descripcion@ </td>
+		<td align="center">@ordene_ped_fe_orden@</td>
+		<td align="left" nowrap>@status_operacion@</td>
+		<td align="center" nowrap>@fecha_aplicar@</td>
+		<td align="right">@monto_operacion@</td>
+		<td align="right">@moneda_siglas@</td>
+		<td align="center" nowrap>@fecha_procesada@</td>
+		<td align="left">@trnfin_tipo_descripcion@</td>
+     </tr>
+
+     </rows>
+
+    </table>
+
+@page_index@
+    <BR>
+<form name="detallePagos" method="post" action="movimientos_venta_titulo-find">
+    <input type="hidden" name="client_id" value="@client_id@">
+    <input type="hidden" name="fe_transac_desde" value="@fe_transac_desde@">
+    <input type="hidden" name="fe_transac_hasta" value="@fe_transac_hasta@">
+		<status_selec>
+	    	<input type="hidden" name="status_operacion" value="@status@">
+	    </status_selec>
+    	<titulo_selec>		    
+    		<input type="hidden" name="titulo_id" value="@titulo@">     		 
+        </titulo_selec>	
+	<button type="button" ONCLICK="monstrarReporte()">&nbsp;Detalle de Pagos&nbsp;</button>
+	&nbsp;<button onclick="javascript:history.back();">Regresar</button>
+    &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+</form>
+
+</center>
+
+</body>
+
+</html>
+

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<record>
+    
+        <field 
+        name="ui_id" 
+        type="varchar" 
+        description="Unidad Inversi&oacute;n"
+        nullable="1"
+        size="50" />
+		
+		 <field 
+        name="statusp" 
+        type="varchar" 
+        description="Unidad Inversi&oacute;n"
+        nullable="1"
+        size="50" />
+        
+        <field 
+        name="statusE" 
+        type="varchar" 
+        description="estatus envio"
+        nullable="1"
+        size="50" />
+        
+         <field 
+        name="Tipo" 
+        type="varchar" 
+        description="Tipo de movimiento"
+        nullable="1"
+        size="50" />
+        
+         <field 
+        name="fecha" 
+        type="varchar" 
+        description="Unidad Inversi&oacute;n"
+        nullable="1"
+        size="50" />
+        
+        <field 
+        name="moneda" 
+        type="varchar" 
+        description="moneda"
+        nullable="1"
+        size="50" />
+    
+</record>
+

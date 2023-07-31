@@ -1,0 +1,97 @@
+<html>
+
+	<head>
+        
+  	<LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+	<SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+	<script language="javascript" src="../js/default.js"></script>   
+	<TITLE>Sistema INFI</TITLE>
+		<script type="text/javascript">		
+		function postear(archivo){
+			document.forms[0].directorio.value = archivo;
+			document.forms[0].submit();
+		}
+		</script>
+           
+
+    </head>
+
+<body>
+
+<form action="" name="logger-find" method="post">
+<!--page name bar-->
+<TABLE WIDTH="100%">
+    <TR>
+       
+        <TD class="headerBox" colspan="2"> 
+            <FONT class="headerText">Archivo de Cierre del Sistema</FONT>
+        </TD>
+    </TR>
+    <TR class="tableHeader">       
+        <TD> 
+            <input type="hidden" name="directorio" value="@filename@" size="100" readonly="readonly">
+        </TD>        
+    </TR>
+       
+</TABLE>
+
+
+<center>
+
+<br>
+    <!--tabla de data-->
+    <table border="3" cellspacing="3" cellpadding="2" width="100%" class="dataform">
+      
+     <!--encabezados de columna-->
+    <tr class="tableHeader">
+              
+              <th ALIGN="center">Archivo</th>
+             
+    </tr> 
+ 
+     <tr>		
+		<td><font color="blue"><u>@filename@</u></font></td>
+     </tr>
+     
+    </table>
+    
+   <table border="3" cellspacing="3" cellpadding="2" width="100%" class="dataform">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+              
+              <th ALIGN="center">Contenido</th>
+             
+    </tr> 
+    
+     <tr colspan=3  class="tableCell">
+        
+                <td colspan="2">
+                @logger@
+                </td>
+     </tr>
+
+    
+    </table>
+    
+    <br>
+    <button type="button" ONCLICK="havascript:history.back();">&nbsp;Regresar&nbsp;</button>
+    <BR>
+
+<BR>
+
+
+</center>
+<script language="javascript">
+//ir a la pagina deseada
+function gotoPage(page_send)
+{
+	window.location="msc_role-find?pagenumber="+page_send;
+}
+</script>
+<input type="hidden" value="" name="log">
+</form>
+</body>
+</html>
+

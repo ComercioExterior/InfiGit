@@ -1,0 +1,51 @@
+ 		<br>		
+ 	    <table id="@num_area@" border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="4" ALIGN="center">
+                Area @num_area@
+            </th>
+        </tr>
+        
+        <tr><td style="display:none"><INPUT TYPE="checkbox" checked VALUE="@num_area@" NAME="areas_arreglo"/></td></tr>
+         
+        <tr>
+            <td>
+             Nombre de &Aacute;rea:*
+            </td>
+            <td>
+            <INPUT TYPE="TEXT" VALUE="@plant_mail_area_name@" NAME="plant_mail_area_name_@num_area@" SIZE="60" MAXLENGTH="70" class="inputControl"/>
+            </td>
+        
+        </tr>
+        
+        <tr>    
+            <td width="30%">Activaci&oacute;n:*</td>
+			<td>
+				<SELECT NAME="estatus_activacion_@num_area@" CLASS="inputControl">									
+						<OPTION VALUE="1">Activa</OPTION>
+						<OPTION VALUE="0">Inactiva</OPTION>					
+				</SELECT>
+			</td>
+        </tr>
+		
+		<tr>
+		    <td colspan="2">Destinatario:*</td>			
+		</tr>		
+		
+		<tr>		   
+			<td colspan="2"><textarea name="destinatario_@num_area@" cols="80" rows="4">@destinatario@</textarea></td>
+		</tr>		 
+		
+         
+        <tr><td colspan="4" align="right"">		
+		<!-- <button ONCLICK="eliminarElemento('@num_area@');" >Quitar</button>-->
+		<button ONCLICK="eliminarArea('@plant_mail_area_id@', '@num_area@');" >Eliminar Area</button>
+     	</td></tr>
+        
+     
+ 		</table>
+    	
+    	<INPUT TYPE="hidden" VALUE="@plant_mail_area_id@" NAME="plant_mail_area_id_@num_area@"/>
+ 

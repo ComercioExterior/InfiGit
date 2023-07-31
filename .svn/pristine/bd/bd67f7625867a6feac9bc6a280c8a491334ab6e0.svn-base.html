@@ -1,0 +1,174 @@
+<HTML>
+
+<HEAD>
+	<TITLE>Sistema INFI</TITLE>
+	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+    <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 	
+	<SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+	
+	<script type="text/javascript">
+        function mostrar(accion){
+			if(accion==1){
+				titulou.style.display ="block";
+				boton.style.display ="block";
+				estatus.style.display ="block";
+			}
+			if(accion==2){//Modulo Publicacion
+				titulop.style.display ="block";
+			}
+			if(accion==3){//Modulo Consulta
+				tituloc.style.display ="block";
+				estatus.style.display ="block";
+			}	
+			if(accion==4){//Modulo Modificacion
+				titulom.style.display ="block";
+			}
+		}
+          
+	</script>
+	
+</HEAD>
+
+<!--poner el focus en el 1er control de la forma-->
+<BODY
+	ONLOAD="javascript:mostrar(@accion@);{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+
+	<!--page name bar-->
+	<table border="0" cellspacing="0" WIDTH="100%">
+		<tr>
+			<td class="headerBox">
+	        	<div id="titulou" style="display:none">               
+	            	<font class="headerText">Unidades de Inversi&oacute;n</font>
+	            </div>
+				<div id="titulop" style="display:none">               
+	            	<font class="headerText">Publicaci&oacute;n Unidad de Inversi&oacute;n</font>
+	            </div>
+	            <div id="tituloc" style="display:none">               
+	            	<font class="headerText">Consulta Unidad de Inversi&oacute;n</font>
+	            </div>
+	            <div id="titulom" style="display:none">               
+	            	<font class="headerText">Modificaci&oacute;n Unidad de Inversi&oacute;n</font>
+	            </div>
+			</td>
+			<!-- help online -->
+			<td class="headerBox" valign="middle" align="right">
+				<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"
+					onclick="helpOpen(window.document.location.href);">
+			</td>
+			<!-- fin help online -->
+	
+			<td class="headerBox" aling="right"></td>
+	</table>
+
+	<center>
+	<!--formulario-->
+	<form name="dataentry" method="POST" action="unidad_inversion-browse">
+	
+	<table class="dataform" border="0" cellspacing="1" cellpadding="2" width="100%">
+	
+		<!--titulo-->
+		<tr class="formCaption">
+			<th COLSPAN="4" ALIGN="center">
+				<FONT class="formCaptionText">Seleccione Criterios </FONT>
+			</th>
+		</tr>
+	
+		<!--campo-->
+		<tr class="formElement">
+			<td class="formLabel">Unidad de Inversi&oacute;n:</td>
+			<td colspan="3">
+				<input TYPE="TEXT" VALUE="" name="nombreUnidadInversion" SIZE="50" MAXLENGTH="50" />
+			</td>
+		</tr>
+		<tr class="formElement">
+			<td class="formLabel">Emisor:</td>
+			<td colspan="3">
+				<select name="idEmpresaEmisor">
+					<option value=""></option>
+				<rowsEmisor>
+					<option value="@empres_id@">@empres_rif@ - @empres_nombre@</option>
+				</rowsEmisor>
+				</select>
+			</td>
+		</tr>		
+		<tr class="formElement">
+			<td class="formLabel">Tipo de Instrumento:</td>
+			<td colspan="3">
+				<select name="idInstrumentoFinanciero">
+					<option value=""></option>
+				<rowsIF>
+					<option value="@insfin_id@">@insfin_descripcion@</option>
+				</rowsIF>
+				</select>
+			</td>
+		</tr>			
+		<tr class="formElement">
+			<td class="formLabel" width="25%">Fecha de Emision Desde:</td>
+			<td width="75%">
+				<input type="text" name="filtroFechaEmisionDesde" value="@filtrofechaemisiondesde@" size="10" maxlength="10"  readonly /> 
+					<a onclick="popUpCalendar(this, document.forms[0].filtroFechaEmisionDesde, 'dd-mm-yyyy')">
+					<IMG SRC="../images/infi_gn_calendar.gif" class="boton" TITLE="Seleccionar Fecha"/>
+					</a>						
+					<IMG SRC="../images/infi_gn_delete.gif"  BORDER="0" ALIGN="top"
+						onclick='document.forms[0].filtroFechaEmisionDesde.value=""'>						
+			</td>
+		</tr>			
+		<tr class="formElement">			
+			<td class="formLabel" width="25%" >Fecha de Emision Hasta:</td>			
+			<td width="75%">
+				<input type="text" name="filtroFechaEmisionHasta" value="@filtrofechaemisionhasta@" size="10" maxlength="10" readonly  /> 
+					<a onclick="popUpCalendar(this, document.forms[0].filtroFechaEmisionHasta, 'dd-mm-yyyy')">
+					<IMG SRC="../images/infi_gn_calendar.gif" class="boton" TITLE="Seleccionar Fecha"/>
+					</a>				
+					<IMG SRC="../images/infi_gn_delete.gif"  BORDER="0" ALIGN="top"
+						onclick='document.forms[0].filtroFechaEmisionHasta.value=""'>							
+			</td>			
+		</tr>
+	</table>
+		<div id="estatus" style="display:none">
+		<table class="dataform" border="0" cellspacing="1" cellpadding="2" width="100%">
+			<tr class="formElement">
+				<td class="formLabel">Status:</td>
+				<td width="75%">
+					<select name="idUIStatus" SIZE="1">
+						<OPTION VALUE="todos" selected>Todos</OPTION>
+						<rowUIStatus>
+						<OPTION VALUE="@idUIStatus@">@descrUIStatus@</OPTION>
+						</rowUIStatus>
+					</select>
+				</td>
+			</tr>
+		</table>
+		</div>
+	<br>
+	<table align="center">
+		<tr>
+			<td>
+				<button type="button" onclick="submitir();">Procesar</button>
+			</td>
+			<td>
+			  <div id="boton" style="display:none">
+				<button type="button" onclick="window.location='unidad_inversion-addnew'">&nbsp;Agregar&nbsp;</button>
+			  </div>
+			</td>
+			<td>
+				<button type="button" onclick="window.location='show-view'">Salir</button>	
+			</td>
+		</tr>
+	</table>
+
+	</form>
+	
+	</center>
+
+</BODY>
+<script type="text/javascript">
+<!--
+function submitir() {
+   	document.forms[0].submit();
+}
+-->
+</script>
+</HTML>
+

@@ -1,0 +1,188 @@
+<html>
+	<head> 
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        <script type="text/javascript">
+         function  estatus(estado){
+        	if(estado=='ver')
+        	{
+				var elementos = document.getElementsByName('banco')
+				for (var i = 0; i < elementos.length; i++ )
+				{
+					elementos[i].style.display ="block";
+					var indicador = document.getElementById('indicador')
+					indicador.value ='1'
+					
+				}
+				botonO.style.display ="block";
+				botonA.style.display ="none";
+				
+			}/* Fin del if*/
+			if(estado=='ocultar')
+			{
+				var elementos = document.getElementsByName('banco')
+				for (var i = 0; i < elementos.length; i++ )
+				{
+					elementos[i].style.display ="none";
+					var indicador = document.getElementById('indicador')
+					indicador.value ='0'
+				} /*Fin del For*/
+				botonA.style.display ="block";
+				botonO.style.display ="none";
+			} /*Fin del If*/
+			} /*Fin de la Funcion estatus*/
+			
+			function agregar_internacional(){
+				//document.forms.dataentry.target='myNewWin';
+				//document.forms.dataentry.action='cheques_sesion-up'
+				//sendme();
+	        	window.open('transferencias_internacionales');
+	        }
+	        
+	        function eliminar_proceso_sesion(row){
+	        	//document.forms.dataentry.target='myNewWin';
+				//document.forms.dataentry.action='cheques_sesion-up'
+				//sendme();
+	        	window.open('eliminar_proceso-sesion?row='+row);
+	        }
+	        function sendme() 
+			{ 
+			    window.open("cheques_sesion-up","myNewWin","width=1,height=1,toolbar=0"); 
+			    var a = window.setTimeout("document.dataentry.submit();",500); 
+			    window.close();
+			} 
+			function procesar(){
+				if(confirm('Confirme si desea ejecutar la transacción?'))
+			{
+				document.forms.dataentry.target='';
+				document.forms.dataentry.action='gestion_pago_cheque-insert';
+				document.forms.dataentry.submit();
+			}else{
+		
+			}
+			}
+			
+			function habilitar(){
+			var seleccion = document.getElementById('seleccion')
+			var boton = document.getElementById('boton_internacional')
+			if(seleccion.value=='internacionales')
+				boton.disabled=false
+				boton.enabled=true
+			}
+        </script>
+    </head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};habilitar()">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Pagos Pendientes----------------------</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+<center>
+
+<br>
+<form name="dataentry" action="gestion_pago_cheque-insert" method="post" target="">
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+        
+       <cheques>
+       </cheques>
+       <transferencias>
+       </transferencias>
+       <cuentas></cuentas>
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                  Transferencias internacionales &nbsp;&nbsp;Cliente : @nombre@
+                </FONT>
+            </th>
+        </tr>
+
+	</table>
+<!-- DATA DE TRANSFERENCIAS INTERNACIONALES -->
+	<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+    
+    <transferencias_internacionales>
+    <tr>   
+     <td WIDTH="2%" VALIGN="middle" colspan="1">
+                <a href="javascript:eliminar_proceso_sesion(@_row@);"><IMG SRC="../images/infi_gn_delete.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Eliminar Registro" BORDER="0" style="cursor:hand"></a>			
+     <font color="red" class="negrita">Eliminar Registro</font>
+     </td>      
+              <td nowrap="nowrap" class="negrita" colspan="1">Nombre del Beneficiario</td><td colspan="2"><input type="hidden" value="@nombre_internacional@" name="nombre_internacional">@nombre_internacional@</td> 
+              <td nowrap="nowrap" class="negrita" colspan="1">C&eacute;dula del Beneficiario</td><td colspan="1"><input type="hidden" value="@cedula_internacional@" name="cedula_internacional">@cedula_internacional@</td>
+    </tr>
+    <tr>         
+              <td nowrap="nowrap" class="negrita" colspan="1">N&uacute;mero</td><td colspan="2"><input type="hidden" value="@CTECTA_NUMERO@" name="ctecta_numero">@CTECTA_NUMERO@</td>
+              <td nowrap="nowrap" class="negrita" colspan="1">Nombre del Banco</td><td colspan="2"><input type="hidden" value="@CTECTA_BCOCTA_BCO@" name="ctecta_bcocta_bco">@CTECTA_BCOCTA_BCO@</td>                               
+    </tr>
+    <tr>         
+              <td nowrap="nowrap" class="negrita" colspan="1">Direcci&oacute;n</td><td colspan="2"><input type="hidden" value="@CTECTA_BCOCTA_DIRECCION@" name="ctecta_bcocta_direccion">@CTECTA_BCOCTA_DIRECCION@</td> 
+              <td nowrap="nowrap" class="negrita" colspan="1">C&oacute;digo BIC</td><td colspan="2"><input type="hidden" value="@CTECTA_BCOCTA_BIC@" name="ctecta_bcocta_bic">@CTECTA_BCOCTA_BIC@</td>                               
+    </tr>
+    <tr>         
+              <td nowrap="nowrap" class="negrita" colspan="1">T&eacute;lefono</td><td colspan="2"><input type="hidden" value="@CTECTA_BCOCTA_TELEFONO@" name="ctecta_bcocta_telefono">@CTECTA_BCOCTA_TELEFONO@</td> 
+              <td nowrap="nowrap" class="negrita" colspan="1">C&oacute;digo ABA</td><td colspan="2"><input type="hidden" value="@CTECTA_BCOCTA_ABA@" name="ctecta_bcocta_aba">@CTECTA_BCOCTA_ABA@</td>
+              
+    </tr>
+    <tr>
+    	<td nowrap="nowrap" class="negrita" colspan="">Observaciones</td><td colspan="5"><input type="hidden" value="@CTECTA_OBSERVACION@" name="observacion">@CTECTA_OBSERVACION@</td>   
+    </tr>
+    <tr>    
+    		  <td nowrap="nowrap" class="negrita" colspan="1">Nombre Banco Intermediario</td><td colspan="2"><input type="hidden" value="@CTECTA_BCOINT_BCO@" name="ctecta_bcoint_bco">@CTECTA_BCOINT_BCO@</td>                                    
+              <td nowrap="nowrap" class="negrita" colspan="1">Direcci&oacute;n</td><td colspan="2"><input type="hidden" value="@CTECTA_BCOINT_DIRECCION@" name="ctecta_bcoint_direccion">@CTECTA_BCOINT_DIRECCION@</td> 
+
+              
+    </tr>
+    <tr>  
+    		  <td nowrap="nowrap" class="negrita">C&oacute;digo BIC</td><td><input type="hidden" value="@CTECTA_BCOINT_BIC@" name="ctecta_bcoint_bic">@CTECTA_BCOINT_BIC@</td>                                      
+              <td nowrap="nowrap" class="negrita">T&eacute;lefono</td><td><input type="hidden" value="@CTECTA_BCOINT_TELEFONO@" name="ctecta_bcoint_telefono">@CTECTA_BCOINT_TELEFONO@</td> 
+              <td nowrap="nowrap" class="negrita">C&oacute;digo ABA</td><td><input type="hidden" value="@CTECTA_BCOINT_ABA@" name="ctecta_bcoint_aba">@CTECTA_BCOINT_ABA@</td>
+              
+    </tr>
+    <tr>
+    	<td nowrap="nowrap" class="negrita" colspan="1">(Cuenta  en banco intermediario</td><td colspan="5"><input type="hidden" value="@cta_bco_bcoint@" name="cta_bco_bcoint">@cta_bco_bcoint@</td>
+    </tr>
+    <tr>  
+    
+    		
+    		<td nowrap="nowrap" class="negrita" colspan="1">Observaciones Intermediario</td><td colspan="5"><input type="hidden" value="@CTECTA_BCOINT_OBSERVACION@" name="observacion_intermediario">@CTECTA_BCOINT_OBSERVACION@</td>
+    		
+    </tr>
+    <tr>
+    <td nowrap="nowrap" class="negrita" colspan="1">Monto a Transferir</td><td colspan="5"><input type="text" value="" name="monto_internacional"></td>                                                              
+    </tr>
+    <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                  &nbsp;
+                </FONT>
+            </th>
+        </tr>
+     </transferencias_internacionales>
+     <!--titulo-->
+        
+    </table>
+     <P><FONT COLOR="red"><B>Nota : La suma de los montos debe ser igual a : @operaciones_monto format-mask='##,###,###,###.##'@ &nbsp;@moneda@</B></FONT></P>
+    &nbsp;
+    &nbsp;
+    <BR>
+    <input type="hidden" value="@seleccion@" id="seleccion">
+	<button type="button" onclick="javascript:procesar();">Procesar</button>&nbsp;&nbsp;
+	<button type="button" onclick="javascript:agregar_internacional()" disabled="disabled" id="boton_internacional">Internacional</button>
+    &nbsp;<button type="button" onclick="window.location='gestion_pago-seleccion'">Regresar</button>
+    &nbsp;<button type="button" onclick="window.location='gestion_pago_cheque-filter'">&nbsp;Salir&nbsp;</button>
+</form>
+</center>
+</body>
+</html>

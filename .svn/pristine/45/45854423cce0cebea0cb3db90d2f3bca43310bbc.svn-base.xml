@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<config>
+
+	<model-class>models.bcv.mesas_operaciones.Browse</model-class>
+	<view-class>megasoft.GenericView</view-class>
+	<template>table.htm</template>
+	<record-def>record.xml</record-def>
+	<content-type>text/html</content-type>
+	<expires></expires>
+	<no-cache></no-cache>
+	<next-action type="redirect"></next-action>
+	<on-empty source="jornada">no-data.htm</on-empty>
+	
+ 	<bind type="replace" source="jornada"/>
+ 	
+</config>

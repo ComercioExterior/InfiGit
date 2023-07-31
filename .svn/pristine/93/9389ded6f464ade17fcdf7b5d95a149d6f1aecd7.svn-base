@@ -1,0 +1,207 @@
+package models.bcv.intervencion_operacion;
+
+import java.util.Date;
+import java.util.HashMap;
+import javax.sql.DataSource;
+
+import megasoft.AbstractModel;
+import megasoft.AppProperties;
+import megasoft.DataSet;
+import megasoft.Logger;
+import megasoft.db;
+import org.bcv.serviceINTERVENCION.JerseyClient2;
+import org.bcv.serviceINTERVENCION.ServiceException;
+
+import com.bdv.infi.config.Propiedades;
+import com.bdv.infi.dao.ClienteDAO;
+import com.bdv.infi.dao.CredencialesDAO;
+import com.bdv.infi.dao.OrdenDAO;
+import com.bdv.infi.dao.OrdenesCrucesDAO;
+import com.bdv.infi.dao.ParametrosDAO;
+import com.bdv.infi.dao.ProcesosDAO;
+import com.bdv.infi.data.Proceso;
+import com.bdv.infi.logic.interfaces.ActionINFI;
+import com.bdv.infi.logic.interfaces.ConstantesGenerales;
+import com.bdv.infi.logic.interfaces.ParametrosSistema;
+import com.bdv.infi.logic.interfaces.TransaccionNegocio;
+import com.bdv.infi.model.intervencion.Interbancaria;
+import com.bdv.infi.model.intervencion.Sesion;
+import com.bdv.infi.util.Utilitario;
+
+import criptografia.TripleDes;
+
+public class EnvioBCVWSIntervencionOperacion extends AbstractModel implements Runnable {
+	protected HashMap<String, String> parametrosIntervencionBCV;
+	private ProcesosDAO procesosDAO;
+	CredencialesDAO credencialesDAO = null;
+	DataSet _credenciales = new DataSet();
+	private Proceso proceso;
+	private int secuenciaProcesos = 0;
+	DataSet _cliente = new DataSet();
+	ClienteDAO clienteDAO = null;
+	long idUnidad;
+	int numeroDePagina;
+	int pageSize;
+	String idOrdenes;
+	String operacion;
+	String statusE;
+	String banco;
+	String urlInvocacion;
+	DataSource _dso;
+	String tipoTransaccion = TransaccionNegocio.WS_BCV_INTERVENCION;
+	int idUsuario;
+	String fecha;
+	String codDivisa;
+	int coVentaBCV;
+	double montoDivisa;
+	double tasaCambio;
+	OrdenesCrucesDAO ordenesCrucesDAO;
+
+	// ServiceException p;
+
+	public EnvioBCVWSIntervencionOperacion(String codDivisa, String operacion, String urlInvocacion, DataSource _dso, int idUsuario, String fecha, String banco, int coVentaBCV, double montoDivisa, double tasaCambio) {
+
+		this.operacion = operacion;
+		this.banco = banco;
+		this.urlInvocacion = urlInvocacion;
+		this._dso = _dso;
+		this.idUsuario = idUsuario;
+		this.fecha = fecha;
+		this.codDivisa = codDivisa;
+		this.montoDivisa = montoDivisa;
+		this.coVentaBCV = coVentaBCV;
+		this.tasaCambio = tasaCambio;
+	}
+
+	public void run() {
+		// INCIAR PROCESO
+		try {
+			iniciarProceso();
+			enviarOperacionesBCV();
+			finalizarProceso();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	private void finalizarProceso() throws Exception {
+
+		String queryProcesoCerrar = procesosDAO.modificar(proceso);
+		db.exec(_dso, queryProcesoCerrar);
+		Logger.info(this, "FIN DE PROCESO: " + new Date());
+	}
+
+	private void enviarOperacionesBCV() {
+
+		try {
+			DataSource dso = db.getDataSource(AppProperties.getProperty(ConstantesGenerales.DATASOURCE_PRINCIPAL_INFI));
+			obtenerParametros(dso);
+			Logger.info(this, "SE INICIA EL HILO PARA ENVIO DE OPERACIONES AL BCV");
+
+			if (urlInvocacion.equals(ActionINFI.WEB_SERVICE_INTERVENCION_INTERBANCARIA_PROCESAR.getNombreAccion())) { // DEMANDA - VENTA
+				try {
+					// credencialesDAO.listarCredencialesPorTipo(ConstantesGenerales.WS_INTERVENCION);
+					// _credenciales = credencialesDAO.getDataSet();
+					// Propiedades propiedades = Propiedades.cargar();
+					// String userName = "";
+					// String clave = "";
+
+					// if(_credenciales.next()){
+					// //se carga el certificado autofirmado del BDV y se configura el proxy
+					// //Utilitario.cargarCertificado(propiedades.getProperty(ConstantesGenerales.RUTA_CER_MENUDEO_BCV));
+					// //System.setProperty("sun.security.ssl.allowUnsafeRenegotiation","true");
+					// //SOLO SE ESTA CONFIGURADO QUE SE USARA PROXY
+					// if(propiedades.getProperty("use_https_proxy").equals("1")){
+					// Utilitario.configurarProxy();
+					// }
+					//
+					// String rutaCustodio1 = propiedades.getProperty(ConstantesGenerales.RUTA_CUSTODIO_1);
+					// String rutaCustodio2 = propiedades.getProperty(ConstantesGenerales.RUTA_CUSTODIO_2);
+					//
+					// // String rutaCustodio1 = propiedades.getProperty(ConstantesGenerales.WS_BCV_ALTO_VALOR);
+					// // String rutaCustodio2 = propiedades.getProperty(ConstantesGenerales.WS_BCV_ALTO_VALOR);
+					//
+					// TripleDes desc = new TripleDes();
+					//
+					// userName = desc.descifrar(rutaCustodio1,rutaCustodio2, _credenciales.getValue("USUARIO"));
+					// clave = desc.descifrar(rutaCustodio1,rutaCustodio2, _credenciales.getValue("CLAVE"));
+					// System.out.println("userName-->"+userName);
+					// System.out.println("clave-->"+clave);
+					// }else {
+					// Logger.error(this, "Ha ocurrido un error al momento de buscar el usuario y el password del WS de BCV. Sistema buscado: "+ ConstantesGenerales.WS_INTERVENCION);
+					// throw new org.bcv.service.Exception();
+					// }
+
+					String fechaValor1 = fecha.replaceAll("-", "/");
+					System.out.println("operacion-->" + operacion);
+					System.out.println("banco-->" + banco);
+					System.out.println("codDivisa-->" + codDivisa);
+					System.out.println("montoDivisa-->" + montoDivisa);
+					System.out.println("coVentaBCV-->" + coVentaBCV);
+					System.out.println("urlInvocacion-->" + urlInvocacion);
+					System.out.println("fecha-->" + fechaValor1);
+					System.out.println("tasaCambio-->" + tasaCambio);
+					// Propiedades propiedades = Propiedades.cargar();
+					// String endpointURL =null;
+					// endpointURL= propiedades.getProperty(ConstantesGenerales.END_POINT_BCV_INTERVENCION);
+					// System.out.println("url-->"+endpointURL);
+					// JerseyClient2 jc1 = new JerseyClient2(endpointURL);
+					// JerseyClient2.disableSslChecks();
+					// String respuesta = jc1.getRequestIniciarsesion(ConstantesGenerales.INICIO_SESSION, userName, clave);
+//					 String notificacionBCV=jc1.postIntervencion(ConstantesGenerales.OPERACION_ENTRE_BANCOS, respuesta, operacion, banco, codDivisa,coVentaBCV,fechaValor1,montoDivisa);
+					Sesion login = new Sesion();
+					Interbancaria bancariaa = new Interbancaria();
+					String token = login.ObtenerToken(ConstantesGenerales.INICIO_SESSION);
+					String notificacionBCV = bancariaa.postBancaria(ConstantesGenerales.OPERACION_ENTRE_BANCOS, token, operacion, banco, codDivisa, coVentaBCV, fechaValor1, montoDivisa);
+
+					System.out.println("notificacionBCV  : " + notificacionBCV);
+					ordenesCrucesDAO = new OrdenesCrucesDAO(_dso);
+
+					// ordenesCrucesDAO.insertar_intervencion_operacion(banco, fecha, operacion, montoDivisa, codDivisa, coVentaBCV,tasaCambio);
+
+					proceso.agregarDescripcionErrorTrunc("la operacion fue ejecutada con exito, codigo---->" + notificacionBCV, true);
+					Logger.info(this, "Envio satisfactorio.");
+				} catch (Exception e) {
+					// TODO: handle exception
+
+					proceso.agregarDescripcionErrorTrunc("Ha ocurrido un error al momento de enviar, revise los datos" + e.getLocalizedMessage(), true);
+					Logger.error(this, "Ha ocurrido un error al momento de enviar, revise los datos" + e.toString());
+					e.printStackTrace();
+				}
+			}
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			Logger.error(this, "Ha ocurrido un error en el proceso de envio de orden al BCV " + e.toString());
+		} finally {
+			Logger.info(this, "FINALIZA EL HILO PARA ENVIO DE OPERACIONES AL BCV");
+		}
+	}
+
+	@Override
+	public void execute() throws Exception {
+		// TODO Auto-generated method stub
+
+	}
+
+	protected void obtenerParametros(DataSource _dso) throws Exception {
+		ParametrosDAO parametrosDAO = new ParametrosDAO(_dso);
+		parametrosIntervencionBCV = parametrosDAO.buscarParametros(ParametrosSistema.INTERFACE_INTERVENCION_BANCARIA);
+	}
+
+	protected void iniciarProceso() throws Exception {
+		Logger.info(this, "INICIO DE PROCESO");
+		procesosDAO = new ProcesosDAO(_dso);
+		proceso = new Proceso();
+		secuenciaProcesos = Integer.parseInt(OrdenDAO.dbGetSequence(_dso, com.bdv.infi.logic.interfaces.ConstantesGenerales.SECUENCIA_PROCESOS));
+		proceso.setEjecucionId(secuenciaProcesos);
+		proceso.setFechaInicio(new Date());
+		proceso.setFechaValor(new Date());
+		proceso.setTransaId(tipoTransaccion);
+		proceso.setUsuarioId(this.idUsuario);
+		String queryProceso = procesosDAO.insertar(proceso);
+		db.exec(_dso, queryProceso);
+	}
+}

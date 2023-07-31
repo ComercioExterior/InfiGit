@@ -1,0 +1,549 @@
+<HTML>
+<head>
+	<title>Sistema INFI</title>
+	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+	<LINK REL="stylesheet" type="text/css" href="../css/EstiloFichas.css" />	
+	<script language="javascript" src="../js/default.js"></script>	
+    <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+	<SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>    	
+	<script language="JavaScript" src="../js/unidad_inversion.js"></script>	
+	
+	<script type="text/javascript">
+        function mostrar(accion){
+			if(accion==1){
+				var elementos = document.getElementsByName('calendar')
+				for (var i = 0; i < elementos.length; i++ ){
+					elementos[i].disabled= false;
+				}
+				titulou.style.display ="block";
+				unidad.style.display ="block";
+				nota.style.display ="block";
+				document.forms[0].elements[0].focus();
+			}
+			if(accion==2){//Modulo Publicacion
+				var elementos = document.getElementsByName('calendar')
+				for (var i = 0; i < elementos.length; i++ ){
+					elementos[i].disabled= true;
+				}
+				var links = document.getElementsByName('link')
+				for (var i = 0; i < links.length; i++ ){
+					links[i].style.display ="none";
+				}
+				var inputs = document.getElementsByTagName('input')
+				for (var i = 0; i < inputs.length; i++ ){
+					inputs[i].disabled = true;
+				}
+				var textareas = document.getElementsByTagName('textarea')
+				for (var i = 0; i < textareas.length; i++ ){
+					textareas[i].disabled = true;
+				}
+				var selects = document.getElementsByTagName('select')
+				for (var i = 0; i < selects.length; i++ ){
+					selects[i].disabled = true;
+				}
+				titulop.style.display ="block";
+				publicar.style.display ="block";
+			}
+			if(accion==3){//Modulo Consulta
+				var elementos = document.getElementsByName('calendar')
+				for (var i = 0; i < elementos.length; i++ ){
+					elementos[i].disabled= true;
+				}
+				var links = document.getElementsByName('link')
+				for (var i = 0; i < links.length; i++ ){
+					links[i].style.display ="none";
+				}
+				var inputs = document.getElementsByTagName('input')
+				for (var i = 0; i < inputs.length; i++ ){
+					inputs[i].disabled = true;
+				}
+				var textareas = document.getElementsByTagName('textarea')
+				for (var i = 0; i < textareas.length; i++ ){
+					textareas[i].disabled = true;
+				}
+				var selects = document.getElementsByTagName('select')
+				for (var i = 0; i < selects.length; i++ ){
+					selects[i].disabled = true;
+				}
+				tituloc.style.display ="block";
+			}	
+			if(accion==4){//Modulo Modificacion
+				var elementos = document.getElementsByName('calendar')
+				for (var i = 0; i < elementos.length; i++ ){
+					elementos[i].disabled= false;
+				}
+				titulom.style.display ="block";
+				unidad.style.display ="block";
+				nota.style.display ="block";
+				document.forms[0].elements[0].focus();
+			}
+		}
+        function guardarDescInstFin(instrumDesc, instrumId,select){        
+       	 	instrumDesc.value=select.options[select.selectedIndex].text        	
+       	 	instrumId.value=select.value
+        }   
+        
+        function inicializarDescInstrumentos(){
+        	guardarDescInstFin(document.dataentry.descTipoInstrumentoFinancieroAnt, document.dataentry.idTipoInstrumentoFinancieroAnt,document.dataentry.istrumentoFinanciero);
+        	guardarDescInstFin(document.dataentry.descTipoInstrumentoFinancieroNuevo, document.dataentry.idTipoInstrumentoFinancieroNuevo,document.dataentry.istrumentoFinanciero);
+        }         
+        
+        function guardarTipoProducto(tipoProductoId,selectInicial){        
+       	 	tipoProductoId.value=document.dataentry.istrumentoFinanciero2.options[selectInicial.selectedIndex].value
+       	 	//alert(tipoProductoId.value)
+        }      
+       
+	</script>
+	
+</head>
+
+<!--poner el focus en el 1er control de la forma-->
+<BODY
+	onload="javascript:mostrar(@accion@);{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};
+		javascript:abrirInventario('o',document.dataentry.istrumentoFinanciero);verificarBolivares('o','');
+		inicializarDescInstrumentos();">
+
+	<!--page name bar-->
+	<table  border="0" cellspacing="0" WIDTH="930px">
+	    <tr>
+	        <td class="headerBox">
+	        	<div id="titulou" style="display:none">               
+	            	<font class="headerText">Unidad de Inversi&oacute;n</font>
+	            </div>
+				<div id="titulop" style="display:none">               
+	            	<font class="headerText">Publicaci&oacute;n Unidad de Inversi&oacute;n</font>
+	            </div>
+	            <div id="tituloc" style="display:none">               
+	            	<font class="headerText">Consulta Unidad de Inversi&oacute;n</font>
+	            </div>
+	            <div id="titulom" style="display:none">               
+	            	<font class="headerText">Modificaci&oacute;n Unidad de Inversi&oacute;n</font>
+	            </div>
+			</td>
+	        <!-- help online -->
+	   		<td class="headerBox" valign="middle" align="right">
+	   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+	   		</td>
+	   		<!-- fin help online -->	        
+	   	</tr>
+	</table>
+	
+	
+	<!--formulario-->
+	<form name="dataentry" method="POST" TARGET="_blank" action="unidad_inversion-update">
+	
+	<div id="menu">
+		<table border="0" cellspacing="1" cellpadding="2">
+			<tr>
+				<td id="navigationActivo" nowrap><a><span>Unidad de Inversi&oacute;n</span></a></td>
+				<td id="navigation" nowrap><a href="unidad_inversion_titulos-edit"><span>T&iacute;tulos / Subastas</span></a></td>
+				<td id="navigation" nowrap><a href="unidad_inversion_blotter-browse"><span>Blotters</span></a></td>
+				<td id="navigation" nowrap><a href="unidad_inversion_indicadores-edit"><span>Indicadores</span></a></td>
+				<td id="navigation" nowrap><a href="unidad_inversion_empresas-browse"><span>Empresas</span></a></td>
+				<td id="navigation" nowrap><a href="unidad_inversion_campos-edit"><span>Campos Din&aacute;micos</span></a></td>			
+				<td id="navigation" nowrap><a href="unidad_inversion_documentos-browse"><span>Documentos</span></a></td>	
+				<td id="navigation" nowrap><a href="unidad_inversion_comisiones-browse"><span>Comisiones</span></a></td>					
+			</tr>
+		</table>
+	</div>	
+
+	<table class="dataform" border="0" cellspacing="1" cellpadding="2" width="930px">
+
+        <tr>
+            <th COLSPAN="4" ALIGN="center">Datos Generales </th>
+        </tr>	
+		<tr class="formElement">        	
+			<td class="formLabel">Nombre:*</td>
+			<td colspan="3">
+				<input type="text" name="nombreUnidadInversion" size="50" maxlength="50" value="@undinv_nombre@"/>
+			</td>
+		</tr>
+		<tr class="formElement">
+			<td class="formLabel">Emisi&oacute;n:</td>
+			<td>
+				<input type="text" name="emisionUnidadInversion"  size="50" maxlength="50" value="@undinv_emision@"/>
+			</td>
+			<td class="formLabel" style="padding-left: 20px;">Serie:</td>
+			<td>
+				<input type="text" name="serieUnidadInversion" size="50" maxlength="50" value="@undinv_serie@"/>
+			</td>
+		</tr>
+		<tr class="formElement">
+			<td class="formLabel">Descripci&oacute;n:</td>
+			<td colspan="3">
+				<textarea name="descrUnidadInversion" cols="50" rows="4">@undinv_descripcion@</textarea>
+			</td>
+		</tr>	
+		<tr class="formElement">
+			<td class="formLabel">Tipo de Instrumento:*</td>
+			<td>
+				<SELECT NAME="istrumentoFinanciero" style="width:272px"
+					onchange="guardarDescInstFin(document.dataentry.descTipoInstrumentoFinancieroNuevo, document.dataentry.idTipoInstrumentoFinancieroNuevo,document.dataentry.istrumentoFinanciero);
+							  guardarTipoProducto(document.dataentry.idTipoProductoNuevo,document.dataentry.istrumentoFinanciero);
+							  abrirInventario('c', this);">
+					<option value=""></option>
+				<rowsIF>
+					<OPTION value="@insfin_id@;@insfin_forma_orden@">@insfin_descripcion@</option>					
+				</rowsIF>
+				</SELECT>
+				
+				<SELECT NAME="istrumentoFinanciero2" style="display:none">
+					<option value=""></option>
+				<rowsIF2>
+					<OPTION value="@tipo_producto_id@">@insfin_descripcion@</option>					
+				</rowsIF2>
+				</SELECT>
+			</td>
+			<td class="formLabel"  style="padding-left: 20px;">Emisor:*</td>
+			<td>
+				<SELECT name="idEmpresaEmisor" style="width:272px">
+					<OPTION value=""></option>
+				<rowsEmisor>
+					<OPTION value="@empres_id@">@empres_rif@ - @empres_nombre@</option>
+				</rowsEmisor>
+				</SELECT>
+			</td>
+		</tr>
+		<tr class="formElement">
+			<td class="formLabel">Moneda de Negociaci&oacute;n:*</td>
+			<td>
+				<SELECT @cambiomonedaui@ name="monedaNegocio" style="width:272px"
+					onchange="verificarBolivares('c', this);">
+					<OPTION value=""></option>
+				<rowsMoneda>
+					<OPTION value="@moneda_id@">@moneda_descripcion@</option>
+				</rowsMoneda>
+				</SELECT>
+			</td>
+			<td class="formLabel" style="padding-left: 20px;">Tasa de Cambio a Aplicar:*</td>
+			<td>
+				<input type="text" name="tasaCambioNuevo" size="11" maxlength="11" value="@undinv_tasa_cambio@"  
+					onkeypress="EvaluateText('%f',this);" />
+			</td>
+		</tr>	
+		<tr class="formElement">
+			<td class="formLabel">Tasa de Cambio a Aplicar Oferta:*</td>
+			<td colspan="4">
+				<input type="text" name="tasaCambioOferta" size="11" maxlength="11" value="@undinv_tasa_cambio_ofer@"  
+					onkeypress="EvaluateText('%f',this);" />
+			</td>
+		</tr>		
+		<tr class="formElement">
+			<td class="formLabel">Porcentaje Comision IGTF:*</td>
+			<td colspan="4">
+				<input type="text" name="comisionIGTF" size="11" maxlength="11" value="@comision_igtf@"  
+					onkeypress="EvaluateText('%f',this);" />
+			</td>
+		</tr>			
+		<tr class="formCaption">
+			<th colspan="4" align="center">
+				<font class="formCaptiontext">Fechas</font>
+			</th>
+		</tr>		
+		<tr class="formElement">
+			<td class="formLabel">Fecha de Emisi&oacute;n:*</td>
+			<td><div name="calendar">
+				<input type="text" name="fechaEmisionUI" size="10" maxlength="10" value="@undinv_fe_emision@" readonly /> 
+					<a name="link" onclick="popUpCalendar(this, document.forms[0].fechaEmisionUI, 'dd-mm-yyyy')">
+					<IMG SRC="../images/infi_gn_calendar.gif" class="boton" TITLE="Seleccionar Fecha"/>
+					</a></div>
+			</td>
+			<td class="formLabel" style="padding-left: 20px;">Fecha de Cierre:*</td>
+			<td><div name="calendar">
+				<input type="text" name="fechaCierreUI" size="10" maxlength="10" value="@undinv_fe_cierre@" readonly /> 
+					<a name="link" onclick="popUpCalendar(this, document.forms[0].fechaCierreUI, 'dd-mm-yyyy')">
+					<IMG SRC="../images/infi_gn_calendar.gif" class="boton" TITLE="Seleccionar Fecha"/>
+					</a></div>
+			</td>			
+		</tr>
+		<tr class="formElement" id="unidad_subasta_fecha" style="display:none" >
+			<td class="formLabel" >Fecha de Adjudicaci&oacute;n:</td>
+			<td><div name="calendar">
+				<input type="text" name="fechaAdjudicacionUI"  size="10" maxlength="10" value="@undinv_fe_adjudicacion@" readonly /> 
+					<a name="link" onclick="popUpCalendar(this, document.forms[0].fechaAdjudicacionUI, 'dd-mm-yyyy')">
+					<IMG SRC="../images/infi_gn_calendar.gif" class="boton" TITLE="Seleccionar Fecha"/>
+					</a></div>
+			</td>
+			<td class="formLabel" style="padding-left: 20px;">Fecha de Liquidaci&oacute;n:*</td>
+			<td><div name="calendar">
+				<input type="text" name="fechaLiquidaUI" size="10" maxlength="10" value="@undinv_fe_liquidacion@" readonly /> 
+					<a name="link" onclick="popUpCalendar(this, document.forms[0].fechaLiquidaUI, 'dd-mm-yyyy')">
+					<IMG SRC="../images/infi_gn_calendar.gif" class="boton" TITLE="Seleccionar Fecha"/>
+					</a></div>
+			</td>
+		</tr>
+		<tr class="formElement" id="unidad_subasta_hora_liquidacion" style="display:none">
+			<td class="formLabel">Hora del Primer Intento Liquidaci&oacute;n:*</td>
+			<td>
+				<div name="calendar">
+					<SELECT NAME="PrimeraHoraLiquida">
+					<rowsHora1>
+					<OPTION value="@hora@">@hora@</OPTION>
+					</rowsHora1>
+					</SELECT>
+					&nbsp;:&nbsp;
+					<SELECT NAME="PrimeraMinLiquida">
+					<rowsMin1>
+					<OPTION value="@min@">@min@</OPTION>
+					</rowsMin1>
+					</SELECT>
+					&nbsp;:&nbsp;
+					<SELECT NAME="meridiano1_liquidacion">
+					<rows_meridiano1>
+					<OPTION value="@num@">@valor@</OPTION>
+					</rows_meridiano1>
+				</SELECT>
+					<font size="1px" style><i>Formato 12 horas</i></font>
+				</div>
+			</td>
+			<td class="formLabel" style="padding-left: 20px;">Hora del Segundo Intento Liquidaci&oacute;n:*</td>
+			<td>
+				<div name="calendar">
+					<SELECT NAME="SegundaHoraLiquida">
+					<rowsHora2>
+					<OPTION value="@hora@">@hora@</OPTION>
+					</rowsHora2>
+					</SELECT>
+					&nbsp;:&nbsp;
+					<SELECT NAME="SegundaMinLiquida">
+					<rowsMin2>
+					<OPTION value="@min@">@min@</OPTION>
+					</rowsMin2>
+					</SELECT>
+					&nbsp;:&nbsp;
+					<SELECT NAME="meridiano2_liquidacion">
+					<rows_meridiano2>
+					<OPTION value="@num@">@valor@</OPTION>
+					</rows_meridiano2>
+				</SELECT>
+					<font size="1px" style><i>Formato 12 horas</i></font>
+				</div>
+			</td>
+		</tr>
+		<tr class="formCaption">
+			<th colspan="4" align="center">
+				<font class="formCaptiontext">&nbsp;</font>
+			</th>
+		</tr>
+        <tr class="formElement">
+			<td class="formLabel">Días de apertura de cuenta cliente:*</td>
+			<td colspan="2">
+				<input type="text" name="dias_apertura_cuenta" value="@dias_apertura_cuenta@" size="3" maxlength="3"/> 
+			</td>
+		</tr>		
+		<tr class="formElement">
+			<td class="formLabel">Cobros en batch hacia pasivos:*</td>
+			<td colspan="2">
+				<input type="checkbox" name="batchAdjchk" value="1" checked disabled="disabled" /> Cobro batch en adjudicación&nbsp; &nbsp; 
+				<input type="checkbox" name="batchLiqchk" value="1" checked disabled="disabled" /> Cobro batch en liquidación			
+				<input type="hidden" name="batchAdj" value="1"/> 
+				<input type="hidden" name="batchLiq" value="1"/>
+				
+			</td>
+		</tr>
+		<tr class="formElement">
+		    <td colspan="4"><p class="nota">(campo chequeado indica proceso de cobro en bacth, campo no chequeado indica proceso de cobro en línea)</p></td>
+		</tr>			
+		<tr class="formElement">
+			<td class="formLabel">Tipo de Mercado:*</td>
+			<td colspan="2">
+				<INPUT type="radio" NAME="tipoMercado" VALUE="@primario@"  /> Primario &nbsp; &nbsp; 
+				<INPUT type="radio" NAME="tipoMercado" VALUE="@secundario@" /> Secundario
+			</td>
+		</tr>		
+		<tr class="formElement">
+			<td class="formLabel">La Orden debe ser tomada en:*</td>
+			<td id="unidad_inventario_indicaPedido" style="display:none" colspan="2">Monto</td>
+			<td id="unidad_subasta_indicaPedido" style="display:none" colspan="2">
+				<INPUT TYPE="RADIO" NAME="indicaPedidoMonto" VALUE="1" checked /> Monto &nbsp; &nbsp; &nbsp; &nbsp;
+				<INPUT TYPE="RADIO" NAME="indicaPedidoMonto" VALUE="0" /> Cantidad
+			</td>			
+		</tr>	
+		<tr class="formElement">		
+			<td class="formLabel">Multiplos de Inversi&oacute;n:*</td>
+			<td>
+				<input type="text" name="montoMultiplos" value="@undinv_multiplos@" size="11" maxlength="11" 		
+				onkeypress="EvaluateText('%f',this);">
+			</td>	
+		</tr>
+		<tr class="formElement" name="tr_multiplo_efectivo" >		
+			<td class="formLabel">Multiplos de Efectivo:* &nbsp;(SIMADI Taquilla)</td>
+			<td>
+				<input type="text" name="montoMultiplosEfectivo" size="11" maxlength="11"	
+				onkeypress="EvaluateText('%f',this);" value="@undinv_multiplos_efectivo@">
+			</td>	
+		</tr>	
+		<tr class="formElement" id="unidad_inventario_indicadorPrecioSucio">
+			<td class="formLabel">Unidad de Inversi&oacute;n de Precio Sucio:*</td>
+			<td>			
+				<INPUT TYPE="RADIO" NAME="indicadorPrecioSucio" VALUE="1" checked /> Si &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; 
+				<INPUT TYPE="RADIO" NAME="indicadorPrecioSucio" VALUE="0" /> No
+			</td>			
+		</tr>
+		<tr class="formElement" id="unidad_indicadorCancelacion">
+			<td class="formLabel">Unidad Inversión permite Cancelación:*</td>
+			<td>	
+				<INPUT TYPE="RADIO" NAME="permiteCancRadio" id="permiteCancRadioSi" VALUE="1" @cancelacion_checked_si@/> Si &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+				<INPUT TYPE="RADIO" NAME="permiteCancRadio" id="permiteCancRadioNo" VALUE="0" @cancelacion_checked_no@/> No
+			</td>			
+		</tr>	
+		<tr class="formElement" id="unidad_indicadorManejoAltoValor">
+			<td class="formLabel">Unidad Inversión permite Manejo Alto / Bajo Valor:*</td>
+			<td>
+				<INPUT TYPE="RADIO" NAME="permiteAltoValorRadio" id="permiteAltoValorRadioNoAplica" VALUE="0" @checked_negocio_no_aplica@/> No Aplica	
+				<INPUT TYPE="RADIO" NAME="permiteAltoValorRadio" id="permiteAltoValorRadioSi" VALUE="1" @checked_negocio_alto_valor@/> Alto Valor
+				<INPUT TYPE="RADIO" NAME="permiteAltoValorRadio" id="permiteAltoValorRadioNo" VALUE="2" @checked_negocio_bajo_valor@/> Bajo Valor
+				<INPUT TYPE="RADIO" NAME="permiteAltoValorRadio" id="permiteAltoValorRadioNo" VALUE="3" @checked_negocio_taquilla@/> Taquilla  &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			</td>			
+		</tr>								
+		<tr class="formElement">
+			<td class="formLabel"></td>
+			<td colspan="2">
+				<INPUT TYPE="CHECKBOX" NAME="indicaVtaEmpleados" VALUE="1" /> Permite Venta a Empleados
+			</td>
+		</tr>
+		<tr class="formElement">			
+			<td class="formLabel"></td>
+			<td>
+				<INPUT TYPE="CHECKBOX" NAME="indicaRecompraNeteo" VALUE="1" />Permite Recompra con Neteo
+			</td>
+		</tr>			
+		<tr class="formElement" name="tr_periodicidad_venta" >		
+			<td class="formLabel">Periodicidad de Venta:*&nbsp;(SIMADI Taquilla)</td>
+			<td>
+				<input type="text" name="periodicidadVenta" size="11" maxlength="11"	
+				onkeypress="EvaluateText('%f',this);" value="@undinv_periodo_venta@">
+			</td>	
+		</tr>			
+		<tr class="formElement">
+			<td class="formLabel">Comentarios:</td>
+			<td colspan="3">
+				<textarea name="comentarios" cols="50" rows="8">@undinv_comentarios@</textarea>
+			</td>
+		</tr>
+		
+		</table>
+		
+		
+		<!-- DATOS PARA INVENTARIO -->
+		<table id="unidad_inventario" style="display:none" class="dataform" border="0" cellspacing="1" cellpadding="2" width="930px">			
+		<tr class="formCaption">
+			<th colspan="5" align="center">
+				<font class="formCaptiontext">Par&aacute;metros</font>
+			</th>
+		</tr>
+		<tr class="formElement">
+			<td class="formLabel">Total Inventario:*</td>
+			<td width="31%" align="left">
+				<input type="text" name="totalInversion" size="15" maxlength="15" value="@undinv_umi_inv_total@" 		
+				onkeypress="EvaluateText('%f',this);">
+			</td>		
+			<td class="formLabel" style="padding-left: 20px;">Inventario Disponible:</td>
+			<td width="30%" align="left">
+				<input type="text" name="inventarioDisponible"  size="15" maxlength="15" value="@undinv_umi_inv_disponible@" readonly />
+			</td>
+			<td width="1%"></td>			
+		</tr>	
+		<tr class="formElement">
+			<td class="formLabel">Tasa Pool:*</td>
+			<td width="31%" align="left">
+				<input type="text" name="tasaPool" size="7" maxlength="6" value="@undinv_tasa_pool@"
+				onkeypress="EvaluateText('%f',this);">
+			</td>		
+			<td class="formLabel" style="padding-left: 20px;">Porcentaje Rendimiento:*</td>
+			<td width="30%" align="left">
+				<input type="text" name="pctRendimiento" size="7" maxlength="6" value="@undinv_rendimiento@"
+				onkeypress="EvaluateText('%f',this);">
+			</td>	
+			<td width="1%"></td>				
+		</tr>			
+		</table>
+		
+		<!-- DATOS PARA SUBASTA -->
+	   <table id="unidad_subasta" style="display:none" class="dataform" border="0" cellspacing="1" cellpadding="2" width="930px">
+		
+		<tr class="formCaption">
+			<th colspan="2" align="center">
+				<font class="formCaptiontext">Par&aacute;metros</font>
+			</th>
+		</tr>			
+		<tr class="formElement">
+			<td class="formLabel" width="18%">Monto m&iacute;nimo de negociaci&oacute;n:*</td>
+			<td  width="82%" align="left">
+				<input type="text" name="montoMinimoSubastaInversion"  size="15" maxlength="12"	value="@undinv_umi_unidad@"		
+				onkeypress="EvaluateText('%f',this);">
+			</td>		
+		</tr>		
+		<tr class="formElement">		
+			<td class="formLabel">Monto m&aacute;ximo de negociaci&oacute;n:* &nbsp;(SIMADI Taquilla)</td>
+			<td>
+				<input type="text" name="montoMaximoSubastaInversion" size="11" maxlength="11"	
+				onkeypress="EvaluateText('%f',this);" value="@undinv_umax_unidad@">
+			</td>	
+		</tr>	
+		</table>
+		
+		<table class="dataform" border="0" cellspacing="1" cellpadding="2" width="930px">
+		
+		@asociaciones_ini@
+		<tr class="formCaption">
+			<th colspan="4" align="center">
+				<font class="formCaptiontext">Detalles</font>
+			</th>
+		</tr>
+		@asociaciones_fin@	
+		<rowsAsoc>	
+		<tr class="formElement">
+			<td class="formLabel">@campo_mensaje@</td>
+			<td colspan="3">@mensaje@</td>
+		</tr>		
+		</rowsAsoc>			
+	</table>
+	<div align="center" style="width:930px">
+	<!--nota sobre los campos obligatorios-->
+	<br>
+	<div id="nota" style="display:none">
+    <P><FONT COLOR="red"><B>Nota:</B></FONT> Los campos con * deben ser llenados para poder procesar el formulario.</P>	
+	</div>
+	<table align="center">
+		<tr>
+			<td>
+				<div align="center" style="display:none" id="unidad">
+					<button type="button" onclick="guardarTipoProducto(document.dataentry.idTipoProductoNuevo,document.dataentry.istrumentoFinanciero);submitir();">Grabar</button>
+				</div>
+			</td>
+			<td>
+				<div align="center" style="display:none" id="publicar">
+					<button type="button" onclick="window.location='publicar_unidad_inversion-confirm?undinv_id=@undinv_id@&undinv_nombre=@undinv_nombre@';">Publicar</button>
+				</div>
+			</td>
+			<td>
+				<button type="button" onclick="window.location='unidad_inversion-browse';">Regresar</button>
+			</td>
+		</tr>
+	</table>
+	
+	<!--campo escondido para almacenar el key del record--> 
+		<input type="hidden" name="idUnidadInversion" value="@undinv_id@"/> 
+		<input type="hidden" name="idInstrumentoFinanciero" value="" /> 
+		<input type="hidden" name="tipoInstrumentoFinanciero" value="" /> 
+		<input type="hidden" name="idMoneda" value="" /> 
+		<input type="hidden" name="tasaCambio" value="1" /> 
+		<input type="hidden" name="descTipoInstrumentoFinancieroAnt"  value=""/>
+		<input type="hidden" name="idTipoInstrumentoFinancieroAnt"  value=""/>
+		<input type="hidden" name="descTipoInstrumentoFinancieroNuevo"  value=""/>
+		<input type="hidden" name="idTipoInstrumentoFinancieroNuevo"  value=""/>		
+		
+		<input type="hidden" name="idTipoProductoNuevo"  value="@tipo_producto_id@"/>
+		<input type="hidden" name="idTipoProductoAnt"  value="@tipo_producto_id@"/>
+	</div>
+	</form>
+
+</BODY>
+<script language="javascript">
+<!--
+
+-->
+</script>
+</HTML>
+

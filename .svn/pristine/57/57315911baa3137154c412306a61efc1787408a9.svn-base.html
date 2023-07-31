@@ -1,0 +1,132 @@
+<html>
+	<head>        
+         <script language="javascript" src="../js/default.js"></script>
+         <script language="javascript" src="../js/consultaOrden.js"></script>
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>        
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <link rel="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+  <link rel="stylesheet" type="text/css" href="../css/EstiloFichas.css" />
+    </head>
+
+<!--page name bar-->
+
+  <script type="text/javascript">
+        function detallesOperacion(nombreFormulario){
+        var longitud = nombreFormulario.length;
+        var str=nombreFormulario.substr(8,longitud);
+		document.getElementById(str).submit();
+        }
+        function detallesIntentos(nombreFormulario){
+        var longitud = nombreFormulario.length;
+        var str=nombreFormulario.substr(8,longitud);
+		document.getElementById(str).submit();
+        }
+        </script>
+</head>
+<body>
+
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText"> Ordenes / Consultas / Detalles </FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+  
+<br>
+
+<div id="menu">
+<table border="0">
+<tr>
+<td id="navigation"><a href="javascript:datos();"><span>Datos</span></a></td>
+<td id="navigationActivo"><a><span>Transacciones</span></a></td>
+<td id="navigation"><a href="javascript:titulos();"><span>T&iacute;tulos</span></a></td>
+<td id="navigation"><a href="javascript:documentos();"><span>Documentos</span></a></td>
+<td id="navigation"><a href="javascript:campos();"><span>Campos Dinamicos</span></a></td>
+<td id="navigation"><a href="javascript:data();"><span>Data Extendida</span></a></td>
+<td id="navigation"><a href="javascript:requisitos();"><span>Requisitos</span></a></td>
+</tr>
+</table>
+</div>
+<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">     
+        <!--titulo-->
+    <tr CLASS="formCaption">
+            <th COLSPAN="6" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Operaciones Financieras de la Orden:&nbsp;@ordene_id@
+                </FONT>
+            </th>
+        </tr>
+</table>
+<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+         <tr CLASS="formCaption">
+            <th COLSPAN="" ALIGN="center"></th>
+            <th COLSPAN="" ALIGN="center"></th>
+            <th COLSPAN="" ALIGN="center">Transacci&oacute;n</th>
+            <th COLSPAN="" ALIGN="center">Tipo</th>
+            <th COLSPAN="" ALIGN="center">Moneda</th>
+            <th COLSPAN="" ALIGN="center">Monto</th>
+            <th COLSPAN="" ALIGN="center">Status</th>
+            <th COLSPAN="" ALIGN="center">Tasa</th>
+            <th COLSPAN="" ALIGN="center">Aplicar</th>
+            
+        </tr>
+        <detalle_orden_transacciones>
+        <tr>
+        <td align="center">
+         	<a href="javascript:detallesOperacion('19569633@ordene_operacion_id@')"><IMG SRC="../images/infi_gn_document.gif" WIDTH="15" ALIGN="top" HEIGHT="13" title="Detalles de la Operaci&oacute;n" BORDER="0" style="cursor:hand"></a>
+        </td>
+        <form style="unicode-bidi: embed" id="@ordene_operacion_id@" name="@ordene_operacion_id@" action="detalles_operacion-browse" method="post" target="_self"><input type="hidden" value="@ordene_operacion_id@" name="id_operacion"> </form>
+        <td align="center">
+        	<a href="javascript:detallesIntentos('19569633i@ordene_operacion_id@')"><IMG SRC="../images/infi_gn_edit.gif" WIDTH="15" ALIGN="top" HEIGHT="13" title="Intentos" BORDER="0" style="cursor:hand"></a>
+        </td>
+     
+        <form id="i@ordene_operacion_id@" name="@ordene_operacion_id@" action="detalle_operacion_intentos-browse" method="post" target="_self"><input type="hidden" value="@ordene_operacion_id@" name="id_operacion"> </form>
+        <td>@operacion_nombre null-value='No posee'@</td>
+        <td>@trnfin_tipo_descripcion null-value='No posee'@</td>
+        <td>@moneda_descripcion null-value='No posee'@</td>
+        <td align="right">@monto_operacion null-value='No posee'@</td>
+        <td>@status_operacion null-value='No posee'@</td>
+        <td align="right">@tasa format-mask='#,###,##0.0000' null-value='No posee'@</td>
+        <td align="center">@fecha_aplicar null-value='No posee'@</td>
+        </tr>
+        </detalle_orden_transacciones>
+        
+        </table>
+         <br>
+             <button type="button" onclick="javascript:window.close();">Cerrar</button>
+
+
+
+<form name="datos" action="detalle_orden-find" method="post">
+<input type="hidden" name="ord_id" value="@ordene_id@">
+</form>
+<form name="transacciones" action="details_trans" method="post">
+<input type="hidden" name="ord_id" value="@ordene_id@">
+</form>
+<form name="titulos" action="details_titulos" method="post">
+<input type="hidden" name="ord_id" value="@ordene_id@">
+</form>
+<form name="documentos" action="details_documentos" method="post">
+<input type="hidden" name="ord_id" value="@ordene_id@">
+</form>
+<form name="campos" action="details_campos_dinamicos" method="post">
+<input type="hidden" name="ord_id" value="@ordene_id@">
+</form>
+<form name="data" action="details_data_extendida" method="post">
+<input type="hidden" name="ord_id" value="@ordene_id@">
+</form>
+<form name="requisitos" action="details_requisitos" method="post">
+<input type="hidden" name="ord_id" value="@ordene_id@">
+</form> 
+
+</body>
+</html>

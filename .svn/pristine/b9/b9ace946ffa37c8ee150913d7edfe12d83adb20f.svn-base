@@ -1,0 +1,129 @@
+BODY	
+{
+	font-family: Verdana;
+	font-size: 12px;
+}
+
+H2 
+{
+	font-family: Verdana;
+	font-size: 16px;
+        font-weight: bold;
+}
+
+H3 
+{
+	font-family: Verdana;
+	font-size: 14px;
+        font-weight: bold;        
+}
+
+A
+{
+	font-family: Verdana;
+	font-size: 11px;
+}
+
+A:link 
+{
+	color: #001692;
+}
+
+A:visited 
+{
+	color: #001692;
+}
+
+A:hover 
+{
+	color: red;
+}
+
+P 
+{
+	font-family: Verdana;
+	font-size: 12px;
+}
+
+TH 
+{
+	font-family: Verdana;
+	font-size: 11px;
+}
+
+TD 
+{
+	font-family: Verdana;
+	font-size: 11px;
+}
+
+
+.smallText 
+{
+	font-size: 10px;
+}
+
+.formCaption
+{
+	background-color: #006699;
+}
+
+.formCaptionText
+{
+	color: white;
+}
+
+.formLabel
+{
+  font-size: 12px;
+  padding-left: 5px;
+}
+
+.inputControl
+{
+  font-family: Courier New;
+  font-size: 12px;
+}
+
+.formElement
+{
+	background-color: EFEFEF;
+}
+
+.tableHeader
+{
+        background-color: #FFCC66;
+}
+
+.tableCell
+{
+	background-color: F0F0F0;
+}
+
+.tableCell_1
+{
+	background-color: #9999FF;
+}
+
+.tableCell_2
+{
+	background-color: #99CCFF;
+}
+
+
+.headerBox
+{ 
+        background-color: #FFCC66;
+        padding-left: 5px;
+}
+
+.headerText
+{
+   	font-family: Verdana;
+  	font-size: 18px;
+        color: #333333;
+}
+
+
+
+

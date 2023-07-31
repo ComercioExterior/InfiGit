@@ -1,0 +1,109 @@
+
+<HTML>
+    
+    <HEAD>
+    <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+            <SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+        
+    
+           <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css"/>
+        
+        <TITLE>Sistema INFI</TITLE>
+        
+         
+    </HEAD>
+    
+<BODY>
+      
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Utilitarios / Consulta de Procesos</FONT>
+        </TD>
+        
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+        <td class="headerBox" align="right"></td>
+</TABLE>
+        
+        <CENTER>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="consulta_procesos-browse">
+		
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+        
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="4" ALIGN="center">                
+                  Buscar              
+            </th>
+        </tr>
+        <tr>
+        <!--campo-->
+            <td>
+				Fecha Desde:*
+            </td>
+            <td>
+				<INPUT TYPE="TEXT" VALUE="@fecha_actual@" NAME="fe_desde" SIZE="12" MAXLENGTH="10" class="inputControl" readonly /> 
+				<a onclick="popUpCalendar(this, fe_desde, 'dd-mm-yyyy')">
+				<IMG SRC="../images/infi_gn_calendar.gif" class="boton" TITLE="Seleccionar Fecha"/>
+				</a>
+			</td>
+        </tr>
+        <!--campo-->
+        <tr>
+            <td>
+				Fecha Hasta:*
+            </td>
+            <td>
+				<INPUT TYPE="TEXT" VALUE="@fecha_actual@" NAME="fe_hasta" SIZE="12" MAXLENGTH="10" class="inputControl" readonly/> 
+				<a onclick="popUpCalendar(this, fe_hasta, 'dd-mm-yyyy')">
+				<IMG SRC="../images/infi_gn_calendar.gif" TITLE="Seleccionar Fecha"/> 
+				</a>
+			</td>
+        </tr>
+        <tr>
+            <td>
+				Usuario (NM):
+            </td>
+            <td>
+				<INPUT TYPE="text" VALUE="" NAME="usuario" class="inputControl" size="12"  maxlength="25"/> 
+			</td>
+        </tr>
+        <tr>
+            <td>
+				En Ejecución:*
+            </td>
+            <td>
+				<INPUT TYPE="checkbox" VALUE="1" NAME="enEjecucion" class="inputControl"/> 
+			</td>
+        </tr>
+         </table>
+         <!--nota sobre los campos obligatorios-->
+            <P><FONT COLOR="red"><B>Nota:</B></FONT> Los campos con * deben ser llenados para poder procesar el formulario.</P>
+
+            <SPAN> </SPAN>
+         
+         <INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/> 	
+
+            <br>
+            <button TYPE="submit">Procesar</button>
+         
+                        <SPAN> </SPAN>
+            <button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+
+    </form>
+
+        
+        </CENTER>
+    </BODY>
+</HTML>
+

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+    <!--
+    
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, decimal, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+    
+    -->
+    	<field 
+        name="comision_id" 
+        type="varchar" 
+        description="Comisi&oacute;n"
+        nullable="1"
+        size="50" />
+        
+        <field 
+        name="client_nombre" 
+        type="varchar" 
+        description="Nombre"
+        nullable="1"
+        size="50" />
+        
+        <field 
+        name="client_cedrif" 
+        type="varchar" 
+        description="C&eacute;dula / RIF"
+        nullable="1"
+        size="50" />
+        
+        <field 
+        name="tipper_id" 
+        type="varchar" 
+        description="Tipo"
+        nullable="1"
+        size="100" />
+        
+</record>
+

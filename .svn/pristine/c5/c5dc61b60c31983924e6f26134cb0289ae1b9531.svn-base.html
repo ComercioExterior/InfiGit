@@ -1,0 +1,125 @@
+<html>
+
+<head>
+<script language="javascript" src="../js/default.js"></script>  
+    <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+    <title>Sistema INFI</title>
+
+	<script type="text/javascript">
+    
+	function closeWindow(v1,v2)
+	{
+	    window.opener.document.forms[0].@name_id@.value=v1;
+	    window.opener.document.forms[0].@name_tx@.value=v2;
+	    window.close();
+	}
+	
+	function Verificar()
+	{	
+		document.forms[0].action='pick_contrapartes-find?buscar=1';
+		document.forms[0].submit();	
+
+	}
+		
+	</script>
+
+</head>
+
+<body>
+
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Contrapartes CARMEN </FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<CENTER>
+    <BR>
+
+    <!--formulario-->
+    <form method="POST" action="pick_contrapartes-find">
+
+        <table border="0" cellspacing="1" cellpadding="2" width="100%"  class="dataform">
+        
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="2" ALIGN="center">
+                      Filtro
+            </th>
+        </tr>
+        
+        <!-- Status -->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+                Código:
+            </td>
+            <td>
+                <INPUT TYPE="input" VALUE="" NAME="codigo" size="40" MAXLENGTH="50" class="inputControl" />
+            </td>
+		</tr>
+		<tr CLASS="formElement">
+            <td CLASS="formLabel">
+                Nombre (contiene):
+            </td>
+            <td>
+                <INPUT TYPE="input" VALUE="" NAME="nombre" size="40" MAXLENGTH="50" class="inputControl" />
+            </td>
+			</tr>	
+	        </table>
+
+        <BR>
+       
+       <input type="hidden" name="buscar" value="1" >
+		<button name="boton_buscar"  onclick="Verificar();"/>Buscar</button> 
+		
+        &nbsp;
+		<button ONCLICK="window.close();">Regresar</button>
+   
+    </form>
+
+	<div id="tb">
+    <BR>
+    <b>Seleccione una Contraparte</b>
+    <BR>
+    <BR>      
+          
+    <TABLE width="100%" class="datatable">
+    
+        
+    	<TR class="tableCell">
+            <TH WIDTH="10%">
+            </TH>
+            <TH WIDTH="20%">
+            	<b>Código</b>
+            </TH>
+            <TH WIDTH="70%">
+            	<b>Nombre</b>
+            </TH>
+		</TR>
+			<rows>
+	        <TR>
+	            <TD WIDTH="10%" align="center">
+		    	<a href="javascript:closeWindow('@codigo@','@nombre@');"><b>OK</b></a>
+	            </TD>
+				<TD nowrap>
+			    	@codigo@
+	            </TD>
+				<TD nowrap>
+			    	@nombre@
+	            </TD>	            
+			</TR>
+	    </rows>
+    </TABLE>
+    </div>
+    </CENTER>	
+</body>
+</html>

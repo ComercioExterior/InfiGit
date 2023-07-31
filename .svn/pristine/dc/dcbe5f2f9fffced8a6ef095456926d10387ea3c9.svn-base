@@ -1,0 +1,30 @@
+package models.bcv.mesas_lectura;
+
+import java.io.File;
+import java.io.FileInputStream;
+import javax.servlet.ServletOutputStream;
+import models.msc_utilitys.MSCModelExtend;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+
+public class DownloadPlantilla extends MSCModelExtend {
+
+	public void execute() throws Exception {
+
+		String separador = String.valueOf(File.separatorChar);
+		String PlantillaMesaDivisas = "Plantilla_Carga_MESA.xls";
+
+		String rutaTemplate = _app.getRealPath("WEB-INF") + separador + "templates" + separador + "adjudicacionTemplate" + separador + PlantillaMesaDivisas;
+		String nombreFinal = "Plantilla_Carga_MESA.xls";
+
+		FileInputStream file = new FileInputStream(rutaTemplate);
+		HSSFWorkbook workbook = new HSSFWorkbook(file);
+
+		_res.addHeader("Content-Disposition", "attachment;filename=" + nombreFinal);
+		_res.setContentType("application/x-download");
+
+		ServletOutputStream os = _res.getOutputStream();
+		workbook.write(os);
+		os.flush();
+		os.close();
+	}
+}

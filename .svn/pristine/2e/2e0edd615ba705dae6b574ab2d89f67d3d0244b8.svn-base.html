@@ -1,0 +1,277 @@
+<html>
+
+<head>
+<script language="javascript" src="../js/default.js"></script>
+<script type="text/javascript" src="../js/menu/jquery-1.2.2.pack.js"></script>
+<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+
+<title>Sistema INFI</title>
+
+<script type="text/javascript">
+	var now = new Date();
+	var idOrdenes = "";
+
+	function procesados() {
+		alert("Estas operaciones ya fueron enviadas al BCV");
+	}
+
+	function procesadosManual() {
+		alert("Estas operaciones fueron procesadas manualmente");
+	}
+
+	function seleccionarTodos() {
+		if ($("#todos").is(":checked")) {
+			$(":checkbox").attr("checked", "true");
+			$(":checkbox").attr("disabled", "disabled");
+			$("#todos").attr("disabled", "");
+		} else {
+			$(":checkbox").attr("checked", "");
+			$(":checkbox").attr("disabled", "");
+		}
+	}
+
+	function bloquearlotodo() {
+
+		$(":checkbox").attr("disabled", "disabled");
+		alert("Esta operacion es solo de consulta");
+
+	}
+
+	function seleccionarTodosPagina() {
+
+		if ($("#todosPagina").is(":checked")) {
+			$(":checkbox").attr("checked", "true");
+		} else {
+			$(":checkbox").attr("checked", "");
+		}
+		$("#todos").attr("checked", "");
+	}
+
+	function checksSeleccionados() {
+		idOrdenes = "";
+		//contados los checks
+		var $b = $('input[type=checkbox]');
+		var marcados = $b.filter(':checked').length;
+		var sinMarcar = $b.not(':checked').length;
+
+		if ($("#todos").is(":checked"))
+			marcados = marcados - 2;
+		else
+			sinMarcar = sinMarcar - 2;
+
+		//se envia la menor cantidad de identificadores posible
+		if (marcados > sinMarcar && sinMarcar > 0) {
+			//se envian los check sin marcar, por ser menos cantidad
+			$($b.not(':checked')).each(
+					function() {
+						if ($(this).attr("id") != "todos"
+								&& $(this).attr("id") != "todosPagina") {
+							idOrdenes += $(this).attr("id") + ",";
+						}
+					});
+			idOrdenes = idOrdenes.substring(0, idOrdenes.length - 1);
+		} else {
+			//se envian los que si estan seleccionados, por se menos cantidad
+			$(':checkbox:checked').each(
+					function() {
+						if ($(this).attr("id") != "todos"
+								&& $(this).attr("id") != "todosPagina") {
+							idOrdenes += $(this).attr("id") + ",";
+						}
+					});
+			idOrdenes = idOrdenes.substring(0, idOrdenes.length - 1);
+		}
+		if (idOrdenes != "") {
+			return true;
+		} else {
+
+			if (!$("#todos").is(":checked") && sinMarcar > 0) {
+				alert('Debe seleccionar alguna operación');
+				return false;
+			}
+			return false;
+		}
+	}
+
+	function seleccionadosje() {
+		idOrdenes = "";
+		var $b = $('input[type=checkbox]');
+		var marcados = $b.filter(':checked').length;
+		var sinMarcar = $b.not(':checked').length;
+		$(':checkbox:checked').each(
+				function() {
+					if ($(this).attr("id") != "todos"
+							&& $(this).attr("id") != "todosPagina") {
+						idOrdenes += $(this).attr("id") + ",";
+					}
+				});
+		idOrdenes = idOrdenes.substring(0, idOrdenes.length - 1);
+		if (idOrdenes != "") {
+			return true;
+		} else {
+
+			if (!$("#todos").is(":checked") && sinMarcar > 0) {
+				alert('Debe seleccionar alguna operación');
+				return false;
+			}
+			return false;
+		}
+	}
+
+	function procesar() {
+		var seleccion = "";
+		if ($("#todos").is(":checked")) {
+
+			mensaje = '¿Está seguro que desea procesar "Todas" las operaciones ?';
+			seleccion = 'todos';
+		} else
+			mensaje = '¿Está seguro que desea procesar las operaciones seleccionadas?';
+		if ($("#todos").is(":checked")) {
+
+			seleccionadosje();
+		}
+
+		if (seleccionadosje() || $("#todos").is(":checked")) {
+			if (confirm(mensaje)) {
+				var ruta = 'intercambio_intervencion_bancaria-detalle?';
+				if (!$("#todos").is(":checked")) {
+					ruta += 'idOrdenes=' + idOrdenes + '&';
+				}
+
+				ruta += 'seleccion=' + seleccion + "&fecha=@fecha@&statusE=@statuse@";
+				window.location = ruta;
+			}
+
+		}
+	}
+
+	function validarSeleccion(check, fecha) {
+		if (document.getElementById('todosPagina').checked && !check.checked) {
+			document.getElementById('todosPagina').checked = false;
+		}
+	}
+	function desabilitarChecks() {
+		if (document.getElementById('enviado').value != '0') {
+			$(":checkbox").attr("disabled", "disabled");
+			$("#btnProcesar").attr("disabled", "disabled");
+		}
+	}
+
+	function exportarCVS() {
+		if (confirm("Se Generará un archivo CSV con todas las operaciones consultadas. Esto puede tardar varios minutos. ¿Está seguro que desea iniciar el proceso?")) {
+			window.location = "intercambio_intervencion_oficina-export?framework.controller.outputstream.open=false&statusp=@statusp@&fecha=@fecha@&moneda=@moneda@&Tipo=@tipo@&estado=@estado@";
+			return true;
+		} else {
+			return false;
+
+		}
+	}
+	
+    
+	function llenarVaribalesHtml(){
+		
+		//Se llena las variables con los datos del html, Ejemplo : <input type="hidden" id="statusBusqueda" value="@statusp@">	
+		statusEnvio=$('#statusEnvio').val();
+		fecha=$('#fecha').val();
+	}
+
+	function regresar() {
+		window.location = "intercambio_intervencion_oficina-filter";
+	}
+	
+	
+	function obtenerEstado(){
+		var estado = $('#estado').val();
+		var fecha = $('#fecha').val();
+		var moneda = $('#moneda').val();
+	
+		window.location="intercambio_intervencion_oficina_dias-edit?estado="+ estado+ "&fecha="+fecha+"&moneda="+moneda+"";
+		}
+	
+</script>
+
+</head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+	<TABLE border="0" cellspacing="0" WIDTH="100%" >
+		<TR>
+			<TD class="headerBox"><FONT class="headerText"> Intervencion / Inventario Por Oficina</FONT></TD>
+			<TD class="headerBox" valign="left" align="left"><img border="0"
+				src="../images/infi_gn_ayuda.gif" width="17" height="17"
+				onclick="helpOpen(window.document.location.href);"
+				style="cursor: hand" title="Mostrar ayuda en l&iacute;nea" /></TD>
+		</TR>
+	</TABLE>
+	<center>
+		<br>
+		<form name="dataentry" onsubmit="" action="" method="post" id='buscar'>
+			<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;" id="Table">
+
+<!-- 				<tr CLASS="formCaption"> -->
+<!-- 					<th COLSPAN="10" ALIGN=left><input type="checkbox" id="todos" -->
+<!-- 						name="todos" onclick="seleccionarTodos()" />Procesar todos los -->
+<!-- 						registros:</th> -->
+<!-- 				</tr> -->
+				<tr>
+<!-- 					<th width="2%">Seleccione<br />  -->
+<!-- 					<input width="2%" type="checkbox" id="todosPagina" name="todosPagina" onclick="seleccionarTodosPagina()"/> -->
+<!-- 					</th> -->
+					<th nowrap width="7%">NRO OFICINA</th>
+					<th nowrap width="5%">TIPO MONEDA</th>
+					<th nowrap width="7%">INVENTARIO ASIGNADO</th>
+					<th nowrap width="5%">INVENTARIO PORCENTAJE</th>
+					<th nowrap width="10%">INVENTARIO DISPONIBLE</th>
+					<th nowrap width="5%">INVENTARIO CONSUMIDO</th>
+					<th nowrap width="5%">DIAS ENTREGA</th>
+					<th nowrap width="5%">ESTATUS</th>
+					
+					<th nowrap width="7%" onclick = "obtenerEstado()"><IMG
+								SRC="../images/infi_gn_edit.gif" WIDTH="15" HEIGHT="15"
+								ALIGN="top" title="Editar dias por lote" BORDER="0"
+								style="cursor: hand" /> </th>
+				</tr>
+				
+				<tbody>
+					<rows>
+					<tr class="tableCell">
+<!-- 						<td align="center"><input type="checkbox" name="ordenes" id="@NRO@" onclick="validarSeleccion(this, '@fecha_aplicar@') " /> -->
+						<td nowrap>@NRO@</td>
+						<td nowrap>@MONEDA@</td>
+						<td nowrap>@ASIGNADO@</td>
+						<td nowrap>@PORCENTAJE@</td>
+						<td nowrap>@DISPONIBLE@</td>
+						<td nowrap>@CONSUMIDO@</td>
+						<td nowrap>@DIASENTREGA@</td>
+						<td nowrap>@INVESTATUS@</td>
+
+						<td align="center"><a
+							href="intercambio_intervencion_oficina-edit?nro=@NRO@&moneda=@MONEDA@&fecha=@fecha@&estatus=@estatus@"><IMG
+								SRC="../images/infi_gn_edit.gif" WIDTH="15" HEIGHT="15"
+								ALIGN="top" title="Editar Inventario" BORDER="0"
+								style="cursor: hand" /> </a>
+						</td>
+<!-- 						<th nowrap width="7%"><a -->
+<!-- 							href="intercambio_intervencion_oficina_dias-edit?estado=@estado@&fecha=@fecha@&moneda=@MONEDA@"><IMG -->
+<!-- 								SRC="../images/infi_gn_edit.gif" WIDTH="15" HEIGHT="15" -->
+<!-- 								ALIGN="top" title="Editar dias por lote" BORDER="0" -->
+<!-- 								style="cursor: hand" /> </a></th> -->
+
+					</tr>
+					</rows>
+				</tbody>
+			</table>
+			<BR> 
+			<input type="hidden" id="moneda" value="@moneda@">
+        	<input type="hidden" id="fecha" value="@fecha@">
+        	<input type="hidden" id="estado" value="@estado@">
+			@page_index@ 
+<!-- 			@boton_procesar@ &nbsp; -->
+			<button type="button" onclick="window.location='intercambio_intervencion_oficina-addnew'">Agregar</button>&nbsp;
+			<button type="button" onclick="exportarCVS()">Exportar Ordenes CSV</button>&nbsp;
+			<button type="button" onclick="regresar()">Regresar</button>
+		</form>
+	</center>
+</body>
+</html>
+

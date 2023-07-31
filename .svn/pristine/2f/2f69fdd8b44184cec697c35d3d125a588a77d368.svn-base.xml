@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+
+	Configuracion de la accion
+
+	Describe el modelo y la vista a utilizar, asi
+	como informacion sobre data-binding entre la vista y el modelo
+
+-->
+
+<config>
+
+	<!--model class-->
+	<model-class>models.ordenes.toma_de_orden.TomaOrden</model-class>
+	
+	<!--view class-->
+	<view-class>megasoft.GenericView</view-class>
+	
+	<!--template-->
+	<template>toma_orden.htm</template>
+
+	<!--reglas de validacion de la forma-->
+	<record-def>record.xml</record-def>
+	
+	<!--response content-type-->
+	<content-type>text/html</content-type>
+	
+	<!--expiracion de la pagina (en segundos - puede estar vacio)-->
+	<expires>10</expires>
+	
+	<!--control de cache  (true|false)-->
+	<cache>true</cache>
+	
+	<!--URI a redireccionar despues de ejecutar el model - type=redirect|forward-->
+	<next-action type="redirect"></next-action>
+	
+	<!--mostrar este template de WEB-INF/templates si el dataset esta vacio-->
+	<on-empty source="sales"></on-empty>
+
+	<!-- 
+		Data Binding
+		
+		Se ejecuta en el orden en que aparecen los elementos,
+		el orden es importante
+	
+		type=replace|repeat|select|select-multiple|select-checkbox|select-radio
+
+	Ejemplos para cada tipo de binding:
+
+	<bind type="replace" source="filter" tag="" control-name="" field-name=""/>
+	<bind type="repeat" source="tipo_reclamo" tag="rows" control-name="" field-name=""/>
+	<bind type="select" source="tipo_reclamo" tag="" control-name="combo1" field-name="id"/>
+	<bind type="select-multiple" source="tipo_reclamo" tag="" control-name="combo1" field-name="id"/>
+	<bind type="select-checkbox" source="tipo_reclamo" tag="" control-name="check1" field-name="id"/>
+	<bind type="select-radio" source="tipo_reclamo" tag="" control-name="option1" field-name="id"/>
+
+	-->
+
+	<!-- bind type="repeat" source="table" tag="rows" control-name="" field-name=""/>
+	<bind type="replace" source="datos"/>
+
+	<paged-dataset source="table" rows-max="10">paging_scroll/index-scroll</paged-dataset>
+	-->
+	
+	<bind type="replace" source="mensajes"/> 
+	<bind type="replace" source="datos"/> 
+	<bind type="repeat" source="cuentas_cliente" tag="rows_ctacte"/>
+	<bind type="repeat" source="actividadeseconomicas" tag="ae"/>
+	<bind type="repeat" source="sectoresproductivos" tag="sp"/>
+	<bind type="repeat" source="conceptos" tag="con"/>
+	<bind type="select" source="record" tag="rows_ctacte" control-name="cta_cliente" field-name="cta_cliente"/>
+	<bind type="repeat" source="unidades_inv" tag="rows_undinv"/>
+	<bind type="select" source="record" tag="rows_undinv" control-name="undinv_id" field-name="undinv_id"/>
+	<bind type="replace" source="datos_unidad_inv"/>	
+	<bind type="repeat" source="camposdinamicos" tag="rows_campos_din"/>
+	<!-- bind type="repeat" source="blotters_ui" tag="rows_blotui"/-->
+	<bind type="select" source="record" control-name="estado_casado" field-name="estado_casado"/>
+	<bind type="select" source="record" control-name="tipo_persona_conyuge" field-name="tipo_persona_conyuge"/>
+	<bind type="replace" source="record"/> 
+	
+</config>

@@ -1,0 +1,164 @@
+<html>
+
+<head>
+<script language="javascript" src="../js/default.js"></script>  
+    <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+    <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+    <SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+    <title>Sistema INFI</title>
+
+	<script type="text/javascript">
+    
+	function closeWindow(v1,v2,v3, estatus_bic)
+	{		
+		if(estatus_bic == 1){//validar estatus del código bic, que se encuentre activo
+			
+			if(v3==''){alert(v3.length);}
+			window.opener.document.forms[0].@name_id@.value=v1;
+	    	window.opener.document.forms[0].@name_tx@.value=v2;	    	
+	    	window.opener.document.forms[0].@name_dir@.value="";
+	    	window.opener.document.forms[0].@name_dir@.value=v3;  	    	
+	    	window.close();			
+	    	
+		}else{
+		
+			alert('El código BIC que intenta seleccionar se encuentra inactivo');
+		}
+	}
+	
+	function Verificar()
+	{
+		
+		if((document.forms[0].bic.value.replace(/ /g, '') == '') && (document.forms[0].nombre_banco.value.replace(/ /g, '') == '')){
+			alert("Debe introducir algún criterio de búsqueda");
+		}else{
+			document.forms[0].submit();				
+		}
+	}
+		
+	</script>
+
+</head>
+
+<body>
+
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">C&oacute;digos BIC/SWIFT</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<CENTER>
+    <BR>
+
+    <!--formulario-->
+    <form method="POST" action="pick_bic_swift-find">
+
+        <table border="0" cellspacing="1" cellpadding="2" width="100%"  class="dataform">
+        
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="2" ALIGN="center">
+                      Filtro
+            </th>
+        </tr>                     
+   
+		<tr CLASS="formElement">
+            <td CLASS="formLabel">
+                BIC/SWIFT (contiene):
+            </td>
+            <td>
+                <INPUT TYPE="input" VALUE="" NAME="bic" size="30" MAXLENGTH="25" class="inputControl" />
+            </td>
+		</tr>	
+		  
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+                Nombre Banco (contiene):
+            </td>
+            <td>
+                <INPUT TYPE="input" VALUE="" NAME="nombre_banco" size="30" MAXLENGTH="25" class="inputControl" />
+            </td>
+		</tr>	        
+
+	 </table>
+
+        <BR>
+       
+       <input type="hidden" name="buscar" value="1" >       
+		<button name="boton_buscar"  onclick="Verificar();"/>Buscar</button> 
+		
+        &nbsp;
+		<button ONCLICK="window.close();">Regresar</button>
+   
+    </form>
+
+	<div id="tb">
+    <BR>
+    <b>Seleccione un C&oacute;digo BIC/SWIFT</b>
+    <BR>
+    <BR>      
+          
+    <TABLE width="100%" class="datatable">
+    
+        
+    	<TR class="tableCell">
+            <TH WIDTH="5%">
+            </TH>
+            <TH>
+            	<b>BIC/SWIFT</b>
+            </TH>
+            <TH>
+            	<b>Nombre del Banco</b>
+            </TH>
+            
+            <TH>
+            	<b>Dirección del Banco</b>
+            </TH>
+            
+            <TH>
+            	<b>Estatus</b>
+            </TH>         
+                        
+		</TR>
+	
+		<rows>
+		
+	        <TR>
+	            <TD WIDTH="10%">
+		    	<a href="javascript:closeWindow('@bic@','@nombre_banco@', '@direccion_banco@', '@estatus_bic@');"><b>OK</b></a>
+	            </TD>
+				
+	            <TD>
+		    	@bic@		    	
+	            </TD> 	        
+	            
+	            <TD WIDTH="30%">
+		    	@nombre_banco@
+		    	<input type="hidden" value="@bic@">
+	            </TD> 	            
+	            
+	            <TD WIDTH="15%">
+		    	@direccion_banco@		    	
+	            </TD> 	 
+	            
+	            <TD align="center" WIDTH="15%">
+		    	@estatus_desc@
+	            </TD> 	                                  
+	                
+			</TR>
+	    </rows>
+    </TABLE>    
+    </div>
+    </CENTER>	
+</body>
+</html>

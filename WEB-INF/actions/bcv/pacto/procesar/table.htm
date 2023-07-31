@@ -1,0 +1,67 @@
+ 
+<HTML>
+    
+    <HEAD>
+    <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+            <SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+        
+    
+             <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        
+        <TITLE>Sistema INFI</TITLE> 
+                
+     <script type="text/javascript">
+     
+     function regresar(){
+     	window.location="web_services_pacto_consulta-filter";
+     }
+     
+     </script>
+         
+    </HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Env&iacute;o BCV / Pacto</FONT>
+        </TD>
+        
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+        <td class="headerBox" aling="right"></td>
+</TABLE>
+        
+        <CENTER>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="">
+		
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform" style="TABLE-LAYOUT: auto; ">
+        
+        <!--titulo-->
+        <tr>
+            <td COLSPAN="3" ALIGN="center" nowrap>
+                 <b>El proceso de env&iacute;o a BCV se ha iniciado. Para mas detalles verifique la consulta de procesos con el nombre WS_BCV_PACTO</b>
+            </td>
+        </tr>
+        </table>
+            <br>
+            &nbsp;<button type="button" onclick="regresar()">Regresar</button>
+    </form>
+        
+        </CENTER>
+        
+    </BODY>
+
+</HTML>
+

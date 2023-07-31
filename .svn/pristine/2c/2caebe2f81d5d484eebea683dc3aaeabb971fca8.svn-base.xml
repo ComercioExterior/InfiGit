@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+    <!--
+    
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, decimal, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+    
+    -->
+    
+        <field 
+        name="undinv_id" 
+        type="integer" 
+        description="Unidad de Inversi&oacute;n"
+        nullable="0"
+        size="100" />    
+        
+        <field 
+        name="client_id" 
+        type="integer" 
+        description="Cliente"
+        nullable="0"
+        size="100" />      
+                                  
+        <field 
+        name="monto_comprar" 
+        type="varchar" 
+        description="Monto a comprar"
+        nullable="1"
+        size="100" /> 
+        
+        <field 
+        name="undinv_precio_minimo" 
+        type="varchar" 
+        description="Porcentaje a financiar"
+        nullable="0"
+        size="100" />     
+        
+        <field 
+        name="blotter_id" 
+        type="varchar" 
+        description="Blotter"
+        nullable="0"
+        size="30" />      
+        
+                <field 
+        name="cantidad_pedida" 
+        type="integer" 
+        description="Cantidad a Comprar"
+        nullable="1"
+        size="30" />      
+        
+        <field 
+        name="vehicu_rol_id" 
+        type="varchar" 
+        description="Veh&iacute;culo"
+        nullable="0"
+        size="200" />   
+        
+          
+        <field 
+        name="porc_financiar" 
+        type="varchar" 
+        description="Porcentaje a Financiar"
+        nullable="1"
+        size="200" />   
+        
+               <field 
+        name="in_recompra" 
+        type="integer" 
+        description="Recompra Permitida"
+        nullable="1"
+        size="200" />   
+        
+               <field 
+        name="cta_cliente" 
+        type="varchar" 
+        description="Cuenta del Cliente"
+        nullable="1"
+        size="100" />      
+                
+        
+               <field 
+        name="cantidad_calculo" 
+        type="varchar" 
+        description="Cantidad de veces que se ha hecho el calculo"
+        nullable="1"
+        size="15" />   
+  
+        <field 
+        name="in_cartera_propia" 
+        type="integer" 
+        description="Indicador de Cartera Propia"
+        nullable="1"
+        size="200" />   
+   
+    
+</record>
+

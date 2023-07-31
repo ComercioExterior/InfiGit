@@ -1,0 +1,217 @@
+<HTML>
+<head>
+	<title>Sistema INFI</title>
+	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+	<LINK REL="stylesheet" type="text/css" href="../css/EstiloFichas.css" />
+	<script language="javascript" src="../js/default.js"></script>	
+    <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 	
+	<SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+	
+	<script type="text/javascript">
+        function mostrar(accion){
+			if(accion==1){
+				var elementos = document.getElementsByName('unidad');
+				for (var i = 0; i < elementos.length; i++ ){
+					elementos[i].style.display ="block";
+				}
+				titulou.style.display ="block";
+			}
+			if(accion==2){//Modulo Publicacion
+				var inputs = document.getElementsByTagName('input')
+				for (var i = 0; i < inputs.length; i++ ){
+					inputs[i].disabled = true;
+				}
+				var textareas = document.getElementsByTagName('textarea')
+				for (var i = 0; i < textareas.length; i++ ){
+					textareas[i].disabled = true;
+				}
+				var selects = document.getElementsByTagName('select')
+				for (var i = 0; i < selects.length; i++ ){
+					selects[i].disabled = true;
+				}
+				titulop.style.display ="block";
+			}
+			if(accion==3){//Modulo Consulta
+				var inputs = document.getElementsByTagName('input')
+				for (var i = 0; i < inputs.length; i++ ){
+					inputs[i].disabled = true;
+				}
+				var textareas = document.getElementsByTagName('textarea')
+				for (var i = 0; i < textareas.length; i++ ){
+					textareas[i].disabled = true;
+				}
+				var selects = document.getElementsByTagName('select')
+				for (var i = 0; i < selects.length; i++ ){
+					selects[i].disabled = true;
+				}
+				tituloc.style.display ="block";
+			}	
+			if(accion==4){//Modulo Modificacion
+				var elementos = document.getElementsByName('unidad');
+				for (var i = 0; i < elementos.length; i++ ){
+					elementos[i].style.display ="block";
+				}
+				titulom.style.display ="block";
+			}
+		}
+          
+	</script>
+	
+</head>
+
+<!--poner el focus en el 1er control de la forma-->
+<BODY onload="javascript:mostrar(@accion@);">
+
+	<!--page name bar-->
+	<table  border="0" cellspacing="0" WIDTH="100%">
+	    <tr>
+	        <td class="headerBox">
+	        	<div id="titulou" style="display:none">               
+	            	<font class="headerText">Unidad de Inversi&oacute;n</font>
+	            </div>
+				<div id="titulop" style="display:none">               
+	            	<font class="headerText">Publicaci&oacute;n Unidad de Inversi&oacute;n</font>
+	            </div>
+	            <div id="tituloc" style="display:none">               
+	            	<font class="headerText">Consulta Unidad de Inversi&oacute;n</font>
+	            </div>
+	            <div id="titulom" style="display:none">               
+	            	<font class="headerText">Modificaci&oacute;n Unidad de Inversi&oacute;n</font>
+	            </div>			
+			</td>
+	        <!-- help online -->
+	   		<td class="headerBox" valign="middle" align="right">
+	   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+	   		</td>
+	   		<!-- fin help online -->	        
+	   	</tr>
+	</table>
+	
+<form>
+	
+	<div id="menu">
+		<table border="0" width="350px">
+			<tr>
+				<td id="navigation" nowrap><a href="unidad_inversion_blotter-edit?idUnidadInversion=@undinv_id@&idBlotter=@bloter_id@&unidad=@undinv_nombre@&blotter=@bloter_descripcion@"><span>Blotter</span></a></td>
+				<td id="navigationActivo" nowrap><a><span>Par&aacute;metros por Tipo de Persona </span></a></td>			
+			</tr>
+		</table>
+	</div>
+			
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="100%">
+		<tr class="formCaption">
+			<th align="center">
+				<font class="formCaptionText">Blotter  </font>
+			</th>
+		</tr>
+	</table>
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="100%" >
+
+		<tr class="formElement">
+			<td width="20%" nowrap><b>Unidad de Inversi&oacute;n:</b></td>
+			<td nowrap>@undinv_nombre@
+				<input type="hidden" name="nombreUnidadInversion" size="50" maxlength="50" value="@undinv_nombre@" readonly/>
+			</td>
+		</tr>
+		<tr class="formElement">
+			<td width="20%" nowrap><b>Blotter:</b></td>
+			<td nowrap>@bloter_descripcion@
+				<input type="hidden" name="nombreBlotter" size="50" maxlength="50" value="@bloter_descripcion@" readonly/>
+			</td>
+		</tr>
+	</table>	
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="100%" style="TABLE-LAYOUT: auto; ">	
+		<tr class="formCaption">
+			<th colspan="7" align="center">
+				<font class="formCaptionText">Par&aacute;metros por Tipo de Persona  @total_records@ </font>
+			</th>
+		</tr>
+	</table>
+	
+	<!-- DATOS PARA INVENTARIO -->	
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="100%" style="TABLE-LAYOUT: auto; ">
+		<!--encabezados de columna-->
+		<tr class="tableHeader">
+			<th width="6%" colspan="2"></th>			
+			<th width="15%">Descripci&oacute;n</th>
+			<th nowrap>Tipo Transacci&oacute;n</th>
+			<th nowrap>Comision Emisor </th>
+			<th nowrap>Porcentaje<br>Max. Financ</th>
+			<th nowrap>Monto M&iacute;nimo</th>
+			<th nowrap>Monto M&aacute;ximo</th>																			
+		</tr>
+	
+		<!--data-->
+		<rowsUIBTP>
+		<tr class="tableCell">			
+			<td align="center">
+			<div name="unidad" id="unidad" style="display:none">
+				<span style="cursor:hand; text-decoration:underline" title="Eliminar Parametros por Tipo de Persona"
+					onclick="parametrosTipoPersona('del','@tipper_id@')">
+					<IMG SRC="../images/infi_gn_delete.gif" align="top" border="0">								 
+				</span>
+			</div>				
+			</td>
+			<td align="center">
+			<div name="unidad" id="unidad" style="display:none">
+				<span style="cursor:hand; text-decoration:underline" title="Editar Parametros por Tipo de Persona"
+					onclick="parametrosTipoPersona('edit','@tipper_id@')">
+					<IMG SRC="../images/infi_gn_edit.gif" align="top" border="0">			 
+				</span>
+			</div>
+			</td>			
+			<td align="left">@tipper_nombre@</td>
+			<td align="left">@trnfin_tipo_descripcion@</td>
+			<td align="center">	@uiblot_comision_emisor@ </td>
+			<td align="center"> @uiblot_pct_max_finan@	</td>
+			<td align="center">	@uiblot_umi_inv_mto_min@ </td>
+			<td align="center"> @uiblot_umi_inv_mto_max@</td>									
+		</tr>
+		</rowsUIBTP>	
+	</table>	
+	</form>
+	<br>
+	<div align="center">
+	<table>
+		<tr>
+			<td>
+				<div id="unidad" style="display:none">
+					<button type="button" onclick="parametrosTipoPersona('add','X');">Ingresar Par&aacute;metros</button>	
+				</div>
+			</td>
+			<td>
+				<button type="button" onclick="regresar();">Regresar</button>
+			</td>
+		</tr>
+	</table>
+	
+	<form name="dataentry" method="POST" TARGET="_blank" action="">
+		<input type="hidden" name="idUnidadInversion" value="@undinv_id@" />
+		<input type="hidden" name="idBlotter" value="@bloter_id@" />
+		<input type="hidden" name="tipoInstrumento" value="@insfin_forma_orden@" />
+		<input type="hidden" name="idTipoPersona" value="X" />		
+	</form>
+	</div>
+</BODY>
+<script language="javascript">
+<!--
+function parametrosTipoPersona (action, id) {
+	document.forms[1].idTipoPersona.value = id;
+	if (action == 'add' || action == 'edit') {
+		document.forms[1].action = "unidad_inversion_blottertp-edit";
+	} else  {
+		if (! confirm('¿Desea eliminar los parametros asociados al tipo de persona  '+document.forms[1].idTipoPersona.value+'?')) {
+			return;
+		}
+		document.forms[1].action = "unidad_inversion_blottertp-delete";
+	}
+	document.forms[1].submit();		
+}
+function regresar() {
+	document.forms[1].action="unidad_inversion_blotter-browse";
+	document.forms[1].target="";
+	document.forms[1].submit();
+}
+-->
+</script>
+</HTML>

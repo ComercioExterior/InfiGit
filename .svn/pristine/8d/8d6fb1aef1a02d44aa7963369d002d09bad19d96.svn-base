@@ -1,0 +1,91 @@
+
+<HTML>
+    
+    <HEAD>
+        <!--LINK REL="stylesheet" type="text/css" href="../megasoft.css" /-->
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <TITLE>Sistema SEPA - Seguridad</TITLE>
+    </HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+    <BODY ONLOAD="javascript:{document.forms[0].elements[0].focus();if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%" class="dataform">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Seguridad / Aplicaciones</FONT>
+        </TD>
+   <!-- help online --><!-- TD class="headerBox" valign="middle" align="right"><img border="0" src="@url_images@" width="25" height="25"  onclick="helpOpen();" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" ></TD--><!-- fin help online --></TR>
+</TABLE>
+        
+        <CENTER>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="aplicacion-update">
+		
+        <table border="0" cellspacing="1" cellpadding="2" width="60%" class="dataform">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="2" ALIGN="center" width="50%">
+                <FONT class="formCaptionText">
+                 Editar Registro
+                </FONT>
+            </th>
+        </tr>
+        
+     
+                
+        <!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Nombre de Aplicaci&oacute;n:*
+            </td>
+            <td>
+            <INPUT TYPE="TEXT" VALUE="@description@" NAME="description" SIZE="30" MAXLENGTH="100" class="inputControl" />
+            </td>
+        </tr>
+                
+        <!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Siglas:*
+            </td>
+            <td>
+            <INPUT TYPE="TEXT" VALUE="@siglas_applic@" NAME="siglas_applic" SIZE="30" MAXLENGTH="12" class="inputControl" />
+            </td>
+        </tr>
+ 
+         <!--campo-->
+        <tr CLASS="formElement">
+            <td CLASS="formLabel">
+             Comentarios:
+            </td>
+            <td>
+            <INPUT TYPE="TEXT" VALUE="@comentarios@" NAME="comentarios" SIZE="30" MAXLENGTH="100" class="inputControl" />
+            </td>
+        </tr>
+        
+
+        </table>
+            
+            <br>
+            
+            <button TYPE="submit"/>Grabar</button>
+            <SPAN> </SPAN>
+            <button ONCLICK="history.back();" />Cancelar</button>
+
+            <!--campo escondido para almacenar el key del record-->
+            <INPUT TYPE="HIDDEN" VALUE="@id_application@" NAME="id_application" />
+
+    </form>
+
+        
+        </CENTER>
+        
+    </BODY>
+
+</HTML>
+

@@ -1,0 +1,43 @@
+<html>
+
+	<head>
+        <!--LINK REL="stylesheet" type="text/css" href="../megasoft.css" /-->
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		<title>Sistema INFI</title>
+	</head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Unidad de Inversi&oacute;n / Comisiones </FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+    <center>
+    
+    <h3 STYLE="color:red">
+    Eliminar Registro
+    </h3>
+    
+    <h3>¿Esta seguro que desea eliminar la comisi&oacute;n <i>@comision_nombre@</i> de la unidad de inversi&oacute;n?</h4>
+
+<form>
+    <button onclick="window.location='unidad_inversion_comisiones-delete?id=@id@&comision_nombre=@comision_nombre@&id_unidad_inversion=@id_unidad_inversion@'" />SI - Eliminar</button>
+    &nbsp;<button  onclick="history.back();" />NO - Cancelar</button>
+</form>    
+    
+    </center>
+
+</body>
+
+</html>

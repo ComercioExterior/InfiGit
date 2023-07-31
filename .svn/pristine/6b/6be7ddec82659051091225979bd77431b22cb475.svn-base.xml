@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+    <!--
+    
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, decimal, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+    
+    -->
+
+        <field 
+        name="plantilla_mail_id" 
+        type="varchar" 
+        description="Tipo de Plantilla (Proceso)"
+        nullable="0"
+        size="25" />   
+
+        <field 
+        name="plantilla_mail_name" 
+        type="varchar" 
+        description="Tipo de Plantilla (Proceso)"
+        nullable="0"
+        size="25" />
+        
+        <!--       NM29643 infi_TTS_466   -->
+        <field 
+        name="producto" 
+        type="varchar" 
+        description="Producto"
+        nullable="0"
+        size="20" />
+        
+        <field 
+        name="evento" 
+        type="varchar" 
+        description="Evento"
+        nullable="1"
+        size="25" />
+        
+		<field 
+        name="bloque" 
+        type="varchar" 
+        description="Cuerpo del Correo"
+        nullable="1"
+        size="4000" />
+        
+<!--         <field  -->
+<!--         name="status_orden_plant"  -->
+<!--         type="varchar"  -->
+<!--         description="Estatus de Orden asociado" -->
+<!--         nullable="0" -->
+<!--         size="25" /> -->
+        
+<!--         <field  -->
+<!--         name="transac_plant"  -->
+<!--         type="varchar"  -->
+<!--         description="Transacción asociada" -->
+<!--         nullable="0" -->
+<!--         size="25" /> -->
+        
+<!--         <field  -->
+<!--         name="name_status_orden_plant"  -->
+<!--         type="varchar"  -->
+<!--         description="Nombre del Estatus de Orden asociado" -->
+<!--         nullable="1" -->
+<!--         size="40" /> -->
+        
+<!--         <field  -->
+<!--         name="name_transac_plant"  -->
+<!--         type="varchar"  -->
+<!--         description="Nombre de la Transacción asociada" -->
+<!--         nullable="1" -->
+<!--         size="50" /> -->
+        
+        <field 
+        name="tipo_destinatario" 
+        type="varchar" 
+        description="Tipo de Destinatario"
+        nullable="0"
+        size="2" />    
+        
+        <field 
+        name="nombre_tipo_destinatario" 
+        type="varchar" 
+        description="Nombre del Tipo de Destinatario"
+        nullable="1"
+        size="20" />  
+        
+        <field 
+        name="remitente" 
+        type="varchar" 
+        description="Remitente"
+        nullable="1"
+        size="100" />   
+        
+        <field 
+        name="asunto" 
+        type="varchar" 
+        description="Asunto"
+        nullable="1"
+        size="256" />   
+
+       <field 
+        name="estatus_activacion" 
+        type="varchar" 
+        description="Asunto"
+        nullable="1"
+        size="1" />   
+		
+		<field 
+        name="cuerpo" 
+        type="varchar" 
+        description="Cuerpo del Correo"
+        nullable="1"
+        size="4000" />  
+
+</record>
+

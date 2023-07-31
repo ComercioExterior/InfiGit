@@ -1,0 +1,71 @@
+<html>
+	<head> 
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+    </head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Generales / Actividades Económicas</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+<center>
+
+<br>
+<form name="dataentry" action="" method="post">
+<table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+   <tr CLASS="formCaption">
+     <th COLSPAN="5">
+       <FONT class="formCaptionText">
+        Actividades Económicas
+       </FONT>
+      </th>
+   </tr>
+</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="40%" class="datatable" style="table-layout: auto;display: block" id="procesos">
+    
+    <!--encabezados de columna-->
+    <tr>     
+    		  <th nowrap width="5%"></th>    
+    		  <th nowrap width="5%"></th> 
+    		  <th nowrap width="10%">ID</th>
+              <th nowrap>Sector</th>
+              <th nowrap>Descripción</th>                                            
+    </tr>
+    <!--data-->
+    <actividades>
+    <tr class="tableCell">
+    	<td align="center">
+		   <a href="actividad_economica_delete?sector=@sector@&codigo_id=@codigo_id@"><IMG SRC="../images/infi_gn_delete.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Eliminar Registro" BORDER="0" style="cursor:hand"></a>
+		</td>
+		<td align="center">
+           <a href="actividad_economica_edit?sector=@sector@&codigo_id=@codigo_id@&sector_descripcion=@sector_descripcion@"><IMG SRC="../images/infi_gn_edit2.gif" WIDTH="15" ALIGN="top" HEIGHT="13" title="Editar Registro" BORDER="0" style="cursor:hand"></a>
+        </td>
+        <td nowrap align="center">@codigo_id@</td>
+        <td nowrap align="center">@sector@</td>
+        <td nowrap align="left">@sector_descripcion@</td>              
+    </tr>
+     </actividades>
+    </table>
+    <BR>
+    &nbsp;<button type="button" onclick="window.location='actividad_economica_addnew'">Agregar</button>
+    <SPAN></SPAN>
+    <button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+</form>
+</center>
+</body>
+</html>

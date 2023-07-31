@@ -1,0 +1,125 @@
+<html>
+
+<head>
+<script language="javascript" src="../js/default.js"></script>
+<script type="text/javascript" src="../js/menu/jquery-1.2.2.pack.js"></script>
+<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+
+<title>Sistema INFI</title>
+
+<script type="text/javascript">
+
+	function regresar() {
+		window.location = "intercambio_mesas_cambios_oferta-filter";
+	}
+</script>
+
+</head>
+
+<body
+	ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+	<TABLE border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+
+			<TD class="headerBox"><FONT class="headerText">Env&iacute;o
+					BCV / Mesa Cambio / Oferta</FONT>
+			</TD>
+			<TD class="headerBox" valign="left" align="left"><img border="0"
+				src="../images/infi_gn_ayuda.gif" width="17" height="17"
+				onclick="helpOpen(window.document.location.href);"
+				style="cursor: hand" title="Mostrar ayuda en l&iacute;nea" />
+			</TD>
+
+		</TR>
+	</TABLE>
+	<center>
+		<br>
+		<form NAME="dataentry" METHOD="POST"
+			ACTION="intercambio_mesas_cambios_oferta-procesar"
+			enctype="multipart/form-data">
+
+			<table border="0" cellspacing="1" cellpadding="2" width="100%"
+				class="dataform" style="table-layout: auto;" id="tablauno">
+				<tr>
+					<th COLSPAN="9" ALIGN="center">Seleccione criterios</th>
+				</tr>
+				<tr>
+					<td>Rif:</td>
+					<td><INPUT TYPE="TEXT" VALUE="@rif@" NAME="rif"
+						class="inputControl" /></td>
+				</tr>
+				<tr>
+					<td>Nombre:</td>
+					<td><INPUT TYPE="TEXT" VALUE="@cliente@" NAME="cliente"
+						class="inputControl" /></td>
+				</tr>
+<!-- 				<tr CLASS="formElement"> -->
+<!-- 					<td>Moneda:</td> -->
+<!-- 					<td><SELECT NAME="codDivisa" style="width: 150px;"> -->
+
+<!-- 							<moneda> -->
+<!-- 							<OPTION VALUE="840">@MONEDA_ID@</OPTION> -->
+<!-- 							</moneda> -->
+<!-- 					</SELECT></td> -->
+<!-- 				</tr> -->
+				
+				<tr CLASS="formElement">
+					<td>Moneda:</td>
+					<td><SELECT NAME="codDivisa" style="width: 150px;">
+
+							<moneda>
+							<OPTION VALUE="840">USD</OPTION>
+							<OPTION VALUE="978">EUR</OPTION>
+							</moneda>
+					</SELECT></td>
+				</tr>
+				<tr>
+					<td>Monto:</td>
+					<td><INPUT TYPE="TEXT" VALUE="0" NAME="montoDivisa"
+						class="inputControl" /></td>
+				</tr>
+				<tr>
+					<td>Tasa:</td>
+					<td><INPUT TYPE="TEXT" VALUE="" NAME="tasaCambio"
+						class="inputControl" /></td>
+				</tr>
+				<tr>
+					<td>Codigo Banco:</td>
+					<td><INPUT TYPE="TEXT" VALUE="102" NAME="banco"
+						class="inputControl" readonly="readonly" /></td>
+				</tr>
+				<tr>
+					<td>Codigo Jornada:</td>
+					<td><INPUT TYPE="TEXT" VALUE="" NAME="jornada"
+						class="inputControl" /></td>
+				</tr>
+
+				<tr>
+					<td>Cuenta Convenio:</td>
+					<td><INPUT TYPE="TEXT" VALUE="@cuentame@" NAME="cuentame"
+						class="inputControl" /></td>
+				</tr>
+
+				<tr>
+					<td>Cuenta Cliente:</td>
+					<td><INPUT TYPE="TEXT" VALUE="@cuentamn@" NAME="cuentamn"
+						class="inputControl" /></td>
+				</tr>
+
+				<tr id="instrumento">
+					<td>Instrumento:</td>
+					<td><INPUT TYPE="TEXT" VALUE="" NAME="instrumento"
+						class="inputControl" /></td>
+				</tr>
+
+			</table>
+			<BR> <input type="hidden" id="oper" value="D">
+			<button TYPE="submit">Registrar</button>
+			&nbsp;
+			<button type="button" onclick="regresar()">Regresar</button>
+		</form>
+	</center>
+</body>
+</html>
+

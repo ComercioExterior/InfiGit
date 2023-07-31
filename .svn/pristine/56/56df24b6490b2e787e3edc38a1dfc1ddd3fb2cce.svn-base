@@ -1,0 +1,195 @@
+#DESARROLLO RESIN
+#este prefijo puede ser cualquiera
+PrefijoNamespace=ns1
+#indica si se debe verificar autenticacion.
+#true indica que si, cualquier otro indica que no
+secure=true
+
+
+#######################################################
+#saldo de la cuenta en linea AEA
+endpoint.saldoCuentaEnLinea=https://bserviciosd:4443/ws-f1/services/ConsultaSaldoEnLinea
+namespace.saldoCuentaEnLinea=http://www.bancovenezuela.com/ws/ConsultaSaldoEnLinea/xsd
+operacion.saldoCuentaEnLinea=getSaldoEnLinea
+probando.saldoCuentaEnLinea=no
+claseparapruebas.saldoCuentaEnLinea=com.megasoft.bo.webservice.clasesparapruebas.SaldoDeCuentas
+
+# datos de contacto del cliente en linea
+endpoint.datosDelClienteEnLinea=https://bserviciosd:4443/ws-f1/services/ConsultaClienteEnLinea
+namespace.datosDelClienteEnLinea=http://www.bancovenezuela.com/ws/ConsultaClienteEnLinea/xsd
+operacion.datosDelClienteEnLinea=getClienteEnLinea
+probando.datosDelClienteEnLinea=no
+claseparapruebas.datosDelClienteEnLinea=com.bdv.infi.webservices.test.DatosDelCliente
+
+#######################################################
+# Envia transacciones de Debito a ALTAIR
+endpoint.getB501=https://bserviciosd:4443/ws-f1/services/INFD
+namespace.getB501=http://www.bancovenezuela.com/ws/INFD/xsd
+operacion.getB501=getB501
+probando.getB501=no
+claseparapruebas.getB501=com.megasoft.bo.webservice.clasesparapruebas.PruebaGetB501
+
+#######################################################
+# Envia transacciones de Credito a ALTAIR
+endpoint.getBV61=https://bserviciosd:4443/ws-f1/services/INFC
+namespace.getBV61=http://www.bancovenezuela.com/ws/INFC/xsd
+operacion.getBV61=getBV61
+probando.getBV61=no
+claseparapruebas.getBV61=com.megasoft.bo.webservice.clasesparapruebas.PruebaGetBV61
+
+#######################################################
+# Envia transacciones de Bloqueo a ALTAIR
+endpoint.getB706=https://bserviciosd:4443/ws-f1/services/B706
+namespace.getB706=http://www.bancovenezuela.com/ws/B706/xsd
+operacion.getB706=getB706
+probando.getB706=no
+claseparapruebas.getB706=com.megasoft.bo.webservice.clasesparapruebas.PruebaGetB706
+
+#######################################################
+# Envia transacciones de Desbloqueo a ALTAIR
+endpoint.getB756=https://bserviciosd:4443/ws-f1/services/B756
+namespace.getB756=http://www.bancovenezuela.com/ws/B756/xsd
+operacion.getB756=getB756
+probando.getB756=no
+claseparapruebas.getB756=com.megasoft.bo.webservice.clasesparapruebas.PruebaGetB756
+#######################################################
+# Consulta de cliente PE55 para buscar datos específicos de persona jurídica en ALTAIR
+endpoint.getPE55=https://bserviciosd:4443/ws-f1/services/PE55
+namespace.getPE55=http://www.bancovenezuela.com/ws/PE55/xsd
+operacion.getPE55=getPE55
+probando.getPE55=no
+claseparapruebas.getPE55=com.megasoft.bo.webservice.clasesparapruebas.PruebaGetPE55
+
+#######################################################
+# Consulta de cliente PEV7 para buscar datos específicos de segmentación de persona en ALTAIR
+endpoint.getPEV7=https://bserviciosd:4443/ws-f1/services/PEV7
+namespace.getPEV7=http://www.bancovenezuela.com/ws/PEV7/xsd
+operacion.getPEV7=getPEV7
+probando.getPEV7=no
+claseparapruebas.getPEV7=com.megasoft.bo.webservice.clasesparapruebas.PruebaGetPEV7
+
+#######################################################
+# Consulta de cuentas de un cliente
+endpoint.getPEV9=https://bserviciosd:4443/ws-f1/services/PEV9
+namespace.getPEV9=http://www.bancovenezuela.com/ws/PEV9/xsd
+operacion.getPEV9=getPEV9
+probando.getPEV9=no
+claseparapruebas.getPEV9=com.megasoft.bo.webservice.clasesparapruebas.PruebaGetPEV9
+
+#######################################################
+# Datos adicionales de un cliente como su sexo, nacionalidad y fecha de nacimiento getPE68
+endpoint.getPE68=https://bserviciosd:4443/ws-f1/services/PE68
+namespace.getPE68=http://www.bancovenezuela.com/ws/PE68/xsd
+operacion.getPE68=getPE68
+probando.getPE68=no
+claseparapruebas.getPE68=com.megasoft.bo.webservice.clasesparapruebas.PruebaGetPE68
+#######################################################
+# Cuentas del cliente con nueva transacción
+endpoint.getBKDS=https://bserviciosd:4443/ws-f1/services/BKDS
+namespace.getBKDS=http://www.bancovenezuela.com/ws/BKDS/xsd
+operacion.getBKDS=getBKDS
+probando.getBKDS=no
+claseparapruebas.getBKDS=com.megasoft.bo.webservice.clasesparapruebas.PruebaGetBKDS
+#######################################################
+# Obtención de tasas de cambio
+endpoint.getTCCC=https://bserviciosd:4443/ws-f1/services/TCCC
+namespace.getTCCC=http://www.bancovenezuela.com/ws/TCCC/xsd
+operacion.getTCCC=getTCCC
+probando.getTCCC=no
+claseparapruebas.getTCCC=
+
+#######################################################
+# Transacción de reverso
+endpoint.getB731=https://bserviciosd:4443/ws-f1/services/INFR
+namespace.getB731=http://www.bancovenezuela.com/ws/INFR/xsd
+operacion.getB731=getB731
+probando.getB731=no
+claseparapruebas.getB731=com.megasoft.bo.webservice.clasesparapruebas.PruebaGetB731
+
+#######################################################
+# Validación de usuario QG30 o RACF
+endpoint.getUsuarioEnLinea=https://bserviciosd:4443/ws-f1/services/ValidacionUsuarioEnLinea
+namespace.getUsuarioEnLinea=http://www.bancovenezuela.com/ws/ValidacionUsuarioEnLinea/xsd
+operacion.getUsuarioEnLinea=getUsuarioEnLinea
+probando.getUsuarioEnLinea=no
+claseparapruebas.getUsuarioEnLinea=
+
+#######################################################
+# Busqueda de personas
+endpoint.getPE81=https://bserviciosd:4443/ws-f1/services/PE81
+namespace.getPE81=http://www.bancovenezuela.com/ws/PE81/xsd
+operacion.getPE81=getPE81
+probando.getPE81=no
+claseparapruebas.getPE81=
+
+#######################################################
+# Transacción de QG30 para cambio de clave
+endpoint.getQG30=https://bserviciosd:4443/ws-f1/services/QG30
+namespace.getQG30=http://www.bancovenezuela.com/ws/QG30/xsd
+operacion.getQG30=getQG30
+probando.getQG30=no
+claseparapruebas.getQG30=
+
+# Operaciones realizadas por el cliente en rango de tiempo determinado (Ultra Temprano)
+endpoint.operClienteUltraTemprano=http://serv_divisasd_m/LAbono/Pbono.exe/soap/IBono
+
+#######################################################
+# Transacción de PEVB para cambio de clave
+endpoint.getPEVB=https://bserviciosd:4443/ws-f1/services/PEVB
+namespace.getPEVB=http://www.bancovenezuela.com/ws/PEVB/xsd
+operacion.getPEVB=getPEVB
+probando.getPEVB=no
+claseparapruebas.getPEVB=
+
+#######################################################
+# Transacción de TCGG para cambio de clave
+endpoint.getTCGG=https://bserviciosd:4443/ws-f1/services/TCGG
+namespace.getTCGG=http://www.bancovenezuela.com/ws/TCGG/xsd
+operacion.getTCGG=getTCGG
+probando.getTCGG=no
+claseparapruebas.getTCGG=
+
+#######################################################
+# Transacción de B705 para consulta de bloqueos de cuentas
+endpoint.bloqueosCuentas=https://bserviciosd:4443/ws-f1/services/ManejoCuentas
+namespace.bloqueosCuentas=http://www.bancovenezuela.com/ws/ManejoCuentas/xsd
+operacion.bloqueosCuentas=consultarBloqueosCuentaB705
+probando.bloqueosCuentas=no
+claseparapruebas.bloqueosCuentas=
+
+#######################################################
+# Transacción de TCGG para cambio de clave
+endpoint.getPEVI=https://bserviciosd:4443/ws-f1/services/ConsultaDatosCliente
+namespace.getPEVI=http://www.bancovenezuela.com/ws/ConsultaDatosCliente/xsd
+operacion.getPEVI=consultarDatosBasicosPEVI
+probando.getPEVI=no
+claseparapruebas.getPEVI=
+
+#######################################################
+# PARAMETROS DE CONFIRURACION DEL PROXY
+use_https_proxy=1
+https.proxyHost=serv-isa-m2
+https.proxyPort=80
+
+#######################################################
+# PARAMETROS PARA WS BCV
+endpoint.bcv.menudeo=https://casacambioserv-cert.extra.bcv.org.ve:443/service/autorizacion
+endpoint.bcv.alto.valor=https://ocppws-cert.extra.bcv.org.ve:443/AltoValor/BancoUniversal
+endpoint.bcv.dicom=https://dicom.cert.extra.bcv.org.ve:443/OPERCAMSERVICES/OperCamFileTransfer
+endpoint.bcv.oro=https://sicirmews-cert.extra.bcv.org.ve/OROSERVICES/OroFileTransfer
+endpoint.bcv.intervencion=https://intervencionbancaria.cert.extra.bcv.org.ve
+endpoint.bcv.mesa=https://ocppws-cert.extra.bcv.org.ve/AltoValor/BancoUniversal
+#ruta.cert.menudeo=keystoreBCVMenuAlto.jks 
+#ruta.cert.alto.valor=keystoreBCVMenuAlto.jks
+#ruta.cert.menudeo=WEB-INF/source/org/bcv/utilities/keystoreBCVMenudeo.jks 
+#ruta.cert.alto.valor=WEB-INF/source/org/bcv/utilities/keystoreBCVAltoValor.jks
+
+#######################################################
+# PARAMETROS LLAVES DE ENCRIPTACION
+ruta.custodio1=\\LLAVES\\SIMADI\\CUSTODIO1\\cl.xml
+ruta.custodio2=\\LLAVES\\SIMADI\\CUSTODIO2\\cl.xml
+
+#######################################################
+# PARAMETROS LLAVES DE ENCRIPTACION DICOM
+ruta.custodio.dicom.1=\\LLAVES\\SIMADI\\CUSTODIO1\\cl.xml
+ruta.custodio.dicom.2=\\LLAVES\\SIMADI\\CUSTODIO2\\cl.xml

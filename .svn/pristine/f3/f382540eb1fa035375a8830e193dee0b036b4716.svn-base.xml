@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>  
+    <!--
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, decimal, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+    --> 
+        <field 
+        name="numero_cheques" 
+        type="varchar" 
+        description="N&uacute;mero de Cheques"
+        nullable="1"
+        size="50" />
+        
+        <field 
+        name="numero_transferencias_nacionales" 
+        type="varchar" 
+        description="N&uacute;mero de transferencias Nacionales"
+        nullable="1"
+        size="50" />
+        
+        <field 
+        name="numero_transferencias_internacionales" 
+        type="varchar" 
+        description="N&uacute;mero de transferencias Internacionales"
+        nullable="1"
+        size="50" />
+
+</record>
+

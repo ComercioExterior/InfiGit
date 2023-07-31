@@ -1,0 +1,1 @@
+select nu_parent from MSC_MENU_ITEMS where id = @id@

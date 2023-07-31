@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<record>
+    
+    <!--
+    
+    NOTA:
+    
+    1) valores validos para el atributo 'type': 
+       varchar, decimal, integer, date
+    
+    2) el atributo 'size' solo importa para campos
+       del tipo varchar se ignora para otro tipo de dato
+       pero DEBE estar definido aunque tenga un valor 0 (cero)
+       y representa la longitud maxima del campo.
+    
+    -->
+    
+        <field 
+        name="id" 
+        type="integer" 
+        description="Primary Key"
+        nullable="1"
+        size="50" />
+        
+        <field 
+        name="st_nombre" 
+        type="varchar" 
+        description="Nombre"
+        nullable="0"
+        size="50" />
+        
+        <field 
+        name="st_url" 
+        type="varchar" 
+        description="URL"
+        nullable="1"
+        size="50" />
+        
+        <field 
+        name="nu_hijos" 
+        type="integer" 
+        description="Hijos"
+        nullable="1"
+        size="10" />
+        
+        <field 
+        name="nu_heigth" 
+        type="integer" 
+        description="Alto"
+        nullable="0"
+        size="10" />
+        
+        <field 
+        name="nu_width" 
+        type="integer" 
+        description="Ancho"
+        nullable="0"
+        size="10" />
+        
+        <field 
+        name="nu_parent" 
+        type="integer" 
+        description="Padre"
+        nullable="1"
+        size="10" />
+        
+        <field 
+        name="nu_level" 
+        type="integer" 
+        description="Nivel"
+        nullable="1"
+        size="10" />
+        
+        <field 
+        name="nu_orden" 
+        type="integer" 
+        description="Orden"
+        nullable="0"
+        size="10" />
+        
+        <field 
+        name="nu_enable" 
+        type="integer" 
+        description="Habilitar"
+        nullable="0"
+        size="10" />
+        
+       <field 
+        name="id_application" 
+        type="integer" 
+        description="Aplicaci&oacute;n a la cual pertenece la opci&oacute;n del men&uacute;"
+        nullable="0"
+        size="10" />
+
+    
+</record>
+

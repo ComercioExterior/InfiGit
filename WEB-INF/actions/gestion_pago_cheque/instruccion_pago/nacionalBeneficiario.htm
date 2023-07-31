@@ -1,0 +1,168 @@
+<html>
+	<head> 
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        <script type="text/javascript">
+          //Funci&oacute;n para abrir un picklist o limpiar el valor anteriormente seleccionado
+          
+         function esconderdiv(){
+         
+         	var display = document.getElementById("tit_cliente");
+         	display.style.display='none';
+         }
+        function eliminarbuscandodata(){
+        
+
+        var data = document.getElementById("buscandodata");
+			data.style.display = 'none';
+        
+        } 
+        
+         function mostrarbuscandodata(){
+        var data = document.getElementById("tit_cliente");
+			data.style.display = 'block';
+        
+        }  
+		function showPickList(ind ,id, tx, campo)
+		{
+		
+		   var r
+		   if (ind == '1') {  // llamar a picklist		
+		   	  r = window.open(campo +'?name_id=' + id.name +"&name_tx=" + tx.name, 'Picklist','resizable=yes,scrollbars=yes,width=600,height=450,Left=200,top=150,Status=yes,unadorned:true');
+		   }
+		   else{
+			id.value= "";
+			tx.value= "Todos";
+			//callAjax('cuenta_numero_nacional', '2')
+			esconderdiv();
+			
+		  } 
+		}
+		
+		
+		function procesar(){
+		
+			if(confirm('Confirme si desea ejecutar la transacción?'))
+			{
+				document.forms.dataentry.target='';
+				document.forms.dataentry.action='gestion_pago_cheque-insert';
+				document.forms.dataentry.submit();
+			}else{
+		
+			}
+			
+		}
+		
+		//funci&oacute;n ajax para cargar los datos en la pagina actual
+		function cargarpagina(pagResponse, id_contenedor){
+			if (pagResponse.readyState == 4 && (pagResponse.status==200 || window.location.href.indexOf("http")==-1))
+				document.getElementById(id_contenedor).innerHTML=pagResponse.responseText
+				
+		}
+		
+		function callAjax(id_contenedor, cod_ajax){	
+			var pagResponse = false;
+			var url = "gestion_pago_cheque-ajax?id_cliente="+document.dataentry.client_id.value+"&cod_ajax="+cod_ajax;
+		
+			if (window.XMLHttpRequest) {// Si es Mozilla, Safari etc
+				pagResponse = new XMLHttpRequest()
+			} else if (window.ActiveXObject){ // pero si es IE
+				try {
+					pagResponse = new ActiveXObject("Msxml2.XMLHTTP")
+				} 
+				catch (e){ // en caso que sea una versi&oacute;n antigua
+					try{
+						pagResponse = new ActiveXObject("Microsoft.XMLHTTP")
+					}
+					catch (e){}
+				}
+			}
+			else
+				return false
+		
+			pagResponse.onreadystatechange=function(){ // funci&oacute;n de respuesta
+				cargarpagina(pagResponse, id_contenedor)
+
+			}
+			document.getElementById(id_contenedor).innerHTML="<p><b>Cargando...</b></p>"
+			pagResponse.open('GET', url, true) // asignamos los m&eacute;todos open y send
+			pagResponse.send(null)		
+			 
+		}
+        </script>
+    </head>
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()}">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Pagos Pendientes</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+<center>
+
+<br>
+<form name="dataentry" action="gestion_pago_cheque-insert" method="post" target="">
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+        
+        <cheques>
+       </cheques>
+       <transferencias_internacionales>
+       </transferencias_internacionales>
+       
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="7" ALIGN="center">
+                <FONT class="formCaptionText">
+                  Transferencias nacionales &nbsp;&nbsp;Cliente : @nombre@
+                </FONT>
+            </th>
+        </tr>
+
+	</table>
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+    
+    <!--encabezados de columna-->
+    <tr>         
+              <td nowrap>Nombre del beneficiario</td> 
+               <td>
+            <INPUT TYPE="TEXT" VALUE="" NAME="nombre_transferir_nacional" SIZE="40" MAXLENGTH="100" onChange="callAjax('tit_cliente',1)" class="inputControl" />
+            	<input type="HIDDEN" value="" name="client_id" />
+				<!--IMAGENES/BOTONES PARA EL PICKLIST-->
+				<IMG src="../images/infi_gn_picklist.gif" title="Haga CLICK para ver la lista de opciones." onclick="showPickList(1,document.dataentry.client_id,document.dataentry.nombre_transferir_nacional,'pick_clientes-find')" style="cursor:hand"/>
+				<IMG src="../images/infi_gn_picklist-clear.gif" title="Haga CLICK para borrar la opci&oacute;n seleccionada." onclick="showPickList(0,document.dataentry.nombre_transferir_nacional,document.dataentry.client_id,'pick_clientes-find')" style="cursor:hand"/>
+                        
+            </td>                          
+    </tr>
+    <!--data-->
+    	<transferencias>
+    	</transferencias>
+    	<cuentas>
+    	</cuentas>
+
+   
+    </table>
+
+    
+    <div id="tit_cliente" style="display:block">
+        <!-- AJAX para campos de la cuenta del cliente -->
+     </div>
+      	
+      	
+      	
+     <P><FONT COLOR="red"><B>Nota : La suma de los montos debe ser igual a : @operaciones_monto format-mask='##,###,###,###.##'@ &nbsp;@moneda@</B></FONT></P>
+
+</center>
+</body>
+</html>

@@ -1,0 +1,291 @@
+<html>
+
+	<head>
+        
+        <!--LINK REL="stylesheet" type="text/css" href="../megasoft.css" /-->
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <SCRIPT LANGUAGE="JavaScript" SRC="../js/sorttable.js"></SCRIPT>
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI - Datos Archivos a Convertir</title>
+        
+<script type="text/javascript">
+        
+        //ejecuci&oacute;n del proceso
+        function cargar_archivo(){
+        	//colocar bandera en 1 indicando que el proceso se est&aacute; ejecutando
+		  
+	       /*if (document.dataentry.num_archivo.value == "0"){
+        		document.getElementById('tb2').style.display='none';
+        		//document.dataentry.fichero.value = "";
+        		alert("Es necesario elegir un archivo"); 
+        		return false
+        	}
+        	 if (document.dataentry.cod_mapa.value == "0"){
+        		document.getElementById('tb2').style.display='none';
+        		//document.dataentry.fichero.value = "";
+        		alert("Es necesario elegir un proceso"); 
+        		return false
+        	}*/
+        	
+        	document.dataentry.action='export_data-find?band=1&reporte=1';
+			document.dataentry.submit();        	
+        	
+        }
+        
+        //Cancelar ejecuci&oacute;n de proceso o retornar
+        function cancelar_proceso(){
+        	
+        	//proceso en ejecuci&oacute;n: llamar a Cancelar ejecuci&oacute;n y actualizar estatus del proceso
+        	if(document.dataentry.ejecucion_proc.value == "1"){
+        		document.dataentry.action='carga_inicial-cancelar_proceso'; 
+        		       		
+        		if (confirm('¿Cancelar Proceso?'))        		
+        			document.dataentry.submit();
+        		
+        	}else{
+        		history.back();//regresar al filtro en caso de que no haya empezado la ejecuci&oacute;n
+        	}
+        		
+        }
+        
+function muestra_capa(div_capa) {
+                        capa = div_capa.style;
+                        capa.visibility = "visible";
+                        }
+function oculta_capa(div_capa) {
+                        capa = div_capa.style;
+                        capa.visibility = "hidden";
+                        }
+
+function habilita_contacto()
+{
+
+        muestra_capa(Reporte);  
+
+	}     
+	
+function exportar_excel(){
+        	//colocar bandera en 1 indicando que el proceso se est&aacute; ejecutando
+		  
+        	document.dataentry.action='export_data-export';
+        	document.dataentry.submit();
+        	
+        	
+        }	   
+
+	
+	
+	
+			var t = new SortTable("t");
+			t.AddColumn("Id Nro.","","center","");
+			t.AddColumn("Campo 1 Valor","","center","");
+			t.AddColumn("Resultado","","center","");
+			t.AddColumn("Mensaje","","center","");
+			t.AddColumn("Campo 2 Valor","","center","");
+			t.AddColumn("Resultado","","center","");
+			t.AddColumn("Mensaje","","center","");
+			t.AddColumn("Campo 3 Valor","","center","");
+			t.AddColumn("Resultado","","center","");
+			t.AddColumn("Mensaje","","center","");
+			t.AddColumn("Campo 4 Valor","","center","");
+			t.AddColumn("Resultado","","center","");
+			t.AddColumn("Mensaje","","center","");
+			t.AddColumn("Campo 5 Valor","","center","");
+			t.AddColumn("Resultado","","center","");
+			t.AddColumn("Mensaje","","center","");
+			t.AddColumn("Campo 6 Valor","","center","");
+			t.AddColumn("Resultado","","center","");
+			t.AddColumn("Mensaje","","center","");
+			t.AddColumn("Campo 7 Valor","","center","");
+			t.AddColumn("Resultado","","center","");
+			t.AddColumn("Mensaje","","center","");
+			t.AddColumn("Campo 8 Valor","","center","");
+			t.AddColumn("Resultado","","center","");
+			t.AddColumn("Mensaje","","center","");
+			
+			
+			
+</script>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Datos Archivos a Convertir</FONT>
+        </TD>
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+<form name="dataentry" method="post" action="export_data-find">
+
+   <table border="0" cellspacing="1" cellpadding="2" width="55%" class="dataform">
+    
+     <tr class="tableCell">
+     	<th colspan="2">Selecci&oacute;n Archivos</th>
+     </tr>
+        <!--campo-->
+       <tr CLASS="formElement">
+           <td CLASS="formLabel">
+            Archivo:*
+           </td>
+           <td>
+                     	
+          		<SELECT NAME="num_archivo" SIZE=1 ONCHANGE="javascript:document.dataentry.action='export_data-find?band=1'; document.dataentry.submit();">
+				<OPTION VALUE="" SELECTED/></OPTION>
+				 <rows_archivos>
+				 <OPTION VALUE="@cod_archivo@"/>@cod_archivo@ - @nom_archivo@</OPTION>
+ 				</rows_archivos>
+ 				</SELECT>
+               
+          	
+          
+           </td>
+            
+       </tr>
+        
+
+      <tr CLASS="formElement">
+           <td CLASS="formLabel">
+            Proceso:*
+           </td>
+           <td>
+                     	
+          		<SELECT NAME="cod_mapa" SIZE=1/>
+				<OPTION VALUE="" SELECTED/></OPTION>
+				 <rows_mapas>
+				 <OPTION VALUE="@id_proceso@"/>@id_proceso@ - @fec_inicio@</OPTION>
+ 				</rows_mapas>
+ 				</SELECT>
+               
+           </td>
+           
+           
+       </tr>
+ 
+ 
+    </table>
+    
+    
+    
+ 
+ 
+    <BR>
+	
+	<!-- Campo hidden para indicar que el proceso esta ejecutandose -->
+	<INPUT TYPE="hidden" VALUE="0" NAME="ejecucion_proc" SIZE="30" MAXLENGTH="50" />
+	
+	<INPUT TYPE="hidden" VALUE="true" NAME="pagestart" />
+	
+    <button onclick="cargar_archivo();"/>Procesar</button>  
+    <!-- &nbsp;<button type="reset">Limpiar</button> -->
+    &nbsp;<button onclick="cancelar_proceso();">Salir</button>
+    
+    <BR>
+    <BR>
+    <BR>
+		
+		<table border="0" cellspacing="1" cellpadding="2" width="120%" class="dataform">
+		<tr class="tableHeader" align="center">
+		<rows_conteo>
+			<th>Lista de Registros (@CONTEO_REGISTROS@ registros)</th>
+		</rows_conteo>
+			
+		</tr>
+		</table>
+		<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+		
+		<!--encabezados de columna-->
+		<tr class="tableHeader" align="center">
+			<th><a href="javascript:SortRows(t,1)">Id Nro.</a></th>
+			<th><a href="javascript:SortRows(t,2)">Campo 1 Valor</a></th>
+			<th><a href="javascript:SortRows(t,3)">Resultado</a></th>       
+			<th><a href="javascript:SortRows(t,4)">Mensaje</a></th>
+			<th><a href="javascript:SortRows(t,5)">Campo 2 Valor</a></th>
+			<th><a href="javascript:SortRows(t,6)">Resultado</a></th>
+			<th><a href="javascript:SortRows(t,7)">Mensaje</a></th>
+			<th><a href="javascript:SortRows(t,8)">Campo 3 Valor</a></th>
+			<th><a href="javascript:SortRows(t,9)">Resultado</a></th>
+			<th><a href="javascript:SortRows(t,10)">Mensaje</a></th>
+			<th><a href="javascript:SortRows(t,11)">Campo 4 Valor</a></th>
+			<th><a href="javascript:SortRows(t,12)">Resultado</a></th>
+			<th><a href="javascript:SortRows(t,13)">Mensaje</a></th>
+			<th><a href="javascript:SortRows(t,14)">Campo 5 Valor</a></th>
+			<th><a href="javascript:SortRows(t,15)">Resultado</a></th>
+			<th><a href="javascript:SortRows(t,16)">Mensaje</a></th>
+			<th><a href="javascript:SortRows(t,17)">Campo 6 Valor</a></th>
+			<th><a href="javascript:SortRows(t,18)">Resultado</a></th>
+			<th><a href="javascript:SortRows(t,19)">Mensaje</a></th>
+			<th><a href="javascript:SortRows(t,20)">Campo 7 Valor</a></th>
+			<th><a href="javascript:SortRows(t,21)">Resultado</a></th>
+			<th><a href="javascript:SortRows(t,22)">Mensaje</a></th>
+			<th><a href="javascript:SortRows(t,23)">Campo 8 Valor</a></th>
+			<th><a href="javascript:SortRows(t,24)">Resultado</a></th>
+			<th><a href="javascript:SortRows(t,25)">Mensaje</a></th>
+		</tr>
+		<rows_registros>
+		<SCRIPT LANGUAGE="JavaScript">
+				t.AddLine("@ID_REGISTRO_1@",
+						  "@VALOR_1@",
+						  "@RESULTADO_1@",
+						  "@MENSAJE_1@",
+						  "@VALOR_2@",
+						  "@RESULTADO_2@",
+						  "@MENSAJE_2@",
+						  "@VALOR_3@",
+						  "@RESULTADO_3@",
+						  "@MENSAJE_3@",
+						  "@VALOR_4@",
+						  "@RESULTADO_4@",
+						  "@MENSAJE_4@", 
+						  "@VALOR_5@",
+						  "@RESULTADO_5@",
+						  "@MENSAJE_5@",
+						  "@VALOR_6@",
+						  "@RESULTADO_6@",
+						  "@MENSAJE_6@",
+						  "@VALOR_7@",
+						  "@RESULTADO_7@",
+						  "@MENSAJE_7@",
+						  "@VALOR_8@",
+						  "@RESULTADO_8@",
+						  "@MENSAJE_8@")
+		</SCRIPT>
+		</rows_registros>
+		<tbody id="TInstancias">
+		<SCRIPT>t.WriteRows()</SCRIPT>
+		</tbody>
+    </table>
+    
+     @page_index@
+    
+    <br>
+    
+       <table id="tb2" style="display:none" border="0" cellspacing="1" cellpadding="2" width="55%" class="dataform">
+    
+         <tr>
+            <td width="50%">
+             <b>Exportando datos...<b>
+            </td>
+          
+        </tr>
+        
+    	</table>
+</form>
+     <button onclick="exportar_excel();"/>Exportar Excel</button>  
+    <!-- &nbsp;<button type="reset">Limpiar</button> -->
+    &nbsp;<button onclick="cancelar_proceso();">Salir</button>
+</center>
+
+</body>
+
+</html>
+

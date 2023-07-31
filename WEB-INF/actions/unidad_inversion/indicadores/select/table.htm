@@ -1,0 +1,200 @@
+<html>
+<head>
+	<title>Sistema INFI</title>
+	<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+	<script language="javascript" src="../js/default.js"></script>	
+</head>
+
+<body
+	ONLOAD="javascript:mostrar(@accion@);{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};
+			reloadOpener()">
+
+	<br><br>
+	<!--page name bar-->
+	<table border="0" cellspacing="0" WIDTH="100%">
+		<tr>
+			<td class="headerBox">
+	        	<div id="titulou" style="display:none">               
+	            	<font class="headerText">Unidad de Inversi&oacute;n / Indicadores</font>
+	            </div>
+				<div id="titulop" style="display:none">               
+	            	<font class="headerText">Publicaci&oacute;n Unidad de Inversi&oacute;n  / Indicadores</font>
+	            </div>
+	            <div id="tituloc" style="display:none">               
+	            	<font class="headerText">Consulta Unidad de Inversi&oacute;n  / Indicadores</font>
+	            </div>
+	            <div id="titulom" style="display:none">               
+	            	<font class="headerText">Modificaci&oacute;n Unidad de Inversi&oacute;n  / Indicadores</font>
+	            </div>		
+			</td>
+			<!-- help online -->
+			<td class="headerBox" valign="middle" align="right">
+				<img src="../images/infi_gn_ayuda.gif"	border="0"  width="17" height="17"
+					style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"
+					onclick="helpOpen(window.document.location.href);">
+			</td>
+			<!-- fin help online -->	
+		</tr>
+	</table>
+
+	<br>
+			
+	<center>
+
+	<!--formulario-->
+	<form name="dataentry" method="POST" action="unidad_inversion_indicadores-insert">
+		<input type="hidden" name="idUnidadInversion" value="@undinv_id@" />
+		<input type="hidden" name="origen" value="select" />			
+		<input type="hidden" name="entry" value="update" />	
+	
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="100%">	
+		<!--titulo-->
+		<tr class="formCaption">
+			<th colspan="7" ALIGN="center">
+				<font class="formCaptionText">
+					Indicadores Disponibles
+					@boton_encab_ini@(@total_indicadores@)@boton_encab_fin@						
+				</font>
+			</th>
+		</tr>	
+	</table>
+	
+	<!--tabla de data-->
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="100%">
+	
+		<!--encabezados de columna-->
+		<tr class="tableHeader">
+			<th width="5%"></th>
+			<th width="30%">Indicador</th>
+			<th width="15%">Requerido</th>
+		</tr>
+
+		<!--data-->
+		<rowsI>
+		<tr class="tableCell">
+			<td align="center">
+				<INPUT TYPE="CHECKBOX" NAME="selecc" VALUE="@fila@" @selecc@
+				 onclick="abrirRequerido(@fila@);"/>
+ 				<input type="hidden" name="idIndicador" value="@indica_id@" />								
+			</td>			
+			<td>@indica_descripcion@</td>
+			<td align="center">
+				<INPUT TYPE="CHECKBOX" NAME="seleccRequerido" VALUE="1" @selecc_requerido@ @disabled@/>
+ 				<input type="hidden" name="indicaRequerido" value="@indica_in_requerido@" />									
+			</td>				
+		</tr>
+		</rowsI>	
+	</table>
+	
+	<br><br>
+<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="100%">	
+		<!--titulo-->
+		<tr class="formCaption">
+			<th colspan="7" ALIGN="center">
+				<font class="formCaptionText">
+					Requisitos Disponibles
+					@boton_encab_ini@(@total_requisitos@)@boton_encab_fin@						
+				</font>
+			</th>
+		</tr>	
+	</table>
+		
+	<!--tabla de data-->
+	<table class="datatable" border="0" cellspacing="1" cellpadding="2" width="100%">
+	
+		<!--encabezados de columna-->
+		<tr class="tableHeader">
+			<th width="5%"></th>
+			<th width="30%">Requisito</th>
+			<th width="15%">Requerido</th>
+		</tr>
+
+		<!--data-->
+		<rowsRequisitos>
+		<tr class="tableCell">
+			<td align="center">
+				<INPUT TYPE="CHECKBOX" NAME="selecc" VALUE="@fila@" @selecc@
+				 onclick="abrirRequerido(@fila@);"/>
+ 				<input type="hidden" name="idIndicador" value="@indica_id@" />								
+			</td>			
+			<td>@indica_descripcion@</td>
+			<td align="center">
+				<INPUT TYPE="CHECKBOX" NAME="seleccRequerido" VALUE="1" @selecc_requerido@ @disabled@/>
+ 				<input type="hidden" name="indicaRequerido" value="@indica_in_requerido@" />									
+			</td>				
+		</tr>
+		</rowsRequisitos>	
+	</table>	
+
+	@page_index@
+
+ 	<input type="hidden" name="idIndicador" value="" />
+	<input type="hidden" name="indicaRequerido" value="" /> 	
+	<input type="hidden" name="selecc" value=""   /> 			
+	<input type="hidden" name="seleccRequerido" value=""   /> 			
+
+	<br>
+
+	@boton_grabar_ini@	
+	<button type="button" onclick="submitir();">Grabar</button>
+	&nbsp;
+	@boton_grabar_fin@	
+	<button type="button" onclick="regresar();">Regresar</button>
+	
+	</form>
+
+	</center>
+
+</body>
+<script type="text/javascript">
+<!--
+function abrirRequerido(nroOcurrs) {
+	if (!document.forms[0].selecc[nroOcurrs].checked) {
+		document.forms[0].seleccRequerido[nroOcurrs].disabled = true;
+		return;
+	}
+	if (!document.forms[0].seleccRequerido[nroOcurrs].checked) {
+		document.forms[0].seleccRequerido[nroOcurrs].disabled = false;
+		document.forms[0].seleccRequerido[nroOcurrs].focus();
+	}
+}
+function submitir() {
+
+	for (i=0; i<document.forms[0].selecc.length-1; i++) {
+		if (!document.forms[0].selecc[i].checked) {
+			document.forms[0].idIndicador[i].value = "-1";
+		}	
+		if (document.forms[0].seleccRequerido[i].checked) {
+			document.forms[0].indicaRequerido[i].value=1;
+		} else {
+			document.forms[0].indicaRequerido[i].value=0;
+		}
+	}
+   	document.forms[0].submit();
+}
+function regresar() {
+	window.opener.reload();
+   	window.close();
+}
+
+function reloadOpener() {
+	window.opener.reload();
+}
+function mostrar(accion){
+	if(accion==1){
+		titulou.style.display ="block";
+	}
+	if(accion==2){//Modulo Publicacion
+		titulop.style.display ="block";
+	}
+	if(accion==3){//Modulo Consulta
+		tituloc.style.display ="block";
+	}	
+	if(accion==4){//Modulo Modificacion
+		titulom.style.display ="block";
+	}
+}
+-->
+</script>
+</html>
+

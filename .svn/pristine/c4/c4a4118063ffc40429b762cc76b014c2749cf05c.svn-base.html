@@ -1,0 +1,107 @@
+<html>
+
+	<head>
+        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+        <script type="text/javascript">
+        
+          
+        </script>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Custodia / Consultas / Por T&iacute;tulo</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="15" ALIGN="center">
+                <FONT class="formCaptionText">
+                 T&iacute;tulos en Custodia ( @t_registros@ )
+                </FONT>
+            </th>
+        </tr>
+  
+	</table>
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="1" width="100%" class="datatable" style="TABLE-LAYOUT: auto; ">
+    
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+		<th colspan="2" width="2%"></th>
+		<th>Cliente</th>
+		<th>T&iacute;tulo</th>
+		<th>Tipo de Producto</th>
+		<th>Moneda</th>
+		<th>Emisi&oacute;n</th>
+		<th nowrap>Vencimiento</th>
+		<th >Cantidad</th>
+		<th>&Uacute;ltimo Cobro Comisi&oacute;n</th>
+		<th>&Uacute;ltimo Pago Cupon</th>
+                            
+    </tr>
+
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+		<td align="center">
+			<a href="javascript:abrirPopupDetalles('detalle_cliente-find?client_id=@client_id@','200', '250')"><IMG SRC="../images/infi_gn_document.gif" WIDTH="15" ALIGN="top" HEIGHT="13" title="Detalles del Cliente" BORDER="0" style="cursor:hand"/></a>
+		</td>
+		<td align="center">
+			<a href="javascript:abrirPopupDetalles('detalle_titulo-find?titulo_id=@titulo_id@','200', '320')"><IMG SRC="../images/infi_gn_edit.gif" WIDTH="15" HEIGHT="15" ALIGN="top" title="Detalles del T&iacute;tulo" BORDER="0" style="cursor:hand"/></a>
+		</td>
+		<td VALIGN="middle">@client_nombre@</td>
+		<td>@titulo_id@</td>
+		<td>@tipo_producto_id@</td>
+		<td>@moneda_descripcion@</td>
+		<td align="center" nowrap> @titulo_fe_emision@</td>
+		<td align="center" nowrap>@titulo_fe_vencimiento@</td>
+		<td align="right"> @titcus_cantidad@</td>
+		<td align="center"> @titulo_fe_ult_cobro_comision@</td>
+		<td align="center">@titulo_fe_ult_pago_cupon@</td>
+ 
+     </tr>
+     </rows>
+    
+    </table>
+
+@page_index@
+    <BR>
+<form>
+
+    <button onclick="javascript:history.back();">Regresar</button>
+     &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+</form>
+
+</center>
+
+</body>
+
+</html>
+

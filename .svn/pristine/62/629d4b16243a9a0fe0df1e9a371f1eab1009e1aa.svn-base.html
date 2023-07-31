@@ -1,0 +1,104 @@
+<html>
+
+	<head>
+         <script language="javascript" src="../js/default.js"></script>
+         <script type="text/javascript" src="../js/menu/jquery-1.2.2.pack.js"></script>           
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+        <script type="text/javascript">
+        
+        function exportarTotalesCVS() {
+            if (confirm("Se Generará un archivo CSV Totales con todas las operaciones consultadas. Esto puede tardar varios minutos. ¿Está seguro que desea iniciar el proceso?")){
+            	window.location="intercambio_menudeo_demanda_totales-export?framework.controller.outputstream.open=false&statusp=@statusp@&fecha=@fecha@&statusE=@statuse@&Tipo=@tipo@";
+            
+            	return true;
+            }else{
+            	return false;
+            	
+            }
+        }
+       
+        </script>
+	
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Env&iacute;o BCV / Menudeo Demanda</FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="left" align="left">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea"/>
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+
+<br>
+
+  
+<form name="dataentry" METHOD="POST" ACTION="intercambio_menudeo_demanda-browse" enctype="multipart/form-data">
+	<table border="0" cellspacing="1" cellpadding="2" width="95%" class="datatable">
+		<tr>
+			<th COLSPAN="4" ALIGN="center">Resumen de Operaciones</th>
+		</tr>
+		<tr>
+			 <th nowrap>Moneda</th>
+             <th nowrap>Monto Total</th>
+             <th nowrap>Cantidad Operaciones</th>
+             <th nowrap>Tipo Operacion</th>
+             
+           </tr>
+		<rows>
+		<tr>
+		    <td nowrap>
+				@moneda@
+			</td>
+			<td nowrap>
+                @monto_operacion format-mask='##,###,###,##0.00'@
+            </td>
+			<td nowrap>
+                @cantidad_operaciones@
+            </td>
+            <td nowrap>
+                @movimiento@
+            </td>
+			
+		</tr>			
+		</rows>
+	</table>
+	
+	
+    <!--tabla de data-->
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout: auto;">
+    
+           <!--titulo-->
+ 
+    <!--encabezados de columna-->
+
+    <!--data-->
+    </table>
+    <BR>
+    @page_index@ 
+
+    <!--&nbsp;<button type="button" onclick="exportarCVS();">Exportar Ordenes CSV</button>-->
+    <button type="button" onclick="exportarTotalesCVS();">Exportar Ordenes Totales CSV</button>
+ 	<button type="button" onclick="javascript:history.back();">Regresar</button>
+</form>
+
+</center>
+
+</body>
+
+</html>
+

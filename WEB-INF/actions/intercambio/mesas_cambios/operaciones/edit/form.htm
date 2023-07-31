@@ -1,0 +1,149 @@
+<HTML>
+
+<HEAD>
+<LINK REL="stylesheet" type="text/css"
+	href="../js/calendar/popcalendar.css" />
+<SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+
+
+<script language="javascript" src="../js/default.js"></script>
+<LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+
+<TITLE>Sistema INFI</TITLE>
+</HEAD>
+
+<!--poner el focus en el 1er control de la forma-->
+<BODY
+	ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+	<!--          -->
+
+	<!--page name bar-->
+	<TABLE border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+			<TD class="headerBox"><FONT class="headerText">Actualizar
+					/ Cliente</FONT></TD>
+
+			<!-- help online -->
+			<TD class="headerBox" valign="middle" align="right"><img
+				border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17"
+				onclick="helpOpen(window.document.location.href);"
+				style="cursor: hand" title="Mostrar ayuda en l&iacute;nea"></TD>
+			<!-- fin help online -->
+
+			<td class="headerBox" aling="right"></td>
+	</TABLE>
+
+	<CENTER>
+
+		<!--formulario-->
+		<form NAME="dataentry" METHOD="POST"
+			ACTION="intercambio_mesas_cambios-update">
+
+			<table border="0" cellspacing="1" cellpadding="2" width="100%"
+				class="dataform">
+
+				<!--titulo-->
+
+				<tr>
+					<th COLSPAN="4" ALIGN="center">Editar Cliente</th>
+				</tr>
+				<tr>
+					<td>ID Operacion:</td>
+					<td><INPUT TYPE="TEXT" VALUE="@id_oc@" NAME="operacion"
+						SIZE="40" MAXLENGTH="200" class="inputControl" readonly/></td>
+				</tr>
+				<tr>
+					<td>Monto operación</td>
+					<td><INPUT TYPE="TEXT" VALUE="@mto_divisas@" NAME="monto"
+						SIZE="40" MAXLENGTH="200" class="inputControl" /></td>
+				</tr>
+				<tr>
+					<td>Monto contravalor</td>
+					<td><INPUT TYPE="TEXT" VALUE="@mto_bolivares@" NAME="montobs"
+						SIZE="40" MAXLENGTH="200" class="inputControl" /></td>
+				</tr>
+				<tr>
+					<td>Tasa de Cambio</td>
+					<td><INPUT TYPE="TEXT" VALUE="@tasa_cambio@" NAME="tasa"
+						SIZE="40" MAXLENGTH="200" class="inputControl" /></td>
+				</tr>
+				<tr>
+					<td>Nacionalidad Ofertante:</td>
+					<td><INPUT TYPE="TEXT" VALUE="@tipo_oper@" NAME="nacionalidadf"
+						SIZE="40" MAXLENGTH="200" class="inputControl" /></td>
+				</tr>
+				<tr>
+					<td>Cedula Ofertante:</td>
+					<td><INPUT TYPE="TEXT" VALUE="@ced_rif_ofer@" NAME="cedulaf"
+						SIZE="40" MAXLENGTH="200" class="inputControl" /></td>
+				</tr>
+				<tr>
+					<td>Nombre Ofertante:</td>
+					<td><INPUT TYPE="TEXT" VALUE="@nom_ofer@" NAME="nombref"
+						SIZE="40" MAXLENGTH="200" class="inputControl" /></td>
+				</tr>
+				<tr>
+					<td>Cuenta Ofertante MN:</td>
+					<td><INPUT TYPE="TEXT" VALUE="@cta_ofer_mn@" NAME="cuentafmn"
+						SIZE="40" MAXLENGTH="200" class="inputControl" readonly/>
+					</td>
+				</tr>
+				<tr>
+					<td>Cuenta Ofertante ME:</td>
+					<td><INPUT TYPE="TEXT" VALUE="@cta_ofer_me@" NAME="cuentafme"
+						SIZE="40" MAXLENGTH="200" class="inputControl" /></td>
+				</tr>
+				<tr>
+					<td>Nacionalidad Demandante:</td>
+					<td><INPUT TYPE="TEXT" VALUE="@tipo_per_dema@" NAME="nacionalidadd"
+						SIZE="40" MAXLENGTH="200" class="inputControl" /></td>
+				</tr>
+				<tr>
+					<td>Cedula Demandante:</td>
+					<td><INPUT TYPE="TEXT" VALUE="@ced_rif_dema@" NAME="cedulad"
+						SIZE="40" MAXLENGTH="200" class="inputControl" /></td>
+				</tr>
+				<tr>
+					<td>Nombre Demandante:</td>
+					<td><INPUT TYPE="TEXT" VALUE="@nom_dema@" NAME="nombred"
+						SIZE="40" MAXLENGTH="200" class="inputControl" /></td>
+				</tr>
+				<tr>
+					<td>Cuenta Demandante MN:</td>
+					<td><INPUT TYPE="TEXT" VALUE="@cta_dema_mn@" NAME="cuentadmm"
+						SIZE="40" MAXLENGTH="200" class="inputControl" /></td>
+				</tr>
+				<tr>
+					<td>Cuenta Demandante ME:</td>
+					<td><INPUT TYPE="TEXT" VALUE="@cta_dema_me@" NAME="cuentadme"
+						SIZE="40" MAXLENGTH="200" class="inputControl" /></td>
+				</tr>
+				<tr>
+					<td>Codigo Moneda:</td>
+					<td><INPUT TYPE="TEXT" VALUE="@cod_divisas@" NAME="moneda"
+						SIZE="40" MAXLENGTH="200" class="inputControl" /></td>
+				</tr>
+				<tr>
+					<td>Tipo de Pacto:</td>
+					<td><INPUT TYPE="TEXT" VALUE="@tipo_pacto@" NAME="pacto"
+						SIZE="40" MAXLENGTH="200" class="inputControl" /></td>
+				</tr>
+
+			</table>
+
+			<br>
+			<button TYPE="submit">Procesar</button>
+			&nbsp;
+			<button type="button" onclick="history.back();">Regresar</button>
+			&nbsp;
+			<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+
+		</form>
+
+
+	</CENTER>
+
+</BODY>
+
+</HTML>
+

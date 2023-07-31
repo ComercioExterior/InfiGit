@@ -1,0 +1,125 @@
+
+<HTML>
+    
+	<head> 
+          
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 	
+        <SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        <script type="text/javascript">
+        
+        
+
+		function procesar() {
+		
+			if(document.getElementById('tasa').value==''){
+				alert('Debe ingresar el monto de la Tasa a aplicar');
+			}else {
+  			    var mensaje='Desea guardar la información de la tasa que se encuentra en pantalla ?';
+			 	if (confirm(mensaje)){
+					window.location='configuracion_tasa-insert?tipo_producto_id='+document.getElementById('tipo_producto_id').value+'&transa_id='+document.getElementById('transa_id').value+'&fecha_tasa='+document.getElementById('fecha_tasa').value+'&monto_tasa='+document.getElementById('monto_tasa').value;
+			 	}
+			 	
+			}		
+		}
+		</script>
+	
+    </head>
+  
+  <body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+  
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Generales /  Configuraci&oacute;n Tasas </FONT>
+        </TD>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+        
+        <CENTER>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="pretit-confirm_insert">
+		
+       		<table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+			 <!--titulo-->
+			<tr>
+				<th COLSPAN="4" ALIGN="center">Seleccione Criterios</th>
+			</tr>
+			<!--campo-->
+			<tr>
+			<td nowrap>Tasa:*</td>
+            	<td nowrap>
+            	 <INPUT TYPE="TEXT" id="monto_tasa" VALUE="" id="tasa" NAME="tasa" SIZE="10" MAXLENGTH="50" class="inputControl"/>             	                        
+            </td>
+	       </tr>
+        	<tr>
+
+            <td>
+				Fecha:*
+            </td>
+            <td>
+            	<fecha>
+					<INPUT TYPE="TEXT" VALUE="@fecha_sistema@" id="fecha_tasa"  NAME="fecha_tasa" SIZE="12" MAXLENGTH="10" class="inputControl" readonly/> 
+					<a onclick="popUpCalendar(this, fecha_tasa, 'dd-mm-yyyy')">
+					<IMG SRC="../images/infi_gn_calendar.gif" TITLE="Seleccionar Fecha"/> 
+					</a>
+            	</fecha>
+			</td>
+        </tr>
+        	
+        	<tr>
+				<td>Transacci&oacute;n:*</td>
+				<td width="75%">
+					<SELECT id="transa_id" NAME="transa_id" SIZE="1">
+							<!-- OPTION VALUE="">----Seleccione----</OPTION-->
+						<transacciones>
+							<OPTION VALUE="@transaid@">@transaid@</OPTION>
+						</transacciones>				
+					</SELECT>
+				</td>
+			</tr>
+			
+		
+        	<tr>
+				<td>Tipo Producto:*</td>
+				<td width="75%">
+					<SELECT  id="tipo_producto_id" NAME="tipo_producto_id" SIZE="1">
+							<!--  OPTION VALUE="">----Seleccione----</OPTION-->
+						<productos>
+							<OPTION VALUE="@TIPO_PRODUCTO_ID@">@TIPO_PRODUCTO_ID@</OPTION>
+						</productos>				
+					</SELECT>
+				</td>
+			</tr>
+        	
+		</table>
+		<INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/> 
+            <!--nota sobre los campos obligatorios-->
+            <P><FONT COLOR="red"><B>Nota:</B></FONT> Los campos con * deben ser llenados para poder procesar el formulario.</P>
+  
+            <button type="button" onclick="javascript:procesar();">Grabar</button>
+            &nbsp;<button type="button" onclick="javascript:history.back();">Regresar</button>
+            &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+
+    </form>
+
+        
+        </CENTER>
+        
+    </BODY>
+
+</HTML>
+

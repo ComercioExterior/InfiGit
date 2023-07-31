@@ -1,0 +1,153 @@
+
+<HTML>
+    
+    <HEAD>
+    <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+            <SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+        
+    
+             <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css"/>
+        
+        <TITLE>Sistema INFI</TITLE>
+        
+        <script type="text/javascript">
+
+	    //Funcion de ajax para llamar al action (carga_inicial-ajax_browse) que trae ciertos datos incluida la hora del servidor
+		//y montar estos datos en la p&aacute;gina actual
+		function callAjax(id_contenedor, cod_ajax){	
+			
+			var pagResponse = false;
+			var url = "titulos_cliente-ajax_filter?id_cliente="+document.dataentry.client_id.value+"&cod_ajax="+cod_ajax;
+		
+			if (window.XMLHttpRequest) {// Si es Mozilla, Safari etc
+				pagResponse = new XMLHttpRequest()
+			} else if (window.ActiveXObject){ // pero si es IE
+				try {
+					pagResponse = new ActiveXObject("Msxml2.XMLHTTP")
+				} 
+				catch (e){ // en caso que sea una versi&oacute;n antigua
+					try{
+						pagResponse = new ActiveXObject("Microsoft.XMLHTTP")
+					}
+					catch (e){}
+				}
+			}
+			else
+				return false
+		
+			pagResponse.onreadystatechange=function(){ // funci&oacute;n de respuesta
+				cargarpagina(pagResponse, id_contenedor)
+			}
+			
+			pagResponse.open('GET', url, true) // asignamos los m&eacute;todos open y send
+			pagResponse.send(null)
+			 
+		}
+		//funci&oacute;n ajax para cargar los datos en la pagina actual
+		function cargarpagina(pagResponse, id_contenedor){
+			if (pagResponse.readyState == 4 && (pagResponse.status==200 || window.location.href.indexOf("http")==-1))
+				document.getElementById(id_contenedor).innerHTML=pagResponse.responseText
+		}
+        
+        
+        //Funci&oacute;n para abrir un picklist o limpiar el valor anteriormente seleccionado
+		function showPickList(ind ,id, tx, campo)
+		{
+		   var r
+		   if (ind == '1') {  // llamar a picklist		
+		   	  r = window.open(campo +'?name_id=' + id.name +"&name_tx=" + tx.name, 'Picklist','resizable=yes,scrollbars=yes,width=600,height=450,Left=200,top=150,Status=yes,unadorned:true');
+		   }
+		   else{
+			id.value= "";//limpiar id de cliente
+			tx.value= "<Todos>";//limpiar campo de cliente
+			callAjax('tit_cliente', '2');//buscar todos los titulos
+			document.dataentry.moneda_id.disabled = false;//habilitar campo moneda
+		  }
+		}
+		
+		//Funci&oacute;n que bloquea el campo Moneda si se selecciona alg&uacute;n titulo espec&iacute;fico
+		function bloquearMoneda(){
+		
+			if(document.dataentry.titulo_id.value!='')
+				document.dataentry.moneda_id.disabled = true;
+		}
+        
+        
+        </script>
+        
+         
+    </HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()}">
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Liquidaci&oacute;n / Proceso de Liquidaci&oacute;n</FONT>
+        </TD>
+        
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+        <td class="headerBox" aling="right"></td>
+</TABLE>
+        
+        <CENTER>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="proceso_liquidacion_blotter-find">
+		
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform" style="table-layout: auto;">
+        
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="2" ALIGN="center">                
+                 Seleccione Criterios               
+            </th>
+        </tr>
+        
+
+        <!--campo-->
+     <tr CLASS="formElement">
+            <td  CLASS="formLabel" width="20%">
+            Unidad de Inversi&oacute;n:*
+            </td>
+            <td  CLASS="formLabel">
+            <SELECT NAME="unidad_inversion" id="unidad_inversion" CLASS="inputControl">
+			<OPTION VALUE="">Seleccione</OPTION>
+			<unidad_inversion>
+			<OPTION VALUE="@undinv_id@&@undinv_nombre@">@undinv_nombre@-@undinv_serie@</OPTION>
+			</unidad_inversion>
+			</SELECT>
+			</td>
+        </tr>
+        
+         </table>
+         <!--nota sobre los campos obligatorios-->
+            <P><FONT COLOR="red"><B>Nota:</B></FONT> Los campos con * deben ser llenados para poder procesar el formulario.</P>
+              			             
+            
+            <SPAN> </SPAN>
+         
+         <INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/> 	
+            <br>
+            <button TYPE="submit">Procesar</button>
+         
+                        <SPAN> </SPAN>
+            <button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+
+    </form>
+	
+        
+        </CENTER>
+        
+    </BODY>
+</HTML>
+

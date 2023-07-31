@@ -1,0 +1,73 @@
+	<html>
+	<head>        
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+        
+        <script type="text/javascript">
+        
+        function enviar(){
+        	var url = 'envio_correos-enviar?ciclo='+document.getElementById('ciclo').value+'&plantilla_id='+document.getElementById('plantilla_id').value+'&correo_ids_concat='+document.getElementById('correo_ids_concat').value+'&tipo_filtro='+document.getElementById('tipo_filtro').value+'&todos_val='+document.getElementById('todos_val').value+'&tipo_destinatario='+document.getElementById('tipo_destinatario').value;
+  		  	//alert("url: "+url);
+  			document.dataentry.action = url;
+        	//document.dataentry.action='envio_correos-enviar?ciclo='+@ciclo@+'&plantilla_id='+@plantilla_id@+'&correo_ids_concat='+@correo_ids_concat@+'&todos_val='+@todos_val@+'&tipo_destinatario='+@tipo_destinatario@;
+  			document.dataentry.submit();
+  		}
+        
+        function descartar(){
+        	var url = 'envio_correos-descartar?ciclo='+document.getElementById('ciclo').value+'&plantilla_id='+document.getElementById('plantilla_id').value+'&correo_ids_concat='+document.getElementById('correo_ids_concat').value+'&tipo_filtro='+document.getElementById('tipo_filtro').value+'&todos_val='+document.getElementById('todos_val').value+'&tipo_destinatario='+document.getElementById('tipo_destinatario').value;
+			//alert("url: "+url);
+			document.dataentry.action = url;
+			//document.dataentry.action='envio_correos-descartar?ciclo='+@ciclo@+'&plantilla_id='+@plantilla_id@+'&correo_ids_concat='+@correo_ids_concat@+'&todos_val='+@todos_val@+'&tipo_destinatario='+@tipo_destinatario@;
+			document.dataentry.submit();
+   		}
+        
+		</script>
+	
+    </head>
+
+<body>
+	<!--page name bar-->
+	<TABLE  border="0" cellspacing="0" WIDTH="100%">
+		<TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Env&iacute;o de Correos</FONT>
+        </TD>
+        
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+        <td class="headerBox" aling="right"></td>
+     </TR>
+	</TABLE>
+
+   <center>
+	<br/>
+	
+	
+	<form NAME="dataentry" METHOD="POST" ACTION="">
+    
+	    <div style="font-weight:bold">@mensaje_confirmacion@</div>
+		
+		<INPUT TYPE="hidden" NAME="ciclo" id="ciclo" VALUE="@ciclo@"/>
+		<INPUT TYPE="hidden" NAME="plantilla_id" id="plantilla_id" VALUE="@plantilla_id@"/>
+    	<INPUT TYPE="hidden" NAME="correo_ids_concat" id="correo_ids_concat" VALUE="@correo_ids_concat@"/>
+    	<INPUT TYPE="hidden" NAME="tipo_filtro" id="tipo_filtro" VALUE="@tipo_filtro@"/>
+    	<INPUT TYPE="hidden" NAME="todos_val" id="todos_val" VALUE="@todos_val@"/>
+    	<INPUT TYPE="hidden" NAME="tipo_destinatario" id="tipo_destinatario" VALUE="@tipo_destinatario@"/>
+    	
+		<br/>
+		
+<!-- 		<button id="btnProcesar" name="btnProcesar" onclick="enviar()">Enviar Correos</button>&nbsp; -->
+<!-- 		&nbsp;<button type="button" ONCLICK="descartar();">&nbsp;Descartar Correos</button> -->
+<!-- 			&nbsp;<button type="button" onclick="generarDetalle();">&nbsp;Informe</button> -->
+		&nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp; Salir &nbsp;</button>
+	</form>
+	
+</body>
+</html>

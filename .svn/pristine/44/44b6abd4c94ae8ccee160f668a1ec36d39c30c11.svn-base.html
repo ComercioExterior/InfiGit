@@ -1,0 +1,75 @@
+<html>
+
+	<head>
+         <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+		
+        <!--cambiar: nombre de la aplicacion-->
+        <title>Sistema INFI</title>
+
+    </head>
+
+<body ONLOAD="javascript:{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+			
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <td class="headerBox">           
+	            	<font class="headerText">Configuraci&oacute;n / Asociar Cuentas (SWIFT)</font>
+		</td>
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+   	</TR>
+</TABLE>
+
+<center>
+<br>
+    <table border="0" cellspacing="1" cellpadding="2" width="100%" class="datatable" style="table-layout:auto">
+        
+        <!--titulo-->
+        <tr CLASS="formCaption">
+            <th COLSPAN="11" ALIGN="center">
+                <FONT class="formCaptionText">
+                 Datos
+                </FONT>
+            </th>
+        </tr>
+
+    <!--encabezados de columna-->
+    <tr class="tableHeader">
+		<th nowrap></th>
+		<th nowrap width="10%">Transacci&oacute;n</th>
+		<th nowrap width="15%">C&oacute;digo BIC</th>
+		<th nowrap width="20%">Nro Cuenta</th>
+		<th nowrap>Descripci&oacute;n</th>	
+    </tr>
+    <!--data-->
+    <rows>
+    <tr class="tableCell">
+		<td align="center" width="1%">
+			<a href="asociar_cuentas_bdv_edit?transaccion=@transa_id@"><IMG SRC="../images/infi_gn_edit2.gif" WIDTH="15" ALIGN="top" HEIGHT="15" title="Editar Registro" BORDER="0" style="cursor:hand"></a>
+		</td>
+		<td align="left" nowrap width="10%">@transa_id@</td>
+		<td align="center" nowrap width="15%">@cod_bic_banco@</td>
+		<td align="center" nowrap width="20%">@nu_cuenta@</td>
+		<td align="left" nowrap>@ds_banco@</td>
+     </tr> 
+     </rows>
+    </table>
+	@page_index@
+	<br>
+
+	<table>
+	<tr>
+      <td>
+   			 &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+      </td>
+      </tr>
+      </table>
+</center>
+</body>
+</html>

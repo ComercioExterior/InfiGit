@@ -1,0 +1,151 @@
+<HTML>
+    
+    <HEAD>
+    
+    <script type="text/javascript">
+	function showPlantilla(x)
+		{		  	   
+		   var indice = document.dataentry.transa_id.selectedIndex;
+		   var valor = document.dataentry.transa_id.options[indice].value;
+		   var indix = document.dataentry.undinv_id.selectedIndex;
+		   var unidad = document.dataentry.undinv_id.options[indix].value;
+		   // llamar a la plantilla	
+    	   var ventana;				   	   	   		  
+		   ventana = window.open('documentos_definicion-plantilla'+'?dirigir='+x+'&id=' + valor +'&unidad=' + unidad+"&name=" + 'plantilla.htm', 'Plantilla','resizable=yes,scrollbars=yes,width=600,height=450,Left=200,top=150,Status=yes,unadorned:true');		   	   		   
+           
+		}
+		
+	function mostrarUnidad(){
+		if(document.dataentry.transa_id.value=="TOMA_ORDEN" || document.dataentry.transa_id.value=="ADJUDICACION" || document.dataentry.transa_id.value=="CANCELACION_ORDEN"){
+			document.getElementById("unidad").style.display ="block";
+			plantilla.style.display="none"; //Ocultamos el link que cargo
+			plantillaU.style.display="block";//Mostramos el link relacionado con la transacion elegida
+		 }else
+		 	{
+		 	document.getElementById("unidad").style.display ="none";
+		 	document.dataentry.undinv_id.value=0;
+		 	plantillaU.style.display="none";//Ocultamos el link que cargo
+		 	plantilla.style.display="block";//Mostramos el link relacionado con la transacion elegida
+		 	}	
+	} 
+	</script> 
+	   
+    <LINK REL="stylesheet" type="text/css" href="../js/calendar/popcalendar.css"/> 
+            <SCRIPT language='javascript' src="../js/calendar/popcalendar.js"></SCRIPT>
+        
+    
+             <script language="javascript" src="../js/default.js"></script>   
+        <LINK REL="stylesheet" type="text/css" href="../css/HojadeEstilo.css" />
+        
+        <TITLE>Sistema INFI</TITLE>
+    
+    </HEAD>
+    
+    <!--poner el focus en el 1er control de la forma-->
+<BODY ONLOAD="javascript:mostrarUnidad();{if(parent.frames[1]&&parent.frames['sidebar'].Go)parent.frames['sidebar'].Go()};">
+        
+        
+<!--page name bar-->
+<TABLE  border="0" cellspacing="0" WIDTH="100%">
+    <TR>
+        <TD class="headerBox">                
+            <FONT class="headerText">Configuraci&oacute;n / Documentos / Definici&oacute;n</FONT>
+        </TD>
+        
+        <!-- help online -->
+   		<TD class="headerBox" valign="middle" align="right">
+   			<img border="0" src="../images/infi_gn_ayuda.gif" width="17" height="17" onclick="helpOpen(window.document.location.href);" style="cursor:hand" title="Mostrar ayuda en l&iacute;nea" >
+   		</TD>
+   		<!-- fin help online -->
+        
+        <td class="headerBox" aling="right"></td>
+</TABLE>
+        
+        <CENTER>
+
+<!--formulario-->
+<form NAME="dataentry" METHOD="POST" ACTION="documentos_definicion-confirm_insert" enctype="multipart/form-data">
+		
+        <table border="0" cellspacing="1" cellpadding="2" width="100%" class="dataform">
+    
+        <!--titulo-->
+        <tr>
+            <th COLSPAN="3" ALIGN="center"> 
+                 Agregar
+            </th>
+        </tr>
+        
+        <!--campo-->
+        <tr>
+            <td width="30%">
+             Transacci&oacute;n: *                 
+            </td>
+            <td>
+            	<SELECT NAME="transa_id" CLASS="inputControl" onchange="mostrarUnidad();">
+					<rows1>
+					<OPTION VALUE="@transa_id@">@transa_descripcion@</OPTION>
+					</rows1>
+				</SELECT>
+				<td width="30%" align="left">
+				<!--IMAGEN BOTON PARA VISUALIZAR LA PLANTILLA-->
+				<div id="plantilla" style="display:none">
+				&nbsp;&nbsp;&nbsp;&nbsp;<IMG src="../images/infi_gn_document.gif" title="Campos disponibles para la plantilla." onclick="showPlantilla(1);" style="cursor:hand"/>
+				</div>
+				<div id="plantillaU" style="display:none">
+				&nbsp;&nbsp;&nbsp;&nbsp;<IMG src="../images/infi_gn_document.gif" title="Campos disponibles para la plantilla." onclick="showPlantilla(2);" style="cursor:hand"/>
+				</div>
+				</td>
+            </td>
+
+        </tr>
+        <tr class="tableCell">
+        	<td width="30%" CLASS="formLabel">
+           	Archivo: *
+         	</td>
+			<td aling="center"> 
+  				<input type="file" name="ruta_documento" value="@ruta_documento@" size="50">
+        	</td>        
+     	</tr>     
+        <tr >
+            <td width="30%">
+             Tipo de Persona: *
+            </td>
+            <td>
+            	<SELECT NAME="tipper_id" CLASS="inputControl" >
+					<rows2>
+					<OPTION VALUE="@tipper_id@"/>@tipper_nombre@</OPTION>					 							 
+					</rows2>
+				</SELECT>
+            </td>
+        </tr>
+        <tr class="tableCell" id="unidad" style="display:none">
+			<td width="30%">Unidad de Inversi&oacute;n:*</td>
+			<td>
+				<SELECT NAME="undinv_id" CLASS="inputControl">
+					<OPTION VALUE="0"></OPTION>			
+					<rows_undinv>					
+						<OPTION VALUE="@undinv_id@">@undinv_nombre@</OPTION>						
+					</rows_undinv>
+				</SELECT>       
+			</td>        
+		</tr>       
+    </table>
+
+         <INPUT TYPE="HIDDEN" VALUE="true" NAME="pagestart"/> 	
+                 
+ 
+         <INPUT TYPE="HIDDEN" VALUE="@ruta_documento@" NAME="ruta_documento"/>
+                  
+		<P><FONT COLOR="red"><B>Nota:</B></FONT> Los campos con * deben ser llenados para poder procesar el formulario.</P>
+		
+
+            <button TYPE="submit">Procesar</button>
+            &nbsp;<button type="button" onclick="javascript:history.back();">Regresar</button>
+            &nbsp;<button type="button" ONCLICK="window.location='show-view'">&nbsp;Salir&nbsp;</button>
+
+    </form>        
+        </CENTER>
+        
+    </BODY>
+
+</HTML>
