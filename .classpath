@@ -27,8 +27,6 @@
 	<classpathentry kind="lib" path="WEB-INF/lib/jibx-bind-1.1.5.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/jibx-run.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/jibx-run-1.1.5.jar"/>
-	<classpathentry kind="lib" path="WEB-INF/lib/log4j-1.2.13.jar"/>
-	<classpathentry kind="lib" path="WEB-INF/lib/mail.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/poi-3.0-rc4.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/upload.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/templates/classes/lib/msclib.jar"/>
@@ -36,15 +34,12 @@
 	<classpathentry kind="lib" path="WEB-INF/lib/axiom-dom-1.2.5.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/axiom-impl-1.2.5.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/axis2-adb-1.3.jar"/>
-	<classpathentry kind="lib" path="WEB-INF/lib/axis2-adb-codegen-1.3.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/axis2-ant-plugin-1.3.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/axis2-clustering-1.3.jar"/>
-	<classpathentry kind="lib" path="WEB-INF/lib/axis2-codegen-1.3.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/axis2-fastinfoset-1.3.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/axis2-java2wsdl-1.3.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/axis2-jaxbri-1.3.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/axis2-jaxws-1.3.jar"/>
-	<classpathentry kind="lib" path="WEB-INF/lib/axis2-jaxws-api-1.3.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/axis2-jibx-1.3.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/axis2-json-1.3.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/axis2-jws-api-1.3.jar"/>
@@ -52,7 +47,6 @@
 	<classpathentry kind="lib" path="WEB-INF/lib/axis2-metadata-1.3.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/axis2-mtompolicy-1.3.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/axis2-saaj-1.3.jar"/>
-	<classpathentry kind="lib" path="WEB-INF/lib/axis2-saaj-api-1.3.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/axis2-spring-1.3.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/axis2-xmlbeans-1.3.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/jibx-bind.jar"/>
@@ -79,7 +73,6 @@
 	<classpathentry kind="lib" path="WEB-INF/lib/jaxb-impl-2.0.5.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/jaxb-xjc-2.0.5.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/jaxen-1.1.1.jar"/>
-	<classpathentry kind="lib" path="WEB-INF/lib/jettison-1.0-RC1.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/juli-6.0.10.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/log4j-1.2.14.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/mail-1.4.jar"/>
@@ -137,14 +130,6 @@
 	<classpathentry kind="lib" path="WEB-INF/lib/javax.inject-2.5.0-b05.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/javax.servlet-api-3.0.1.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/jaxb-api-2.2.7.jar"/>
-	<classpathentry kind="lib" path="WEB-INF/lib/jersey-client.jar"/>
-	<classpathentry kind="lib" path="WEB-INF/lib/jersey-common.jar"/>
-	<classpathentry kind="lib" path="WEB-INF/lib/jersey-container-servlet-core.jar"/>
-	<classpathentry kind="lib" path="WEB-INF/lib/jersey-container-servlet.jar"/>
-	<classpathentry kind="lib" path="WEB-INF/lib/jersey-guava-2.24.1.jar"/>
-	<classpathentry kind="lib" path="WEB-INF/lib/jersey-media-jaxb.jar"/>
-	<classpathentry kind="lib" path="WEB-INF/lib/jersey-media-multipart-2.21.jar"/>
-	<classpathentry kind="lib" path="WEB-INF/lib/jersey-server.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/org.json.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/javax.wsdl_1.6.2.v201005080631.jar"/>
 	<classpathentry kind="lib" path="WEB-INF/lib/org.apache.commons.logging_1.0.4.v201005080501.jar"/>
