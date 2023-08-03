@@ -6,7 +6,7 @@
 		</property>
 		<property>
 			<name>JNDIName</name>
-			<value>jdbc/infi</value>
+			<value>java:comp/env/jdbc/infi</value>
 		</property>
 		<property>
 			<name>url</name>
@@ -37,7 +37,7 @@
 	<cache_config id="AuditInfo" enable="false" classname="com.megasoft.plugins.cache.CacheAuditInfo" objectType="java.util.HasTable">
 		<property>
 			<name>JNDIName</name>
-			<value>jdbc/infi</value>
+			<value>java:comp/env/jdbc/infi</value>
 		</property>
 	</cache_config>
 </cache>

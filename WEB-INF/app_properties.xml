@@ -19,15 +19,9 @@
   <!-- Descomentar en caso de requerir acceso a Base de Datos. -->
   <property>
     <name>datasource</name>
-    <value>jdbc/infi</value>
+    <value>java:comp/env/jdbc/infi</value>
     <description>DataSource principal de la aplicacion</description>
   </property>
-   <property>
-    <name>datasource-security</name>
-    <value>jdbc/security</value>
-    <description>DataSource de Seguridad de la aplicacion</description>
-  </property>
-  
   <!--   
   <property>
     <name>datasource-perflog</name>
@@ -72,13 +66,13 @@
   </property>
   <property>
     <name>debug-online</name>
-    <value>false</value>
+    <value>true</value>
     <description>Activa(true) o Desactiva (false) la Depuracion en Linea</description>
   </property>
   
     <property>
     <name>debug-mode</name>
-    <value>false</value>
+    <value>true</value>
     <description>Define el estilo de visualización de Excepciones. Muestra StackTrace detallado si es true, o un resumen si es false (Ambientes de Producción) Valores posibles: true / false</description>
   </property>  
   <property>

@@ -1,59 +1,85 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<web-app id="infi" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
- 
-  
-  <display-name>infi</display-name>
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/j2ee/dtds/webapp_2_3.dtd">
 
+<web-app>
+ 
+  <display-name>infi</display-name>
+  <description>Venta Masiva de instrumentos financieros</description>
+
+  <!--parametros globales de la aplicacion-->
+
+  <!--
+  	Nota: para WebLogic 6.1 sp1, Orion 1.6 (Oracle) y WebSphere v4 (?)
+  	se debe quitar el prefijo java:comp/env/ del nombre del DataSource
+  -->
+
+  
+  <!-- Descomentar en el caso de que la Aplicacion utilice DataSource -->
+    
+
+  <!-- Context Param Sample
   <context-param>
     <param-name>datasource</param-name>
-    <param-value>jdbc/infi</param-value>
-    
+    <param-value>java:comp/env/jdbc/security</param-value>
+    <description>DataSource principal de la aplicacion</description>
+  </context-param>
+  -->
+  
+  <context-param>
+    <param-name>datasource</param-name>
+    <param-value>java:comp/env/jdbc/infi</param-value>
+    <description>DataSource principal de la aplicacion</description>
   </context-param>
 
   <context-param>
     <param-name>datasource-perflog</param-name>
-    <param-value>jdbc/infi</param-value>
-    
+    <param-value>java:comp/env/jdbc/infi</param-value>
+    <description>DataSource para performance-log</description>
   </context-param>
  
 
   
   <context-param>
     <param-name>datasource-security</param-name>
-    <param-value>jdbc/security</param-value>
-    
+    <param-value>java:comp/env/jdbc/security</param-value>
+    <description>DataSource para seguridad - registro de logins</description>
   </context-param>
 
   <context-param>
     <param-name>template-dir</param-name>
     <param-value>/WEB-INF/templates/</param-value>
-    
+    <description>Directorio de plantillas de la aplicacion - debe estar dentro del contexto</description>
   </context-param>
 
   <context-param>
     <param-name>enable-perflog</param-name>
     <param-value>false</param-value>
-    
+    <description>Activar/Desactivar performance log de servlets - true|false</description>
   </context-param>
 
   <context-param>
     <param-name>enable-login-trace</param-name>
     <param-value>false</param-value>
-    
+    <description>Activar/Desactivar traza de logins y sesiones en BD - true|false</description>
   </context-param>
 
   <context-param>
     <param-name>print-out-enabled</param-name>
     <param-value>true</param-value>
-    
+    <description>Activar/Desactivar la impresi&oacute;n del m&eacute;todo _printOut() en los modelos</description>
   </context-param>
 
   <context-param>
     <param-name>print-err-enabled</param-name>
     <param-value>true</param-value>
-    
+    <description>Activar/Desactivar la impresi&oacute;n del m&eacute;todo _printErr() en los modelos</description>
   </context-param>
-
+	<context-param>
+    <param-name>menu-dir</param-name>
+    <param-value>/resin/webapps/bdv_infiv1/js/menu/</param-value>
+    <description>Directorio de archivos java script</description>
+  </context-param>
+  
 	<filter>
     	<filter-name>MSCUrlLogFilter</filter-name>
     	<filter-class>com.bdv.trace.MSCFilterUrlAudit</filter-class>
@@ -64,80 +90,71 @@
     	<url-pattern>/action/*</url-pattern>
 	</filter-mapping>
 
-
+  <display-name>QuartzExample</display-name>
     <listener>
         <listener-class>org.quartz.ee.servlet.QuartzInitializerListener</listener-class>
     </listener>
-    
-    <listener>
+
+	<listener>
         <listener-class>megasoft.SessionListener</listener-class>
   </listener>
-  
+  <!--servlets utilitarios del framework-->
+
   <servlet>
     <servlet-name>DebugServlet</servlet-name>
-    
+    <description>Debug Servlet Output</description>
     <servlet-class>megasoft.DebugServlet</servlet-class>
   </servlet>
 
   <servlet id="DefaultController">
     <servlet-name>ActionServlet</servlet-name>
-    
+    <description>Default controller of the MVC mechanism</description>
     <servlet-class>megasoft.ActionServlet</servlet-class>
     <init-param>
       <param-name>enable-log</param-name>
       <param-value>false</param-value>
-      
+      <description>Indica si se activa la traza detallada del mecanismo MVC (true|false)</description>
     </init-param>
     <init-param>
       <param-name>input-decimal-separator</param-name>
       <param-value>,</param-value>
     </init-param> 
+
     <load-on-startup>-1</load-on-startup>
   </servlet>
 
   <servlet id="ChartServlet">
     <servlet-name>ChartServlet</servlet-name>
-    
+    <description>Graficador Gen&eacute;rico</description>
     <servlet-class>megasoft.ChartServlet</servlet-class>
     <load-on-startup>2</load-on-startup>
   </servlet>
   
-  <servlet>
-    <servlet-name>log4j-init</servlet-name>
-    <servlet-class>models.log4j.Log4jInit</servlet-class>
-
-    <init-param>
-      <param-name>log4j-init-file</param-name>
-      <param-value>/WEB-INF/log4j.properties</param-value>
-    </init-param>
-
+   <servlet id="ProgramadorSchedulerServlet">
+    <servlet-name>ProgramadorSchedulerServlet</servlet-name>
+    <description>Servlet de inicio del Scheduler</description>
+    <servlet-class>models.programador_scheduler.ProgramadorSchedulerServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
-  
-  <servlet id="ProgramadorSchedulerServlet">
-    <servlet-name>ProgramadorSchedulerServlet</servlet-name>
-    
-    <servlet-class>models.programador_scheduler.ProgramadorSchedulerServlet</servlet-class>
-    <load-on-startup>2</load-on-startup>
-  </servlet>
-  
-  <servlet id="CacheServlet">
+  <!--  
+  	<servlet id="CacheServlet">
     	<servlet-name>ServletStartCache</servlet-name>
     	<description>manejador de cache</description>
     	<servlet-class>ServletStartCache</servlet-class>
     	<load-on-startup>2</load-on-startup>
-  </servlet>
-	
+	</servlet>
+	-->
   <servlet id="FileServer"> 
     <servlet-name>fileserver</servlet-name>
-    
+    <description>Servir archivos especificados a trav&eacute;s de atributos del request</description>
     <servlet-class>megasoft.FileServer</servlet-class>
   </servlet>
     
   <servlet id="ErrorServlet">
     <servlet-name>ErrorServlet</servlet-name>
+    <description>Error Handler Centralizado para manejo de las excepciones generadas por los Servlets</description>
+    <servlet-class>megasoft.ErrorServlet</servlet-class>
     
-    <servlet-class>megasoft.ErrorServlet</servlet-class>    
     <init-param>
       <param-name>debug-mode</param-name>
       <param-value>yes</param-value>
@@ -169,6 +186,9 @@
     <load-on-startup>3</load-on-startup>
   </servlet>
 
+  <!--mappings-->
+
+  <!--controller del framework-->
   <servlet-mapping>
     <servlet-name>ActionServlet</servlet-name>
     <url-pattern>/action/*</url-pattern>
@@ -182,30 +202,31 @@
     <url-pattern>/j_logout</url-pattern>
   </servlet-mapping>
 
+  <!--graficador generico-->
   <servlet-mapping>
     <servlet-name>ChartServlet</servlet-name>
     <url-pattern>/getchart</url-pattern>
   </servlet-mapping>
 
-  
+  <!--error handler-->
   <servlet-mapping>
     <servlet-name>ErrorServlet</servlet-name>
     <url-pattern>/errorhandler</url-pattern>
   </servlet-mapping>
 
-  
+  <!--Debug handler-->
   <servlet-mapping>
     <servlet-name>DebugServlet</servlet-name>
     <url-pattern>/foundation_debug</url-pattern>
   </servlet-mapping>
 
-  
+  <!--File Server-->
   <servlet-mapping>
     <servlet-name>fileserver</servlet-name>
     <url-pattern>/fileserver</url-pattern>
   </servlet-mapping>
 
-  
+  <!--configuraci&oacute;n de la sesion-->
   <session-config>
     <session-timeout>90</session-timeout>
   </session-config>
@@ -215,11 +236,12 @@
         <mime-type>text/plain</mime-type>
     </mime-mapping>
     
-  
+  <!--pagina de arranque-->
   <welcome-file-list>
     <welcome-file>index.htm</welcome-file>
   </welcome-file-list>
 
+  <!--manejadores centralizados de errorres-->
   <error-page>
     <error-code>401</error-code>
     <location>/error_401.htm</location>
@@ -239,6 +261,29 @@
     <error-code>500</error-code>
     <location>/errorhandler</location>
   </error-page>
+  <!-- 
+  <error-page>
+    <error-code>FWRK-SEC-0001</error-code>
+    <location>/fwrk_sec_0001.htm</location>
+  </error-page>
+ -->
+
+<database jndi-name='jdbc/security'>
+  <driver>
+  	<type>oracle.jdbc.driver.OracleDriver</type>
+    <url>jdbc:oracle:thin:@bdvdesa2:1510:WSRVICED</url>
+    <user>SEPA</user>
+    <password>SEPA</password>
+  </driver>
+</database>
+
+<database jndi-name='jdbc/infi'>
+  <driver>
+  	<type>oracle.jdbc.driver.OracleDriver</type>
+    <url>jdbc:oracle:thin:@sun2241d.banvendes.corp:1535:INFID</url>
+    <user>USU_INFI</user>
+    <password>USU_INFI</password>
+  </driver>
+</database>
 
 </web-app>
-

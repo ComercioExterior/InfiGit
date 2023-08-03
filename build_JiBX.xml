@@ -11,7 +11,7 @@
 
   <property environment="env"/>
 	<echo>${basedir}</echo>
-  <property name="directorioInicial" value="D:\resin\resin-4.0.41\webapps\INFI_V1.0.11_PRODUCCION_ANULACION_MASIVO"/>	
+  <property name="directorioInicial" value="D:\resin\resin-4.0.41\webapps\InfiGit"/>	
 	
   <property name="jibx-home" value="${directorioInicial}"/>
 		

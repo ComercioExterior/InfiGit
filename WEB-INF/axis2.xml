@@ -22,7 +22,7 @@
 			<items>UsernameToken</items>
 			
         	<!--  Usuario a enviar  -->
-        	<user>usrinfi</user>
+        	<user>infi</user>
 
         	<!--  Manejador del CallBack-->
         	<passwordCallbackClass>com.bdv.infi.webservices.client.PWHandlerClient</passwordCallbackClass>

@@ -2,7 +2,7 @@
  <project name="WebServiceANT" basedir="." default="crearwar">  
  	
  	
-	<property name="origenInfiUnidad" value="../../../../INFI_V1.0.11_PRODUCCION_ANULACION_MASIVO" />
+	<property name="origenInfiUnidad" value="../../../../InfiGit" />
     <property name="dir.des"  value="${basedir}/war"/>
     <property name="war.name" value="infid.war"/>
 

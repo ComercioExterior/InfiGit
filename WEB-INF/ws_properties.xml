@@ -50,7 +50,7 @@
   
   <property>
     <name>datasource-infi</name>
-    <value>jdbc/infi</value>
+    <value>java:comp/env/jdbc/infi</value>
     <description>This is a Sample Property Value</description>
   </property>  
   <!-- RECURSOS DE CORE MSC (Seguridad/Autenticaci�n) -->
